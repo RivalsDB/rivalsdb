@@ -6,7 +6,7 @@ export async function createServer() {
   const fastify = Fastify({ logger: true });
 
   fastify.register(fastifyStatic, {
-    root: path.join(__dirname, "..", "public"),
+    root: path.join(__dirname, "..", "..", "public"),
     prefix: "/public/",
   });
 

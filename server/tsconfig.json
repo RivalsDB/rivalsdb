@@ -1,5 +1,5 @@
 {
-  "include": ["src/index.ts"],
+  "include": ["src/**/*.ts"],
   "compilerOptions": {
     "allowJs": false,
     "baseUrl": ".",
