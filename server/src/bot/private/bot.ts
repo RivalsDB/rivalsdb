@@ -53,11 +53,11 @@ export async function startBot() {
       return interaction.reply(cardImageUrl(cardImage));
     }
 
-    const candidates = result.map(({ item }) => item);
+    const candidates = result.map(({ item }) => `\`${item}\``);
     return interaction.reply(
-      `I'm not sure I follow you. Are you asking about any of these ${list.format(
+      `I'm not sure I follow you. Are you maybe asking about ${list.format(
         candidates
-      )}`
+      )}?`
     );
   });
 
