@@ -359,7 +359,7 @@ export const cards = [
   {
     id: "core-first-tradition-the-masquerade",
     name: "First Tradition: The Masquerade",
-    image: "core-first-tradition-the-masquerade",
+    image: "core-first-tradition-the-masquerade.png",
   },
   { id: "core-fleetness", name: "Fleetness", image: "core-fleetness.png" },
   { id: "core-flick", name: "Flick", image: "core-flick.png" },
@@ -676,7 +676,7 @@ export const cards = [
   {
     id: "core-wandering-the-bart-tunnels",
     name: "Wandering the BART Tunnels",
-    image: "core-wandering-the-bart-tunnels",
+    image: "core-wandering-the-bart-tunnels.png",
   },
   {
     id: "core-whispering-campaign",
