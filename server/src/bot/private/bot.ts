@@ -37,9 +37,10 @@ export async function startBot() {
 
     const result = fuse.search(query, { limit: 3 });
     if (result.length === 0) {
-      return interaction.reply(
-        `I am sorry, my darling, but I have no idea what you are talking about ¯\_(ツ)_/¯`
-      );
+      return interaction.reply({
+        ephemeral: true,
+        content: `I am sorry, my darling, but I have no idea what you are looking for 🤷‍♂️`,
+      });
     }
 
     if (result.length === 1) {
@@ -54,11 +55,12 @@ export async function startBot() {
     }
 
     const candidates = result.map(({ item }) => `\`${item}\``);
-    return interaction.reply(
-      `I'm not sure I follow you. Are you maybe asking about ${list.format(
+    return interaction.reply({
+      ephemeral: true,
+      content: `I'm not sure I follow you. Are you maybe asking about ${list.format(
         candidates
-      )}?`
-    );
+      )}?`,
+    });
   });
 
   return client.login(discordBotToken);
