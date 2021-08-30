@@ -20,6 +20,7 @@ export async function startBot() {
 
   const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
   client.on("interactionCreate", async (interaction) => {
+    console.log("BOT>>", interaction);
     if (!interaction.isCommand()) return;
     if (interaction.commandName !== cardCommand.name) return;
 

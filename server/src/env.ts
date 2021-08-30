@@ -12,10 +12,9 @@ if (typeof process.env.DISCORD_BOT_TOKEN !== "string") {
 }
 export const discordBotToken = process.env.DISCORD_BOT_TOKEN;
 
-console.log("SETUP! PORT", JSON.stringify(process.env.PORT));
-const port = parseInt(String(process.env.PORT), 10);
-if (isNaN(port)) {
-  throw Error("Environment variable PORT didn't read as a valid number");
+if (typeof process.env.PORT !== "string") {
+  throw Error("Missing environment variable PORT");
 }
-console.log("SETUP! PORT AFTER", JSON.stringify(port));
-export const serverPort = port;
+export const serverPort = process.env.PORT;
+
+console.log("SETUP! HOST", process.env.HOST);
