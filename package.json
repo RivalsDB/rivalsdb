@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "npm run build:server",
     "build:server": "cd server && npm install && npm run build",
     "start": "node server/dist/index.js"
   },
