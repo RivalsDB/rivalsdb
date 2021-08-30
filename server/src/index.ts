@@ -3,6 +3,9 @@ import "source-map-support/register";
 import { createServer } from "./server/server";
 import { startBot } from "./bot";
 
-startBot()
-  .then(() => createServer())
-  .then(({ run }) => run());
+createServer().then(({ run }) => {
+  return Promise.all([
+    run().then(() => console.log("Server is running")),
+    startBot().then(() => console.log("Bot is running")),
+  ]);
+});
