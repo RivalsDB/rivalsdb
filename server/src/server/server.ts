@@ -13,7 +13,7 @@ export async function createServer() {
 
   const run = async () => {
     try {
-      await fastify.listen(serverPort);
+      await fastify.listen(serverPort, "0.0.0.0");
     } catch (err) {
       fastify.log.error(err);
     }
