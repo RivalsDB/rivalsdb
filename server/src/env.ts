@@ -2,6 +2,8 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+export const isProduction = process.env.NODE_ENV === "production";
+
 if (typeof process.env.DISCORD_CLIENT_ID !== "string") {
   throw Error("Missing environment variable DISCORD_CLIENT_ID");
 }
@@ -17,4 +19,7 @@ if (typeof process.env.PORT !== "string") {
 }
 export const serverPort = process.env.PORT;
 
-console.log("SETUP! HOST", process.env.HOST);
+if (typeof process.env.BASE_URL !== "string") {
+  throw Error("Missing environment variable BASE_URL");
+}
+export const baseUrl = process.env.BASE_URL;
