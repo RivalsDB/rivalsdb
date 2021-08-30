@@ -5,7 +5,7 @@
     "baseUrl": ".",
     "esModuleInterop": true,
     "incremental": true,
-    "lib": ["ES2020"],
+    "lib": ["ES2020", "DOM"],
     "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": true,
