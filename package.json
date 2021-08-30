@@ -1,0 +1,16 @@
+{
+  "name": "rivalsdb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "author": "Luiz Socrate <luiz@socrate.com.br>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lsocrate/rivalsdb/issues"
+  },
+  "homepage": "https://rivalsdb.app",
+  "engines": {
+    "node": "16.8.0"
+  }
+}
