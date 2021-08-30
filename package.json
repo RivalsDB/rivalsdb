@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "build:server": "cd server && npm install && npm run build",
+    "start": "node server/dist/index.js"
+  },
   "author": "Luiz Socrate <luiz@socrate.com.br>",
   "license": "MIT",
   "bugs": {
