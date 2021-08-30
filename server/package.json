@@ -6,7 +6,7 @@
     "build": "tsc",
     "dev": "sh bin/watch.sh"
   },
-  "author": "",
+  "author": "Luiz Socrate <luiz@socrate.com.br>",
   "license": "MIT",
   "dependencies": {
     "@discordjs/builders": "^0.6.0",
