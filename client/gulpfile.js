@@ -1,12 +1,10 @@
 const { src, dest, parallel, watch } = require("gulp");
-const sass = require("gulp-sass");
+const sass = require("gulp-sass")(require("sass"));
 const cleanCSS = require("gulp-clean-css");
 const concatCss = require("gulp-concat-css");
 const gulpBrotli = require("gulp-brotli");
 const gulpGzip = require("gulp-gzip");
 const zlib = require("zlib");
-
-sass.compiler = require("sass");
 
 const sassConf = {
   source: "./src/**/*.sass",
@@ -28,7 +26,7 @@ function processStyles() {
     .pipe(dest(sassConf.destination));
 }
 function watchStyles() {
-  return watch(sassConf.source, {ignoreInitial:false},processStyles)
+  return watch(sassConf.source, { ignoreInitial: false }, processStyles);
 }
 
 const compressTxtOpts = {
@@ -62,8 +60,6 @@ function gzip() {
     .pipe(dest(compressTxtOpts.destination));
 }
 
-
-
 exports.sassBuild = sassBuild;
 exports.optimize = parallel(brotli, gzip);
-exports.watchStyles = watchStyles
+exports.watchStyles = watchStyles;
