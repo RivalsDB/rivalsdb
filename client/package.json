@@ -1,0 +1,23 @@
+{
+  "name": "@rivalsdb/client",
+  "scripts": {
+    "build:css": "gulp sassBuild",
+    "build:js": "elm-spa build",
+    "watch:styles": "gulp watchStyles"
+  },
+  "devDependencies": {
+    "elm": "^0.19.1-5",
+    "elm-spa": "^6.0.4",
+    "gulp": "^4.0.2",
+    "gulp-brotli": "^3.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-cli": "^2.3.0",
+    "gulp-concat-css": "^3.1.0",
+    "gulp-gzip": "^1.4.2",
+    "gulp-sass": "^5.0.0",
+    "normalize.css": "^8.0.1",
+    "prettier": "^2.3.2",
+    "sass": "^1.39.0",
+    "zlib": "^1.0.5"
+  }
+}
