@@ -1,11 +1,12 @@
 {
   "name": "@rivalsdb/client",
   "scripts": {
-    "build:css": "gulp sassBuild",
-    "build:js": "elm-spa build",
-    "watch": "concurrently \"npm run watch:elm\" \"npm run watch:styles\" ",
-    "watch:elm": "elm-spa server",
-    "watch:styles": "gulp watchStyles"
+    "build": "npm run build-js && npm run buld-css",
+    "build-css": "gulp sassBuild",
+    "build-js": "elm-spa build",
+    "watch": "concurrently \"npm:watch-*\"",
+    "watch-elm": "elm-spa server",
+    "watch-styles": "gulp watchStyles"
   },
   "devDependencies": {
     "concurrently": "^6.2.1",
