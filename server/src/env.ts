@@ -23,3 +23,8 @@ if (typeof process.env.BASE_URL !== "string") {
   throw Error("Missing environment variable BASE_URL");
 }
 export const baseUrl = process.env.BASE_URL;
+
+if (typeof process.env.RUN_BOT_SERVER !== "string") {
+  throw Error("Missing environment variable RUN_BOT_SERVER");
+}
+export const runBotServer = process.env.RUN_BOT_SERVER === "1";
