@@ -20,7 +20,7 @@ function cardImageUrl(cardImage: string): string {
   return format({
     protocol: "https",
     hostname: baseUrl,
-    pathname: `/public/card/${cardImage}`,
+    pathname: `/card/${cardImage}`,
   });
 }
 
