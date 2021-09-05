@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm run build:server",
-    "build:server": "cd server && npm install && npm run build",
+    "build": "npm run build-server && npm run build-client && npm run build-assemble",
+    "build-client": "cd client && npm install && npm run build && cd ..",
+    "build-server": "cd server && npm install && npm run build && cd ..",
+    "build-assemble": "mv client/public/* server/public/",
     "start": "node server/dist/index.js"
   },
   "author": "Luiz Socrate <luiz@socrate.com.br>",

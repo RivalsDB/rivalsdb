@@ -1,7 +1,7 @@
 {
   "name": "@rivalsdb/client",
   "scripts": {
-    "build": "npm run build-js && npm run buld-css",
+    "build": "npm run build-js && npm run build-css",
     "build-css": "gulp sassBuild",
     "build-js": "elm-spa build",
     "watch": "concurrently \"npm:watch-*\"",
