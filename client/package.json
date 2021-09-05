@@ -1,7 +1,7 @@
 {
   "name": "@rivalsdb/client",
   "scripts": {
-    "build": "npm run build-js && npm run build-css",
+    "build": "yarn build-js && yarn build-css",
     "build-css": "gulp sassBuild",
     "build-js": "elm-spa build",
     "watch": "concurrently \"npm:watch-*\"",
@@ -23,5 +23,9 @@
     "prettier": "^2.3.2",
     "sass": "^1.39.0",
     "zlib": "^1.0.5"
+  },
+  "engines": {
+    "node": "16.8.0",
+    "yarn": "1.x"
   }
 }
