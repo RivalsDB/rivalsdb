@@ -5,13 +5,12 @@ import Html exposing (Html)
 
 
 type alias View msg =
-    { body : List (Html msg) }
+    List (Html msg)
 
 
 placeholder : String -> View msg
 placeholder str =
-    { body = [ Html.text str ]
-    }
+    [ Html.text str ]
 
 
 none : View msg
@@ -21,14 +20,13 @@ none =
 
 map : (a -> b) -> View a -> View b
 map fn view =
-    { body = List.map (Html.map fn) view.body
-    }
+    List.map (Html.map fn) view
 
 
 toBrowserDocument : View msg -> Browser.Document msg
 toBrowserDocument view =
     { title = title
-    , body = view.body
+    , body = view
     }
 
 

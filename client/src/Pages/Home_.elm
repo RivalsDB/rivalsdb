@@ -8,8 +8,7 @@ import View exposing (View)
 
 view : View msg
 view =
-    { body = body
-    }
+    body
 
 
 body : List (Html msg)
