@@ -1,9 +1,10 @@
 {
   "name": "@rivalsdb/client",
   "scripts": {
-    "build": "yarn build-js && yarn build-css",
+    "build": "yarn build-css && yarn build-js && yarn compress",
     "build-css": "gulp sassBuild",
     "build-js": "elm-spa build",
+    "compress": "gulp optimize",
     "watch": "concurrently \"npm:watch-*\"",
     "watch-elm": "elm-spa server",
     "watch-styles": "gulp watchStyles"

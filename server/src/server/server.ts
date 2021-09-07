@@ -9,6 +9,7 @@ export async function createServer() {
   fastify.register(fastifyStatic, {
     root: path.join(__dirname, "..", "..", "public"),
     wildcard: false,
+    preCompressed: true,
   });
   fastify.get("/*", (req, reply) => {
     reply.sendFile("index.html");
