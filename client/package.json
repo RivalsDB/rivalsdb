@@ -27,5 +27,6 @@
   "engines": {
     "node": "16.8.0",
     "yarn": "1.x"
-  }
+  },
+  "license": "MIT"
 }
