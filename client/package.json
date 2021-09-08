@@ -5,7 +5,7 @@
     "build-css": "gulp sassBuild",
     "build-js": "elm-spa build",
     "compress": "gulp optimize",
-    "watch": "concurrently \"npm:watch-*\"",
+    "dev": "concurrently \"npm:watch-*\"",
     "watch-elm": "elm-spa server",
     "watch-styles": "gulp watchStyles"
   },
