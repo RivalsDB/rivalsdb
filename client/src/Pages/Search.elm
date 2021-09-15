@@ -2,7 +2,7 @@ module Pages.Search exposing (Model, Msg, page)
 
 import Browser.Navigation exposing (Key)
 import Cards exposing (Card)
-import Dict exposing (Dict)
+import Dict
 import Fuzzy
 import Gen.Params.Search exposing (Params)
 import Gen.Route as Route
@@ -43,7 +43,7 @@ init collection req =
         matches =
             case queryString of
                 Nothing ->
-                    []
+                    Dict.values collection
 
                 Just q ->
                     Dict.keys collection |> fuzzySort q |> List.take 3 |> List.filterMap (\k -> Dict.get k collection)
