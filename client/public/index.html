@@ -9,7 +9,9 @@
   <body>
     <script src="/dist/elm.js"></script>
     <script>
-      Elm.Main.init();
+      fetch("/cards.json")
+        .then((response) => response.json())
+        .then((cards) => Elm.Main.init({ flags: cards }));
     </script>
   </body>
 </html>

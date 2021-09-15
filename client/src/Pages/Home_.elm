@@ -16,12 +16,12 @@ import View exposing (View)
 
 
 page : Shared.Model -> Request.With Params -> Page.With Model Msg
-page _ req =
+page shared req =
     Page.element
         { init = init req.key
         , update = update
-        , view = view
-        , subscriptions = subscriptions
+        , view = view shared
+        , subscriptions = always Sub.none
         }
 
 
@@ -67,8 +67,8 @@ update msg model =
             ( model, Browser.Navigation.pushUrl model.key url )
 
 
-view : Model -> View Msg
-view _ =
+view : Shared.Model -> Model -> View Msg
+view _ _ =
     [ header [ class "page-header" ]
         [ div [ class "header-logo" ] [ UI.Logo.logo ]
         , div [ class "header-search" ]
@@ -85,8 +85,3 @@ view _ =
             ]
         ]
     ]
-
-
-subscriptions : Model -> Sub Msg
-subscriptions _ =
-    Sub.none

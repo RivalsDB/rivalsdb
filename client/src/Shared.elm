@@ -1,5 +1,6 @@
 module Shared exposing
-    ( Flags
+    ( Collection
+    , Flags
     , Model
     , Msg
     , init
@@ -7,6 +8,8 @@ module Shared exposing
     , update
     )
 
+import Cards exposing (cardsDecoder)
+import Dict
 import Json.Decode as Json
 import Request exposing (Request)
 
@@ -15,8 +18,12 @@ type alias Flags =
     Json.Value
 
 
+type alias Collection =
+    Dict.Dict Cards.Id Cards.Card
+
+
 type alias Model =
-    {}
+    { collection : Collection }
 
 
 type Msg
@@ -24,8 +31,17 @@ type Msg
 
 
 init : Request -> Flags -> ( Model, Cmd Msg )
-init _ _ =
-    ( {}, Cmd.none )
+init _ flags =
+    let
+        model =
+            case Json.decodeValue cardsDecoder flags of
+                Ok cards ->
+                    { collection = cards }
+
+                Err _ ->
+                    { collection = Dict.empty }
+    in
+    ( model, Cmd.none )
 
 
 update : Request -> Msg -> Model -> ( Model, Cmd Msg )
