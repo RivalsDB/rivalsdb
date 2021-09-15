@@ -7,11 +7,12 @@ import Fuzzy
 import Gen.Params.Search exposing (Params)
 import Gen.Route as Route
 import Html exposing (..)
-import Html.Attributes exposing (class, placeholder, spellcheck, src, type_)
+import Html.Attributes exposing (class, href, placeholder, spellcheck, src, type_)
 import Html.Events exposing (onInput, onSubmit)
 import Page
 import Request
 import Shared exposing (Collection)
+import UI.Card
 import UI.Logo
 import View exposing (View)
 
@@ -106,21 +107,32 @@ update msg model =
 view : Model -> View Msg
 view model =
     [ header [ class "page-header" ]
-        [ div [ class "header-logo" ] [ UI.Logo.logo ]
+        [ div [ class "header-logo" ] [ a [ href <| Route.toHref Route.Home_ ] [ UI.Logo.logo ] ]
+        , nav [ class "header-nav" ]
+            [ ul []
+                [ li [] [ a [ href <| Route.toHref Route.Search ] [ text "Cards" ] ]
+                ]
+            ]
         , div [ class "header-search" ]
             [ form [ onSubmit Submitted ]
                 [ input [ onInput SearchQueryChanged, placeholder "search", type_ "search", spellcheck False ] [] ]
             ]
         ]
     , div [ class "page-content" ]
-        [ div []
-            [ p []
-                [ text "Query: "
-                , text <| Maybe.withDefault "" model.queryString
-                ]
-            , h3 [] [ text "matches" ]
-            , div [] <| List.map (\c -> img [ src <| Cards.image c ] []) model.matches
+        [ p []
+            [ text "Query: "
+            , text <| Maybe.withDefault "" model.queryString
             ]
+        , h3 [] [ text "matches" ]
+        , ul [ class "search-results" ]
+            (model.matches
+                |> List.map
+                    (\card ->
+                        li [ class "search-result" ]
+                            [ UI.Card.lazy card
+                            ]
+                    )
+            )
         ]
     , footer [ class "page-footer" ]
         [ small [ class "footer-legal" ]

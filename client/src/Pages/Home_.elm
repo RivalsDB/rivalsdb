@@ -4,7 +4,7 @@ import Browser.Navigation exposing (Key)
 import Gen.Params.Home_ exposing (Params)
 import Gen.Route as Route
 import Html exposing (..)
-import Html.Attributes exposing (class, placeholder, spellcheck, type_)
+import Html.Attributes exposing (class, href, placeholder, spellcheck, type_)
 import Html.Events exposing (onInput, onSubmit)
 import Page
 import Pages.Search exposing (Model, Msg)
@@ -70,7 +70,12 @@ update msg model =
 view : Shared.Model -> Model -> View Msg
 view _ _ =
     [ header [ class "page-header" ]
-        [ div [ class "header-logo" ] [ UI.Logo.logo ]
+        [ div [ class "header-logo" ] [ a [ href <| Route.toHref Route.Home_ ] [ UI.Logo.logo ] ]
+        , nav [ class "header-nav" ]
+            [ ul []
+                [ li [] [ a [ href <| Route.toHref Route.Search ] [ text "Cards" ] ]
+                ]
+            ]
         , div [ class "header-search" ]
             [ form [ onSubmit Submitted ]
                 [ input [ onInput SearchQueryChanged, placeholder "search", type_ "search", spellcheck False ] [] ]
