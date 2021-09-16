@@ -1,24 +1,21 @@
 module Pages.Home_ exposing (Model, Msg, page)
 
-import Browser.Navigation exposing (Key)
 import Gen.Params.Home_ exposing (Params)
-import Gen.Route as Route
 import Html exposing (..)
-import Html.Attributes exposing (class, href, placeholder, spellcheck, type_)
-import Html.Events exposing (onInput, onSubmit)
+import Html.Attributes exposing (class)
 import Page
 import Pages.Search exposing (Model, Msg)
 import Request
 import Shared exposing (init, update)
-import UI.Logo
-import Url.Parser exposing (query)
+import UI.Layout.Footer
+import UI.Layout.Header
 import View exposing (View)
 
 
 page : Shared.Model -> Request.With Params -> Page.With Model Msg
 page shared req =
     Page.element
-        { init = init req.key
+        { init = init req
         , update = update
         , view = view shared
         , subscriptions = always Sub.none
@@ -26,67 +23,32 @@ page shared req =
 
 
 type alias Model =
-    { key : Key, search : Maybe String }
+    { header : UI.Layout.Header.Model }
 
 
-init : Key -> ( Model, Cmd Msg )
-init key =
-    ( { key = key, search = Nothing }, Cmd.none )
+init : Request.With Params -> ( Model, Cmd Msg )
+init req =
+    ( { header = UI.Layout.Header.init req }, Cmd.none )
 
 
 type Msg
-    = SearchQueryChanged String
-    | Submitted
+    = FromHeader UI.Layout.Header.Msg
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        SearchQueryChanged query ->
+        FromHeader headerMsg ->
             let
-                search =
-                    case String.trim query of
-                        "" ->
-                            Nothing
-
-                        trimmed ->
-                            Just trimmed
+                ( newHeader, headerCmd ) =
+                    UI.Layout.Header.update headerMsg model.header
             in
-            ( { model | search = search }, Cmd.none )
-
-        Submitted ->
-            let
-                url =
-                    case model.search of
-                        Nothing ->
-                            Route.toHref Route.Search
-
-                        Just search ->
-                            Route.toHref Route.Search ++ "?search=" ++ search
-            in
-            ( model, Browser.Navigation.pushUrl model.key url )
+            ( { model | header = newHeader }, headerCmd )
 
 
 view : Shared.Model -> Model -> View Msg
 view _ _ =
-    [ header [ class "page-header" ]
-        [ div [ class "header-logo" ] [ a [ href <| Route.toHref Route.Home_ ] [ UI.Logo.logo ] ]
-        , nav [ class "header-nav" ]
-            [ ul []
-                [ li [] [ a [ href <| Route.toHref Route.Search ] [ text "Cards" ] ]
-                ]
-            ]
-        , div [ class "header-search" ]
-            [ form [ onSubmit Submitted ]
-                [ input [ onInput SearchQueryChanged, placeholder "search", type_ "search", spellcheck False ] [] ]
-            ]
-        ]
+    [ UI.Layout.Header.view FromHeader
     , div [ class "page-content" ] []
-    , footer [ class "page-footer" ]
-        [ small [ class "footer-legal" ]
-            [ p [] [ text "This site is not owned, endorsed or supported by Renegade Game Studios" ]
-            , p [] [ text "The information presented above about Vampire the Masquerade Rivals, both literal and graphical, is © Renegade Game Studio. All Rights reserved." ]
-            , p [] [ text "© 2020 Renegade Game Studios, Paradox Interactive®, Vampire The Masquerade®, World of Darkness®, Copyright 2020 Paradox Interactive AB (publ)." ]
-            ]
-        ]
+    , UI.Layout.Footer.view
     ]

@@ -444,13 +444,3 @@ decodeClan =
 decodeSet : Decoder (Pack -> b) -> Decoder b
 decodeSet =
     required "set" pack.decoder
-
-
-failOnNothing : Maybe a -> Decoder a
-failOnNothing m =
-    case m of
-        Just v ->
-            Decode.succeed v
-
-        Nothing ->
-            Decode.fail "Bad value"

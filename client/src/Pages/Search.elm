@@ -1,19 +1,17 @@
 module Pages.Search exposing (Model, Msg, page)
 
-import Browser.Navigation exposing (Key)
 import Cards exposing (Card)
 import Dict
 import Fuzzy
 import Gen.Params.Search exposing (Params)
-import Gen.Route as Route
 import Html exposing (..)
-import Html.Attributes exposing (class, href, placeholder, spellcheck, type_)
-import Html.Events exposing (onInput, onSubmit)
+import Html.Attributes exposing (class)
 import Page
 import Request
 import Shared exposing (Collection)
 import UI.Card
-import UI.Logo
+import UI.Layout.Footer
+import UI.Layout.Header
 import View exposing (View)
 
 
@@ -28,25 +26,21 @@ page shared req =
 
 
 type alias Model =
-    { key : Key
-    , search : Maybe String
-    , queryString : Maybe String
-    , matches : List Card
+    { matches : List Card
     , collection : Collection
+    , header : UI.Layout.Header.Model
     }
 
 
 init : Collection -> Request.With Params -> ( Model, Cmd Msg )
 init collection req =
     let
-        queryString =
-            Dict.get "search" req.query
+        header =
+            UI.Layout.Header.init req
     in
-    ( { queryString = queryString
-      , matches = matchesForQuery collection queryString
-      , key = req.key
-      , search = queryString
-      , collection = collection
+    ( { collection = collection
+      , header = header
+      , matches = matchesForQuery collection header.queryString
       }
     , Cmd.none
     )
@@ -76,36 +70,18 @@ fuzzySort query items =
 
 
 type Msg
-    = SearchQueryChanged String
-    | Submitted
+    = FromHeader UI.Layout.Header.Msg
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        SearchQueryChanged query ->
+        FromHeader headerMsg ->
             let
-                search =
-                    case String.trim query of
-                        "" ->
-                            Nothing
-
-                        trimmed ->
-                            Just trimmed
+                ( newHeader, headerCmd ) =
+                    UI.Layout.Header.update headerMsg model.header
             in
-            ( { model | search = search }, Cmd.none )
-
-        Submitted ->
-            let
-                url =
-                    case model.search of
-                        Nothing ->
-                            Route.toHref Route.Search
-
-                        Just search ->
-                            Route.toHref Route.Search ++ "?search=" ++ search
-            in
-            ( { model | matches = matchesForQuery model.collection model.search }, Browser.Navigation.pushUrl model.key url )
+            ( { model | header = newHeader, matches = matchesForQuery model.collection newHeader.queryString }, headerCmd )
 
 
 
@@ -114,22 +90,11 @@ update msg model =
 
 view : Model -> View Msg
 view model =
-    [ header [ class "page-header" ]
-        [ div [ class "header-logo" ] [ a [ href <| Route.toHref Route.Home_ ] [ UI.Logo.logo ] ]
-        , nav [ class "header-nav" ]
-            [ ul []
-                [ li [] [ a [ href <| Route.toHref Route.Search ] [ text "Cards" ] ]
-                ]
-            ]
-        , div [ class "header-search" ]
-            [ form [ onSubmit Submitted ]
-                [ input [ onInput SearchQueryChanged, placeholder "search", type_ "search", spellcheck False ] [] ]
-            ]
-        ]
+    [ UI.Layout.Header.view FromHeader
     , div [ class "page-content" ]
         [ p []
             [ text "Query: "
-            , text <| Maybe.withDefault "" model.queryString
+            , text <| Maybe.withDefault "" model.header.queryString
             ]
         , h3 [] [ text "matches" ]
         , ul [ class "search-results" ]
@@ -142,11 +107,5 @@ view model =
                     )
             )
         ]
-    , footer [ class "page-footer" ]
-        [ small [ class "footer-legal" ]
-            [ p [] [ text "This site is not owned, endorsed or supported by Renegade Game Studios" ]
-            , p [] [ text "The information presented above about Vampire the Masquerade Rivals, both literal and graphical, is © Renegade Game Studio. All Rights reserved." ]
-            , p [] [ text "© 2020 Renegade Game Studios, Paradox Interactive®, Vampire The Masquerade®, World of Darkness®, Copyright 2020 Paradox Interactive AB (publ)." ]
-            ]
-        ]
+    , UI.Layout.Footer.view
     ]
