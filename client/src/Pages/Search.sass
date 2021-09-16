@@ -1,19 +1,30 @@
-.search-results
-  margin: 0
-  padding: 0
-  display: grid
-  gap: 10px 15px
-  place-items: start center
-  grid-template-columns: repeat(2, 1fr)
-  @media screen and ( min-width: 710px)
-    grid-template-columns: repeat(3, 1fr)
-  @media screen and ( min-width: 945px)
-    grid-template-columns: repeat(4, 1fr)
-  @media screen and ( min-width: 1200px)
-    grid-template-columns: repeat(5, 1fr)
-  @media screen and ( min-width: 1600px)
-    grid-template-columns: repeat(6, 1fr)
+.search
+  &-filters
+    display: block
 
-.search-result
-  list-style: none
-  cursor: pointer
+  &-filter
+    display: inline-block
+    margin-left: 10px
+    &:first-child
+      margin-left: 0
+
+  &-results
+    margin: 0
+    padding: 0
+    display: grid
+    gap: 0 15px
+    place-items: start center
+    grid-template-columns: repeat(2, 1fr)
+    @media screen and ( min-width: 710px)
+      grid-template-columns: repeat(3, 1fr)
+    @media screen and ( min-width: 945px)
+      grid-template-columns: repeat(4, 1fr)
+    @media screen and ( min-width: 1200px)
+      grid-template-columns: repeat(5, 1fr)
+    @media screen and ( min-width: 1600px)
+      grid-template-columns: repeat(6, 1fr)
+
+  &-result
+    list-style: none
+    cursor: pointer
+    margin: 20px 0

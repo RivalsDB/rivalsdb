@@ -12,7 +12,7 @@
       fetch("/cards.json")
         .then((response) => response.json())
         .then((cards) => {
-          Elm.Main.init({ flags: cards })
+          Elm.Main.init({ flags: cards });
         });
     </script>
   </body>

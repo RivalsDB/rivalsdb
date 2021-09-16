@@ -10,6 +10,7 @@ import Page
 import Request
 import Shared exposing (Collection)
 import UI.Card
+import UI.FilterSelection
 import UI.Layout.Footer
 import UI.Layout.Header
 import View exposing (View)
@@ -29,6 +30,9 @@ type alias Model =
     { matches : List Card
     , collection : Collection
     , header : UI.Layout.Header.Model
+    , primaryFilters : UI.FilterSelection.Model Cards.Trait Msg
+    , secondaryFilters : UI.FilterSelection.Model Cards.Trait Msg
+    , attackTypeFilters : UI.FilterSelection.Model Cards.AttackType Msg
     }
 
 
@@ -41,6 +45,9 @@ init collection req =
     ( { collection = collection
       , header = header
       , matches = matchesForQuery collection header.queryString
+      , primaryFilters = UI.FilterSelection.primaryTraits
+      , secondaryFilters = UI.FilterSelection.secondaryTraits
+      , attackTypeFilters = UI.FilterSelection.attackTypes
       }
     , Cmd.none
     )
@@ -71,17 +78,29 @@ fuzzySort query items =
 
 type Msg
     = FromHeader UI.Layout.Header.Msg
+    | FromPrimaryFilter (UI.FilterSelection.Msg Cards.Trait)
+    | FromSecondaryFilter (UI.FilterSelection.Msg Cards.Trait)
+    | FromAttackTypesFilter (UI.FilterSelection.Msg Cards.AttackType)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        FromHeader headerMsg ->
+        FromHeader subMsg ->
             let
                 ( newHeader, headerCmd ) =
-                    UI.Layout.Header.update headerMsg model.header
+                    UI.Layout.Header.update subMsg model.header
             in
             ( { model | header = newHeader, matches = matchesForQuery model.collection newHeader.queryString }, headerCmd )
+
+        FromPrimaryFilter subMsg ->
+            ( { model | primaryFilters = UI.FilterSelection.update subMsg model.primaryFilters }, Cmd.none )
+
+        FromSecondaryFilter subMsg ->
+            ( { model | secondaryFilters = UI.FilterSelection.update subMsg model.secondaryFilters }, Cmd.none )
+
+        FromAttackTypesFilter subMsg ->
+            ( { model | attackTypeFilters = UI.FilterSelection.update subMsg model.attackTypeFilters }, Cmd.none )
 
 
 
@@ -92,13 +111,18 @@ view : Model -> View Msg
 view model =
     [ UI.Layout.Header.view FromHeader
     , div [ class "page-content" ]
-        [ p []
-            [ text "Query: "
-            , text <| Maybe.withDefault "" model.header.queryString
+        [ h2 [] [ text "Filters" ]
+        , div [ class "search-filters" ]
+            [ div [ class "search-filter" ] [ UI.FilterSelection.view FromPrimaryFilter model.primaryFilters ]
+            , div [ class "search-filter" ] [ UI.FilterSelection.view FromSecondaryFilter model.secondaryFilters ]
+            , div [ class "search-filter" ] [ UI.FilterSelection.view FromAttackTypesFilter model.attackTypeFilters ]
             ]
         , h3 [] [ text "matches" ]
         , ul [ class "search-results" ]
             (model.matches
+                |> List.filter (UI.FilterSelection.isAllowed Cards.traits model.primaryFilters)
+                |> List.filter (UI.FilterSelection.isAllowed Cards.traits model.secondaryFilters)
+                |> List.filter (UI.FilterSelection.isAllowed Cards.attackTypes model.attackTypeFilters)
                 |> List.map
                     (\card ->
                         li [ class "search-result" ]

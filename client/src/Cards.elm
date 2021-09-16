@@ -1,4 +1,4 @@
-module Cards exposing (Card(..), Id, cardsDecoder, id, image, name)
+module Cards exposing (AttackType(..), Card(..), Id, Trait(..), attackTypes, cardsDecoder, id, image, name, traits)
 
 import Dict
 import Enum exposing (Enum)
@@ -129,8 +129,8 @@ type Trait
     | UnhostedAction
 
 
-trait : Enum Trait
-trait =
+traitEnum : Enum Trait
+traitEnum =
     Enum.create
         [ ( "action", Action )
         , ( "alchemy", Alchemy )
@@ -154,8 +154,8 @@ type AttackType
     | Ranged
 
 
-attackType : Enum AttackType
-attackType =
+attackTypeEnum : Enum AttackType
+attackTypeEnum =
     Enum.create
         [ ( "physical", Physical )
         , ( "social", Social )
@@ -262,6 +262,26 @@ image card =
 
         LibraryCard c ->
             c.image
+
+
+traits : Card -> List Trait
+traits card =
+    case card of
+        LibraryCard c ->
+            c.traits
+
+        _ ->
+            []
+
+
+attackTypes : Card -> List AttackType
+attackTypes card =
+    case card of
+        LibraryCard c ->
+            c.attackType
+
+        _ ->
+            []
 
 
 
@@ -428,12 +448,12 @@ decodeDisciplines =
 
 decodeAttackType : Decoder (List AttackType -> b) -> Decoder b
 decodeAttackType =
-    optional "attackType" (list attackType.decoder) []
+    optional "attackType" (list attackTypeEnum.decoder) []
 
 
 decodeTraits : Decoder (List Trait -> b) -> Decoder b
 decodeTraits =
-    required "types" (list trait.decoder)
+    required "types" (list traitEnum.decoder)
 
 
 decodeClan : Decoder (Clan -> b) -> Decoder b

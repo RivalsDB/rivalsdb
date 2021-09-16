@@ -75,7 +75,7 @@ view msg =
         , div [ class "header-search" ]
             [ form [ onSubmit (msg Submitted) ]
                 [ input
-                    [ onInput (\s -> msg <| SearchQueryChanged s)
+                    [ onInput (SearchQueryChanged >> msg)
                     , placeholder "search"
                     , type_ "search"
                     , spellcheck False
