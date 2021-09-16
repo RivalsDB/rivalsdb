@@ -32,6 +32,7 @@ type alias Model =
     , search : Maybe String
     , queryString : Maybe String
     , matches : List Card
+    , collection : Collection
     }
 
 
@@ -40,18 +41,25 @@ init collection req =
     let
         queryString =
             Dict.get "search" req.query
-
-        matches =
-            case queryString of
-                Nothing ->
-                    Dict.values collection
-
-                Just q ->
-                    Dict.keys collection |> fuzzySort q |> List.take 3 |> List.filterMap (\k -> Dict.get k collection)
     in
-    ( { queryString = queryString, matches = matches, key = req.key, search = queryString }
+    ( { queryString = queryString
+      , matches = matchesForQuery collection queryString
+      , key = req.key
+      , search = queryString
+      , collection = collection
+      }
     , Cmd.none
     )
+
+
+matchesForQuery : Collection -> Maybe String -> List Card
+matchesForQuery collection query =
+    case query of
+        Nothing ->
+            Dict.values collection
+
+        Just q ->
+            Dict.keys collection |> fuzzySort q |> List.take 3 |> List.filterMap (\k -> Dict.get k collection)
 
 
 fuzzySort : String -> List String -> List String
@@ -97,7 +105,7 @@ update msg model =
                         Just search ->
                             Route.toHref Route.Search ++ "?search=" ++ search
             in
-            ( model, Browser.Navigation.pushUrl model.key url )
+            ( { model | matches = matchesForQuery model.collection model.search }, Browser.Navigation.pushUrl model.key url )
 
 
 
