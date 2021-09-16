@@ -1,6 +1,7 @@
 module Cards exposing (Card(..), Id, cardsDecoder, id, image, name)
 
 import Dict
+import Enum exposing (Enum)
 import Json.Decode as Decode exposing (Decoder, int, list, map, string)
 import Json.Decode.Pipeline exposing (optional, required)
 
@@ -31,20 +32,13 @@ type Pack
     | Promo
 
 
-packFromString : String -> Maybe Pack
-packFromString str =
-    case str of
-        "Blood & Alchemy" ->
-            Just BloodAndAlchemy
-
-        "Core" ->
-            Just Core
-
-        "Season 0 Promo" ->
-            Just Promo
-
-        _ ->
-            Nothing
+pack : Enum Pack
+pack =
+    Enum.create
+        [ ( "Blood & Alchemy", BloodAndAlchemy )
+        , ( "Core", Core )
+        , ( "Season 0 Promo", Promo )
+        ]
 
 
 type Clan
@@ -56,29 +50,16 @@ type Clan
     | Ventrue
 
 
-clanFromString : String -> Maybe Clan
-clanFromString str =
-    case str of
-        "brujah" ->
-            Just Brujah
-
-        "malkavian" ->
-            Just Malkavian
-
-        "thin-blood" ->
-            Just ThinBlood
-
-        "toreador" ->
-            Just Toreador
-
-        "tremere" ->
-            Just Tremere
-
-        "ventrue" ->
-            Just Ventrue
-
-        _ ->
-            Nothing
+clan : Enum Clan
+clan =
+    Enum.create
+        [ ( "brujah", Brujah )
+        , ( "malkavian", Malkavian )
+        , ( "thin-blood", ThinBlood )
+        , ( "toreador", Toreador )
+        , ( "tremere", Tremere )
+        , ( "ventrue", Ventrue )
+        ]
 
 
 type alias BloodPotency =
@@ -116,44 +97,21 @@ type Discipline
     | ThinBloodAlchemy
 
 
-disciplineFromString : String -> Maybe Discipline
-disciplineFromString str =
-    case str of
-        "animalism" ->
-            Just Animalism
-
-        "auspex" ->
-            Just Auspex
-
-        "celerity" ->
-            Just Celerity
-
-        "dominate" ->
-            Just Dominate
-
-        "fortitude" ->
-            Just Fortitude
-
-        "obfuscate" ->
-            Just Obfuscate
-
-        "potence" ->
-            Just Potence
-
-        "presence" ->
-            Just Presence
-
-        "protean" ->
-            Just Protean
-
-        "blood sorcery" ->
-            Just BloodSorcery
-
-        "thin-blood alchemy" ->
-            Just ThinBloodAlchemy
-
-        _ ->
-            Nothing
+discipline : Enum Discipline
+discipline =
+    Enum.create
+        [ ( "animalism", Animalism )
+        , ( "auspex", Auspex )
+        , ( "celerity", Celerity )
+        , ( "dominate", Dominate )
+        , ( "fortitude", Fortitude )
+        , ( "obfuscate", Obfuscate )
+        , ( "potence", Potence )
+        , ( "presence", Presence )
+        , ( "protean", Protean )
+        , ( "blood sorcery", BloodSorcery )
+        , ( "thin-blood alchemy", ThinBloodAlchemy )
+        ]
 
 
 type Trait
@@ -171,47 +129,22 @@ type Trait
     | UnhostedAction
 
 
-traitFromString : String -> Maybe Trait
-traitFromString str =
-    case str of
-        "action" ->
-            Just Action
-
-        "alchemy" ->
-            Just Alchemy
-
-        "attack" ->
-            Just Attack
-
-        "conspiracy" ->
-            Just Conspiracy
-
-        "influence modifier" ->
-            Just InfluenceModifier
-
-        "ongoing" ->
-            Just Ongoing
-
-        "reaction" ->
-            Just Reaction
-
-        "ritual" ->
-            Just Ritual
-
-        "scheme" ->
-            Just Scheme
-
-        "special" ->
-            Just Special
-
-        "title" ->
-            Just Title
-
-        "unhosted action" ->
-            Just UnhostedAction
-
-        _ ->
-            Nothing
+trait : Enum Trait
+trait =
+    Enum.create
+        [ ( "action", Action )
+        , ( "alchemy", Alchemy )
+        , ( "attack", Attack )
+        , ( "conspiracy", Conspiracy )
+        , ( "influence modifier", InfluenceModifier )
+        , ( "ongoing", Ongoing )
+        , ( "reaction", Reaction )
+        , ( "ritual", Ritual )
+        , ( "scheme", Scheme )
+        , ( "special", Special )
+        , ( "title", Title )
+        , ( "unhosted action", UnhostedAction )
+        ]
 
 
 type AttackType
@@ -221,23 +154,14 @@ type AttackType
     | Ranged
 
 
-attackTypeFromString : String -> Maybe AttackType
-attackTypeFromString str =
-    case str of
-        "physical" ->
-            Just Physical
-
-        "social" ->
-            Just Social
-
-        "mental" ->
-            Just Mental
-
-        "ranged" ->
-            Just Ranged
-
-        _ ->
-            Nothing
+attackType : Enum AttackType
+attackType =
+    Enum.create
+        [ ( "physical", Physical )
+        , ( "social", Social )
+        , ( "mental", Mental )
+        , ( "ranged", Ranged )
+        ]
 
 
 type alias Agenda =
@@ -499,32 +423,27 @@ decodeMental =
 
 decodeDisciplines : Decoder (List Discipline -> b) -> Decoder b
 decodeDisciplines =
-    required "disciplines" (list decodeDiscipline)
+    required "disciplines" (list discipline.decoder)
 
 
 decodeAttackType : Decoder (List AttackType -> b) -> Decoder b
 decodeAttackType =
-    optional "attackType" (map (List.filterMap attackTypeFromString) (list string)) []
+    optional "attackType" (list attackType.decoder) []
 
 
 decodeTraits : Decoder (List Trait -> b) -> Decoder b
 decodeTraits =
-    required "types" (map (List.filterMap traitFromString) (list string))
+    required "types" (list trait.decoder)
 
 
 decodeClan : Decoder (Clan -> b) -> Decoder b
 decodeClan =
-    required "clan" (map clanFromString string |> Decode.andThen failOnNothing)
+    required "clan" clan.decoder
 
 
 decodeSet : Decoder (Pack -> b) -> Decoder b
 decodeSet =
-    required "set" (map packFromString string |> Decode.andThen failOnNothing)
-
-
-decodeDiscipline : Decoder Discipline
-decodeDiscipline =
-    map disciplineFromString string |> Decode.andThen failOnNothing
+    required "set" pack.decoder
 
 
 failOnNothing : Maybe a -> Decoder a

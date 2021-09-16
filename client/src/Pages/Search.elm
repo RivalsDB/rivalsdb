@@ -7,7 +7,7 @@ import Fuzzy
 import Gen.Params.Search exposing (Params)
 import Gen.Route as Route
 import Html exposing (..)
-import Html.Attributes exposing (class, href, placeholder, spellcheck, src, type_)
+import Html.Attributes exposing (class, href, placeholder, spellcheck, type_)
 import Html.Events exposing (onInput, onSubmit)
 import Page
 import Request
