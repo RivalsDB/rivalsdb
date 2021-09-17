@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: rivalsdb.app
+Token: 404fdda6d0cf74570729fc595977ba76e600ebf2e45773dc51527cb0eb013efa
