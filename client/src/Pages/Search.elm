@@ -5,7 +5,9 @@ import Dict
 import Fuzzy
 import Gen.Params.Search exposing (Params)
 import Html exposing (..)
-import Html.Attributes exposing (class)
+import Html.Attributes exposing (class, placeholder, spellcheck, type_)
+import Html.Events exposing (onInput)
+import Html.Keyed as Keyed
 import Page
 import Request
 import Shared exposing (Collection)
@@ -33,6 +35,9 @@ type alias Model =
     , primaryFilters : UI.FilterSelection.Model Cards.Trait Msg
     , secondaryFilters : UI.FilterSelection.Model Cards.Trait Msg
     , attackTypeFilters : UI.FilterSelection.Model Cards.AttackType Msg
+    , clansFilters : UI.FilterSelection.Model Cards.Clan Msg
+    , disciplineFilters : UI.FilterSelection.Model Cards.Discipline Msg
+    , textFilter : Maybe String
     }
 
 
@@ -48,6 +53,9 @@ init collection req =
       , primaryFilters = UI.FilterSelection.primaryTraits
       , secondaryFilters = UI.FilterSelection.secondaryTraits
       , attackTypeFilters = UI.FilterSelection.attackTypes
+      , clansFilters = UI.FilterSelection.clans
+      , disciplineFilters = UI.FilterSelection.disciplines
+      , textFilter = Nothing
       }
     , Cmd.none
     )
@@ -81,11 +89,30 @@ type Msg
     | FromPrimaryFilter (UI.FilterSelection.Msg Cards.Trait)
     | FromSecondaryFilter (UI.FilterSelection.Msg Cards.Trait)
     | FromAttackTypesFilter (UI.FilterSelection.Msg Cards.AttackType)
+    | FromClansFilter (UI.FilterSelection.Msg Cards.Clan)
+    | FromDisciplinesFilter (UI.FilterSelection.Msg Cards.Discipline)
+    | TextFilterChanged String
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
+        TextFilterChanged text ->
+            let
+                cleanText =
+                    text |> String.trim |> String.toLower
+            in
+            ( { model
+                | textFilter =
+                    if cleanText == "" then
+                        Nothing
+
+                    else
+                        Just cleanText
+              }
+            , Cmd.none
+            )
+
         FromHeader subMsg ->
             let
                 ( newHeader, headerCmd ) =
@@ -102,6 +129,12 @@ update msg model =
         FromAttackTypesFilter subMsg ->
             ( { model | attackTypeFilters = UI.FilterSelection.update subMsg model.attackTypeFilters }, Cmd.none )
 
+        FromClansFilter subMsg ->
+            ( { model | clansFilters = UI.FilterSelection.update subMsg model.clansFilters }, Cmd.none )
+
+        FromDisciplinesFilter subMsg ->
+            ( { model | disciplineFilters = UI.FilterSelection.update subMsg model.disciplineFilters }, Cmd.none )
+
 
 
 -- VIEW
@@ -109,6 +142,26 @@ update msg model =
 
 view : Model -> View Msg
 view model =
+    let
+        filter card =
+            UI.FilterSelection.isAllowed Cards.traits model.secondaryFilters card
+                && UI.FilterSelection.isAllowed Cards.discipline model.disciplineFilters card
+                && UI.FilterSelection.isAllowed Cards.traits model.primaryFilters card
+                && UI.FilterSelection.isAllowed Cards.clan model.clansFilters card
+                && UI.FilterSelection.isAllowed Cards.attackTypes model.attackTypeFilters card
+
+        filteredCards =
+            case model.textFilter of
+                Nothing ->
+                    List.filter filter model.matches
+
+                Just needle ->
+                    List.filter (findTextInCard needle) model.matches
+                        |> List.filter filter
+
+        sortedCards =
+            List.sortWith cardSort filteredCards
+    in
     [ UI.Layout.Header.view FromHeader
     , div [ class "page-content" ]
         [ h2 [] [ text "Filters" ]
@@ -116,20 +169,60 @@ view model =
             [ div [ class "search-filter" ] [ UI.FilterSelection.view FromPrimaryFilter model.primaryFilters ]
             , div [ class "search-filter" ] [ UI.FilterSelection.view FromSecondaryFilter model.secondaryFilters ]
             , div [ class "search-filter" ] [ UI.FilterSelection.view FromAttackTypesFilter model.attackTypeFilters ]
+            , div [ class "search-filter" ] [ UI.FilterSelection.view FromClansFilter model.clansFilters ]
+            , div [ class "search-filter" ] [ UI.FilterSelection.view FromDisciplinesFilter model.disciplineFilters ]
+            , div [ class "search-filter" ]
+                [ label []
+                    [ text "Contains: "
+                    , input
+                        [ onInput TextFilterChanged
+                        , placeholder "search"
+                        , type_ "search"
+                        , spellcheck False
+                        ]
+                        []
+                    ]
+                ]
             ]
-        , h3 [] [ text "matches" ]
-        , ul [ class "search-results" ]
-            (model.matches
-                |> List.filter (UI.FilterSelection.isAllowed Cards.traits model.primaryFilters)
-                |> List.filter (UI.FilterSelection.isAllowed Cards.traits model.secondaryFilters)
-                |> List.filter (UI.FilterSelection.isAllowed Cards.attackTypes model.attackTypeFilters)
-                |> List.map
-                    (\card ->
-                        li [ class "search-result" ]
-                            [ UI.Card.lazy card
-                            ]
-                    )
-            )
+        , h3 [] [ text "Matches" ]
+        , Keyed.ul [ class "search-results" ] <|
+            List.map (\card -> ( Cards.id card, li [ class "search-result" ] [ UI.Card.lazy card ] )) sortedCards
         ]
     , UI.Layout.Footer.view
     ]
+
+
+findTextInCard : String -> Card -> Bool
+findTextInCard needle card =
+    (Cards.text card |> String.toLower |> String.contains needle)
+        || (Cards.name card |> String.toLower |> String.contains needle)
+
+
+cardSort : Card -> Card -> Order
+cardSort a b =
+    let
+        stack card =
+            case card of
+                Cards.AgendaCard _ ->
+                    1
+
+                Cards.HavenCard _ ->
+                    2
+
+                Cards.FactionCard _ ->
+                    3
+
+                Cards.LibraryCard _ ->
+                    4
+    in
+    case compare (stack a) (stack b) of
+        EQ ->
+            case compare (Cards.bloodPotency a) (Cards.bloodPotency b) of
+                EQ ->
+                    compare (Cards.name a) (Cards.name b)
+
+                ord ->
+                    ord
+
+        ord ->
+            ord

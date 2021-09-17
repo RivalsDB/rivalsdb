@@ -1,4 +1,21 @@
-module Cards exposing (AttackType(..), Card(..), Id, Trait(..), attackTypes, cardsDecoder, id, image, name, traits)
+module Cards exposing
+    ( AttackType(..)
+    , Card(..)
+    , Clan(..)
+    , Discipline(..)
+    , Id
+    , Trait(..)
+    , attackTypes
+    , bloodPotency
+    , cardsDecoder
+    , clan
+    , discipline
+    , id
+    , image
+    , name
+    , text
+    , traits
+    )
 
 import Dict
 import Enum exposing (Enum)
@@ -50,8 +67,8 @@ type Clan
     | Ventrue
 
 
-clan : Enum Clan
-clan =
+clanEnum : Enum Clan
+clanEnum =
     Enum.create
         [ ( "brujah", Brujah )
         , ( "malkavian", Malkavian )
@@ -97,8 +114,8 @@ type Discipline
     | ThinBloodAlchemy
 
 
-discipline : Enum Discipline
-discipline =
+disciplineEnum : Enum Discipline
+disciplineEnum =
     Enum.create
         [ ( "animalism", Animalism )
         , ( "auspex", Auspex )
@@ -195,6 +212,7 @@ type alias Library =
     , illustrator : Illustrator
     , image : Image
     , set : Pack
+    , clan : Maybe Clan
     , bloodPotency : BloodPotencyRequirement
     , damage : Maybe Damage
     , shield : Maybe Shield
@@ -284,6 +302,67 @@ attackTypes card =
             []
 
 
+clan : Card -> List Clan
+clan card =
+    case card of
+        FactionCard c ->
+            List.singleton c.clan
+
+        LibraryCard c ->
+            Maybe.map List.singleton c.clan
+                |> Maybe.withDefault []
+
+        _ ->
+            []
+
+
+discipline : Card -> List Discipline
+discipline card =
+    case card of
+        FactionCard c ->
+            c.disciplines
+
+        LibraryCard _ ->
+            []
+
+        _ ->
+            []
+
+
+bloodPotency : Card -> BloodPotency
+bloodPotency card =
+    case card of
+        FactionCard c ->
+            c.bloodPotency
+
+        LibraryCard c ->
+            case c.bloodPotency of
+                BloodPotencyRequirement n ->
+                    n
+
+                _ ->
+                    0
+
+        _ ->
+            0
+
+
+text : Card -> String
+text card =
+    case card of
+        AgendaCard c ->
+            c.text
+
+        HavenCard c ->
+            c.text
+
+        FactionCard c ->
+            c.text
+
+        LibraryCard c ->
+            c.text
+
+
 
 ----------
 -- DECODER
@@ -369,6 +448,7 @@ libraryDecoder =
         |> decodeIllustrator
         |> decodeImage
         |> decodeSet
+        |> decodeMaybeClan
         |> decodeBloodPotencyRequirement
         |> decodeDamage
         |> decodeShields
@@ -443,7 +523,7 @@ decodeMental =
 
 decodeDisciplines : Decoder (List Discipline -> b) -> Decoder b
 decodeDisciplines =
-    required "disciplines" (list discipline.decoder)
+    required "disciplines" (list disciplineEnum.decoder)
 
 
 decodeAttackType : Decoder (List AttackType -> b) -> Decoder b
@@ -458,7 +538,12 @@ decodeTraits =
 
 decodeClan : Decoder (Clan -> b) -> Decoder b
 decodeClan =
-    required "clan" clan.decoder
+    required "clan" clanEnum.decoder
+
+
+decodeMaybeClan : Decoder (Maybe Clan -> b) -> Decoder b
+decodeMaybeClan =
+    optional "clan" (Decode.map Just clanEnum.decoder) Nothing
 
 
 decodeSet : Decoder (Pack -> b) -> Decoder b

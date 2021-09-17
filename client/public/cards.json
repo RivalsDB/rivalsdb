@@ -35,7 +35,7 @@
     "name": "Absolution",
     "damage": 2,
     "shield": 0,
-    "text": "If the target has 1+ Blood o your color, negate all Reactions.",
+    "text": "If the target has 1+ Blood of your color, negate all Reactions.",
     "bloodPotency": 5,
     "attackType": ["mental"],
     "illustrator": "Timothy Terrenal",
