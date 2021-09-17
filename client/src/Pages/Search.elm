@@ -32,6 +32,7 @@ type alias Model =
     { matches : List Card
     , collection : Collection
     , header : UI.Layout.Header.Model
+    , stackFilters : UI.FilterSelection.Model Cards.CardStack Msg
     , primaryFilters : UI.FilterSelection.Model Cards.Trait Msg
     , secondaryFilters : UI.FilterSelection.Model Cards.Trait Msg
     , attackTypeFilters : UI.FilterSelection.Model Cards.AttackType Msg
@@ -50,6 +51,7 @@ init collection req =
     ( { collection = collection
       , header = header
       , matches = matchesForQuery collection header.queryString
+      , stackFilters = UI.FilterSelection.stacks
       , primaryFilters = UI.FilterSelection.primaryTraits
       , secondaryFilters = UI.FilterSelection.secondaryTraits
       , attackTypeFilters = UI.FilterSelection.attackTypes
@@ -86,6 +88,7 @@ fuzzySort query items =
 
 type Msg
     = FromHeader UI.Layout.Header.Msg
+    | FromStacksFilter (UI.FilterSelection.Msg Cards.CardStack)
     | FromPrimaryFilter (UI.FilterSelection.Msg Cards.Trait)
     | FromSecondaryFilter (UI.FilterSelection.Msg Cards.Trait)
     | FromAttackTypesFilter (UI.FilterSelection.Msg Cards.AttackType)
@@ -120,6 +123,9 @@ update msg model =
             in
             ( { model | header = newHeader, matches = matchesForQuery model.collection newHeader.queryString }, headerCmd )
 
+        FromStacksFilter subMsg ->
+            ( { model | stackFilters = UI.FilterSelection.update subMsg model.stackFilters }, Cmd.none )
+
         FromPrimaryFilter subMsg ->
             ( { model | primaryFilters = UI.FilterSelection.update subMsg model.primaryFilters }, Cmd.none )
 
@@ -145,6 +151,7 @@ view model =
     let
         filter card =
             UI.FilterSelection.isAllowed Cards.traits model.secondaryFilters card
+                && UI.FilterSelection.isAllowed Cards.stack model.stackFilters card
                 && UI.FilterSelection.isAllowed Cards.discipline model.disciplineFilters card
                 && UI.FilterSelection.isAllowed Cards.traits model.primaryFilters card
                 && UI.FilterSelection.isAllowed Cards.clan model.clansFilters card
@@ -166,7 +173,8 @@ view model =
     , div [ class "page-content" ]
         [ h2 [] [ text "Filters" ]
         , div [ class "search-filters" ]
-            [ div [ class "search-filter" ] [ UI.FilterSelection.view FromPrimaryFilter model.primaryFilters ]
+            [ div [ class "search-filter" ] [ UI.FilterSelection.view FromStacksFilter model.stackFilters ]
+            , div [ class "search-filter" ] [ UI.FilterSelection.view FromPrimaryFilter model.primaryFilters ]
             , div [ class "search-filter" ] [ UI.FilterSelection.view FromSecondaryFilter model.secondaryFilters ]
             , div [ class "search-filter" ] [ UI.FilterSelection.view FromAttackTypesFilter model.attackTypeFilters ]
             , div [ class "search-filter" ] [ UI.FilterSelection.view FromClansFilter model.clansFilters ]

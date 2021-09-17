@@ -1,6 +1,7 @@
 module Cards exposing
     ( AttackType(..)
     , Card(..)
+    , CardStack(..)
     , Clan(..)
     , Discipline(..)
     , Id
@@ -13,6 +14,7 @@ module Cards exposing
     , id
     , image
     , name
+    , stack
     , text
     , traits
     )
@@ -103,6 +105,7 @@ type alias Shield =
 type Discipline
     = Animalism
     | Auspex
+    | BloodSorcery
     | Celerity
     | Dominate
     | Fortitude
@@ -110,7 +113,6 @@ type Discipline
     | Potence
     | Presence
     | Protean
-    | BloodSorcery
     | ThinBloodAlchemy
 
 
@@ -226,6 +228,13 @@ type Card
     | HavenCard Haven
     | FactionCard Faction
     | LibraryCard Library
+
+
+type CardStack
+    = AgendaStack
+    | HavenStack
+    | FactionStack
+    | LibraryStack
 
 
 
@@ -345,6 +354,24 @@ bloodPotency card =
 
         _ ->
             0
+
+
+stack : Card -> List CardStack
+stack card =
+    List.singleton
+        (case card of
+            AgendaCard _ ->
+                AgendaStack
+
+            HavenCard _ ->
+                HavenStack
+
+            FactionCard _ ->
+                FactionStack
+
+            LibraryCard _ ->
+                LibraryStack
+        )
 
 
 text : Card -> String
