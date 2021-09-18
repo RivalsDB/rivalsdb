@@ -1,12 +1,14 @@
 .search
-  &-filters
-    display: block
+  &-flaggroups
+    display: flex
+    flex-wrap: wrap
+    max-width: 840px
 
-  &-filter
-    display: inline-block
-    margin-left: 10px
-    &:first-child
-      margin-left: 0
+  &-flaggroup
+    flex: 0 0 max-content
+
+  &-text
+    margin-top: 10px
 
   &-results
     margin: 0

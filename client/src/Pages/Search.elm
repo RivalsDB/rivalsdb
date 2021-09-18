@@ -5,7 +5,7 @@ import Dict
 import Fuzzy
 import Gen.Params.Search exposing (Params)
 import Html exposing (..)
-import Html.Attributes exposing (class, placeholder, spellcheck, type_)
+import Html.Attributes exposing (class, spellcheck, type_)
 import Html.Events exposing (onInput)
 import Html.Keyed as Keyed
 import Page
@@ -13,8 +13,8 @@ import Request
 import Shared exposing (Collection)
 import UI.Card
 import UI.FilterSelection
-import UI.Layout.Footer
 import UI.Layout.Header
+import UI.Layout.Template
 import View exposing (View)
 
 
@@ -169,35 +169,26 @@ view model =
         sortedCards =
             List.sortWith cardSort filteredCards
     in
-    [ UI.Layout.Header.view FromHeader
-    , div [ class "page-content" ]
+    UI.Layout.Template.view FromHeader
         [ h2 [] [ text "Filters" ]
-        , div [ class "search-filters" ]
-            [ div [ class "search-filter" ] [ UI.FilterSelection.view FromStacksFilter model.stackFilters ]
-            , div [ class "search-filter" ] [ UI.FilterSelection.view FromPrimaryFilter model.primaryFilters ]
-            , div [ class "search-filter" ] [ UI.FilterSelection.view FromSecondaryFilter model.secondaryFilters ]
-            , div [ class "search-filter" ] [ UI.FilterSelection.view FromAttackTypesFilter model.attackTypeFilters ]
-            , div [ class "search-filter" ] [ UI.FilterSelection.view FromClansFilter model.clansFilters ]
-            , div [ class "search-filter" ] [ UI.FilterSelection.view FromDisciplinesFilter model.disciplineFilters ]
-            , div [ class "search-filter" ]
-                [ label []
-                    [ text "Contains: "
-                    , input
-                        [ onInput TextFilterChanged
-                        , placeholder "search"
-                        , type_ "search"
-                        , spellcheck False
-                        ]
-                        []
-                    ]
+        , div [ class "search-flaggroups" ]
+            [ div [ class "search-flaggroup" ] [ UI.FilterSelection.view FromStacksFilter model.stackFilters ]
+            , div [ class "search-flaggroup" ] [ UI.FilterSelection.view FromPrimaryFilter model.primaryFilters ]
+            , div [ class "search-flaggroup" ] [ UI.FilterSelection.view FromSecondaryFilter model.secondaryFilters ]
+            , div [ class "search-flaggroup" ] [ UI.FilterSelection.view FromAttackTypesFilter model.attackTypeFilters ]
+            , div [ class "search-flaggroup" ] [ UI.FilterSelection.view FromClansFilter model.clansFilters ]
+            , div [ class "search-flaggroup" ] [ UI.FilterSelection.view FromDisciplinesFilter model.disciplineFilters ]
+            ]
+        , div [ class "search-text" ]
+            [ label []
+                [ text "Filter by text: "
+                , input [ onInput TextFilterChanged, type_ "search", spellcheck False ] []
                 ]
             ]
-        , h3 [] [ text "Matches" ]
+        , h3 [] [ text "Results" ]
         , Keyed.ul [ class "search-results" ] <|
             List.map (\card -> ( Cards.id card, li [ class "search-result" ] [ UI.Card.lazy card ] )) sortedCards
         ]
-    , UI.Layout.Footer.view
-    ]
 
 
 findTextInCard : String -> Card -> Bool

@@ -57,7 +57,7 @@ update msg model =
 
 view : (Msg -> msg) -> Html msg
 view msg =
-    header [ class "page-header" ]
+    header [ class "page-header", class "header" ]
         [ div [ class "header-logo" ]
             [ a [ href <| Route.toHref Route.Home_ ]
                 [ UI.Logo.logo
@@ -65,18 +65,15 @@ view msg =
             ]
         , nav [ class "header-nav" ]
             [ ul []
-                [ li []
-                    [ a [ href <| Route.toHref Route.Search ]
-                        [ text "Cards"
-                        ]
-                    ]
+                [ li [] [ a [ href <| Route.toHref Route.Build ] [ text "New Deck" ] ]
+                , li [] [ a [ href <| Route.toHref Route.Search ] [ text "Cards" ] ]
                 ]
             ]
         , div [ class "header-search" ]
             [ form [ onSubmit (msg Submitted) ]
                 [ input
                     [ onInput (SearchQueryChanged >> msg)
-                    , placeholder "search"
+                    , placeholder "Card search"
                     , type_ "search"
                     , spellcheck False
                     ]

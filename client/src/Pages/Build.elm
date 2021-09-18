@@ -1,6 +1,7 @@
-module Pages.Home_ exposing (Model, Msg, page)
+module Pages.Build exposing (Model, Msg, page)
 
-import Gen.Params.Home_ exposing (Params)
+import Gen.Params.Build exposing (Params)
+import Html exposing (..)
 import Page
 import Request
 import Shared
@@ -10,13 +11,17 @@ import View exposing (View)
 
 
 page : Shared.Model -> Request.With Params -> Page.With Model Msg
-page _ req =
+page shared req =
     Page.element
         { init = init req
         , update = update
         , view = view
         , subscriptions = always Sub.none
         }
+
+
+
+-- INIT
 
 
 type alias Model =

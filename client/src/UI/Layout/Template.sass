@@ -1,8 +1,6 @@
-
 body
   align-content: stretch
   display: grid
-  grid-template-columns: repeat(12, 1fr)
   grid-template-rows: 40px auto 160px
   justify-content: stretch
   min-height: 100vh
@@ -10,7 +8,6 @@ body
 .page-header,
 .page-content,
 .page-footer
-  grid-column: 1 / 13
   padding: 10px
 
 .page-header
@@ -24,28 +21,6 @@ body
   grid-row: 3 / 4
   background: var(--color-greydeep)
 
-.header-logo
-  width: 120px
-  svg
-    width: 100%
-
 .footer-legal
   font-size: var(--font-size--micro)
   line-height: 1.2
-
-.page-header
-  display: grid
-  gap: 20px
-  grid-template-columns: 120px auto 200px
-
-.header-nav
-  text-align: right
-  ul
-    list-style: none
-    padding: 0
-    margin: 0
-  li
-    display: inline-block
-
-.header-search input
-  width: 100%
