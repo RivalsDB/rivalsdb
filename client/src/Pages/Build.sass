@@ -1,8 +1,33 @@
 @import ../_vars
 
 .deckbldr
+  display: grid
+  gap: 10px
+  grid-template-columns: repeat(1, 1fr)
+  grid-template-rows: 50px auto auto
+
+  &-actions
+    grid-column: 1 / 2
+    grid-row: 1 / 2
+  &-decklist
+    grid-column: 1 / 2
+    grid-row: 2 / 3
   &-choices
-    max-width: 600px
+    grid-column: 1 / 2
+    grid-row: 3 / 4
+
+  @media screen and ( min-width: $breakpoint-ipad--horizontal)
+    grid-template-columns: repeat(2, 1fr)
+    &-actions
+      grid-column: 1 / 3
+
+    &-decklist
+      grid-column: 1 / 2
+      grid-row: 2 / 3
+    &-choices
+      grid-column: 2 / 3
+      grid-row: 2/3
+
   &-filters
   &-flaggroup
     display: inline-block

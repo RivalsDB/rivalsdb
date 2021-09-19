@@ -143,8 +143,12 @@ view : Model -> View Msg
 view model =
     UI.Layout.Template.view FromHeader
         [ div [ class "deckbldr" ]
-            [ div [ class "deckbldr-actions" ] []
-            , div [ class "deckbldr-decklist" ] []
+            [ div [ class "deckbldr-actions" ]
+                [ div [] [ p [] [ text "Save" ] ]
+                ]
+            , div [ class "deckbldr-decklist" ]
+                [ h3 [] [ text "Coming soon" ]
+                ]
             , div [ class "deckbldr-choices" ]
                 [ div [ class "fltrhead" ]
                     [ h2 [ class "fltrhead-name" ] [ text "Filters " ]
