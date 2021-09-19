@@ -1,10 +1,14 @@
 module Cards exposing
-    ( AttackType(..)
+    ( Agenda
+    , AttackType(..)
     , Card(..)
     , CardStack(..)
     , Clan(..)
     , Discipline(..)
+    , Faction
+    , Haven
     , Id
+    , Library
     , Trait(..)
     , attackTypes
     , bloodPotency

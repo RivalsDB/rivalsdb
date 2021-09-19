@@ -1,7 +1,8 @@
 module Pages.Build exposing (Model, Msg, page)
 
 import Cards exposing (Card)
-import Dict
+import Deck exposing (Deck)
+import Dict exposing (Dict)
 import Gen.Params.Build exposing (Params)
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -44,6 +45,7 @@ type alias Model =
     , textFilter : Maybe String
     , showAllFilters : Bool
     , showCollectionImages : Bool
+    , deck : Deck
     }
 
 
@@ -60,9 +62,78 @@ init collection req =
       , textFilter = Nothing
       , showAllFilters = False
       , showCollectionImages = False
+      , deck = Deck.empty
       }
     , Cmd.none
     )
+
+
+demoDeck : Collection -> Deck
+demoDeck collection =
+    let
+        agenda =
+            Dict.get "core-base-of-power" collection
+                |> Maybe.andThen
+                    (\c ->
+                        case c of
+                            Cards.AgendaCard a ->
+                                Just a
+
+                            _ ->
+                                Nothing
+                    )
+
+        haven =
+            Dict.get "core-artist-lofts" collection
+                |> Maybe.andThen
+                    (\c ->
+                        case c of
+                            Cards.HavenCard a ->
+                                Just a
+
+                            _ ->
+                                Nothing
+                    )
+
+        toCardCount n _ c =
+            ( c, n )
+
+        faction =
+            collection
+                |> Dict.toList
+                |> List.filterMap
+                    (\( k, c ) ->
+                        case c of
+                            Cards.FactionCard f ->
+                                Just ( k, f )
+
+                            _ ->
+                                Nothing
+                    )
+                |> List.take 7
+                |> Dict.fromList
+
+        library =
+            collection
+                |> Dict.toList
+                |> List.filterMap
+                    (\( k, c ) ->
+                        case c of
+                            Cards.LibraryCard l ->
+                                Just ( k, l )
+
+                            _ ->
+                                Nothing
+                    )
+                |> List.take 14
+                |> Dict.fromList
+                |> Dict.map (toCardCount 3)
+    in
+    { agenda = agenda
+    , haven = haven
+    , faction = faction
+    , library = library
+    }
 
 
 type Msg
@@ -77,6 +148,7 @@ type Msg
     | ToggleShowAllFilters
     | ClearFilters
     | ToggleShowCollectionImages
+    | ChangedDecklist ( Cards.Card, Int )
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -139,6 +211,9 @@ update msg model =
         ToggleShowCollectionImages ->
             ( { model | showCollectionImages = not model.showCollectionImages }, Cmd.none )
 
+        ChangedDecklist change ->
+            ( { model | deck = Deck.setCard model.deck change }, Cmd.none )
+
 
 view : Model -> View Msg
 view model =
@@ -148,7 +223,46 @@ view model =
                 [ div [] [ p [] [ text "Save" ] ]
                 ]
             , div [ class "deckbldr-decklist" ]
-                [ h3 [] [ text "Coming soon" ]
+                [ div [ class "decklist" ]
+                    [ h2 [ class "decklist-title" ] [ text "Decklist name" ]
+                    , div [ class "decklist-meta" ]
+                        [ p [ class "decklist-byline" ] [ text "By: Xyz." ] ]
+                    , div [ class "decklist-agenda" ]
+                        [ h3 [ class "decklist-section_header" ] [ text "Agenda" ]
+                        , p [ class "decklist-agenda_name" ]
+                            [ text <| Maybe.withDefault "Unknown" <| Maybe.map .name model.deck.agenda
+                            ]
+                        , div [ class "decklist-agenda_image" ]
+                            [ model.deck.agenda
+                                |> Maybe.map (Cards.AgendaCard >> UI.Card.lazy)
+                                |> Maybe.withDefault (text "Unknown Agenda")
+                            ]
+                        ]
+                    , div [ class "decklist-haven" ]
+                        [ h3 [ class "decklist-section_header" ] [ text "Haven" ]
+                        , p [ class "decklist-haven_name" ]
+                            [ text <| Maybe.withDefault "" <| Maybe.map .name model.deck.haven
+                            ]
+                        , div [ class "decklist-haven_image" ]
+                            [ model.deck.haven
+                                |> Maybe.map (Cards.HavenCard >> UI.Card.lazy)
+                                |> Maybe.withDefault (text "Unknown Haven")
+                            ]
+                        ]
+                    , div [ class "decklist-faction" ]
+                        [ h3 [ class "decklist-section_header" ] [ text "Clans" ]
+                        , viewClansInFaction model.deck.faction
+                        , h3 [ class "decklist-section_header" ] [ text "Faction" ]
+                        , viewFactionList model.deck.faction
+                        ]
+                    , div [ class "decklist-library" ]
+                        [ h3 [ class "decklist-section_header" ] [ text "Library" ]
+                        , ul [ class "decklist-library_list" ]
+                            (Dict.toList model.deck.library
+                                |> List.map (\( _, ( c, n ) ) -> li [ class "decklist-library_card" ] [ text (String.fromInt n), text "x ", text c.name ])
+                            )
+                        ]
+                    ]
                 ]
             , div [ class "deckbldr-choices" ]
                 [ div [ class "fltrhead" ]
@@ -195,6 +309,68 @@ view model =
         ]
 
 
+viewClansInFaction : Dict Cards.Id Cards.Faction -> Html Msg
+viewClansInFaction faction =
+    let
+        clans =
+            Dict.values faction |> List.map .clan
+
+        summedClans =
+            List.foldl
+                (\clan clanSum ->
+                    if List.any (Tuple.first >> (==) clan) clanSum then
+                        clanSum
+                            |> List.map
+                                (\( someClan, count ) ->
+                                    if someClan == clan then
+                                        ( someClan, count + 1 )
+
+                                    else
+                                        ( someClan, count )
+                                )
+
+                    else
+                        ( clan, 1 ) :: clanSum
+                )
+                []
+                clans
+    in
+    ul []
+        (List.sortBy (Tuple.second >> negate) summedClans
+            |> List.map
+                (\( clan, count ) ->
+                    li [ class "decklist-clan_entry" ]
+                        [ text <| String.fromInt count
+                        , text " "
+                        , span [ class "decklist-clan_clan" ] [ UI.Icon.clan clan ]
+                        ]
+                )
+        )
+
+
+viewFactionList : Dict Cards.Id Cards.Faction -> Html Msg
+viewFactionList faction =
+    let
+        characters =
+            Dict.values faction
+
+        sortedCharacters =
+            List.sortBy (.bloodPotency >> negate) characters
+    in
+    ul [ class "deckfact" ]
+        (sortedCharacters
+            |> List.map
+                (\c ->
+                    li []
+                        [ span [ class "deckfact-clan" ] [ UI.Icon.clan c.clan ]
+                        , span [ class "deckfact-bp" ] [ text <| String.fromInt <| c.bloodPotency ]
+                        , span [ class "deckfact-name" ] [ text c.name ]
+                        , span [ class "deckfact-leader" ] [ text "(leader)" ]
+                        ]
+                )
+        )
+
+
 viewMainFilters : Model -> List (Html Msg)
 viewMainFilters model =
     [ div [ class "deckbldr-flaggroup" ] [ UI.FilterSelection.view FromStacksFilter model.stackFilters ]
@@ -214,15 +390,15 @@ viewSecondaryFilters model =
 viewCardList : Model -> List (Html Msg)
 viewCardList model =
     [ Keyed.ul [ class "deckbldr-collectionitems--rows" ] <|
-        List.map (\c -> ( Cards.id c, viewCardListRow c )) <|
+        List.map (\c -> ( Cards.id c, viewCardListRow model.deck c )) <|
             cardsToShow model
     ]
 
 
-viewCardListRow : Card -> Html Msg
-viewCardListRow card =
+viewCardListRow : Deck -> Card -> Html Msg
+viewCardListRow deck card =
     li [ class "deckbldr-collectionitem--row" ]
-        [ span [ class "deckbldr-rowpiece_quant--row" ] [ viewQuantityPicker card 0 ]
+        [ span [ class "deckbldr-rowpiece_quant--row" ] [ viewQuantityPicker card (Deck.copiesInDeck deck card) ]
         , span [ class "deckbldr-rowpiece_name" ] [ text <| Cards.name card ]
         , span [ class "deckbldr-rowpiece_props" ]
             (case card of
@@ -279,8 +455,7 @@ viewQuantityPicker card copiesInDeck =
                             [ type_ "radio"
                             , name <| "count-" ++ Cards.id card
                             , checked <| n == copiesInDeck
-
-                            -- , onClick <| ChangedDecklist ( card, n )
+                            , onClick <| ChangedDecklist ( card, n )
                             ]
                             []
                         ]
