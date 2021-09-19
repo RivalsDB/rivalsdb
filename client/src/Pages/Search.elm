@@ -117,11 +117,14 @@ update msg model =
             )
 
         FromHeader subMsg ->
-            let
-                ( newHeader, headerCmd ) =
-                    UI.Layout.Header.update subMsg model.header
-            in
-            ( { model | header = newHeader, matches = matchesForQuery model.collection newHeader.queryString }, headerCmd )
+            UI.Layout.Header.update subMsg model.header
+                |> Tuple.mapFirst
+                    (\newHeader ->
+                        { model
+                            | header = newHeader
+                            , matches = matchesForQuery model.collection newHeader.queryString
+                        }
+                    )
 
         FromStacksFilter subMsg ->
             ( { model | stackFilters = UI.FilterSelection.update subMsg model.stackFilters }, Cmd.none )

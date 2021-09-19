@@ -35,12 +35,9 @@ type Msg
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        FromHeader headerMsg ->
-            let
-                ( newHeader, headerCmd ) =
-                    UI.Layout.Header.update headerMsg model.header
-            in
-            ( { model | header = newHeader }, headerCmd )
+        FromHeader subMsg ->
+            UI.Layout.Header.update subMsg model.header
+                |> Tuple.mapFirst (\newHeader -> { model | header = newHeader })
 
 
 view : Model -> View Msg
