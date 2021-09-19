@@ -1,6 +1,7 @@
 module UI.Icon exposing
     ( agenda
     , animalism
+    , attackType
     , auspex
     , blood
     , bloodPotencReq
@@ -8,7 +9,9 @@ module UI.Icon exposing
     , bloodSorcery
     , brujah
     , celerity
+    , clan
     , damage
+    , discipline
     , dominate
     , fortitude
     , influence
@@ -24,6 +27,7 @@ module UI.Icon exposing
     , ventrue
     )
 
+import Cards
 import Html
 import Html.Attributes as Attr
 
@@ -38,6 +42,81 @@ icon src name =
         , Attr.class "ui-icon"
         ]
         []
+
+
+clan : Cards.Clan -> Html.Html msg
+clan c =
+    case c of
+        Cards.Brujah ->
+            brujah
+
+        Cards.Malkavian ->
+            malkavian
+
+        Cards.ThinBlood ->
+            thinBlood
+
+        Cards.Toreador ->
+            toreador
+
+        Cards.Tremere ->
+            tremere
+
+        Cards.Ventrue ->
+            ventrue
+
+
+discipline : Cards.Discipline -> Html.Html msg
+discipline d =
+    case d of
+        Cards.Animalism ->
+            animalism
+
+        Cards.Auspex ->
+            auspex
+
+        Cards.BloodSorcery ->
+            bloodSorcery
+
+        Cards.Celerity ->
+            celerity
+
+        Cards.Dominate ->
+            dominate
+
+        Cards.Fortitude ->
+            fortitude
+
+        Cards.Obfuscate ->
+            obfuscate
+
+        Cards.Potence ->
+            potence
+
+        Cards.Presence ->
+            presence
+
+        Cards.Protean ->
+            protean
+
+        Cards.ThinBloodAlchemy ->
+            thinBloodAlchemy
+
+
+attackType : Cards.AttackType -> Html.Html msg
+attackType a =
+    case a of
+        Cards.Physical ->
+            Html.span [ Attr.title "Physical" ] [ Html.text "🤜" ]
+
+        Cards.Social ->
+            Html.span [ Attr.title "Social" ] [ Html.text "👄" ]
+
+        Cards.Mental ->
+            Html.span [ Attr.title "Mental" ] [ Html.text "🧠" ]
+
+        Cards.Ranged ->
+            Html.span [ Attr.title "Ranged" ] [ Html.text "🎯" ]
 
 
 thinBlood : Html.Html msg

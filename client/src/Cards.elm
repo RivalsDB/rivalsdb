@@ -88,9 +88,8 @@ type alias BloodPotency =
     Int
 
 
-type BloodPotencyRequirement
-    = BloodPotencyRequirement Int
-    | NoBloodPotencyRequirement
+type alias BloodPotencyRequirement =
+    Maybe Int
 
 
 type alias Attribute =
@@ -366,12 +365,7 @@ bloodPotency card =
             c.bloodPotency
 
         LibraryCard c ->
-            case c.bloodPotency of
-                BloodPotencyRequirement n ->
-                    n
-
-                _ ->
-                    0
+            Maybe.withDefault 0 c.bloodPotency
 
         _ ->
             0
@@ -536,7 +530,7 @@ decodeBloodPotency =
 
 decodeBloodPotencyRequirement : Decoder (BloodPotencyRequirement -> b) -> Decoder b
 decodeBloodPotencyRequirement =
-    optional "bloodPotency" (map BloodPotencyRequirement int) NoBloodPotencyRequirement
+    optional "bloodPotency" (map Just int) Nothing
 
 
 decodeDamage : Decoder (Maybe Damage -> b) -> Decoder b

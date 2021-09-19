@@ -12,6 +12,7 @@ import Request
 import Shared exposing (Collection)
 import UI.Card
 import UI.FilterSelection
+import UI.Icon
 import UI.Layout.Header
 import UI.Layout.Template
 import View exposing (View)
@@ -183,7 +184,12 @@ view model =
                                 "(show images)"
                         ]
                     ]
-                , div [ class "deckbldr-collection" ] <| viewCardList model
+                , div [ class "deckbldr-collection" ] <|
+                    if model.showCollectionImages then
+                        viewCardListImages model
+
+                    else
+                        viewCardList model
                 ]
             ]
         ]
@@ -207,41 +213,100 @@ viewSecondaryFilters model =
 
 viewCardList : Model -> List (Html Msg)
 viewCardList model =
+    [ Keyed.ul [ class "deckbldr-collectionitems--rows" ] <|
+        List.map (\c -> ( Cards.id c, viewCardListRow c )) <|
+            cardsToShow model
+    ]
+
+
+viewCardListRow : Card -> Html Msg
+viewCardListRow card =
+    li [ class "deckbldr-collectionitem--row" ]
+        [ span [ class "deckbldr-rowpiece_quant--row" ] [ viewQuantityPicker card ]
+        , span [ class "deckbldr-rowpiece_name" ] [ text <| Cards.name card ]
+        , span [ class "deckbldr-rowpiece_props" ]
+            (case card of
+                Cards.FactionCard props ->
+                    [ span [ class "deckbldr-rowpiece_clan" ] [ UI.Icon.clan props.clan ]
+                    , span [ class "deckbldr-rowpiece_bp" ] [ text <| String.fromInt props.bloodPotency ]
+                    , span [ class "deckbldr-rowpiece_physical" ] [ text <| String.fromInt props.physical ]
+                    , span [ class "deckbldr-rowpiece_social" ] [ text <| String.fromInt props.social ]
+                    , span [ class "deckbldr-rowpiece_mental" ] [ text <| String.fromInt props.mental ]
+                    , span [ class "deckbldr-rowpiece_disciplines" ] <|
+                        List.map (\d -> span [ class "deckbldr-rowpiece_discipline" ] [ UI.Icon.discipline d ]) props.disciplines
+                    ]
+
+                Cards.LibraryCard props ->
+                    [ span [ class "deckbldr-rowpiece_clan" ]
+                        [ props.clan |> Maybe.map UI.Icon.clan |> Maybe.withDefault (text "")
+                        ]
+                    , span [ class "deckbldr-rowpiece_bp" ]
+                        [ props.bloodPotency |> Maybe.map String.fromInt |> Maybe.withDefault "" |> text
+                        ]
+                    , span [ class "deckbldr-rowpiece_damage" ]
+                        [ props.damage |> Maybe.map String.fromInt |> Maybe.withDefault "" |> text
+                        ]
+                    , span [ class "deckbldr-rowpiece_shields" ]
+                        [ props.shield |> Maybe.map String.fromInt |> Maybe.withDefault "" |> text
+                        ]
+                    , span [ class "deckbldr-rowpiece_types" ] <|
+                        List.map (\a -> span [ class "deckbldr-rowpiece_type" ] [ UI.Icon.attackType a ]) props.attackType
+                    ]
+
+                _ ->
+                    []
+            )
+        ]
+
+
+viewQuantityPicker : Card -> Html Msg
+viewQuantityPicker card =
+    div [ class "quantpick", class ("quantpick--" ++ (String.fromInt <| Cards.maxPerDeck card)) ] <|
+        (Cards.maxPerDeck card |> List.range 0 |> List.map (\n -> button [] [ text <| String.fromInt n ]))
+
+
+viewCardListImages : Model -> List (Html Msg)
+viewCardListImages model =
+    [ Keyed.ul [ class "deckbldr-collectionitems--images" ] <|
+        List.map (\c -> ( Cards.id c, viewCardListImage c )) <|
+            cardsToShow model
+    ]
+
+
+viewCardListImage : Card -> Html Msg
+viewCardListImage card =
+    li [ class "deckbldr-collectionitem--image" ]
+        [ UI.Card.lazy card
+        , div [ class "deckbldr-rowpiece_quant--image" ] [ viewQuantityPicker card ]
+        ]
+
+
+cardsToShow : Model -> List Card
+cardsToShow model =
+    filteredCards model |> List.sortWith cardSort
+
+
+filteredCards : Model -> List Card
+filteredCards model =
     let
         cards =
             Dict.values model.collection
 
-        filter card =
+        filterFlags card =
             UI.FilterSelection.isAllowed Cards.traits model.secondaryFilters card
                 && UI.FilterSelection.isAllowed Cards.stack model.stackFilters card
                 && UI.FilterSelection.isAllowed Cards.discipline model.disciplineFilters card
                 && UI.FilterSelection.isAllowed Cards.traits model.primaryFilters card
                 && UI.FilterSelection.isAllowed Cards.clanRequirement model.clansFilters card
                 && UI.FilterSelection.isAllowed Cards.attackTypes model.attackTypeFilters card
-
-        filteredCards =
-            case model.textFilter of
-                Nothing ->
-                    List.filter filter cards
-
-                Just needle ->
-                    List.filter (Cards.findTextInCard needle) cards
-                        |> List.filter filter
-
-        sortedCards =
-            List.sortWith cardSort filteredCards
     in
-    [ Keyed.ul [ class "deckbldr-collectionitems" ] <| List.map (\c -> ( Cards.id c, viewCardInList c )) sortedCards
-    ]
+    case model.textFilter of
+        Nothing ->
+            List.filter filterFlags cards
 
-
-viewCardInList : Card -> Html Msg
-viewCardInList card =
-    li [ class "deckbldr-collectionitem" ]
-        [ UI.Card.lazy card
-        , div [ class "deckbldr-quantselector" ] <|
-            (Cards.maxPerDeck card |> List.range 0 |> List.map (\n -> button [] [ text <| String.fromInt n ]))
-        ]
+        Just needle ->
+            List.filter (Cards.findTextInCard needle) cards
+                |> List.filter filterFlags
 
 
 cardSort : Card -> Card -> Order

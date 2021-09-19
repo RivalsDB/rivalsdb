@@ -31,7 +31,7 @@
   &-filters
   &-flaggroup
     display: inline-block
-  &-collectionitems
+  &-collectionitems--images
     margin: 0
     padding: 0
     display: grid
@@ -43,11 +43,55 @@
     @media screen and ( min-width: $breakpoint-ipad--horizontal)
       grid-template-columns: repeat(3, 1fr)
 
-  &-collectionitem
+  &-collectionitem--image
     list-style: none
 
-  &-quantselector
+  &-rowpiece_quant--image
     text-align: center
+
+  &-collectionitem--row
+    list-style: none
+    font-size: 16px
+    line-height: 24px
+    padding: 5px 0
+    border-top: 1px solid #CCC
+    display: flex
+    flex-wrap: nowrap
+    &:first-child
+      border-top: none
+
+  &-collectionitems--rows
+    margin: 0
+    padding: 0
+
+  &-rowpiece_quant--row
+    flex: 0 0 auto
+
+  &-rowpiece_name
+    margin-left: 10px
+    flex: 1 1 auto
+  &-rowpiece_props
+    margin-left: 10px
+    flex: 0 0 auto
+
+  &-rowpiece_clan
+    $size: 18px
+    display: inline-block
+    margin-left: 10px
+    width: $size
+    height: $size
+  &-rowpiece_disciplines
+    display: inline-block
+    width: 60px
+    margin-left: 5px
+  &-rowpiece_discipline
+    $size: 18px
+    display: inline-block
+    margin-left: 3px
+    width: $size
+    height: $size
+    &:first-child
+      margin-left: 0
 
 .fltrhead
   display: flex
@@ -63,3 +107,11 @@
     margin: 0
     flex: 0 0 auto
     cursor: pointer
+
+.quantpick
+  display: inline-block
+
+  &--1
+    width: 42px
+  &--3
+    width: 83px
