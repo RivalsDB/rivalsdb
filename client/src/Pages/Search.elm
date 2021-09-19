@@ -166,7 +166,7 @@ view model =
                     List.filter filter model.matches
 
                 Just needle ->
-                    List.filter (findTextInCard needle) model.matches
+                    List.filter (Cards.findTextInCard needle) model.matches
                         |> List.filter filter
 
         sortedCards =
@@ -192,12 +192,6 @@ view model =
         , Keyed.ul [ class "search-results" ] <|
             List.map (\card -> ( Cards.id card, li [ class "search-result" ] [ UI.Card.lazy card ] )) sortedCards
         ]
-
-
-findTextInCard : String -> Card -> Bool
-findTextInCard needle card =
-    (Cards.text card |> String.toLower |> String.contains needle)
-        || (Cards.name card |> String.toLower |> String.contains needle)
 
 
 cardSort : Card -> Card -> Order

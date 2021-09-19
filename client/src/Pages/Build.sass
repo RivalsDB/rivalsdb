@@ -1,4 +1,40 @@
+@import ../_vars
+
 .deckbldr
+  &-choices
+    max-width: 600px
   &-filters
   &-flaggroup
     display: inline-block
+  &-collectionitems
+    margin: 0
+    padding: 0
+    display: grid
+    gap: 10px
+    place-items: start center
+    grid-template-columns: repeat(2, 1fr)
+    @media screen and ( min-width: $breakpoint-ipad--vertical)
+      grid-template-columns: repeat(4, 1fr)
+    @media screen and ( min-width: $breakpoint-ipad--horizontal)
+      grid-template-columns: repeat(3, 1fr)
+
+  &-collectionitem
+    list-style: none
+
+  &-quantselector
+    text-align: center
+
+.fltrhead
+  display: flex
+  align-items: baseline
+  &-name
+    margin: 0
+    flex: 0 0 auto
+  &-primary
+    margin-left: 10px
+    flex: 1 0 auto
+    cursor: pointer
+  &-secondary
+    margin: 0
+    flex: 0 0 auto
+    cursor: pointer

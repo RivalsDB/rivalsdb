@@ -1,13 +1,16 @@
 module Pages.Build exposing (Model, Msg, page)
 
-import Cards
+import Cards exposing (Card)
+import Dict
 import Gen.Params.Build exposing (Params)
 import Html exposing (..)
 import Html.Attributes exposing (class)
 import Html.Events exposing (onClick)
+import Html.Keyed as Keyed
 import Page
 import Request
 import Shared exposing (Collection)
+import UI.Card
 import UI.FilterSelection
 import UI.Layout.Header
 import UI.Layout.Template
@@ -143,9 +146,9 @@ view model =
             [ div [ class "deckbldr-actions" ] []
             , div [ class "deckbldr-decklist" ] []
             , div [ class "deckbldr-choices" ]
-                [ div [ class "deckbldr-filtersheader" ]
-                    [ h2 [] [ text "Filters " ]
-                    , span [ onClick ToggleShowAllFilters ]
+                [ div [ class "fltrhead" ]
+                    [ h2 [ class "fltrhead-name" ] [ text "Filters " ]
+                    , span [ onClick ToggleShowAllFilters, class "fltrhead-primary" ]
                         [ text <|
                             if model.showAllFilters then
                                 "(hide filters)"
@@ -153,21 +156,21 @@ view model =
                             else
                                 "(show more)"
                         ]
-                    , span [ onClick ClearFilters ] [ text "Clear filters" ]
+                    , span [ onClick ClearFilters, class "fltrhead-secondary" ] [ text "Clear filters" ]
                     ]
                 , div [ class "deckbldr-filters" ] <|
                     List.intersperse (text " ")
-                        (mainFilters model
+                        (viewMainFilters model
                             ++ (if model.showAllFilters then
-                                    secondaryFilters model
+                                    viewSecondaryFilters model
 
                                 else
                                     []
                                )
                         )
-                , div [ class "deckbldr-collectionheader" ]
-                    [ h2 [] [ text "Cards " ]
-                    , span [ onClick ToggleShowCollectionImages ]
+                , div [ class "fltrhead" ]
+                    [ h2 [ class "fltrhead-name" ] [ text "Cards " ]
+                    , span [ onClick ToggleShowCollectionImages, class "fltrhead-primary" ]
                         [ text <|
                             if model.showCollectionImages then
                                 "(hide images)"
@@ -176,23 +179,92 @@ view model =
                                 "(show images)"
                         ]
                     ]
-                , div [ class "deckbldr-collection" ] <| []
+                , div [ class "deckbldr-collection" ] <| viewCardList model
                 ]
             ]
         ]
 
 
-mainFilters : Model -> List (Html Msg)
-mainFilters model =
+viewMainFilters : Model -> List (Html Msg)
+viewMainFilters model =
     [ div [ class "deckbldr-flaggroup" ] [ UI.FilterSelection.view FromStacksFilter model.stackFilters ]
     , div [ class "deckbldr-flaggroup" ] [ UI.FilterSelection.view FromPrimaryFilter model.primaryFilters ]
     , div [ class "deckbldr-flaggroup" ] [ UI.FilterSelection.view FromClansFilter model.clansFilters ]
     ]
 
 
-secondaryFilters : Model -> List (Html Msg)
-secondaryFilters model =
+viewSecondaryFilters : Model -> List (Html Msg)
+viewSecondaryFilters model =
     [ div [ class "deckbldr-flaggroup" ] [ UI.FilterSelection.view FromSecondaryFilter model.secondaryFilters ]
     , div [ class "deckbldr-flaggroup" ] [ UI.FilterSelection.view FromAttackTypesFilter model.attackTypeFilters ]
     , div [ class "deckbldr-flaggroup" ] [ UI.FilterSelection.view FromDisciplinesFilter model.disciplineFilters ]
     ]
+
+
+viewCardList : Model -> List (Html Msg)
+viewCardList model =
+    let
+        cards =
+            Dict.values model.collection
+
+        filter card =
+            UI.FilterSelection.isAllowed Cards.traits model.secondaryFilters card
+                && UI.FilterSelection.isAllowed Cards.stack model.stackFilters card
+                && UI.FilterSelection.isAllowed Cards.discipline model.disciplineFilters card
+                && UI.FilterSelection.isAllowed Cards.traits model.primaryFilters card
+                && UI.FilterSelection.isAllowed Cards.clan model.clansFilters card
+                && UI.FilterSelection.isAllowed Cards.attackTypes model.attackTypeFilters card
+
+        filteredCards =
+            case model.textFilter of
+                Nothing ->
+                    List.filter filter cards
+
+                Just needle ->
+                    List.filter (Cards.findTextInCard needle) cards
+                        |> List.filter filter
+
+        sortedCards =
+            List.sortWith cardSort filteredCards
+    in
+    [ Keyed.ul [ class "deckbldr-collectionitems" ] <| List.map (\c -> ( Cards.id c, viewCardInList c )) sortedCards
+    ]
+
+
+viewCardInList : Card -> Html Msg
+viewCardInList card =
+    li [ class "deckbldr-collectionitem" ]
+        [ UI.Card.lazy card
+        , div [ class "deckbldr-quantselector" ] <|
+            (Cards.maxPerDeck card |> List.range 0 |> List.map (\n -> button [] [ text <| String.fromInt n ]))
+        ]
+
+
+cardSort : Card -> Card -> Order
+cardSort a b =
+    let
+        stack card =
+            case card of
+                Cards.AgendaCard _ ->
+                    1
+
+                Cards.HavenCard _ ->
+                    2
+
+                Cards.FactionCard _ ->
+                    3
+
+                Cards.LibraryCard _ ->
+                    4
+    in
+    case compare (stack a) (stack b) of
+        EQ ->
+            case compare (Cards.bloodPotency a) (Cards.bloodPotency b) of
+                EQ ->
+                    compare (Cards.name a) (Cards.name b)
+
+                ord ->
+                    ord
+
+        ord ->
+            ord

@@ -11,8 +11,10 @@ module Cards exposing
     , cardsDecoder
     , clan
     , discipline
+    , findTextInCard
     , id
     , image
+    , maxPerDeck
     , name
     , stack
     , text
@@ -390,6 +392,16 @@ text card =
             c.text
 
 
+maxPerDeck : Card -> Int
+maxPerDeck card =
+    case card of
+        LibraryCard _ ->
+            3
+
+        _ ->
+            1
+
+
 
 ----------
 -- DECODER
@@ -482,6 +494,16 @@ libraryDecoder =
         |> decodeTraits
         |> decodeAttackType
         |> map (\library -> ( library.id, LibraryCard library ))
+
+
+
+-- METHODS
+
+
+findTextInCard : String -> Card -> Bool
+findTextInCard needle card =
+    (text card |> String.toLower |> String.contains needle)
+        || (name card |> String.toLower |> String.contains needle)
 
 
 
