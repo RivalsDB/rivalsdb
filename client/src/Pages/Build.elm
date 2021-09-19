@@ -212,7 +212,7 @@ viewCardList model =
                 && UI.FilterSelection.isAllowed Cards.stack model.stackFilters card
                 && UI.FilterSelection.isAllowed Cards.discipline model.disciplineFilters card
                 && UI.FilterSelection.isAllowed Cards.traits model.primaryFilters card
-                && UI.FilterSelection.isAllowed Cards.clan model.clansFilters card
+                && UI.FilterSelection.isAllowed Cards.clanRequirement model.clansFilters card
                 && UI.FilterSelection.isAllowed Cards.attackTypes model.attackTypeFilters card
 
         filteredCards =

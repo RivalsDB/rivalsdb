@@ -10,6 +10,7 @@ module Cards exposing
     , bloodPotency
     , cardsDecoder
     , clan
+    , clanRequirement
     , discipline
     , findTextInCard
     , id
@@ -325,6 +326,24 @@ clan card =
 
         _ ->
             []
+
+
+clanRequirement : Card -> List Clan
+clanRequirement card =
+    case card of
+        FactionCard c ->
+            List.singleton c.clan
+
+        LibraryCard c ->
+            case c.clan of
+                Nothing ->
+                    List.map Tuple.second clanEnum.list
+
+                Just v ->
+                    List.singleton v
+
+        _ ->
+            List.map Tuple.second clanEnum.list
 
 
 discipline : Card -> List Discipline
