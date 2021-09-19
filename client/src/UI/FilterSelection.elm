@@ -15,7 +15,7 @@ stacks : Model Cards.CardStack msg
 stacks =
     [ ( Cards.AgendaStack, ( span [ title "Agenda" ] [ text "👑" ], False ) )
     , ( Cards.HavenStack, ( span [ title "Haven" ] [ text "🌜" ], False ) )
-    , ( Cards.FactionStack, ( span [ title "Faction" ] [ text "🧛" ], False ) )
+    , ( Cards.FactionStack, ( span [ title "Faction" ] [ text "🧛" ], True ) )
     , ( Cards.LibraryStack, ( span [ title "Library" ] [ text "📚" ], False ) )
     ]
 

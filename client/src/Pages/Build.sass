@@ -113,9 +113,29 @@
     flex: 0 0 auto
 
 .quantpick
+  $optHeight: 32px
+  $optWidth: 20px
   display: inline-block
 
   &--1
-    width: 42px
+    width: 2 * $optWidth
   &--3
-    width: 83px
+    width: 4 * $optWidth
+
+  &-option
+    display: inline-block
+    width: $optWidth
+    height: $optHeight
+    line-height: $optHeight
+    text-align: center
+    cursor: pointer
+    font-size: 18px
+    background: var(--color-greylight)
+    box-shadow: inset 0 0 2px var(--color-text)
+
+    &--active
+      background: var(--color-greydeep)
+      font-weight: bold
+
+    input
+      display: none

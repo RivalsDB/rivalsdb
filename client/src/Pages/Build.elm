@@ -4,7 +4,7 @@ import Cards exposing (Card)
 import Dict
 import Gen.Params.Build exposing (Params)
 import Html exposing (..)
-import Html.Attributes exposing (class)
+import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
 import Html.Keyed as Keyed
 import Page
@@ -222,7 +222,7 @@ viewCardList model =
 viewCardListRow : Card -> Html Msg
 viewCardListRow card =
     li [ class "deckbldr-collectionitem--row" ]
-        [ span [ class "deckbldr-rowpiece_quant--row" ] [ viewQuantityPicker card ]
+        [ span [ class "deckbldr-rowpiece_quant--row" ] [ viewQuantityPicker card 0 ]
         , span [ class "deckbldr-rowpiece_name" ] [ text <| Cards.name card ]
         , span [ class "deckbldr-rowpiece_props" ]
             (case card of
@@ -259,10 +259,29 @@ viewCardListRow card =
         ]
 
 
-viewQuantityPicker : Card -> Html Msg
-viewQuantityPicker card =
+viewQuantityPicker : Card -> Int -> Html Msg
+viewQuantityPicker card copiesInDeck =
     div [ class "quantpick", class ("quantpick--" ++ (String.fromInt <| Cards.maxPerDeck card)) ] <|
-        (Cards.maxPerDeck card |> List.range 0 |> List.map (\n -> button [] [ text <| String.fromInt n ]))
+        (Cards.maxPerDeck card
+            |> List.range 0
+            |> List.map
+                (\n ->
+                    label
+                        [ class "quantpick-option"
+                        , classList [ ( "quantpick-option--active", n == copiesInDeck ) ]
+                        ]
+                        [ text <| String.fromInt n
+                        , input
+                            [ type_ "radio"
+                            , name <| "count-" ++ Cards.id card
+                            , checked <| n == copiesInDeck
+
+                            -- , onClick <| ChangedDecklist ( card, n )
+                            ]
+                            []
+                        ]
+                )
+        )
 
 
 viewCardListImages : Model -> List (Html Msg)
@@ -277,7 +296,7 @@ viewCardListImage : Card -> Html Msg
 viewCardListImage card =
     li [ class "deckbldr-collectionitem--image" ]
         [ UI.Card.lazy card
-        , div [ class "deckbldr-rowpiece_quant--image" ] [ viewQuantityPicker card ]
+        , div [ class "deckbldr-rowpiece_quant--image" ] [ viewQuantityPicker card 0 ]
         ]
 
 
