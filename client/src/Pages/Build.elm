@@ -153,7 +153,7 @@ view model =
             , div [ class "deckbldr-choices" ]
                 [ div [ class "fltrhead" ]
                     [ h2 [ class "fltrhead-name" ] [ text "Filters " ]
-                    , span [ onClick ToggleShowAllFilters, class "fltrhead-primary" ]
+                    , span [ onClick ToggleShowAllFilters, class "fltrhead-primary", class "fltrhead-action" ]
                         [ text <|
                             if model.showAllFilters then
                                 "(hide filters)"
@@ -161,7 +161,7 @@ view model =
                             else
                                 "(show more)"
                         ]
-                    , span [ onClick ClearFilters, class "fltrhead-secondary" ] [ text "Clear filters" ]
+                    , span [ onClick ClearFilters, class "fltrhead-secondary", class "fltrhead-action" ] [ text "Clear filters" ]
                     ]
                 , div [ class "deckbldr-filters" ] <|
                     List.intersperse (text " ")
@@ -175,7 +175,7 @@ view model =
                         )
                 , div [ class "fltrhead" ]
                     [ h2 [ class "fltrhead-name" ] [ text "Cards " ]
-                    , span [ onClick ToggleShowCollectionImages, class "fltrhead-primary" ]
+                    , span [ onClick ToggleShowCollectionImages, class "fltrhead-primary", class "fltrhead-action" ]
                         [ text <|
                             if model.showCollectionImages then
                                 "(hide images)"
