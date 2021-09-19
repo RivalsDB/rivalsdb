@@ -232,8 +232,10 @@ viewCardListRow card =
                     , span [ class "deckbldr-rowpiece_physical" ] [ text <| String.fromInt props.physical ]
                     , span [ class "deckbldr-rowpiece_social" ] [ text <| String.fromInt props.social ]
                     , span [ class "deckbldr-rowpiece_mental" ] [ text <| String.fromInt props.mental ]
-                    , span [ class "deckbldr-rowpiece_disciplines" ] <|
-                        List.map (\d -> span [ class "deckbldr-rowpiece_discipline" ] [ UI.Icon.discipline d ]) props.disciplines
+                    , span [ class "deckbldr-rowpiece_disciplines" ]
+                        (props.disciplines
+                            |> List.map (span [ class "deckbldr-rowpiece_discipline" ] << List.singleton << UI.Icon.discipline)
+                        )
                     ]
 
                 Cards.LibraryCard props ->
@@ -249,8 +251,10 @@ viewCardListRow card =
                     , span [ class "deckbldr-rowpiece_shields" ]
                         [ props.shield |> Maybe.map String.fromInt |> Maybe.withDefault "" |> text
                         ]
-                    , span [ class "deckbldr-rowpiece_types" ] <|
-                        List.map (\a -> span [ class "deckbldr-rowpiece_type" ] [ UI.Icon.attackType a ]) props.attackType
+                    , span [ class "deckbldr-rowpiece_types" ]
+                        (props.attackType
+                            |> List.map (span [ class "deckbldr-rowpiece_type" ] << List.singleton << UI.Icon.attackType)
+                        )
                     ]
 
                 _ ->

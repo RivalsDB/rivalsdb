@@ -15,7 +15,7 @@ stacks : Model Cards.CardStack msg
 stacks =
     [ ( Cards.AgendaStack, ( span [ title "Agenda" ] [ text "👑" ], False ) )
     , ( Cards.HavenStack, ( span [ title "Haven" ] [ text "🌜" ], False ) )
-    , ( Cards.FactionStack, ( span [ title "Faction" ] [ text "🧛" ], True ) )
+    , ( Cards.FactionStack, ( span [ title "Faction" ] [ text "🧛" ], False ) )
     , ( Cards.LibraryStack, ( span [ title "Library" ] [ text "📚" ], False ) )
     ]
 
@@ -44,10 +44,10 @@ secondaryTraits =
 
 attackTypes : Model Cards.AttackType msg
 attackTypes =
-    [ ( Cards.Physical, ( span [ title "Physical" ] [ text "🤜" ], False ) )
-    , ( Cards.Social, ( span [ title "Social" ] [ text "👄" ], False ) )
-    , ( Cards.Mental, ( span [ title "Mental" ] [ text "🧠" ], False ) )
-    , ( Cards.Ranged, ( span [ title "Ranged" ] [ text "🎯" ], False ) )
+    [ ( Cards.Physical, ( UI.Icon.physical, False ) )
+    , ( Cards.Social, ( UI.Icon.social, False ) )
+    , ( Cards.Mental, ( UI.Icon.mental, False ) )
+    , ( Cards.Ranged, ( UI.Icon.ranged, False ) )
     ]
 
 

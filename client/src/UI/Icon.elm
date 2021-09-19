@@ -16,10 +16,15 @@ module UI.Icon exposing
     , fortitude
     , influence
     , malkavian
+    , mental
     , obfuscate
+    , physical
     , potence
     , presence
     , protean
+    , ranged
+    , shield
+    , social
     , thinBlood
     , thinBloodAlchemy
     , toreador
@@ -106,17 +111,17 @@ discipline d =
 attackType : Cards.AttackType -> Html.Html msg
 attackType a =
     case a of
-        Cards.Physical ->
-            Html.span [ Attr.title "Physical" ] [ Html.text "🤜" ]
-
-        Cards.Social ->
-            Html.span [ Attr.title "Social" ] [ Html.text "👄" ]
-
         Cards.Mental ->
-            Html.span [ Attr.title "Mental" ] [ Html.text "🧠" ]
+            mental
+
+        Cards.Physical ->
+            physical
 
         Cards.Ranged ->
-            Html.span [ Attr.title "Ranged" ] [ Html.text "🎯" ]
+            ranged
+
+        Cards.Social ->
+            social
 
 
 thinBlood : Html.Html msg
@@ -232,3 +237,28 @@ damage =
 influence : Html.Html msg
 influence =
     icon "icon-influence.svg" "Influence"
+
+
+mental : Html.Html msg
+mental =
+    icon "icon-mental.svg" "Mental"
+
+
+physical : Html.Html msg
+physical =
+    icon "icon-physical.svg" "Physical"
+
+
+ranged : Html.Html msg
+ranged =
+    icon "icon-ranged.svg" "Ranged"
+
+
+shield : Html.Html msg
+shield =
+    icon "icon-shield.svg" "Shield"
+
+
+social : Html.Html msg
+social =
+    icon "icon-social.svg" "Social"
