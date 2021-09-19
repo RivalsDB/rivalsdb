@@ -1,19 +1,28 @@
 @import ../../_vars
 
 .header
-  display: grid
-  gap: 20px
-  grid-template-columns: 120px auto 80px
-
-  @media screen and ( min-width: $breakpoint-ipad--vertical)
-    grid-template-columns: 120px auto 120px
+  display: flex
 
   &-logo
     width: 120px
+    flex: 0 1 auto
     svg
       width: 100%
+
+  &-search
+    width: 80px
+    flex: 0 0 auto
+
+    @media screen and ( min-width: $breakpoint-ipad--vertical)
+      width: 120px
+
+    input
+      width: 100%
+
   &-nav
     text-align: right
+    flex: 1 0 auto
+    margin: 0 10px
     ul
       list-style: none
       padding: 0
@@ -21,6 +30,3 @@
     li
       display: inline-block
       margin-left: 10px
-
-  &-search input
-    width: 100%
