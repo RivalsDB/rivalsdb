@@ -268,7 +268,16 @@ view model =
                         , viewFactionList model.deck
                         ]
                     , div [ class "decklist-library" ]
-                        [ h3 [ class "decklist-section_header" ] [ text "Library" ]
+                        [ h3 [ class "decklist-section_header" ]
+                            (text "Library"
+                                :: (case cardCount <| Dict.values model.deck.library of
+                                        0 ->
+                                            []
+
+                                        n ->
+                                            [ text " (", text <| String.fromInt n, text ")" ]
+                                   )
+                            )
                         , viewLibraryList model.deck
                         ]
                     ]
@@ -384,14 +393,16 @@ viewFactionList deck =
         )
 
 
+cardCount : List ( a, Int ) -> Int
+cardCount =
+    List.foldl (\( _, n ) sum -> sum + n) 0
+
+
 viewLibraryList : Deck -> Html Msg
 viewLibraryList deck =
     let
         { actions, combat, other } =
             groupLibraryCards deck
-
-        cardCount =
-            List.foldl (\( _, n ) sum -> sum + n) 0
 
         viewGroup name group =
             if cardCount group < 1 then
