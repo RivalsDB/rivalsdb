@@ -62,7 +62,7 @@ init collection req =
       , textFilter = Nothing
       , showAllFilters = False
       , showCollectionImages = False
-      , deck = demoDeck collection
+      , deck = Deck.empty
       }
     , Cmd.none
     )
