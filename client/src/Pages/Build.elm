@@ -227,34 +227,34 @@ view model =
                 [ div [ class "decklist" ]
                     [ div [ class "decklist-title" ] [ text "Decklist name" ]
                     , div [ class "decklist-byline" ] [ text "By: Xyz." ]
-                    , div [ class "decklist-agenda" ]
+                    , div [ class "decklist-core", class "decklist-core--agenda" ]
                         [ p [ class "decklist-section_header" ]
                             [ text "Agenda: "
                             , text <| Maybe.withDefault "Unknown" <| Maybe.map .name model.deck.agenda
                             ]
-                        , div [ class "decklist-agenda_image" ]
+                        , div [ class "decklist-core_image" ]
                             [ model.deck.agenda
                                 |> Maybe.map (Cards.AgendaCard >> UI.Card.lazy)
                                 |> Maybe.withDefault (text "Unknown")
                             ]
                         ]
-                    , div [ class "decklist-haven" ]
+                    , div [ class "decklist-core", class "decklist-core--haven" ]
                         [ p [ class "decklist-section_header" ]
                             [ text "Haven: "
                             , text <| Maybe.withDefault "" <| Maybe.map .name model.deck.haven
                             ]
-                        , div [ class "decklist-haven_image" ]
+                        , div [ class "decklist-core_image" ]
                             [ model.deck.haven
                                 |> Maybe.map (Cards.HavenCard >> UI.Card.lazy)
                                 |> Maybe.withDefault (text "Unknown")
                             ]
                         ]
-                    , div [ class "decklist-leader" ]
+                    , div [ class "decklist-core", class "decklist-core--leader" ]
                         [ p [ class "decklist-section_header" ]
                             [ text "Leader: "
                             , text <| Maybe.withDefault "Unknown" <| Maybe.map .name model.deck.leader
                             ]
-                        , div [ class "decklist-leader_image" ]
+                        , div [ class "decklist-core_image" ]
                             [ model.deck.leader
                                 |> Maybe.map (Cards.FactionCard >> UI.Card.lazy)
                                 |> Maybe.withDefault (text "Unknown Leader")
@@ -368,18 +368,18 @@ viewFactionList deck =
         (sortedCharacters
             |> List.map
                 (\c ->
-                    li [ classList [ ( "deckfact--leader", Deck.isLeader deck c ) ] ]
-                        [ span [ class "deckfact-clan" ] [ UI.Icon.clan c.clan ]
-                        , span [ class "deckfact-bp" ] [ text <| String.fromInt <| c.bloodPotency ]
-                        , span [ class "deckfact-name" ] [ text c.name ]
-                        , span [ class "deckfact-leader" ]
-                            [ if Deck.isLeader deck c then
-                                text "(leader)"
-
-                              else
-                                text ""
-                            ]
+                    li
+                        [ class "deckfact-entry"
+                        , classList [ ( "deckfact-entry--leader", Deck.isLeader deck c ) ]
                         ]
+                        ([ span [ class "deckfact-bp" ] [ text <| String.fromInt <| c.bloodPotency ]
+                         , span [ class "deckfact-clan" ] [ UI.Icon.clan c.clan ]
+                         , span [ class "deckfact-name" ] [ text c.name ]
+                         ]
+                            ++ (c.disciplines
+                                    |> List.map (span [ class "deckfact-discipline" ] << List.singleton << UI.Icon.discipline)
+                               )
+                        )
                 )
         )
 
@@ -398,7 +398,7 @@ viewLibraryList deck =
                 []
 
             else
-                [ p []
+                [ h4 [ class "" ]
                     [ text name
                     , text " ("
                     , text <| String.fromInt <| cardCount group
