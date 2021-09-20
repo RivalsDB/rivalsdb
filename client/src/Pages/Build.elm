@@ -398,17 +398,17 @@ viewLibraryList deck =
                 []
 
             else
-                [ h4 [ class "" ]
+                [ h4 [ class "decklist-library_section_header" ]
                     [ text name
                     , text " ("
                     , text <| String.fromInt <| cardCount group
                     , text ")"
                     ]
-                , ul [ class "decklist-library_list" ]
+                , ul []
                     (group
                         |> List.map
                             (\( c, n ) ->
-                                li [ class "decklist-library_card" ]
+                                li [ class "decklist-library_entry" ]
                                     [ span [] [ text (String.fromInt n) ]
                                     , span [] [ text "× " ]
                                     , span [] [ text c.name ]
@@ -417,7 +417,7 @@ viewLibraryList deck =
                     )
                 ]
     in
-    div [] <|
+    div [ class "decklist-library" ] <|
         List.concat
             [ viewGroup "Actions" actions
             , viewGroup "Combat" combat
