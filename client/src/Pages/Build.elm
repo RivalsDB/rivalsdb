@@ -466,16 +466,16 @@ viewQuantityPicker card copiesInDeck =
 viewCardListImages : Model -> List (Html Msg)
 viewCardListImages model =
     [ Keyed.ul [ class "deckbldr-collectionitems--images" ] <|
-        List.map (\c -> ( Cards.id c, viewCardListImage c )) <|
+        List.map (\c -> ( Cards.id c, viewCardListImage model.deck c )) <|
             cardsToShow model
     ]
 
 
-viewCardListImage : Card -> Html Msg
-viewCardListImage card =
+viewCardListImage : Deck -> Card -> Html Msg
+viewCardListImage deck card =
     li [ class "deckbldr-collectionitem--image" ]
         [ UI.Card.lazy card
-        , div [ class "deckbldr-rowpiece_quant--image" ] [ viewQuantityPicker card 0 ]
+        , div [ class "deckbldr-rowpiece_quant--image" ] [ viewQuantityPicker card (Deck.copiesInDeck deck card) ]
         ]
 
 
