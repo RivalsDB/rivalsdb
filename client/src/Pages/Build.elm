@@ -62,7 +62,7 @@ init collection req =
       , textFilter = Nothing
       , showAllFilters = False
       , showCollectionImages = False
-      , deck = Deck.empty
+      , deck = demoDeck collection
       }
     , Cmd.none
     )
@@ -133,6 +133,7 @@ demoDeck collection =
     , haven = haven
     , faction = faction
     , library = library
+    , leader = Dict.toList faction |> List.head |> Maybe.map Tuple.second
     }
 
 
@@ -224,43 +225,51 @@ view model =
                 ]
             , div [ class "deckbldr-decklist" ]
                 [ div [ class "decklist" ]
-                    [ h2 [ class "decklist-title" ] [ text "Decklist name" ]
-                    , div [ class "decklist-meta" ]
-                        [ p [ class "decklist-byline" ] [ text "By: Xyz." ] ]
+                    [ div [ class "decklist-title" ] [ text "Decklist name" ]
+                    , div [ class "decklist-byline" ] [ text "By: Xyz." ]
                     , div [ class "decklist-agenda" ]
-                        [ h3 [ class "decklist-section_header" ] [ text "Agenda" ]
-                        , p [ class "decklist-agenda_name" ]
-                            [ text <| Maybe.withDefault "Unknown" <| Maybe.map .name model.deck.agenda
+                        [ p [ class "decklist-section_header" ]
+                            [ text "Agenda: "
+                            , text <| Maybe.withDefault "Unknown" <| Maybe.map .name model.deck.agenda
                             ]
                         , div [ class "decklist-agenda_image" ]
                             [ model.deck.agenda
                                 |> Maybe.map (Cards.AgendaCard >> UI.Card.lazy)
-                                |> Maybe.withDefault (text "Unknown Agenda")
+                                |> Maybe.withDefault (text "Unknown")
                             ]
                         ]
                     , div [ class "decklist-haven" ]
-                        [ h3 [ class "decklist-section_header" ] [ text "Haven" ]
-                        , p [ class "decklist-haven_name" ]
-                            [ text <| Maybe.withDefault "" <| Maybe.map .name model.deck.haven
+                        [ p [ class "decklist-section_header" ]
+                            [ text "Haven: "
+                            , text <| Maybe.withDefault "" <| Maybe.map .name model.deck.haven
                             ]
                         , div [ class "decklist-haven_image" ]
                             [ model.deck.haven
                                 |> Maybe.map (Cards.HavenCard >> UI.Card.lazy)
-                                |> Maybe.withDefault (text "Unknown Haven")
+                                |> Maybe.withDefault (text "Unknown")
+                            ]
+                        ]
+                    , div [ class "decklist-leader" ]
+                        [ p [ class "decklist-section_header" ]
+                            [ text "Leader: "
+                            , text <| Maybe.withDefault "Unknown" <| Maybe.map .name model.deck.leader
+                            ]
+                        , div [ class "decklist-leader_image" ]
+                            [ model.deck.leader
+                                |> Maybe.map (Cards.FactionCard >> UI.Card.lazy)
+                                |> Maybe.withDefault (text "Unknown Leader")
                             ]
                         ]
                     , div [ class "decklist-faction" ]
-                        [ h3 [ class "decklist-section_header" ] [ text "Clans" ]
-                        , viewClansInFaction model.deck.faction
-                        , h3 [ class "decklist-section_header" ] [ text "Faction" ]
-                        , viewFactionList model.deck.faction
+                        [ h3 [ class "decklist-section_header" ]
+                            (text "Faction"
+                                :: viewClansInFaction model.deck.faction
+                            )
+                        , viewFactionList model.deck
                         ]
                     , div [ class "decklist-library" ]
                         [ h3 [ class "decklist-section_header" ] [ text "Library" ]
-                        , ul [ class "decklist-library_list" ]
-                            (Dict.toList model.deck.library
-                                |> List.map (\( _, ( c, n ) ) -> li [ class "decklist-library_card" ] [ text (String.fromInt n), text "x ", text c.name ])
-                            )
+                        , viewLibraryList model.deck
                         ]
                     ]
                 ]
@@ -309,7 +318,7 @@ view model =
         ]
 
 
-viewClansInFaction : Dict Cards.Id Cards.Faction -> Html Msg
+viewClansInFaction : Dict Cards.Id Cards.Faction -> List (Html Msg)
 viewClansInFaction faction =
     let
         clans =
@@ -335,24 +344,22 @@ viewClansInFaction faction =
                 []
                 clans
     in
-    ul []
-        (List.sortBy (Tuple.second >> negate) summedClans
-            |> List.map
-                (\( clan, count ) ->
-                    li [ class "decklist-clan_entry" ]
-                        [ text <| String.fromInt count
-                        , text " "
-                        , span [ class "decklist-clan_clan" ] [ UI.Icon.clan clan ]
-                        ]
-                )
-        )
+    List.sortBy (Tuple.second >> negate) summedClans
+        |> List.map
+            (\( clan, count ) ->
+                span [ class "decklist-clan_entry" ]
+                    [ text <| String.fromInt count
+                    , text " "
+                    , span [ class "decklist-clan_clan" ] [ UI.Icon.clan clan ]
+                    ]
+            )
 
 
-viewFactionList : Dict Cards.Id Cards.Faction -> Html Msg
-viewFactionList faction =
+viewFactionList : Deck -> Html Msg
+viewFactionList deck =
     let
         characters =
-            Dict.values faction
+            Dict.values deck.faction
 
         sortedCharacters =
             List.sortBy (.bloodPotency >> negate) characters
@@ -361,14 +368,80 @@ viewFactionList faction =
         (sortedCharacters
             |> List.map
                 (\c ->
-                    li []
+                    li [ classList [ ( "deckfact--leader", Deck.isLeader deck c ) ] ]
                         [ span [ class "deckfact-clan" ] [ UI.Icon.clan c.clan ]
                         , span [ class "deckfact-bp" ] [ text <| String.fromInt <| c.bloodPotency ]
                         , span [ class "deckfact-name" ] [ text c.name ]
-                        , span [ class "deckfact-leader" ] [ text "(leader)" ]
+                        , span [ class "deckfact-leader" ]
+                            [ if Deck.isLeader deck c then
+                                text "(leader)"
+
+                              else
+                                text ""
+                            ]
                         ]
                 )
         )
+
+
+viewLibraryList : Deck -> Html Msg
+viewLibraryList deck =
+    let
+        { actions, combat, other } =
+            groupLibraryCards deck
+
+        cardCount =
+            List.foldl (\( _, n ) sum -> sum + n) 0
+
+        viewGroup name group =
+            if cardCount group < 1 then
+                []
+
+            else
+                [ p []
+                    [ text name
+                    , text " ("
+                    , text <| String.fromInt <| cardCount group
+                    , text ")"
+                    ]
+                , ul [ class "decklist-library_list" ]
+                    (group
+                        |> List.map
+                            (\( c, n ) ->
+                                li [ class "decklist-library_card" ]
+                                    [ span [] [ text (String.fromInt n) ]
+                                    , span [] [ text "× " ]
+                                    , span [] [ text c.name ]
+                                    ]
+                            )
+                    )
+                ]
+    in
+    div [] <|
+        List.concat
+            [ viewGroup "Actions" actions
+            , viewGroup "Combat" combat
+            , viewGroup "Other" other
+            ]
+
+
+groupLibraryCards : Deck -> { actions : List ( Cards.Library, Int ), combat : List ( Cards.Library, Int ), other : List ( Cards.Library, Int ) }
+groupLibraryCards deck =
+    let
+        groups =
+            { actions = [], combat = [], other = [] }
+
+        assignToGroup ( card, n ) oldGroups =
+            if List.any (\trait -> trait == Cards.Action || trait == Cards.UnhostedAction) card.traits then
+                { oldGroups | actions = ( card, n ) :: oldGroups.actions }
+
+            else if List.any (\trait -> trait == Cards.Attack || trait == Cards.Reaction) card.traits then
+                { oldGroups | combat = ( card, n ) :: oldGroups.combat }
+
+            else
+                { oldGroups | other = ( card, n ) :: oldGroups.other }
+    in
+    Dict.values deck.library |> List.foldl assignToGroup groups
 
 
 viewMainFilters : Model -> List (Html Msg)

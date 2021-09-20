@@ -1,4 +1,4 @@
-module Deck exposing (Deck, copiesInDeck, empty, isLegal, setCard)
+module Deck exposing (Deck, copiesInDeck, empty, isLeader, isLegal, setCard)
 
 import Cards
 import Dict exposing (Dict)
@@ -9,6 +9,7 @@ type alias Deck =
     , haven : Maybe Cards.Haven
     , faction : Dict Cards.Id Cards.Faction
     , library : Dict Cards.Id ( Cards.Library, Int )
+    , leader : Maybe Cards.Faction
     }
 
 
@@ -18,6 +19,7 @@ empty =
     , haven = Nothing
     , faction = Dict.empty
     , library = Dict.empty
+    , leader = Nothing
     }
 
 
@@ -99,3 +101,8 @@ copiesInDeck deck card =
 
         Cards.LibraryCard { id } ->
             Dict.get id deck.library |> Maybe.map Tuple.second |> Maybe.withDefault 0
+
+
+isLeader : Deck -> Cards.Faction -> Bool
+isLeader deck character =
+    deck.leader |> Maybe.map (.id >> (==) character.id) |> Maybe.withDefault False
