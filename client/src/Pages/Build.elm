@@ -2,7 +2,7 @@ module Pages.Build exposing (Model, Msg, page)
 
 import Cards exposing (Card)
 import Deck exposing (Deck)
-import Dict exposing (Dict)
+import Dict
 import Gen.Params.Build exposing (Params)
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -62,7 +62,7 @@ init collection req =
       , textFilter = Nothing
       , showAllFilters = False
       , showCollectionImages = False
-      , deck = demoDeck collection
+      , deck = Deck.empty
       }
     , Cmd.none
     )
@@ -244,7 +244,7 @@ view model =
                     , div [ class "decklist-core", class "decklist-core--haven" ]
                         [ p [ class "decklist-section_header" ]
                             [ text "Haven: "
-                            , text <| Maybe.withDefault "" <| Maybe.map .name model.deck.haven
+                            , text <| Maybe.withDefault "Unknown" <| Maybe.map .name model.deck.haven
                             ]
                         , div [ class "decklist-core_image" ]
                             [ model.deck.haven
@@ -264,14 +264,20 @@ view model =
                             ]
                         ]
                     , div [ class "decklist-faction" ]
-                        [ h3 [ class "decklist-section_header" ]
+                        [ h3
+                            [ class "decklist-section_header"
+                            , classList [ ( "decklist-section_header--invalid", not <| Deck.isValidFaction model.deck ) ]
+                            ]
                             (text "Faction"
                                 :: viewClansInFaction model.deck.faction
                             )
                         , viewFactionList model.deck
                         ]
                     , div [ class "decklist-library" ]
-                        [ h3 [ class "decklist-section_header" ]
+                        [ h3
+                            [ class "decklist-section_header"
+                            , classList [ ( "decklist-section_header--invalid", not <| Deck.isValidLibrary model.deck ) ]
+                            ]
                             (text "Library"
                                 :: (case cardCount <| Dict.values model.deck.library of
                                         0 ->

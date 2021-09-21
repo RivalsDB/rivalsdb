@@ -1,4 +1,4 @@
-module Deck exposing (Deck, Faction, copiesInDeck, empty, isLeader, isLegal, leader, setCard, setLeader)
+module Deck exposing (Deck, Faction, copiesInDeck, empty, isLeader, isLegal, isValidFaction, isValidLibrary, leader, setCard, setLeader)
 
 import Cards
 import Dict exposing (Dict)
@@ -130,3 +130,20 @@ leader deck =
 setLeader : Deck -> Cards.Faction -> Deck
 setLeader deck newLeader =
     { deck | faction = Dict.map (\_ ( char, _ ) -> ( char, char.id == newLeader.id )) deck.faction }
+
+
+isValidFaction : Deck -> Bool
+isValidFaction deck =
+    Dict.isEmpty deck.faction
+        || ((leader deck |> Maybe.map (always True) |> Maybe.withDefault False)
+                && (Dict.size deck.faction == 7)
+           )
+
+
+isValidLibrary : Deck -> Bool
+isValidLibrary deck =
+    let
+        deckSize =
+            List.foldl (\( _, n ) sum -> sum + n) 0 <| Dict.values deck.library
+    in
+    (deckSize == 0) || (deckSize >= 40 && deckSize <= 60)
