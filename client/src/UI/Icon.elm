@@ -15,6 +15,7 @@ module UI.Icon exposing
     , dominate
     , fortitude
     , influence
+    , leader
     , malkavian
     , mental
     , obfuscate
@@ -262,3 +263,8 @@ shield =
 social : Html.Html msg
 social =
     icon "icon-social.svg" "Social"
+
+
+leader : Html.Html msg
+leader =
+    icon "icon-leader.svg" "Leader"

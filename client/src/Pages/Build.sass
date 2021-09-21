@@ -175,6 +175,7 @@ $actions-bar-height: 50px
   &-faction,
   &-library
     grid-column: 1 / 7
+    margin-top: 20px
   @media screen and ( min-width: $breakpoint-ipad--horizontal)
     &-core
       &_image
@@ -228,6 +229,18 @@ $actions-bar-height: 50px
       margin-top: 0
     &--leader
       font-weight: bold
+  &-leader_option
+    width: 30px
+    height: 30px
+    background: #CCC
+    border-radius: 15px
+    cursor: pointer
+    img
+      display: none
+  &-leader_option--leader
+    img
+      display: block
+
   &-clan,
   &-bp,
   &-name

@@ -1,16 +1,31 @@
-module Deck exposing (Deck, copiesInDeck, empty, isLeader, isLegal, setCard)
+module Deck exposing (Deck, Faction, copiesInDeck, empty, isLeader, isLegal, leader, setCard, setLeader)
 
 import Cards
 import Dict exposing (Dict)
 
 
 type alias Deck =
-    { agenda : Maybe Cards.Agenda
-    , haven : Maybe Cards.Haven
-    , faction : Dict Cards.Id Cards.Faction
-    , library : Dict Cards.Id ( Cards.Library, Int )
-    , leader : Maybe Cards.Faction
+    { agenda : Agenda
+    , haven : Haven
+    , faction : Faction
+    , library : Library
     }
+
+
+type alias Agenda =
+    Maybe Cards.Agenda
+
+
+type alias Haven =
+    Maybe Cards.Haven
+
+
+type alias Faction =
+    Dict Cards.Id ( Cards.Faction, Bool )
+
+
+type alias Library =
+    Dict Cards.Id ( Cards.Library, Int )
 
 
 empty : Deck
@@ -19,7 +34,6 @@ empty =
     , haven = Nothing
     , faction = Dict.empty
     , library = Dict.empty
-    , leader = Nothing
     }
 
 
@@ -53,7 +67,7 @@ setCard deck entry =
             { deck | faction = Dict.remove id deck.faction }
 
         ( Cards.FactionCard faction, _ ) ->
-            { deck | faction = Dict.insert faction.id faction deck.faction }
+            { deck | faction = Dict.insert faction.id ( faction, False ) deck.faction }
 
         ( Cards.LibraryCard { id }, 0 ) ->
             { deck | library = Dict.remove id deck.library }
@@ -105,4 +119,14 @@ copiesInDeck deck card =
 
 isLeader : Deck -> Cards.Faction -> Bool
 isLeader deck character =
-    deck.leader |> Maybe.map (.id >> (==) character.id) |> Maybe.withDefault False
+    Dict.get character.id deck.faction |> Maybe.map Tuple.second |> Maybe.withDefault False
+
+
+leader : Deck -> Maybe Cards.Faction
+leader deck =
+    Dict.values deck.faction |> List.filter Tuple.second |> List.head |> Maybe.map Tuple.first
+
+
+setLeader : Deck -> Cards.Faction -> Deck
+setLeader deck newLeader =
+    { deck | faction = Dict.map (\_ ( char, _ ) -> ( char, char.id == newLeader.id )) deck.faction }

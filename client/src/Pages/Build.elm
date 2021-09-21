@@ -62,7 +62,7 @@ init collection req =
       , textFilter = Nothing
       , showAllFilters = False
       , showCollectionImages = False
-      , deck = Deck.empty
+      , deck = demoDeck collection
       }
     , Cmd.none
     )
@@ -105,7 +105,7 @@ demoDeck collection =
                     (\( k, c ) ->
                         case c of
                             Cards.FactionCard f ->
-                                Just ( k, f )
+                                Just ( k, ( f, f.name == "Aurora Nix" ) )
 
                             _ ->
                                 Nothing
@@ -133,7 +133,6 @@ demoDeck collection =
     , haven = haven
     , faction = faction
     , library = library
-    , leader = Dict.toList faction |> List.head |> Maybe.map Tuple.second
     }
 
 
@@ -150,6 +149,7 @@ type Msg
     | ClearFilters
     | ToggleShowCollectionImages
     | ChangedDecklist ( Cards.Card, Int )
+    | ChoseLeader Cards.Faction
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -215,6 +215,9 @@ update msg model =
         ChangedDecklist change ->
             ( { model | deck = Deck.setCard model.deck change }, Cmd.none )
 
+        ChoseLeader leader ->
+            ( { model | deck = Deck.setLeader model.deck leader }, Cmd.none )
+
 
 view : Model -> View Msg
 view model =
@@ -252,10 +255,10 @@ view model =
                     , div [ class "decklist-core", class "decklist-core--leader" ]
                         [ p [ class "decklist-section_header" ]
                             [ text "Leader: "
-                            , text <| Maybe.withDefault "Unknown" <| Maybe.map .name model.deck.leader
+                            , text <| Maybe.withDefault "Unknown" <| Maybe.map .name (Deck.leader model.deck)
                             ]
                         , div [ class "decklist-core_image" ]
-                            [ model.deck.leader
+                            [ Deck.leader model.deck
                                 |> Maybe.map (Cards.FactionCard >> UI.Card.lazy)
                                 |> Maybe.withDefault (text "Unknown Leader")
                             ]
@@ -327,11 +330,11 @@ view model =
         ]
 
 
-viewClansInFaction : Dict Cards.Id Cards.Faction -> List (Html Msg)
+viewClansInFaction : Deck.Faction -> List (Html Msg)
 viewClansInFaction faction =
     let
         clans =
-            Dict.values faction |> List.map .clan
+            Dict.values faction |> List.map (Tuple.first >> .clan)
 
         summedClans =
             List.foldl
@@ -368,7 +371,7 @@ viewFactionList : Deck -> Html Msg
 viewFactionList deck =
     let
         characters =
-            Dict.values deck.faction
+            Dict.values deck.faction |> List.map Tuple.first
 
         sortedCharacters =
             List.sortBy (.bloodPotency >> negate) characters
@@ -381,7 +384,13 @@ viewFactionList deck =
                         [ class "deckfact-entry"
                         , classList [ ( "deckfact-entry--leader", Deck.isLeader deck c ) ]
                         ]
-                        ([ span [ class "deckfact-bp" ] [ text <| String.fromInt <| c.bloodPotency ]
+                        ([ span
+                            [ class "deckfact-leader_option"
+                            , classList [ ( "deckfact-leader_option--leader", Deck.isLeader deck c ) ]
+                            , onClick (ChoseLeader c)
+                            ]
+                            [ UI.Icon.leader ]
+                         , span [ class "deckfact-bp" ] [ text <| String.fromInt <| c.bloodPotency ]
                          , span [ class "deckfact-clan" ] [ UI.Icon.clan c.clan ]
                          , span [ class "deckfact-name" ] [ text c.name ]
                          ]
