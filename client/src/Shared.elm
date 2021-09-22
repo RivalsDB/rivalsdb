@@ -2,7 +2,8 @@ module Shared exposing
     ( Collection
     , Flags
     , Model
-    , Msg
+    , Msg(..)
+    , User
     , init
     , subscriptions
     , update
@@ -23,31 +24,36 @@ type alias Collection =
 
 
 type alias Model =
-    { collection : Collection }
+    { collection : Collection, user : Maybe User }
+
+
+type alias User =
+    { id : String, accessToken : String }
 
 
 type Msg
-    = NoOp
+    = SignIn Json.Value
+    | SignOut
 
 
 init : Request -> Flags -> ( Model, Cmd Msg )
 init _ flags =
     let
-        model =
+        collection =
             case Json.decodeValue cardsDecoder flags of
                 Ok cards ->
-                    { collection = cards }
+                    cards
 
                 Err _ ->
-                    { collection = Dict.empty }
+                    Dict.empty
     in
-    ( model, Cmd.none )
+    ( { collection = collection, user = Nothing }, Cmd.none )
 
 
 update : Request -> Msg -> Model -> ( Model, Cmd Msg )
-update _ msg model =
+update req msg model =
     case msg of
-        NoOp ->
+        _ ->
             ( model, Cmd.none )
 
 

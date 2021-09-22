@@ -1,6 +1,9 @@
 module Pages.Home_ exposing (Model, Msg, page)
 
+import Auth exposing (initiateLogin)
 import Gen.Params.Home_ exposing (Params)
+import Html exposing (..)
+import Html.Events exposing (onClick)
 import Page
 import Request
 import Shared
@@ -30,6 +33,7 @@ init req =
 
 type Msg
     = FromHeader UI.Layout.Header.Msg
+    | Login
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -39,7 +43,12 @@ update msg model =
             UI.Layout.Header.update subMsg model.header
                 |> Tuple.mapFirst (\newHeader -> { model | header = newHeader })
 
+        Login ->
+            ( model, initiateLogin "oioioi" )
+
 
 view : Model -> View Msg
 view _ =
-    UI.Layout.Template.view FromHeader []
+    UI.Layout.Template.view FromHeader
+        [ button [ onClick Login ] [ text "Login" ]
+        ]

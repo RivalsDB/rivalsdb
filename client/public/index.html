@@ -7,13 +7,49 @@
     <title>Rivals DB</title>
   </head>
   <body>
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/1.13/auth0-spa-js.production.js"></script>
     <script src="/dist/elm.js"></script>
     <script>
-      fetch("/cards.json")
-        .then((response) => response.json())
-        .then((cards) => {
-          Elm.Main.init({ flags: cards });
-        });
+      function configureClient() {
+        const config = {
+          domain: "rivalsdb.eu.auth0.com",
+          client_id: "jfoDbFRgDspBrj1h9NXY9RUgXIwfKHUQ",
+        };
+        return createAuth0Client(config);
+      }
+
+      function fetchCards() {
+        return fetch("/cards.json").then((res) => res.json());
+      }
+
+      Promise.all([fetchCards(), configureClient()]).then(
+        async ([cards, auth0]) => {
+          const query = window.location.search;
+          if (query.includes("code=") && query.includes("state=")) {
+            await auth0.handleRedirectCallback();
+          }
+          window.history.replaceState({}, document.title, "/");
+
+          const app = Elm.Main.init({ flags: cards });
+
+          app.ports.initiateLogin.subscribe((redirectUri) => {
+            auth0.loginWithRedirect({ redirect_uri: window.location.origin });
+          });
+
+          const isAuthenticated = await auth0.isAuthenticated();
+          if (isAuthenticated) {
+            const [token, user] = await Promise.all([
+              auth0.getTokenSilently(),
+              auth0.getUser(),
+            ]);
+            window.setTimeout(() => {
+              window.app = app
+
+              app.ports.signIn.send({ token, user });
+            },1000)
+          }
+        }
+      );
     </script>
   </body>
 </html>
