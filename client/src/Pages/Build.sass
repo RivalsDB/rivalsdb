@@ -31,7 +31,10 @@ $actions-bar-height: 50px
       grid-column: 2 / 3
       grid-row: 2/3
 
-  &-filters
+  &-collection
+    margin-bottom: 40px
+
+  &-filters,
   &-flaggroup
     display: inline-block
   &-collectionitems--images
@@ -77,21 +80,35 @@ $actions-bar-height: 50px
     margin-left: 10px
     flex: 0 0 auto
 
+  &-rowpiece_clan,
+  &-rowpiece_disciplines,
+  &-rowpiece_discipline,
+  &-rowpiece_bp
+    display: inline-block
+  &-rowpiece_physical,
+  &-rowpiece_social,
+  &-rowpiece_mental,
+  &-rowpiece_damage,
+  &-rowpiece_shields,
+  &-rowpiece_types,
+  &-rowpiece_type
+    display: none
+    @media screen and ( min-width: $breakpoint-ipad--horizontal)
+      &
+        display: inline-block
+
   &-rowpiece_clan
     $size: 18px
-    display: inline-block
     margin-left: 10px
     width: $size
     height: $size
   &-rowpiece_disciplines,
   &-rowpiece_types
-    display: inline-block
     width: 60px
     margin-left: 5px
   &-rowpiece_discipline,
   &-rowpiece_type
     $size: 18px
-    display: inline-block
     margin-left: 3px
     width: $size
     height: $size
@@ -247,9 +264,6 @@ $actions-bar-height: 50px
   &-bp,
   &-name
     display: inline-block
-  &-bp
-    width: 10px
-    text-align: center
   &-clan
     $size: 18px
     width: $size

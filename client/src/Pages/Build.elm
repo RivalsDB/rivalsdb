@@ -11,6 +11,7 @@ import Html.Keyed as Keyed
 import Page
 import Request
 import Shared exposing (Collection)
+import UI.Attribute
 import UI.Card
 import UI.FilterSelection
 import UI.Icon
@@ -396,7 +397,7 @@ viewFactionList deck =
                             , onClick (ChoseLeader c)
                             ]
                             [ UI.Icon.leader ]
-                         , span [ class "deckfact-bp" ] [ text <| String.fromInt <| c.bloodPotency ]
+                         , span [ class "deckfact-bp" ] [ UI.Attribute.bloodPotency c.bloodPotency ]
                          , span [ class "deckfact-clan" ] [ UI.Icon.clan c.clan ]
                          , span [ class "deckfact-name" ] [ text c.name ]
                          ]
@@ -503,10 +504,10 @@ viewCardListRow deck card =
             (case card of
                 Cards.FactionCard props ->
                     [ span [ class "deckbldr-rowpiece_clan" ] [ UI.Icon.clan props.clan ]
-                    , span [ class "deckbldr-rowpiece_bp" ] [ text <| String.fromInt props.bloodPotency ]
-                    , span [ class "deckbldr-rowpiece_physical" ] [ text <| String.fromInt props.physical ]
-                    , span [ class "deckbldr-rowpiece_social" ] [ text <| String.fromInt props.social ]
-                    , span [ class "deckbldr-rowpiece_mental" ] [ text <| String.fromInt props.mental ]
+                    , span [ class "deckbldr-rowpiece_bp" ] [ UI.Attribute.bloodPotency props.bloodPotency ]
+                    , span [ class "deckbldr-rowpiece_physical" ] [ UI.Attribute.physical props.physical ]
+                    , span [ class "deckbldr-rowpiece_social" ] [ UI.Attribute.social props.social ]
+                    , span [ class "deckbldr-rowpiece_mental" ] [ UI.Attribute.mental props.mental ]
                     , span [ class "deckbldr-rowpiece_disciplines" ]
                         (props.disciplines
                             |> List.map (span [ class "deckbldr-rowpiece_discipline" ] << List.singleton << UI.Icon.discipline)
@@ -517,15 +518,9 @@ viewCardListRow deck card =
                     [ span [ class "deckbldr-rowpiece_clan" ]
                         [ props.clan |> Maybe.map UI.Icon.clan |> Maybe.withDefault (text "")
                         ]
-                    , span [ class "deckbldr-rowpiece_bp" ]
-                        [ props.bloodPotency |> Maybe.map String.fromInt |> Maybe.withDefault "" |> text
-                        ]
-                    , span [ class "deckbldr-rowpiece_damage" ]
-                        [ props.damage |> Maybe.map String.fromInt |> Maybe.withDefault "" |> text
-                        ]
-                    , span [ class "deckbldr-rowpiece_shields" ]
-                        [ props.shield |> Maybe.map String.fromInt |> Maybe.withDefault "" |> text
-                        ]
+                    , span [ class "deckbldr-rowpiece_bp" ] [ UI.Attribute.bloodPotencyRequirement props.bloodPotency ]
+                    , span [ class "deckbldr-rowpiece_damage" ] [ UI.Attribute.damage props.damage ]
+                    , span [ class "deckbldr-rowpiece_shields" ] [ UI.Attribute.shield props.shield ]
                     , span [ class "deckbldr-rowpiece_types" ]
                         (props.attackType
                             |> List.map (span [ class "deckbldr-rowpiece_type" ] << List.singleton << UI.Icon.attackType)
