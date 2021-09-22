@@ -1,7 +1,9 @@
 on:
+  workflow_dispatch:
   push:
-    branches:
-      - master
+    tags:
+      - '*'
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
