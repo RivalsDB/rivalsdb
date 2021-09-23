@@ -22,18 +22,25 @@
         return fetch("/cards.json").then((res) => res.json());
       }
 
+      async function handleAuthcallback(auth0) {
+        const query = window.location.search;
+        if (query.includes("code=") && query.includes("state=")) {
+          await auth0.handleRedirectCallback();
+        }
+        window.history.replaceState({}, document.title, "/");
+      }
+
       Promise.all([fetchCards(), configureClient()]).then(
         async ([cards, auth0]) => {
-          const query = window.location.search;
-          if (query.includes("code=") && query.includes("state=")) {
-            await auth0.handleRedirectCallback();
-          }
-          window.history.replaceState({}, document.title, "/");
+          await handleAuthcallback(auth0);
 
           const app = Elm.Main.init({ flags: cards });
 
           app.ports.initiateLogin.subscribe((redirectUri) => {
             auth0.loginWithRedirect({ redirect_uri: window.location.origin });
+          });
+          app.ports.signOut.subscribe((redirectUri) => {
+            auth0.logout({ returnTo: window.location.origin });
           });
 
           const isAuthenticated = await auth0.isAuthenticated();
@@ -42,11 +49,8 @@
               auth0.getTokenSilently(),
               auth0.getUser(),
             ]);
-            window.setTimeout(() => {
-              window.app = app
 
-              app.ports.signIn.send({ token, user });
-            },1000)
+            app.ports.signInReceiver.send({ token, user });
           }
         }
       );

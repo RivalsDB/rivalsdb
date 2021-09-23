@@ -3,6 +3,7 @@ module Pages.Build exposing (Model, Msg, page)
 import Cards exposing (Card)
 import Deck exposing (Deck)
 import Dict
+import Effect exposing (Effect)
 import Gen.Params.Build exposing (Params)
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -22,10 +23,10 @@ import View exposing (View)
 
 page : Shared.Model -> Request.With Params -> Page.With Model Msg
 page shared req =
-    Page.element
+    Page.advanced
         { init = init shared.collection req
         , update = update
-        , view = view
+        , view = view shared.user
         , subscriptions = always Sub.none
         }
 
@@ -50,7 +51,7 @@ type alias Model =
     }
 
 
-init : Collection -> Request.With Params -> ( Model, Cmd Msg )
+init : Collection -> Request.With Params -> ( Model, Effect Msg )
 init collection req =
     ( { collection = collection
       , header = UI.Layout.Header.init req
@@ -65,76 +66,8 @@ init collection req =
       , showCollectionImages = False
       , deck = Deck.empty
       }
-    , Cmd.none
+    , Effect.none
     )
-
-
-demoDeck : Collection -> Deck
-demoDeck collection =
-    let
-        agenda =
-            Dict.get "core-base-of-power" collection
-                |> Maybe.andThen
-                    (\c ->
-                        case c of
-                            Cards.AgendaCard a ->
-                                Just a
-
-                            _ ->
-                                Nothing
-                    )
-
-        haven =
-            Dict.get "core-artist-lofts" collection
-                |> Maybe.andThen
-                    (\c ->
-                        case c of
-                            Cards.HavenCard a ->
-                                Just a
-
-                            _ ->
-                                Nothing
-                    )
-
-        toCardCount n _ c =
-            ( c, n )
-
-        faction =
-            collection
-                |> Dict.toList
-                |> List.filterMap
-                    (\( k, c ) ->
-                        case c of
-                            Cards.FactionCard f ->
-                                Just ( k, ( f, f.name == "Aurora Nix" ) )
-
-                            _ ->
-                                Nothing
-                    )
-                |> List.take 7
-                |> Dict.fromList
-
-        library =
-            collection
-                |> Dict.toList
-                |> List.filterMap
-                    (\( k, c ) ->
-                        case c of
-                            Cards.LibraryCard l ->
-                                Just ( k, l )
-
-                            _ ->
-                                Nothing
-                    )
-                |> List.take 14
-                |> Dict.fromList
-                |> Dict.map (toCardCount 3)
-    in
-    { agenda = agenda
-    , haven = haven
-    , faction = faction
-    , library = library
-    }
 
 
 type Msg
@@ -153,7 +86,7 @@ type Msg
     | ChoseLeader Cards.Faction
 
 
-update : Msg -> Model -> ( Model, Cmd Msg )
+update : Msg -> Model -> ( Model, Effect Msg )
 update msg model =
     case msg of
         TextFilterChanged text ->
@@ -169,7 +102,7 @@ update msg model =
                     else
                         Just cleanText
               }
-            , Cmd.none
+            , Effect.none
             )
 
         FromHeader subMsg ->
@@ -177,22 +110,22 @@ update msg model =
                 |> Tuple.mapFirst (\newHeader -> { model | header = newHeader })
 
         FromStacksFilter subMsg ->
-            ( { model | stackFilters = UI.FilterSelection.update subMsg model.stackFilters }, Cmd.none )
+            ( { model | stackFilters = UI.FilterSelection.update subMsg model.stackFilters }, Effect.none )
 
         FromPrimaryFilter subMsg ->
-            ( { model | primaryFilters = UI.FilterSelection.update subMsg model.primaryFilters }, Cmd.none )
+            ( { model | primaryFilters = UI.FilterSelection.update subMsg model.primaryFilters }, Effect.none )
 
         FromSecondaryFilter subMsg ->
-            ( { model | secondaryFilters = UI.FilterSelection.update subMsg model.secondaryFilters }, Cmd.none )
+            ( { model | secondaryFilters = UI.FilterSelection.update subMsg model.secondaryFilters }, Effect.none )
 
         FromAttackTypesFilter subMsg ->
-            ( { model | attackTypeFilters = UI.FilterSelection.update subMsg model.attackTypeFilters }, Cmd.none )
+            ( { model | attackTypeFilters = UI.FilterSelection.update subMsg model.attackTypeFilters }, Effect.none )
 
         FromClansFilter subMsg ->
-            ( { model | clansFilters = UI.FilterSelection.update subMsg model.clansFilters }, Cmd.none )
+            ( { model | clansFilters = UI.FilterSelection.update subMsg model.clansFilters }, Effect.none )
 
         FromDisciplinesFilter subMsg ->
-            ( { model | disciplineFilters = UI.FilterSelection.update subMsg model.disciplineFilters }, Cmd.none )
+            ( { model | disciplineFilters = UI.FilterSelection.update subMsg model.disciplineFilters }, Effect.none )
 
         ClearFilters ->
             ( { model
@@ -204,25 +137,26 @@ update msg model =
                 , disciplineFilters = UI.FilterSelection.disciplines
                 , textFilter = Nothing
               }
-            , Cmd.none
+            , Effect.none
             )
 
         ToggleShowAllFilters ->
-            ( { model | showAllFilters = not model.showAllFilters }, Cmd.none )
+            ( { model | showAllFilters = not model.showAllFilters }, Effect.none )
 
         ToggleShowCollectionImages ->
-            ( { model | showCollectionImages = not model.showCollectionImages }, Cmd.none )
+            ( { model | showCollectionImages = not model.showCollectionImages }, Effect.none )
 
         ChangedDecklist change ->
-            ( { model | deck = Deck.setCard model.deck change }, Cmd.none )
+            ( { model | deck = Deck.setCard model.deck change }, Effect.none )
 
         ChoseLeader leader ->
-            ( { model | deck = Deck.setLeader model.deck leader }, Cmd.none )
+            ( { model | deck = Deck.setLeader model.deck leader }, Effect.none )
 
 
-view : Model -> View Msg
-view model =
+view : Maybe Shared.User -> Model -> View Msg
+view user model =
     UI.Layout.Template.view FromHeader
+        user
         [ div [ class "deckbldr" ]
             [ div [ class "deckbldr-actions" ]
                 [ div [] [ p [] [ text "Save" ] ]
@@ -230,7 +164,7 @@ view model =
             , div [ class "deckbldr-decklist" ]
                 [ div [ class "decklist" ]
                     [ div [ class "decklist-title" ] [ text "Decklist name" ]
-                    , div [ class "decklist-byline" ] [ text "By: Xyz." ]
+                    , div [ class "decklist-byline" ] [ user |> Maybe.map (\{ id } -> text ("By: " ++ id)) |> Maybe.withDefault (text "By: unknown") ]
                     , div [ class "decklist-core", class "decklist-core--agenda" ]
                         [ p [ class "decklist-section_header" ]
                             [ text "Agenda: "

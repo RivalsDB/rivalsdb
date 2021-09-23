@@ -1,8 +1,4 @@
-port module Auth exposing
-    ( User
-    , beforeProtectedInit
-    , initiateLogin
-    )
+module Auth exposing (User, beforeProtectedInit)
 
 import ElmSpa.Page as ElmSpa
 import Gen.Route exposing (Route)
@@ -12,9 +8,6 @@ import Shared
 
 type alias User =
     Shared.User
-
-
-port initiateLogin : String -> Cmd msg
 
 
 beforeProtectedInit : Shared.Model -> Request -> ElmSpa.Protected User Route

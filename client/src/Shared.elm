@@ -1,4 +1,4 @@
-module Shared exposing
+port module Shared exposing
     ( Collection
     , Flags
     , Model
@@ -28,11 +28,21 @@ type alias Model =
 
 
 type alias User =
-    { id : String, accessToken : String }
+    { token : String, id : String }
+
+
+port signInReceiver : (Json.Value -> msg) -> Sub msg
+
+
+port initiateLogin : () -> Cmd msg
+
+
+port signOut : () -> Cmd msg
 
 
 type Msg
-    = SignIn Json.Value
+    = InitiateSignIn
+    | GotSignIn Json.Value
     | SignOut
 
 
@@ -51,12 +61,28 @@ init _ flags =
 
 
 update : Request -> Msg -> Model -> ( Model, Cmd Msg )
-update req msg model =
+update _ msg model =
     case msg of
-        _ ->
-            ( model, Cmd.none )
+        GotSignIn json ->
+            case Json.decodeValue userDecoder json of
+                Ok user ->
+                    ( { model | user = Just user }, Cmd.none )
+
+                Err _ ->
+                    ( { model | user = Nothing }, Cmd.none )
+
+        InitiateSignIn ->
+            ( model, initiateLogin () )
+
+        SignOut ->
+            ( model, signOut () )
 
 
 subscriptions : Request -> Model -> Sub Msg
 subscriptions _ _ =
-    Sub.none
+    signInReceiver GotSignIn
+
+
+userDecoder : Json.Decoder User
+userDecoder =
+    Json.map2 User (Json.field "token" Json.string) (Json.at [ "user", "sub" ] Json.string)

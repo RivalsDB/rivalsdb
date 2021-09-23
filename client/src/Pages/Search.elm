@@ -2,6 +2,7 @@ module Pages.Search exposing (Model, Msg, page)
 
 import Cards exposing (Card)
 import Dict
+import Effect exposing (Effect)
 import Fuzzy
 import Gen.Params.Search exposing (Params)
 import Html exposing (..)
@@ -20,10 +21,10 @@ import View exposing (View)
 
 page : Shared.Model -> Request.With Params -> Page.With Model Msg
 page shared req =
-    Page.element
+    Page.advanced
         { init = init shared.collection req
         , update = update
-        , view = view
+        , view = view shared.user
         , subscriptions = always Sub.none
         }
 
@@ -42,7 +43,7 @@ type alias Model =
     }
 
 
-init : Collection -> Request.With Params -> ( Model, Cmd Msg )
+init : Collection -> Request.With Params -> ( Model, Effect Msg )
 init collection req =
     let
         header =
@@ -59,7 +60,7 @@ init collection req =
       , disciplineFilters = UI.FilterSelection.disciplines
       , textFilter = Nothing
       }
-    , Cmd.none
+    , Effect.none
     )
 
 
@@ -97,7 +98,7 @@ type Msg
     | TextFilterChanged String
 
 
-update : Msg -> Model -> ( Model, Cmd Msg )
+update : Msg -> Model -> ( Model, Effect Msg )
 update msg model =
     case msg of
         TextFilterChanged text ->
@@ -113,7 +114,7 @@ update msg model =
                     else
                         Just cleanText
               }
-            , Cmd.none
+            , Effect.none
             )
 
         FromHeader subMsg ->
@@ -127,30 +128,30 @@ update msg model =
                     )
 
         FromStacksFilter subMsg ->
-            ( { model | stackFilters = UI.FilterSelection.update subMsg model.stackFilters }, Cmd.none )
+            ( { model | stackFilters = UI.FilterSelection.update subMsg model.stackFilters }, Effect.none )
 
         FromPrimaryFilter subMsg ->
-            ( { model | primaryFilters = UI.FilterSelection.update subMsg model.primaryFilters }, Cmd.none )
+            ( { model | primaryFilters = UI.FilterSelection.update subMsg model.primaryFilters }, Effect.none )
 
         FromSecondaryFilter subMsg ->
-            ( { model | secondaryFilters = UI.FilterSelection.update subMsg model.secondaryFilters }, Cmd.none )
+            ( { model | secondaryFilters = UI.FilterSelection.update subMsg model.secondaryFilters }, Effect.none )
 
         FromAttackTypesFilter subMsg ->
-            ( { model | attackTypeFilters = UI.FilterSelection.update subMsg model.attackTypeFilters }, Cmd.none )
+            ( { model | attackTypeFilters = UI.FilterSelection.update subMsg model.attackTypeFilters }, Effect.none )
 
         FromClansFilter subMsg ->
-            ( { model | clansFilters = UI.FilterSelection.update subMsg model.clansFilters }, Cmd.none )
+            ( { model | clansFilters = UI.FilterSelection.update subMsg model.clansFilters }, Effect.none )
 
         FromDisciplinesFilter subMsg ->
-            ( { model | disciplineFilters = UI.FilterSelection.update subMsg model.disciplineFilters }, Cmd.none )
+            ( { model | disciplineFilters = UI.FilterSelection.update subMsg model.disciplineFilters }, Effect.none )
 
 
 
 -- VIEW
 
 
-view : Model -> View Msg
-view model =
+view : Maybe Shared.User -> Model -> View Msg
+view user model =
     let
         filter card =
             UI.FilterSelection.isAllowed Cards.traits model.secondaryFilters card
@@ -173,6 +174,7 @@ view model =
             List.sortWith cardSort filteredCards
     in
     UI.Layout.Template.view FromHeader
+        user
         [ h2 [] [ text "Filters" ]
         , div [ class "search-flaggroups" ]
             [ div [ class "search-flaggroup" ] [ UI.FilterSelection.view FromStacksFilter model.stackFilters ]

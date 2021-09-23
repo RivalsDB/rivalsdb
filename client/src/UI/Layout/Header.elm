@@ -2,12 +2,14 @@ module UI.Layout.Header exposing (Model, Msg(..), init, update, view)
 
 import Browser.Navigation exposing (Key)
 import Dict
+import Effect exposing (Effect)
 import Gen.Params.Search exposing (Params)
 import Gen.Route as Route
-import Html exposing (Html, a, div, form, header, input, li, nav, text, ul)
+import Html exposing (Html, a, button, div, form, header, input, li, nav, text, ul)
 import Html.Attributes exposing (class, href, placeholder, spellcheck, type_)
-import Html.Events exposing (onInput, onSubmit)
+import Html.Events exposing (onClick, onInput, onSubmit)
 import Request
+import Shared
 import UI.Logo
 
 
@@ -25,9 +27,11 @@ init req =
 type Msg
     = SearchQueryChanged String
     | Submitted
+    | SignIn
+    | SignOut
 
 
-update : Msg -> Model -> ( Model, Cmd msg )
+update : Msg -> Model -> ( Model, Effect msg )
 update msg model =
     case msg of
         SearchQueryChanged query ->
@@ -40,7 +44,7 @@ update msg model =
                         trimmed ->
                             Just trimmed
             in
-            ( { model | queryString = search }, Cmd.none )
+            ( { model | queryString = search }, Effect.none )
 
         Submitted ->
             let
@@ -52,11 +56,17 @@ update msg model =
                         Just search ->
                             Route.toHref Route.Search ++ "?search=" ++ search
             in
-            ( model, Browser.Navigation.pushUrl model.key url )
+            ( model, Browser.Navigation.pushUrl model.key url |> Effect.fromCmd )
+
+        SignIn ->
+            ( model, Effect.fromShared Shared.InitiateSignIn )
+
+        SignOut ->
+            ( model, Effect.fromShared Shared.SignOut )
 
 
-view : (Msg -> msg) -> Html msg
-view msg =
+view : (Msg -> msg) -> Maybe Shared.User -> Html msg
+view msg user =
     header [ class "page-header", class "header" ]
         [ div [ class "header-logo" ]
             [ a [ href <| Route.toHref Route.Home_ ]
@@ -79,5 +89,13 @@ view msg =
                     ]
                     []
                 ]
+            ]
+        , div [ class "header-login" ]
+            [ case user of
+                Just _ ->
+                    button [ onClick (msg SignOut) ] [ text "Sign Out" ]
+
+                Nothing ->
+                    button [ onClick (msg SignIn) ] [ text "Sign In" ]
             ]
         ]

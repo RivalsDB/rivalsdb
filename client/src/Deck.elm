@@ -1,7 +1,8 @@
-module Deck exposing (Deck, Faction, copiesInDeck, empty, isLeader, isLegal, isValidFaction, isValidLibrary, leader, setCard, setLeader)
+module Deck exposing (Deck, Faction, copiesInDeck, demoDeck, empty, isLeader, isLegal, isValidFaction, isValidLibrary, leader, setCard, setLeader)
 
 import Cards
 import Dict exposing (Dict)
+import Shared exposing (Collection)
 
 
 type alias Deck =
@@ -147,3 +148,71 @@ isValidLibrary deck =
             List.foldl (\( _, n ) sum -> sum + n) 0 <| Dict.values deck.library
     in
     (deckSize == 0) || (deckSize >= 40 && deckSize <= 60)
+
+
+demoDeck : Collection -> Deck
+demoDeck collection =
+    let
+        agenda =
+            Dict.get "core-base-of-power" collection
+                |> Maybe.andThen
+                    (\c ->
+                        case c of
+                            Cards.AgendaCard a ->
+                                Just a
+
+                            _ ->
+                                Nothing
+                    )
+
+        haven =
+            Dict.get "core-artist-lofts" collection
+                |> Maybe.andThen
+                    (\c ->
+                        case c of
+                            Cards.HavenCard a ->
+                                Just a
+
+                            _ ->
+                                Nothing
+                    )
+
+        toCardCount n _ c =
+            ( c, n )
+
+        faction =
+            collection
+                |> Dict.toList
+                |> List.filterMap
+                    (\( k, c ) ->
+                        case c of
+                            Cards.FactionCard f ->
+                                Just ( k, ( f, f.name == "Aurora Nix" ) )
+
+                            _ ->
+                                Nothing
+                    )
+                |> List.take 7
+                |> Dict.fromList
+
+        library =
+            collection
+                |> Dict.toList
+                |> List.filterMap
+                    (\( k, c ) ->
+                        case c of
+                            Cards.LibraryCard l ->
+                                Just ( k, l )
+
+                            _ ->
+                                Nothing
+                    )
+                |> List.take 14
+                |> Dict.fromList
+                |> Dict.map (toCardCount 3)
+    in
+    { agenda = agenda
+    , haven = haven
+    , faction = faction
+    , library = library
+    }
