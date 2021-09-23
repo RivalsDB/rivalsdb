@@ -2,8 +2,8 @@
 
 rm -rf dist
 
-npx tsc --watch > /dev/null &
+yarn tsc --watch > /dev/null &
 
 until [ -f dist/index.js ]; do sleep 1; done
 
-npx nodemon --watch dist dist/index.js
+yarn nodemon --watch  -- --require dotenv/config  dist/index.js

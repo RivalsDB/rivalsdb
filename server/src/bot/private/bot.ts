@@ -2,9 +2,9 @@ import { Client, Intents } from "discord.js";
 import Fuse from "fuse.js";
 import { format } from "url";
 
-import { cards } from "../../cardCollection/cardCollection";
-import { discordBotToken, baseUrl } from "../../env";
-import { registerCommands, cardCommand } from "./commands";
+import { cards } from "../../cardCollection/cardCollection.js";
+import { discordBotToken, baseUrl } from "../../env.js";
+import { registerCommands, cardCommand } from "./commands.js";
 
 const imagesByCardName = new Map(cards.map(({ name, image }) => [name, image]));
 const cardNames = Array.from(imagesByCardName.keys());

@@ -1,8 +1,6 @@
-import "source-map-support/register";
-
-import { createServer } from "./server/server";
-import { startBot } from "./bot";
-import { runBotServer } from "./env";
+import { createServer } from "./server/server.js";
+import { startBot } from "./bot/index.js";
+import { runBotServer } from "./env.js";
 
 createServer().then(async ({ run }) => {
   await run();

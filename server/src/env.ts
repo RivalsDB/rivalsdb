@@ -1,7 +1,3 @@
-import dotenv from "dotenv";
-
-dotenv.config();
-
 export const isProduction = process.env.NODE_ENV === "production";
 
 if (typeof process.env.DISCORD_CLIENT_ID !== "string") {

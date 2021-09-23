@@ -3,7 +3,7 @@ import { REST } from "@discordjs/rest";
 import { Routes } from "discord-api-types/v9";
 import { CommandInteraction } from "discord.js";
 
-import { discordBotToken, discordClientId } from "../../env";
+import { discordBotToken, discordClientId } from "../../env.js";
 
 export const cardCommand = {
   name: "card",

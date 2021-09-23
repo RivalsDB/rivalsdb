@@ -1,17 +1,16 @@
 {
   "include": ["src/**/*.ts"],
   "compilerOptions": {
-    "allowJs": false,
     "baseUrl": ".",
     "esModuleInterop": true,
     "incremental": true,
-    "lib": ["ES2020", "DOM"],
-    "module": "commonjs",
+    "lib": ["DOM", "ES2021"],
+    "module": "ES2020",
     "moduleResolution": "node",
     "noImplicitAny": true,
     "outDir": "dist",
     "sourceMap": true,
     "strict": true,
-    "target": "ES2020"
+    "target": "ES2021"
   }
 }
