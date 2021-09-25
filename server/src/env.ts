@@ -24,3 +24,9 @@ if (typeof process.env.RUN_BOT_SERVER !== "string") {
   throw Error("Missing environment variable RUN_BOT_SERVER");
 }
 export const runBotServer = process.env.RUN_BOT_SERVER === "1";
+
+
+if (typeof process.env.DATABASE_URL !== "string") {
+  throw Error("Missing environment variable DATABASE_URL");
+}
+export const databaseUrl = process.env.DATABASE_URL;
