@@ -4,7 +4,7 @@ import path from "path";
 import { serverPort } from "../env.js";
 
 const dirname = new URL(import.meta.url).pathname
-const publicFolder = path.join(dirname,'..','..','public')
+const publicFolder = path.join(dirname,'..','..','..','public')
 
 export async function createServer() {
   const fastify = Fastify({ logger: true });
