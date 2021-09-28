@@ -2,7 +2,7 @@ import { createServer } from "./server/server.js";
 import { startBot } from "./bot/index.js";
 import { runBotServer } from "./env.js";
 
-createServer().then(async ({ run, shutdown }) => {
+createServer().then(async ({ run }) => {
   await run();
   console.log("Server is running");
 
@@ -10,6 +10,4 @@ createServer().then(async ({ run, shutdown }) => {
     await startBot();
     console.log("Bot is running");
   }
-
-  process.once("SIGTERM", shutdown);
 });

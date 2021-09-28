@@ -25,8 +25,12 @@ if (typeof process.env.RUN_BOT_SERVER !== "string") {
 }
 export const runBotServer = process.env.RUN_BOT_SERVER === "1";
 
-
 if (typeof process.env.DATABASE_URL !== "string") {
   throw Error("Missing environment variable DATABASE_URL");
 }
 export const databaseUrl = process.env.DATABASE_URL;
+
+if (typeof process.env.MAGIC_AUTH_SECRET_KEY !== "string") {
+  throw Error("Missing environment variable MAGIC_AUTH_SECRET_KEY");
+}
+export const magicSecretKey = process.env.MAGIC_AUTH_SECRET_KEY;

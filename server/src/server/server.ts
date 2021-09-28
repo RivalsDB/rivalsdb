@@ -3,7 +3,7 @@ import fastifyStatic from "fastify-static";
 import path from "path";
 import { serverPort } from "../env.js";
 import { db } from "../db/index.js";
-import { routes } from "./api.js";
+import decklistsRoutes from "./decklists.js";
 
 const dirname = new URL(import.meta.url).pathname;
 const publicFolder = path.join(dirname, "..", "..", "..", "public");
@@ -11,7 +11,7 @@ const publicFolder = path.join(dirname, "..", "..", "..", "public");
 export async function createServer() {
   const fastify = Fastify({ logger: true });
 
-  fastify.register(routes);
+  fastify.register(decklistsRoutes, { prefix: "/api/v1" });
 
   fastify.register(fastifyStatic, {
     root: publicFolder,
@@ -22,6 +22,10 @@ export async function createServer() {
     reply.sendFile("index.html");
   });
 
+  fastify.addHook("onClose", async () => {
+    return db.dispose();
+  });
+
   return {
     async run() {
       try {
@@ -29,10 +33,6 @@ export async function createServer() {
       } catch (err) {
         fastify.log.error(err);
       }
-    },
-
-    async shutdown() {
-      return db.dispose();
     },
   };
 }
