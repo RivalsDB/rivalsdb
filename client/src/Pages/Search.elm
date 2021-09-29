@@ -15,6 +15,7 @@ import Shared exposing (Collection)
 import UI.Card
 import UI.FilterSelection
 import UI.Layout.Header
+import UI.Layout.Modal
 import UI.Layout.Template
 import View exposing (View)
 
@@ -24,7 +25,7 @@ page shared req =
     Page.advanced
         { init = init shared.collection req
         , update = update
-        , view = view shared.user
+        , view = view shared
         , subscriptions = always Sub.none
         }
 
@@ -33,6 +34,7 @@ type alias Model =
     { matches : List Card
     , collection : Collection
     , header : UI.Layout.Header.Model
+    , modal : UI.Layout.Modal.Model
     , stackFilters : UI.FilterSelection.Model Cards.CardStack Msg
     , primaryFilters : UI.FilterSelection.Model Cards.Trait Msg
     , secondaryFilters : UI.FilterSelection.Model Cards.Trait Msg
@@ -51,6 +53,7 @@ init collection req =
     in
     ( { collection = collection
       , header = header
+      , modal = UI.Layout.Modal.init
       , matches = matchesForQuery collection header.queryString
       , stackFilters = UI.FilterSelection.stacks
       , primaryFilters = UI.FilterSelection.primaryTraits
@@ -89,6 +92,7 @@ fuzzySort query items =
 
 type Msg
     = FromHeader UI.Layout.Header.Msg
+    | FromModal UI.Layout.Modal.Msg
     | FromStacksFilter (UI.FilterSelection.Msg Cards.CardStack)
     | FromPrimaryFilter (UI.FilterSelection.Msg Cards.Trait)
     | FromSecondaryFilter (UI.FilterSelection.Msg Cards.Trait)
@@ -127,6 +131,10 @@ update msg model =
                         }
                     )
 
+        FromModal subMsg ->
+            UI.Layout.Modal.update subMsg model.modal
+                |> Tuple.mapFirst (\newModal -> { model | modal = newModal })
+
         FromStacksFilter subMsg ->
             ( { model | stackFilters = UI.FilterSelection.update subMsg model.stackFilters }, Effect.none )
 
@@ -150,8 +158,8 @@ update msg model =
 -- VIEW
 
 
-view : Maybe Shared.User -> Model -> View Msg
-view user model =
+view : Shared.Model -> Model -> View Msg
+view shared model =
     let
         filter card =
             UI.FilterSelection.isAllowed Cards.traits model.secondaryFilters card
@@ -174,7 +182,8 @@ view user model =
             List.sortWith cardSort filteredCards
     in
     UI.Layout.Template.view FromHeader
-        user
+        FromModal
+        shared
         [ h2 [] [ text "Filters" ]
         , div [ class "search-flaggroups" ]
             [ div [ class "search-flaggroup" ] [ UI.FilterSelection.view FromStacksFilter model.stackFilters ]

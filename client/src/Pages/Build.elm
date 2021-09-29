@@ -17,6 +17,7 @@ import UI.Card
 import UI.FilterSelection
 import UI.Icon
 import UI.Layout.Header
+import UI.Layout.Modal
 import UI.Layout.Template
 import View exposing (View)
 
@@ -26,7 +27,7 @@ page shared req =
     Page.advanced
         { init = init shared.collection req
         , update = update
-        , view = view shared.user
+        , view = view shared
         , subscriptions = always Sub.none
         }
 
@@ -38,6 +39,7 @@ page shared req =
 type alias Model =
     { collection : Collection
     , header : UI.Layout.Header.Model
+    , modal : UI.Layout.Modal.Model
     , stackFilters : UI.FilterSelection.Model Cards.CardStack Msg
     , primaryFilters : UI.FilterSelection.Model Cards.Trait Msg
     , secondaryFilters : UI.FilterSelection.Model Cards.Trait Msg
@@ -55,6 +57,7 @@ init : Collection -> Request.With Params -> ( Model, Effect Msg )
 init collection req =
     ( { collection = collection
       , header = UI.Layout.Header.init req
+      , modal = UI.Layout.Modal.init
       , stackFilters = UI.FilterSelection.stacks
       , primaryFilters = UI.FilterSelection.primaryTraits
       , secondaryFilters = UI.FilterSelection.secondaryTraits
@@ -72,6 +75,7 @@ init collection req =
 
 type Msg
     = FromHeader UI.Layout.Header.Msg
+    | FromModal UI.Layout.Modal.Msg
     | FromStacksFilter (UI.FilterSelection.Msg Cards.CardStack)
     | FromPrimaryFilter (UI.FilterSelection.Msg Cards.Trait)
     | FromSecondaryFilter (UI.FilterSelection.Msg Cards.Trait)
@@ -108,6 +112,10 @@ update msg model =
         FromHeader subMsg ->
             UI.Layout.Header.update subMsg model.header
                 |> Tuple.mapFirst (\newHeader -> { model | header = newHeader })
+
+        FromModal subMsg ->
+            UI.Layout.Modal.update subMsg model.modal
+                |> Tuple.mapFirst (\newModal -> { model | modal = newModal })
 
         FromStacksFilter subMsg ->
             ( { model | stackFilters = UI.FilterSelection.update subMsg model.stackFilters }, Effect.none )
@@ -153,10 +161,11 @@ update msg model =
             ( { model | deck = Deck.setLeader model.deck leader }, Effect.none )
 
 
-view : Maybe Shared.User -> Model -> View Msg
-view user model =
+view : Shared.Model -> Model -> View Msg
+view shared model =
     UI.Layout.Template.view FromHeader
-        user
+        FromModal
+        shared
         [ div [ class "deckbldr" ]
             [ div [ class "deckbldr-actions" ]
                 [ div [] [ p [] [ text "Save" ] ]
@@ -164,7 +173,7 @@ view user model =
             , div [ class "deckbldr-decklist" ]
                 [ div [ class "decklist" ]
                     [ div [ class "decklist-title" ] [ text "Decklist name" ]
-                    , div [ class "decklist-byline" ] [ user |> Maybe.map (\{ id } -> text ("By: " ++ id)) |> Maybe.withDefault (text "By: unknown") ]
+                    , div [ class "decklist-byline" ] [ shared.user |> Maybe.map (\{ id } -> text ("By: " ++ id)) |> Maybe.withDefault (text "By: unknown") ]
                     , div [ class "decklist-core", class "decklist-core--agenda" ]
                         [ p [ class "decklist-section_header" ]
                             [ text "Agenda: "

@@ -59,7 +59,7 @@ update msg model =
             ( model, Browser.Navigation.pushUrl model.key url |> Effect.fromCmd )
 
         SignIn ->
-            ( model, Effect.fromShared Shared.InitiateSignIn )
+            ( model, Effect.fromShared Shared.OpenModal )
 
         SignOut ->
             ( model, Effect.fromShared Shared.SignOut )
@@ -93,9 +93,9 @@ view msg user =
         , div [ class "header-login" ]
             [ case user of
                 Just _ ->
-                    button [ onClick (msg SignOut) ] [ text "Sign Out" ]
+                    button [ class "login_button", class "login_button--out", onClick (msg SignOut) ] [ text "Sign Out" ]
 
                 Nothing ->
-                    button [ onClick (msg SignIn) ] [ text "Sign In" ]
+                    button [ class "login_button", class "login_button--in", onClick (msg SignIn) ] [ text "Sign In" ]
             ]
         ]

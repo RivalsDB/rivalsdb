@@ -7,53 +7,48 @@
     <title>Rivals DB</title>
   </head>
   <body>
-    <script src="https://cdn.auth0.com/js/auth0-spa-js/1.13/auth0-spa-js.production.js"></script>
+    <script src="https://auth.magic.link/sdk"></script>
     <script src="/dist/elm.js"></script>
     <script>
-      function configureClient() {
-        const config = {
-          domain: "rivalsdb.eu.auth0.com",
-          client_id: "jfoDbFRgDspBrj1h9NXY9RUgXIwfKHUQ",
-        };
-        return createAuth0Client(config);
-      }
-
       function fetchCards() {
         return fetch("/cards.json").then((res) => res.json());
       }
 
-      async function handleAuthcallback(auth0) {
-        const query = window.location.search;
-        if (query.includes("code=") && query.includes("state=")) {
-          await auth0.handleRedirectCallback();
+      const m = new Magic("pk_live_1FB57945CEA1A727");
+
+      fetchCards().then(async (cards) => {
+        const app = Elm.Main.init({ flags: cards });
+
+        try {
+          const idToken = await m.user.getIdToken();
+          console.log({ idToken });
+        } catch (e) {
+          console.log("UOWWWWW", e);
         }
-        window.history.replaceState({}, document.title, "/");
-      }
 
-      Promise.all([fetchCards(), configureClient()]).then(
-        async ([cards, auth0]) => {
-          await handleAuthcallback(auth0);
-
-          const app = Elm.Main.init({ flags: cards });
-
-          app.ports.initiateLogin.subscribe((redirectUri) => {
-            auth0.loginWithRedirect({ redirect_uri: window.location.origin });
+        app.ports.initiateLogin.subscribe(async (email) => {
+          const did = await m.auth.loginWithMagicLink({
+            email,
+            redirectURI: window.location.origin,
           });
-          app.ports.signOut.subscribe((redirectUri) => {
-            auth0.logout({ returnTo: window.location.origin });
-          });
+          const meta = await m.user.getMetadata();
+          app.ports.signInReceiver.send({ token: did, user: meta.issuer });
+        });
 
-          const isAuthenticated = await auth0.isAuthenticated();
-          if (isAuthenticated) {
-            const [token, user] = await Promise.all([
-              auth0.getTokenSilently(),
-              auth0.getUser(),
-            ]);
+        app.ports.signOut.subscribe(async (redirectUri) => {
+          await m.user.logout();
+        });
 
-            app.ports.signInReceiver.send({ token, user });
-          }
+        m.preload();
+
+        try {
+          const a = await m.auth.loginWithCredential();
+          console.log({ a });
+        } catch (e) {
+          console.log("GOT", e);
+          // Handle errors if required!
         }
-      );
+      });
     </script>
   </body>
 </html>

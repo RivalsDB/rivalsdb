@@ -1,6 +1,7 @@
 port module Shared exposing
     ( Collection
     , Flags
+    , ModalState(..)
     , Model
     , Msg(..)
     , User
@@ -24,26 +25,33 @@ type alias Collection =
 
 
 type alias Model =
-    { collection : Collection, user : Maybe User }
+    { collection : Collection, user : Maybe User, modal : ModalState }
 
 
 type alias User =
     { token : String, id : String }
 
 
+type ModalState
+    = Open
+    | Closed
+
+
 port signInReceiver : (Json.Value -> msg) -> Sub msg
 
 
-port initiateLogin : () -> Cmd msg
+port initiateLogin : String -> Cmd msg
 
 
 port signOut : () -> Cmd msg
 
 
 type Msg
-    = InitiateSignIn
+    = InitiateSignIn String
     | GotSignIn Json.Value
     | SignOut
+    | OpenModal
+    | CloseModal
 
 
 init : Request -> Flags -> ( Model, Cmd Msg )
@@ -57,7 +65,7 @@ init _ flags =
                 Err _ ->
                     Dict.empty
     in
-    ( { collection = collection, user = Nothing }, Cmd.none )
+    ( { collection = collection, user = Nothing, modal = Closed }, Cmd.none )
 
 
 update : Request -> Msg -> Model -> ( Model, Cmd Msg )
@@ -71,11 +79,17 @@ update _ msg model =
                 Err _ ->
                     ( { model | user = Nothing }, Cmd.none )
 
-        InitiateSignIn ->
-            ( model, initiateLogin () )
+        InitiateSignIn email ->
+            ( { model | modal = Closed }, initiateLogin email )
 
         SignOut ->
             ( model, signOut () )
+
+        OpenModal ->
+            ( { model | modal = Open }, Cmd.none )
+
+        CloseModal ->
+            ( { model | modal = Closed }, Cmd.none )
 
 
 subscriptions : Request -> Model -> Sub Msg
@@ -85,4 +99,4 @@ subscriptions _ _ =
 
 userDecoder : Json.Decoder User
 userDecoder =
-    Json.map2 User (Json.field "token" Json.string) (Json.at [ "user", "sub" ] Json.string)
+    Json.map2 User (Json.field "token" Json.string) (Json.field "user" Json.string)

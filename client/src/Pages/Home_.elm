@@ -7,6 +7,7 @@ import Page
 import Request
 import Shared
 import UI.Layout.Header
+import UI.Layout.Modal
 import UI.Layout.Template
 import View exposing (View)
 
@@ -16,22 +17,23 @@ page shared req =
     Page.advanced
         { init = init req
         , update = update
-        , view = view shared.user
+        , view = view shared
         , subscriptions = always Sub.none
         }
 
 
 type alias Model =
-    { header : UI.Layout.Header.Model }
+    { header : UI.Layout.Header.Model, modal : UI.Layout.Modal.Model }
 
 
 init : Request.With Params -> ( Model, Effect Msg )
 init req =
-    ( { header = UI.Layout.Header.init req }, Effect.none )
+    ( { header = UI.Layout.Header.init req, modal = UI.Layout.Modal.init }, Effect.none )
 
 
 type Msg
     = FromHeader UI.Layout.Header.Msg
+    | FromModal UI.Layout.Modal.Msg
 
 
 update : Msg -> Model -> ( Model, Effect Msg )
@@ -41,7 +43,11 @@ update msg model =
             UI.Layout.Header.update subMsg model.header
                 |> Tuple.mapFirst (\newHeader -> { model | header = newHeader })
 
+        FromModal subMsg ->
+            UI.Layout.Modal.update subMsg model.modal
+                |> Tuple.mapFirst (\newModal -> { model | modal = newModal })
 
-view : Maybe Shared.User -> Model -> View Msg
-view user _ =
-    UI.Layout.Template.view FromHeader user []
+
+view : Shared.Model -> Model -> View Msg
+view shared _ =
+    UI.Layout.Template.view FromHeader FromModal shared []

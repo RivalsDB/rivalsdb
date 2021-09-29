@@ -30,6 +30,7 @@ module UI.Icon exposing
     , thinBloodAlchemy
     , toreador
     , tremere
+    , user
     , ventrue
     )
 
@@ -268,3 +269,8 @@ social =
 leader : Html.Html msg
 leader =
     icon "icon-leader.svg" "Leader"
+
+
+user : Html.Html msg
+user =
+    icon "icon-user.svg" "User"
