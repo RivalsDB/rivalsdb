@@ -10,14 +10,17 @@
       width: 100%
 
   &-search
-    width: 80px
+    display: none
     flex: 0 0 auto
 
     @media screen and ( min-width: $breakpoint-ipad--vertical)
+      display: block
       width: 120px
 
     input
       width: 100%
+  &-login
+    margin-left: 8px
 
   &-nav
     text-align: right
