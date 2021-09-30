@@ -10,43 +10,51 @@
     <script src="https://auth.magic.link/sdk"></script>
     <script src="/dist/elm.js"></script>
     <script>
+      const m = new Magic("pk_live_1FB57945CEA1A727");
+
       function fetchCards() {
         return fetch("/cards.json").then((res) => res.json());
       }
 
-      const m = new Magic("pk_live_1FB57945CEA1A727");
+      async function afterSignin(m, app, did) {
+        const meta = await m.user.getMetadata();
+
+        if (did && meta) {
+          app.ports.signInReceiver.send({ token: did, user: meta.issuer });
+        }
+      }
 
       fetchCards().then(async (cards) => {
         const app = Elm.Main.init({ flags: cards });
 
-        try {
-          const idToken = await m.user.getIdToken();
-          console.log({ idToken });
-        } catch (e) {
-          console.log("UOWWWWW", e);
-        }
+        m.preload();
 
         app.ports.initiateLogin.subscribe(async (email) => {
           const did = await m.auth.loginWithMagicLink({
             email,
             redirectURI: window.location.origin,
           });
-          const meta = await m.user.getMetadata();
-          app.ports.signInReceiver.send({ token: did, user: meta.issuer });
+          await afterSignin(m, app, did);
         });
 
         app.ports.signOut.subscribe(async (redirectUri) => {
           await m.user.logout();
         });
 
-        m.preload();
+        if (window.location.search) {
+          try {
+            const did = await m.auth.loginWithCredential();
+            await afterSignin(m, app, did);
+          } catch (e) {
+            window.location.href = window.location.origin;
+          }
+        } else {
+          const isLoggedIn = await m.user.isLoggedIn();
+          if (isLoggedIn) {
+            const did = await m.user.getIdToken();
 
-        try {
-          const a = await m.auth.loginWithCredential();
-          console.log({ a });
-        } catch (e) {
-          console.log("GOT", e);
-          // Handle errors if required!
+            await afterSignin(m, app, did);
+          }
         }
       });
     </script>
