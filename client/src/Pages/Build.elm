@@ -1,5 +1,6 @@
 module Pages.Build exposing (Model, Msg, page)
 
+import API.Decklist
 import Cards exposing (Card)
 import Deck exposing (Deck)
 import Dict
@@ -26,7 +27,7 @@ page : Shared.Model -> Request.With Params -> Page.With Model Msg
 page shared req =
     Page.advanced
         { init = init shared.collection req
-        , update = update
+        , update = update shared
         , view = view shared
         , subscriptions = always Sub.none
         }
@@ -88,10 +89,12 @@ type Msg
     | ToggleShowCollectionImages
     | ChangedDecklist ( Cards.Card, Int )
     | ChoseLeader Cards.Faction
+    | Save
+    | SavedDecklist API.Decklist.ResultCreate
 
 
-update : Msg -> Model -> ( Model, Effect Msg )
-update msg model =
+update : Shared.Model -> Msg -> Model -> ( Model, Effect Msg )
+update shared msg model =
     case msg of
         TextFilterChanged text ->
             let
@@ -160,6 +163,17 @@ update msg model =
         ChoseLeader leader ->
             ( { model | deck = Deck.setLeader model.deck leader }, Effect.none )
 
+        Save ->
+            case ( shared.user, Deck.encode "Some deck name" model.deck ) of
+                ( Just user, Just encodedDeck ) ->
+                    ( model, API.Decklist.create SavedDecklist user.token encodedDeck |> Effect.fromCmd )
+
+                ( _, _ ) ->
+                    ( model, Effect.none )
+
+        _ ->
+            ( model, Effect.none )
+
 
 view : Shared.Model -> Model -> View Msg
 view shared model =
@@ -167,13 +181,15 @@ view shared model =
         FromModal
         shared
         [ div [ class "deckbldr" ]
-            [ div [ class "deckbldr-actions" ]
-                [ div [] [ p [] [ text "Save" ] ]
-                ]
+            [ viewActions
             , div [ class "deckbldr-decklist" ]
                 [ div [ class "decklist" ]
                     [ div [ class "decklist-title" ] [ text "Decklist name" ]
-                    , div [ class "decklist-byline" ] [ shared.user |> Maybe.map (\{ id } -> text ("By: " ++ id)) |> Maybe.withDefault (text "By: unknown") ]
+                    , div [ class "decklist-byline" ]
+                        [ shared.user
+                            |> Maybe.map (\{ id } -> text ("By: " ++ id))
+                            |> Maybe.withDefault (text "By: unknown")
+                        ]
                     , div [ class "decklist-core", class "decklist-core--agenda" ]
                         [ p [ class "decklist-section_header" ]
                             [ text "Agenda: "
@@ -277,6 +293,13 @@ view shared model =
                         viewCardList model
                 ]
             ]
+        ]
+
+
+viewActions : Html Msg
+viewActions =
+    div [ class "deckbldr-actions" ]
+        [ div [] [ p [ onClick Save ] [ text "Save" ] ]
         ]
 
 

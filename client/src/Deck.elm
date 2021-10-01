@@ -1,7 +1,22 @@
-module Deck exposing (Deck, Faction, copiesInDeck, demoDeck, empty, isLeader, isLegal, isValidFaction, isValidLibrary, leader, setCard, setLeader)
+module Deck exposing
+    ( Deck
+    , Faction
+    , copiesInDeck
+    , demoDeck
+    , empty
+    , encode
+    , isLeader
+    , isLegal
+    , isValidFaction
+    , isValidLibrary
+    , leader
+    , setCard
+    , setLeader
+    )
 
 import Cards
 import Dict exposing (Dict)
+import Json.Encode as Encode
 import Shared exposing (Collection)
 
 
@@ -216,3 +231,36 @@ demoDeck collection =
     , faction = faction
     , library = library
     }
+
+
+
+----------
+-- ENCODER
+----------
+
+
+encode : String -> Deck -> Maybe Encode.Value
+encode name deck =
+    case ( deck.agenda, deck.haven ) of
+        ( Just agenda, Just haven ) ->
+            Just <|
+                Encode.object
+                    [ ( "name", Encode.string name )
+                    , ( "agenda", Encode.string agenda.id )
+                    , ( "haven", Encode.string haven.id )
+                    , ( "factionDeck"
+                      , Encode.object
+                            (Dict.values deck.faction
+                                |> List.map (Tuple.mapBoth .id Encode.bool)
+                            )
+                      )
+                    , ( "libraryDeck"
+                      , Encode.object
+                            (Dict.values deck.library
+                                |> List.map (Tuple.mapBoth .id Encode.int)
+                            )
+                      )
+                    ]
+
+        ( _, _ ) ->
+            Nothing

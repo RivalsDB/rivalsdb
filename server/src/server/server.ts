@@ -4,6 +4,7 @@ import path from "path";
 import { serverPort } from "../env.js";
 import { db } from "../db/index.js";
 import decklistsRoutes from "./decklists.js";
+import fastifyCors from "fastify-cors";
 
 const dirname = new URL(import.meta.url).pathname;
 const publicFolder = path.join(dirname, "..", "..", "..", "public");
@@ -11,6 +12,7 @@ const publicFolder = path.join(dirname, "..", "..", "..", "public");
 export async function createServer() {
   const fastify = Fastify({ logger: true });
 
+  fastify.register(fastifyCors);
   fastify.register(decklistsRoutes, { prefix: "/api/v1" });
 
   fastify.register(fastifyStatic, {

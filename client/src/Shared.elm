@@ -4,6 +4,7 @@ port module Shared exposing
     , ModalState(..)
     , Model
     , Msg(..)
+    , Token
     , User
     , init
     , subscriptions
@@ -29,7 +30,11 @@ type alias Model =
 
 
 type alias User =
-    { token : String, id : String }
+    { token : Token, id : String }
+
+
+type alias Token =
+    String
 
 
 type ModalState
