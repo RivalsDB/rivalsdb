@@ -24,13 +24,13 @@ module UI.Icon exposing
     , presence
     , protean
     , ranged
+    , save
     , shield
     , social
     , thinBlood
     , thinBloodAlchemy
     , toreador
     , tremere
-    , user
     , ventrue
     )
 
@@ -271,6 +271,11 @@ leader =
     icon "icon-leader.svg" "Leader"
 
 
-user : Html.Html msg
-user =
-    icon "icon-user.svg" "User"
+material : String -> Html.Html msg
+material code =
+    Html.span [ Attr.class "material-icons" ] [ Html.text code ]
+
+
+save : Html.Html msg
+save =
+    material "save"

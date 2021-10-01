@@ -181,7 +181,7 @@ view shared model =
         FromModal
         shared
         [ div [ class "deckbldr" ]
-            [ viewActions
+            [ viewActions shared.user
             , div [ class "deckbldr-decklist" ]
                 [ div [ class "decklist" ]
                     [ div [ class "decklist-title" ] [ text "Decklist name" ]
@@ -296,10 +296,27 @@ view shared model =
         ]
 
 
-viewActions : Html Msg
-viewActions =
+viewActions : Maybe Shared.User -> Html Msg
+viewActions user =
     div [ class "deckbldr-actions" ]
-        [ div [] [ p [ onClick Save ] [ text "Save" ] ]
+        [ ul [ class "actions-list" ]
+            [ li
+                (user
+                    |> Maybe.map
+                        (always
+                            [ class "actions-item"
+                            , onClick Save
+                            ]
+                        )
+                    |> Maybe.withDefault
+                        [ class "actions-item"
+                        , class "actions-item--inactive"
+                        ]
+                )
+                [ UI.Icon.save
+                , span [ class "actions-description" ] [ text "Save" ]
+                ]
+            ]
         ]
 
 
