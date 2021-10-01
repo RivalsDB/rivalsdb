@@ -5,7 +5,7 @@ import Dict
 import Effect exposing (Effect)
 import Gen.Params.Search exposing (Params)
 import Gen.Route as Route
-import Html exposing (Html, a, button, div, form, header, input, li, nav, text, ul)
+import Html exposing (Html, a, button, div, form, header, input, li, nav, span, text, ul)
 import Html.Attributes exposing (class, href, placeholder, spellcheck, type_)
 import Html.Events exposing (onClick, onInput, onSubmit)
 import Request
@@ -69,10 +69,7 @@ view : (Msg -> msg) -> Maybe Shared.User -> Html msg
 view msg user =
     header [ class "page-header", class "header" ]
         [ div [ class "header-logo" ]
-            [ a [ href <| Route.toHref Route.Home_ ]
-                [ UI.Logo.logo
-                ]
-            ]
+            [ a [ href <| Route.toHref Route.Home_ ] [ span [] [ text "Rivals DB" ] ] ]
         , nav [ class "header-nav" ]
             [ ul []
                 [ li [] [ a [ href <| Route.toHref Route.Build ] [ text "New Deck" ] ]
