@@ -10,7 +10,6 @@ import Html.Attributes exposing (class, href, placeholder, spellcheck, type_)
 import Html.Events exposing (onClick, onInput, onSubmit)
 import Request
 import Shared
-import UI.Logo
 
 
 type alias Model =
