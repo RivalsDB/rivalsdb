@@ -27,7 +27,7 @@ const routes: FastifyPluginAsync = async (fastify, options) => {
         },
       },
       response: {
-        200: {
+        201: {
           type: "object",
           properties: {
             name: { type: "string" },

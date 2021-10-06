@@ -201,8 +201,7 @@ $actions-bar-height: 60px
   gap: 0 10px
   grid-template-columns: repeat(6, 1fr)
 
-  &-title,
-  &-byline
+  &-title
     grid-column: 1 / 7
   &-core
     grid-column: 1 / 7
@@ -240,10 +239,6 @@ $actions-bar-height: 60px
     &-library
       grid-column: 4 / 7
 
-  &-byline
-    font-size: 14px
-    line-height: 1
-    margin-bottom: 20px
   &-section_header
     margin: 0 0 10px
     &--invalid
@@ -256,6 +251,17 @@ $actions-bar-height: 60px
     width: $size
     height: $size
     display: inline-block
+
+  &-titlename
+    font-weight: bold
+    font-size: 20px
+    line-height: 20px
+
+  &-titleaction
+    color: var(--color-redmedium)
+    cursor: pointer
+    display: inline-block
+    margin-left: 5px
 
 .deckfact
   &-entry

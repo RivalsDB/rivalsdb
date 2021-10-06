@@ -7,8 +7,8 @@ import Dict
 import Effect exposing (Effect)
 import Gen.Params.Build exposing (Params)
 import Html exposing (..)
-import Html.Attributes exposing (..)
-import Html.Events exposing (onClick)
+import Html.Attributes exposing (checked, class, classList, name, placeholder, type_)
+import Html.Events exposing (onClick, onInput, onSubmit)
 import Html.Keyed as Keyed
 import Page
 import Request
@@ -51,7 +51,27 @@ type alias Model =
     , showAllFilters : Bool
     , showCollectionImages : Bool
     , deck : Deck
+    , deckName : DeckName
     }
+
+
+type DeckName
+    = Unnamed
+    | Named String
+    | BeingNamed String
+
+
+deckNameToString : DeckName -> String
+deckNameToString deckname =
+    case deckname of
+        Unnamed ->
+            ""
+
+        Named name ->
+            name
+
+        BeingNamed tempName ->
+            tempName
 
 
 init : Collection -> Request.With Params -> ( Model, Effect Msg )
@@ -69,6 +89,7 @@ init collection req =
       , showAllFilters = False
       , showCollectionImages = False
       , deck = Deck.empty
+      , deckName = Unnamed
       }
     , Effect.none
     )
@@ -91,6 +112,9 @@ type Msg
     | ChoseLeader Cards.Faction
     | Save
     | SavedDecklist API.Decklist.ResultCreate
+    | StartRenameDeck
+    | DeckNameChanged String
+    | SaveNewDeckName
 
 
 update : Shared.Model -> Msg -> Model -> ( Model, Effect Msg )
@@ -164,15 +188,69 @@ update shared msg model =
             ( { model | deck = Deck.setLeader model.deck leader }, Effect.none )
 
         Save ->
-            case ( shared.user, Deck.encode "Some deck name" model.deck ) of
+            let
+                deckName =
+                    deckNameToString model.deckName
+            in
+            case ( shared.user, Deck.encode deckName model.deck ) of
                 ( Just user, Just encodedDeck ) ->
                     ( model, API.Decklist.create SavedDecklist user.token encodedDeck |> Effect.fromCmd )
 
                 ( _, _ ) ->
                     ( model, Effect.none )
 
-        _ ->
+        SavedDecklist _ ->
             ( model, Effect.none )
+
+        StartRenameDeck ->
+            ( { model | deckName = BeingNamed "" }, Effect.none )
+
+        DeckNameChanged newName ->
+            case model.deckName of
+                BeingNamed _ ->
+                    ( { model | deckName = BeingNamed newName }, Effect.none )
+
+                _ ->
+                    ( model, Effect.none )
+
+        SaveNewDeckName ->
+            case model.deckName of
+                BeingNamed newName ->
+                    case String.trim newName of
+                        "" ->
+                            ( { model | deckName = Unnamed }, Effect.none )
+
+                        trimmedName ->
+                            ( { model | deckName = Named trimmedName }, Effect.none )
+
+                _ ->
+                    ( model, Effect.none )
+
+
+viewDeckName : DeckName -> Html Msg
+viewDeckName deckName =
+    case deckName of
+        Unnamed ->
+            p []
+                [ span [ class "decklist-titlename" ] [ text "Unnamed Deck" ]
+                , span [ class "decklist-titleaction", onClick StartRenameDeck ]
+                    [ text "(rename deck)" ]
+                ]
+
+        Named name ->
+            p []
+                [ span [ class "decklist-titlename" ] [ text name ]
+                , span [ class "decklist-titleaction", onClick StartRenameDeck ]
+                    [ text "(rename deck)" ]
+                ]
+
+        BeingNamed _ ->
+            div []
+                [ form [ onSubmit SaveNewDeckName ]
+                    [ input [ placeholder "My Cool Deck", onInput DeckNameChanged ] []
+                    , button [ type_ "submit" ] [ text "ok" ]
+                    ]
+                ]
 
 
 view : Shared.Model -> Model -> View Msg
@@ -184,12 +262,7 @@ view shared model =
             [ viewActions shared.user
             , div [ class "deckbldr-decklist" ]
                 [ div [ class "decklist" ]
-                    [ div [ class "decklist-title" ] [ text "Decklist name" ]
-                    , div [ class "decklist-byline" ]
-                        [ shared.user
-                            |> Maybe.map (\{ id } -> text ("By: " ++ id))
-                            |> Maybe.withDefault (text "By: unknown")
-                        ]
+                    [ div [ class "decklist-title" ] [ viewDeckName model.deckName ]
                     , div [ class "decklist-core", class "decklist-core--agenda" ]
                         [ p [ class "decklist-section_header" ]
                             [ text "Agenda: "
@@ -198,7 +271,7 @@ view shared model =
                         , div [ class "decklist-core_image" ]
                             [ model.deck.agenda
                                 |> Maybe.map (Cards.AgendaCard >> UI.Card.lazy)
-                                |> Maybe.withDefault (text "Unknown")
+                                |> Maybe.withDefault (text "Unknown Agenda")
                             ]
                         ]
                     , div [ class "decklist-core", class "decklist-core--haven" ]
@@ -209,7 +282,7 @@ view shared model =
                         , div [ class "decklist-core_image" ]
                             [ model.deck.haven
                                 |> Maybe.map (Cards.HavenCard >> UI.Card.lazy)
-                                |> Maybe.withDefault (text "Unknown")
+                                |> Maybe.withDefault (text "Unknown Haven")
                             ]
                         ]
                     , div [ class "decklist-core", class "decklist-core--leader" ]
