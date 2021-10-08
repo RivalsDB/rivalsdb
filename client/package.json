@@ -6,12 +6,14 @@
     "build-js": "elm-spa build",
     "compress": "gulp optimize",
     "dev": "concurrently \"npm:watch-*\"",
-    "watch-elm": "elm-spa server",
+    "watch-elm": "elm-spa watch",
+    "watch-server": "elm-live .elm-spa/defaults/Main.elm --dir=public --pushstate --port=1234 --proxy-prefix=//api --proxy-host=http://localhost:3000/api",
     "watch-styles": "gulp watchStyles"
   },
   "dependencies": {
     "concurrently": "^6.2.1",
     "elm": "^0.19.1-5",
+    "elm-live": "^4.0.2",
     "elm-spa": "^6.0.4",
     "gulp": "^4.0.2",
     "gulp-brotli": "^3.0.0",

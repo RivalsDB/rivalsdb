@@ -14,8 +14,6 @@ create msg token deck =
     Http.request
         { method = "POST"
         , url = "/api/v1/decklist"
-
-        -- , url = "http://localhost:3000/api/v1/decklist"
         , headers = [ authHeader token ]
         , timeout = Nothing
         , tracker = Nothing
