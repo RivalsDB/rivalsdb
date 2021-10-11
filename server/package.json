@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
+    "db-apply-migrations": "pg-migrations apply --directory migrations",
     "dev": "sh bin/watch.sh"
   },
   "author": "Luiz Socrate <luiz@socrate.com.br>",
@@ -23,6 +24,7 @@
     "fastify-plugin": "^3.0.0",
     "fastify-static": "^4.2.3",
     "fuse.js": "^6.4.6",
+    "nanoid": "^3.1.29",
     "node-fetch": "^2.6.1",
     "typescript": "^4.4.2"
   },

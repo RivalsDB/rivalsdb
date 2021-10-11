@@ -2,7 +2,7 @@ import createConnectionPool, { sql } from "@databases/pg";
 import { databaseUrl } from "../../env.js";
 
 export const db = createConnectionPool({
-  database: databaseUrl,
+  connectionString: databaseUrl,
   bigIntMode: "bigint",
 });
 

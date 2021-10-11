@@ -1,4 +1,5 @@
-const db: DecklistEntry[] = [];
+import { db, sql } from "./_db.js";
+import { generateId } from "./_id.js";
 
 interface Decklist {
   agenda: string;
@@ -9,24 +10,17 @@ interface Decklist {
   leader: string;
   factionDeck: string[];
 }
-interface DecklistEntry {
-  decklist_id: number;
-  author_id: string;
-  name: string;
-  decklist: Decklist;
-}
 
 export async function createDecklist(
-  author: string,
-  name: string,
-  decklist: Decklist
-): Promise<DecklistEntry> {
-  const decklistEntry = {
-    decklist_id: db.length,
-    author_id: author,
-    name,
-    decklist,
-  };
-  db.push(decklistEntry);
-  return decklistEntry;
+  creatorId: string,
+  decklist: Decklist,
+  name?: string
+): Promise<void> {
+  const deckId = await generateId();
+  await db.query(sql`
+    INSERT INTO decklists
+      (decklist_id, user_id, content, name, created_at, updated_at)
+    VALUES
+      (${deckId}, ${creatorId}, ${decklist}, ${name}, NOW(), NOW())
+  `);
 }
