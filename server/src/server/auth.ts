@@ -5,7 +5,7 @@ import { magicSecretKey } from "../env.js";
 
 declare module "fastify" {
   interface FastifyRequest {
-    user: { id: string };
+    user: { id: string; email: string };
   }
 }
 
@@ -32,14 +32,26 @@ const routes: FastifyPluginAsync = async (fastify) => {
           reply.code(500);
           return reply.send();
         }
+        if (e.code === ErrorCode.TokenExpired) {
+          reply.code(401);
+          return reply.send();
+        }
         reply.code(400);
         return reply.send();
       }
       throw e;
     }
 
+    const issuer = mAdmin.token.getIssuer(didToken);
+    const { email } = await mAdmin.users.getMetadataByIssuer(issuer);
+    if (!email) {
+      reply.code(400);
+      return reply.send();
+    }
+
     req.user = {
-      id: mAdmin.token.getIssuer(didToken),
+      email,
+      id: issuer,
     };
   });
 };
