@@ -1,5 +1,5 @@
 import { FastifyPluginAsync } from "fastify";
-import { createDecklist } from "../db/index.js";
+import { createDecklist, createUserIfNeeded } from "../db/index.js";
 import auth from "./auth.js";
 
 interface DeckInput {
@@ -52,13 +52,19 @@ const routes: FastifyPluginAsync = async (fastify, options) => {
         return reply.send("Invalid leader");
       }
 
-      const entry = await createDecklist(req.user.id, req.body.name, {
-        agenda: req.body.agenda,
-        haven: req.body.haven,
-        libraryDeck: req.body.libraryDeck,
-        factionDeck: Object.keys(req.body.factionDeck),
-        leader: leader[0],
-      });
+      await createUserIfNeeded(req.user.id, req.user.email);
+
+      const entry = await createDecklist(
+        req.user.id,
+        {
+          agenda: req.body.agenda,
+          haven: req.body.haven,
+          libraryDeck: req.body.libraryDeck,
+          factionDeck: Object.keys(req.body.factionDeck),
+          leader: leader[0],
+        },
+        req.body.name
+      );
       reply.code(201);
 
       return entry;
