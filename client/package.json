@@ -7,7 +7,7 @@
     "compress": "gulp optimize",
     "dev": "concurrently \"npm:watch-*\"",
     "watch-elm": "elm-spa watch",
-    "watch-server": "elm-live .elm-spa/defaults/Main.elm --dir=public --pushstate --port=1234 --proxy-prefix=//api --proxy-host=http://localhost:3000/api",
+    "watch-server": "elm-live .elm-spa/defaults/Main.elm --dir=public --pushstate --port=1234 --proxy-prefix=/api --proxy-host=http://localhost:3000/api",
     "watch-styles": "gulp watchStyles"
   },
   "dependencies": {
