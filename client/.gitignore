@@ -1,5 +1,6 @@
 .DS_Store
 .elm-spa
+.parcel-cache
 elm-stuff
 node_modules
 dist

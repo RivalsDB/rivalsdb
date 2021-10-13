@@ -3,6 +3,7 @@ module UI.Attribute exposing (bloodPotency, bloodPotencyRequirement, damage, men
 import Cards
 import Html exposing (..)
 import Html.Attributes exposing (class, classList, src)
+import UI.Icon
 
 
 type Style
@@ -10,22 +11,26 @@ type Style
     | Dark
 
 
-attribute : String -> Style -> Int -> Html msg
-attribute url style n =
+attribute : Html msg -> Style -> Int -> Html msg
+attribute icon style n =
     span [ class "attr" ]
         [ span
             [ class "attr-icon"
-            , classList
-                [ ( "attr-icon--light", style == Light )
-                , ( "attr-icon--dark", style == Dark )
-                ]
+            , case style of
+                Light ->
+                    class "attr-icon--light"
+
+                Dark ->
+                    class "attr-icon--dark"
             ]
-            [ img [ src url ] [] ]
+            [ icon ]
         , span
-            [ classList
-                [ ( "attr-number--light", style == Light )
-                , ( "attr-number--dark", style == Dark )
-                ]
+            [ case style of
+                Light ->
+                    class "attr-number--light"
+
+                Dark ->
+                    class "attr-number--dark"
             ]
             [ text <| String.fromInt n ]
         ]
@@ -33,28 +38,28 @@ attribute url style n =
 
 bloodPotency : Cards.BloodPotency -> Html msg
 bloodPotency =
-    attribute "/assets/icons/icon-bloodpotency.svg" Light
+    attribute UI.Icon.bloodPotency Light
 
 
 bloodPotencyRequirement : Cards.BloodPotencyRequirement -> Html msg
 bloodPotencyRequirement requirement =
-    Maybe.map (attribute "/assets/icons/icon-bloodpotencyrequirement.svg" Light) requirement
+    Maybe.map (attribute UI.Icon.bloodPotencReq Light) requirement
         |> Maybe.withDefault nothing
 
 
 physical : Cards.Attribute -> Html msg
 physical =
-    attribute "/assets/icons/icon-physical.svg" Dark
+    attribute UI.Icon.physical Dark
 
 
 mental : Cards.Attribute -> Html msg
 mental =
-    attribute "/assets/icons/icon-mental.svg" Dark
+    attribute UI.Icon.mental Dark
 
 
 social : Cards.Attribute -> Html msg
 social =
-    attribute "/assets/icons/icon-social.svg" Dark
+    attribute UI.Icon.social Dark
 
 
 damage : Maybe Cards.Damage -> Html msg
@@ -67,7 +72,7 @@ damage attr =
             nothing
 
         Just positiveValue ->
-            attribute "/assets/icons/icon-damage.svg" Light positiveValue
+            attribute UI.Icon.damage Light positiveValue
 
 
 shield : Maybe Cards.Damage -> Html msg
@@ -80,7 +85,7 @@ shield attr =
             nothing
 
         Just positiveValue ->
-            attribute "/assets/icons/icon-shield.svg" Light positiveValue
+            attribute UI.Icon.shield Light positiveValue
 
 
 nothing : Html msg

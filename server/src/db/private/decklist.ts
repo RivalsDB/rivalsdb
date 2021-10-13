@@ -2,6 +2,9 @@ import { db, sql } from "./_db.js";
 import { generateId } from "./_id.js";
 
 interface Decklist {
+  id: string;
+  name: string;
+  creatorId: string;
   agenda: string;
   haven: string;
   libraryDeck: {
@@ -13,9 +16,9 @@ interface Decklist {
 
 export async function createDecklist(
   creatorId: string,
-  decklist: Decklist,
-  name?: string
-): Promise<void> {
+  decklist: Omit<Decklist, "id" | "name" | "creatorId">,
+  name: string
+): Promise<Decklist> {
   const deckId = await generateId();
   await db.query(sql`
     INSERT INTO decklists
@@ -23,4 +26,5 @@ export async function createDecklist(
     VALUES
       (${deckId}, ${creatorId}, ${decklist}, ${name}, NOW(), NOW())
   `);
+  return { ...decklist, id: deckId, name, creatorId };
 }

@@ -4,11 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "yarn build-server && yarn build-client && yarn build-migrations && yarn build-assemble",
+    "build": "yarn build-server && yarn build-client && yarn build-migrations",
     "build-client": "cd client && yarn install && yarn build && cd ..",
     "build-server": "cd server && yarn install && yarn build && cd ..",
     "build-migrations": "cd server && yarn install && yarn db-apply-migrations && cd ..",
-    "build-assemble": "mkdir -p server/public && mv client/public/* server/public/",
     "start": "node server/dist/index.js"
   },
   "author": "Luiz Socrate <luiz@socrate.com.br>",

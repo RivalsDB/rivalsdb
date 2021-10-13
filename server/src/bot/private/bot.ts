@@ -1,9 +1,8 @@
-import { Client, Intents } from "discord.js";
+import { Client, Intents, DiscordAPIError } from "discord.js";
 import Fuse from "fuse.js";
-import { format } from "url";
 
-import { cards } from "../../cardCollection/cardCollection.js";
-import { discordBotToken, baseUrl } from "../../env.js";
+import { cards } from "../../cardCollection/cards.js";
+import { discordBotToken } from "../../env.js";
 import { registerCommands, cardCommand } from "./commands.js";
 
 const imagesByCardName = new Map(cards.map(({ name, image }) => [name, image]));
@@ -15,14 +14,6 @@ const fuse = new Fuse(cardNames, {
 });
 
 const list = new Intl.ListFormat("en", { style: "long", type: "disjunction" });
-
-function cardImageUrl(cardImage: string): string {
-  return format({
-    protocol: "https",
-    hostname: baseUrl,
-    pathname: `/card/${cardImage}`,
-  });
-}
 
 export async function startBot() {
   await registerCommands();
@@ -36,31 +27,39 @@ export async function startBot() {
     if (!query) return;
 
     const result = fuse.search(query, { limit: 3 });
-    if (result.length === 0) {
+    try {
+      if (result.length === 0) {
+        return interaction.reply({
+          ephemeral: true,
+          content: `I am sorry, my darling, but I have no idea what you are looking for 🤷‍♂️`,
+        });
+      }
+
+      if (result.length === 1) {
+        const cardImage = imagesByCardName.get(result[0].item)!;
+        return interaction.reply(cardImage);
+      }
+
+      const [first, second, ...others] = result;
+      if (first.score! * 2 <= second.score!) {
+        const cardImage = imagesByCardName.get(first.item)!;
+        console.log("OIOIOI", cardImage);
+        return interaction.reply(cardImage);
+      }
+
+      const candidates = result.map(({ item }) => `\`${item}\``);
       return interaction.reply({
         ephemeral: true,
-        content: `I am sorry, my darling, but I have no idea what you are looking for 🤷‍♂️`,
+        content: `I'm not sure I follow you. Are you maybe asking about ${list.format(
+          candidates
+        )}?`,
       });
+    } catch (e) {
+      if (e instanceof DiscordAPIError) {
+        return;
+      }
+      throw e;
     }
-
-    if (result.length === 1) {
-      const cardImage = imagesByCardName.get(result[0].item)!;
-      return interaction.reply(cardImageUrl(cardImage));
-    }
-
-    const [first, second, ...others] = result;
-    if (first.score! * 2 <= second.score!) {
-      const cardImage = imagesByCardName.get(first.item)!;
-      return interaction.reply(cardImageUrl(cardImage));
-    }
-
-    const candidates = result.map(({ item }) => `\`${item}\``);
-    return interaction.reply({
-      ephemeral: true,
-      content: `I'm not sure I follow you. Are you maybe asking about ${list.format(
-        candidates
-      )}?`,
-    });
   });
 
   return client.login(discordBotToken);

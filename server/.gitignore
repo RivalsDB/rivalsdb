@@ -34,6 +34,3 @@ dist
 
 coverage
 report.*.json
-
-
-/public/index.html

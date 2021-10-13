@@ -35,23 +35,17 @@ module UI.Icon exposing
     )
 
 import Cards
-import Html
-import Html.Attributes as Attr
+import Html exposing (Html, span, text)
+import Html.Attributes as Attr exposing (class, title)
 
 
-icon : String -> String -> Html.Html msg
-icon src name =
-    Html.img
-        [ Attr.src <| "/assets/icons/" ++ src
-        , Attr.alt name
-        , Attr.title name
-        , Attr.attribute "loading" "eager"
-        , Attr.class "ui-icon"
-        ]
-        []
+
+------
+-- MATCHERS
+------
 
 
-clan : Cards.Clan -> Html.Html msg
+clan : Cards.Clan -> Html msg
 clan c =
     case c of
         Cards.Brujah ->
@@ -73,7 +67,7 @@ clan c =
             ventrue
 
 
-discipline : Cards.Discipline -> Html.Html msg
+discipline : Cards.Discipline -> Html msg
 discipline d =
     case d of
         Cards.Animalism ->
@@ -110,7 +104,7 @@ discipline d =
             thinBloodAlchemy
 
 
-attackType : Cards.AttackType -> Html.Html msg
+attackType : Cards.AttackType -> Html msg
 attackType a =
     case a of
         Cards.Mental ->
@@ -126,156 +120,177 @@ attackType a =
             social
 
 
-thinBlood : Html.Html msg
+
+------
+-- ICONS
+------
+
+
+thinBlood : Html msg
 thinBlood =
-    icon "clan-thinblood.svg" "Thin Blood"
+    icon "ui-icon_thinblood" "Thin Blood"
 
 
-tremere : Html.Html msg
+tremere : Html msg
 tremere =
-    icon "clan-tremere.svg" "Tremere"
+    icon "ui-icon_tremere" "Tremere"
 
 
-brujah : Html.Html msg
+brujah : Html msg
 brujah =
-    icon "clan-brujah.svg" "Brujah"
+    icon "ui-icon_brujah" "Brujah"
 
 
-malkavian : Html.Html msg
+malkavian : Html msg
 malkavian =
-    icon "clan-malkavian.svg" "Malkavian"
+    icon "ui-icon_malkavian" "Malkavian"
 
 
-toreador : Html.Html msg
+toreador : Html msg
 toreador =
-    icon "clan-toreador.svg" "Toreador"
+    icon "ui-icon_toreador" "Toreador"
 
 
-ventrue : Html.Html msg
+ventrue : Html msg
 ventrue =
-    icon "clan-ventrue.svg" "Ventrue"
+    icon "ui-icon_ventrue" "Ventrue"
 
 
-animalism : Html.Html msg
+animalism : Html msg
 animalism =
-    icon "discipline-animalism.svg" "Animalism"
+    icon "ui-icon_animalism" "Animalism"
 
 
-auspex : Html.Html msg
+auspex : Html msg
 auspex =
-    icon "discipline-auspex.svg" "Auspex"
+    icon "ui-icon_auspex" "Auspex"
 
 
-bloodSorcery : Html.Html msg
+bloodSorcery : Html msg
 bloodSorcery =
-    icon "discipline-blood-sorcery.svg" "Blood Sorcery"
+    icon "ui-icon_blood_sorcery" "Blood Sorcery"
 
 
-celerity : Html.Html msg
+celerity : Html msg
 celerity =
-    icon "discipline-celerity.svg" "Celerity"
+    icon "ui-icon_celerity" "Celerity"
 
 
-dominate : Html.Html msg
+dominate : Html msg
 dominate =
-    icon "discipline-dominate.svg" "Dominate"
+    icon "ui-icon_dominate" "Dominate"
 
 
-fortitude : Html.Html msg
+fortitude : Html msg
 fortitude =
-    icon "discipline-fortitude.svg" "Fortitude"
+    icon "ui-icon_fortitude" "Fortitude"
 
 
-obfuscate : Html.Html msg
+obfuscate : Html msg
 obfuscate =
-    icon "discipline-obsfuscate.svg" "Obsfuscate"
+    icon "ui-icon_obsfuscate" "Obsfuscate"
 
 
-potence : Html.Html msg
+potence : Html msg
 potence =
-    icon "discipline-potence.svg" "Potence"
+    icon "ui-icon_potence" "Potence"
 
 
-presence : Html.Html msg
+presence : Html msg
 presence =
-    icon "discipline-presence.svg" "Presence"
+    icon "ui-icon_presence" "Presence"
 
 
-protean : Html.Html msg
+protean : Html msg
 protean =
-    icon "discipline-protean.svg" "Protean"
+    icon "ui-icon_protean" "Protean"
 
 
-thinBloodAlchemy : Html.Html msg
+thinBloodAlchemy : Html msg
 thinBloodAlchemy =
-    icon "discipline-thin-blood-alchemy.svg" "Thin-blood Alchemy"
+    icon "ui-icon_thin_blood_alchemy" "Thin-blood Alchemy"
 
 
-agenda : Html.Html msg
+agenda : Html msg
 agenda =
-    icon "icon-agenda.svg" "Agenda"
+    icon "ui-icon_agenda" "Agenda"
 
 
-blood : Html.Html msg
+blood : Html msg
 blood =
-    icon "icon-blood.svg" "Blood"
+    icon "ui-icon_blood" "Blood"
 
 
-bloodPotency : Html.Html msg
+bloodPotency : Html msg
 bloodPotency =
-    icon "icon-bloodpotency.svg" "Blood Potency"
+    icon "ui-icon_bloodpotency" "Blood Potency"
 
 
-bloodPotencReq : Html.Html msg
+bloodPotencReq : Html msg
 bloodPotencReq =
-    icon "icon-bloodpotencyrequirement.svg" "Blood Potency Requirement"
+    icon "ui-icon_bloodpotencyrequirement" "Blood Potency Requirement"
 
 
-damage : Html.Html msg
+damage : Html msg
 damage =
-    icon "icon-damage.svg" "Damage"
+    icon "ui-icon_damage" "Damage"
 
 
-influence : Html.Html msg
+influence : Html msg
 influence =
-    icon "icon-influence.svg" "Influence"
+    icon "ui-icon_influence" "Influence"
 
 
-mental : Html.Html msg
+mental : Html msg
 mental =
-    icon "icon-mental.svg" "Mental"
+    icon "ui-icon_mental" "Mental"
 
 
-physical : Html.Html msg
+physical : Html msg
 physical =
-    icon "icon-physical.svg" "Physical"
+    icon "ui-icon_physical" "Physical"
 
 
-ranged : Html.Html msg
+ranged : Html msg
 ranged =
-    icon "icon-ranged.svg" "Ranged"
+    icon "ui-icon_ranged" "Ranged"
 
 
-shield : Html.Html msg
+shield : Html msg
 shield =
-    icon "icon-shield.svg" "Shield"
+    icon "ui-icon_shield" "Shield"
 
 
-social : Html.Html msg
+social : Html msg
 social =
-    icon "icon-social.svg" "Social"
+    icon "ui-icon_social" "Social"
 
 
-leader : Html.Html msg
+leader : Html msg
 leader =
-    icon "icon-leader.svg" "Leader"
+    icon "ui-icon_leader" "Leader"
 
 
-material : String -> Html.Html msg
-material code =
-    Html.span [ Attr.class "material-icons" ] [ Html.text code ]
-
-
-save : Html.Html msg
+save : Html msg
 save =
     material "save"
+
+
+
+------
+-- HELPERS
+------
+
+
+icon : String -> String -> Html msg
+icon icoClass name =
+    span [ class "ui-icon", class icoClass, title name ]
+        [ span []
+            [ text name
+            ]
+        ]
+
+
+material : String -> Html msg
+material code =
+    span [ Attr.class "material-icons" ] [ text code ]

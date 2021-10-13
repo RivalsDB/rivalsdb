@@ -9,6 +9,10 @@ interface DeckInput {
   factionDeck: { [id: string]: boolean };
   libraryDeck: { [id: string]: number };
 }
+interface DeckOutput extends DeckInput {
+  id: string;
+  creatorId: string;
+}
 
 const routes: FastifyPluginAsync = async (fastify, options) => {
   fastify.register(auth);
@@ -30,22 +34,28 @@ const routes: FastifyPluginAsync = async (fastify, options) => {
         201: {
           type: "object",
           properties: {
-            name: { type: "string" },
+            name: { anyOf: [{ type: "null" }, { type: "string" }] },
             agenda: { type: "string" },
             haven: { type: "string" },
-            factionDeck: { type: "object" },
-            libraryDeck: { type: "object" },
-            decklist_id: { type: "number" },
-            author_id: { type: "string" },
+            factionDeck: {
+              type: "object",
+              additionalProperties: { type: "boolean" },
+            },
+            libraryDeck: {
+              type: "object",
+              additionalProperties: { type: "integer" },
+            },
+            id: { type: "string" },
+            creatorId: { type: "string" },
           },
         },
       },
     },
 
-    async handler(req, reply) {
+    async handler(req, reply): Promise<DeckOutput> {
       const leader = Object.entries(req.body.factionDeck).find(
-        ([_, isLeader]) => isLeader
-      );
+        ([, isLeader]) => isLeader
+      )?.[0];
 
       if (!leader) {
         reply.code(400);
@@ -61,13 +71,22 @@ const routes: FastifyPluginAsync = async (fastify, options) => {
           haven: req.body.haven,
           libraryDeck: req.body.libraryDeck,
           factionDeck: Object.keys(req.body.factionDeck),
-          leader: leader[0],
+          leader,
         },
         req.body.name
       );
-      reply.code(201);
 
-      return entry;
+      reply.code(201);
+      return {
+        ...entry,
+        factionDeck: entry.factionDeck.reduce<Record<string, boolean>>(
+          (factionDeck, character) => {
+            factionDeck[character] = character === leader;
+            return factionDeck;
+          },
+          {}
+        ),
+      };
     },
   });
 };
