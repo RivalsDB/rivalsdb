@@ -43,7 +43,6 @@ export async function startBot() {
       const [first, second, ...others] = result;
       if (first.score! * 2 <= second.score!) {
         const cardImage = imagesByCardName.get(first.item)!;
-        console.log("OIOIOI", cardImage);
         return interaction.reply(cardImage);
       }
 

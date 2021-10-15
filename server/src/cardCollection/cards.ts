@@ -1,13 +1,45 @@
 type Card = Agenda | Haven | Faction | Library;
 
+type CardSet = "Core" | "Blood & Alchemy" | "Season 0 Promo";
+
+type Clan =
+  | "brujah"
+  | "malkavian"
+  | "thin-blood"
+  | "toreador"
+  | "tremere"
+  | "ventrue";
+
+type Discipline =
+  | "auspex"
+  | "blood sorcery"
+  | "celerity"
+  | "dominate"
+  | "fortitude"
+  | "obfuscate"
+  | "potence"
+  | "presence"
+  | "thin-blood alchemy";
+
+type AttackType = "mental" | "physical" | "ranged" | "social";
+
+type LibraryCardType =
+  | "action"
+  | "attack"
+  | "conspiracy"
+  | "influence modifier"
+  | "ongoing"
+  | "reaction"
+  | "unhosted action";
+
 type Agenda = {
   id: string;
   illustrator: string;
   image: string;
   name: string;
-  set: string;
+  set: CardSet;
   text: string;
-  types: string[];
+  types: ["agenda"];
 };
 
 type Haven = {
@@ -15,9 +47,9 @@ type Haven = {
   illustrator: string;
   image: string;
   name: string;
-  set: string;
+  set: CardSet;
   text: string;
-  types: string[];
+  types: ["haven"];
 };
 
 type Faction = {
@@ -25,29 +57,29 @@ type Faction = {
   attributePhysical: number;
   attributeSocial: number;
   bloodPotency: number;
-  clan: string;
-  disciplines: string[];
+  clan: Clan;
+  disciplines: Discipline[];
   id: string;
   illustrator: string;
   image: string;
   name: string;
-  set: string;
+  set: CardSet;
   text: string;
-  types: string[];
+  types: ["character"];
 };
 
 type Library = {
-  attackType: string[];
+  attackType: AttackType[];
   bloodPotency?: number;
-  clan?: string;
-  disciplines: string[];
+  clan?: Clan;
+  disciplines: Discipline[];
   id: string;
   illustrator: string;
   image: string;
   name: string;
-  set: string;
+  set: CardSet;
   text: string;
-  types: string[];
+  types: LibraryCardType[];
   flavor?: string;
 };
 
