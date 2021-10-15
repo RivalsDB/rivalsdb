@@ -54,7 +54,9 @@ attackTypes =
 clans : Model Cards.Clan msg
 clans =
     [ ( Cards.Brujah, ( UI.Icon.brujah, False ) )
+    , ( Cards.Gangrel, ( UI.Icon.gangrel, False ) )
     , ( Cards.Malkavian, ( UI.Icon.malkavian, False ) )
+    , ( Cards.Nosferatu, ( UI.Icon.nosferatu, False ) )
     , ( Cards.ThinBlood, ( UI.Icon.thinBlood, False ) )
     , ( Cards.Toreador, ( UI.Icon.toreador, False ) )
     , ( Cards.Tremere, ( UI.Icon.tremere, False ) )

@@ -14,10 +14,12 @@ module UI.Icon exposing
     , discipline
     , dominate
     , fortitude
+    , gangrel
     , influence
     , leader
     , malkavian
     , mental
+    , nosferatu
     , obfuscate
     , physical
     , potence
@@ -51,8 +53,14 @@ clan c =
         Cards.Brujah ->
             brujah
 
+        Cards.Gangrel ->
+            gangrel
+
         Cards.Malkavian ->
             malkavian
+
+        Cards.Nosferatu ->
+            nosferatu
 
         Cards.ThinBlood ->
             thinBlood
@@ -141,9 +149,19 @@ brujah =
     icon "ui-icon_brujah" "Brujah"
 
 
+gangrel : Html msg
+gangrel =
+    icon "ui-icon_gangrel" "Gangrel"
+
+
 malkavian : Html msg
 malkavian =
     icon "ui-icon_malkavian" "Malkavian"
+
+
+nosferatu : Html msg
+nosferatu =
+    icon "ui-icon_nosferatu" "Nosferatu"
 
 
 toreador : Html msg

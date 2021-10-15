@@ -67,8 +67,9 @@ init _ flags =
                 Ok cards ->
                     cards
 
-                Err _ ->
-                    Dict.empty
+                Err err ->
+                    Debug.log (Debug.toString err)
+                        Dict.empty
     in
     ( { collection = collection, user = Nothing, modal = Closed }, Cmd.none )
 

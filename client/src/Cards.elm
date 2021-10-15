@@ -58,15 +58,17 @@ type alias Image =
 
 
 type Pack
-    = Core
+    = Promo
+    | Core
     | BloodAndAlchemy
-    | Promo
+    | WolfAndRat
 
 
 pack : Enum Pack
 pack =
     Enum.create
         [ ( "Blood & Alchemy", BloodAndAlchemy )
+        , ( "Wolf & Rat", WolfAndRat )
         , ( "Core", Core )
         , ( "Season 0 Promo", Promo )
         ]
@@ -74,7 +76,9 @@ pack =
 
 type Clan
     = Brujah
+    | Gangrel
     | Malkavian
+    | Nosferatu
     | ThinBlood
     | Toreador
     | Tremere
@@ -85,7 +89,9 @@ clanEnum : Enum Clan
 clanEnum =
     Enum.create
         [ ( "brujah", Brujah )
+        , ( "gangrel", Gangrel )
         , ( "malkavian", Malkavian )
+        , ( "nosferatu", Nosferatu )
         , ( "thin-blood", ThinBlood )
         , ( "toreador", Toreador )
         , ( "tremere", Tremere )
@@ -147,6 +153,7 @@ disciplineEnum =
 type Trait
     = Action
     | Alchemy
+    | Animal
     | Attack
     | Conspiracy
     | InfluenceModifier
@@ -164,6 +171,7 @@ traitEnum =
     Enum.create
         [ ( "action", Action )
         , ( "alchemy", Alchemy )
+        , ( "animal", Animal )
         , ( "attack", Attack )
         , ( "conspiracy", Conspiracy )
         , ( "influence modifier", InfluenceModifier )

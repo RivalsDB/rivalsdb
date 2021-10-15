@@ -11,6 +11,7 @@ const routes: FastifyPluginAsync = async (fastify, options) => {
             type: "object",
             properties: {
               attackType: { type: "array", items: { type: "string" } },
+              reactionType: { type: "array", items: { type: "string" } },
               attributeMental: { type: "integer" },
               attributePhysical: { type: "integer" },
               attributeSocial: { type: "integer" },
