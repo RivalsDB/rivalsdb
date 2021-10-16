@@ -452,7 +452,12 @@ viewFactionList deck =
                             , classList [ ( "deckfact-leader_option--leader", Deck.isLeader deck c ) ]
                             , onClick (ChoseLeader c)
                             ]
-                            [ UI.Icon.leader ]
+                            (if Deck.isLeader deck c then
+                                [ UI.Icon.leader ]
+
+                             else
+                                []
+                            )
                          , span [ class "deckfact-bp" ] [ UI.Attribute.bloodPotency c.bloodPotency ]
                          , span [ class "deckfact-clan" ] [ UI.Icon.clan c.clan ]
                          , span [ class "deckfact-name" ] [ text c.name ]

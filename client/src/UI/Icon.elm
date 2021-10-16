@@ -1,5 +1,7 @@
 module UI.Icon exposing
-    ( agenda
+    ( action
+    , agenda
+    , agendaCard
     , animalism
     , attackType
     , auspex
@@ -13,10 +15,13 @@ module UI.Icon exposing
     , damage
     , discipline
     , dominate
+    , faction
     , fortitude
     , gangrel
+    , haven
     , influence
     , leader
+    , library
     , malkavian
     , mental
     , nosferatu
@@ -33,6 +38,7 @@ module UI.Icon exposing
     , thinBloodAlchemy
     , toreador
     , tremere
+    , unhostedAction
     , ventrue
     )
 
@@ -232,6 +238,36 @@ thinBloodAlchemy =
 agenda : Html msg
 agenda =
     icon "ui-icon_agenda" "Agenda"
+
+
+library : Html msg
+library =
+    icon "ui-icon_library" "Library"
+
+
+agendaCard : Html msg
+agendaCard =
+    icon "ui-icon_agenda_card" "Agenda"
+
+
+haven : Html msg
+haven =
+    icon "ui-icon_haven" "Haven"
+
+
+faction : Html msg
+faction =
+    icon "ui-icon_faction" "Faction"
+
+
+action : Html msg
+action =
+    icon "ui-icon_action" "Action"
+
+
+unhostedAction : Html msg
+unhostedAction =
+    icon "ui-icon_unhosted_action" "Unhosted Action"
 
 
 blood : Html msg

@@ -2,7 +2,7 @@ module UI.Attribute exposing (bloodPotency, bloodPotencyRequirement, damage, men
 
 import Cards
 import Html exposing (..)
-import Html.Attributes exposing (class, classList, src)
+import Html.Attributes exposing (class)
 import UI.Icon
 
 

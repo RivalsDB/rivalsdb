@@ -19,6 +19,7 @@ module Cards exposing
     , bloodPotency
     , cardsDecoder
     , clan
+    , clanEnum
     , clanRequirement
     , discipline
     , findTextInCard

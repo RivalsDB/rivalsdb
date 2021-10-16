@@ -2822,8 +2822,8 @@ export const cards: Array<Card> = [
     text: "At the start of your turn, gain 1 [agenda] if you control 1+ Animals. If you control 3+ different Animals, gain 2 [agenda] instead. If you reach 13 [agenda], you win!",
     illustrator: "Felipe Gaona",
     set: "Wolf & Rat",
-    id: "war-animal-kingom",
-    image: "https://www.rivalsdb.app/card/war-animal-kingom.webp",
+    id: "war-animal-kingdom",
+    image: "https://www.rivalsdb.app/card/war-animal-kingdom.webp",
   } as Agenda,
   {
     types: ["attack"],

@@ -13,17 +13,17 @@ type alias Model value msg =
 
 stacks : Model Cards.CardStack msg
 stacks =
-    [ ( Cards.AgendaStack, ( span [ title "Agenda" ] [ text "👑" ], False ) )
-    , ( Cards.HavenStack, ( span [ title "Haven" ] [ text "🌜" ], False ) )
-    , ( Cards.FactionStack, ( span [ title "Faction" ] [ text "🧛" ], False ) )
-    , ( Cards.LibraryStack, ( span [ title "Library" ] [ text "📚" ], False ) )
+    [ ( Cards.AgendaStack, ( span [ title "Agenda", class "fltrslct-icon_wrapper" ] [ UI.Icon.agendaCard ], False ) )
+    , ( Cards.HavenStack, ( span [ title "Haven", class "fltrslct-icon_wrapper" ] [ UI.Icon.haven ], False ) )
+    , ( Cards.FactionStack, ( span [ title "Faction", class "fltrslct-icon_wrapper" ] [ UI.Icon.faction ], False ) )
+    , ( Cards.LibraryStack, ( span [ title "Library", class "fltrslct-icon_wrapper" ] [ UI.Icon.library ], False ) )
     ]
 
 
 primaryTraits : Model Cards.Trait msg
 primaryTraits =
-    [ ( Cards.Action, ( span [ title "Action" ] [ text "🚶" ], False ) )
-    , ( Cards.UnhostedAction, ( span [ title "Unhosted Action" ] [ text "🧘" ], False ) )
+    [ ( Cards.Action, ( span [ title "Action", class "fltrslct-icon_wrapper" ] [ UI.Icon.action ], False ) )
+    , ( Cards.UnhostedAction, ( span [ title "Unhosted Action", class "fltrslct-icon_wrapper" ] [ UI.Icon.unhostedAction ], False ) )
     , ( Cards.Attack, ( span [ title "Attack" ] [ text "🗡️" ], False ) )
     , ( Cards.Reaction, ( span [ title "Reaction" ] [ text "🛡️" ], False ) )
     , ( Cards.InfluenceModifier, ( span [ title "Influence Modifier" ] [ text "🤝" ], False ) )
