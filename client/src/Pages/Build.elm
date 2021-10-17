@@ -395,38 +395,20 @@ viewActions user =
 
 viewClansInFaction : Deck.Faction -> List (Html Msg)
 viewClansInFaction faction =
-    let
-        clans =
-            Dict.values faction |> List.map (Tuple.first >> .clan)
+    Dict.values faction
+        |> List.foldl
+            (\( card, _ ) usedClans ->
+                if List.member card.clan usedClans then
+                    usedClans
 
-        summedClans =
-            List.foldl
-                (\clan clanSum ->
-                    if List.any (Tuple.first >> (==) clan) clanSum then
-                        clanSum
-                            |> List.map
-                                (\( someClan, count ) ->
-                                    if someClan == clan then
-                                        ( someClan, count + 1 )
-
-                                    else
-                                        ( someClan, count )
-                                )
-
-                    else
-                        ( clan, 1 ) :: clanSum
-                )
-                []
-                clans
-    in
-    List.sortBy (Tuple.second >> negate) summedClans
+                else
+                    card.clan :: usedClans
+            )
+            []
         |> List.map
-            (\( clan, count ) ->
+            (\clan ->
                 span [ class "decklist-clan_entry" ]
-                    [ text <| String.fromInt count
-                    , text " "
-                    , span [ class "decklist-clan_clan" ] [ UI.Icon.clan clan ]
-                    ]
+                    [ span [ class "decklist-clan_clan" ] [ UI.Icon.clan clan ] ]
             )
 
 

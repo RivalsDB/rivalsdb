@@ -3,117 +3,22 @@
   height: 100%
   background-size: contain
   background-position: center center
+  background-repeat: no-repeat
   display: inline-block
   span
     visibility: hidden
 
-  &_thinblood
-    background-image: url("../../assets/icons/clan-thinblood.svg")
+$clan_icons: brujah gangrel malkavian nosferatu thinblood toreador tremere ventrue
+@each $icon in $clan_icons
+  .ui-icon_#{$icon}
+    background-image: url("../../assets/icons/clan-#{$icon}.svg")
 
-  &_tremere
-    background-image: url("../../assets/icons/clan-tremere.svg")
+$discipline_icons: animalism auspex blood_sorcery celerity dominate fortitude obsfuscate potence presence protean thin_blood_alchemy
+@each $icon in $discipline_icons
+  .ui-icon_#{$icon}
+    background-image: url("../../assets/icons/discipline-#{$icon}.svg")
 
-  &_brujah
-    background-image: url("../../assets/icons/clan-brujah.svg")
-
-  &_gangrel
-    background-image: url("../../assets/icons/clan-gangrel.svg")
-
-  &_malkavian
-    background-image: url("../../assets/icons/clan-malkavian.svg")
-
-  &_nosferatu
-    background-image: url("../../assets/icons/clan-nosferatu.svg")
-
-  &_toreador
-    background-image: url("../../assets/icons/clan-toreador.svg")
-
-  &_ventrue
-    background-image: url("../../assets/icons/clan-ventrue.svg")
-
-  &_animalism
-    background-image: url("../../assets/icons/discipline-animalism.svg")
-
-  &_auspex
-    background-image: url("../../assets/icons/discipline-auspex.svg")
-
-  &_blood_sorcery
-    background-image: url("../../assets/icons/discipline-blood-sorcery.svg")
-
-  &_celerity
-    background-image: url("../../assets/icons/discipline-celerity.svg")
-
-  &_dominate
-    background-image: url("../../assets/icons/discipline-dominate.svg")
-
-  &_fortitude
-    background-image: url("../../assets/icons/discipline-fortitude.svg")
-
-  &_obsfuscate
-    background-image: url("../../assets/icons/discipline-obsfuscate.svg")
-
-  &_potence
-    background-image: url("../../assets/icons/discipline-potence.svg")
-
-  &_presence
-    background-image: url("../../assets/icons/discipline-presence.svg")
-
-  &_protean
-    background-image: url("../../assets/icons/discipline-protean.svg")
-
-  &_thin_blood_alchemy
-    background-image: url("../../assets/icons/discipline-thin-blood-alchemy.svg")
-
-  &_agenda
-    background-image: url("../../assets/icons/icon-agenda.svg")
-
-  &_agenda_card
-    background-image: url("../../assets/icons/icon-crown.svg")
-
-  &_faction
-    background-image: url("../../assets/icons/icon-faction.svg")
-
-  &_action
-    background-image: url("../../assets/icons/icon-action.svg")
-
-  &_unhosted_action
-    background-image: url("../../assets/icons/icon-unhosted-action.svg")
-
-  &_haven
-    background-image: url("../../assets/icons/icon-haven.svg")
-
-  &_library
-    background-image: url("../../assets/icons/icon-library.svg")
-
-  &_blood
-    background-image: url("../../assets/icons/icon-blood.svg")
-
-  &_bloodpotency
-    background-image: url("../../assets/icons/icon-bloodpotency.svg")
-
-  &_bloodpotencyrequirement
-    background-image: url("../../assets/icons/icon-bloodpotencyrequirement.svg")
-
-  &_damage
-    background-image: url("../../assets/icons/icon-damage.svg")
-
-  &_influence
-    background-image: url("../../assets/icons/icon-influence.svg")
-
-  &_mental
-    background-image: url("../../assets/icons/icon-mental.svg")
-
-  &_physical
-    background-image: url("../../assets/icons/icon-physical.svg")
-
-  &_ranged
-    background-image: url("../../assets/icons/icon-ranged.svg")
-
-  &_shield
-    background-image: url("../../assets/icons/icon-shield.svg")
-
-  &_social
-    background-image: url("../../assets/icons/icon-social.svg")
-
-  &_leader
-    background-image: url("../../assets/icons/icon-leader.svg")
+$other_icons: action agenda attack blood bloodpotency bloodpotencyrequirement crown damage faction haven influence influence_modifier leader library mental physical ranged reaction shield social unhosted_action
+@each $icon in $other_icons
+  .ui-icon_#{$icon}
+    background-image: url("../../assets/icons/icon-#{$icon}.svg")

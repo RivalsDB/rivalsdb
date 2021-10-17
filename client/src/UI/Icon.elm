@@ -3,6 +3,7 @@ module UI.Icon exposing
     , agenda
     , agendaCard
     , animalism
+    , attack
     , attackType
     , auspex
     , blood
@@ -20,6 +21,7 @@ module UI.Icon exposing
     , gangrel
     , haven
     , influence
+    , influenceModifier
     , leader
     , library
     , malkavian
@@ -31,6 +33,7 @@ module UI.Icon exposing
     , presence
     , protean
     , ranged
+    , reaction
     , save
     , shield
     , social
@@ -247,7 +250,7 @@ library =
 
 agendaCard : Html msg
 agendaCard =
-    icon "ui-icon_agenda_card" "Agenda"
+    icon "ui-icon_crown" "Agenda"
 
 
 haven : Html msg
@@ -318,6 +321,21 @@ shield =
 social : Html msg
 social =
     icon "ui-icon_social" "Social"
+
+
+attack : Html msg
+attack =
+    icon "ui-icon_attack" "Attack"
+
+
+influenceModifier : Html msg
+influenceModifier =
+    icon "ui-icon_influence_modifier" "Influence Modifier"
+
+
+reaction : Html msg
+reaction =
+    icon "ui-icon_reaction" "Reaction"
 
 
 leader : Html msg

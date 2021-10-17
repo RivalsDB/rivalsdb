@@ -13,21 +13,23 @@ type alias Model value msg =
 
 stacks : Model Cards.CardStack msg
 stacks =
-    [ ( Cards.AgendaStack, ( span [ title "Agenda", class "fltrslct-icon_wrapper" ] [ UI.Icon.agendaCard ], False ) )
-    , ( Cards.HavenStack, ( span [ title "Haven", class "fltrslct-icon_wrapper" ] [ UI.Icon.haven ], False ) )
-    , ( Cards.FactionStack, ( span [ title "Faction", class "fltrslct-icon_wrapper" ] [ UI.Icon.faction ], False ) )
-    , ( Cards.LibraryStack, ( span [ title "Library", class "fltrslct-icon_wrapper" ] [ UI.Icon.library ], False ) )
-    ]
+    List.map modelHelper
+        [ ( Cards.AgendaStack, ( "Agenda", UI.Icon.agendaCard ) )
+        , ( Cards.HavenStack, ( "Haven", UI.Icon.haven ) )
+        , ( Cards.FactionStack, ( "Faction", UI.Icon.faction ) )
+        , ( Cards.LibraryStack, ( "Library", UI.Icon.library ) )
+        ]
 
 
 primaryTraits : Model Cards.Trait msg
 primaryTraits =
-    [ ( Cards.Action, ( span [ title "Action", class "fltrslct-icon_wrapper" ] [ UI.Icon.action ], False ) )
-    , ( Cards.UnhostedAction, ( span [ title "Unhosted Action", class "fltrslct-icon_wrapper" ] [ UI.Icon.unhostedAction ], False ) )
-    , ( Cards.Attack, ( span [ title "Attack" ] [ text "🗡️" ], False ) )
-    , ( Cards.Reaction, ( span [ title "Reaction" ] [ text "🛡️" ], False ) )
-    , ( Cards.InfluenceModifier, ( span [ title "Influence Modifier" ] [ text "🤝" ], False ) )
-    ]
+    List.map modelHelper
+        [ ( Cards.Action, ( "Action", UI.Icon.action ) )
+        , ( Cards.UnhostedAction, ( "Unhosted Action", UI.Icon.unhostedAction ) )
+        , ( Cards.Attack, ( "Attack", UI.Icon.attack ) )
+        , ( Cards.Reaction, ( "Reaction", UI.Icon.reaction ) )
+        , ( Cards.InfluenceModifier, ( "Influence Modifier", UI.Icon.influenceModifier ) )
+        ]
 
 
 secondaryTraits : Model Cards.Trait msg
@@ -78,6 +80,11 @@ disciplines =
     , ( Cards.BloodSorcery, ( UI.Icon.bloodSorcery, False ) )
     , ( Cards.ThinBloodAlchemy, ( UI.Icon.thinBloodAlchemy, False ) )
     ]
+
+
+modelHelper : ( a, ( String, Html msg ) ) -> ( a, ( Html msg, Bool ) )
+modelHelper ( a, ( b, c ) ) =
+    ( a, ( span [ title b, class "fltrslct-icon_wrapper" ] [ c ], False ) )
 
 
 type Msg value
