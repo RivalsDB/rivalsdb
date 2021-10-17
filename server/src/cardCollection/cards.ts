@@ -45,6 +45,7 @@ type Agenda = {
   set: CardSet;
   text: string;
   types: ["agenda"];
+  stack: "agenda";
 };
 
 type Haven = {
@@ -55,6 +56,7 @@ type Haven = {
   set: CardSet;
   text: string;
   types: ["haven"];
+  stack: "haven";
 };
 
 type Faction = {
@@ -71,6 +73,7 @@ type Faction = {
   set: CardSet;
   text: string;
   types: ["character"];
+  stack: "faction";
 };
 
 type Library = {
@@ -89,6 +92,7 @@ type Library = {
   text: string;
   types: LibraryCardType[];
   flavor?: string;
+  stack: "library";
 };
 
 export const cards: Array<Card> = [
@@ -105,6 +109,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-38-special",
     image: "https://www.rivalsdb.app/card/core-38-special.webp",
+    stack: "library",
   } as Library,
   {
     types: ["attack"],
@@ -122,6 +127,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-a-biting-comment",
     image: "https://www.rivalsdb.app/card/core-a-biting-comment.webp",
+    stack: "library",
   } as Library,
   {
     types: ["attack"],
@@ -136,6 +142,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-absolution",
     image: "https://www.rivalsdb.app/card/baa-absolution.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -151,6 +158,7 @@ export const cards: Array<Card> = [
     disciplines: ["auspex", "blood sorcery", "blood sorcery"],
     id: "baa-alejandro-lopez",
     image: "https://www.rivalsdb.app/card/baa-alejandro-lopez.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["attack"],
@@ -165,6 +173,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-all-the-angles",
     image: "https://www.rivalsdb.app/card/baa-all-the-angles.webp",
+    stack: "library",
   } as Library,
   {
     types: ["action", "conspiracy"],
@@ -172,7 +181,6 @@ export const cards: Array<Card> = [
     clan: "malkavian",
     name: "All Tied Up",
     text: "Play this card face down and place 1 prestige on it. If this card has 2+ prestige on it, you may resolve it during your turn. Target foe who did not contribute exhaust all of their characters.",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -181,6 +189,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-all-tied up",
     image: "https://www.rivalsdb.app/card/core-all-tied-up.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -196,6 +205,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-april-smith",
     image: "https://www.rivalsdb.app/card/baa-april-smith.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["haven"],
@@ -203,7 +213,6 @@ export const cards: Array<Card> = [
     damage: 0,
     shield: 0,
     text: "Characters in your Haven have +1 Secrecy. Leader Ability - At the end of your turn, if your Leader is exhausted, you may draw 1 card, the discard 1 card.",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -212,13 +221,13 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-artist-lofts",
     image: "https://www.rivalsdb.app/card/core-artist-lofts.webp",
+    stack: "haven",
   } as Haven,
   {
     types: ["unhosted action", "ongoing"],
     clan: "ventrue",
     name: "Assert Authority",
     text: "Ongoing - Your Leader has +1 Influence for each foe in the game.",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attackType: [],
@@ -228,6 +237,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-assert-authority",
     image: "https://www.rivalsdb.app/card/core-assert-authority.webp",
+    stack: "library",
   } as Library,
   {
     types: ["action", "alchemy"],
@@ -240,6 +250,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-athanor-corporis",
     image: "https://www.rivalsdb.app/card/baa-athanor-corporis.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -255,6 +266,7 @@ export const cards: Array<Card> = [
     disciplines: ["auspex", "auspex"],
     id: "baa-aurora-nix",
     image: "https://www.rivalsdb.app/card/baa-aurora-nix.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["attack"],
@@ -269,6 +281,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-baals-caress",
     image: "https://www.rivalsdb.app/card/baa-baals-caress.webp",
+    stack: "library",
   } as Library,
   {
     types: ["action"],
@@ -280,6 +293,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-back-to-formula",
     image: "https://www.rivalsdb.app/card/baa-back-to-formula.webp",
+    stack: "library",
   } as Library,
   {
     types: ["attack"],
@@ -298,6 +312,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-backhanded-compliment",
     image: "https://www.rivalsdb.app/card/core-backhanded-compliment.webp",
+    stack: "library",
   } as Library,
   {
     types: ["reaction"],
@@ -312,6 +327,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-backup",
     image: "https://www.rivalsdb.app/card/baa-backup.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -327,6 +343,7 @@ export const cards: Array<Card> = [
     disciplines: ["obfuscate", "obfuscate"],
     id: "core-bad-penny",
     image: "https://www.rivalsdb.app/card/core-bad-penny.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["action", "scheme"],
@@ -334,7 +351,6 @@ export const cards: Array<Card> = [
     clan: "toreador",
     name: "Balance of Power",
     text: "Choose at least hald of the players (including yourseld). Influence Conflict - Should each chosen player steal 1 Prestige from an unchosen player?",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -343,6 +359,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-balance-of-power",
     image: "https://www.rivalsdb.app/card/core-balance-of-power.webp",
+    stack: "library",
   } as Library,
   {
     types: ["agenda"],
@@ -350,7 +367,6 @@ export const cards: Array<Card> = [
     damage: 0,
     shield: 0,
     text: "When a character in your coterie attaches a Title, gain 2 Agenda. If you reach 13 Agenda, you win!",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -359,6 +375,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-base-of-power",
     image: "https://www.rivalsdb.app/card/core-base-of-power.webp",
+    stack: "agenda",
   } as Agenda,
   {
     types: ["attack", "reaction"],
@@ -377,13 +394,13 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-baseball-bat",
     image: "https://www.rivalsdb.app/card/core-baseball-bat.webp",
+    stack: "library",
   } as Library,
   {
     types: ["unhosted action", "ongoing"],
     clan: "toreador",
     name: "Beauty is a Beast",
     text: "Ongoing - During a Social attack against a City Deck Mortal, Exhaust: The attacker deals +1 damage to the target. ",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -393,6 +410,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-beauty-is-a-beast",
     image: "https://www.rivalsdb.app/card/core-beauty-is-a-beast.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -408,6 +426,7 @@ export const cards: Array<Card> = [
     disciplines: ["auspex", "celerity"],
     id: "core-bella-forte",
     image: "https://www.rivalsdb.app/card/core-bella-forte.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["character"],
@@ -423,6 +442,7 @@ export const cards: Array<Card> = [
     disciplines: ["celerity", "potence"],
     id: "core-beretta",
     image: "https://www.rivalsdb.app/card/core-beretta.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["action", "ongoing"],
@@ -430,7 +450,6 @@ export const cards: Array<Card> = [
     clan: "brujah",
     name: "Blood for Blood",
     text: "Ongoing - When a character in your coterie makes a physic attack, they have the ability Pay 1 blood: Deal +1 Damage to the target.",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -439,6 +458,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-blood-for-blood",
     image: "https://www.rivalsdb.app/card/core-blood-for-blood.webp",
+    stack: "library",
   } as Library,
   {
     types: ["action", "ritual", "ongoing"],
@@ -450,6 +470,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-blood-makes-noise",
     image: "https://www.rivalsdb.app/card/baa-blood-makes-noise.webp",
+    stack: "library",
   } as Library,
   {
     types: ["action"],
@@ -461,6 +482,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-blood-of-potency",
     image: "https://www.rivalsdb.app/card/baa-blood-of-potency.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -476,6 +498,7 @@ export const cards: Array<Card> = [
     disciplines: ["presence"],
     id: "core-bong-cha-park",
     image: "https://www.rivalsdb.app/card/core-bong-cha-park.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["attack"],
@@ -490,6 +513,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-break-down",
     image: "https://www.rivalsdb.app/card/baa-break-down.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -505,6 +529,7 @@ export const cards: Array<Card> = [
     disciplines: ["potence", "presence"],
     id: "core-brother",
     image: "https://www.rivalsdb.app/card/core-brother.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["character"],
@@ -520,6 +545,7 @@ export const cards: Array<Card> = [
     disciplines: ["dominate", "presence"],
     id: "core-bruno-wagner",
     image: "https://www.rivalsdb.app/card/core-bruno-wagner.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["character"],
@@ -535,13 +561,13 @@ export const cards: Array<Card> = [
     disciplines: ["celerity", "presence"],
     id: "core-bunny-benitez",
     image: "https://www.rivalsdb.app/card/core-bunny-benitez.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["action", "conspiracy"],
     attackType: [],
     name: "Burning Down the House",
     text: "Play this card face down and place 1 prestige on it. If this card has 3+ prestige on it, you may resolve it during your turn. Burn target Ongoing card controlled by a foe who did not contribute.",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -550,6 +576,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-burning-down-the-house",
     image: "https://www.rivalsdb.app/card/core-burning-down-the-house.webp",
+    stack: "library",
   } as Library,
   {
     types: ["action", "alchemy"],
@@ -562,6 +589,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-calcinatio",
     image: "https://www.rivalsdb.app/card/baa-calcinatio.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -577,6 +605,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-caleb-walker",
     image: "https://www.rivalsdb.app/card/baa-caleb-walker.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["character"],
@@ -592,6 +621,7 @@ export const cards: Array<Card> = [
     disciplines: ["thin-blood alchemy"],
     id: "baa-candi-liu",
     image: "https://www.rivalsdb.app/card/baa-candi-liu.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["character"],
@@ -607,6 +637,7 @@ export const cards: Array<Card> = [
     disciplines: ["blood sorcery"],
     id: "baa-claudia-sterling",
     image: "https://www.rivalsdb.app/card/baa-claudia-sterling.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["reaction"],
@@ -624,13 +655,13 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-cloak-of-shadows",
     image: "https://www.rivalsdb.app/card/core-cloak-of-shadows.webp",
+    stack: "library",
   } as Library,
   {
     types: ["action"],
     attackType: [],
     name: "Coup de Grâce",
     text: "Use only in The Streets. Potence pay 2 blood: Defeat target wounded character not in their Haven.",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -639,6 +670,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-coup-de-grace",
     image: "https://www.rivalsdb.app/card/core-coup-de-grace.webp",
+    stack: "library",
   } as Library,
   {
     types: ["attack"],
@@ -653,6 +685,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-crossbow",
     image: "https://www.rivalsdb.app/card/baa-crossbow.webp",
+    stack: "library",
   } as Library,
   {
     types: ["attack"],
@@ -667,6 +700,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-dangerous-mixture",
     image: "https://www.rivalsdb.app/card/baa-dangerous-mixture.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -682,6 +716,7 @@ export const cards: Array<Card> = [
     disciplines: ["auspex", "dominate"],
     id: "baa-darius-wolfe",
     image: "https://www.rivalsdb.app/card/baa-darius-wolfe.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["action", "ritual", "ongoing"],
@@ -693,6 +728,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-defense-of-the-sacred-haven",
     image: "https://www.rivalsdb.app/card/baa-defense-of-the-sacred-haven.webp",
+    stack: "library",
   } as Library,
   {
     types: ["attack"],
@@ -710,13 +746,13 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-demand-obedience",
     image: "https://www.rivalsdb.app/card/core-demand-obedience.webp",
+    stack: "library",
   } as Library,
   {
     types: ["action", "conspiracy"],
     attackType: [],
     name: "Destroy the Plans",
     text: "Play this card face down and place 1 prestige on it. If this card has 3+ prestige on it, you may resolve it during your turn. Target foe who did not contribute discards 3 cards.",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -725,6 +761,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-destroy-the-plans",
     image: "https://www.rivalsdb.app/card/core-destroy-the-plans.webp",
+    stack: "library",
   } as Library,
   {
     types: ["reaction"],
@@ -743,6 +780,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-dignity-of-the-office",
     image: "https://www.rivalsdb.app/card/core-dignity-of-the-office.webp",
+    stack: "library",
   } as Library,
   {
     types: ["action", "ongoing"],
@@ -750,7 +788,6 @@ export const cards: Array<Card> = [
     clan: "malkavian",
     name: "Distraction",
     text: "Ongoing - Discard this card: Redirect up to 2 Second Inquisition damage you would take during your End Phase to target foe.",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -759,6 +796,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-distraction",
     image: "https://www.rivalsdb.app/card/core-distraction.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -774,6 +812,7 @@ export const cards: Array<Card> = [
     disciplines: ["auspex", "obfuscate"],
     id: "core-doc",
     image: "https://www.rivalsdb.app/card/core-doc.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["haven"],
@@ -781,7 +820,6 @@ export const cards: Array<Card> = [
     damage: 0,
     shield: 0,
     text: "Characters in your Haven have +1 Secrecy. Leader Ability - If ready, you may move your Leader to The Streets to Block any attack and gain 1 Prestige.",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -790,6 +828,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-dragons-roost",
     image: "https://www.rivalsdb.app/card/core-dragons-roost.webp",
+    stack: "haven",
   } as Haven,
   {
     types: ["agenda"],
@@ -797,7 +836,6 @@ export const cards: Array<Card> = [
     damage: 0,
     shield: 0,
     text: "When a character you attack takes 1+ non-Aggravated damage but is not defeated, gain 1 Agenda. If you reach 13 Agenda, you win!",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -806,6 +844,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-drain-them-slowly",
     image: "https://www.rivalsdb.app/card/core-drain-them-slowly.webp",
+    stack: "agenda",
   } as Agenda,
   {
     types: ["attack"],
@@ -824,6 +863,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-drive-by",
     image: "https://www.rivalsdb.app/card/core-drive-by.webp",
+    stack: "library",
   } as Library,
   {
     types: ["action"],
@@ -831,7 +871,6 @@ export const cards: Array<Card> = [
     clan: "malkavian",
     name: "Dumpster Dive",
     text: "Put a card from your discard pile into your hand. If your coterie has 2+ Auspex, draw 1 card.",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -840,12 +879,12 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-dumpster-dive",
     image: "https://www.rivalsdb.app/card/core-dumpster-dive.webp",
+    stack: "library",
   } as Library,
   {
     types: ["unhosted action", "ongoing"],
     name: "Emergency Bloodbag",
     text: "Add 3 blood from the general supply to this card. Ongoing - At the start of your turn, you may place a token from this card onto a Wounded character in your coterie or in torpor. When empty, burn this card.",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -855,6 +894,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-emergency-bloodbag",
     image: "https://www.rivalsdb.app/card/core-emergency-bloodbag.webp",
+    stack: "library",
   } as Library,
   {
     types: ["action"],
@@ -867,6 +907,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-enervate",
     image: "https://www.rivalsdb.app/card/baa-enervate.webp",
+    stack: "library",
   } as Library,
   {
     types: ["action"],
@@ -878,13 +919,13 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-envelop",
     image: "https://www.rivalsdb.app/card/baa-envelop.webp",
+    stack: "library",
   } as Library,
   {
     types: ["action"],
     attackType: [],
     name: "Everything is Connected",
     text: "If you have Auspex in your coterie, add 1 Prestige from the general supply to each face-down card you control.",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -893,6 +934,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-everything-is-connected",
     image: "https://www.rivalsdb.app/card/core-everything-is-connected.webp",
+    stack: "library",
   } as Library,
   {
     types: ["action"],
@@ -904,6 +946,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-extinguish-vitae",
     image: "https://www.rivalsdb.app/card/baa-extinguish-vitae.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -919,6 +962,7 @@ export const cards: Array<Card> = [
     disciplines: ["auspex", "blood sorcery"],
     id: "baa-faith-gray",
     image: "https://www.rivalsdb.app/card/baa-faith-gray.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["action", "scheme"],
@@ -926,7 +970,6 @@ export const cards: Array<Card> = [
     clan: "toreador",
     name: "Fame & Fortune",
     text: "Influence Conflict - Should I gain 2 Prestige and 1 Agenda?",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -935,6 +978,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-fame-and-fortune",
     image: "https://www.rivalsdb.app/card/core-fame-and-fortune.webp",
+    stack: "library",
   } as Library,
   {
     types: ["action"],
@@ -946,6 +990,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-far-reach",
     image: "https://www.rivalsdb.app/card/baa-far-reach.webp",
+    stack: "library",
   } as Library,
   {
     types: ["attack"],
@@ -964,6 +1009,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-faulty-logic",
     image: "https://www.rivalsdb.app/card/core-faulty-logic.webp",
+    stack: "library",
   } as Library,
   {
     types: ["attack"],
@@ -978,12 +1024,12 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-first-ones-free",
     image: "https://www.rivalsdb.app/card/baa-first-ones-free.webp",
+    stack: "library",
   } as Library,
   {
     types: ["unhosted action", "ongoing"],
     name: "First Tradition: The Masquerade",
     text: "Pay 2 prestige. Ongoing - Your vampires outside your Haven have +1 Secrecy. If you defeat 2 Mortals during a single turn, burn this card.",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attackType: [],
@@ -994,6 +1040,7 @@ export const cards: Array<Card> = [
     id: "core-first-tradition-the-masquerade",
     image:
       "https://www.rivalsdb.app/card/core-first-tradition-the-masquerade.webp",
+    stack: "library",
   } as Library,
   {
     types: ["action", "alchemy"],
@@ -1006,6 +1053,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-fixatio",
     image: "https://www.rivalsdb.app/card/baa-fixatio.webp",
+    stack: "library",
   } as Library,
   {
     types: ["reaction"],
@@ -1019,6 +1067,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-fleetness",
     image: "https://www.rivalsdb.app/card/core-fleetness.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -1034,6 +1083,7 @@ export const cards: Array<Card> = [
     disciplines: ["presence"],
     id: "core-flick",
     image: "https://www.rivalsdb.app/card/core-flick.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["attack"],
@@ -1051,13 +1101,13 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-fragmented-mind",
     image: "https://www.rivalsdb.app/card/core-fragmented-mind.webp",
+    stack: "library",
   } as Library,
   {
     types: ["action", "scheme"],
     attackType: [],
     name: "Free Money",
     text: "Influence Conflict - Should each plater gain 3 Prestige?",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -1066,6 +1116,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-free-money",
     image: "https://www.rivalsdb.app/card/core-free-money.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -1081,6 +1132,7 @@ export const cards: Array<Card> = [
     disciplines: ["thin-blood alchemy"],
     id: "baa-frog",
     image: "https://www.rivalsdb.app/card/baa-frog.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["attack"],
@@ -1098,6 +1150,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-gang-up",
     image: "https://www.rivalsdb.app/card/core-gang-up.webp",
+    stack: "library",
   } as Library,
   {
     types: ["action", "scheme"],
@@ -1105,7 +1158,6 @@ export const cards: Array<Card> = [
     clan: "ventrue",
     name: "Greed",
     text: "Influence Conflict - Should I gain 2 Agenda?",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -1114,6 +1166,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-greed",
     image: "https://www.rivalsdb.app/card/core-greed.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -1129,6 +1182,7 @@ export const cards: Array<Card> = [
     disciplines: ["blood sorcery", "dominate"],
     id: "baa-grigori",
     image: "https://www.rivalsdb.app/card/baa-grigori.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["character"],
@@ -1144,6 +1198,7 @@ export const cards: Array<Card> = [
     disciplines: ["auspex", "dominate"],
     id: "core-guvnah",
     image: "https://www.rivalsdb.app/card/core-guvnah.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["reaction", "special"],
@@ -1158,12 +1213,12 @@ export const cards: Array<Card> = [
     attackType: [],
     id: "baa-haze",
     image: "https://www.rivalsdb.app/card/baa-haze.webp",
+    stack: "library",
   } as Library,
   {
     types: ["influence modifier"],
     name: "Hedge Your Bets",
     text: "Gain 2 Influence during this action or event. If this is a Scheme and it fails, gain 1 agenda.",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attackType: [],
@@ -1173,6 +1228,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-hedge-your-bets",
     image: "https://www.rivalsdb.app/card/core-hedge-your-bets.webp",
+    stack: "library",
   } as Library,
   {
     types: ["reaction", "special"],
@@ -1187,6 +1243,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-heightened-senses",
     image: "https://www.rivalsdb.app/card/baa-heightened-senses.webp",
+    stack: "library",
   } as Library,
   {
     types: ["action", "title"],
@@ -1202,14 +1259,15 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-herald",
     image: "https://www.rivalsdb.app/card/core-herald.webp",
+    stack: "library",
   } as Library,
   {
+    bloodPotency: 0,
     types: ["attack"],
     name: "Holdout Dagger",
     damage: 0,
     shield: 0,
     text: "+1 Damage for each Obfuscate in this party.",
-    bloodPotency: 0,
     attackType: ["physical"],
     attributePhysical: 0,
     attributeSocial: 0,
@@ -1219,6 +1277,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-holdout-dagger",
     image: "https://www.rivalsdb.app/card/core-holdout-dagger.webp",
+    stack: "library",
   } as Library,
   {
     types: ["haven"],
@@ -1226,7 +1285,6 @@ export const cards: Array<Card> = [
     damage: 0,
     shield: 0,
     text: "Characters in your Haven have +1 Secrecy. Leader Ability - Attacker - Discard 1 card: Your Leader deals +1 Damage to the target.",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -1235,6 +1293,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-house-of-pain",
     image: "https://www.rivalsdb.app/card/core-house-of-pain.webp",
+    stack: "haven",
   } as Haven,
   {
     types: ["character"],
@@ -1250,6 +1309,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-hua-jiang",
     image: "https://www.rivalsdb.app/card/baa-hua-jiang.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["character"],
@@ -1265,6 +1325,7 @@ export const cards: Array<Card> = [
     disciplines: ["dominate"],
     id: "core-humberto-garcia",
     image: "https://www.rivalsdb.app/card/core-humberto-garcia.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["attack", "reaction"],
@@ -1282,6 +1343,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-humiliate",
     image: "https://www.rivalsdb.app/card/core-humiliate.webp",
+    stack: "library",
   } as Library,
   {
     types: ["agenda"],
@@ -1289,7 +1351,6 @@ export const cards: Array<Card> = [
     damage: 0,
     shield: 0,
     text: "Shuffle defeated Second Inquisition into the City Deck. The first time you defeat or burn a Second Inquisition during each of your turns, gain 1 Prestige and 1 Agenda. If you reach 13 Agenda, you win!",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -1298,6 +1359,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-hunt-the-hunters",
     image: "https://www.rivalsdb.app/card/core-hunt-the-hunters.webp",
+    stack: "agenda",
   } as Agenda,
   {
     types: ["character"],
@@ -1313,6 +1375,7 @@ export const cards: Array<Card> = [
     disciplines: ["celerity", "potence", "presence"],
     id: "core-hydra",
     image: "https://www.rivalsdb.app/card/core-hydra.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["attack"],
@@ -1330,12 +1393,12 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-incite-rebellion",
     image: "https://www.rivalsdb.app/card/core-incite-rebellion.webp",
+    stack: "library",
   } as Library,
   {
     types: ["unhosted action", "ongoing"],
     name: "Influencer",
     text: "Pay 1 prestige. Ongoing - Each character with Presence in your coterie has +1 Influence.",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -1345,6 +1408,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-influencer",
     image: "https://www.rivalsdb.app/card/core-influencer.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -1360,15 +1424,16 @@ export const cards: Array<Card> = [
     disciplines: ["dominate", "obfuscate"],
     id: "core-inmate-745943",
     image: "https://www.rivalsdb.app/card/core-inmate-745943.webp",
+    stack: "faction",
   } as Faction,
   {
+    bloodPotency: 0,
     types: ["reaction"],
     clan: "malkavian",
     name: "Insanity Defense",
     damage: 0,
     shield: 2,
     text: "Additional +1 Defense against Mental attacks.",
-    bloodPotency: 0,
     attackType: ["physical", "social", "mental"],
     attributePhysical: 0,
     attributeSocial: 0,
@@ -1378,6 +1443,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-insanity-defense",
     image: "https://www.rivalsdb.app/card/core-insanity-defense.webp",
+    stack: "library",
   } as Library,
   {
     types: ["attack"],
@@ -1392,6 +1458,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-intimidation",
     image: "https://www.rivalsdb.app/card/baa-intimidation.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -1407,6 +1474,7 @@ export const cards: Array<Card> = [
     disciplines: ["auspex"],
     id: "core-iris-lokken",
     image: "https://www.rivalsdb.app/card/core-iris-lokken.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["attack"],
@@ -1424,6 +1492,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-irresistible-voice",
     image: "https://www.rivalsdb.app/card/core-irresistible-voice.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -1439,6 +1508,7 @@ export const cards: Array<Card> = [
     disciplines: ["thin-blood alchemy"],
     id: "baa-jacob-frost",
     image: "https://www.rivalsdb.app/card/baa-jacob-frost.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["character"],
@@ -1454,6 +1524,7 @@ export const cards: Array<Card> = [
     disciplines: ["obfuscate"],
     id: "core-jesus",
     image: "https://www.rivalsdb.app/card/core-jesus.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["character"],
@@ -1469,6 +1540,7 @@ export const cards: Array<Card> = [
     disciplines: ["auspex"],
     id: "core-john-kartunen",
     image: "https://www.rivalsdb.app/card/core-john-kartunen.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["character"],
@@ -1484,6 +1556,7 @@ export const cards: Array<Card> = [
     disciplines: ["presence", "presence"],
     id: "core-johnny",
     image: "https://www.rivalsdb.app/card/core-johnny.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["character"],
@@ -1499,6 +1572,7 @@ export const cards: Array<Card> = [
     disciplines: ["thin-blood alchemy"],
     id: "baa-joseph-drake",
     image: "https://www.rivalsdb.app/card/baa-joseph-drake.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["character"],
@@ -1514,6 +1588,7 @@ export const cards: Array<Card> = [
     disciplines: ["presence"],
     id: "core-june-bryant",
     image: "https://www.rivalsdb.app/card/core-june-bryant.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["character"],
@@ -1529,6 +1604,7 @@ export const cards: Array<Card> = [
     disciplines: ["auspex"],
     id: "core-karma",
     image: "https://www.rivalsdb.app/card/core-karma.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["action", "title"],
@@ -1544,6 +1620,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-keeper-of-elysium",
     image: "https://www.rivalsdb.app/card/core-keeper-of-elysium.webp",
+    stack: "library",
   } as Library,
   {
     types: ["attack"],
@@ -1561,6 +1638,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-kneecapped",
     image: "https://www.rivalsdb.app/card/core-kneecapped.webp",
+    stack: "library",
   } as Library,
   {
     types: ["attack"],
@@ -1578,6 +1656,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-know-your-place",
     image: "https://www.rivalsdb.app/card/core-know-your-place.webp",
+    stack: "library",
   } as Library,
   {
     types: ["agenda"],
@@ -1588,13 +1667,13 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-knowledge-is-power",
     image: "https://www.rivalsdb.app/card/baa-knowledge-is-power.webp",
+    stack: "agenda",
   } as Agenda,
   {
     types: ["action"],
     attackType: [],
     name: "Late-Night Snack",
     text: "For each Fortitude in your coterie, mend 1 blood on a character in your coterie or in torpor",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -1603,6 +1682,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-late-night-snack",
     image: "https://www.rivalsdb.app/card/core-late-night-snack.webp",
+    stack: "library",
   } as Library,
   {
     types: ["attack"],
@@ -1620,6 +1700,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-lightning-strike",
     image: "https://www.rivalsdb.app/card/core-lightning-strike.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -1635,6 +1716,7 @@ export const cards: Array<Card> = [
     disciplines: ["auspex", "celerity", "presence"],
     id: "core-lixue-chen",
     image: "https://www.rivalsdb.app/card/core-lixue-chen.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["character"],
@@ -1650,6 +1732,7 @@ export const cards: Array<Card> = [
     disciplines: ["celerity", "presence"],
     id: "core-liza-holt",
     image: "https://www.rivalsdb.app/card/core-liza-holt.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["character"],
@@ -1665,6 +1748,7 @@ export const cards: Array<Card> = [
     disciplines: ["dominate"],
     id: "core-lolita",
     image: "https://www.rivalsdb.app/card/core-lolita.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["action", "ongoing"],
@@ -1672,7 +1756,6 @@ export const cards: Array<Card> = [
     clan: "ventrue",
     name: "Long-Term Investment",
     text: "Pay 1 to 3 Prestige: Add double that amount of Prestige from the general supply to this card. Ongoing - At the start of your turn, gain 1 Prestige from this card. When empty, burn this card.",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -1681,6 +1764,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-long-term-investment",
     image: "https://www.rivalsdb.app/card/core-long-term-investment.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -1696,13 +1780,13 @@ export const cards: Array<Card> = [
     disciplines: ["blood sorcery"],
     id: "baa-lorenzo-murik",
     image: "https://www.rivalsdb.app/card/baa-lorenzo-murik.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["action", "conspiracy"],
     attackType: [],
     name: "Lost Glory",
     text: "Play this card face down and place 1 prestige on it. If this card has 4+ prestige on it, you may resolve it during your turn. Target foe who did not contribute loses 1 agenda. If they have 9+ agenda, they lose 2 agenda instead.",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -1711,6 +1795,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-lost-glory",
     image: "https://www.rivalsdb.app/card/core-lost-glory.webp",
+    stack: "library",
   } as Library,
   {
     types: ["agenda"],
@@ -1718,7 +1803,6 @@ export const cards: Array<Card> = [
     damage: 0,
     shield: 0,
     text: "WHen a Scheme you play suceeds, gain 1 Agenda. If you reach 13 Agenda, you win!",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -1727,13 +1811,13 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-manipulate-the-masses",
     image: "https://www.rivalsdb.app/card/core-manipulate-the-masses.webp",
+    stack: "agenda",
   } as Agenda,
   {
     types: ["unhosted action"],
     clan: "ventrue",
     name: "Marked Man",
     text: "Put 1 Agenda from the general supply onto any character. If a player defeats them, they gain that agenda.",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -1743,13 +1827,13 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-marked-man",
     image: "https://www.rivalsdb.app/card/core-marked-man.webp",
+    stack: "library",
   } as Library,
   {
     types: ["action", "scheme"],
     attackType: [],
     name: "Mercy",
     text: "Influence Conflict - Should each player mend 4 blood on a character in their coterie or in torpor?",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -1758,6 +1842,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-mercy",
     image: "https://www.rivalsdb.app/card/core-mercy.webp",
+    stack: "library",
   } as Library,
   {
     types: ["attack"],
@@ -1772,6 +1857,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-mesmerize",
     image: "https://www.rivalsdb.app/card/baa-mesmerize.webp",
+    stack: "library",
   } as Library,
   {
     types: ["attack"],
@@ -1789,6 +1875,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-molotov-cocktail",
     image: "https://www.rivalsdb.app/card/core-molotov-cocktail.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -1804,6 +1891,7 @@ export const cards: Array<Card> = [
     disciplines: ["fortitude", "fortitude"],
     id: "core-montgomery-white",
     image: "https://www.rivalsdb.app/card/core-montgomery-white.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["character"],
@@ -1819,6 +1907,7 @@ export const cards: Array<Card> = [
     disciplines: ["auspex", "presence"],
     id: "core-muhammad-zadeh",
     image: "https://www.rivalsdb.app/card/core-muhammad-zadeh.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["character"],
@@ -1834,6 +1923,7 @@ export const cards: Array<Card> = [
     disciplines: ["presence"],
     id: "core-nancy-witt",
     image: "https://www.rivalsdb.app/card/core-nancy-witt.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["haven"],
@@ -1841,7 +1931,6 @@ export const cards: Array<Card> = [
     damage: 0,
     shield: 0,
     text: "Characters in your Haven have +1 Secrecy. Leader Ability - Once during each player's turn, you may place a card fro your hand with 1-3 Blood Potence as an Influence Modifier. When revealed, gain Influence equal to the card's Blood Potence value.",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -1850,6 +1939,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-old-post-office",
     image: "https://www.rivalsdb.app/card/core-old-post-office.webp",
+    stack: "haven",
   } as Haven,
   {
     types: ["action", "conspiracy"],
@@ -1861,20 +1951,22 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-out-of-time",
     image: "https://www.rivalsdb.app/card/baa-out-of-time.webp",
+    stack: "library",
   } as Library,
   {
+    bloodPotency: 0,
     types: ["attack"],
     name: "Peer Pressure",
     damage: 0,
     shield: 0,
     text: "+1 Damage for every 2 characters in this party (including this character).",
-    bloodPotency: 0,
     attackType: ["social"],
     illustrator: "Mara Miranda",
     set: "Blood & Alchemy",
     disciplines: [],
     id: "baa-peer-pressure",
     image: "https://www.rivalsdb.app/card/baa-peer-pressure.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -1890,6 +1982,7 @@ export const cards: Array<Card> = [
     disciplines: ["blood sorcery", "dominate"],
     id: "baa-phuoc-dihn",
     image: "https://www.rivalsdb.app/card/baa-phuoc-dihn.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["agenda"],
@@ -1897,7 +1990,6 @@ export const cards: Array<Card> = [
     damage: 0,
     shield: 0,
     text: "When a character in your coterie attaches a Citizen Retainer, gain 1 Agenda. If you reach 13 Agenda, you win!",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -1906,6 +1998,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-playthings",
     image: "https://www.rivalsdb.app/card/core-playthings.webp",
+    stack: "agenda",
   } as Agenda,
   {
     types: ["attack"],
@@ -1923,13 +2016,13 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-power-play",
     image: "https://www.rivalsdb.app/card/core-power-play.webp",
+    stack: "library",
   } as Library,
   {
     types: ["unhosted action", "ongoing"],
     clan: "toreador",
     name: "PR Firm",
     text: "Ongoing - When a Scheme you play suceeds, you may Pay 1 prestige: Gain 1 agenda.",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -1939,6 +2032,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-pr-firm",
     image: "https://www.rivalsdb.app/card/core-pr-firm.webp",
+    stack: "library",
   } as Library,
   {
     types: ["unhosted action"],
@@ -1950,6 +2044,7 @@ export const cards: Array<Card> = [
     attackType: [],
     id: "baa-premonition",
     image: "https://www.rivalsdb.app/card/baa-premonition.webp",
+    stack: "library",
   } as Library,
   {
     types: ["action", "title"],
@@ -1965,6 +2060,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-primogen",
     image: "https://www.rivalsdb.app/card/core-primogen.webp",
+    stack: "library",
   } as Library,
   {
     types: ["unhosted action", "scheme"],
@@ -1976,6 +2072,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-rain-of-blood",
     image: "https://www.rivalsdb.app/card/baa-rain-of-blood.webp",
+    stack: "library",
   } as Library,
   {
     types: ["attack"],
@@ -1993,6 +2090,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-rain-on-your-parade",
     image: "https://www.rivalsdb.app/card/core-rain-on-your-parade.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -2008,6 +2106,7 @@ export const cards: Array<Card> = [
     disciplines: ["dominate", "fortitude", "presence"],
     id: "core-randolph-marz",
     image: "https://www.rivalsdb.app/card/core-randolph-marz.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["agenda"],
@@ -2018,6 +2117,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-recruitment-drive",
     image: "https://www.rivalsdb.app/card/baa-recruitment-drive.webp",
+    stack: "agenda",
   } as Agenda,
   {
     types: ["agenda"],
@@ -2028,6 +2128,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-rites-of-the-blood",
     image: "https://www.rivalsdb.app/card/baa-rites-of-the-blood.webp",
+    stack: "agenda",
   } as Agenda,
   {
     types: ["haven"],
@@ -2035,7 +2136,6 @@ export const cards: Array<Card> = [
     damage: 0,
     shield: 0,
     text: "Characters in your Haven have +1 Secrecy. Leader Ability - Characters with a Title in your coterie have +1 Influence. Discard an unattached City Deck Mortal in The Streets: Add a new card to The Streets.",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -2044,6 +2144,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-royal-retreat",
     image: "https://www.rivalsdb.app/card/core-royal-retreat.webp",
+    stack: "haven",
   } as Haven,
   {
     types: ["action"],
@@ -2051,7 +2152,6 @@ export const cards: Array<Card> = [
     clan: "ventrue",
     name: "Royal Review",
     text: "Gain 1 Prestige for each Title in your coterie.",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -2060,6 +2160,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-royal-review",
     image: "https://www.rivalsdb.app/card/core-royal-review.webp",
+    stack: "library",
   } as Library,
   {
     types: ["attack"],
@@ -2077,6 +2178,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-scoped-30-06",
     image: "https://www.rivalsdb.app/card/core-scoped-30-06.webp",
+    stack: "library",
   } as Library,
   {
     types: ["attack"],
@@ -2091,6 +2193,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-scorpions-touch",
     image: "https://www.rivalsdb.app/card/baa-scorpions-touch.webp",
+    stack: "library",
   } as Library,
   {
     types: ["attack"],
@@ -2108,12 +2211,12 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-scry-the-soul",
     image: "https://www.rivalsdb.app/card/core-scry-the-soul.webp",
+    stack: "library",
   } as Library,
   {
     types: ["unhosted action", "ongoing"],
     name: "Search Engine",
     text: "Ongoing - Exhaust: If you have Auspex in your coterie, look at the top card of your Library or Faction Deck. Leave it or move it to the bottom of the deck.",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -2123,6 +2226,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-search-engine",
     image: "https://www.rivalsdb.app/card/core-search-engine.webp",
+    stack: "library",
   } as Library,
   {
     types: ["attack"],
@@ -2140,6 +2244,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-seduction",
     image: "https://www.rivalsdb.app/card/core-seduction.webp",
+    stack: "library",
   } as Library,
   {
     types: ["action", "ritual", "ongoing"],
@@ -2152,6 +2257,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-seek-knowledge",
     image: "https://www.rivalsdb.app/card/baa-seek-knowledge.webp",
+    stack: "library",
   } as Library,
   {
     types: ["action", "title"],
@@ -2167,6 +2273,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-seneschal",
     image: "https://www.rivalsdb.app/card/core-seneschal.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -2182,6 +2289,7 @@ export const cards: Array<Card> = [
     disciplines: ["celerity", "presence"],
     id: "core-shades",
     image: "https://www.rivalsdb.app/card/core-shades.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["action", "title"],
@@ -2197,6 +2305,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-sheriff",
     image: "https://www.rivalsdb.app/card/core-sheriff.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -2212,6 +2321,7 @@ export const cards: Array<Card> = [
     disciplines: ["potence"],
     id: "core-skunk",
     image: "https://www.rivalsdb.app/card/core-skunk.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["reaction"],
@@ -2229,6 +2339,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-slap-in-the-face",
     image: "https://www.rivalsdb.app/card/core-slap-in-the-face.webp",
+    stack: "library",
   } as Library,
   {
     types: ["action", "ritual", "ongoing"],
@@ -2240,6 +2351,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-sleep-of-the-damned",
     image: "https://www.rivalsdb.app/card/baa-sleep-of-the-damned.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -2255,6 +2367,7 @@ export const cards: Array<Card> = [
     disciplines: ["celerity"],
     id: "xxx-smoke",
     image: "https://www.rivalsdb.app/card/xxx-smoke.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["action"],
@@ -2262,7 +2375,6 @@ export const cards: Array<Card> = [
     clan: "brujah",
     name: "Smoke 'Em Out",
     text: "Use only in The Streets. Move all characters from target Haven to The Streets. Deal 1 Aggravated Damage to each exhausted character moved this way.",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -2271,6 +2383,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-smoke-em-out",
     image: "https://www.rivalsdb.app/card/core-smoke-em-out.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -2286,6 +2399,7 @@ export const cards: Array<Card> = [
     disciplines: ["auspex", "blood sorcery", "dominate"],
     id: "baa-sonja-valentine",
     image: "https://www.rivalsdb.app/card/baa-sonja-valentine.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["reaction"],
@@ -2304,6 +2418,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-steal-the-spotlight",
     image: "https://www.rivalsdb.app/card/core-steal-the-spotlight.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -2319,6 +2434,7 @@ export const cards: Array<Card> = [
     disciplines: ["fortitude", "presence"],
     id: "core-stevie-osborn",
     image: "https://www.rivalsdb.app/card/core-stevie-osborn.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["agenda"],
@@ -2329,6 +2445,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-street-brew",
     image: "https://www.rivalsdb.app/card/baa-street-brew.webp",
+    stack: "agenda",
   } as Agenda,
   {
     types: ["character"],
@@ -2344,6 +2461,7 @@ export const cards: Array<Card> = [
     disciplines: ["auspex"],
     id: "core-street-preacher",
     image: "https://www.rivalsdb.app/card/core-street-preacher.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["agenda"],
@@ -2351,7 +2469,6 @@ export const cards: Array<Card> = [
     damage: 0,
     shield: 0,
     text: "At the start of your turn, if you control 3 characters in The Streets, gain 1 Agenda. If you control 4+ characters each with 2+ Blood in The Streets, gain 2 Agenda instead. If you reach 13 agenda, you win!",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -2360,6 +2477,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-strength-in-numbers",
     image: "https://www.rivalsdb.app/card/core-strength-in-numbers.webp",
+    stack: "agenda",
   } as Agenda,
   {
     types: ["attack"],
@@ -2378,6 +2496,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-sucker-punch",
     image: "https://www.rivalsdb.app/card/core-sucker-punch.webp",
+    stack: "library",
   } as Library,
   {
     types: ["action"],
@@ -2390,6 +2509,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-sunrise-surprise",
     image: "https://www.rivalsdb.app/card/baa-sunrise-surprise.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -2405,6 +2525,7 @@ export const cards: Array<Card> = [
     disciplines: ["celerity"],
     id: "core-sweetums",
     image: "https://www.rivalsdb.app/card/core-sweetums.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["attack"],
@@ -2423,6 +2544,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-terrorize",
     image: "https://www.rivalsdb.app/card/core-terrorize.webp",
+    stack: "library",
   } as Library,
   {
     types: ["haven"],
@@ -2433,6 +2555,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-the-chantry",
     image: "https://www.rivalsdb.app/card/baa-the-chantry.webp",
+    stack: "haven",
   } as Haven,
   {
     types: ["character"],
@@ -2448,6 +2571,7 @@ export const cards: Array<Card> = [
     disciplines: ["celerity", "potence"],
     id: "core-the-cossack",
     image: "https://www.rivalsdb.app/card/core-the-cossack.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["haven"],
@@ -2455,7 +2579,6 @@ export const cards: Array<Card> = [
     damage: 0,
     shield: 0,
     text: "Characters in your Haven have +1 Secrecy. Leader Ability - Each time your Leader would take +1 Damage, you may discard 1 card to prevent 1 Damage.",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -2464,6 +2587,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-the-dockyards",
     image: "https://www.rivalsdb.app/card/core-the-dockyards.webp",
+    stack: "haven",
   } as Haven,
   {
     types: ["agenda"],
@@ -2471,7 +2595,6 @@ export const cards: Array<Card> = [
     damage: 0,
     shield: 0,
     text: "The first time you resolve a Conspiracy during each of your turns, gain 1 Prestige and 2 Agenda. If you reach 13 Agenda, you win!",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -2480,12 +2603,12 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-the-end-is-nigh",
     image: "https://www.rivalsdb.app/card/core-the-end-is-nigh.webp",
+    stack: "agenda",
   } as Agenda,
   {
     types: ["influence modifier"],
     name: "The Last Word",
     text: "Gain 5 Influence during this action or event. If this is a Scheme and your side wins, gain 1 prestige.",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -2495,6 +2618,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-the-last-word",
     image: "https://www.rivalsdb.app/card/core-the-last-word.webp",
+    stack: "library",
   } as Library,
   {
     types: ["haven"],
@@ -2502,7 +2626,6 @@ export const cards: Array<Card> = [
     damage: 0,
     shield: 0,
     text: "Characters in your Haven have +1 Secrecy. Leader Ability - Exhaust your Leader, Discard 1 card: Add 1 Prestige from the general supply to a face-down card you control.",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -2511,6 +2634,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-the-madhouse",
     image: "https://www.rivalsdb.app/card/core-the-madhouse.webp",
+    stack: "haven",
   } as Haven,
   {
     types: ["attack", "reaction"],
@@ -2528,6 +2652,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-the-mighty-fall",
     image: "https://www.rivalsdb.app/card/core-the-mighty-fall.webp",
+    stack: "library",
   } as Library,
   {
     types: ["haven"],
@@ -2535,7 +2660,6 @@ export const cards: Array<Card> = [
     damage: 0,
     shield: 0,
     text: "Characters in your Haven have +1 Secrecy. Leader Ability - When a character in your coterie attaches a Retainer, that character mends 1 Blood.",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -2544,6 +2668,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-the-penthouse",
     image: "https://www.rivalsdb.app/card/core-the-penthouse.webp",
+    stack: "haven",
   } as Haven,
   {
     types: ["haven"],
@@ -2554,6 +2679,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-the-pit",
     image: "https://www.rivalsdb.app/card/baa-the-pit.webp",
+    stack: "haven",
   } as Haven,
   {
     types: ["unhosted action", "ongoing"],
@@ -2561,7 +2687,6 @@ export const cards: Array<Card> = [
     name: "The Spoils",
     text: "Ongoing - When an attacker in your coterie defeats another character, each character in the attacker's party mend 1 blood.",
     attackType: [],
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -2570,6 +2695,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-the-spoils",
     image: "https://www.rivalsdb.app/card/core-the-spoils.webp",
+    stack: "library",
   } as Library,
   {
     types: ["action"],
@@ -2581,6 +2707,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-theft-of-vitae",
     image: "https://www.rivalsdb.app/card/baa-theft-of-vitae.webp",
+    stack: "library",
   } as Library,
   {
     types: ["unhosted action", "ongoing"],
@@ -2592,6 +2719,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-third-tradition-the-progeny",
     image: "https://www.rivalsdb.app/card/baa-third-tradition-the-progeny.webp",
+    stack: "library",
   } as Library,
   {
     types: ["haven"],
@@ -2602,6 +2730,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-thrift-store",
     image: "https://www.rivalsdb.app/card/baa-thrift-store.webp",
+    stack: "haven",
   } as Haven,
   {
     types: ["attack"],
@@ -2619,6 +2748,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-throat-rip",
     image: "https://www.rivalsdb.app/card/core-throat-rip.webp",
+    stack: "library",
   } as Library,
   {
     types: ["agenda"],
@@ -2626,7 +2756,6 @@ export const cards: Array<Card> = [
     damage: 0,
     shield: 0,
     text: "When you defeat a non-Rival character, gain 1 Agenda. When you defeat a character with 5+ Blood, gain 1 Agenda. If you reach 13 agenda, you win!",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -2635,6 +2764,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-turf-war",
     image: "https://www.rivalsdb.app/card/core-turf-war.webp",
+    stack: "agenda",
   } as Agenda,
   {
     types: ["action", "ritual", "ongoing"],
@@ -2646,6 +2776,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-truth-of-blood",
     image: "https://www.rivalsdb.app/card/baa-truth-of-blood.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -2661,6 +2792,7 @@ export const cards: Array<Card> = [
     disciplines: ["presence"],
     id: "core-ty-smith",
     image: "https://www.rivalsdb.app/card/core-ty-smith.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["attack"],
@@ -2679,6 +2811,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-unhinged",
     image: "https://www.rivalsdb.app/card/core-unhinged.webp",
+    stack: "library",
   } as Library,
   {
     types: ["haven"],
@@ -2689,6 +2822,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-university-library",
     image: "https://www.rivalsdb.app/card/baa-university-library.webp",
+    stack: "haven",
   } as Haven,
   {
     types: ["reaction"],
@@ -2706,6 +2840,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-unswayable-mind",
     image: "https://www.rivalsdb.app/card/core-unswayable-mind.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -2721,6 +2856,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-valerie-nash",
     image: "https://www.rivalsdb.app/card/baa-valerie-nash.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["character"],
@@ -2736,6 +2872,7 @@ export const cards: Array<Card> = [
     disciplines: ["auspex", "obfuscate"],
     id: "core-velvet",
     image: "https://www.rivalsdb.app/card/core-velvet.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["character"],
@@ -2751,13 +2888,13 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "baa-wendy",
     image: "https://www.rivalsdb.app/card/baa-wendy.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["action", "conspiracy"],
     attackType: [],
     name: "Whispering Campaign",
     text: "Play this card face down and place 1 prestige on it. If this card has 4+ prestige on it, you may resolve it during your turn. Steal 2 prestige from target foe who did not contribute.",
-    bloodPotency: 0,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
@@ -2766,6 +2903,7 @@ export const cards: Array<Card> = [
     disciplines: [],
     id: "core-whispering-campaign",
     image: "https://www.rivalsdb.app/card/core-whispering-campaign.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -2781,6 +2919,7 @@ export const cards: Array<Card> = [
     disciplines: ["fortitude", "fortitude"],
     id: "core-yusuf-kaya",
     image: "https://www.rivalsdb.app/card/core-yusuf-kaya.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["character"],
@@ -2796,6 +2935,7 @@ export const cards: Array<Card> = [
     disciplines: ["dominate", "presence"],
     id: "core-zhang-wei",
     image: "https://www.rivalsdb.app/card/core-zhang-wei.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["action", "animal"],
@@ -2805,6 +2945,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     id: "war-alley-cat",
     image: "https://www.rivalsdb.app/card/war-alley-cat.webp",
+    stack: "library",
   } as Library,
   {
     types: ["action"],
@@ -2815,6 +2956,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     id: "war-animal-dominion",
     image: "https://www.rivalsdb.app/card/war-animal-dominion.webp",
+    stack: "library",
   } as Library,
   {
     types: ["agenda"],
@@ -2824,6 +2966,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     id: "war-animal-kingdom",
     image: "https://www.rivalsdb.app/card/war-animal-kingdom.webp",
+    stack: "agenda",
   } as Agenda,
   {
     types: ["attack"],
@@ -2837,6 +2980,7 @@ export const cards: Array<Card> = [
     illustrator: "Mara Miranda-Escota",
     id: "war-apex-predator",
     image: "https://www.rivalsdb.app/card/war-apex-predator.webp",
+    stack: "library",
   } as Library,
   {
     types: ["reaction"],
@@ -2849,6 +2993,7 @@ export const cards: Array<Card> = [
     illustrator: "Harvey Bunda",
     id: "war-bad-reflection",
     image: "https://www.rivalsdb.app/card/war-bad-reflection.webp",
+    stack: "library",
   } as Library,
   {
     types: ["attack"],
@@ -2861,6 +3006,7 @@ export const cards: Array<Card> = [
     illustrator: "Irene Francisco",
     id: "war-beasts-of-war",
     image: "https://www.rivalsdb.app/card/war-beasts-of-war.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -2876,6 +3022,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     id: "war-bobby-handsome",
     image: "https://www.rivalsdb.app/card/war-bobby-handsome.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["unhosted action", "ongoing"],
@@ -2885,6 +3032,7 @@ export const cards: Array<Card> = [
     illustrator: "Joyce Maureira",
     id: "war-bond-famulus",
     image: "https://www.rivalsdb.app/card/war-bond-famulus.webp",
+    stack: "library",
   } as Library,
   {
     types: ["agenda"],
@@ -2894,6 +3042,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     id: "war-call-of-the-wild",
     image: "https://www.rivalsdb.app/card/war-call-of-the-wild.webp",
+    stack: "agenda",
   } as Agenda,
   {
     types: ["character"],
@@ -2909,6 +3058,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     id: "war-chooha",
     image: "https://www.rivalsdb.app/card/war-chooha.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["haven"],
@@ -2918,6 +3068,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     id: "war-city-park",
     image: "https://www.rivalsdb.app/card/war-city-park.webp",
+    stack: "haven",
   } as Haven,
   {
     types: ["character"],
@@ -2933,6 +3084,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     id: "war-clandestine",
     image: "https://www.rivalsdb.app/card/war-clandestine.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["action", "ongoing"],
@@ -2942,6 +3094,7 @@ export const cards: Array<Card> = [
     illustrator: "Timothy Terrenal",
     id: "war-constant-surveillance",
     image: "https://www.rivalsdb.app/card/war-constant-surveillance.webp",
+    stack: "library",
   } as Library,
   {
     types: ["attack", "reaction"],
@@ -2954,6 +3107,7 @@ export const cards: Array<Card> = [
     illustrator: "Harvey Bunda",
     id: "war-cornered-rat",
     image: "https://www.rivalsdb.app/card/war-cornered-rat.webp",
+    stack: "library",
   } as Library,
   {
     types: ["unhosted action", "ongoing"],
@@ -2963,6 +3117,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     id: "war-cracking-the-case",
     image: "https://www.rivalsdb.app/card/war-cracking-the-case.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -2978,6 +3133,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     id: "war-crazy-cat-lady",
     image: "https://www.rivalsdb.app/card/war-crazy-cat-lady.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["attack"],
@@ -2991,6 +3147,7 @@ export const cards: Array<Card> = [
     illustrator: "Adelijah Ocampo",
     id: "war-disturbing-the-hive",
     image: "https://www.rivalsdb.app/card/war-disturbing-the-hive.webp",
+    stack: "library",
   } as Library,
   {
     types: ["character"],
@@ -3006,6 +3163,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     id: "war-drea-warden",
     image: "https://www.rivalsdb.app/card/war-drea-warden.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["action"],
@@ -3015,6 +3173,7 @@ export const cards: Array<Card> = [
     illustrator: "Adelijah Ocampo",
     id: "war-earth-meld",
     image: "https://www.rivalsdb.app/card/war-earth-meld.webp",
+    stack: "library",
   } as Library,
   {
     bloodPotency: 3,
@@ -3027,6 +3186,7 @@ export const cards: Array<Card> = [
     illustrator: "Adelijah Ocampo",
     id: "war-feeding-frenzy",
     image: "https://www.rivalsdb.app/card/war-feeding-frenzy.webp",
+    stack: "library",
   } as Library,
   {
     name: "Feeding the Hungry",
@@ -3036,6 +3196,7 @@ export const cards: Array<Card> = [
     illustrator: "Harvey Bunda",
     id: "war-feeding-the-hungry",
     image: "https://www.rivalsdb.app/card/war-feeding-the-hungry.webp",
+    stack: "library",
   } as Library,
   {
     bloodPotency: 2,
@@ -3048,6 +3209,7 @@ export const cards: Array<Card> = [
     illustrator: "Mara Miranda-Escota",
     id: "war-feral-claws",
     image: "https://www.rivalsdb.app/card/war-feral-claws.webp",
+    stack: "library",
   } as Library,
   {
     bloodPotency: 3,
@@ -3060,6 +3222,7 @@ export const cards: Array<Card> = [
     illustrator: "Mara Miranda-Escota",
     id: "war-feral-fangs",
     image: "https://www.rivalsdb.app/card/war-feral-fangs.webp",
+    stack: "library",
   } as Library,
   {
     name: "Feral Whispers",
@@ -3069,6 +3232,7 @@ export const cards: Array<Card> = [
     illustrator: "Irene Francisco",
     id: "war-feral-whispers",
     image: "https://www.rivalsdb.app/card/war-feral-whispers.webp",
+    stack: "library",
   } as Library,
   {
     bloodPotency: 3,
@@ -3082,6 +3246,7 @@ export const cards: Array<Card> = [
     illustrator: "Timothy Terrenal",
     id: "war-fight-or-flight",
     image: "https://www.rivalsdb.app/card/war-fight-or-flight.webp",
+    stack: "library",
   } as Library,
   {
     bloodPotency: 6,
@@ -3097,6 +3262,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     id: "war-general-flint",
     image: "https://www.rivalsdb.app/card/war-general-flint.webp",
+    stack: "faction",
   } as Faction,
   {
     bloodPotency: 4,
@@ -3112,6 +3278,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     id: "war-ghost",
     image: "https://www.rivalsdb.app/card/war-ghost.webp",
+    stack: "faction",
   } as Faction,
   {
     bloodPotency: 2,
@@ -3124,6 +3291,7 @@ export const cards: Array<Card> = [
     illustrator: "Timothy Terrenal & Harvey Bunda",
     id: "war-hardened-flesh",
     image: "https://www.rivalsdb.app/card/war-hardened-flesh.webp",
+    stack: "library",
   } as Library,
   {
     bloodPotency: 3,
@@ -3139,6 +3307,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     id: "war-harry-o-brien",
     image: "https://www.rivalsdb.app/card/war-harry-o-brien.webp",
+    stack: "faction",
   } as Faction,
   {
     name: "Help Me Help You",
@@ -3148,6 +3317,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     id: "war-help-me-help-you",
     image: "https://www.rivalsdb.app/card/war-help-me-help-you.webp",
+    stack: "library",
   } as Library,
   {
     name: "Hiding in Plain Sight",
@@ -3157,6 +3327,7 @@ export const cards: Array<Card> = [
     illustrator: "Irene Francisco",
     id: "war-hiding-in-plain-sight",
     image: "https://www.rivalsdb.app/card/war-hiding-in-plain-sight.webp",
+    stack: "library",
   } as Library,
   {
     types: ["agenda"],
@@ -3166,6 +3337,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     id: "war-hoard-the-herd",
     image: "https://www.rivalsdb.app/card/war-hoard-the-herd.webp",
+    stack: "agenda",
   } as Agenda,
   {
     types: ["agenda"],
@@ -3175,6 +3347,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     id: "war-invisible-army",
     image: "https://www.rivalsdb.app/card/war-invisible-army.webp",
+    stack: "agenda",
   } as Agenda,
   {
     bloodPotency: 4,
@@ -3190,6 +3363,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     id: "war-kim-phan",
     image: "https://www.rivalsdb.app/card/war-kim-phan.webp",
+    stack: "faction",
   } as Faction,
   {
     bloodPotency: 4,
@@ -3205,6 +3379,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     id: "war-leah-swiftfoot",
     image: "https://www.rivalsdb.app/card/war-leah-swiftfoot.webp",
+    stack: "faction",
   } as Faction,
   {
     bloodPotency: 4,
@@ -3220,6 +3395,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     id: "war-lil-fang",
     image: "https://www.rivalsdb.app/card/war-lil-fang.webp",
+    stack: "faction",
   } as Faction,
   {
     bloodPotency: 3,
@@ -3235,6 +3411,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     id: "war-lori-swiftfoot",
     image: "https://www.rivalsdb.app/card/war-lori-swiftfoot.webp",
+    stack: "faction",
   } as Faction,
   {
     name: "Mongrel",
@@ -3244,6 +3421,7 @@ export const cards: Array<Card> = [
     illustrator: "Mara Miranda-Escota",
     id: "war-mongrel",
     image: "https://www.rivalsdb.app/card/war-mongrel.webp",
+    stack: "library",
   } as Library,
   {
     name: "Murder of Crows",
@@ -3253,6 +3431,7 @@ export const cards: Array<Card> = [
     illustrator: "Adelijah Ocampo",
     id: "war-murder-of-crows",
     image: "https://www.rivalsdb.app/card/war-murder-of-crows.webp",
+    stack: "library",
   } as Library,
   {
     bloodPotency: 4,
@@ -3268,6 +3447,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     id: "war-pong",
     image: "https://www.rivalsdb.app/card/war-pong.webp",
+    stack: "faction",
   } as Faction,
   {
     name: "Protect the Flock",
@@ -3277,6 +3457,7 @@ export const cards: Array<Card> = [
     illustrator: "Timothy Terrenal",
     id: "war-protect-the-flock",
     image: "https://www.rivalsdb.app/card/war-protect-the-flock.webp",
+    stack: "library",
   } as Library,
   {
     name: "Second Tradition: The Domain",
@@ -3286,6 +3467,7 @@ export const cards: Array<Card> = [
     illustrator: "Mara Miranda-Escota",
     id: "war-second-tradition-the-domain",
     image: "https://www.rivalsdb.app/card/war-second-tradition-the-domain.webp",
+    stack: "library",
   } as Library,
   {
     name: "Secret Passage",
@@ -3296,6 +3478,7 @@ export const cards: Array<Card> = [
     illustrator: "Timothy Terrenal",
     id: "war-secret-passage",
     image: "https://www.rivalsdb.app/card/war-secret-passage.webp",
+    stack: "library",
   } as Library,
   {
     bloodPotency: 4,
@@ -3307,6 +3490,7 @@ export const cards: Array<Card> = [
     illustrator: "Mara Miranda-Escota",
     id: "war-seeing-is-believing",
     image: "https://www.rivalsdb.app/card/war-seeing-is-believing.webp",
+    stack: "library",
   } as Library,
   {
     name: "Sewer Rat",
@@ -3316,6 +3500,7 @@ export const cards: Array<Card> = [
     illustrator: "Irene Francisco",
     id: "war-sewer-rat",
     image: "https://www.rivalsdb.app/card/war-sewer-rat.webp",
+    stack: "library",
   } as Library,
   {
     name: "Shape of the Beast",
@@ -3326,6 +3511,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     id: "war-shape-of-the-beast",
     image: "https://www.rivalsdb.app/card/war-shape-of-the-beast.webp",
+    stack: "library",
   } as Library,
   {
     bloodPotency: 5,
@@ -3341,6 +3527,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     id: "war-sheilar-omar",
     image: "https://www.rivalsdb.app/card/war-sheilar-omar.webp",
+    stack: "faction",
   } as Faction,
   {
     bloodPotency: 5,
@@ -3356,6 +3543,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     id: "war-shep-mason",
     image: "https://www.rivalsdb.app/card/war-shep-mason.webp",
+    stack: "faction",
   } as Faction,
   {
     bloodPotency: 5,
@@ -3367,6 +3555,7 @@ export const cards: Array<Card> = [
     illustrator: "Mara Miranda-Escota",
     id: "war-spy-games",
     image: "https://www.rivalsdb.app/card/war-spy-games.webp",
+    stack: "library",
   } as Library,
   {
     bloodPotency: 5,
@@ -3382,6 +3571,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     id: "war-summer-moon",
     image: "https://www.rivalsdb.app/card/war-summer-moon.webp",
+    stack: "faction",
   } as Faction,
   {
     bloodPotency: 6,
@@ -3397,6 +3587,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     id: "war-tamaska",
     image: "https://www.rivalsdb.app/card/war-tamaska.webp",
+    stack: "faction",
   } as Faction,
   {
     types: ["haven"],
@@ -3406,6 +3597,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     id: "war-the-outskirts",
     image: "https://www.rivalsdb.app/card/war-the-outskirts.webp",
+    stack: "haven",
   } as Haven,
   {
     types: ["haven"],
@@ -3415,6 +3607,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     id: "war-the-sewers",
     image: "https://www.rivalsdb.app/card/war-the-sewers.webp",
+    stack: "haven",
   } as Haven,
   {
     name: "The Shakedown",
@@ -3424,6 +3617,7 @@ export const cards: Array<Card> = [
     illustrator: "Irene Francisco",
     id: "war-the-shakedown",
     image: "https://www.rivalsdb.app/card/war-the-shakedown.webp",
+    stack: "library",
   } as Library,
   {
     types: ["haven"],
@@ -3433,6 +3627,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     id: "war-the-shelter",
     image: "https://www.rivalsdb.app/card/war-the-shelter.webp",
+    stack: "haven",
   } as Haven,
   {
     bloodPotency: 4,
@@ -3445,6 +3640,7 @@ export const cards: Array<Card> = [
     illustrator: "Adelijah Ocampo",
     id: "war-the-stampede",
     image: "https://www.rivalsdb.app/card/war-the-stampede.webp",
+    stack: "library",
   } as Library,
   {
     name: "The Swarm",
@@ -3454,6 +3650,7 @@ export const cards: Array<Card> = [
     illustrator: "Adelijah Ocampo",
     id: "war-the-swarm",
     image: "https://www.rivalsdb.app/card/war-the-swarm.webp",
+    stack: "library",
   } as Library,
   {
     bloodPotency: 5,
@@ -3469,6 +3666,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     id: "war-trinity-voss",
     image: "https://www.rivalsdb.app/card/war-trinity-voss.webp",
+    stack: "faction",
   } as Faction,
   {
     bloodPotency: 3,
@@ -3481,6 +3679,7 @@ export const cards: Array<Card> = [
     illustrator: "Drew Tucker",
     id: "war-veiled-threat",
     image: "https://www.rivalsdb.app/card/war-veiled-threat.webp",
+    stack: "library",
   } as Library,
   {
     name: "We Are Legend",
@@ -3491,5 +3690,6 @@ export const cards: Array<Card> = [
     illustrator: "Irene Francisco",
     id: "war-we-are-legend",
     image: "https://www.rivalsdb.app/card/war-we-are-legend.webp",
+    stack: "library",
   } as Library,
 ];
