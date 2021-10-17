@@ -352,12 +352,9 @@ clanRequirement card =
             List.singleton c.clan
 
         LibraryCard c ->
-            case c.clan of
-                Nothing ->
-                    List.map Tuple.second clanEnum.list
-
-                Just v ->
-                    List.singleton v
+            c.clan
+                |> Maybe.map List.singleton
+                |> Maybe.withDefault []
 
         _ ->
             List.map Tuple.second clanEnum.list
