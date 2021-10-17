@@ -2994,7 +2994,7 @@ export const cards: Array<Card> = [
   } as Library,
   {
     types: ["character"],
-    bloodPotency: 4,
+    bloodPotency: 5,
     name: "Drea Warden",
     clan: "gangrel",
     attributePhysical: 1,
