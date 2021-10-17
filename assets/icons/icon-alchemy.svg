@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" version="1.0" style="shape-rendering:geometricPrecision;text-rendering:geometricPrecision;image-rendering:optimizeQuality;" viewBox="0 0 10000 12500" x="0px" y="0px" fill-rule="evenodd" clip-rule="evenodd">
+	<defs>
+		<style type="text/css">
+			.fil0 {fill:black;fill-rule:nonzero}
+		</style>
+	</defs>
+	<g>
+		<path class="fil0" d="M7379 4766l-669 1159 669 1159c170,-350 266,-743 266,-1159 0,-415 -96,-809 -266,-1159z" />
+		<path class="fil0" d="M5849 4435l1337 0c-455,-668 -1191,-1092 -2000,-1148l663 1148z" />
+		<polygon class="fil0" points="4395,4435 5605,4435 5000,3388 " />
+		<path class="fil0" d="M2814 4435l1337 0 663 -1148c-809,56 -1545,480 -2000,1148z" />
+		<path class="fil0" d="M3290 5925l-669 -1159c-170,350 -266,744 -266,1159 0,416 96,809 266,1159l669 -1159z" />
+		<polygon class="fil0" points="4028,7203 3413,6137 2797,7203 " />
+		<path class="fil0" d="M4814 8564l-664 -1149 -1336 0c456,668 1190,1093 2000,1149z" />
+		<path class="fil0" d="M5850 7415l-664 1149c810,-56 1545,-481 2000,-1149l-1336 0z" />
+		<polygon class="fil0" points="6285,6661 5972,7203 7203,7203 6587,6137 " />
+		<path class="fil0" d="M3535 5925l301 522c-72,-160 -111,-336 -111,-522 0,-184 39,-360 109,-518l-299 518z" />
+		<polygon class="fil0" points="4028,4648 2797,4648 3413,5713 " />
+		<path class="fil0" d="M5727 4648l-1454 0 -306 529c239,-330 621,-526 1030,-527 412,0 795,194 1036,528l-306 -530z" />
+		<polygon class="fil0" points="6587,5714 7203,4648 5972,4648 " />
+		<path class="fil0" d="M6164 6446l301 -521 -300 -520c71,159 110,335 110,520 0,186 -39,362 -111,521z" />
+		<path class="fil0" d="M5728 7203l306 -531c-240,332 -623,529 -1034,529 -412,0 -795,-198 -1035,-531l308 533 1455 0z" />
+		<polygon class="fil0" points="5000,8463 5605,7415 4395,7415 " />
+		<path class="fil0" d="M4039 6380l855 -510 0 -1002c-543,54 -957,511 -957,1057 0,163 37,317 102,455z" />
+		<path class="fil0" d="M5850 6563l-852 -509 -850 507c200,269 516,427 852,427 336,0 649,-157 850,-425z" />
+		<path class="fil0" d="M5106 5873l854 509c66,-138 103,-293 103,-457 0,-546 -414,-1003 -957,-1057l0 1005z" />
+		<path class="fil0" d="M5517 2380l-1034 0 0 734c341,-62 693,-62 1034,0l0 -734z" />
+		<polygon class="fil0" points="5517,1674 5517,1436 4483,1436 4483,1674 " />
+		<path class="fil0" d="M4174 1887c-77,0 -141,63 -141,140 0,77 64,140 141,140 551,0 1101,0 1652,0 77,0 141,-62 141,-140 0,-77 -63,-140 -141,-140 -551,0 -1101,0 -1652,0z" />
+	</g>
+</svg>

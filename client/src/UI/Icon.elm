@@ -22,6 +22,7 @@ type IconImage
     = Action
     | Agenda
     | AgendaCard
+    | Alchemy
     | Animalism
     | Attack
     | Auspex
@@ -31,10 +32,13 @@ type IconImage
     | BloodSorcery
     | Brujah
     | Celerity
+    | Conspiracy
     | Damage
     | Dominate
+    | Scheme
     | Faction
     | Fortitude
+    | Ritual
     | Gangrel
     | Haven
     | Influence
@@ -45,6 +49,7 @@ type IconImage
     | Mental
     | Nosferatu
     | Obfuscate
+    | Ongoing
     | Physical
     | Potence
     | Presence
@@ -52,10 +57,12 @@ type IconImage
     | Ranged
     | Reaction
     | Save
+    | Special
     | Shield
     | Social
     | ThinBlood
     | ThinBloodAlchemy
+    | Title
     | Toreador
     | Tremere
     | UnhostedAction
@@ -191,6 +198,9 @@ imageOpts image =
         AgendaCard ->
             ( class "ui-icon_crown", "Agenda" )
 
+        Alchemy ->
+            ( class "ui-icon_alchemy", "Alchemy" )
+
         Animalism ->
             ( class "ui-icon_animalism", "Animalism" )
 
@@ -217,6 +227,9 @@ imageOpts image =
 
         Celerity ->
             ( class "ui-icon_celerity", "Celerity" )
+
+        Conspiracy ->
+            ( class "ui-icon_conspiracy", "Conspiracy" )
 
         Damage ->
             ( class "ui-icon_damage", "Damage" )
@@ -258,7 +271,10 @@ imageOpts image =
             ( class "ui-icon_nosferatu", "Nosferatu" )
 
         Obfuscate ->
-            ( class "ui-icon_obsfuscate", "Obsfuscate" )
+            ( class "ui-icon_obsfuscate", "Obfuscate" )
+
+        Ongoing ->
+            ( class "ui-icon_ongoing", "Ongoing" )
 
         Physical ->
             ( class "ui-icon_physical", "Physical" )
@@ -278,8 +294,14 @@ imageOpts image =
         Reaction ->
             ( class "ui-icon_reaction", "Reaction" )
 
+        Ritual ->
+            ( class "ui-icon_ritual", "Ritual" )
+
         Save ->
             ( class "ui-icon_save", "Save" )
+
+        Scheme ->
+            ( class "ui-icon_scheme", "Scheme" )
 
         Shield ->
             ( class "ui-icon_shield", "Shield" )
@@ -287,11 +309,17 @@ imageOpts image =
         Social ->
             ( class "ui-icon_social", "Social" )
 
+        Special ->
+            ( class "ui-icon_special", "Special" )
+
         ThinBlood ->
             ( class "ui-icon_thinblood", "Thin Blood" )
 
         ThinBloodAlchemy ->
             ( class "ui-icon_thin_blood_alchemy", "Thin-blood Alchemy" )
+
+        Title ->
+            ( class "ui-icon_title", "Title" )
 
         Toreador ->
             ( class "ui-icon_toreador", "Toreador" )

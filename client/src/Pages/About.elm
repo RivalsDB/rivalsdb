@@ -27,16 +27,20 @@ items =
     [ ( Icon.Library, "Library by Adrien Coquet from the Noun Project" )
     , ( Icon.UnhostedAction, "Tai Chi by Adrien Coquet from the Noun Project" )
     , ( Icon.Action, "action by Adrien Coquet from the Noun Project" )
+    , ( Icon.Special, "Cold by Adrien Coquet from the Noun Project" )
+    , ( Icon.Ongoing, "Infinity by Cengiz SARI from the Noun Project" )
+    , ( Icon.Scheme, "Vote by Clea Doltz from the Noun Project" )
     , ( Icon.InfluenceModifier, "Handshake by Cuputo from the Noun Project" )
+    , ( Icon.Title, "Medal by Deemak Daksina from the Noun Project" )
+    , ( Icon.Ritual, "ritual by Koson Rattanaphan from the Noun Project" )
     , ( Icon.Faction, "group by mikicon from the Noun Project" )
     , ( Icon.AgendaCard, "Crown by Marcy Boles from the Noun Project" )
+    , ( Icon.Alchemy, "alchemy by Ragal Kartidev from the Noun Project" )
     , ( Icon.Leader, "Star by Sergey Demushkin from the Noun Project" )
     , ( Icon.Haven, "Moon by Tawny Whatmore from the Noun Project" )
     , ( Icon.Attack, "Cross swords by Vectors Point from the Noun Project" )
+    , ( Icon.Conspiracy, "Global processing by Vectors Point from the Noun Project" )
     , ( Icon.Reaction, "Shield by Viktor Vorobyev from the Noun Project" )
-
-    -- NEW
-    , ( Icon.Action, "Global processing by Vectors Point from the Noun Project" )
     ]
 
 
