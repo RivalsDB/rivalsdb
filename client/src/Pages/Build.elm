@@ -626,22 +626,24 @@ filteredCards model =
     let
         cards =
             Dict.values model.collection
-
-        filterFlags card =
-            UI.FilterSelection.isAllowed Cards.traits model.secondaryFilters card
-                && UI.FilterSelection.isAllowed Cards.stack model.stackFilters card
-                && UI.FilterSelection.isAllowed Cards.discipline model.disciplineFilters card
-                && UI.FilterSelection.isAllowed Cards.traits model.primaryFilters card
-                && UI.FilterSelection.isAllowed Cards.clanRequirement model.clansFilters card
-                && UI.FilterSelection.isAllowed Cards.attackTypes model.attackTypeFilters card
     in
     case model.textFilter of
         Nothing ->
-            List.filter filterFlags cards
+            List.filter (filterFlags model) cards
 
         Just needle ->
             List.filter (Cards.findTextInCard needle) cards
-                |> List.filter filterFlags
+                |> List.filter (filterFlags model)
+
+
+filterFlags : Model -> Card -> Bool
+filterFlags model card =
+    UI.FilterSelection.isAllowed Cards.clanRequirement model.clansFilters card
+        && UI.FilterSelection.isAllowed Cards.traits model.secondaryFilters card
+        && UI.FilterSelection.isAllowed Cards.stack model.stackFilters card
+        && UI.FilterSelection.isAllowed Cards.discipline model.disciplineFilters card
+        && UI.FilterSelection.isAllowed Cards.traits model.primaryFilters card
+        && UI.FilterSelection.isAllowed Cards.attackTypes model.attackTypeFilters card
 
 
 cardSort : Card -> Card -> Order
