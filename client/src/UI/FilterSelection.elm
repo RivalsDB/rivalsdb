@@ -4,7 +4,7 @@ import Cards
 import Html exposing (Html, div, input, label, span, text)
 import Html.Attributes exposing (class, classList, title, type_)
 import Html.Events exposing (onCheck)
-import UI.Icon
+import UI.Icon as Icon
 
 
 type alias Model value msg =
@@ -14,21 +14,21 @@ type alias Model value msg =
 stacks : Model Cards.CardStack msg
 stacks =
     List.map modelHelper
-        [ ( Cards.AgendaStack, ( "Agenda", UI.Icon.agendaCard ) )
-        , ( Cards.HavenStack, ( "Haven", UI.Icon.haven ) )
-        , ( Cards.FactionStack, ( "Faction", UI.Icon.faction ) )
-        , ( Cards.LibraryStack, ( "Library", UI.Icon.library ) )
+        [ ( Cards.AgendaStack, ( "Agenda", Icon.icon ( Icon.AgendaCard, Icon.Standard ) ) )
+        , ( Cards.HavenStack, ( "Haven", Icon.icon ( Icon.Haven, Icon.Standard ) ) )
+        , ( Cards.FactionStack, ( "Faction", Icon.icon ( Icon.Faction, Icon.Standard ) ) )
+        , ( Cards.LibraryStack, ( "Library", Icon.icon ( Icon.Library, Icon.Standard ) ) )
         ]
 
 
 primaryTraits : Model Cards.Trait msg
 primaryTraits =
     List.map modelHelper
-        [ ( Cards.Action, ( "Action", UI.Icon.action ) )
-        , ( Cards.UnhostedAction, ( "Unhosted Action", UI.Icon.unhostedAction ) )
-        , ( Cards.Attack, ( "Attack", UI.Icon.attack ) )
-        , ( Cards.Reaction, ( "Reaction", UI.Icon.reaction ) )
-        , ( Cards.InfluenceModifier, ( "Influence Modifier", UI.Icon.influenceModifier ) )
+        [ ( Cards.Action, ( "Action", Icon.icon ( Icon.Action, Icon.Standard ) ) )
+        , ( Cards.UnhostedAction, ( "Unhosted Action", Icon.icon ( Icon.UnhostedAction, Icon.Standard ) ) )
+        , ( Cards.Attack, ( "Attack", Icon.icon ( Icon.Attack, Icon.Standard ) ) )
+        , ( Cards.Reaction, ( "Reaction", Icon.icon ( Icon.Reaction, Icon.Standard ) ) )
+        , ( Cards.InfluenceModifier, ( "Influence Modifier", Icon.icon ( Icon.InfluenceModifier, Icon.Standard ) ) )
         ]
 
 
@@ -46,40 +46,43 @@ secondaryTraits =
 
 attackTypes : Model Cards.AttackType msg
 attackTypes =
-    [ ( Cards.Physical, ( UI.Icon.physical, False ) )
-    , ( Cards.Social, ( UI.Icon.social, False ) )
-    , ( Cards.Mental, ( UI.Icon.mental, False ) )
-    , ( Cards.Ranged, ( UI.Icon.ranged, False ) )
-    ]
+    List.map modelHelper
+        [ ( Cards.Physical, ( "Physical", Icon.icon ( Icon.Physical, Icon.Standard ) ) )
+        , ( Cards.Social, ( "Social", Icon.icon ( Icon.Social, Icon.Standard ) ) )
+        , ( Cards.Mental, ( "Mental", Icon.icon ( Icon.Mental, Icon.Standard ) ) )
+        , ( Cards.Ranged, ( "Ranged", Icon.icon ( Icon.Ranged, Icon.Standard ) ) )
+        ]
 
 
 clans : Model Cards.Clan msg
 clans =
-    [ ( Cards.Brujah, ( UI.Icon.brujah, False ) )
-    , ( Cards.Gangrel, ( UI.Icon.gangrel, False ) )
-    , ( Cards.Malkavian, ( UI.Icon.malkavian, False ) )
-    , ( Cards.Nosferatu, ( UI.Icon.nosferatu, False ) )
-    , ( Cards.ThinBlood, ( UI.Icon.thinBlood, False ) )
-    , ( Cards.Toreador, ( UI.Icon.toreador, False ) )
-    , ( Cards.Tremere, ( UI.Icon.tremere, False ) )
-    , ( Cards.Ventrue, ( UI.Icon.ventrue, False ) )
-    ]
+    List.map modelHelper
+        [ ( Cards.Brujah, ( "Brujah", Icon.icon ( Icon.Brujah, Icon.Standard ) ) )
+        , ( Cards.Gangrel, ( "Brujah", Icon.icon ( Icon.Gangrel, Icon.Standard ) ) )
+        , ( Cards.Malkavian, ( "Brujah", Icon.icon ( Icon.Malkavian, Icon.Standard ) ) )
+        , ( Cards.Nosferatu, ( "Brujah", Icon.icon ( Icon.Nosferatu, Icon.Standard ) ) )
+        , ( Cards.ThinBlood, ( "Brujah", Icon.icon ( Icon.ThinBlood, Icon.Standard ) ) )
+        , ( Cards.Toreador, ( "Brujah", Icon.icon ( Icon.Toreador, Icon.Standard ) ) )
+        , ( Cards.Tremere, ( "Brujah", Icon.icon ( Icon.Tremere, Icon.Standard ) ) )
+        , ( Cards.Ventrue, ( "Brujah", Icon.icon ( Icon.Ventrue, Icon.Standard ) ) )
+        ]
 
 
 disciplines : Model Cards.Discipline msg
 disciplines =
-    [ ( Cards.Animalism, ( UI.Icon.animalism, False ) )
-    , ( Cards.Auspex, ( UI.Icon.auspex, False ) )
-    , ( Cards.Celerity, ( UI.Icon.celerity, False ) )
-    , ( Cards.Dominate, ( UI.Icon.dominate, False ) )
-    , ( Cards.Fortitude, ( UI.Icon.fortitude, False ) )
-    , ( Cards.Obfuscate, ( UI.Icon.obfuscate, False ) )
-    , ( Cards.Potence, ( UI.Icon.potence, False ) )
-    , ( Cards.Presence, ( UI.Icon.presence, False ) )
-    , ( Cards.Protean, ( UI.Icon.protean, False ) )
-    , ( Cards.BloodSorcery, ( UI.Icon.bloodSorcery, False ) )
-    , ( Cards.ThinBloodAlchemy, ( UI.Icon.thinBloodAlchemy, False ) )
-    ]
+    List.map modelHelper
+        [ ( Cards.Animalism, ( "Animalism", Icon.icon ( Icon.Animalism, Icon.Standard ) ) )
+        , ( Cards.Auspex, ( "Auspex", Icon.icon ( Icon.Auspex, Icon.Standard ) ) )
+        , ( Cards.Celerity, ( "Celerity", Icon.icon ( Icon.Celerity, Icon.Standard ) ) )
+        , ( Cards.Dominate, ( "Dominate", Icon.icon ( Icon.Dominate, Icon.Standard ) ) )
+        , ( Cards.Fortitude, ( "Fortitude", Icon.icon ( Icon.Fortitude, Icon.Standard ) ) )
+        , ( Cards.Obfuscate, ( "Obfuscate", Icon.icon ( Icon.Obfuscate, Icon.Standard ) ) )
+        , ( Cards.Potence, ( "Potence", Icon.icon ( Icon.Potence, Icon.Standard ) ) )
+        , ( Cards.Presence, ( "Presence", Icon.icon ( Icon.Presence, Icon.Standard ) ) )
+        , ( Cards.Protean, ( "Protean", Icon.icon ( Icon.Protean, Icon.Standard ) ) )
+        , ( Cards.BloodSorcery, ( "Blood Sorcery", Icon.icon ( Icon.BloodSorcery, Icon.Standard ) ) )
+        , ( Cards.ThinBloodAlchemy, ( "", Icon.icon ( Icon.ThinBloodAlchemy, Icon.Standard ) ) )
+        ]
 
 
 modelHelper : ( a, ( String, Html msg ) ) -> ( a, ( Html msg, Bool ) )

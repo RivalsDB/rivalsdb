@@ -16,7 +16,7 @@ import Shared exposing (Collection)
 import UI.Attribute
 import UI.Card
 import UI.FilterSelection
-import UI.Icon
+import UI.Icon as Icon
 import UI.Layout.Header
 import UI.Layout.Modal
 import UI.Layout.Template
@@ -386,7 +386,7 @@ viewActions user =
                         , class "actions-item--inactive"
                         ]
                 )
-                [ UI.Icon.save
+                [ span [ class "actions-icon" ] [ Icon.icon ( Icon.Save, Icon.Standard ) ]
                 , span [ class "actions-description" ] [ text "Save" ]
                 ]
             ]
@@ -408,7 +408,7 @@ viewClansInFaction faction =
         |> List.map
             (\clan ->
                 span [ class "decklist-clan_entry" ]
-                    [ span [ class "decklist-clan_clan" ] [ UI.Icon.clan clan ] ]
+                    [ span [ class "decklist-clan_clan" ] [ Icon.clan clan ] ]
             )
 
 
@@ -435,17 +435,17 @@ viewFactionList deck =
                             , onClick (ChoseLeader c)
                             ]
                             (if Deck.isLeader deck c then
-                                [ UI.Icon.leader ]
+                                [ Icon.icon ( Icon.Leader, Icon.Standard ) ]
 
                              else
                                 []
                             )
                          , span [ class "deckfact-bp" ] [ UI.Attribute.bloodPotency c.bloodPotency ]
-                         , span [ class "deckfact-clan" ] [ UI.Icon.clan c.clan ]
+                         , span [ class "deckfact-clan" ] [ Icon.clan c.clan ]
                          , span [ class "deckfact-name" ] [ text c.name ]
                          ]
                             ++ (c.disciplines
-                                    |> List.map (span [ class "deckfact-discipline" ] << List.singleton << UI.Icon.discipline)
+                                    |> List.map (span [ class "deckfact-discipline" ] << List.singleton << Icon.discipline)
                                )
                         )
                 )
@@ -546,27 +546,27 @@ viewCardListRow deck card =
         , span [ class "deckbldr-rowpiece_props" ]
             (case card of
                 Cards.FactionCard props ->
-                    [ span [ class "deckbldr-rowpiece_clan" ] [ UI.Icon.clan props.clan ]
+                    [ span [ class "deckbldr-rowpiece_clan" ] [ Icon.clan props.clan ]
                     , span [ class "deckbldr-rowpiece_bp" ] [ UI.Attribute.bloodPotency props.bloodPotency ]
                     , span [ class "deckbldr-rowpiece_physical" ] [ UI.Attribute.physical props.physical ]
                     , span [ class "deckbldr-rowpiece_social" ] [ UI.Attribute.social props.social ]
                     , span [ class "deckbldr-rowpiece_mental" ] [ UI.Attribute.mental props.mental ]
                     , span [ class "deckbldr-rowpiece_disciplines" ]
                         (props.disciplines
-                            |> List.map (span [ class "deckbldr-rowpiece_discipline" ] << List.singleton << UI.Icon.discipline)
+                            |> List.map (span [ class "deckbldr-rowpiece_discipline" ] << List.singleton << Icon.discipline)
                         )
                     ]
 
                 Cards.LibraryCard props ->
                     [ span [ class "deckbldr-rowpiece_clan" ]
-                        [ props.clan |> Maybe.map UI.Icon.clan |> Maybe.withDefault (text "")
+                        [ props.clan |> Maybe.map Icon.clan |> Maybe.withDefault (text "")
                         ]
                     , span [ class "deckbldr-rowpiece_bp" ] [ UI.Attribute.bloodPotencyRequirement props.bloodPotency ]
                     , span [ class "deckbldr-rowpiece_damage" ] [ UI.Attribute.damage props.damage ]
                     , span [ class "deckbldr-rowpiece_shields" ] [ UI.Attribute.shield props.shield ]
                     , span [ class "deckbldr-rowpiece_types" ]
                         (props.attackType
-                            |> List.map (span [ class "deckbldr-rowpiece_type" ] << List.singleton << UI.Icon.attackType)
+                            |> List.map (span [ class "deckbldr-rowpiece_type" ] << List.singleton << Icon.attackType)
                         )
                     ]
 

@@ -6,7 +6,7 @@ import Html.Attributes exposing (class)
 import Page exposing (Page)
 import Request
 import Shared
-import UI.Icon
+import UI.Icon as Icon
 import View exposing (View)
 
 
@@ -22,27 +22,27 @@ view =
     [ ul [ class "iconlist" ] (List.map item items) ]
 
 
-items : List ( Html msg, String )
+items : List ( Icon.IconImage, String )
 items =
-    [ ( UI.Icon.library, "Library by Adrien Coquet from the Noun Project" )
-    , ( UI.Icon.unhostedAction, "Tai Chi by Adrien Coquet from the Noun Project" )
-    , ( UI.Icon.action, "action by Adrien Coquet from the Noun Project" )
-    , ( UI.Icon.influenceModifier, "Handshake by Cuputo from the Noun Project" )
-    , ( UI.Icon.faction, "group by mikicon from the Noun Project" )
-    , ( UI.Icon.agendaCard, "Crown by Marcy Boles from the Noun Project" )
-    , ( UI.Icon.leader, "Star by Sergey Demushkin from the Noun Project" )
-    , ( UI.Icon.haven, "Moon by Tawny Whatmore from the Noun Project" )
-    , ( UI.Icon.attack, "Cross swords by Vectors Point from the Noun Project" )
-    , ( UI.Icon.reaction, "Shield by Viktor Vorobyev from the Noun Project" )
+    [ ( Icon.Library, "Library by Adrien Coquet from the Noun Project" )
+    , ( Icon.UnhostedAction, "Tai Chi by Adrien Coquet from the Noun Project" )
+    , ( Icon.Action, "action by Adrien Coquet from the Noun Project" )
+    , ( Icon.InfluenceModifier, "Handshake by Cuputo from the Noun Project" )
+    , ( Icon.Faction, "group by mikicon from the Noun Project" )
+    , ( Icon.AgendaCard, "Crown by Marcy Boles from the Noun Project" )
+    , ( Icon.Leader, "Star by Sergey Demushkin from the Noun Project" )
+    , ( Icon.Haven, "Moon by Tawny Whatmore from the Noun Project" )
+    , ( Icon.Attack, "Cross swords by Vectors Point from the Noun Project" )
+    , ( Icon.Reaction, "Shield by Viktor Vorobyev from the Noun Project" )
 
     -- NEW
-    , ( UI.Icon.action, "Global processing by Vectors Point from the Noun Project" )
+    , ( Icon.Action, "Global processing by Vectors Point from the Noun Project" )
     ]
 
 
-item : ( Html msg, String ) -> Html msg
-item ( icon, attribution ) =
+item : ( Icon.IconImage, String ) -> Html msg
+item ( iconImg, attribution ) =
     li [ class "iconlist-item" ]
-        [ span [ class "iconlist-icon" ] [ icon ]
+        [ span [ class "iconlist-icon" ] [ Icon.icon ( iconImg, Icon.Standard ) ]
         , span [] [ text attribution ]
         ]

@@ -3,7 +3,7 @@ module UI.Attribute exposing (bloodPotency, bloodPotencyRequirement, damage, men
 import Cards
 import Html exposing (..)
 import Html.Attributes exposing (class)
-import UI.Icon
+import UI.Icon as Icon
 
 
 type Style
@@ -38,28 +38,28 @@ attribute icon style n =
 
 bloodPotency : Cards.BloodPotency -> Html msg
 bloodPotency =
-    attribute UI.Icon.bloodPotency Light
+    attribute (Icon.icon ( Icon.BloodPotency, Icon.Standard )) Light
 
 
 bloodPotencyRequirement : Cards.BloodPotencyRequirement -> Html msg
 bloodPotencyRequirement requirement =
-    Maybe.map (attribute UI.Icon.bloodPotencReq Light) requirement
+    Maybe.map (attribute (Icon.icon ( Icon.BloodPotencReq, Icon.Standard )) Light) requirement
         |> Maybe.withDefault nothing
 
 
 physical : Cards.Attribute -> Html msg
 physical =
-    attribute UI.Icon.physical Dark
+    attribute (Icon.icon ( Icon.Physical, Icon.Standard )) Dark
 
 
 mental : Cards.Attribute -> Html msg
 mental =
-    attribute UI.Icon.mental Dark
+    attribute (Icon.icon ( Icon.Mental, Icon.Standard )) Dark
 
 
 social : Cards.Attribute -> Html msg
 social =
-    attribute UI.Icon.social Dark
+    attribute (Icon.icon ( Icon.Social, Icon.Standard )) Dark
 
 
 damage : Maybe Cards.Damage -> Html msg
@@ -72,7 +72,7 @@ damage attr =
             nothing
 
         Just positiveValue ->
-            attribute UI.Icon.damage Light positiveValue
+            attribute (Icon.icon ( Icon.Damage, Icon.Standard )) Light positiveValue
 
 
 shield : Maybe Cards.Damage -> Html msg
@@ -85,7 +85,7 @@ shield attr =
             nothing
 
         Just positiveValue ->
-            attribute UI.Icon.shield Light positiveValue
+            attribute (Icon.icon ( Icon.Shield, Icon.Standard )) Light positiveValue
 
 
 nothing : Html msg
