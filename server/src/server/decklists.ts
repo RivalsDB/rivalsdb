@@ -1,5 +1,9 @@
 import { FastifyPluginAsync } from "fastify";
-import { createDecklist, createUserIfNeeded } from "../db/index.js";
+import {
+  createDecklist,
+  createUserIfNeeded,
+  fetchDecklist,
+} from "../db/index.js";
 import auth from "./auth.js";
 
 interface DeckInput {
@@ -14,7 +18,7 @@ interface DeckOutput extends DeckInput {
   creatorId: string;
 }
 
-const routes: FastifyPluginAsync = async (fastify, options) => {
+const privateRoutes: FastifyPluginAsync = async (fastify, options) => {
   fastify.register(auth);
 
   fastify.post<{ Body: DeckInput }>("/decklist", {
@@ -91,4 +95,53 @@ const routes: FastifyPluginAsync = async (fastify, options) => {
   });
 };
 
+const publicRoutes: FastifyPluginAsync = async (fastify, options) => {
+  fastify.get<{ Params: { deckId: string } }>("/decklist/:deckId", {
+    schema: {
+      response: {
+        200: {
+          type: "object",
+          properties: {
+            name: { anyOf: [{ type: "null" }, { type: "string" }] },
+            agenda: { type: "string" },
+            haven: { type: "string" },
+            factionDeck: {
+              type: "object",
+              additionalProperties: { type: "boolean" },
+            },
+            libraryDeck: {
+              type: "object",
+              additionalProperties: { type: "integer" },
+            },
+            id: { type: "string" },
+            creatorId: { type: "string" },
+          },
+        },
+      },
+    },
+    async handler(req, reply) {
+      const decklist = await fetchDecklist(req.params.deckId);
+      if (decklist == null) {
+        reply.code(404);
+        return reply.send();
+      }
+
+      return {
+        ...decklist,
+        factionDeck: decklist.factionDeck.reduce<Record<string, boolean>>(
+          (faction, cardId) => {
+            faction[cardId] = cardId === decklist.leader;
+            return faction;
+          },
+          {}
+        ),
+      };
+    },
+  });
+};
+
+const routes: FastifyPluginAsync = async (fastify) => {
+  fastify.register(publicRoutes);
+  fastify.register(privateRoutes);
+};
 export default routes;

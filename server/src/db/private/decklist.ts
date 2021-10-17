@@ -28,3 +28,32 @@ export async function createDecklist(
   `);
   return { ...decklist, id: deckId, name, creatorId };
 }
+
+export async function fetchDecklist(
+  decklistId: string
+): Promise<Decklist | null> {
+  const [row] = await db.query(sql`
+    SELECT
+      decklist_id,
+      name,
+      user_id,
+      content
+    FROM decklists
+    WHERE decklist_id = ${decklistId}
+    LIMIT 1
+  `);
+  if (!row) {
+    return null;
+  }
+
+  return {
+    id: row.decklist_id,
+    name: row.name,
+    creatorId: row.user_id,
+    agenda: row.content.agenda,
+    haven: row.content.haven,
+    leader: row.content.leader,
+    libraryDeck: row.content.libraryDeck,
+    factionDeck: row.content.factionDeck,
+  };
+}
