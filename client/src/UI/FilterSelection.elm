@@ -2,7 +2,7 @@ module UI.FilterSelection exposing (Model, Msg(..), attackTypes, clans, discipli
 
 import Cards
 import Html exposing (Html, div, input, label, span)
-import Html.Attributes exposing (class, classList, title, type_)
+import Html.Attributes exposing (class, classList, type_)
 import Html.Events exposing (onCheck)
 import UI.Icon as Icon
 

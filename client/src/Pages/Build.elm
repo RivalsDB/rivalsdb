@@ -26,7 +26,7 @@ import View exposing (View)
 page : Shared.Model -> Request.With Params -> Page.With Model Msg
 page shared req =
     Page.advanced
-        { init = init shared.collection req
+        { init = init req
         , update = update shared
         , view = view shared
         , subscriptions = always Sub.none
@@ -38,8 +38,7 @@ page shared req =
 
 
 type alias Model =
-    { collection : Collection
-    , header : UI.Layout.Header.Model
+    { header : UI.Layout.Header.Model
     , modal : UI.Layout.Modal.Model
     , stackFilters : UI.FilterSelection.Model Cards.CardStack Msg
     , primaryFilters : UI.FilterSelection.Model Cards.Trait Msg
@@ -74,10 +73,9 @@ deckNameToString deckname =
             tempName
 
 
-init : Collection -> Request.With Params -> ( Model, Effect Msg )
-init collection req =
-    ( { collection = collection
-      , header = UI.Layout.Header.init req
+init : Request.With Params -> ( Model, Effect Msg )
+init req =
+    ( { header = UI.Layout.Header.init req
       , modal = UI.Layout.Modal.init
       , stackFilters = UI.FilterSelection.stacks
       , primaryFilters = UI.FilterSelection.primaryTraits
@@ -360,10 +358,10 @@ view shared model =
                     ]
                 , div [ class "deckbldr-collection" ] <|
                     if model.showCollectionImages then
-                        viewCardListImages model
+                        viewCardListImages shared.collection model
 
                     else
-                        viewCardList model
+                        viewCardList shared.collection model
                 ]
             ]
         ]
@@ -530,11 +528,11 @@ viewSecondaryFilters model =
     ]
 
 
-viewCardList : Model -> List (Html Msg)
-viewCardList model =
+viewCardList : Collection -> Model -> List (Html Msg)
+viewCardList collection model =
     [ Keyed.ul [ class "deckbldr-collectionitems--rows" ] <|
         List.map (\c -> ( Cards.id c, viewCardListRow model.deck c )) <|
-            cardsToShow model
+            cardsToShow collection model
     ]
 
 
@@ -600,11 +598,11 @@ viewQuantityPicker card copiesInDeck =
         )
 
 
-viewCardListImages : Model -> List (Html Msg)
-viewCardListImages model =
+viewCardListImages : Collection -> Model -> List (Html Msg)
+viewCardListImages collection model =
     [ Keyed.ul [ class "deckbldr-collectionitems--images" ] <|
         List.map (\c -> ( Cards.id c, viewCardListImage model.deck c )) <|
-            cardsToShow model
+            cardsToShow collection model
     ]
 
 
@@ -616,16 +614,16 @@ viewCardListImage deck card =
         ]
 
 
-cardsToShow : Model -> List Card
-cardsToShow model =
-    filteredCards model |> List.sortWith cardSort
+cardsToShow : Collection -> Model -> List Card
+cardsToShow collection model =
+    filteredCards collection model |> List.sortWith cardSort
 
 
-filteredCards : Model -> List Card
-filteredCards model =
+filteredCards : Collection -> Model -> List Card
+filteredCards collection model =
     let
         cards =
-            Dict.values model.collection
+            Dict.values collection
     in
     case model.textFilter of
         Nothing ->
