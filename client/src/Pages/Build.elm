@@ -297,13 +297,13 @@ view shared model =
                             ]
                         ]
                     , div [ class "decklist-faction" ]
-                        [ h3
+                        [ div
                             [ class "decklist-section_header"
                             , classList [ ( "decklist-section_header--invalid", not <| Deck.isValidFaction model.deck ) ]
                             ]
-                            (text "Faction"
-                                :: viewClansInFaction model.deck.faction
-                            )
+                            [ h3 [ class "decklist-section_header_name" ] [ text "Faction" ]
+                            , div [ class "decklist-section_header_extra" ] <| viewClansInFaction model.deck.faction
+                            ]
                         , viewFactionList model.deck
                         ]
                     , div [ class "decklist-library" ]
