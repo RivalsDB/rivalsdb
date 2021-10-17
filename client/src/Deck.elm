@@ -2,6 +2,7 @@ module Deck exposing
     ( Deck
     , Faction
     , copiesInDeck
+    , decoder
     , demoDeck
     , empty
     , encode
@@ -16,6 +17,7 @@ module Deck exposing
 
 import Cards
 import Dict exposing (Dict)
+import Json.Decode as Decode exposing (Decoder)
 import Json.Encode as Encode
 import Shared exposing (Collection)
 
@@ -264,3 +266,147 @@ encode name deck =
 
         ( _, _ ) ->
             Nothing
+
+
+decoder : Collection -> Decoder Deck
+decoder collection =
+    Decode.map4 Deck
+        (agendaDecoder collection)
+        (havenDecoder collection)
+        (factionDecoder collection)
+        (libraryDecoder collection)
+
+
+
+-- (Decode.field "libraryDeck" Decode.string)
+
+
+agendaDecoder : Collection -> Decoder Agenda
+agendaDecoder collection =
+    decodeCardId "agenda" |> getInCollection collection |> mapToAgenda
+
+
+havenDecoder : Collection -> Decoder Haven
+havenDecoder collection =
+    decodeCardId "haven" |> getInCollection collection |> mapToHaven
+
+
+decodeCardId : String -> Decoder String
+decodeCardId fieldName =
+    Decode.field fieldName Decode.string
+
+
+getInCollection : Collection -> Decoder String -> Decoder (Maybe Cards.Card)
+getInCollection collection =
+    Decode.map (cardFromCollection collection)
+
+
+mapToAgenda : Decoder (Maybe Cards.Card) -> Decoder Agenda
+mapToAgenda =
+    Decode.andThen
+        (\collectionCard ->
+            case collectionCard of
+                Just (Cards.AgendaCard agenda) ->
+                    Decode.succeed (Just agenda)
+
+                _ ->
+                    Decode.fail "Bad Agenda"
+        )
+
+
+mapToHaven : Decoder (Maybe Cards.Card) -> Decoder Haven
+mapToHaven =
+    Decode.andThen
+        (\collectionCard ->
+            case collectionCard of
+                Just (Cards.HavenCard haven) ->
+                    Decode.succeed (Just haven)
+
+                _ ->
+                    Decode.fail "Bad Haven"
+        )
+
+
+factionDecoder : Collection -> Decoder Faction
+factionDecoder collection =
+    decodeDictAsList "factionDeck" Decode.bool |> mapInCollection collection |> mapToFaction
+
+
+libraryDecoder : Collection -> Decoder Library
+libraryDecoder collection =
+    decodeDictAsList "libraryDeck" Decode.int |> mapInCollection collection |> mapToLibrary
+
+
+decodeDictAsList : String -> Decoder a -> Decoder (List ( String, a ))
+decodeDictAsList fieldName valueDecoder =
+    Decode.field fieldName (Decode.keyValuePairs valueDecoder)
+
+
+mapInCollection : Collection -> Decoder (List ( String, a )) -> Decoder (List ( Maybe Cards.Card, a ))
+mapInCollection collection =
+    Decode.map (List.map (Tuple.mapFirst (cardFromCollection collection)))
+
+
+mapToLibrary : Decoder (List ( Maybe Cards.Card, Int )) -> Decoder Library
+mapToLibrary =
+    Decode.andThen
+        (\maybeLibrary ->
+            let
+                unwrappedLibrary =
+                    List.filterMap extractLibrary maybeLibrary
+            in
+            if List.length unwrappedLibrary == List.length maybeLibrary then
+                Decode.succeed (Dict.fromList unwrappedLibrary)
+
+            else
+                Decode.fail "Bad Library"
+        )
+
+
+mapToFaction : Decoder (List ( Maybe Cards.Card, Bool )) -> Decoder Faction
+mapToFaction =
+    Decode.andThen
+        (\maybeFaction ->
+            let
+                unwrappedFaction =
+                    List.filterMap extractFaction maybeFaction
+            in
+            if List.length unwrappedFaction == List.length maybeFaction then
+                Decode.succeed (Dict.fromList unwrappedFaction)
+
+            else
+                Decode.fail "Bad Faction"
+        )
+
+
+extractLibrary : ( Maybe Cards.Card, Int ) -> Maybe ( Cards.Id, ( Cards.Library, Int ) )
+extractLibrary ( maybeCard, l ) =
+    maybeCard
+        |> Maybe.andThen
+            (\collectionCard ->
+                case collectionCard of
+                    Cards.LibraryCard card ->
+                        Just ( card.id, ( card, l ) )
+
+                    _ ->
+                        Nothing
+            )
+
+
+extractFaction : ( Maybe Cards.Card, Bool ) -> Maybe ( Cards.Id, ( Cards.Faction, Bool ) )
+extractFaction ( maybeCard, l ) =
+    maybeCard
+        |> Maybe.andThen
+            (\collectionCard ->
+                case collectionCard of
+                    Cards.FactionCard card ->
+                        Just ( card.id, ( card, l ) )
+
+                    _ ->
+                        Nothing
+            )
+
+
+cardFromCollection : Collection -> Cards.Id -> Maybe Cards.Card
+cardFromCollection collection id =
+    Dict.get id collection
