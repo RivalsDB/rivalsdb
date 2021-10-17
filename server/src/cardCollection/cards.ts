@@ -2966,7 +2966,7 @@ export const cards: Array<Card> = [
   } as Library,
   {
     types: ["character"],
-    clan: "gangrel",
+    clan: "nosferatu",
     name: "Crazy Cat Lady",
     text: "Exhaust: Attach up to 2 Alley Cats from your hand or discard pile to this character, ignoring [blood] costs.",
     bloodPotency: 4,
