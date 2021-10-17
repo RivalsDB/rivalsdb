@@ -1,18 +1,20 @@
 port module Shared exposing
     ( Collection
     , Flags
-    , ModalState(..)
     , Model
     , Msg(..)
     , Token
     , User
     , init
+    , isModalOpen
     , subscriptions
     , update
     )
 
+import Browser.Navigation exposing (Key)
 import Cards exposing (cardsDecoder)
 import Dict
+import Gen.Route as Route
 import Json.Decode as Json
 import Request exposing (Request)
 
@@ -26,7 +28,12 @@ type alias Collection =
 
 
 type alias Model =
-    { collection : Collection, user : Maybe User, modal : ModalState }
+    { collection : Collection
+    , user : Maybe User
+    , modal : ModalState
+    , headerSearch : Maybe String
+    , key : Key
+    }
 
 
 type alias User =
@@ -38,8 +45,18 @@ type alias Token =
 
 
 type ModalState
-    = Open
+    = Open (Maybe String)
     | Closed
+
+
+isModalOpen : Model -> Bool
+isModalOpen model =
+    case model.modal of
+        Open _ ->
+            True
+
+        _ ->
+            False
 
 
 port signInReceiver : (Json.Value -> msg) -> Sub msg
@@ -52,15 +69,18 @@ port signOut : () -> Cmd msg
 
 
 type Msg
-    = InitiateSignIn String
-    | GotSignIn Json.Value
-    | SignOut
-    | OpenModal
-    | CloseModal
+    = GotSignIn Json.Value
+    | ModalClose
+    | ModalChangedEmail String
+    | ModalSubmit
+    | HeaderClickedSignIn
+    | HeaderClickedSignOut
+    | HeaderSearchQueryChanged String
+    | HeaderSearchQuerySubmitted
 
 
 init : Request -> Flags -> ( Model, Cmd Msg )
-init _ flags =
+init req flags =
     let
         collection =
             case Json.decodeValue cardsDecoder flags of
@@ -70,7 +90,14 @@ init _ flags =
                 Err _ ->
                     Dict.empty
     in
-    ( { collection = collection, user = Nothing, modal = Closed }, Cmd.none )
+    ( { collection = collection
+      , user = Nothing
+      , modal = Closed
+      , headerSearch = Nothing
+      , key = req.key
+      }
+    , Cmd.none
+    )
 
 
 update : Request -> Msg -> Model -> ( Model, Cmd Msg )
@@ -84,17 +111,58 @@ update _ msg model =
                 Err _ ->
                     ( { model | user = Nothing }, Cmd.none )
 
-        InitiateSignIn email ->
-            ( { model | modal = Closed }, initiateLogin email )
+        ModalClose ->
+            ( { model | modal = Closed }, Cmd.none )
 
-        SignOut ->
+        ModalChangedEmail emailInput ->
+            ( { model
+                | modal =
+                    Open
+                        (case String.trim emailInput of
+                            "" ->
+                                Nothing
+
+                            str ->
+                                Just str
+                        )
+              }
+            , Cmd.none
+            )
+
+        ModalSubmit ->
+            case model.modal of
+                Open (Just email) ->
+                    ( { model | modal = Closed }, initiateLogin email )
+
+                _ ->
+                    ( model, Cmd.none )
+
+        HeaderClickedSignIn ->
+            ( { model | modal = Open Nothing }, Cmd.none )
+
+        HeaderClickedSignOut ->
             ( model, signOut () )
 
-        OpenModal ->
-            ( { model | modal = Open }, Cmd.none )
+        HeaderSearchQueryChanged query ->
+            ( { model
+                | headerSearch =
+                    case String.trim query of
+                        "" ->
+                            Nothing
 
-        CloseModal ->
-            ( { model | modal = Closed }, Cmd.none )
+                        trimmed ->
+                            Just trimmed
+              }
+            , Cmd.none
+            )
+
+        HeaderSearchQuerySubmitted ->
+            case model.headerSearch of
+                Just search ->
+                    ( model, Browser.Navigation.pushUrl model.key <| Route.toHref Route.Search ++ "?search=" ++ search )
+
+                _ ->
+                    ( model, Cmd.none )
 
 
 subscriptions : Request -> Model -> Sub Msg

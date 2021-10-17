@@ -14,16 +14,14 @@ import Request
 import Shared exposing (Collection)
 import UI.Card
 import UI.FilterSelection
-import UI.Layout.Header
-import UI.Layout.Modal
 import UI.Layout.Template
 import View exposing (View)
 
 
 page : Shared.Model -> Request.With Params -> Page.With Model Msg
-page shared req =
+page shared _ =
     Page.advanced
-        { init = init shared.collection req
+        { init = init shared
         , update = update
         , view = view shared
         , subscriptions = always Sub.none
@@ -33,8 +31,6 @@ page shared req =
 type alias Model =
     { matches : List Card
     , collection : Collection
-    , header : UI.Layout.Header.Model
-    , modal : UI.Layout.Modal.Model
     , stackFilters : UI.FilterSelection.Model Cards.CardStack Msg
     , primaryFilters : UI.FilterSelection.Model Cards.Trait Msg
     , secondaryFilters : UI.FilterSelection.Model Cards.Trait Msg
@@ -45,16 +41,10 @@ type alias Model =
     }
 
 
-init : Collection -> Request.With Params -> ( Model, Effect Msg )
-init collection req =
-    let
-        header =
-            UI.Layout.Header.init req
-    in
-    ( { collection = collection
-      , header = header
-      , modal = UI.Layout.Modal.init
-      , matches = matchesForQuery collection header.queryString
+init : Shared.Model -> ( Model, Effect Msg )
+init shared =
+    ( { collection = shared.collection
+      , matches = matchesForQuery shared.collection shared.headerSearch
       , stackFilters = UI.FilterSelection.stacks
       , primaryFilters = UI.FilterSelection.primaryTraits
       , secondaryFilters = UI.FilterSelection.secondaryTraits
@@ -91,8 +81,7 @@ fuzzySort query items =
 
 
 type Msg
-    = FromHeader UI.Layout.Header.Msg
-    | FromModal UI.Layout.Modal.Msg
+    = FromShared Shared.Msg
     | FromStacksFilter (UI.FilterSelection.Msg Cards.CardStack)
     | FromPrimaryFilter (UI.FilterSelection.Msg Cards.Trait)
     | FromSecondaryFilter (UI.FilterSelection.Msg Cards.Trait)
@@ -121,19 +110,8 @@ update msg model =
             , Effect.none
             )
 
-        FromHeader subMsg ->
-            UI.Layout.Header.update subMsg model.header
-                |> Tuple.mapFirst
-                    (\newHeader ->
-                        { model
-                            | header = newHeader
-                            , matches = matchesForQuery model.collection newHeader.queryString
-                        }
-                    )
-
-        FromModal subMsg ->
-            UI.Layout.Modal.update subMsg model.modal
-                |> Tuple.mapFirst (\newModal -> { model | modal = newModal })
+        FromShared subMsg ->
+            ( model, Effect.fromShared subMsg )
 
         FromStacksFilter subMsg ->
             ( { model | stackFilters = UI.FilterSelection.update subMsg model.stackFilters }, Effect.none )
@@ -181,8 +159,7 @@ view shared model =
         sortedCards =
             List.sortWith cardSort filteredCards
     in
-    UI.Layout.Template.view FromHeader
-        FromModal
+    UI.Layout.Template.view FromShared
         shared
         [ h2 [] [ text "Filters" ]
         , div [ class "search-flaggroups" ]

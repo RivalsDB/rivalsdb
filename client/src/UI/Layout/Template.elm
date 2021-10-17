@@ -9,11 +9,11 @@ import UI.Layout.Modal
 import View exposing (View)
 
 
-view : (UI.Layout.Header.Msg -> msg) -> (UI.Layout.Modal.Msg -> msg) -> Shared.Model -> List (Html msg) -> View msg
-view headerMsg modalMsg shared content =
+view : (Shared.Msg -> msg) -> Shared.Model -> List (Html msg) -> View msg
+view sharedMsg shared content =
     htmlList
-        [ ( UI.Layout.Header.view headerMsg shared.user, True )
-        , ( UI.Layout.Modal.view modalMsg, shared.modal == Shared.Open )
+        [ ( UI.Layout.Header.view sharedMsg shared.user, True )
+        , ( UI.Layout.Modal.view sharedMsg, Shared.isModalOpen shared )
         , ( div [ class "page-content" ] content, True )
         , ( UI.Layout.Footer.view, True )
         ]

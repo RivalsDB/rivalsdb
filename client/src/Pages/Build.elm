@@ -17,8 +17,6 @@ import UI.Attribute
 import UI.Card
 import UI.FilterSelection
 import UI.Icon as Icon
-import UI.Layout.Header
-import UI.Layout.Modal
 import UI.Layout.Template
 import View exposing (View)
 
@@ -38,9 +36,7 @@ page shared req =
 
 
 type alias Model =
-    { header : UI.Layout.Header.Model
-    , modal : UI.Layout.Modal.Model
-    , stackFilters : UI.FilterSelection.Model Cards.CardStack Msg
+    { stackFilters : UI.FilterSelection.Model Cards.CardStack Msg
     , primaryFilters : UI.FilterSelection.Model Cards.Trait Msg
     , secondaryFilters : UI.FilterSelection.Model Cards.Trait Msg
     , attackTypeFilters : UI.FilterSelection.Model Cards.AttackType Msg
@@ -74,10 +70,8 @@ deckNameToString deckname =
 
 
 init : Request.With Params -> ( Model, Effect Msg )
-init req =
-    ( { header = UI.Layout.Header.init req
-      , modal = UI.Layout.Modal.init
-      , stackFilters = UI.FilterSelection.stacks
+init _ =
+    ( { stackFilters = UI.FilterSelection.stacks
       , primaryFilters = UI.FilterSelection.primaryTraits
       , secondaryFilters = UI.FilterSelection.secondaryTraits
       , attackTypeFilters = UI.FilterSelection.attackTypes
@@ -94,8 +88,7 @@ init req =
 
 
 type Msg
-    = FromHeader UI.Layout.Header.Msg
-    | FromModal UI.Layout.Modal.Msg
+    = FromShared Shared.Msg
     | FromStacksFilter (UI.FilterSelection.Msg Cards.CardStack)
     | FromPrimaryFilter (UI.FilterSelection.Msg Cards.Trait)
     | FromSecondaryFilter (UI.FilterSelection.Msg Cards.Trait)
@@ -134,13 +127,8 @@ update shared msg model =
             , Effect.none
             )
 
-        FromHeader subMsg ->
-            UI.Layout.Header.update subMsg model.header
-                |> Tuple.mapFirst (\newHeader -> { model | header = newHeader })
-
-        FromModal subMsg ->
-            UI.Layout.Modal.update subMsg model.modal
-                |> Tuple.mapFirst (\newModal -> { model | modal = newModal })
+        FromShared subMsg ->
+            ( model, Effect.fromShared subMsg )
 
         FromStacksFilter subMsg ->
             ( { model | stackFilters = UI.FilterSelection.update subMsg model.stackFilters }, Effect.none )
@@ -253,8 +241,7 @@ viewDeckName deckName =
 
 view : Shared.Model -> Model -> View Msg
 view shared model =
-    UI.Layout.Template.view FromHeader
-        FromModal
+    UI.Layout.Template.view FromShared
         shared
         [ div [ class "deckbldr" ]
             [ viewActions shared.user
