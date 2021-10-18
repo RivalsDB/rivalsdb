@@ -20,6 +20,7 @@
     "discord-api-types": "^0.23.1",
     "discord.js": "^13.2.0",
     "fastify": "^3.22.0",
+    "fastify-compress": "^3.6.1",
     "fastify-cors": "^6.0.2",
     "fastify-plugin": "^3.0.0",
     "fastify-static": "^4.4.2",

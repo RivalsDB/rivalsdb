@@ -1,6 +1,7 @@
 import Fastify from "fastify";
 import fastifyCors from "fastify-cors";
 import fastifyStatic from "fastify-static";
+import fastifyCompress from "fastify-compress";
 import path from "path";
 import { serverPort } from "../env.js";
 import { db } from "../db/index.js";
@@ -31,6 +32,7 @@ export async function createServer() {
   const fastify = Fastify({ logger: true });
 
   fastify.register(fastifyCors);
+  fastify.register(fastifyCompress);
 
   fastify.register(decklistsRoutes, { prefix: "/api/v1" });
   fastify.register(cardsRoutes, { prefix: "/api/v1" });
