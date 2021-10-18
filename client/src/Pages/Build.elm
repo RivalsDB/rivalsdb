@@ -2,7 +2,7 @@ module Pages.Build exposing (Model, Msg, page)
 
 import API.Decklist
 import Cards exposing (Card)
-import Deck exposing (Deck)
+import Deck exposing (Decklist)
 import Dict
 import Effect exposing (Effect)
 import Gen.Params.Build exposing (Params)
@@ -45,7 +45,7 @@ type alias Model =
     , textFilter : Maybe String
     , showAllFilters : Bool
     , showCollectionImages : Bool
-    , deck : Deck
+    , deck : Decklist
     , deckName : DeckName
     }
 
@@ -397,7 +397,7 @@ viewClansInFaction faction =
             )
 
 
-viewFactionList : Deck -> Html Msg
+viewFactionList : Decklist -> Html Msg
 viewFactionList deck =
     let
         characters =
@@ -442,7 +442,7 @@ cardCount =
     List.foldl (\( _, n ) sum -> sum + n) 0
 
 
-viewLibraryList : Deck -> Html Msg
+viewLibraryList : Decklist -> Html Msg
 viewLibraryList deck =
     let
         { actions, combat, other } =
@@ -480,7 +480,7 @@ viewLibraryList deck =
             ]
 
 
-groupLibraryCards : Deck -> { actions : List ( Cards.Library, Int ), combat : List ( Cards.Library, Int ), other : List ( Cards.Library, Int ) }
+groupLibraryCards : Decklist -> { actions : List ( Cards.Library, Int ), combat : List ( Cards.Library, Int ), other : List ( Cards.Library, Int ) }
 groupLibraryCards deck =
     let
         groups =
@@ -523,7 +523,7 @@ viewCardList collection model =
     ]
 
 
-viewCardListRow : Deck -> Card -> Html Msg
+viewCardListRow : Decklist -> Card -> Html Msg
 viewCardListRow deck card =
     li [ class "deckbldr-collectionitem--row" ]
         [ span [ class "deckbldr-rowpiece_quant--row" ] [ viewQuantityPicker card (Deck.copiesInDeck deck card) ]
@@ -593,7 +593,7 @@ viewCardListImages collection model =
     ]
 
 
-viewCardListImage : Deck -> Card -> Html Msg
+viewCardListImage : Decklist -> Card -> Html Msg
 viewCardListImage deck card =
     li [ class "deckbldr-collectionitem--image" ]
         [ UI.Card.lazy card

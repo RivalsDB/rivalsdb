@@ -2,7 +2,7 @@ module Pages.View.Id_ exposing (Model, Msg, page)
 
 import API.Decklist
 import Cards
-import Deck exposing (Deck)
+import Deck exposing (Decklist)
 import Dict
 import Effect exposing (Effect)
 import Gen.Params.View.Id_ exposing (Params)
@@ -38,7 +38,7 @@ type Model
 
 
 type alias Xyz =
-    { deck : Deck
+    { deck : Decklist
     , deckName : String
     }
 
@@ -61,8 +61,8 @@ update msg model =
         FromShared subMsg ->
             ( model, Effect.fromShared subMsg )
 
-        FetchedDecklist (Ok res) ->
-            ( Viewing { deck = res, deckName = "Some name" }, Effect.none )
+        FetchedDecklist (Ok deck) ->
+            ( Viewing { deck = deck.decklist, deckName = deck.meta.name }, Effect.none )
 
         FetchedDecklist (Err _) ->
             ( model, Effect.none )
@@ -185,7 +185,7 @@ viewClansInFaction faction =
             )
 
 
-viewFactionList : Deck -> Html Msg
+viewFactionList : Decklist -> Html Msg
 viewFactionList deck =
     let
         characters =
@@ -229,7 +229,7 @@ cardCount =
     List.foldl (\( _, n ) sum -> sum + n) 0
 
 
-viewLibraryList : Deck -> Html Msg
+viewLibraryList : Decklist -> Html Msg
 viewLibraryList deck =
     let
         { actions, combat, other } =
@@ -267,7 +267,7 @@ viewLibraryList deck =
             ]
 
 
-groupLibraryCards : Deck -> { actions : List ( Cards.Library, Int ), combat : List ( Cards.Library, Int ), other : List ( Cards.Library, Int ) }
+groupLibraryCards : Decklist -> { actions : List ( Cards.Library, Int ), combat : List ( Cards.Library, Int ), other : List ( Cards.Library, Int ) }
 groupLibraryCards deck =
     let
         groups =

@@ -1,5 +1,6 @@
 module Deck exposing
     ( Deck
+    , Decklist
     , Faction
     , copiesInDeck
     , decoder
@@ -23,10 +24,23 @@ import Shared exposing (Collection)
 
 
 type alias Deck =
+    { decklist : Decklist
+    , meta : Meta
+    }
+
+
+type alias Decklist =
     { agenda : Agenda
     , haven : Haven
     , faction : Faction
     , library : Library
+    }
+
+
+type alias Meta =
+    { id : String
+    , name : String
+    , owner : String
     }
 
 
@@ -46,7 +60,7 @@ type alias Library =
     Dict Cards.Id ( Cards.Library, Int )
 
 
-empty : Deck
+empty : Decklist
 empty =
     { agenda = Nothing
     , haven = Nothing
@@ -55,7 +69,7 @@ empty =
     }
 
 
-isLegal : Deck -> Bool
+isLegal : Decklist -> Bool
 isLegal deck =
     case ( deck.agenda, deck.haven ) of
         ( Just _, Just _ ) ->
@@ -66,7 +80,7 @@ isLegal deck =
             False
 
 
-setCard : Deck -> ( Cards.Card, Int ) -> Deck
+setCard : Decklist -> ( Cards.Card, Int ) -> Decklist
 setCard deck entry =
     case entry of
         ( Cards.AgendaCard _, 0 ) ->
@@ -97,7 +111,7 @@ setCard deck entry =
             deck
 
 
-copiesInDeck : Deck -> Cards.Card -> Int
+copiesInDeck : Decklist -> Cards.Card -> Int
 copiesInDeck deck card =
     case card of
         Cards.AgendaCard { id } ->
@@ -135,22 +149,22 @@ copiesInDeck deck card =
             Dict.get id deck.library |> Maybe.map Tuple.second |> Maybe.withDefault 0
 
 
-isLeader : Deck -> Cards.Faction -> Bool
+isLeader : Decklist -> Cards.Faction -> Bool
 isLeader deck character =
     Dict.get character.id deck.faction |> Maybe.map Tuple.second |> Maybe.withDefault False
 
 
-leader : Deck -> Maybe Cards.Faction
+leader : Decklist -> Maybe Cards.Faction
 leader deck =
     Dict.values deck.faction |> List.filter Tuple.second |> List.head |> Maybe.map Tuple.first
 
 
-setLeader : Deck -> Cards.Faction -> Deck
+setLeader : Decklist -> Cards.Faction -> Decklist
 setLeader deck newLeader =
     { deck | faction = Dict.map (\_ ( char, _ ) -> ( char, char.id == newLeader.id )) deck.faction }
 
 
-isValidFaction : Deck -> Bool
+isValidFaction : Decklist -> Bool
 isValidFaction deck =
     Dict.isEmpty deck.faction
         || ((leader deck |> Maybe.map (always True) |> Maybe.withDefault False)
@@ -158,7 +172,7 @@ isValidFaction deck =
            )
 
 
-isValidLibrary : Deck -> Bool
+isValidLibrary : Decklist -> Bool
 isValidLibrary deck =
     let
         deckSize =
@@ -167,7 +181,7 @@ isValidLibrary deck =
     (deckSize == 0) || (deckSize >= 40 && deckSize <= 60)
 
 
-demoDeck : Collection -> Deck
+demoDeck : Collection -> Decklist
 demoDeck collection =
     let
         agenda =
@@ -241,7 +255,7 @@ demoDeck collection =
 ----------
 
 
-encode : String -> Deck -> Maybe Encode.Value
+encode : String -> Decklist -> Maybe Encode.Value
 encode name deck =
     case ( deck.agenda, deck.haven ) of
         ( Just agenda, Just haven ) ->
@@ -270,15 +284,26 @@ encode name deck =
 
 decoder : Collection -> Decoder Deck
 decoder collection =
-    Decode.map4 Deck
+    Decode.map2 Deck
+        (decklistDecoder collection)
+        metaDecoder
+
+
+metaDecoder : Decoder Meta
+metaDecoder =
+    Decode.map3 Meta
+        (Decode.field "id" Decode.string)
+        (Decode.field "name" Decode.string)
+        (Decode.field "creatorId" Decode.string)
+
+
+decklistDecoder : Collection -> Decoder Decklist
+decklistDecoder collection =
+    Decode.map4 Decklist
         (agendaDecoder collection)
         (havenDecoder collection)
         (factionDecoder collection)
         (libraryDecoder collection)
-
-
-
--- (Decode.field "libraryDeck" Decode.string)
 
 
 agendaDecoder : Collection -> Decoder Agenda
