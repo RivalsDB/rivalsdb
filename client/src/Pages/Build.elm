@@ -1,11 +1,13 @@
 module Pages.Build exposing (Model, Msg, page)
 
 import API.Decklist
+import Browser.Navigation as Navigation exposing (Key)
 import Cards exposing (Card)
 import Deck exposing (Decklist)
 import Dict
 import Effect exposing (Effect)
 import Gen.Params.Build exposing (Params)
+import Gen.Route as Route
 import Html exposing (..)
 import Html.Attributes exposing (checked, class, classList, name, placeholder, type_)
 import Html.Events exposing (onClick, onInput, onSubmit)
@@ -47,6 +49,7 @@ type alias Model =
     , showCollectionImages : Bool
     , deck : Decklist
     , deckName : DeckName
+    , key : Key
     }
 
 
@@ -70,7 +73,7 @@ deckNameToString deckname =
 
 
 init : Request.With Params -> ( Model, Effect Msg )
-init _ =
+init req =
     ( { stackFilters = UI.FilterSelection.stacks
       , primaryFilters = UI.FilterSelection.primaryTraits
       , secondaryFilters = UI.FilterSelection.secondaryTraits
@@ -82,6 +85,7 @@ init _ =
       , showCollectionImages = False
       , deck = Deck.empty
       , deckName = Unnamed
+      , key = req.key
       }
     , Effect.none
     )
@@ -185,7 +189,10 @@ update shared msg model =
                 ( _, _ ) ->
                     ( model, Effect.none )
 
-        SavedDecklist _ ->
+        SavedDecklist (Ok deckId) ->
+            ( model, Route.toHref (Route.View__Id_ { id = deckId }) |> Navigation.pushUrl model.key |> Effect.fromCmd )
+
+        SavedDecklist (Err _) ->
             ( model, Effect.none )
 
         StartRenameDeck ->

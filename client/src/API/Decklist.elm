@@ -2,13 +2,14 @@ module API.Decklist exposing (ResultCreate, ResultRead, create, read)
 
 import Deck exposing (Deck)
 import Http
+import Json.Decode as Decode
 import Json.Encode as Encode
 import Shared
 import Url exposing (Protocol(..))
 
 
 type alias ResultCreate =
-    Result Http.Error ()
+    Result Http.Error String
 
 
 create : (ResultCreate -> msg) -> Shared.Token -> Encode.Value -> Cmd msg
@@ -20,7 +21,7 @@ create msg token deck =
         , timeout = Nothing
         , tracker = Nothing
         , body = Http.jsonBody deck
-        , expect = Http.expectWhatever msg
+        , expect = Http.expectJson msg (Decode.field "id" Decode.string)
         }
 
 
