@@ -2,6 +2,9 @@ module Deck exposing
     ( Deck
     , Decklist
     , Faction
+    , Library
+    , Meta
+    , clansInFaction
     , copiesInDeck
     , decoder
     , demoDeck
@@ -11,6 +14,7 @@ module Deck exposing
     , isLegal
     , isValidFaction
     , isValidLibrary
+    , isValidLibrary2
     , leader
     , setCard
     , setLeader
@@ -56,8 +60,39 @@ type alias Faction =
     Dict Cards.Id ( Cards.Faction, Bool )
 
 
+clansInFaction : Faction -> List ( Cards.Clan, Int )
+clansInFaction faction =
+    Dict.values faction
+        |> List.foldl
+            (\( { clan }, _ ) clanCounts ->
+                if List.any (Tuple.first >> (==) clan) clanCounts then
+                    List.map
+                        (\( someClan, n ) ->
+                            if someClan == clan then
+                                ( someClan, n + 1 )
+
+                            else
+                                ( someClan, n )
+                        )
+                        clanCounts
+
+                else
+                    ( clan, 1 ) :: clanCounts
+            )
+            []
+
+
 type alias Library =
     Dict Cards.Id ( Cards.Library, Int )
+
+
+isValidLibrary2 : Library -> Bool
+isValidLibrary2 library =
+    let
+        deckSize =
+            List.foldl (\( _, n ) sum -> sum + n) 0 <| Dict.values library
+    in
+    (deckSize == 0) || (deckSize >= 40 && deckSize <= 60)
 
 
 empty : Decklist
