@@ -1,8 +1,10 @@
 import { FastifyPluginAsync } from "fastify";
 import {
   createDecklist,
+  fetchDecklists,
   createUserIfNeeded,
   fetchDecklist,
+  Decklist,
 } from "../db/index.js";
 import auth from "./auth.js";
 
@@ -16,6 +18,18 @@ interface DeckInput {
 interface DeckOutput extends DeckInput {
   id: string;
   creatorId: string;
+}
+function toResponse(decklist: Decklist) {
+  return {
+    ...decklist,
+    factionDeck: decklist.factionDeck.reduce<Record<string, boolean>>(
+      (faction, cardId) => {
+        faction[cardId] = cardId === decklist.leader;
+        return faction;
+      },
+      {}
+    ),
+  };
 }
 
 const privateRoutes: FastifyPluginAsync = async (fastify, options) => {
@@ -81,21 +95,44 @@ const privateRoutes: FastifyPluginAsync = async (fastify, options) => {
       );
 
       reply.code(201);
-      return {
-        ...entry,
-        factionDeck: entry.factionDeck.reduce<Record<string, boolean>>(
-          (factionDeck, character) => {
-            factionDeck[character] = character === leader;
-            return factionDeck;
-          },
-          {}
-        ),
-      };
+      return toResponse(entry);
     },
   });
 };
 
 const publicRoutes: FastifyPluginAsync = async (fastify, options) => {
+  fastify.get("/decklist", {
+    schema: {
+      response: {
+        200: {
+          type: "array",
+          items: {
+            type: "object",
+            properties: {
+              name: { anyOf: [{ type: "null" }, { type: "string" }] },
+              agenda: { type: "string" },
+              haven: { type: "string" },
+              factionDeck: {
+                type: "object",
+                additionalProperties: { type: "boolean" },
+              },
+              libraryDeck: {
+                type: "object",
+                additionalProperties: { type: "integer" },
+              },
+              id: { type: "string" },
+              creatorId: { type: "string" },
+            },
+          },
+        },
+      },
+    },
+    async handler() {
+      const decklists = await fetchDecklists();
+      return decklists.map(toResponse);
+    },
+  });
+
   fastify.get<{ Params: { deckId: string } }>("/decklist/:deckId", {
     schema: {
       response: {
@@ -126,16 +163,7 @@ const publicRoutes: FastifyPluginAsync = async (fastify, options) => {
         return reply.send();
       }
 
-      return {
-        ...decklist,
-        factionDeck: decklist.factionDeck.reduce<Record<string, boolean>>(
-          (faction, cardId) => {
-            faction[cardId] = cardId === decklist.leader;
-            return faction;
-          },
-          {}
-        ),
-      };
+      return toResponse(decklist);
     },
   });
 };

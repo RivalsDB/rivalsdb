@@ -1,7 +1,7 @@
 import { db, sql } from "./_db.js";
 import { generateId } from "./_id.js";
 
-interface Decklist {
+export interface Decklist {
   id: string;
   name: string;
   creatorId: string;
@@ -46,6 +46,28 @@ export async function fetchDecklist(
     return null;
   }
 
+  return rowToDecklist(row);
+}
+
+export async function fetchDecklists(): Promise<Decklist[]> {
+  const rows = await db.query(sql`
+    SELECT
+      decklist_id,
+      name,
+      user_id,
+      content
+    FROM decklists
+  `);
+
+  return rows.map(rowToDecklist);
+}
+
+function rowToDecklist(row: {
+  decklist_id: string;
+  name: string;
+  user_id: string;
+  content: Omit<Decklist, "id" | "name" | "creatorId">;
+}) {
   return {
     id: row.decklist_id,
     name: row.name,
