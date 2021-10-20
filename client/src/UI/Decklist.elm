@@ -1,6 +1,7 @@
 module UI.Decklist exposing (view)
 
 import Cards
+import Clan exposing (Clan)
 import Deck exposing (Deck, Meta, isLeader)
 import Dict
 import Html exposing (Html, div, h3, h4, li, p, span, text, ul)
@@ -89,7 +90,7 @@ viewFaction decklist =
         ]
 
 
-viewClanInFactionHeader : ( Cards.Clan, Int ) -> Html msg
+viewClanInFactionHeader : ( Clan, Int ) -> Html msg
 viewClanInFactionHeader ( clan, _ ) =
     span [ class "decklist-clan_entry" ]
         [ span [ class "decklist-clan_clan" ] [ Icon.clan clan ] ]
@@ -205,5 +206,27 @@ groupLibraryCards library =
 
 sortedFaction : Deck.Faction -> List ( Cards.Faction, Bool )
 sortedFaction faction =
-    Dict.values faction
-        |> List.sortBy (Tuple.first >> .bloodPotency >> negate)
+    Dict.values faction |> List.sortWith factionSort
+
+
+factionSort : ( Cards.Faction, Bool ) -> ( Cards.Faction, Bool ) -> Order
+factionSort ( a, aLeader ) ( b, bLeader ) =
+    case ( aLeader, bLeader ) of
+        ( True, False ) ->
+            LT
+
+        ( False, True ) ->
+            GT
+
+        _ ->
+            case compare (negate a.bloodPotency) (negate b.bloodPotency) of
+                EQ ->
+                    case Clan.compare_ a.clan b.clan of
+                        EQ ->
+                            compare a.name b.name
+
+                        order ->
+                            order
+
+                order ->
+                    order

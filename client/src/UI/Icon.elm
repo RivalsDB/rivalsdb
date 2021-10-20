@@ -8,6 +8,7 @@ module UI.Icon exposing
     )
 
 import Cards
+import Clan exposing (Clan)
 import Html exposing (Attribute, Html, span, text)
 import Html.Attributes exposing (class, title)
 
@@ -83,31 +84,31 @@ type alias Icon =
 ------
 
 
-clan : Cards.Clan -> Html msg
+clan : Clan -> Html msg
 clan c =
     case c of
-        Cards.Brujah ->
+        Clan.Brujah ->
             icon ( Brujah, Standard )
 
-        Cards.Gangrel ->
+        Clan.Gangrel ->
             icon ( Gangrel, Standard )
 
-        Cards.Malkavian ->
+        Clan.Malkavian ->
             icon ( Malkavian, Standard )
 
-        Cards.Nosferatu ->
+        Clan.Nosferatu ->
             icon ( Nosferatu, Standard )
 
-        Cards.ThinBlood ->
+        Clan.ThinBlood ->
             icon ( ThinBlood, Standard )
 
-        Cards.Toreador ->
+        Clan.Toreador ->
             icon ( Toreador, Standard )
 
-        Cards.Tremere ->
+        Clan.Tremere ->
             icon ( Tremere, Standard )
 
-        Cards.Ventrue ->
+        Clan.Ventrue ->
             icon ( Ventrue, Standard )
 
 

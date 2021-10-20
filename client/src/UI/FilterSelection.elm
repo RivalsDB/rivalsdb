@@ -1,6 +1,7 @@
 module UI.FilterSelection exposing (Model, Msg(..), attackTypes, clans, disciplines, isAllowed, primaryTraits, secondaryTraits, stacks, update, view)
 
 import Cards
+import Clan exposing (Clan)
 import Html exposing (Html, div, input, label, span)
 import Html.Attributes exposing (class, classList, type_)
 import Html.Events exposing (onCheck)
@@ -55,17 +56,17 @@ attackTypes =
         ]
 
 
-clans : Model Cards.Clan msg
+clans : Model Clan msg
 clans =
     List.map modelHelper
-        [ ( Cards.Brujah, Icon.icon ( Icon.Brujah, Icon.Standard ) )
-        , ( Cards.Gangrel, Icon.icon ( Icon.Gangrel, Icon.Standard ) )
-        , ( Cards.Malkavian, Icon.icon ( Icon.Malkavian, Icon.Standard ) )
-        , ( Cards.Nosferatu, Icon.icon ( Icon.Nosferatu, Icon.Standard ) )
-        , ( Cards.ThinBlood, Icon.icon ( Icon.ThinBlood, Icon.Standard ) )
-        , ( Cards.Toreador, Icon.icon ( Icon.Toreador, Icon.Standard ) )
-        , ( Cards.Tremere, Icon.icon ( Icon.Tremere, Icon.Standard ) )
-        , ( Cards.Ventrue, Icon.icon ( Icon.Ventrue, Icon.Standard ) )
+        [ ( Clan.Brujah, Icon.icon ( Icon.Brujah, Icon.Standard ) )
+        , ( Clan.Gangrel, Icon.icon ( Icon.Gangrel, Icon.Standard ) )
+        , ( Clan.Malkavian, Icon.icon ( Icon.Malkavian, Icon.Standard ) )
+        , ( Clan.Nosferatu, Icon.icon ( Icon.Nosferatu, Icon.Standard ) )
+        , ( Clan.ThinBlood, Icon.icon ( Icon.ThinBlood, Icon.Standard ) )
+        , ( Clan.Toreador, Icon.icon ( Icon.Toreador, Icon.Standard ) )
+        , ( Clan.Tremere, Icon.icon ( Icon.Tremere, Icon.Standard ) )
+        , ( Clan.Ventrue, Icon.icon ( Icon.Ventrue, Icon.Standard ) )
         ]
 
 

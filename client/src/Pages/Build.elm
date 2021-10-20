@@ -3,6 +3,7 @@ module Pages.Build exposing (Model, Msg, page)
 import API.Decklist
 import Browser.Navigation as Navigation exposing (Key)
 import Cards exposing (Card)
+import Clan exposing (Clan)
 import Deck exposing (Decklist)
 import Dict
 import Effect exposing (Effect)
@@ -42,7 +43,7 @@ type alias Model =
     , primaryFilters : UI.FilterSelection.Model Cards.Trait Msg
     , secondaryFilters : UI.FilterSelection.Model Cards.Trait Msg
     , attackTypeFilters : UI.FilterSelection.Model Cards.AttackType Msg
-    , clansFilters : UI.FilterSelection.Model Cards.Clan Msg
+    , clansFilters : UI.FilterSelection.Model Clan Msg
     , disciplineFilters : UI.FilterSelection.Model Cards.Discipline Msg
     , textFilter : Maybe String
     , showAllFilters : Bool
@@ -97,7 +98,7 @@ type Msg
     | FromPrimaryFilter (UI.FilterSelection.Msg Cards.Trait)
     | FromSecondaryFilter (UI.FilterSelection.Msg Cards.Trait)
     | FromAttackTypesFilter (UI.FilterSelection.Msg Cards.AttackType)
-    | FromClansFilter (UI.FilterSelection.Msg Cards.Clan)
+    | FromClansFilter (UI.FilterSelection.Msg Clan)
     | FromDisciplinesFilter (UI.FilterSelection.Msg Cards.Discipline)
     | TextFilterChanged String
     | ToggleShowAllFilters

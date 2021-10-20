@@ -21,6 +21,7 @@ module Deck exposing
     )
 
 import Cards
+import Clan exposing (Clan)
 import Dict exposing (Dict)
 import Json.Decode as Decode exposing (Decoder)
 import Json.Encode as Encode
@@ -60,7 +61,7 @@ type alias Faction =
     Dict Cards.Id ( Cards.Faction, Bool )
 
 
-clansInFaction : Faction -> List ( Cards.Clan, Int )
+clansInFaction : Faction -> List ( Clan, Int )
 clansInFaction faction =
     Dict.values faction
         |> List.foldl

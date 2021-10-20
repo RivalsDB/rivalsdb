@@ -6,7 +6,6 @@ module Cards exposing
     , BloodPotencyRequirement
     , Card(..)
     , CardStack(..)
-    , Clan(..)
     , Damage
     , Discipline(..)
     , Faction
@@ -19,7 +18,6 @@ module Cards exposing
     , bloodPotency
     , cardsDecoder
     , clan
-    , clanEnum
     , clanRequirement
     , discipline
     , findTextInCard
@@ -32,6 +30,7 @@ module Cards exposing
     , traits
     )
 
+import Clan exposing (Clan)
 import Dict
 import Enum exposing (Enum)
 import Json.Decode as Decode exposing (Decoder, int, list, map, string)
@@ -72,31 +71,6 @@ pack =
         , ( "Wolf & Rat", WolfAndRat )
         , ( "Core", Core )
         , ( "Season 0 Promo", Promo )
-        ]
-
-
-type Clan
-    = Brujah
-    | Gangrel
-    | Malkavian
-    | Nosferatu
-    | ThinBlood
-    | Toreador
-    | Tremere
-    | Ventrue
-
-
-clanEnum : Enum Clan
-clanEnum =
-    Enum.create
-        [ ( "brujah", Brujah )
-        , ( "gangrel", Gangrel )
-        , ( "malkavian", Malkavian )
-        , ( "nosferatu", Nosferatu )
-        , ( "thin-blood", ThinBlood )
-        , ( "toreador", Toreador )
-        , ( "tremere", Tremere )
-        , ( "ventrue", Ventrue )
         ]
 
 
@@ -357,7 +331,7 @@ clanRequirement card =
                 |> Maybe.withDefault []
 
         _ ->
-            List.map Tuple.second clanEnum.list
+            List.map Tuple.second Clan.enum.list
 
 
 discipline : Card -> List Discipline
@@ -615,12 +589,12 @@ decodeTraits =
 
 decodeClan : Decoder (Clan -> b) -> Decoder b
 decodeClan =
-    required "clan" clanEnum.decoder
+    required "clan" Clan.enum.decoder
 
 
 decodeMaybeClan : Decoder (Maybe Clan -> b) -> Decoder b
 decodeMaybeClan =
-    optional "clan" (Decode.map Just clanEnum.decoder) Nothing
+    optional "clan" (Decode.map Just Clan.enum.decoder) Nothing
 
 
 decodeSet : Decoder (Pack -> b) -> Decoder b
