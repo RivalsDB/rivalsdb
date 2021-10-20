@@ -64,8 +64,8 @@ view shared model =
         Loading ->
             UI.Layout.Template.view FromShared shared [ text "Loading" ]
 
-        Viewing ddd ->
-            viewDecklist shared ddd
+        Viewing deck ->
+            viewDecklist shared deck
 
 
 viewDecklist : Shared.Model -> Deck -> View Msg

@@ -1,4 +1,4 @@
-module API.Decklist exposing (ResultCreate, ResultRead, create, read)
+module API.Decklist exposing (ResultCreate, ResultIndex, ResultRead, create, index, read)
 
 import Deck exposing (Deck)
 import Http
@@ -34,6 +34,18 @@ read collection msg deckId =
     Http.get
         { url = "/api/v1/decklist/" ++ deckId
         , expect = Http.expectJson msg (Deck.decoder collection)
+        }
+
+
+type alias ResultIndex =
+    Result Http.Error (List Deck)
+
+
+index : Shared.Collection -> (ResultIndex -> msg) -> Cmd msg
+index collection msg =
+    Http.get
+        { url = "/api/v1/decklist"
+        , expect = Http.expectJson msg (Decode.list <| Deck.decoder collection)
         }
 
 
