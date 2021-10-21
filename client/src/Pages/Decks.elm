@@ -1,7 +1,7 @@
 module Pages.Decks exposing (Model, Msg, page)
 
 import API.Decklist
-import Deck exposing (Deck)
+import Deck exposing (DeckPostSave)
 import Effect exposing (Effect)
 import Gen.Params.Decks exposing (Params)
 import Gen.Route as Route
@@ -16,7 +16,7 @@ import View exposing (View)
 
 
 page : Shared.Model -> Request.With Params -> Page.With Model Msg
-page shared req =
+page shared _ =
     Page.advanced
         { init = init shared
         , update = update
@@ -31,7 +31,7 @@ page shared req =
 
 type Model
     = Loading
-    | Viewing (List Deck)
+    | Viewing (List DeckPostSave)
 
 
 init : Shared.Model -> ( Model, Effect Msg )
@@ -79,7 +79,7 @@ view shared model =
             viewDecklists shared ddd
 
 
-viewDecklists : Shared.Model -> List Deck -> View Msg
+viewDecklists : Shared.Model -> List DeckPostSave -> View Msg
 viewDecklists shared model =
     UI.Layout.Template.view FromShared
         shared
@@ -91,18 +91,13 @@ viewDecklists shared model =
         ]
 
 
-viewDecklistEntry : Deck -> Html Msg
+viewDecklistEntry : DeckPostSave -> Html Msg
 viewDecklistEntry deck =
     li [ class "deckindexitem" ]
         [ p []
-            [ a [ href <| Route.toHref (Route.View__Id_ { id = deck.meta.id }) ]
+            [ a [ href <| Route.toHref (Route.Deck__View__Id_ { id = deck.meta.id }) ]
                 [ strong []
-                    [ if String.length deck.meta.name > 0 then
-                        text deck.meta.name
-
-                      else
-                        text "Unnamed"
-                    ]
+                    [ text <| Deck.displayName deck.meta.name ]
                 , text " by: "
                 , text deck.meta.owner
                 ]

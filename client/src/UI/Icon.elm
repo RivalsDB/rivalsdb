@@ -36,10 +36,9 @@ type IconImage
     | Conspiracy
     | Damage
     | Dominate
-    | Scheme
+    | Edit
     | Faction
     | Fortitude
-    | Ritual
     | Gangrel
     | Haven
     | Influence
@@ -57,10 +56,12 @@ type IconImage
     | Protean
     | Ranged
     | Reaction
+    | Ritual
     | Save
-    | Special
+    | Scheme
     | Shield
     | Social
+    | Special
     | ThinBlood
     | ThinBloodAlchemy
     | Title
@@ -237,6 +238,9 @@ imageOpts image =
 
         Dominate ->
             ( class "ui-icon_dominate", "Dominate" )
+
+        Edit ->
+            ( class "ui-icon_edit", "Edit" )
 
         Faction ->
             ( class "ui-icon_faction", "Faction" )

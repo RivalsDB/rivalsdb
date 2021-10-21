@@ -15,7 +15,7 @@ view msg user =
         , nav [ class "header-nav" ]
             [ ul []
                 [ li [] [ a [ href <| Route.toHref Route.Decks ] [ text "Decks" ] ]
-                , li [] [ a [ href <| Route.toHref Route.Build ] [ text "New Deck" ] ]
+                , li [] [ a [ href <| Route.toHref Route.Deck__New ] [ text "New Deck" ] ]
                 , li [] [ a [ href <| Route.toHref Route.Search ] [ text "Cards" ] ]
                 ]
             ]

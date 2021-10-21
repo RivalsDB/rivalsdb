@@ -1,42 +1,122 @@
-module UI.Decklist exposing (view)
+module UI.Decklist exposing (Actions, viewCreate, viewDeck, viewEdit)
 
 import Cards
-import Clan exposing (Clan)
-import Deck exposing (Deck, Meta, isLeader)
+import Clan
+import Deck exposing (DeckPostSave, DeckPreSave, Name(..), isLeader)
 import Dict
-import Html exposing (Html, div, h3, h4, li, p, span, text, ul)
-import Html.Attributes exposing (class, classList)
+import Html exposing (Html, button, div, form, h3, h4, input, li, p, span, text, ul)
+import Html.Attributes exposing (class, classList, placeholder, type_)
+import Html.Events exposing (onClick, onInput, onSubmit)
 import UI.Attribute
 import UI.Card
 import UI.Icon as Icon
 
 
-view : Deck -> Html msg
-view deck =
+viewDeck : DeckPostSave -> Html msg
+viewDeck { decklist, meta } =
     div [ class "decklist" ]
-        [ viewDeckTitle deck.meta
-        , viewAgenda deck.decklist.agenda
-        , viewHaven deck.decklist.haven
-        , viewLeader (Deck.leader deck.decklist)
-        , viewFaction deck.decklist
-        , viewLibrary deck.decklist.library
+        [ viewDeckTitleReadOnly meta.name
+        , viewAgenda decklist.agenda
+        , viewHaven decklist.haven
+        , viewLeader (Deck.leader decklist)
+        , viewFaction factionEntryReadOnly decklist
+        , viewLibrary decklist.library
         ]
 
 
-viewDeckTitle : Meta -> Html msg
-viewDeckTitle meta =
-    div [ class "decklist-title" ]
-        [ p [] [ span [ class "decklist-titlename" ] [ text meta.name ] ] ]
+viewCreate : Actions msg -> DeckPreSave -> Html msg
+viewCreate actions { decklist, meta } =
+    div [ class "decklist" ]
+        [ viewDeckTitleEditable actions meta.name
+        , viewAgenda decklist.agenda
+        , viewHaven decklist.haven
+        , viewLeader (Deck.leader decklist)
+        , viewFaction (factionEntryEditable actions) decklist
+        , viewLibrary decklist.library
+        ]
+
+
+viewEdit : Actions msg -> DeckPostSave -> Html msg
+viewEdit actions { decklist, meta } =
+    div [ class "decklist" ]
+        [ viewDeckTitleEditable actions meta.name
+        , viewAgenda decklist.agenda
+        , viewHaven decklist.haven
+        , viewLeader (Deck.leader decklist)
+        , viewFaction (factionEntryEditable actions) decklist
+        , viewLibrary decklist.library
+        ]
+
+
+type alias Actions msg =
+    { setLeader : Cards.Faction -> msg
+    , startNameChange : msg
+    , endNameChange : msg
+    , changeName : String -> msg
+    }
+
+
+viewDeckTitleReadOnly : Deck.Name -> Html msg
+viewDeckTitleReadOnly name =
+    div [ class "decklist__title" ]
+        [ p []
+            [ span [ class "decklist__title-name" ]
+                [ text
+                    (case name of
+                        Deck.Named someName ->
+                            someName
+
+                        _ ->
+                            "Unnamed"
+                    )
+                ]
+            ]
+        ]
+
+
+viewDeckTitleEditable : Actions msg -> Deck.Name -> Html msg
+viewDeckTitleEditable { startNameChange, changeName, endNameChange } name =
+    div [ class "decklist__title" ]
+        [ case name of
+            Unnamed ->
+                p []
+                    [ span [ class "decklist__title-name" ]
+                        [ text "Unnamed"
+                        ]
+                    , span [ class "decklist__title-action", onClick startNameChange ]
+                        [ text "(rename deck)" ]
+                    ]
+
+            Named someName ->
+                p []
+                    [ span [ class "decklist__title-name" ]
+                        [ text someName
+                        ]
+                    , span [ class "decklist__title-action", onClick startNameChange ]
+                        [ text "(rename deck)" ]
+                    ]
+
+            BeingNamed _ ->
+                div []
+                    [ form [ onSubmit endNameChange ]
+                        [ input [ placeholder "My Cool Deck", onInput changeName ] []
+                        , button [ type_ "submit" ] [ text "ok" ]
+                        ]
+                    ]
+        ]
 
 
 viewAgenda : Maybe Cards.Agenda -> Html msg
 viewAgenda agenda =
-    div [ class "decklist-core", class "decklist-core--agenda" ]
-        [ p [ class "decklist-section_header" ]
+    div
+        [ class "decklist__core"
+        , class "decklist__agenda"
+        ]
+        [ p [ class "decklist__core-heading" ]
             [ text "Agenda: "
             , text <| Maybe.withDefault "Unknown" <| Maybe.map .name agenda
             ]
-        , div [ class "decklist-core_image" ]
+        , div [ class "decklist__core-image" ]
             [ agenda
                 |> Maybe.map (Cards.AgendaCard >> UI.Card.lazy)
                 |> Maybe.withDefault (text "Unknown Agenda")
@@ -46,12 +126,15 @@ viewAgenda agenda =
 
 viewLeader : Maybe Cards.Faction -> Html msg
 viewLeader leader =
-    div [ class "decklist-core", class "decklist-core--leader" ]
-        [ p [ class "decklist-section_header" ]
+    div
+        [ class "decklist__core"
+        , class "decklist__leader"
+        ]
+        [ p [ class "decklist__core-heading" ]
             [ text "Leader: "
             , text <| Maybe.withDefault "Unknown" <| Maybe.map .name leader
             ]
-        , div [ class "decklist-core_image" ]
+        , div [ class "decklist__core-image" ]
             [ leader
                 |> Maybe.map (Cards.FactionCard >> UI.Card.lazy)
                 |> Maybe.withDefault (text "Unknown Leader")
@@ -61,12 +144,15 @@ viewLeader leader =
 
 viewHaven : Maybe Cards.Haven -> Html msg
 viewHaven haven =
-    div [ class "decklist-core", class "decklist-core--haven" ]
-        [ p [ class "decklist-section_header" ]
+    div
+        [ class "decklist__core"
+        , class "decklist__haven"
+        ]
+        [ p [ class "decklist__core-heading" ]
             [ text "Haven: "
             , text <| Maybe.withDefault "Unknown" <| Maybe.map .name haven
             ]
-        , div [ class "decklist-core_image" ]
+        , div [ class "decklist__core-image" ]
             [ haven
                 |> Maybe.map (Cards.HavenCard >> UI.Card.lazy)
                 |> Maybe.withDefault (text "Unknown Haven")
@@ -74,37 +160,45 @@ viewHaven haven =
         ]
 
 
-viewFaction : Deck.Decklist -> Html msg
-viewFaction decklist =
-    div [ class "decklist-faction" ]
+viewFaction : (( Cards.Faction, Bool ) -> Html msg) -> Deck.Decklist -> Html msg
+viewFaction toFactionEntry decklist =
+    let
+        clansInFaction =
+            Deck.clansInFaction decklist.faction
+
+        sortedCharacters =
+            Dict.values decklist.faction |> List.sortWith factionSort
+    in
+    div [ class "decklist__faction", class "deck-faction" ]
         [ div
-            [ class "decklist-section_header"
-            , classList [ ( "decklist-section_header--invalid", not <| Deck.isValidFaction decklist ) ]
+            [ class "deck-faction__header"
+            , classList [ ( "deck-faction__header--invalid", not <| Deck.isValidFaction decklist ) ]
             ]
-            [ h3 [ class "decklist-section_header_name" ] [ text "Faction" ]
-            , div [ class "decklist-section_header_extra" ]
-                (Deck.clansInFaction decklist.faction |> List.map viewClanInFactionHeader)
+            [ h3 [ class "deck-faction__title" ] [ text "Faction" ]
+            , div [ class "deck-faction__clan-list" ]
+                (clansInFaction
+                    |> List.map
+                        (\( clan, _ ) ->
+                            span [ class "deck-faction__clan-item" ]
+                                [ Icon.clan clan ]
+                        )
+                )
             ]
-        , ul [ class "deckfact" ]
-            (sortedFaction decklist.faction |> List.map viewCharacter)
+        , ul []
+            (sortedCharacters |> List.map toFactionEntry)
         ]
 
 
-viewClanInFactionHeader : ( Clan, Int ) -> Html msg
-viewClanInFactionHeader ( clan, _ ) =
-    span [ class "decklist-clan_entry" ]
-        [ span [ class "decklist-clan_clan" ] [ Icon.clan clan ] ]
-
-
-viewCharacter : ( Cards.Faction, Bool ) -> Html msg
-viewCharacter ( character, isLeader ) =
+factionEntryEditable : Actions msg -> ( Cards.Faction, Bool ) -> Html msg
+factionEntryEditable { setLeader } ( character, isLeader ) =
     li
-        [ class "deckfact-entry"
-        , classList [ ( "deckfact-entry--leader", isLeader ) ]
+        [ class "deck-faction__character"
+        , classList [ ( "deck-faction__character--leader", isLeader ) ]
         ]
         ([ span
-            [ class "deckfact-leader_option"
-            , classList [ ( "deckfact-leader_option--leader", isLeader ) ]
+            [ class "deck-faction__leader"
+            , class "deck-faction__leader--editable"
+            , onClick (setLeader character)
             ]
             (if isLeader then
                 [ Icon.icon ( Icon.Leader, Icon.Standard ) ]
@@ -112,22 +206,73 @@ viewCharacter ( character, isLeader ) =
              else
                 []
             )
-         , span [ class "deckfact-bp" ] [ UI.Attribute.bloodPotency character.bloodPotency ]
-         , span [ class "deckfact-clan" ] [ Icon.clan character.clan ]
-         , span [ class "deckfact-name" ] [ text character.name ]
+         , span [ class "deck-faction__bp" ] [ UI.Attribute.bloodPotency character.bloodPotency ]
+         , span [ class "deck-faction__clan" ] [ Icon.clan character.clan ]
+         , span [ class "deck-faction__name" ] [ text character.name ]
          ]
             ++ (character.disciplines
-                    |> List.map (span [ class "deckfact-discipline" ] << List.singleton << Icon.discipline)
+                    |> List.map (span [ class "deck-faction__discipline" ] << List.singleton << Icon.discipline)
+               )
+        )
+
+
+factionEntryReadOnly : ( Cards.Faction, Bool ) -> Html msg
+factionEntryReadOnly ( character, isLeader ) =
+    li
+        [ class "deck-faction__character"
+        , classList [ ( "deck-faction__character--leader", isLeader ) ]
+        ]
+        ([ span [ class "deck-faction__leader" ]
+            (if isLeader then
+                [ Icon.icon ( Icon.Leader, Icon.Standard ) ]
+
+             else
+                []
+            )
+         , span [ class "deck-faction__bp" ] [ UI.Attribute.bloodPotency character.bloodPotency ]
+         , span [ class "deck-faction__clan" ] [ Icon.clan character.clan ]
+         , span [ class "deck-faction__name" ] [ text character.name ]
+         ]
+            ++ (character.disciplines
+                    |> List.map (span [ class "deck-faction__discipline" ] << List.singleton << Icon.discipline)
                )
         )
 
 
 viewLibrary : Deck.Library -> Html msg
 viewLibrary library =
-    div [ class "decklist-library" ]
+    let
+        { actions, combat, other } =
+            groupLibraryCards library
+
+        viewGroup name group =
+            if cardCount group < 1 then
+                []
+
+            else
+                [ h4 [ class "deck-library__section-header" ]
+                    [ text name
+                    , text " ("
+                    , text <| String.fromInt <| cardCount group
+                    , text ")"
+                    ]
+                , ul []
+                    (group
+                        |> List.map
+                            (\( c, n ) ->
+                                li [ class "deck-library__entry" ]
+                                    [ span [] [ text (String.fromInt n) ]
+                                    , span [] [ text "× " ]
+                                    , span [] [ text c.name ]
+                                    ]
+                            )
+                    )
+                ]
+    in
+    div [ class "decklist__library", class "deck-library" ]
         [ h3
-            [ class "decklist-section_header"
-            , classList [ ( "decklist-section_header--invalid", not <| Deck.isValidLibrary2 library ) ]
+            [ class "deck-library__header"
+            , classList [ ( "deck-library__header--invalid", not <| Deck.isValidLibrary library ) ]
             ]
             (text "Library"
                 :: (case cardCount <| Dict.values library of
@@ -138,51 +283,19 @@ viewLibrary library =
                             [ text " (", text <| String.fromInt n, text ")" ]
                    )
             )
-        , viewLibraryList library
+        , div []
+            (List.concat
+                [ viewGroup "Actions" actions
+                , viewGroup "Combat" combat
+                , viewGroup "Other" other
+                ]
+            )
         ]
 
 
 cardCount : List ( a, Int ) -> Int
 cardCount =
     List.foldl (\( _, n ) sum -> sum + n) 0
-
-
-viewLibraryList : Deck.Library -> Html msg
-viewLibraryList library =
-    let
-        { actions, combat, other } =
-            groupLibraryCards library
-
-        viewGroup name group =
-            if cardCount group < 1 then
-                []
-
-            else
-                [ h4 [ class "decklist-library_section_header" ]
-                    [ text name
-                    , text " ("
-                    , text <| String.fromInt <| cardCount group
-                    , text ")"
-                    ]
-                , ul []
-                    (group
-                        |> List.map
-                            (\( c, n ) ->
-                                li [ class "decklist-library_entry" ]
-                                    [ span [] [ text (String.fromInt n) ]
-                                    , span [] [ text "× " ]
-                                    , span [] [ text c.name ]
-                                    ]
-                            )
-                    )
-                ]
-    in
-    div [ class "decklist-library" ] <|
-        List.concat
-            [ viewGroup "Actions" actions
-            , viewGroup "Combat" combat
-            , viewGroup "Other" other
-            ]
 
 
 groupLibraryCards : Deck.Library -> { actions : List ( Cards.Library, Int ), combat : List ( Cards.Library, Int ), other : List ( Cards.Library, Int ) }
@@ -202,11 +315,6 @@ groupLibraryCards library =
                 { oldGroups | other = ( card, n ) :: oldGroups.other }
     in
     Dict.values library |> List.foldl assignToGroup groups
-
-
-sortedFaction : Deck.Faction -> List ( Cards.Faction, Bool )
-sortedFaction faction =
-    Dict.values faction |> List.sortWith factionSort
 
 
 factionSort : ( Cards.Faction, Bool ) -> ( Cards.Faction, Bool ) -> Order

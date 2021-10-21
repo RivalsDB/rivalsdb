@@ -1,23 +1,24 @@
-module Pages.Build exposing (Model, Msg, page)
+module Pages.Deck.New exposing (Model, Msg, page)
 
 import API.Decklist
 import Browser.Navigation as Navigation exposing (Key)
 import Cards exposing (Card)
 import Clan exposing (Clan)
-import Deck exposing (Decklist)
+import Deck exposing (DeckPreSave, Decklist, Name(..))
 import Dict
 import Effect exposing (Effect)
-import Gen.Params.Build exposing (Params)
+import Gen.Params.Deck.New exposing (Params)
 import Gen.Route as Route
 import Html exposing (..)
-import Html.Attributes exposing (checked, class, classList, name, placeholder, type_)
-import Html.Events exposing (onClick, onInput, onSubmit)
+import Html.Attributes exposing (checked, class, classList, name, type_)
+import Html.Events exposing (onClick)
 import Html.Keyed as Keyed
 import Page
 import Request
 import Shared exposing (Collection)
 import UI.Attribute
 import UI.Card
+import UI.Decklist
 import UI.FilterSelection
 import UI.Icon as Icon
 import UI.Layout.Template
@@ -48,29 +49,9 @@ type alias Model =
     , textFilter : Maybe String
     , showAllFilters : Bool
     , showCollectionImages : Bool
-    , deck : Decklist
-    , deckName : DeckName
+    , deck : DeckPreSave
     , key : Key
     }
-
-
-type DeckName
-    = Unnamed
-    | Named String
-    | BeingNamed String
-
-
-deckNameToString : DeckName -> String
-deckNameToString deckname =
-    case deckname of
-        Unnamed ->
-            ""
-
-        Named name ->
-            name
-
-        BeingNamed tempName ->
-            tempName
 
 
 init : Request.With Params -> ( Model, Effect Msg )
@@ -84,8 +65,7 @@ init req =
       , textFilter = Nothing
       , showAllFilters = False
       , showCollectionImages = False
-      , deck = Deck.empty
-      , deckName = Unnamed
+      , deck = Deck.init
       , key = req.key
       }
     , Effect.none
@@ -173,17 +153,21 @@ update shared msg model =
             ( { model | showCollectionImages = not model.showCollectionImages }, Effect.none )
 
         ChangedDecklist change ->
-            ( { model | deck = Deck.setCard model.deck change }, Effect.none )
+            let
+                oldDeck =
+                    model.deck
+            in
+            ( { model | deck = { oldDeck | decklist = Deck.setCard oldDeck.decklist change } }, Effect.none )
 
         ChoseLeader leader ->
-            ( { model | deck = Deck.setLeader model.deck leader }, Effect.none )
+            let
+                oldDeck =
+                    model.deck
+            in
+            ( { model | deck = { oldDeck | decklist = Deck.setLeader oldDeck.decklist leader } }, Effect.none )
 
         Save ->
-            let
-                deckName =
-                    deckNameToString model.deckName
-            in
-            case ( shared.user, Deck.encode deckName model.deck ) of
+            case ( shared.user, Deck.encode (Deck.PreSave model.deck) ) of
                 ( Just user, Just encodedDeck ) ->
                     ( model, API.Decklist.create SavedDecklist user.token encodedDeck |> Effect.fromCmd )
 
@@ -191,60 +175,55 @@ update shared msg model =
                     ( model, Effect.none )
 
         SavedDecklist (Ok deckId) ->
-            ( model, Route.toHref (Route.View__Id_ { id = deckId }) |> Navigation.pushUrl model.key |> Effect.fromCmd )
+            ( model, Route.toHref (Route.Deck__View__Id_ { id = deckId }) |> Navigation.pushUrl model.key |> Effect.fromCmd )
 
         SavedDecklist (Err _) ->
             ( model, Effect.none )
 
         StartRenameDeck ->
-            ( { model | deckName = BeingNamed "" }, Effect.none )
+            let
+                oldDeck =
+                    model.deck
+            in
+            ( { model | deck = { oldDeck | meta = { name = BeingNamed "" } } }, Effect.none )
 
         DeckNameChanged newName ->
-            case model.deckName of
+            let
+                oldDeck =
+                    model.deck
+            in
+            case model.deck.meta.name of
                 BeingNamed _ ->
-                    ( { model | deckName = BeingNamed newName }, Effect.none )
+                    ( { model | deck = { oldDeck | meta = { name = BeingNamed newName } } }, Effect.none )
 
                 _ ->
                     ( model, Effect.none )
 
         SaveNewDeckName ->
-            case model.deckName of
+            let
+                oldDeck =
+                    model.deck
+            in
+            case model.deck.meta.name of
                 BeingNamed newName ->
                     case String.trim newName of
                         "" ->
-                            ( { model | deckName = Unnamed }, Effect.none )
+                            ( { model | deck = { oldDeck | meta = { name = Unnamed } } }, Effect.none )
 
                         trimmedName ->
-                            ( { model | deckName = Named trimmedName }, Effect.none )
+                            ( { model | deck = { oldDeck | meta = { name = Named trimmedName } } }, Effect.none )
 
                 _ ->
                     ( model, Effect.none )
 
 
-viewDeckName : DeckName -> Html Msg
-viewDeckName deckName =
-    case deckName of
-        Unnamed ->
-            p []
-                [ span [ class "decklist-titlename" ] [ text "Unnamed Deck" ]
-                , span [ class "decklist-titleaction", onClick StartRenameDeck ]
-                    [ text "(rename deck)" ]
-                ]
-
-        Named name ->
-            p []
-                [ span [ class "decklist-titlename" ] [ text name ]
-                , span [ class "decklist-titleaction", onClick StartRenameDeck ]
-                    [ text "(rename deck)" ]
-                ]
-
-        BeingNamed _ ->
-            div []
-                [ form [ onSubmit SaveNewDeckName ]
-                    [ input [ placeholder "My Cool Deck", onInput DeckNameChanged ] []
-                    , button [ type_ "submit" ] [ text "ok" ]
-                    ]
-                ]
+decklistActions : UI.Decklist.Actions Msg
+decklistActions =
+    { setLeader = ChoseLeader
+    , startNameChange = StartRenameDeck
+    , changeName = DeckNameChanged
+    , endNameChange = SaveNewDeckName
+    }
 
 
 view : Shared.Model -> Model -> View Msg
@@ -254,69 +233,7 @@ view shared model =
         [ div [ class "deckbldr" ]
             [ viewActions shared.user
             , div [ class "deckbldr-decklist" ]
-                [ div [ class "decklist" ]
-                    [ div [ class "decklist-title" ] [ viewDeckName model.deckName ]
-                    , div [ class "decklist-core", class "decklist-core--agenda" ]
-                        [ p [ class "decklist-section_header" ]
-                            [ text "Agenda: "
-                            , text <| Maybe.withDefault "Unknown" <| Maybe.map .name model.deck.agenda
-                            ]
-                        , div [ class "decklist-core_image" ]
-                            [ model.deck.agenda
-                                |> Maybe.map (Cards.AgendaCard >> UI.Card.lazy)
-                                |> Maybe.withDefault (text "Unknown Agenda")
-                            ]
-                        ]
-                    , div [ class "decklist-core", class "decklist-core--haven" ]
-                        [ p [ class "decklist-section_header" ]
-                            [ text "Haven: "
-                            , text <| Maybe.withDefault "Unknown" <| Maybe.map .name model.deck.haven
-                            ]
-                        , div [ class "decklist-core_image" ]
-                            [ model.deck.haven
-                                |> Maybe.map (Cards.HavenCard >> UI.Card.lazy)
-                                |> Maybe.withDefault (text "Unknown Haven")
-                            ]
-                        ]
-                    , div [ class "decklist-core", class "decklist-core--leader" ]
-                        [ p [ class "decklist-section_header" ]
-                            [ text "Leader: "
-                            , text <| Maybe.withDefault "Unknown" <| Maybe.map .name (Deck.leader model.deck)
-                            ]
-                        , div [ class "decklist-core_image" ]
-                            [ Deck.leader model.deck
-                                |> Maybe.map (Cards.FactionCard >> UI.Card.lazy)
-                                |> Maybe.withDefault (text "Unknown Leader")
-                            ]
-                        ]
-                    , div [ class "decklist-faction" ]
-                        [ div
-                            [ class "decklist-section_header"
-                            , classList [ ( "decklist-section_header--invalid", not <| Deck.isValidFaction model.deck ) ]
-                            ]
-                            [ h3 [ class "decklist-section_header_name" ] [ text "Faction" ]
-                            , div [ class "decklist-section_header_extra" ] <| viewClansInFaction model.deck.faction
-                            ]
-                        , viewFactionList model.deck
-                        ]
-                    , div [ class "decklist-library" ]
-                        [ h3
-                            [ class "decklist-section_header"
-                            , classList [ ( "decklist-section_header--invalid", not <| Deck.isValidLibrary model.deck ) ]
-                            ]
-                            (text "Library"
-                                :: (case cardCount <| Dict.values model.deck.library of
-                                        0 ->
-                                            []
-
-                                        n ->
-                                            [ text " (", text <| String.fromInt n, text ")" ]
-                                   )
-                            )
-                        , viewLibraryList model.deck
-                        ]
-                    ]
-                ]
+                [ UI.Decklist.viewCreate decklistActions model.deck ]
             , div [ class "deckbldr-choices" ]
                 [ div [ class "fltrhead" ]
                     [ h2 [ class "fltrhead-name" ] [ text "Filters " ]
@@ -386,127 +303,6 @@ viewActions user =
         ]
 
 
-viewClansInFaction : Deck.Faction -> List (Html Msg)
-viewClansInFaction faction =
-    Dict.values faction
-        |> List.foldl
-            (\( card, _ ) usedClans ->
-                if List.member card.clan usedClans then
-                    usedClans
-
-                else
-                    card.clan :: usedClans
-            )
-            []
-        |> List.map
-            (\clan ->
-                span [ class "decklist-clan_entry" ]
-                    [ span [ class "decklist-clan_clan" ] [ Icon.clan clan ] ]
-            )
-
-
-viewFactionList : Decklist -> Html Msg
-viewFactionList deck =
-    let
-        characters =
-            Dict.values deck.faction |> List.map Tuple.first
-
-        sortedCharacters =
-            List.sortBy (.bloodPotency >> negate) characters
-    in
-    ul [ class "deckfact" ]
-        (sortedCharacters
-            |> List.map
-                (\c ->
-                    li
-                        [ class "deckfact-entry"
-                        , classList [ ( "deckfact-entry--leader", Deck.isLeader deck c ) ]
-                        ]
-                        ([ span
-                            [ class "deckfact-leader_option"
-                            , classList [ ( "deckfact-leader_option--leader", Deck.isLeader deck c ) ]
-                            , onClick (ChoseLeader c)
-                            ]
-                            (if Deck.isLeader deck c then
-                                [ Icon.icon ( Icon.Leader, Icon.Standard ) ]
-
-                             else
-                                []
-                            )
-                         , span [ class "deckfact-bp" ] [ UI.Attribute.bloodPotency c.bloodPotency ]
-                         , span [ class "deckfact-clan" ] [ Icon.clan c.clan ]
-                         , span [ class "deckfact-name" ] [ text c.name ]
-                         ]
-                            ++ (c.disciplines
-                                    |> List.map (span [ class "deckfact-discipline" ] << List.singleton << Icon.discipline)
-                               )
-                        )
-                )
-        )
-
-
-cardCount : List ( a, Int ) -> Int
-cardCount =
-    List.foldl (\( _, n ) sum -> sum + n) 0
-
-
-viewLibraryList : Decklist -> Html Msg
-viewLibraryList deck =
-    let
-        { actions, combat, other } =
-            groupLibraryCards deck
-
-        viewGroup name group =
-            if cardCount group < 1 then
-                []
-
-            else
-                [ h4 [ class "decklist-library_section_header" ]
-                    [ text name
-                    , text " ("
-                    , text <| String.fromInt <| cardCount group
-                    , text ")"
-                    ]
-                , ul []
-                    (group
-                        |> List.map
-                            (\( c, n ) ->
-                                li [ class "decklist-library_entry" ]
-                                    [ span [] [ text (String.fromInt n) ]
-                                    , span [] [ text "× " ]
-                                    , span [] [ text c.name ]
-                                    ]
-                            )
-                    )
-                ]
-    in
-    div [ class "decklist-library" ] <|
-        List.concat
-            [ viewGroup "Actions" actions
-            , viewGroup "Combat" combat
-            , viewGroup "Other" other
-            ]
-
-
-groupLibraryCards : Decklist -> { actions : List ( Cards.Library, Int ), combat : List ( Cards.Library, Int ), other : List ( Cards.Library, Int ) }
-groupLibraryCards deck =
-    let
-        groups =
-            { actions = [], combat = [], other = [] }
-
-        assignToGroup ( card, n ) oldGroups =
-            if List.any (\trait -> trait == Cards.Action || trait == Cards.UnhostedAction) card.traits then
-                { oldGroups | actions = ( card, n ) :: oldGroups.actions }
-
-            else if List.any (\trait -> trait == Cards.Attack || trait == Cards.Reaction) card.traits then
-                { oldGroups | combat = ( card, n ) :: oldGroups.combat }
-
-            else
-                { oldGroups | other = ( card, n ) :: oldGroups.other }
-    in
-    Dict.values deck.library |> List.foldl assignToGroup groups
-
-
 viewMainFilters : Model -> List (Html Msg)
 viewMainFilters model =
     [ div [ class "deckbldr-flaggroup" ] [ UI.FilterSelection.view FromStacksFilter model.stackFilters ]
@@ -526,7 +322,7 @@ viewSecondaryFilters model =
 viewCardList : Collection -> Model -> List (Html Msg)
 viewCardList collection model =
     [ Keyed.ul [ class "deckbldr-collectionitems--rows" ] <|
-        List.map (\c -> ( Cards.id c, viewCardListRow model.deck c )) <|
+        List.map (\c -> ( Cards.id c, viewCardListRow model.deck.decklist c )) <|
             cardsToShow collection model
     ]
 
@@ -596,7 +392,7 @@ viewQuantityPicker card copiesInDeck =
 viewCardListImages : Collection -> Model -> List (Html Msg)
 viewCardListImages collection model =
     [ Keyed.ul [ class "deckbldr-collectionitems--images" ] <|
-        List.map (\c -> ( Cards.id c, viewCardListImage model.deck c )) <|
+        List.map (\c -> ( Cards.id c, viewCardListImage model.deck.decklist c )) <|
             cardsToShow collection model
     ]
 

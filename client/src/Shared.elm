@@ -141,7 +141,7 @@ update _ msg model =
             ( { model | modal = Open Nothing }, Cmd.none )
 
         HeaderClickedSignOut ->
-            ( model, signOut () )
+            ( { model | user = Nothing }, signOut () )
 
         HeaderSearchQueryChanged query ->
             ( { model

@@ -1,15 +1,17 @@
-module Pages.View.Id_ exposing (Model, Msg, page)
+module Pages.Deck.View.Id_ exposing (Model, Msg, page)
 
 import API.Decklist
-import Deck exposing (Deck)
+import Deck exposing (DeckPostSave)
 import Effect exposing (Effect)
-import Gen.Params.View.Id_ exposing (Params)
-import Html exposing (Html, div, text, ul)
-import Html.Attributes exposing (class)
+import Gen.Params.Deck.View.Id_ exposing (Params)
+import Gen.Route as Route
+import Html exposing (Html, a, div, li, span, text, ul)
+import Html.Attributes exposing (class, href)
 import Page
 import Request
 import Shared
 import UI.Decklist
+import UI.Icon as Icon
 import UI.Layout.Template
 import View exposing (View)
 
@@ -30,7 +32,7 @@ page shared req =
 
 type Model
     = Loading
-    | Viewing Deck
+    | Viewing DeckPostSave
 
 
 init : Shared.Model -> Request.With Params -> ( Model, Effect Msg )
@@ -68,21 +70,38 @@ view shared model =
             viewDecklist shared deck
 
 
-viewDecklist : Shared.Model -> Deck -> View Msg
-viewDecklist shared model =
+viewDecklist : Shared.Model -> DeckPostSave -> View Msg
+viewDecklist shared deck =
     UI.Layout.Template.view FromShared
         shared
         [ div [ class "deckbldr" ]
-            [ viewActions
+            [ viewActions shared.user deck.meta
             , div [ class "deckbldr-decklist" ]
-                [ UI.Decklist.view model
-                ]
+                [ UI.Decklist.viewDeck deck ]
             , div [ class "deckbldr-choices" ] []
             ]
         ]
 
 
-viewActions : Html Msg
-viewActions =
+viewActions : Maybe Shared.User -> Deck.MetaPostSave -> Html Msg
+viewActions maybeUser meta =
     div [ class "deckbldr-actions" ]
-        [ ul [ class "actions-list" ] [] ]
+        [ ul [ class "actions-list" ]
+            (maybeUser
+                |> Maybe.map
+                    (\user ->
+                        if user.id == meta.owner then
+                            [ li [ class "actions-item" ]
+                                [ a [ href <| Route.toHref (Route.Deck__Edit__Id_ { id = meta.id }) ]
+                                    [ span [ class "actions-icon" ] [ Icon.icon ( Icon.Edit, Icon.Standard ) ]
+                                    , span [ class "actions-description" ] [ text "Edit" ]
+                                    ]
+                                ]
+                            ]
+
+                        else
+                            []
+                    )
+                |> Maybe.withDefault []
+            )
+        ]

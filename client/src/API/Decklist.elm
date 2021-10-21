@@ -1,11 +1,10 @@
-module API.Decklist exposing (ResultCreate, ResultIndex, ResultRead, create, index, read)
+module API.Decklist exposing (ResultCreate, ResultIndex, ResultRead, ResultUpdate, create, index, read, update)
 
-import Deck exposing (Deck)
+import Deck exposing (DeckPostSave)
 import Http
 import Json.Decode as Decode
 import Json.Encode as Encode
 import Shared
-import Url exposing (Protocol(..))
 
 
 type alias ResultCreate =
@@ -25,8 +24,25 @@ create msg token deck =
         }
 
 
+type alias ResultUpdate =
+    Result Http.Error ()
+
+
+update : (ResultUpdate -> msg) -> Shared.Token -> String -> Encode.Value -> Cmd msg
+update msg token deckId deck =
+    Http.request
+        { method = "PUT"
+        , url = "/api/v1/decklist/" ++ deckId
+        , headers = [ authHeader token ]
+        , timeout = Nothing
+        , tracker = Nothing
+        , body = Http.jsonBody deck
+        , expect = Http.expectWhatever msg
+        }
+
+
 type alias ResultRead =
-    Result Http.Error Deck
+    Result Http.Error DeckPostSave
 
 
 read : Shared.Collection -> (ResultRead -> msg) -> String -> Cmd msg
@@ -38,7 +54,7 @@ read collection msg deckId =
 
 
 type alias ResultIndex =
-    Result Http.Error (List Deck)
+    Result Http.Error (List DeckPostSave)
 
 
 index : Shared.Collection -> (ResultIndex -> msg) -> Cmd msg

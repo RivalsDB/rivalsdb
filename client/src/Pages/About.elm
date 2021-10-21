@@ -32,6 +32,7 @@ items =
     , ( Icon.Scheme, "Vote by Clea Doltz from the Noun Project" )
     , ( Icon.InfluenceModifier, "Handshake by Cuputo from the Noun Project" )
     , ( Icon.Title, "Medal by Deemak Daksina from the Noun Project" )
+    , ( Icon.Edit, "edit by Gelso Designs from the Noun Project" )
     , ( Icon.Ritual, "ritual by Koson Rattanaphan from the Noun Project" )
     , ( Icon.Faction, "group by mikicon from the Noun Project" )
     , ( Icon.AgendaCard, "Crown by Marcy Boles from the Noun Project" )

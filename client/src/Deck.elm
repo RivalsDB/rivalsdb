@@ -1,20 +1,20 @@
 module Deck exposing
-    ( Deck
+    ( Deck(..)
+    , DeckPostSave
+    , DeckPreSave
     , Decklist
-    , Faction
     , Library
-    , Meta
+    , MetaPostSave
+    , Name(..)
     , clansInFaction
     , copiesInDeck
     , decoder
-    , demoDeck
-    , empty
+    , displayName
     , encode
+    , init
     , isLeader
-    , isLegal
     , isValidFaction
     , isValidLibrary
-    , isValidLibrary2
     , leader
     , setCard
     , setLeader
@@ -28,33 +28,87 @@ import Json.Encode as Encode
 import Shared exposing (Collection)
 
 
-type alias Deck =
+
+--------------------------------------------------
+--------------------------------------------------
+--------------------------------------------------
+-- REWRITE DECK
+--------------------------------------------------
+--------------------------------------------------
+--------------------------------------------------
+-- type NewDeckType = NewDeckType Decklist Meta
+-- type alias Meta = { etc : "stuff"}
+
+
+type Deck
+    = PreSave DeckPreSave
+    | PostSave DeckPostSave
+
+
+type alias DeckPreSave =
     { decklist : Decklist
-    , meta : Meta
+    , meta : MetaPreSave
     }
+
+
+init : DeckPreSave
+init =
+    { decklist =
+        { agenda = Nothing
+        , haven = Nothing
+        , faction = Dict.empty
+        , library = Dict.empty
+        }
+    , meta = { name = Unnamed }
+    }
+
+
+type alias DeckPostSave =
+    { decklist : Decklist
+    , meta : MetaPostSave
+    }
+
+
+type alias MetaPreSave =
+    { name : Name }
+
+
+type Name
+    = Unnamed
+    | BeingNamed String
+    | Named String
+
+
+displayName : Name -> String
+displayName deckname =
+    case deckname of
+        Named name ->
+            name
+
+        _ ->
+            "Unnamed"
+
+
+nameToString : Name -> String
+nameToString deckname =
+    case deckname of
+        Named name ->
+            name
+
+        _ ->
+            ""
+
+
+type alias MetaPostSave =
+    { name : Name, id : String, owner : String }
 
 
 type alias Decklist =
-    { agenda : Agenda
-    , haven : Haven
+    { agenda : Maybe Cards.Agenda
+    , haven : Maybe Cards.Haven
     , faction : Faction
     , library : Library
     }
-
-
-type alias Meta =
-    { id : String
-    , name : String
-    , owner : String
-    }
-
-
-type alias Agenda =
-    Maybe Cards.Agenda
-
-
-type alias Haven =
-    Maybe Cards.Haven
 
 
 type alias Faction =
@@ -87,33 +141,13 @@ type alias Library =
     Dict Cards.Id ( Cards.Library, Int )
 
 
-isValidLibrary2 : Library -> Bool
-isValidLibrary2 library =
+isValidLibrary : Library -> Bool
+isValidLibrary library =
     let
         deckSize =
             List.foldl (\( _, n ) sum -> sum + n) 0 <| Dict.values library
     in
     (deckSize == 0) || (deckSize >= 40 && deckSize <= 60)
-
-
-empty : Decklist
-empty =
-    { agenda = Nothing
-    , haven = Nothing
-    , faction = Dict.empty
-    , library = Dict.empty
-    }
-
-
-isLegal : Decklist -> Bool
-isLegal deck =
-    case ( deck.agenda, deck.haven ) of
-        ( Just _, Just _ ) ->
-            (Dict.size deck.faction == 7)
-                && (Dict.size deck.library >= 40)
-
-        ( _, _ ) ->
-            False
 
 
 setCard : Decklist -> ( Cards.Card, Int ) -> Decklist
@@ -208,128 +242,65 @@ isValidFaction deck =
            )
 
 
-isValidLibrary : Decklist -> Bool
-isValidLibrary deck =
-    let
-        deckSize =
-            List.foldl (\( _, n ) sum -> sum + n) 0 <| Dict.values deck.library
-    in
-    (deckSize == 0) || (deckSize >= 40 && deckSize <= 60)
-
-
-demoDeck : Collection -> Decklist
-demoDeck collection =
-    let
-        agenda =
-            Dict.get "core-base-of-power" collection
-                |> Maybe.andThen
-                    (\c ->
-                        case c of
-                            Cards.AgendaCard a ->
-                                Just a
-
-                            _ ->
-                                Nothing
-                    )
-
-        haven =
-            Dict.get "core-artist-lofts" collection
-                |> Maybe.andThen
-                    (\c ->
-                        case c of
-                            Cards.HavenCard a ->
-                                Just a
-
-                            _ ->
-                                Nothing
-                    )
-
-        toCardCount n _ c =
-            ( c, n )
-
-        faction =
-            collection
-                |> Dict.toList
-                |> List.filterMap
-                    (\( k, c ) ->
-                        case c of
-                            Cards.FactionCard f ->
-                                Just ( k, ( f, f.name == "Aurora Nix" ) )
-
-                            _ ->
-                                Nothing
-                    )
-                |> List.take 7
-                |> Dict.fromList
-
-        library =
-            collection
-                |> Dict.toList
-                |> List.filterMap
-                    (\( k, c ) ->
-                        case c of
-                            Cards.LibraryCard l ->
-                                Just ( k, l )
-
-                            _ ->
-                                Nothing
-                    )
-                |> List.take 14
-                |> Dict.fromList
-                |> Dict.map (toCardCount 3)
-    in
-    { agenda = agenda
-    , haven = haven
-    , faction = faction
-    , library = library
-    }
-
-
 
 ----------
 -- ENCODER
 ----------
 
 
-encode : String -> Decklist -> Maybe Encode.Value
-encode name deck =
-    case ( deck.agenda, deck.haven ) of
-        ( Just agenda, Just haven ) ->
-            Just <|
-                Encode.object
-                    [ ( "name", Encode.string name )
-                    , ( "agenda", Encode.string agenda.id )
-                    , ( "haven", Encode.string haven.id )
-                    , ( "factionDeck"
-                      , Encode.object
-                            (Dict.values deck.faction
-                                |> List.map (Tuple.mapBoth .id Encode.bool)
-                            )
-                      )
-                    , ( "libraryDeck"
-                      , Encode.object
-                            (Dict.values deck.library
-                                |> List.map (Tuple.mapBoth .id Encode.int)
-                            )
-                      )
-                    ]
+encode : Deck -> Maybe Encode.Value
+encode deck2 =
+    let
+        encode_ decklist deckname =
+            case ( decklist.agenda, decklist.haven ) of
+                ( Just agenda, Just haven ) ->
+                    Just <|
+                        Encode.object
+                            [ ( "name", encodeName deckname )
+                            , ( "agenda", Encode.string agenda.id )
+                            , ( "haven", Encode.string haven.id )
+                            , ( "factionDeck", encodeFaction decklist.faction )
+                            , ( "libraryDeck", encodeLibrary decklist.library )
+                            ]
 
-        ( _, _ ) ->
-            Nothing
+                ( _, _ ) ->
+                    Nothing
+    in
+    case deck2 of
+        PreSave deck ->
+            encode_ deck.decklist deck.meta.name
+
+        PostSave deck ->
+            encode_ deck.decklist deck.meta.name
 
 
-decoder : Collection -> Decoder Deck
+encodeName : Name -> Encode.Value
+encodeName =
+    nameToString >> Encode.string
+
+
+encodeFaction : Faction -> Encode.Value
+encodeFaction =
+    Dict.values >> List.map (Tuple.mapBoth .id Encode.bool) >> Encode.object
+
+
+encodeLibrary : Library -> Encode.Value
+encodeLibrary =
+    Dict.values >> List.map (Tuple.mapBoth .id Encode.int) >> Encode.object
+
+
+decoder : Collection -> Decoder DeckPostSave
 decoder collection =
-    Decode.map2 Deck
+    Decode.map2 DeckPostSave
         (decklistDecoder collection)
         metaDecoder
 
 
-metaDecoder : Decoder Meta
+metaDecoder : Decoder MetaPostSave
 metaDecoder =
-    Decode.map3 Meta
+    Decode.map3 MetaPostSave
+        (Decode.field "name" (Decode.map Named Decode.string))
         (Decode.field "id" Decode.string)
-        (Decode.field "name" Decode.string)
         (Decode.field "creatorId" Decode.string)
 
 
@@ -342,12 +313,12 @@ decklistDecoder collection =
         (libraryDecoder collection)
 
 
-agendaDecoder : Collection -> Decoder Agenda
+agendaDecoder : Collection -> Decoder (Maybe Cards.Agenda)
 agendaDecoder collection =
     decodeCardId "agenda" |> getInCollection collection |> mapToAgenda
 
 
-havenDecoder : Collection -> Decoder Haven
+havenDecoder : Collection -> Decoder (Maybe Cards.Haven)
 havenDecoder collection =
     decodeCardId "haven" |> getInCollection collection |> mapToHaven
 
@@ -362,7 +333,7 @@ getInCollection collection =
     Decode.map (cardFromCollection collection)
 
 
-mapToAgenda : Decoder (Maybe Cards.Card) -> Decoder Agenda
+mapToAgenda : Decoder (Maybe Cards.Card) -> Decoder (Maybe Cards.Agenda)
 mapToAgenda =
     Decode.andThen
         (\collectionCard ->
@@ -375,7 +346,7 @@ mapToAgenda =
         )
 
 
-mapToHaven : Decoder (Maybe Cards.Card) -> Decoder Haven
+mapToHaven : Decoder (Maybe Cards.Card) -> Decoder (Maybe Cards.Haven)
 mapToHaven =
     Decode.andThen
         (\collectionCard ->

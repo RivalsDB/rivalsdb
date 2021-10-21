@@ -1,0 +1,120 @@
+@import ../_vars
+
+.decklist
+  display: grid
+  gap: 0 10px
+  grid-template-columns: repeat(6, 1fr)
+
+  &__title
+    grid-column: 1 / 7
+
+  &__core
+    grid-column: 1 / 7
+  &__core-image
+    display: none
+
+  &__faction,
+  &__library
+    grid-column: 1 / 7
+    margin-top: 20px
+  @media screen and ( min-width: $breakpoint-ipad--horizontal)
+    &__core-image
+      display: block
+    &__core-heading
+      display: none
+
+    &__agenda
+      grid-row: 3 / 4
+      grid-column: 3 / 5
+    &__leader
+      grid-row: 3 / 4
+      grid-column: 1 / 3
+    &__haven
+      grid-row: 3 / 4
+      grid-column: 5 / 7
+
+    &__faction,
+    &__library
+      grid-row: 4 / 5
+      margin-top: 20px
+    &__faction
+      grid-column: 1 / 4
+    &__library
+      grid-column: 4 / 7
+
+  &__title-name
+    font-weight: bold
+    font-size: 20px
+    line-height: 20px
+
+  &__title-action
+    cursor: pointer
+    color: var(--color-redmedium)
+    text-decoration: underline
+    user-select: none
+    display: inline-block
+    margin-left: 0.5rem
+
+.deck-library
+  &__header
+    margin: 0 0 10px
+    &--invalid
+      color: var(--color-redlight)
+  &__section-header
+    margin-top: 10px
+    &:first-child
+      margin-top: 0
+  &__entry
+    line-height: 20px
+    margin-top: 5px
+    display: flex
+    align-items: center
+
+.deck-faction
+  $headerIconSize: 22px
+  $characterIconSize: 18px
+  &__header
+    margin: 0 0 10px
+    display: flex
+    &--invalid
+      color: var(--color-redlight)
+  &__title
+    display: inline-block
+    margin-right: 5px
+  &__clan-list
+    display: flex
+  &__clan-item
+    display: inline-block
+    margin-left: 5px
+    width: $headerIconSize
+    height: $headerIconSize
+  &__character
+    line-height: 20px
+    margin-top: 5px
+    display: flex
+    align-items: center
+    &:first-child
+      margin-top: 0
+    &--leader
+      font-weight: bold
+  &__leader
+    width: 30px
+    height: 30px
+    border-radius: 15px
+    background: #CCC
+    &--editable
+      cursor: pointer
+  &__bp,
+  &__clan,
+  &__name
+    display: inline-block
+  &__clan
+    width: $characterIconSize
+    height: $characterIconSize
+    margin-left: 5px
+  &__name
+    margin-left: 5px
+  &__discipline
+    margin-left: 3px
+    width: $characterIconSize
+    height: $characterIconSize
