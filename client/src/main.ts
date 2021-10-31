@@ -49,7 +49,9 @@ async function main() {
     await afterSignin(app, did);
   });
 
-  app.ports.signOut.subscribe(magic.user.logout);
+  app.ports.signOut.subscribe(() => {
+    magic.user.logout();
+  });
 
   if (window.location.search) {
     signInWithQueryCrendetials(app);
