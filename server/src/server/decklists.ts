@@ -1,6 +1,7 @@
 import { FastifyPluginAsync } from "fastify";
 import {
   createDecklist,
+  updateDecklist,
   fetchDecklists,
   createUserIfNeeded,
   fetchDecklist,
@@ -98,6 +99,60 @@ const privateRoutes: FastifyPluginAsync = async (fastify, options) => {
       return toResponse(entry);
     },
   });
+  fastify.put<{ Params: { deckId: string }; Body: DeckInput }>(
+    "/decklist/:deckId",
+    {
+      schema: {
+        body: {
+          type: "object",
+          required: ["agenda", "factionDeck", "haven", "libraryDeck", "name"],
+          properties: {
+            name: { type: "string" },
+            agenda: { type: "string" },
+            haven: { type: "string" },
+            factionDeck: { type: "object" },
+            libraryDeck: { type: "object" },
+          },
+        },
+      },
+
+      async handler(req, reply): Promise<void> {
+        const leader = Object.entries(req.body.factionDeck).find(
+          ([, isLeader]) => isLeader
+        )?.[0];
+
+        if (!leader) {
+          reply.code(400);
+          return reply.send("Invalid leader");
+        }
+
+        const decklist = await fetchDecklist(req.params.deckId);
+        if (decklist == null) {
+          reply.code(404);
+          return reply.send();
+        }
+
+        if (decklist.creatorId !== req.user.id) {
+          reply.code(403);
+          return reply.send();
+        }
+
+        await updateDecklist(
+          decklist.id,
+          {
+            agenda: req.body.agenda,
+            haven: req.body.haven,
+            libraryDeck: req.body.libraryDeck,
+            factionDeck: Object.keys(req.body.factionDeck),
+            leader,
+          },
+          req.body.name
+        );
+
+        reply.code(204);
+      },
+    }
+  );
 };
 
 const publicRoutes: FastifyPluginAsync = async (fastify, options) => {
