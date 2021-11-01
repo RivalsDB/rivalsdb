@@ -9,6 +9,10 @@ async function afterSignin(app: App, did: string) {
 
   if (did && meta) {
     app.ports.signInReceiver.send({ token: did, user: meta.issuer });
+    window.setTimeout(async () => {
+      const newDid = await magic.user.getIdToken();
+      afterSignin(app, newDid);
+    }, 14 * 60 * 1000);
   }
 }
 
