@@ -1,0 +1,22 @@
+@import ../_vars
+
+.card-name
+  position: relative
+  cursor: help
+  &:hover .card-name__image
+    transition-delay: 0.4s
+    visibility: visible
+    opacity: 1
+
+.card-name__image
+  display: inline-block
+  position: absolute
+  width: max-content
+  max-width: 30vw
+  z-index: $z-card-name-image
+  opacity: 0
+  visibility: hidden
+  transition: 0.2s
+  transform: translate3d(0, -50%, 0)
+  .cardimage img
+    box-shadow: 0 0 4px 2px rgba(0,0,0,.8)

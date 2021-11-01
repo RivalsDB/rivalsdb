@@ -9,6 +9,7 @@ import Html.Attributes exposing (class, classList, placeholder, type_)
 import Html.Events exposing (onClick, onInput, onSubmit)
 import UI.Attribute
 import UI.Card
+import UI.CardName
 import UI.Icon as Icon
 
 
@@ -229,9 +230,15 @@ factionEntryReadOnly ( character, isLeader ) =
              else
                 []
             )
-         , span [ class "deck-faction__bp" ] [ UI.Attribute.bloodPotency character.bloodPotency ]
-         , span [ class "deck-faction__clan" ] [ Icon.clan character.clan ]
-         , span [ class "deck-faction__name" ] [ text character.name ]
+         , span [ class "deck-faction__bp" ]
+            [ UI.Attribute.bloodPotency character.bloodPotency
+            ]
+         , span [ class "deck-faction__clan" ]
+            [ Icon.clan character.clan
+            ]
+         , span [ class "deck-faction__name" ]
+            [ UI.CardName.withOverlay (Cards.FactionCard character)
+            ]
          ]
             ++ (character.disciplines
                     |> List.map (span [ class "deck-faction__discipline" ] << List.singleton << Icon.discipline)
@@ -244,51 +251,58 @@ viewLibrary library =
     let
         { actions, combat, other } =
             groupLibraryCards library
-
-        viewGroup name group =
-            if cardCount group < 1 then
-                []
-
-            else
-                [ h4 [ class "deck-library__section-header" ]
-                    [ text name
-                    , text " ("
-                    , text <| String.fromInt <| cardCount group
-                    , text ")"
-                    ]
-                , ul []
-                    (group
-                        |> List.map
-                            (\( c, n ) ->
-                                li [ class "deck-library__entry" ]
-                                    [ span [] [ text (String.fromInt n) ]
-                                    , span [] [ text "× " ]
-                                    , span [] [ text c.name ]
-                                    ]
-                            )
-                    )
-                ]
     in
     div [ class "decklist__library", class "deck-library" ]
-        [ h3
-            [ class "deck-library__header"
-            , classList [ ( "deck-library__header--invalid", not <| Deck.isValidLibrary library ) ]
-            ]
-            (text "Library"
-                :: (case cardCount <| Dict.values library of
-                        0 ->
-                            []
-
-                        n ->
-                            [ text " (", text <| String.fromInt n, text ")" ]
-                   )
-            )
+        [ viewLibraryHeader library
         , div []
             (List.concat
-                [ viewGroup "Actions" actions
-                , viewGroup "Combat" combat
-                , viewGroup "Other" other
+                [ viewLibraryGroup "Actions" actions
+                , viewLibraryGroup "Combat" combat
+                , viewLibraryGroup "Other" other
                 ]
+            )
+        ]
+
+
+viewLibraryHeader : Deck.Library -> Html msg
+viewLibraryHeader library =
+    h3
+        [ class "deck-library__header"
+        , classList [ ( "deck-library__header--invalid", not <| Deck.isValidLibrary library ) ]
+        ]
+        (text "Library"
+            :: (case cardCount <| Dict.values library of
+                    0 ->
+                        []
+
+                    n ->
+                        [ text " (", text <| String.fromInt n, text ")" ]
+               )
+        )
+
+
+viewLibraryGroup : String -> List ( Cards.Library, Int ) -> List (Html msg)
+viewLibraryGroup name group =
+    if cardCount group < 1 then
+        []
+
+    else
+        [ h4 [ class "deck-library__section-header" ]
+            [ text name
+            , text " ("
+            , text <| String.fromInt <| cardCount group
+            , text ")"
+            ]
+        , ul []
+            (group
+                |> List.map
+                    (\( c, n ) ->
+                        li [ class "deck-library__entry" ]
+                            [ span [] [ text (String.fromInt n) ]
+                            , span [] [ text "× " ]
+                            , UI.CardName.withOverlay (Cards.LibraryCard c)
+                            ]
+                    )
             )
         ]
 
