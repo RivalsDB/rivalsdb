@@ -119,7 +119,7 @@ viewAgenda agenda =
             ]
         , div [ class "decklist__core-image" ]
             [ agenda
-                |> Maybe.map (Cards.AgendaCard >> UI.Card.lazy)
+                |> Maybe.map (Cards.AgendaCard >> UI.Card.eager)
                 |> Maybe.withDefault (text "Unknown Agenda")
             ]
         ]
@@ -137,7 +137,7 @@ viewLeader leader =
             ]
         , div [ class "decklist__core-image" ]
             [ leader
-                |> Maybe.map (Cards.FactionCard >> UI.Card.lazy)
+                |> Maybe.map (Cards.FactionCard >> UI.Card.eager)
                 |> Maybe.withDefault (text "Unknown Leader")
             ]
         ]
@@ -155,7 +155,7 @@ viewHaven haven =
             ]
         , div [ class "decklist__core-image" ]
             [ haven
-                |> Maybe.map (Cards.HavenCard >> UI.Card.lazy)
+                |> Maybe.map (Cards.HavenCard >> UI.Card.eager)
                 |> Maybe.withDefault (text "Unknown Haven")
             ]
         ]
