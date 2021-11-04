@@ -4,9 +4,10 @@ import fastifyStatic from "fastify-static";
 import fastifyCompress from "fastify-compress";
 import path from "path";
 import { serverPort } from "../env.js";
-import { db } from "../db/index.js";
+import { closeDbPool } from "../db/index.js";
 import cardsRoutes from "./cards.js";
 import decklistsRoutes from "./decklists.js";
+import usersRoutes from "./users.js";
 
 const dirname = new URL(import.meta.url).pathname;
 const cardImagesFolder = path.join(
@@ -36,6 +37,7 @@ export async function createServer() {
 
   fastify.register(decklistsRoutes, { prefix: "/api/v1" });
   fastify.register(cardsRoutes, { prefix: "/api/v1" });
+  fastify.register(usersRoutes, { prefix: "/api/v1" });
 
   fastify.register(fastifyStatic, {
     root: cardImagesFolder,
@@ -54,9 +56,7 @@ export async function createServer() {
     reply.sendFile("index.html");
   });
 
-  fastify.addHook("onClose", async () => {
-    return db.dispose();
-  });
+  fastify.addHook("onClose", closeDbPool);
 
   return {
     async run() {

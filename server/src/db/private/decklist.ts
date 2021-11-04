@@ -1,7 +1,7 @@
 import { db, sql } from "./_db.js";
 import { generateId } from "./_id.js";
 
-export interface Decklist {
+interface Decklist {
   id: string;
   name: string;
   creatorId: string;
@@ -46,16 +46,32 @@ export async function updateDecklist(
   `);
 }
 
+interface ExtendedDecklist {
+  id: string;
+  name?: string;
+  creatorId: string;
+  agenda: string;
+  haven: string;
+  libraryDeck: {
+    [cardId: string]: number;
+  };
+  leader: string;
+  factionDeck: string[];
+  displayName?: string;
+}
+
 export async function fetchDecklist(
   decklistId: string
-): Promise<Decklist | null> {
+): Promise<ExtendedDecklist | null> {
   const [row] = await db.query(sql`
     SELECT
       decklist_id,
       name,
       user_id,
-      content
+      content,
+      users.display_name
     FROM decklists
+    LEFT JOIN users USING (user_id)
     WHERE decklist_id = ${decklistId}
     LIMIT 1
   `);
@@ -66,14 +82,16 @@ export async function fetchDecklist(
   return rowToDecklist(row);
 }
 
-export async function fetchDecklists(): Promise<Decklist[]> {
+export async function fetchDecklists(): Promise<ExtendedDecklist[]> {
   const rows = await db.query(sql`
     SELECT
       decklist_id,
       name,
       user_id,
-      content
+      content,
+      users.display_name
     FROM decklists
+    LEFT JOIN users USING (user_id)
   `);
 
   return rows.map(rowToDecklist);
@@ -84,15 +102,17 @@ function rowToDecklist(row: {
   name: string;
   user_id: string;
   content: Omit<Decklist, "id" | "name" | "creatorId">;
-}) {
+  display_name?: string;
+}): ExtendedDecklist {
   return {
     id: row.decklist_id,
-    name: row.name,
+    name: row.name.length > 0 ? row.name : undefined,
     creatorId: row.user_id,
     agenda: row.content.agenda,
     haven: row.content.haven,
     leader: row.content.leader,
     libraryDeck: row.content.libraryDeck,
     factionDeck: row.content.factionDeck,
+    displayName: row.display_name,
   };
 }

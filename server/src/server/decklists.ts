@@ -5,7 +5,6 @@ import {
   fetchDecklists,
   createUserIfNeeded,
   fetchDecklist,
-  Decklist,
 } from "../db/index.js";
 import auth from "./auth.js";
 
@@ -20,17 +19,12 @@ interface DeckOutput extends DeckInput {
   id: string;
   creatorId: string;
 }
-function toResponse(decklist: Decklist) {
-  return {
-    ...decklist,
-    factionDeck: decklist.factionDeck.reduce<Record<string, boolean>>(
-      (faction, cardId) => {
-        faction[cardId] = cardId === decklist.leader;
-        return faction;
-      },
-      {}
-    ),
-  };
+
+function formatFactionDeck(faction: string[], leaderId: string) {
+  return faction.reduce<Record<string, boolean>>((faction, cardId) => {
+    faction[cardId] = cardId === leaderId;
+    return faction;
+  }, {});
 }
 
 const privateRoutes: FastifyPluginAsync = async (fastify, options) => {
@@ -96,7 +90,10 @@ const privateRoutes: FastifyPluginAsync = async (fastify, options) => {
       );
 
       reply.code(201);
-      return toResponse(entry);
+      return {
+        ...entry,
+        factionDeck: formatFactionDeck(entry.factionDeck, entry.leader),
+      };
     },
   });
   fastify.put<{ Params: { deckId: string }; Body: DeckInput }>(
@@ -164,7 +161,7 @@ const publicRoutes: FastifyPluginAsync = async (fastify, options) => {
           items: {
             type: "object",
             properties: {
-              name: { anyOf: [{ type: "null" }, { type: "string" }] },
+              name: { type: "string" },
               agenda: { type: "string" },
               haven: { type: "string" },
               factionDeck: {
@@ -177,6 +174,7 @@ const publicRoutes: FastifyPluginAsync = async (fastify, options) => {
               },
               id: { type: "string" },
               creatorId: { type: "string" },
+              creatorDisplayName: { type: "string" },
             },
           },
         },
@@ -184,7 +182,11 @@ const publicRoutes: FastifyPluginAsync = async (fastify, options) => {
     },
     async handler() {
       const decklists = await fetchDecklists();
-      return decklists.map(toResponse);
+      return decklists.map((decklist) => ({
+        ...decklist,
+        creatorDisplayName: decklist.displayName,
+        factionDeck: formatFactionDeck(decklist.factionDeck, decklist.leader),
+      }));
     },
   });
 
@@ -194,7 +196,7 @@ const publicRoutes: FastifyPluginAsync = async (fastify, options) => {
         200: {
           type: "object",
           properties: {
-            name: { anyOf: [{ type: "null" }, { type: "string" }] },
+            name: { type: "string" },
             agenda: { type: "string" },
             haven: { type: "string" },
             factionDeck: {
@@ -207,6 +209,7 @@ const publicRoutes: FastifyPluginAsync = async (fastify, options) => {
             },
             id: { type: "string" },
             creatorId: { type: "string" },
+            creatorDisplayName: { type: "string" },
           },
         },
       },
@@ -218,7 +221,11 @@ const publicRoutes: FastifyPluginAsync = async (fastify, options) => {
         return reply.send();
       }
 
-      return toResponse(decklist);
+      return {
+        ...decklist,
+        creatorDisplayName: decklist.displayName,
+        factionDeck: formatFactionDeck(decklist.factionDeck, decklist.leader),
+      };
     },
   });
 };
