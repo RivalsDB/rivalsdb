@@ -99,7 +99,7 @@ viewDecklistEntry deck =
                 [ strong []
                     [ text <| Deck.displayName deck.meta.name ]
                 , text " by: "
-                , text deck.meta.owner
+                , text <| Deck.ownerDisplayName deck.meta
                 ]
             ]
         , p [ class "brb" ]

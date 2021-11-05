@@ -16,7 +16,7 @@ import UI.Icon as Icon
 viewDeck : DeckPostSave -> Html msg
 viewDeck { decklist, meta } =
     div [ class "decklist" ]
-        [ viewDeckTitleReadOnly meta.name
+        [ viewDeckTitleReadOnly meta
         , viewAgenda decklist.agenda
         , viewHaven decklist.haven
         , viewLeader (Deck.leader decklist)
@@ -57,20 +57,14 @@ type alias Actions msg =
     }
 
 
-viewDeckTitleReadOnly : Deck.Name -> Html msg
-viewDeckTitleReadOnly name =
+viewDeckTitleReadOnly : Deck.MetaPostSave -> Html msg
+viewDeckTitleReadOnly meta =
     div [ class "decklist__title" ]
         [ p []
             [ span [ class "decklist__title-name" ]
-                [ text
-                    (case name of
-                        Deck.Named someName ->
-                            someName
-
-                        _ ->
-                            "Unnamed"
-                    )
-                ]
+                [ text <| Deck.displayName meta.name ]
+            , text " by "
+            , text <| Deck.ownerDisplayName meta
             ]
         ]
 

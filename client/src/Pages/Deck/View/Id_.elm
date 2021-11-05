@@ -90,7 +90,7 @@ viewActions maybeUser meta =
             (maybeUser
                 |> Maybe.map
                     (\user ->
-                        if user.id == meta.owner then
+                        if user.id == meta.ownerId then
                             [ li [ class "actions-item" ]
                                 [ a [ href <| Route.toHref (Route.Deck__Edit__Id_ { id = meta.id }) ]
                                     [ span [ class "actions-icon" ] [ Icon.icon ( Icon.Edit, Icon.Standard ) ]

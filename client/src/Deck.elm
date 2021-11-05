@@ -16,6 +16,7 @@ module Deck exposing
     , isValidFaction
     , isValidLibrary
     , leader
+    , ownerDisplayName
     , setCard
     , setLeader
     )
@@ -100,7 +101,12 @@ nameToString deckname =
 
 
 type alias MetaPostSave =
-    { name : Name, id : String, owner : String }
+    { name : Name, id : String, ownerId : String, ownerName : Maybe String }
+
+
+ownerDisplayName : MetaPostSave -> String
+ownerDisplayName meta =
+    Maybe.withDefault meta.ownerId meta.ownerName
 
 
 type alias Decklist =
@@ -298,10 +304,17 @@ decoder collection =
 
 metaDecoder : Decoder MetaPostSave
 metaDecoder =
-    Decode.map3 MetaPostSave
-        (Decode.field "name" (Decode.map Named Decode.string))
+    Decode.map4 MetaPostSave
+        (metaNameDecoder "name")
         (Decode.field "id" Decode.string)
         (Decode.field "creatorId" Decode.string)
+        (Decode.field "creatorDisplayName" (Decode.maybe Decode.string))
+
+
+metaNameDecoder : String -> Decoder Name
+metaNameDecoder fieldName =
+    Decode.maybe (Decode.field fieldName Decode.string)
+        |> Decode.map (Maybe.map Named >> Maybe.withDefault Unnamed)
 
 
 decklistDecoder : Collection -> Decoder Decklist
