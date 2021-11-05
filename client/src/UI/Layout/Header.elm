@@ -17,6 +17,7 @@ view msg user =
                 [ li [] [ a [ href <| Route.toHref Route.Decks ] [ text "Decks" ] ]
                 , li [] [ a [ href <| Route.toHref Route.Deck__New ] [ text "New Deck" ] ]
                 , li [] [ a [ href <| Route.toHref Route.Search ] [ text "Cards" ] ]
+                , li [] [ a [ href <| Route.toHref Route.Profile ] [ text "My Profile" ] ]
                 ]
             ]
         , div [ class "header-search" ]
