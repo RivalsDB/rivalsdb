@@ -1,6 +1,7 @@
 module Pages.Deck.New exposing (Model, Msg, page)
 
 import API.Decklist
+import Auth
 import Browser.Navigation as Navigation exposing (Key)
 import Cards exposing (Card)
 import Clan exposing (Clan)
@@ -27,12 +28,14 @@ import View exposing (View)
 
 page : Shared.Model -> Request.With Params -> Page.With Model Msg
 page shared req =
-    Page.advanced
-        { init = init req
-        , update = update shared
-        , view = view shared
-        , subscriptions = always Sub.none
-        }
+    Page.protected.advanced
+        (\user ->
+            { init = init req.key
+            , update = update user
+            , view = view shared
+            , subscriptions = always Sub.none
+            }
+        )
 
 
 
@@ -54,8 +57,8 @@ type alias Model =
     }
 
 
-init : Request.With Params -> ( Model, Effect Msg )
-init req =
+init : Navigation.Key -> ( Model, Effect Msg )
+init key =
     ( { stackFilters = UI.FilterSelection.stacks
       , primaryFilters = UI.FilterSelection.primaryTraits
       , secondaryFilters = UI.FilterSelection.secondaryTraits
@@ -66,7 +69,7 @@ init req =
       , showAllFilters = False
       , showCollectionImages = False
       , deck = Deck.init
-      , key = req.key
+      , key = key
       }
     , Effect.none
     )
@@ -93,8 +96,8 @@ type Msg
     | SaveNewDeckName
 
 
-update : Shared.Model -> Msg -> Model -> ( Model, Effect Msg )
-update shared msg model =
+update : Auth.User -> Msg -> Model -> ( Model, Effect Msg )
+update user msg model =
     case msg of
         TextFilterChanged text ->
             let
@@ -167,11 +170,11 @@ update shared msg model =
             ( { model | deck = { oldDeck | decklist = Deck.setLeader oldDeck.decklist leader } }, Effect.none )
 
         Save ->
-            case ( shared.user, Deck.encode (Deck.PreSave model.deck) ) of
-                ( Just user, Just encodedDeck ) ->
+            case Deck.encode (Deck.PreSave model.deck) of
+                Just encodedDeck ->
                     ( model, API.Decklist.create SavedDecklist user.token encodedDeck |> Effect.fromCmd )
 
-                ( _, _ ) ->
+                _ ->
                     ( model, Effect.none )
 
         SavedDecklist (Ok deckId) ->
@@ -231,7 +234,7 @@ view shared model =
     UI.Layout.Template.view FromShared
         shared
         [ div [ class "deckbldr" ]
-            [ viewActions shared.user
+            [ viewActions
             , div [ class "deckbldr-decklist" ]
                 [ UI.Decklist.viewCreate decklistActions model.deck ]
             , div [ class "deckbldr-choices" ]
@@ -279,23 +282,11 @@ view shared model =
         ]
 
 
-viewActions : Maybe Shared.User -> Html Msg
-viewActions user =
+viewActions : Html Msg
+viewActions =
     div [ class "deckbldr-actions" ]
         [ ul [ class "actions-list" ]
-            [ li
-                (user
-                    |> Maybe.map
-                        (always
-                            [ class "actions-item"
-                            , onClick Save
-                            ]
-                        )
-                    |> Maybe.withDefault
-                        [ class "actions-item"
-                        , class "actions-item--inactive"
-                        ]
-                )
+            [ li [ class "actions-item", onClick Save ]
                 [ span [ class "actions-icon" ] [ Icon.icon ( Icon.Save, Icon.Standard ) ]
                 , span [ class "actions-description" ] [ text "Save" ]
                 ]

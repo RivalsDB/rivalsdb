@@ -1,13 +1,14 @@
 module Pages.Deck.Edit.Id_ exposing (Model, Msg, page)
 
 import API.Decklist
+import Auth
 import Cards exposing (Card)
 import Clan exposing (Clan)
 import Deck exposing (DeckPostSave, Decklist, Name(..))
 import Dict
 import Effect exposing (Effect)
 import Gen.Params.Deck.Edit.Id_ exposing (Params)
-import Html exposing (..)
+import Html exposing (Html, div, h2, input, label, li, span, text, ul)
 import Html.Attributes exposing (checked, class, classList, name, type_)
 import Html.Events exposing (onClick)
 import Html.Keyed as Keyed
@@ -25,12 +26,14 @@ import View exposing (View)
 
 page : Shared.Model -> Request.With Params -> Page.With Model Msg
 page shared req =
-    Page.advanced
-        { init = init shared req
-        , update = update shared
-        , view = view shared
-        , subscriptions = always Sub.none
-        }
+    Page.protected.advanced
+        (\user ->
+            { init = init shared.collection req.params.id
+            , update = update user
+            , view = view shared
+            , subscriptions = always Sub.none
+            }
+        )
 
 
 
@@ -67,10 +70,10 @@ type alias Data =
     }
 
 
-init : Shared.Model -> Request.With Params -> ( Model, Effect Msg )
-init shared req =
+init : Shared.Collection -> String -> ( Model, Effect Msg )
+init collection deckId =
     ( Loading
-    , Effect.fromCmd <| API.Decklist.read shared.collection FetchedDecklist req.params.id
+    , Effect.fromCmd <| API.Decklist.read collection FetchedDecklist deckId
     )
 
 
@@ -95,8 +98,8 @@ type Msg
     | FetchedDecklist API.Decklist.ResultRead
 
 
-update : Shared.Model -> Msg -> Model -> ( Model, Effect Msg )
-update shared msg modelx =
+update : Auth.User -> Msg -> Model -> ( Model, Effect Msg )
+update user msg modelx =
     case ( modelx, msg ) of
         ( _, FromShared subMsg ) ->
             ( modelx, Effect.fromShared subMsg )
@@ -179,11 +182,11 @@ update shared msg modelx =
             ( Editing { model | deck = { oldDeck | decklist = Deck.setLeader oldDeck.decklist leader } }, Effect.none )
 
         ( Editing model, Save ) ->
-            case ( shared.user, Deck.encode (Deck.PostSave model.deck) ) of
-                ( Just user, Just encodedDeck ) ->
+            case Deck.encode (Deck.PostSave model.deck) of
+                Just encodedDeck ->
                     ( Editing model, API.Decklist.update SavedDecklist user.token model.deck.meta.id encodedDeck |> Effect.fromCmd )
 
-                ( _, _ ) ->
+                _ ->
                     ( Editing model, Effect.none )
 
         ( Editing model, SavedDecklist _ ) ->
@@ -254,7 +257,7 @@ view shared model =
             UI.Layout.Template.view FromShared
                 shared
                 [ div [ class "deckbldr" ]
-                    [ viewActions shared.user
+                    [ viewActions
                     , div [ class "deckbldr-decklist" ]
                         [ UI.Decklist.viewEdit decklistActions data.deck ]
                     , div [ class "deckbldr-choices" ]
@@ -302,23 +305,11 @@ view shared model =
                 ]
 
 
-viewActions : Maybe Shared.User -> Html Msg
-viewActions user =
+viewActions : Html Msg
+viewActions =
     div [ class "deckbldr-actions" ]
         [ ul [ class "actions-list" ]
-            [ li
-                (user
-                    |> Maybe.map
-                        (always
-                            [ class "actions-item"
-                            , onClick Save
-                            ]
-                        )
-                    |> Maybe.withDefault
-                        [ class "actions-item"
-                        , class "actions-item--inactive"
-                        ]
-                )
+            [ li [ class "actions-item", onClick Save ]
                 [ span [ class "actions-icon" ] [ Icon.icon ( Icon.Save, Icon.Standard ) ]
                 , span [ class "actions-description" ] [ text "Save" ]
                 ]
