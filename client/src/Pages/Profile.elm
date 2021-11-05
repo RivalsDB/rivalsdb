@@ -103,6 +103,7 @@ view shared model =
                     , placeholder "My Cool Nickname"
                     , value <| Maybe.withDefault "" data.displayName
                     ]
+                    False
                 ]
 
             Editing data ->
@@ -112,6 +113,7 @@ view shared model =
                     , placeholder "My Cool Nickname"
                     , value data.newDisplayName
                     ]
+                    True
                 ]
         )
 
@@ -121,10 +123,10 @@ viewHeader =
     h1 [] [ text "My Profile" ]
 
 
-viewForm : List (Html.Attribute msg) -> Html msg
-viewForm inputAttrs =
-    form []
+viewForm : List (Html.Attribute Msg) -> Bool -> Html Msg
+viewForm inputAttrs canSave =
+    form [ onSubmit DisplayNameSave ]
         [ label [] [ text "Display Name" ]
         , input inputAttrs []
-        , button [ type_ "submit", disabled True ] [ text "save" ]
+        , button [ type_ "submit", disabled (not canSave) ] [ text "save" ]
         ]

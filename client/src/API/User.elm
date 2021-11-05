@@ -44,4 +44,4 @@ userProfileDecoder : Decode.Decoder UserProfile
 userProfileDecoder =
     Decode.map2 UserProfile
         (field "userId" string)
-        (field "displayName" (maybe string))
+        (maybe (field "displayName" string))
