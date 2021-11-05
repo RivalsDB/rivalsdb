@@ -1,5 +1,6 @@
 module API.Decklist exposing (ResultCreate, ResultIndex, ResultRead, ResultUpdate, create, index, read, update)
 
+import API.Auth exposing (auth)
 import Deck exposing (DeckPostSave)
 import Http
 import Json.Decode as Decode
@@ -16,7 +17,7 @@ create msg token deck =
     Http.request
         { method = "POST"
         , url = "/api/v1/decklist"
-        , headers = [ authHeader token ]
+        , headers = [ auth token ]
         , timeout = Nothing
         , tracker = Nothing
         , body = Http.jsonBody deck
@@ -33,7 +34,7 @@ update msg token deckId deck =
     Http.request
         { method = "PUT"
         , url = "/api/v1/decklist/" ++ deckId
-        , headers = [ authHeader token ]
+        , headers = [ auth token ]
         , timeout = Nothing
         , tracker = Nothing
         , body = Http.jsonBody deck
@@ -63,14 +64,3 @@ index collection msg =
         { url = "/api/v1/decklist"
         , expect = Http.expectJson msg (Decode.list <| Deck.decoder collection)
         }
-
-
-
-----------
--- HELPERS
-----------
-
-
-authHeader : Shared.Token -> Http.Header
-authHeader token =
-    Http.header "Authorization" ("Bearer " ++ token)
