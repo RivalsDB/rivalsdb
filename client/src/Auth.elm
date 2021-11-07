@@ -17,4 +17,4 @@ beforeProtectedInit shared _ =
             ElmSpa.Provide user
 
         Nothing ->
-            ElmSpa.RedirectTo Gen.Route.Home_
+            ElmSpa.RedirectTo Gen.Route.Signin

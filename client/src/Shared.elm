@@ -73,6 +73,7 @@ type Msg
     | ModalClose
     | ModalChangedEmail String
     | ModalSubmit
+    | InitiateSignin String
     | HeaderClickedSignIn
     | HeaderClickedSignOut
     | HeaderSearchQueryChanged String
@@ -136,6 +137,9 @@ update _ msg model =
 
                 _ ->
                     ( model, Cmd.none )
+
+        InitiateSignin email ->
+            ( model, initiateLogin email )
 
         HeaderClickedSignIn ->
             ( { model | modal = Open Nothing }, Cmd.none )
