@@ -289,12 +289,14 @@ viewLibraryGroup name group =
             ]
         , ul []
             (group
+                |> List.sortBy (Tuple.first >> .name)
                 |> List.map
-                    (\( c, n ) ->
+                    (\( card, n ) ->
                         li [ class "deck-library__entry" ]
                             [ span [] [ text (String.fromInt n) ]
                             , span [] [ text "× " ]
-                            , UI.CardName.withOverlay (Cards.LibraryCard c)
+                            , UI.CardName.withOverlay (Cards.LibraryCard card)
+                            , span [] [ Maybe.map Icon.clan card.clan |> Maybe.withDefault (text "") ]
                             ]
                     )
             )

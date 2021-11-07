@@ -468,12 +468,7 @@ cardSort a b =
     in
     case compare (stack a) (stack b) of
         EQ ->
-            case compare (Cards.bloodPotency a) (Cards.bloodPotency b) of
-                EQ ->
-                    compare (Cards.name a) (Cards.name b)
-
-                ord ->
-                    ord
+            compare (Cards.name a) (Cards.name b)
 
         ord ->
             ord
