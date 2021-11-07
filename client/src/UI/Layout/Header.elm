@@ -13,12 +13,13 @@ view msg user =
         [ div [ class "header-logo" ]
             [ a [ href <| Route.toHref Route.Home_ ] [ span [] [ text "Rivals DB" ] ] ]
         , nav [ class "header-nav" ]
-            [ ul []
-                [ li [] [ a [ href <| Route.toHref Route.Decks ] [ text "Decks" ] ]
-                , li [] [ a [ href <| Route.toHref Route.Deck__New ] [ text "New Deck" ] ]
-                , li [] [ a [ href <| Route.toHref Route.Search ] [ text "Cards" ] ]
-                , li [] [ a [ href <| Route.toHref Route.Profile ] [ text "My Profile" ] ]
-                ]
+            [ ul [] <|
+                htmlList
+                    [ ( True, li [] [ a [ href <| Route.toHref Route.Decks ] [ text "Decks" ] ] )
+                    , ( isJust user, li [] [ a [ href <| Route.toHref Route.Deck__New ] [ text "New Deck" ] ] )
+                    , ( True, li [] [ a [ href <| Route.toHref Route.Search ] [ text "Cards" ] ] )
+                    , ( isJust user, li [] [ a [ href <| Route.toHref Route.Profile ] [ text "My Profile" ] ] )
+                    ]
             ]
         , div [ class "header-search" ]
             [ form [ onSubmit (msg Shared.HeaderSearchQuerySubmitted) ]
@@ -32,11 +33,32 @@ view msg user =
                 ]
             ]
         , div [ class "header-login" ]
-            [ case user of
-                Just _ ->
-                    button [ class "login_button", class "login_button--out", onClick (msg Shared.HeaderClickedSignOut) ] [ text "Sign Out" ]
+            [ if isJust user then
+                button [ class "login_button", class "login_button--out", onClick (msg Shared.HeaderClickedSignOut) ] [ text "Sign Out" ]
 
-                Nothing ->
-                    button [ class "login_button", class "login_button--in", onClick (msg Shared.HeaderClickedSignIn) ] [ text "Sign In" ]
+              else
+                button [ class "login_button", class "login_button--in", onClick (msg Shared.HeaderClickedSignIn) ] [ text "Sign In" ]
             ]
         ]
+
+
+htmlList : List ( Bool, Html msg ) -> List (Html msg)
+htmlList =
+    List.filterMap
+        (\( show, item ) ->
+            if show then
+                Just item
+
+            else
+                Nothing
+        )
+
+
+isJust : Maybe a -> Bool
+isJust a =
+    case a of
+        Just _ ->
+            True
+
+        Nothing ->
+            False
