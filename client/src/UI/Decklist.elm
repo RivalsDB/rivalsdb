@@ -203,7 +203,7 @@ factionEntryEditable { setLeader } ( character, isLeader ) =
             )
          , span [ class "deck-faction__bp" ] [ UI.Attribute.bloodPotency character.bloodPotency ]
          , span [ class "deck-faction__clan" ] [ Icon.clan character.clan ]
-         , span [ class "deck-faction__name" ] [ text character.name ]
+         , span [ class "deck-faction__name" ] [ UI.CardName.withOverlay (Cards.FactionCard character) ]
          ]
             ++ (character.disciplines
                     |> List.map (span [ class "deck-faction__discipline" ] << List.singleton << Icon.discipline)
@@ -224,15 +224,9 @@ factionEntryReadOnly ( character, isLeader ) =
              else
                 []
             )
-         , span [ class "deck-faction__bp" ]
-            [ UI.Attribute.bloodPotency character.bloodPotency
-            ]
-         , span [ class "deck-faction__clan" ]
-            [ Icon.clan character.clan
-            ]
-         , span [ class "deck-faction__name" ]
-            [ UI.CardName.withOverlay (Cards.FactionCard character)
-            ]
+         , span [ class "deck-faction__bp" ] [ UI.Attribute.bloodPotency character.bloodPotency ]
+         , span [ class "deck-faction__clan" ] [ Icon.clan character.clan ]
+         , span [ class "deck-faction__name" ] [ UI.CardName.withOverlay (Cards.FactionCard character) ]
          ]
             ++ (character.disciplines
                     |> List.map (span [ class "deck-faction__discipline" ] << List.singleton << Icon.discipline)
