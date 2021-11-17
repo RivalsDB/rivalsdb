@@ -10,7 +10,7 @@ body
 
   .page-header
     grid-row: 1 / 2
-    background: var(--color-greylight)
+    background: var(--color-bg-farthest)
     padding: 10px $safearea-margin
 
   .page-content
@@ -19,9 +19,15 @@ body
 
   .page-footer
     grid-row: 3 / 4
-    background: var(--color-greydeep)
+    background: var(--color-bg-farthest)
     padding: 10px $safearea-margin
 
   .footer-legal
     font-size: var(--font-size--micro)
+    color: var(--color-footer-text)
     line-height: 1.2
+
+    p
+      margin-top: 5px
+      &:first-of-type
+        margin-top: 0

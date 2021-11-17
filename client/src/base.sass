@@ -1,26 +1,30 @@
 @import ../node_modules/normalize.css/normalize.css
 
 body
-  --color-bg: #FAFAFA
-  --color-text: #303030
-  --color-greylight: #E4EDF2
-  --color-greydeep: #9FA4AB
-  --color-redlight: #D92414
-  --color-redmedium: #8C1E14
-  --color-reddeep: #591711
-
   --color-icon-standard: #000
   --font-size--header: 20px
   --font-size--default: 16px
   --font-size--small: 14px
   --font-size--micro: 12px
 
+  --color-bg-farthest: rgba(15, 27, 38, 1)
+  --color-bg-far: rgba(28, 51, 71, 1)
+  --color-bg-close: rgba(38, 70, 97, 1)
+  --color-bg-closest: rgba(47, 86, 120, 1)
+  --color-copy-medium: rgba(229, 209, 149, 1)
+  --color-link: rgba(87, 189, 37, 1)
+  --color-footer-text: rgba(36,106,120,1)
+  --color-header-logo: rgba(37,163,189,1)
+
 body
-  background: var(--color-bg)
-  color: var(--color-text)
+  background: var(--color-bg-far)
+  color: var(--color-copy-medium)
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"
 
-ul,ol,h1,h2,h3,h4,h5,h6
+a
+  color: var(--color-link)
+
+ul,ol,h1,h2,h3,h4,h5,h6,p
   margin: 0
   padding: 0
 li
