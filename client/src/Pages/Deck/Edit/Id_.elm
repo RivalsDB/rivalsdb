@@ -349,7 +349,7 @@ viewCardListRow deck card =
         , span [ class "deckbldr-rowpiece_props" ]
             (case card of
                 Cards.FactionCard props ->
-                    [ span [ class "deckbldr-rowpiece_clan" ] [ Icon.clan props.clan ]
+                    [ span [ class "deckbldr-rowpiece_clan" ] [ Icon.clan Icon.Negative props.clan ]
                     , span [ class "deckbldr-rowpiece_bp" ] [ UI.Attribute.bloodPotency props.bloodPotency ]
                     , span [ class "deckbldr-rowpiece_physical" ] [ UI.Attribute.physical props.physical ]
                     , span [ class "deckbldr-rowpiece_social" ] [ UI.Attribute.social props.social ]
@@ -362,7 +362,7 @@ viewCardListRow deck card =
 
                 Cards.LibraryCard props ->
                     [ span [ class "deckbldr-rowpiece_clan" ]
-                        [ props.clan |> Maybe.map Icon.clan |> Maybe.withDefault (text "")
+                        [ props.clan |> Maybe.map (Icon.clan Icon.Negative) |> Maybe.withDefault (text "")
                         ]
                     , span [ class "deckbldr-rowpiece_bp" ] [ UI.Attribute.bloodPotencyRequirement props.bloodPotency ]
                     , span [ class "deckbldr-rowpiece_damage" ] [ UI.Attribute.damage props.damage ]

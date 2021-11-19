@@ -175,7 +175,7 @@ viewFaction toFactionEntry decklist =
                     |> List.map
                         (\( clan, _ ) ->
                             span [ class "deck-faction__clan-item" ]
-                                [ Icon.clan clan ]
+                                [ Icon.clan Icon.Negative clan ]
                         )
                 )
             ]
@@ -202,7 +202,7 @@ factionEntryEditable { setLeader } ( character, isLeader ) =
                 []
             )
          , span [ class "deck-faction__bp" ] [ UI.Attribute.bloodPotency character.bloodPotency ]
-         , span [ class "deck-faction__clan" ] [ Icon.clan character.clan ]
+         , span [ class "deck-faction__clan" ] [ Icon.clan Icon.Negative character.clan ]
          , span [ class "deck-faction__name" ] [ UI.CardName.withOverlay (Cards.FactionCard character) ]
          ]
             ++ (character.disciplines
@@ -225,7 +225,7 @@ factionEntryReadOnly ( character, isLeader ) =
                 []
             )
          , span [ class "deck-faction__bp" ] [ UI.Attribute.bloodPotency character.bloodPotency ]
-         , span [ class "deck-faction__clan" ] [ Icon.clan character.clan ]
+         , span [ class "deck-faction__clan" ] [ Icon.clan Icon.Negative character.clan ]
          , span [ class "deck-faction__name" ] [ UI.CardName.withOverlay (Cards.FactionCard character) ]
          ]
             ++ (character.disciplines
@@ -290,7 +290,7 @@ viewLibraryGroup name group =
                             [ span [] [ text (String.fromInt n) ]
                             , span [] [ text "× " ]
                             , UI.CardName.withOverlay (Cards.LibraryCard card)
-                            , span [] [ Maybe.map Icon.clan card.clan |> Maybe.withDefault (text "") ]
+                            , span [] [ Maybe.map (Icon.clan Icon.Negative) card.clan |> Maybe.withDefault (text "") ]
                             ]
                     )
             )

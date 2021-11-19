@@ -22,7 +22,6 @@
     "elm": "^0.19.1-5",
     "elm-spa": "^6.0.4",
     "magic-sdk": "^6.1.0",
-    "normalize.css": "^8.0.1",
     "parcel": "^2.0.0",
     "prettier": "^2.3.2"
   },

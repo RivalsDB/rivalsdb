@@ -73,6 +73,7 @@ type IconImage
 
 type IconStyle
     = Standard
+    | Negative
 
 
 type alias Icon =
@@ -85,32 +86,32 @@ type alias Icon =
 ------
 
 
-clan : Clan -> Html msg
-clan c =
+clan : IconStyle -> Clan -> Html msg
+clan style c =
     case c of
         Clan.Brujah ->
-            icon ( Brujah, Standard )
+            icon ( Brujah, style )
 
         Clan.Gangrel ->
-            icon ( Gangrel, Standard )
+            icon ( Gangrel, style )
 
         Clan.Malkavian ->
-            icon ( Malkavian, Standard )
+            icon ( Malkavian, style )
 
         Clan.Nosferatu ->
-            icon ( Nosferatu, Standard )
+            icon ( Nosferatu, style )
 
         Clan.ThinBlood ->
-            icon ( ThinBlood, Standard )
+            icon ( ThinBlood, style )
 
         Clan.Toreador ->
-            icon ( Toreador, Standard )
+            icon ( Toreador, style )
 
         Clan.Tremere ->
-            icon ( Tremere, Standard )
+            icon ( Tremere, style )
 
         Clan.Ventrue ->
-            icon ( Ventrue, Standard )
+            icon ( Ventrue, style )
 
 
 discipline : Cards.Discipline -> Html msg
@@ -186,6 +187,9 @@ styleClass style =
     case style of
         Standard ->
             class "ui-icon--standard"
+
+        Negative ->
+            class "ui-icon--negative"
 
 
 imageOpts : IconImage -> ( Attribute msg, String )

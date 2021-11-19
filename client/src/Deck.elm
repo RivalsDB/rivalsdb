@@ -11,6 +11,7 @@ module Deck exposing
     , decoder
     , displayName
     , encode
+    , fallbackLeader
     , init
     , isLeader
     , isValidFaction
@@ -233,6 +234,11 @@ isLeader deck character =
 leader : Decklist -> Maybe Cards.Faction
 leader deck =
     Dict.values deck.faction |> List.filter Tuple.second |> List.head |> Maybe.map Tuple.first
+
+
+fallbackLeader : Decklist -> Maybe Cards.Faction
+fallbackLeader deck =
+    Dict.values deck.faction |> List.sortBy (Tuple.first >> .bloodPotency >> negate) |> List.head |> Maybe.map Tuple.first
 
 
 setLeader : Decklist -> Cards.Faction -> Decklist

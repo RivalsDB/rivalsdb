@@ -1,7 +1,9 @@
 module Pages.Decks exposing (Model, Msg, page)
 
 import API.Decklist
+import Cards exposing (Faction)
 import Deck exposing (DeckPostSave)
+import Dict
 import Effect exposing (Effect)
 import Gen.Params.Decks exposing (Params)
 import Gen.Route as Route
@@ -10,8 +12,10 @@ import Html.Attributes exposing (class, href)
 import Page
 import Request
 import Shared
+import UI.Card
 import UI.Icon
 import UI.Layout.Template
+import UI.Text
 import View exposing (View)
 
 
@@ -84,8 +88,8 @@ viewDecklists shared model =
     UI.Layout.Template.view FromShared
         shared
         [ div []
-            [ h1 [] [ text "Decklists" ]
-            , ul []
+            [ UI.Text.header [ text "Decklists" ]
+            , ul [ class "deckindex" ]
                 (model |> List.map viewDecklistEntry)
             ]
         ]
@@ -94,32 +98,41 @@ viewDecklists shared model =
 viewDecklistEntry : DeckPostSave -> Html Msg
 viewDecklistEntry deck =
     li [ class "deckindexitem" ]
-        [ p []
-            [ a [ href <| Route.toHref (Route.Deck__View__Id_ { id = deck.meta.id }) ]
-                [ strong []
-                    [ text <| Deck.displayName deck.meta.name ]
-                , text " by: "
-                , text <| Deck.ownerDisplayName deck.meta
+        [ a [ class "deckindexcard", href <| Route.toHref (Route.Deck__View__Id_ { id = deck.meta.id }) ]
+            [ div [ class "deckindexcard__illustration" ] [ illustrationImage deck.decklist ]
+            , div [ class "deckindexcard__illustration-overlay" ] []
+            , div [ class "deckindexcard__content" ]
+                [ p [ class "deckindexcard__name" ] [ text <| Deck.displayName deck.meta.name ]
+                , p [ class "deckindexcard__byline" ] [ text "by: ", text <| Deck.ownerDisplayName deck.meta ]
+                , p [ class "deckindexcard__clans" ]
+                    (Deck.clansInFaction deck.decklist.faction
+                        |> List.map
+                            (\( clan, _ ) ->
+                                span [ class "deckindexcard__clan" ] [ UI.Icon.clan UI.Icon.Negative clan ]
+                            )
+                    )
+                , p [ class "deckindexcard__summary" ]
+                    [ Deck.leader deck.decklist |> Maybe.map (.name >> text) |> Maybe.withDefault (text "Unknown Leader")
+                    , text " • "
+                    , deck.decklist.haven |> Maybe.map (.name >> text) |> Maybe.withDefault (text "Unknown Haven")
+                    , text " • "
+                    , deck.decklist.agenda |> Maybe.map (.name >> text) |> Maybe.withDefault (text "Unknown Agenda")
+                    ]
                 ]
             ]
-        , p [ class "brb" ]
-            [ span [ class "brb-block" ] [ deck.decklist.agenda |> Maybe.map (.name >> text) |> Maybe.withDefault (text "Unknown Agenda") ]
-            , span [ class "brb-block" ] [ text " | " ]
-            , span [ class "brb-block" ] [ deck.decklist.haven |> Maybe.map (.name >> text) |> Maybe.withDefault (text "Unknown Haven") ]
-            , span [ class "brb-block" ] [ text " | " ]
-            , span [ class "brb-block" ] [ Deck.leader deck.decklist |> Maybe.map (.name >> text) |> Maybe.withDefault (text "Unknown Leader") ]
-            , span [] [ text ": " ]
-            , span [ class "brb-clans" ]
-                (Deck.clansInFaction deck.decklist.faction
-                    |> List.map
-                        (\( clan, n ) ->
-                            span [ class "brb-clan" ]
-                                [ span [ class "brb-num" ] [ text <| String.fromInt n ]
-                                , span [ class "brb-ico" ]
-                                    [ UI.Icon.clan clan
-                                    ]
-                                ]
-                        )
-                )
-            ]
         ]
+
+
+illustrationImage : Deck.Decklist -> Html Msg
+illustrationImage decklist =
+    case Deck.leader decklist of
+        Just leader ->
+            UI.Card.lazy (Cards.FactionCard leader)
+
+        Nothing ->
+            case Deck.fallbackLeader decklist of
+                Just fallbackLeader ->
+                    UI.Card.lazy (Cards.FactionCard fallbackLeader)
+
+                Nothing ->
+                    span [] []
