@@ -1,6 +1,6 @@
 type Card = Agenda | Haven | Faction | Library;
 
-type CardSet = "Core" | "Blood & Alchemy" | "Season 0 Promo" | "Wolf & Rat";
+type CardSet = "Core" | "Blood & Alchemy" | "Promo" | "Wolf & Rat";
 
 type Clan =
   | "brujah"
@@ -73,6 +73,7 @@ type Faction = {
   set: CardSet;
   text: string;
   types: ["character"];
+  flavor?: string;
   stack: "faction";
 };
 
@@ -2363,10 +2364,59 @@ export const cards: Array<Card> = [
     attributeSocial: 2,
     attributeMental: 0,
     illustrator: "Drew Tucker",
-    set: "Season 0 Promo",
+    set: "Promo",
     disciplines: ["celerity"],
     id: "xxx-smoke",
     image: "https://www.rivalsdb.app/card/xxx-smoke.webp",
+    stack: "faction",
+  } as Faction,
+  {
+    types: ["character"],
+    clan: "ventrue",
+    name: "Martine Diaz",
+    text: "Exhaust: Draw 1 card, then discard 1 card.",
+    bloodPotency: 4,
+    attributePhysical: 0,
+    attributeSocial: 1,
+    attributeMental: 1,
+    illustrator: "Marco Primo",
+    set: "Promo",
+    disciplines: ["fortitude", "presence"],
+    id: "xxx-martine-diaz",
+    image: "https://www.rivalsdb.app/card/xxx-martine-diaz.webp",
+    stack: "faction",
+  } as Faction,
+  {
+    types: ["character"],
+    clan: "toreador",
+    name: "Freddy Usher",
+    text: "When this character plays a Reaction, draw 1 card.",
+    bloodPotency: 3,
+    attributePhysical: 1,
+    attributeSocial: 0,
+    attributeMental: 1,
+    illustrator: "Drew Tucker",
+    set: "Promo",
+    disciplines: ["celerity"],
+    id: "xxx-freddy-usher",
+    image: "https://www.rivalsdb.app/card/xxx-freddy-usher.webp",
+    stack: "faction",
+  } as Faction,
+  {
+    types: ["character"],
+    clan: "ventrue",
+    name: "Victor Temple",
+    text: "This character has +1 Influence. Pay 1 [blood]: Put a 'No Influence' token on target character.",
+    bloodPotency: 5,
+    attributePhysical: 0,
+    attributeSocial: 1,
+    attributeMental: 2,
+    illustrator: "Joyce Maureira",
+    set: "Promo",
+    disciplines: ["dominate", "presence"],
+    id: "xxx-victor-temple",
+    image: "https://www.rivalsdb.app/card/xxx-victor-temple.webp",
+    flavor: "Undisputed Baron of the Valley",
     stack: "faction",
   } as Faction,
   {
