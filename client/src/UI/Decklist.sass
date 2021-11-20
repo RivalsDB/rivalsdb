@@ -2,7 +2,7 @@
 
 .decklist
   display: grid
-  gap: 0 10px
+  gap: 0 12px
   grid-template-columns: repeat(6, 1fr)
 
   &__title
@@ -16,7 +16,6 @@
   &__faction,
   &__library
     grid-column: 1 / 7
-    margin-top: 20px
   @media screen and ( min-width: $breakpoint-ipad--horizontal)
     &__core-image
       display: block
@@ -36,16 +35,17 @@
     &__faction,
     &__library
       grid-row: 4 / 5
-      margin-top: 20px
+      margin-top: 24px
     &__faction
       grid-column: 1 / 4
     &__library
       grid-column: 4 / 7
 
-  &__title-name
-    font-weight: bold
-    font-size: 20px
-    line-height: 20px
+  &__title
+    margin-bottom: 12px
+  &__title-byline
+    line-height: 24px
+    font-size: 18px
 
   &__title-action
     cursor: pointer
@@ -55,48 +55,69 @@
     display: inline-block
     margin-left: 0.5rem
 
+.decklist
+  &--section-header
+    font-size: $font-size--sectionheader
+    line-height: 24px
+  &--subsection-header
+    font-size: $font-size--body
+    line-height: 24px
+
 .deck-library
   &__header
-    margin: 0 0 10px
+    margin-bottom: 12px
     &--invalid
       color: var(--color-redlight)
   &__section-header
-    margin-top: 10px
+    margin-top: 12px
     &:first-child
       margin-top: 0
   &__entry
-    line-height: 20px
-    margin-top: 5px
+    margin-top: 6px
     display: flex
     align-items: center
+    &:first-child
+      margin-top: 0
+  &__entry-count,
+  &__entry-times
+    display: inline-block
+    width: 12px
+    text-align: center
+  &__entry-discipline
+    $iconSize: 24px
+    display: inline-block
+    margin-left: 6px
+    width: $iconSize
+    height: $iconSize
 
 .deck-faction
-  $headerIconSize: 22px
-  $characterIconSize: 18px
   &__header
-    margin: 0 0 10px
+    margin-bottom: 12px
     display: flex
     &--invalid
       color: var(--color-redlight)
   &__title
     display: inline-block
-    margin-right: 5px
+    margin-right: 6px
   &__clan-list
     display: flex
   &__clan-item
+    $iconSize: 24px
     display: inline-block
-    margin-left: 5px
-    width: $headerIconSize
-    height: $headerIconSize
+    margin-left: 6px
+    width: $iconSize
+    height: $iconSize
   &__character
-    line-height: 20px
-    margin-top: 5px
+    margin-top: 6px
     display: flex
     align-items: center
     &:first-child
       margin-top: 0
     &--leader
       font-weight: bold
+  &__leader-tag
+    display: inline-block
+    margin-left: 6px
   &__leader
     width: 30px
     height: 30px
@@ -108,13 +129,22 @@
   &__clan,
   &__name
     display: inline-block
-  &__clan
-    width: $characterIconSize
-    height: $characterIconSize
-    margin-left: 5px
   &__name
-    margin-left: 5px
+    margin-left: 6px
+
+  &__name,
+  &__leader-tag
+    line-height: 24px
+    font-size: 15px
+
+  &__clan,
+  &__discipline
+    $iconSize: 24px
+    width: $iconSize
+    height: $iconSize
+
+  &__clan
+    margin-left: 6px
+
   &__discipline
     margin-left: 3px
-    width: $characterIconSize
-    height: $characterIconSize

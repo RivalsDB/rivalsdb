@@ -11,6 +11,7 @@ import UI.Attribute
 import UI.Card
 import UI.CardName
 import UI.Icon as Icon
+import UI.Text
 
 
 viewDeck : DeckPostSave -> Html msg
@@ -60,10 +61,9 @@ type alias Actions msg =
 viewDeckTitleReadOnly : Deck.MetaPostSave -> Html msg
 viewDeckTitleReadOnly meta =
     div [ class "decklist__title" ]
-        [ p []
-            [ span [ class "decklist__title-name" ]
-                [ text <| Deck.displayName meta.name ]
-            , text " by "
+        [ UI.Text.header [ text <| Deck.displayName meta.name ]
+        , p [ class "decklist__title-byline" ]
+            [ text " by "
             , text <| Deck.ownerDisplayName meta
             ]
         ]
@@ -169,7 +169,11 @@ viewFaction toFactionEntry decklist =
             [ class "deck-faction__header"
             , classList [ ( "deck-faction__header--invalid", not <| Deck.isValidFaction decklist ) ]
             ]
-            [ h3 [ class "deck-faction__title" ] [ text "Faction" ]
+            [ h3
+                [ class "decklist--section-header"
+                , class "deck-faction__title"
+                ]
+                [ text "Faction" ]
             , div [ class "deck-faction__clan-list" ]
                 (clansInFaction
                     |> List.map
@@ -217,17 +221,16 @@ factionEntryReadOnly ( character, isLeader ) =
         [ class "deck-faction__character"
         , classList [ ( "deck-faction__character--leader", isLeader ) ]
         ]
-        ([ span [ class "deck-faction__leader" ]
-            (if isLeader then
-                [ Icon.icon ( Icon.Leader, Icon.Standard ) ]
-
-             else
-                []
-            )
-         , span [ class "deck-faction__bp" ] [ UI.Attribute.bloodPotency character.bloodPotency ]
+        ([ span [ class "deck-faction__bp" ] [ UI.Attribute.bloodPotency character.bloodPotency ]
          , span [ class "deck-faction__clan" ] [ Icon.clan Icon.Negative character.clan ]
          , span [ class "deck-faction__name" ] [ UI.CardName.withOverlay (Cards.FactionCard character) ]
          ]
+            ++ (if isLeader then
+                    [ span [ class "deck-faction__leader-tag" ] [ text "(Leader)" ] ]
+
+                else
+                    []
+               )
             ++ (character.disciplines
                     |> List.map (span [ class "deck-faction__discipline" ] << List.singleton << Icon.discipline)
                )
@@ -255,18 +258,11 @@ viewLibrary library =
 viewLibraryHeader : Deck.Library -> Html msg
 viewLibraryHeader library =
     h3
-        [ class "deck-library__header"
+        [ class "decklist--section-header"
+        , class "deck-library__header"
         , classList [ ( "deck-library__header--invalid", not <| Deck.isValidLibrary library ) ]
         ]
-        (text "Library"
-            :: (case cardCount <| Dict.values library of
-                    0 ->
-                        []
-
-                    n ->
-                        [ text " (", text <| String.fromInt n, text ")" ]
-               )
-        )
+        [ titleAndCardCount "Library" (Dict.values library |> cardCount) ]
 
 
 viewLibraryGroup : String -> List ( Cards.Library, Int ) -> List (Html msg)
@@ -275,26 +271,42 @@ viewLibraryGroup name group =
         []
 
     else
-        [ h4 [ class "deck-library__section-header" ]
-            [ text name
-            , text " ("
-            , text <| String.fromInt <| cardCount group
-            , text ")"
-            ]
+        [ h4 [ class "decklist--subsection-header", class "deck-library__section-header" ]
+            [ titleAndCardCount name (cardCount group) ]
         , ul []
             (group
                 |> List.sortBy (Tuple.first >> .name)
-                |> List.map
-                    (\( card, n ) ->
-                        li [ class "deck-library__entry" ]
-                            [ span [] [ text (String.fromInt n) ]
-                            , span [] [ text "× " ]
-                            , UI.CardName.withOverlay (Cards.LibraryCard card)
-                            , span [] [ Maybe.map (Icon.clan Icon.Negative) card.clan |> Maybe.withDefault (text "") ]
-                            ]
-                    )
+                |> List.map libraryEntry
             )
         ]
+
+
+libraryEntry : ( Cards.Library, Int ) -> Html msg
+libraryEntry ( card, n ) =
+    li [ class "deck-library__entry" ]
+        ([ span [ class "deck-library__entry-count" ] [ text (String.fromInt n) ]
+         , span [ class "deck-library__entry-times" ] [ text "×" ]
+         , UI.CardName.withOverlay (Cards.LibraryCard card)
+         ]
+            ++ (case card.clan of
+                    Nothing ->
+                        []
+
+                    Just clan ->
+                        [ span [ class "deck-library__entry-discipline" ]
+                            [ Icon.clan Icon.Negative clan ]
+                        ]
+               )
+        )
+
+
+titleAndCardCount : String -> Int -> Html msg
+titleAndCardCount title count =
+    if count > 0 then
+        text (title ++ " (" ++ String.fromInt count ++ ")")
+
+    else
+        text title
 
 
 cardCount : List ( a, Int ) -> Int

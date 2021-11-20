@@ -1,13 +1,12 @@
 module Pages.Decks exposing (Model, Msg, page)
 
 import API.Decklist
-import Cards exposing (Faction)
+import Cards
 import Deck exposing (DeckPostSave)
-import Dict
 import Effect exposing (Effect)
 import Gen.Params.Decks exposing (Params)
 import Gen.Route as Route
-import Html exposing (Html, a, div, h1, li, p, span, strong, text, ul)
+import Html exposing (Html, a, div, li, p, span, text, ul)
 import Html.Attributes exposing (class, href)
 import Page
 import Request
