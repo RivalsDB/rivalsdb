@@ -70,7 +70,7 @@ pack =
         [ ( "Blood & Alchemy", BloodAndAlchemy )
         , ( "Wolf & Rat", WolfAndRat )
         , ( "Core", Core )
-        , ( "Season 0 Promo", Promo )
+        , ( "Promo", Promo )
         ]
 
 
