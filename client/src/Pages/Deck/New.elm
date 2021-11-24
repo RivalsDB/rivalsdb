@@ -14,8 +14,8 @@ import Html.Events exposing (onClick)
 import Page
 import Request
 import Shared
+import UI.Deckbuilder as Deckbuilder
 import UI.Decklist
-import UI.DecklistOptions as DecklistOptions
 import UI.Icon as Icon
 import UI.Layout.Template
 import View exposing (View)
@@ -40,7 +40,7 @@ page shared req =
 type alias Model =
     { key : Key
     , deck : DeckPreSave
-    , builderOptions : DecklistOptions.Model Msg
+    , builderOptions : Deckbuilder.Model Msg
     }
 
 
@@ -48,7 +48,7 @@ init : Navigation.Key -> ( Model, Effect Msg )
 init key =
     ( { key = key
       , deck = Deck.init
-      , builderOptions = DecklistOptions.init
+      , builderOptions = Deckbuilder.init
       }
     , Effect.none
     )
@@ -56,7 +56,7 @@ init key =
 
 type Msg
     = FromShared Shared.Msg
-    | FromBuilderOptions DecklistOptions.Msg
+    | FromBuilderOptions Deckbuilder.Msg
     | ChoseLeader Cards.Faction
     | Save
     | SavedDecklist API.Decklist.ResultCreate
@@ -71,7 +71,7 @@ update user msg model =
         FromShared subMsg ->
             ( model, Effect.fromShared subMsg )
 
-        FromBuilderOptions (DecklistOptions.ChangedDecklist change) ->
+        FromBuilderOptions (Deckbuilder.ChangedDecklist change) ->
             let
                 oldDeck =
                     model.deck
@@ -79,7 +79,7 @@ update user msg model =
             ( { model | deck = { oldDeck | decklist = Deck.setCard oldDeck.decklist change } }, Effect.none )
 
         FromBuilderOptions subMsg ->
-            ( { model | builderOptions = DecklistOptions.update subMsg model.builderOptions }, Effect.none )
+            ( { model | builderOptions = Deckbuilder.update subMsg model.builderOptions }, Effect.none )
 
         ChoseLeader leader ->
             let
@@ -157,7 +157,7 @@ view shared model =
             , div [ class "deckbldr-decklist" ]
                 [ UI.Decklist.viewCreate decklistActions model.deck ]
             , div [ class "deckbldr-choices" ] <|
-                DecklistOptions.view shared.collection FromBuilderOptions model.builderOptions model.deck.decklist
+                Deckbuilder.view shared.collection FromBuilderOptions model.builderOptions model.deck.decklist
             ]
         ]
 

@@ -1,8 +1,8 @@
 module UI.FilterSelection exposing (Model, Msg(..), attackTypes, clans, disciplines, isAllowed, primaryTraits, secondaryTraits, stacks, update, view)
 
-import Cards
+import Cards exposing (Card)
 import Clan exposing (Clan)
-import Html exposing (Html, div, input, label, span)
+import Html exposing (Html, div, input, label)
 import Html.Attributes exposing (class, classList, type_)
 import Html.Events exposing (onCheck)
 import UI.Icon as Icon
@@ -15,81 +15,81 @@ type alias Model value msg =
 stacks : Model Cards.CardStack msg
 stacks =
     List.map modelHelper
-        [ ( Cards.AgendaStack, Icon.icon ( Icon.AgendaCard, Icon.Standard ) )
-        , ( Cards.HavenStack, Icon.icon ( Icon.Haven, Icon.Standard ) )
-        , ( Cards.FactionStack, Icon.icon ( Icon.Faction, Icon.Standard ) )
-        , ( Cards.LibraryStack, Icon.icon ( Icon.Library, Icon.Standard ) )
+        [ ( Cards.AgendaStack, Icon.AgendaCard )
+        , ( Cards.HavenStack, Icon.Haven )
+        , ( Cards.FactionStack, Icon.Faction )
+        , ( Cards.LibraryStack, Icon.Library )
         ]
 
 
 primaryTraits : Model Cards.Trait msg
 primaryTraits =
     List.map modelHelper
-        [ ( Cards.Action, Icon.icon ( Icon.Action, Icon.Standard ) )
-        , ( Cards.UnhostedAction, Icon.icon ( Icon.UnhostedAction, Icon.Standard ) )
-        , ( Cards.Attack, Icon.icon ( Icon.Attack, Icon.Standard ) )
-        , ( Cards.Reaction, Icon.icon ( Icon.Reaction, Icon.Standard ) )
-        , ( Cards.InfluenceModifier, Icon.icon ( Icon.InfluenceModifier, Icon.Standard ) )
+        [ ( Cards.Action, Icon.Action )
+        , ( Cards.UnhostedAction, Icon.UnhostedAction )
+        , ( Cards.Attack, Icon.Attack )
+        , ( Cards.Reaction, Icon.Reaction )
+        , ( Cards.InfluenceModifier, Icon.InfluenceModifier )
         ]
 
 
 secondaryTraits : Model Cards.Trait msg
 secondaryTraits =
     List.map modelHelper
-        [ ( Cards.Ongoing, Icon.icon ( Icon.Ongoing, Icon.Standard ) )
-        , ( Cards.Scheme, Icon.icon ( Icon.Scheme, Icon.Standard ) )
-        , ( Cards.Title, Icon.icon ( Icon.Title, Icon.Standard ) )
-        , ( Cards.Conspiracy, Icon.icon ( Icon.Conspiracy, Icon.Standard ) )
-        , ( Cards.Alchemy, Icon.icon ( Icon.Alchemy, Icon.Standard ) )
-        , ( Cards.Ritual, Icon.icon ( Icon.Ritual, Icon.Standard ) )
-        , ( Cards.Special, Icon.icon ( Icon.Special, Icon.Standard ) )
+        [ ( Cards.Ongoing, Icon.Ongoing )
+        , ( Cards.Scheme, Icon.Scheme )
+        , ( Cards.Title, Icon.Title )
+        , ( Cards.Conspiracy, Icon.Conspiracy )
+        , ( Cards.Alchemy, Icon.Alchemy )
+        , ( Cards.Ritual, Icon.Ritual )
+        , ( Cards.Special, Icon.Special )
         ]
 
 
 attackTypes : Model Cards.AttackType msg
 attackTypes =
     List.map modelHelper
-        [ ( Cards.Physical, Icon.icon ( Icon.Physical, Icon.Standard ) )
-        , ( Cards.Social, Icon.icon ( Icon.Social, Icon.Standard ) )
-        , ( Cards.Mental, Icon.icon ( Icon.Mental, Icon.Standard ) )
-        , ( Cards.Ranged, Icon.icon ( Icon.Ranged, Icon.Standard ) )
+        [ ( Cards.Physical, Icon.Physical )
+        , ( Cards.Social, Icon.Social )
+        , ( Cards.Mental, Icon.Mental )
+        , ( Cards.Ranged, Icon.Ranged )
         ]
 
 
 clans : Model Clan msg
 clans =
     List.map modelHelper
-        [ ( Clan.Brujah, Icon.icon ( Icon.Brujah, Icon.Standard ) )
-        , ( Clan.Gangrel, Icon.icon ( Icon.Gangrel, Icon.Standard ) )
-        , ( Clan.Malkavian, Icon.icon ( Icon.Malkavian, Icon.Standard ) )
-        , ( Clan.Nosferatu, Icon.icon ( Icon.Nosferatu, Icon.Standard ) )
-        , ( Clan.ThinBlood, Icon.icon ( Icon.ThinBlood, Icon.Standard ) )
-        , ( Clan.Toreador, Icon.icon ( Icon.Toreador, Icon.Standard ) )
-        , ( Clan.Tremere, Icon.icon ( Icon.Tremere, Icon.Standard ) )
-        , ( Clan.Ventrue, Icon.icon ( Icon.Ventrue, Icon.Standard ) )
+        [ ( Clan.Brujah, Icon.Brujah )
+        , ( Clan.Gangrel, Icon.Gangrel )
+        , ( Clan.Malkavian, Icon.Malkavian )
+        , ( Clan.Nosferatu, Icon.Nosferatu )
+        , ( Clan.ThinBlood, Icon.ThinBlood )
+        , ( Clan.Toreador, Icon.Toreador )
+        , ( Clan.Tremere, Icon.Tremere )
+        , ( Clan.Ventrue, Icon.Ventrue )
         ]
 
 
 disciplines : Model Cards.Discipline msg
 disciplines =
     List.map modelHelper
-        [ ( Cards.Animalism, Icon.icon ( Icon.Animalism, Icon.Standard ) )
-        , ( Cards.Auspex, Icon.icon ( Icon.Auspex, Icon.Standard ) )
-        , ( Cards.Celerity, Icon.icon ( Icon.Celerity, Icon.Standard ) )
-        , ( Cards.Dominate, Icon.icon ( Icon.Dominate, Icon.Standard ) )
-        , ( Cards.Fortitude, Icon.icon ( Icon.Fortitude, Icon.Standard ) )
-        , ( Cards.Obfuscate, Icon.icon ( Icon.Obfuscate, Icon.Standard ) )
-        , ( Cards.Potence, Icon.icon ( Icon.Potence, Icon.Standard ) )
-        , ( Cards.Presence, Icon.icon ( Icon.Presence, Icon.Standard ) )
-        , ( Cards.Protean, Icon.icon ( Icon.Protean, Icon.Standard ) )
-        , ( Cards.BloodSorcery, Icon.icon ( Icon.BloodSorcery, Icon.Standard ) )
-        , ( Cards.ThinBloodAlchemy, Icon.icon ( Icon.ThinBloodAlchemy, Icon.Standard ) )
+        [ ( Cards.Animalism, Icon.Animalism )
+        , ( Cards.Auspex, Icon.Auspex )
+        , ( Cards.Celerity, Icon.Celerity )
+        , ( Cards.Dominate, Icon.Dominate )
+        , ( Cards.Fortitude, Icon.Fortitude )
+        , ( Cards.Obfuscate, Icon.Obfuscate )
+        , ( Cards.Potence, Icon.Potence )
+        , ( Cards.Presence, Icon.Presence )
+        , ( Cards.Protean, Icon.Protean )
+        , ( Cards.BloodSorcery, Icon.BloodSorcery )
+        , ( Cards.ThinBloodAlchemy, Icon.ThinBloodAlchemy )
         ]
 
 
-modelHelper : ( trait, Html msg ) -> ( trait, ( Html msg, Bool ) )
+modelHelper : ( trait, Icon.IconImage ) -> ( trait, ( Html msg, Bool ) )
 modelHelper ( trait, icon ) =
-    ( trait, ( span [ class "fltrslct-icon_wrapper" ] [ icon ], False ) )
+    ( trait, ( Icon.icon ( icon, Icon.Standard ), False ) )
 
 
 type Msg value
@@ -113,27 +113,31 @@ update msg model =
 
 view : (Msg value -> msg) -> Model value msg -> Html msg
 view msg options =
-    div [ class "fltrslct" ] <|
-        List.map
-            (\( value, ( icon, isActive ) ) ->
-                label
-                    [ classList
-                        [ ( "fltrslct-option", True )
-                        , ( "fltrslct-option--actv", isActive )
-                        ]
-                    ]
-                    [ div [ class "fltrslct-icon" ] [ icon ]
-                    , input
-                        [ type_ "checkbox"
-                        , onCheck (ChangedValue value >> msg)
-                        ]
-                        []
-                    ]
-            )
-            options
+    div [ class "filterpicker" ]
+        (List.map (viewFilterOption msg) options)
 
 
-isAllowed : (Cards.Card -> List value) -> Model value msg -> Cards.Card -> Bool
+viewFilterOption : (Msg value -> msg) -> ( value, ( Html msg, Bool ) ) -> Html msg
+viewFilterOption msg ( value, ( icon, isActive ) ) =
+    label
+        [ class "filterpicker__option"
+        , classList [ ( "filterpicker__option--active", isActive ) ]
+        ]
+        [ div
+            [ class "filterpicker__box"
+            , classList [ ( "filterpicker__box--active", isActive ) ]
+            ]
+            [ icon ]
+        , input
+            [ class "filterpicker__checkbox"
+            , type_ "checkbox"
+            , onCheck (ChangedValue value >> msg)
+            ]
+            []
+        ]
+
+
+isAllowed : (Card -> List value) -> Model value msg -> Card -> Bool
 isAllowed toValues model card =
     let
         whitelist =

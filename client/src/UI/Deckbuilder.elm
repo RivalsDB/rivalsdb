@@ -1,4 +1,4 @@
-module UI.DecklistOptions exposing (Model, Msg(..), init, update, view)
+module UI.Deckbuilder exposing (Model, Msg(..), init, update, view)
 
 import Cards exposing (Card)
 import Clan exposing (Clan)

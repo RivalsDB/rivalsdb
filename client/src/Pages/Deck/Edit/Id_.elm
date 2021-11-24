@@ -12,8 +12,8 @@ import Html.Events exposing (onClick)
 import Page
 import Request
 import Shared
+import UI.Deckbuilder as Deckbuilder
 import UI.Decklist
-import UI.DecklistOptions as DecklistOptions
 import UI.Icon as Icon
 import UI.Layout.Template
 import View exposing (View)
@@ -42,7 +42,7 @@ type Model
 
 type alias Data =
     { deck : DeckPostSave
-    , builderOptions : DecklistOptions.Model Msg
+    , builderOptions : Deckbuilder.Model Msg
     }
 
 
@@ -55,7 +55,7 @@ init collection deckId =
 
 type Msg
     = FromShared Shared.Msg
-    | FromBuilderOptions DecklistOptions.Msg
+    | FromBuilderOptions Deckbuilder.Msg
     | ChoseLeader Cards.Faction
     | Save
     | SavedDecklist API.Decklist.ResultUpdate
@@ -72,7 +72,7 @@ update user msg modelx =
             ( modelx, Effect.fromShared subMsg )
 
         ( Loading, FetchedDecklist (Ok deck) ) ->
-            ( Editing { deck = deck, builderOptions = DecklistOptions.init }, Effect.none )
+            ( Editing { deck = deck, builderOptions = Deckbuilder.init }, Effect.none )
 
         ( _, FetchedDecklist (Err _) ) ->
             ( modelx, Effect.none )
@@ -83,7 +83,7 @@ update user msg modelx =
         ( Editing oldModel, FetchedDecklist (Ok deck) ) ->
             ( Editing { oldModel | deck = deck }, Effect.none )
 
-        ( Editing oldModel, FromBuilderOptions (DecklistOptions.ChangedDecklist change) ) ->
+        ( Editing oldModel, FromBuilderOptions (Deckbuilder.ChangedDecklist change) ) ->
             let
                 oldDeck =
                     oldModel.deck
@@ -91,7 +91,7 @@ update user msg modelx =
             ( Editing { oldModel | deck = { oldDeck | decklist = Deck.setCard oldDeck.decklist change } }, Effect.none )
 
         ( Editing oldModel, FromBuilderOptions subMsg ) ->
-            ( Editing { oldModel | builderOptions = DecklistOptions.update subMsg oldModel.builderOptions }, Effect.none )
+            ( Editing { oldModel | builderOptions = Deckbuilder.update subMsg oldModel.builderOptions }, Effect.none )
 
         ( Editing model, ChoseLeader leader ) ->
             let
@@ -180,7 +180,7 @@ view shared model =
                     , div [ class "deckbldr-decklist" ]
                         [ UI.Decklist.viewEdit decklistActions data.deck ]
                     , div [ class "deckbldr-choices" ] <|
-                        DecklistOptions.view shared.collection FromBuilderOptions data.builderOptions data.deck.decklist
+                        Deckbuilder.view shared.collection FromBuilderOptions data.builderOptions data.deck.decklist
                     ]
                 ]
 
