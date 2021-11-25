@@ -16,6 +16,7 @@ import Shared exposing (Collection)
 import UI.Card
 import UI.FilterSelection
 import UI.Layout.Template
+import UI.Text
 import View exposing (View)
 
 
@@ -162,24 +163,35 @@ view shared model =
     in
     UI.Layout.Template.view FromShared
         shared
-        [ h2 [] [ text "Filters" ]
-        , div [ class "search-flaggroups" ]
-            [ div [ class "search-flaggroup" ] [ UI.FilterSelection.view FromStacksFilter model.stackFilters ]
-            , div [ class "search-flaggroup" ] [ UI.FilterSelection.view FromPrimaryFilter model.primaryFilters ]
-            , div [ class "search-flaggroup" ] [ UI.FilterSelection.view FromSecondaryFilter model.secondaryFilters ]
-            , div [ class "search-flaggroup" ] [ UI.FilterSelection.view FromAttackTypesFilter model.attackTypeFilters ]
-            , div [ class "search-flaggroup" ] [ UI.FilterSelection.view FromClansFilter model.clansFilters ]
-            , div [ class "search-flaggroup" ] [ UI.FilterSelection.view FromDisciplinesFilter model.disciplineFilters ]
-            ]
-        , div [ class "search-text" ]
-            [ label []
-                [ text "Filter by text: "
-                , input [ onInput TextFilterChanged, type_ "search", spellcheck False ] []
+        [ div [ class "searchpage__filters" ]
+            [ UI.Text.header [ text "Filters" ]
+            , div [ class "search-flaggroups" ]
+                [ div [ class "search-flaggroup" ] [ UI.FilterSelection.view FromStacksFilter model.stackFilters ]
+                , div [ class "search-flaggroup" ] [ UI.FilterSelection.view FromPrimaryFilter model.primaryFilters ]
+                , div [ class "search-flaggroup" ] [ UI.FilterSelection.view FromSecondaryFilter model.secondaryFilters ]
+                , div [ class "search-flaggroup" ] [ UI.FilterSelection.view FromAttackTypesFilter model.attackTypeFilters ]
+                , div [ class "search-flaggroup" ] [ UI.FilterSelection.view FromClansFilter model.clansFilters ]
+                , div [ class "search-flaggroup" ] [ UI.FilterSelection.view FromDisciplinesFilter model.disciplineFilters ]
+                ]
+            , div [ class "search-text" ]
+                [ label []
+                    [ text "Filter by text: "
+                    , input [ onInput TextFilterChanged, type_ "search", spellcheck False ] []
+                    ]
                 ]
             ]
-        , h3 [] [ text "Results" ]
-        , Keyed.ul [ class "search-results" ] <|
-            List.map (\card -> ( Cards.id card, li [ class "search-result" ] [ UI.Card.lazy card ] )) sortedCards
+        , div [ class "searchpage__results" ]
+            [ UI.Text.subheader [ text "Results" ]
+            , Keyed.ul [ class "searchresults" ]
+                (sortedCards
+                    |> List.map
+                        (\card ->
+                            ( Cards.id card
+                            , li [ class "searchresults__result" ] [ UI.Card.lazy card ]
+                            )
+                        )
+                )
+            ]
         ]
 
 
