@@ -9,45 +9,49 @@
   display: flex
   align-items: center
   justify-content: center
-  &-bg
+  &__bg
     position: absolute
     top: 0
     left: 0
     bottom: 0
     right: 0
-    background: rgba(0,0,0,.4)
+    background: var(--color-bg-modalcover)
     z-index: $z-modal-wrapper
 
-  &-content
-    background: #FFF
+  &__content
+    background: var(--color-bg-close)
     width: 80vw
-    box-shadow: 0 0 12px rgba(0,0,0,.6)
+    box-shadow: 0 0 12px var(--color-bg-modalshadow)
     border-radius: $round-border
     padding: 16px
     z-index: $z-modal-content
     position: relative
     max-width: 300px
 
-  &-header
-    margin: 0
-    font-size: 20px
+  &__header
+    font-size: var(--font-size--header)
     font-weight: bold
 
-  &-close
+  &__close
     margin: 0
-    font-size: 14px
+    font-size: var(--font-size--small)
     position: absolute
-    top:10px
-    right: 10px
+    top: 12px
+    right: 12px
     text-align: right
     cursor: pointer
-    color: var(--color-redmedium)
+    color: var(--color-cancel)
+    font-weight: bold
 
-  &-form
-    margin-top: 20px
-    input
-      width: 230px
+  &__form
+    margin-top: 24px
 
-  &-submit
-    margin-top: 20px
+  &__label
+    display: block
+
+  &__input
+    width: 100%
+
+  &__submit
+    margin-top: 12px
     text-align: center
