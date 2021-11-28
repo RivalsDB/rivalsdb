@@ -33,5 +33,14 @@ $other_icons: action agenda alchemy attack blood bloodpotency bloodpotencyrequir
     -webkit-mask-image: url("../../assets/icons/icon-#{$icon}.svg")
     mask-image: url("../../assets/icons/icon-#{$icon}.svg")
 
-.ui-icon--standard.ui-icon_bloodpotency
-  background-color: #AE2413
+.ui-icon--colored
+  &.ui-icon_bloodpotency
+    background-color: var(--color-blood)
+  &.ui-icon_physical
+    background-color: var(--color-physical)
+  &.ui-icon_social
+    background-color: var(--color-social)
+  &.ui-icon_mental
+    background-color: var(--color-mental)
+  &.ui-icon_bloodpotencyrequirement
+    background-color: var(--color-bloodreq)

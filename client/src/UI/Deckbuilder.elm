@@ -4,13 +4,14 @@ import Cards exposing (Card)
 import Clan exposing (Clan)
 import Deck exposing (Decklist)
 import Dict
-import Html exposing (Html, div, h2, input, label, li, span, text)
+import Html exposing (Html, div, h2, input, label, li, span, text, ul)
 import Html.Attributes exposing (checked, class, classList, name, type_)
 import Html.Events exposing (onClick)
 import Html.Keyed as Keyed
 import Shared exposing (Collection)
 import UI.Attribute
 import UI.Card
+import UI.CardName
 import UI.FilterSelection
 import UI.Icon as Icon
 
@@ -183,34 +184,28 @@ viewCardList collection msg data decklist =
 
 viewCardListRow : (Msg -> msg) -> Decklist -> Card -> Html msg
 viewCardListRow msg deck card =
-    li [ class "deckbldr-collectionitem--row" ]
-        [ span [ class "deckbldr-rowpiece_quant--row" ] [ viewQuantityPicker msg card (Deck.copiesInDeck deck card) ]
-        , span [ class "deckbldr-rowpiece_name" ] [ text <| Cards.name card ]
-        , span [ class "deckbldr-rowpiece_props" ]
+    li [ class "cardlist__row" ]
+        [ span [ class "cardlist__quant--row" ] [ viewQuantityPicker msg card (Deck.copiesInDeck deck card) ]
+        , span [ class "cardlist__name" ] [ UI.CardName.withOverlay card ]
+        , span [ class "cardlist__props" ]
             (case card of
                 Cards.FactionCard props ->
-                    [ span [ class "deckbldr-rowpiece_clan" ] [ Icon.clan Icon.Negative props.clan ]
-                    , span [ class "deckbldr-rowpiece_bp" ] [ UI.Attribute.bloodPotency props.bloodPotency ]
-                    , span [ class "deckbldr-rowpiece_physical" ] [ UI.Attribute.physical props.physical ]
-                    , span [ class "deckbldr-rowpiece_social" ] [ UI.Attribute.social props.social ]
-                    , span [ class "deckbldr-rowpiece_mental" ] [ UI.Attribute.mental props.mental ]
-                    , span [ class "deckbldr-rowpiece_disciplines" ]
-                        (props.disciplines
-                            |> List.map (span [ class "deckbldr-rowpiece_discipline" ] << List.singleton << Icon.discipline)
-                        )
+                    [ span [ class "cardlist__clan" ] [ Icon.clan Icon.Negative props.clan ]
+                    , span [] [ UI.Attribute.bloodPotency props.bloodPotency ]
+                    , span [ class "cardlist__extra-prop" ] [ UI.Attribute.physical props.physical ]
+                    , span [ class "cardlist__extra-prop" ] [ UI.Attribute.social props.social ]
+                    , span [ class "cardlist__extra-prop" ] [ UI.Attribute.mental props.mental ]
+                    , viewIconsList Icon.discipline props.disciplines
                     ]
 
                 Cards.LibraryCard props ->
-                    [ span [ class "deckbldr-rowpiece_clan" ]
+                    [ span [ class "cardlist__clan" ]
                         [ props.clan |> Maybe.map (Icon.clan Icon.Negative) |> Maybe.withDefault (text "")
                         ]
-                    , span [ class "deckbldr-rowpiece_bp" ] [ UI.Attribute.bloodPotencyRequirement props.bloodPotency ]
-                    , span [ class "deckbldr-rowpiece_damage" ] [ UI.Attribute.damage props.damage ]
-                    , span [ class "deckbldr-rowpiece_shields" ] [ UI.Attribute.shield props.shield ]
-                    , span [ class "deckbldr-rowpiece_types" ]
-                        (props.attackType
-                            |> List.map (span [ class "deckbldr-rowpiece_type" ] << List.singleton << Icon.attackType)
-                        )
+                    , span [] [ UI.Attribute.bloodPotencyRequirement props.bloodPotency ]
+                    , span [ class "cardlist__extra-prop" ] [ UI.Attribute.damage props.damage ]
+                    , span [ class "cardlist__extra-prop" ] [ UI.Attribute.shield props.shield ]
+                    , viewIconsList Icon.attackType props.attackType
                     ]
 
                 _ ->
@@ -219,16 +214,28 @@ viewCardListRow msg deck card =
         ]
 
 
+viewIconsList : (iconTypes -> Html msg) -> List iconTypes -> Html msg
+viewIconsList viewIcon iconTypes =
+    ul [ class "cardlist__extra-prop", class "char-icons-list" ]
+        (iconTypes
+            |> List.map
+                (viewIcon
+                    >> List.singleton
+                    >> li [ class "char-icons-list__item" ]
+                )
+        )
+
+
 viewQuantityPicker : (Msg -> msg) -> Card -> Int -> Html msg
 viewQuantityPicker msg card copiesInDeck =
-    div [ class "quantpick", class ("quantpick--" ++ (String.fromInt <| Cards.maxPerDeck card)) ] <|
+    div [ class "quantpick" ]
         (Cards.maxPerDeck card
             |> List.range 0
             |> List.map
                 (\n ->
                     label
-                        [ class "quantpick-option"
-                        , classList [ ( "quantpick-option--active", n == copiesInDeck ) ]
+                        [ class "quantpick__option"
+                        , classList [ ( "quantpick__option--active", n == copiesInDeck ) ]
                         ]
                         [ text <| String.fromInt n
                         , input
@@ -236,6 +243,7 @@ viewQuantityPicker msg card copiesInDeck =
                             , name <| "count-" ++ Cards.id card
                             , checked <| n == copiesInDeck
                             , onClick <| msg <| ChangedDecklist ( card, n )
+                            , class "quantpick__radio"
                             ]
                             []
                         ]

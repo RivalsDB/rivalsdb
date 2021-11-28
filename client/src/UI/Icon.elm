@@ -75,6 +75,7 @@ type IconImage
 type IconStyle
     = Standard
     | Negative
+    | Colored
 
 
 type alias Icon =
@@ -191,6 +192,9 @@ styleClass style =
     case style of
         Standard ->
             class "ui-icon--standard"
+
+        Colored ->
+            class "ui-icon--colored"
 
         Negative ->
             class "ui-icon--negative"

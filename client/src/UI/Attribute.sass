@@ -1,4 +1,4 @@
-.attr
+.attribute
   $size: 30px
   display: inline-block
   width: $size
@@ -6,21 +6,19 @@
   line-height: $size
   text-align: center
   position: relative
-  &-icon
+
+  &__icon
     position: absolute
     top: 0
     bottom: 0
     left: 0
     right: 0
     z-index: -1
-    img
-      width: 100%
-    &--dark
-      opacity: 0.4
+    opacity: 0.8
 
+  &__number
+    font-size: 21px
   &-number--light
     color: #FFF
   &-number--dark
     color: #000
-    font-weight: bold
-    text-shadow: 0 0 2px #FFF
