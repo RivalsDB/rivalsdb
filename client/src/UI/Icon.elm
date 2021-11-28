@@ -62,6 +62,7 @@ type IconImage
     | Shield
     | Social
     | Special
+    | Kindred
     | ThinBlood
     | ThinBloodAlchemy
     | Title
@@ -112,6 +113,9 @@ clan style c =
 
         Clan.Ventrue ->
             icon ( Ventrue, style )
+
+        Clan.All ->
+            icon ( Kindred, style )
 
 
 discipline : Cards.Discipline -> Html msg
@@ -263,6 +267,9 @@ imageOpts image =
 
         InfluenceModifier ->
             ( class "ui-icon_influence_modifier", "Influence Modifier" )
+
+        Kindred ->
+            ( class "ui-icon_skull", "All Kindred" )
 
         Leader ->
             ( class "ui-icon_leader", "Leader" )

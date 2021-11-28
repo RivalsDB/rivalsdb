@@ -4,7 +4,8 @@ import Enum exposing (Enum)
 
 
 type Clan
-    = Brujah
+    = All
+    | Brujah
     | Gangrel
     | Malkavian
     | Nosferatu
@@ -40,6 +41,9 @@ clanOrder c =
 
         Ventrue ->
             8
+
+        All ->
+            9
 
 
 enum : Enum Clan
