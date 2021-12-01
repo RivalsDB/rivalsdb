@@ -1,114 +1,57 @@
-@import ../_vars
+@import ../../_vars
 
-$actions-bar-height: 60px
-
-.deckbldr
+$action-bar-vertical-padding: $space-small
+$action-bar-content-height: 48px
+$action-bar-total-height: ($action-bar-vertical-padding * 2) + $action-bar-content-height
+.templ-deck
   display: grid
-  gap: 10px
+  gap: $space-small
   grid-template-columns: repeat(1, 1fr)
-  grid-template-rows: $actions-bar-height auto auto
-
-  &-actions
+  &__actions
     grid-column: 1 / 2
     grid-row: 1 / 2
-  &-decklist
+  &__decklist
     grid-column: 1 / 2
     grid-row: 2 / 3
-  &-choices
+  &__support
     grid-column: 1 / 2
     grid-row: 3 / 4
 
   @media screen and ( min-width: $breakpoint-ipad--horizontal)
-    gap: 0 30px
+    gap: $space-medium $space-large
     grid-template-columns: repeat(2, 1fr)
-    &-actions
+    &__actions
       grid-column: 1 / 3
 
-    &-decklist
+    &__decklist
       grid-column: 1 / 2
       grid-row: 2 / 3
-    &-choices
+    &__support
       grid-column: 2 / 3
       grid-row: 2/3
 
-  &-collection
-    margin-bottom: 40px
-
-  &-filters,
-  &-flaggroup
-    display: inline-block
-  &-flaggroup
-    margin-bottom: 8px
-  &-collectionitems--images
-    margin: 0
-    padding: 0
-    display: grid
-    gap: 10px
-    place-items: start center
-    grid-template-columns: repeat(2, 1fr)
-    @media screen and ( min-width: $breakpoint-ipad--vertical)
-      grid-template-columns: repeat(4, 1fr)
-    @media screen and ( min-width: $breakpoint-ipad--horizontal)
-      grid-template-columns: repeat(3, 1fr)
-
-  &-collectionitem--image
-    list-style: none
-
-  &-rowpiece_quant--image
-    text-align: center
-
-  &-collectionitems--rows
-    margin: 0
-    padding: 0
-
-  &-rowpiece_quant--row
-    flex: 0 0 auto
-
-  &-rowpiece_props
-    margin-left: 10px
-    flex: 0 0 auto
-    display: flex
-    align-items: center
-    height: 32px
-    gap: 0 4px
-
-  &-rowpiece_type
-    display: none
-    @media screen and ( min-width: $breakpoint-ipad--horizontal)
-      &
-        display: inline-block
-
-  &-rowpiece_types
-    width: 60px
-    height: 18px
-    margin-left: 4px
-  &-rowpiece_type
-    $size: 18px
-    margin-left: 3px
-    width: $size
-    height: $size
-    &:first-child
-      margin-left: 0
-
 @media screen and ( min-width: $breakpoint-ipad--horizontal)
-  .deckbldr,
-  .deckbldr-actions
+  .templ-deck
     position: sticky
     top: 0
-  .deckbldr-actions
-    background: #EEE
-    z-index: 1
-    margin: 0 ($safearea-margin * -1)
-    padding: 0 $safearea-margin
+    &__actions
+      position: sticky
+      top: 0
+      background: var(--color-bg-close)
+      z-index: $z-deckbuilder-actions
+      margin: 0 ($safearea-margin * -1)
+      height: $action-bar-content-height
+      padding: $action-bar-vertical-padding $safearea-margin
+      text-align: center
+    &__decklist-wrapper
+      position: sticky
+      top: $action-bar-total-height
 
-  .deckbldr-decklist
-    position: sticky
-    top: $actions-bar-height
-
+// SEARCH PAGE USES THIS
 .deckbldr
-  &-actions
-    text-align: center
-    padding-top: 5px
+  &-flaggroup
+    display: inline-block
+    margin-bottom: 8px
 
 .actions
   &-item
@@ -123,25 +66,6 @@ $actions-bar-height: 60px
     height: 30px
   &-description
     font-size: 14px
-
-.fltrhead
-  display: flex
-  align-items: baseline
-  margin: 0 0 10px
-  &-name
-    margin: 0
-    flex: 0 0 auto
-  &-action
-    cursor: pointer
-    color: var(--color-link)
-    text-decoration: underline
-    user-select: none
-  &-primary
-    margin-left: 10px
-    flex: 1 0 auto
-  &-secondary
-    margin: 0
-    flex: 0 0 auto
 
 .cardlist
   &__row

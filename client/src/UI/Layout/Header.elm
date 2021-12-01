@@ -5,6 +5,7 @@ import Html exposing (Html, a, button, div, form, header, input, li, nav, span, 
 import Html.Attributes exposing (class, href, placeholder, spellcheck, type_)
 import Html.Events exposing (onClick, onInput, onSubmit)
 import Shared
+import Util exposing (htmlList)
 
 
 view : (Shared.Msg -> msg) -> Maybe Shared.User -> Html msg
@@ -15,11 +16,11 @@ view msg user =
         , nav [ class "header-nav" ]
             [ ul [] <|
                 htmlList
-                    [ ( True, li [] [ a [ href <| Route.toHref Route.Decks ] [ text "Decks" ] ] )
-                    , ( isJust user, li [] [ a [ href <| Route.toHref Route.MyDecks ] [ text "My Decks" ] ] )
-                    , ( isJust user, li [] [ a [ href <| Route.toHref Route.Deck__New ] [ text "New Deck" ] ] )
-                    , ( True, li [] [ a [ href <| Route.toHref Route.Search ] [ text "Cards" ] ] )
-                    , ( isJust user, li [] [ a [ href <| Route.toHref Route.Profile ] [ text "My Profile" ] ] )
+                    [ ( li [] [ a [ href <| Route.toHref Route.Decks ] [ text "Decks" ] ], True )
+                    , ( li [] [ a [ href <| Route.toHref Route.MyDecks ] [ text "My Decks" ] ], isJust user )
+                    , ( li [] [ a [ href <| Route.toHref Route.Deck__New ] [ text "New Deck" ] ], isJust user )
+                    , ( li [] [ a [ href <| Route.toHref Route.Search ] [ text "Cards" ] ], True )
+                    , ( li [] [ a [ href <| Route.toHref Route.Profile ] [ text "My Profile" ] ], isJust user )
                     ]
             ]
         , div [ class "header-search" ]
@@ -43,23 +44,6 @@ view msg user =
         ]
 
 
-htmlList : List ( Bool, Html msg ) -> List (Html msg)
-htmlList =
-    List.filterMap
-        (\( show, item ) ->
-            if show then
-                Just item
-
-            else
-                Nothing
-        )
-
-
 isJust : Maybe a -> Bool
-isJust a =
-    case a of
-        Just _ ->
-            True
-
-        Nothing ->
-            False
+isJust =
+    Maybe.map (always True) >> Maybe.withDefault False

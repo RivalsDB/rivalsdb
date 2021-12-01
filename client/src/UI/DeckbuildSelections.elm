@@ -1,13 +1,14 @@
-module UI.Deckbuilder exposing (Model, Msg(..), init, update, view)
+module UI.DeckbuildSelections exposing (Model, Msg(..), init, update, view)
 
 import Cards exposing (Card)
 import Clan exposing (Clan)
 import Deck exposing (Decklist)
 import Dict
-import Html exposing (Html, div, h2, input, label, li, span, text, ul)
+import Html exposing (Html, div, h2, input, label, li, section, span, text, ul)
 import Html.Attributes exposing (checked, class, classList, name, type_)
 import Html.Events exposing (onClick)
 import Html.Keyed as Keyed
+import Html.Lazy as Lazy
 import Shared exposing (Collection)
 import UI.Attribute
 import UI.Card
@@ -98,69 +99,136 @@ update msg model =
             model
 
 
-view : Collection -> (Msg -> msg) -> Model msg -> Decklist -> List (Html msg)
+view : Collection -> (Msg -> msg) -> Model msg -> Decklist -> Html msg
 view collection msg data decklist =
-    [ div [ class "fltrhead" ]
-        [ h2 [ class "fltrhead-name" ] [ text "Filters " ]
-        , span [ onClick (msg ToggleShowAllFilters), class "fltrhead-primary", class "fltrhead-action" ]
-            [ text <|
-                if data.showAllFilters then
-                    "(hide filters)"
+    section [ class "deckbuild-selections" ]
+        [ Lazy.lazy3 viewHeader msg headerFilters data.showAllFilters
+        , Lazy.lazy2 viewFilters msg data
+        , Lazy.lazy3 viewHeader msg headerCards data.showCollectionImages
+        , div [ class "deckbuild-selections__collection" ] <|
+            if data.showCollectionImages then
+                viewCardListImages collection msg data decklist
+
+            else
+                viewCardList collection msg data decklist
+        ]
+
+
+
+-----------------
+-- FILTERS
+-----------------
+
+
+viewFilters : (Msg -> msg) -> Model msg -> Html msg
+viewFilters msg data =
+    div [ class "deckbuild-filters" ] <|
+        (viewMainFilters msg data
+            ++ (if data.showAllFilters then
+                    viewSecondaryFilters msg data
 
                 else
-                    "(show more)"
-            ]
-        , span [ onClick (msg ClearFilters), class "fltrhead-secondary", class "fltrhead-action" ] [ text "Clear filters" ]
-        ]
-    , div [ class "deckbldr-filters" ] <|
-        List.intersperse (text " ")
-            (viewMainFilters msg data
-                ++ (if data.showAllFilters then
-                        viewSecondaryFilters msg data
-
-                    else
-                        []
-                   )
-            )
-    , div [ class "fltrhead" ]
-        [ h2 [ class "fltrhead-name" ] [ text "Cards " ]
-        , span [ onClick (msg ToggleShowCollectionImages), class "fltrhead-primary", class "fltrhead-action" ]
-            [ text <|
-                if data.showCollectionImages then
-                    "(hide images)"
-
-                else
-                    "(show images)"
-            ]
-        ]
-    , div [ class "deckbldr-collection" ] <|
-        if data.showCollectionImages then
-            viewCardListImages collection msg data decklist
-
-        else
-            viewCardList collection msg data decklist
-    ]
+                    []
+               )
+        )
 
 
 viewMainFilters : (Msg -> msg) -> Model msg -> List (Html msg)
 viewMainFilters msg data =
-    [ div [ class "deckbldr-flaggroup" ] [ UI.FilterSelection.view (msg << FromStacksFilter) data.stackFilters ]
-    , div [ class "deckbldr-flaggroup" ] [ UI.FilterSelection.view (msg << FromPrimaryFilter) data.primaryFilters ]
-    , div [ class "deckbldr-flaggroup" ] [ UI.FilterSelection.view (msg << FromClansFilter) data.clansFilters ]
+    [ UI.FilterSelection.view (msg << FromStacksFilter) data.stackFilters
+    , UI.FilterSelection.view (msg << FromPrimaryFilter) data.primaryFilters
+    , UI.FilterSelection.view (msg << FromClansFilter) data.clansFilters
     ]
 
 
 viewSecondaryFilters : (Msg -> msg) -> Model msg -> List (Html msg)
 viewSecondaryFilters msg data =
-    [ div [ class "deckbldr-flaggroup" ] [ UI.FilterSelection.view (msg << FromSecondaryFilter) data.secondaryFilters ]
-    , div [ class "deckbldr-flaggroup" ] [ UI.FilterSelection.view (msg << FromAttackTypesFilter) data.attackTypeFilters ]
-    , div [ class "deckbldr-flaggroup" ] [ UI.FilterSelection.view (msg << FromDisciplinesFilter) data.disciplineFilters ]
+    [ UI.FilterSelection.view (msg << FromSecondaryFilter) data.secondaryFilters
+    , UI.FilterSelection.view (msg << FromAttackTypesFilter) data.attackTypeFilters
+    , UI.FilterSelection.view (msg << FromDisciplinesFilter) data.disciplineFilters
     ]
+
+
+
+-----------------
+-- HEADERS
+-----------------
+
+
+type alias HeaderOptions =
+    { title : String
+    , primary :
+        { action : Msg
+        , toggleOnTxt : String
+        , toggleOffTxt : String
+        }
+    , secondary :
+        Maybe
+            { action : Msg
+            , text : String
+            }
+    }
+
+
+headerFilters : HeaderOptions
+headerFilters =
+    { title = "Filters"
+    , primary =
+        { action = ToggleShowAllFilters
+        , toggleOnTxt = "(hide filters)"
+        , toggleOffTxt = "(show more)"
+        }
+    , secondary = Just { action = ClearFilters, text = "Clear filters" }
+    }
+
+
+headerCards : HeaderOptions
+headerCards =
+    { title = "Cards"
+    , primary =
+        { action = ToggleShowCollectionImages
+        , toggleOnTxt = "(hide images)"
+        , toggleOffTxt = "(show images)"
+        }
+    , secondary = Nothing
+    }
+
+
+viewHeader : (Msg -> msg) -> HeaderOptions -> Bool -> Html msg
+viewHeader msg opts isToggleOn =
+    div [ class "deckbuild-header" ]
+        ([ h2 [ class "deckbuild-header__title" ] [ text opts.title ]
+         , span
+            [ class "deckbuild-header__action"
+            , onClick (msg opts.primary.action)
+            ]
+            [ text <|
+                if isToggleOn then
+                    opts.primary.toggleOnTxt
+
+                else
+                    opts.primary.toggleOffTxt
+            ]
+         ]
+            ++ (case opts.secondary of
+                    Nothing ->
+                        []
+
+                    Just s ->
+                        [ span
+                            [ class "deckbuild-header__action"
+                            , class "deckbuild-header__action--secondary"
+                            , onClick (msg s.action)
+                            ]
+                            [ text s.text ]
+                        ]
+               )
+        )
 
 
 viewCardListImages : Collection -> (Msg -> msg) -> Model msg -> Decklist -> List (Html msg)
 viewCardListImages collection msg data decklist =
-    [ Keyed.ul [ class "deckbldr-collectionitems--images" ] <|
+    [ Keyed.ul [ class "deckbuild-selections__collectionitems--images" ] <|
         List.map (\c -> ( Cards.id c, viewCardListImage msg decklist c )) <|
             cardsToShow collection data
     ]
@@ -168,15 +236,15 @@ viewCardListImages collection msg data decklist =
 
 viewCardListImage : (Msg -> msg) -> Decklist -> Card -> Html msg
 viewCardListImage msg deck card =
-    li [ class "deckbldr-collectionitem--image" ]
+    li [ class "deckbuild-selections__collectionitem--image" ]
         [ UI.Card.lazy card
-        , div [ class "deckbldr-rowpiece_quant--image" ] [ viewQuantityPicker msg card (Deck.copiesInDeck deck card) ]
+        , div [ class "deckbuild-selections__rowpiece_quant--image" ] [ viewQuantityPicker msg card (Deck.copiesInDeck deck card) ]
         ]
 
 
 viewCardList : Collection -> (Msg -> msg) -> Model msg -> Decklist -> List (Html msg)
 viewCardList collection msg data decklist =
-    [ Keyed.ul [ class "deckbldr-collectionitems--rows" ] <|
+    [ Keyed.ul [ class "deckbuild-selections__collectionitems--rows" ] <|
         List.map (\c -> ( Cards.id c, viewCardListRow msg decklist c )) <|
             cardsToShow collection data
     ]

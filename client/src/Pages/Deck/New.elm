@@ -14,9 +14,10 @@ import Html.Events exposing (onClick)
 import Page
 import Request
 import Shared
-import UI.Deckbuilder as Deckbuilder
+import UI.DeckbuildSelections as DeckbuildSelections
 import UI.Decklist
 import UI.Icon as Icon
+import UI.Layout.Deck
 import UI.Layout.Template
 import View exposing (View)
 
@@ -40,7 +41,7 @@ page shared req =
 type alias Model =
     { key : Key
     , deck : DeckPreSave
-    , builderOptions : Deckbuilder.Model Msg
+    , builderOptions : DeckbuildSelections.Model Msg
     }
 
 
@@ -48,7 +49,7 @@ init : Navigation.Key -> ( Model, Effect Msg )
 init key =
     ( { key = key
       , deck = Deck.init
-      , builderOptions = Deckbuilder.init
+      , builderOptions = DeckbuildSelections.init
       }
     , Effect.none
     )
@@ -56,7 +57,7 @@ init key =
 
 type Msg
     = FromShared Shared.Msg
-    | FromBuilderOptions Deckbuilder.Msg
+    | FromBuilderOptions DeckbuildSelections.Msg
     | ChoseLeader Cards.Faction
     | Save
     | SavedDecklist API.Decklist.ResultCreate
@@ -71,7 +72,7 @@ update user msg model =
         FromShared subMsg ->
             ( model, Effect.fromShared subMsg )
 
-        FromBuilderOptions (Deckbuilder.ChangedDecklist change) ->
+        FromBuilderOptions (DeckbuildSelections.ChangedDecklist change) ->
             let
                 oldDeck =
                     model.deck
@@ -79,7 +80,7 @@ update user msg model =
             ( { model | deck = { oldDeck | decklist = Deck.setCard oldDeck.decklist change } }, Effect.none )
 
         FromBuilderOptions subMsg ->
-            ( { model | builderOptions = Deckbuilder.update subMsg model.builderOptions }, Effect.none )
+            ( { model | builderOptions = DeckbuildSelections.update subMsg model.builderOptions }, Effect.none )
 
         ChoseLeader leader ->
             let
@@ -152,23 +153,22 @@ view : Shared.Model -> Model -> View Msg
 view shared model =
     UI.Layout.Template.view FromShared
         shared
-        [ div [ class "deckbldr" ]
-            [ viewActions
-            , div [ class "deckbldr-decklist" ]
-                [ UI.Decklist.viewCreate decklistActions model.deck ]
-            , div [ class "deckbldr-choices" ] <|
-                Deckbuilder.view shared.collection FromBuilderOptions model.builderOptions model.deck.decklist
-            ]
-        ]
-
-
-viewActions : Html Msg
-viewActions =
-    div [ class "deckbldr-actions" ]
-        [ ul [ class "actions-list" ]
-            [ li [ class "actions-item", onClick Save ]
-                [ span [ class "actions-icon" ] [ Icon.icon ( Icon.Save, Icon.Standard ) ]
-                , span [ class "actions-description" ] [ text "Save" ]
+        [ UI.Layout.Deck.writeMode
+            { actions = viewActions
+            , decklist = [ UI.Decklist.viewCreate decklistActions model.deck ]
+            , selectors =
+                [ DeckbuildSelections.view shared.collection FromBuilderOptions model.builderOptions model.deck.decklist
                 ]
+            }
+        ]
+
+
+viewActions : List (Html Msg)
+viewActions =
+    [ ul [ class "actions-list" ]
+        [ li [ class "actions-item", onClick Save ]
+            [ span [ class "actions-icon" ] [ Icon.icon ( Icon.Save, Icon.Standard ) ]
+            , span [ class "actions-description" ] [ text "Save" ]
             ]
         ]
+    ]

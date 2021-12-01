@@ -5,13 +5,14 @@ import Deck exposing (DeckPostSave)
 import Effect exposing (Effect)
 import Gen.Params.Deck.View.Id_ exposing (Params)
 import Gen.Route as Route
-import Html exposing (Html, a, div, li, span, text, ul)
+import Html exposing (Html, a, li, span, text, ul)
 import Html.Attributes exposing (class, href)
 import Page
 import Request
 import Shared
 import UI.Decklist
 import UI.Icon as Icon
+import UI.Layout.Deck
 import UI.Layout.Template
 import View exposing (View)
 
@@ -74,34 +75,31 @@ viewDecklist : Shared.Model -> DeckPostSave -> View Msg
 viewDecklist shared deck =
     UI.Layout.Template.view FromShared
         shared
-        [ div [ class "deckbldr" ]
-            [ viewActions shared.user deck.meta
-            , div [ class "deckbldr-decklist" ]
-                [ UI.Decklist.viewDeck deck ]
-            , div [ class "deckbldr-choices" ] []
-            ]
+        [ UI.Layout.Deck.readMode
+            { actions = viewActions shared.user deck.meta
+            , decklist = [ UI.Decklist.viewDeck deck ]
+            }
         ]
 
 
-viewActions : Maybe Shared.User -> Deck.MetaPostSave -> Html Msg
+viewActions : Maybe Shared.User -> Deck.MetaPostSave -> List (Html Msg)
 viewActions maybeUser meta =
-    div [ class "deckbldr-actions" ]
-        [ ul [ class "actions-list" ]
-            (maybeUser
-                |> Maybe.map
-                    (\user ->
-                        if user.id == meta.ownerId then
-                            [ li [ class "actions-item" ]
-                                [ a [ href <| Route.toHref (Route.Deck__Edit__Id_ { id = meta.id }) ]
-                                    [ span [ class "actions-icon" ] [ Icon.icon ( Icon.Edit, Icon.Standard ) ]
-                                    , span [ class "actions-description" ] [ text "Edit" ]
-                                    ]
+    [ ul [ class "actions-list" ]
+        (maybeUser
+            |> Maybe.map
+                (\user ->
+                    if user.id == meta.ownerId then
+                        [ li [ class "actions-item" ]
+                            [ a [ href <| Route.toHref (Route.Deck__Edit__Id_ { id = meta.id }) ]
+                                [ span [ class "actions-icon" ] [ Icon.icon ( Icon.Edit, Icon.Standard ) ]
+                                , span [ class "actions-description" ] [ text "Edit" ]
                                 ]
                             ]
+                        ]
 
-                        else
-                            []
-                    )
-                |> Maybe.withDefault []
-            )
-        ]
+                    else
+                        []
+                )
+            |> Maybe.withDefault []
+        )
+    ]

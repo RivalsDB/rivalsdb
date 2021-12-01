@@ -1,0 +1,52 @@
+@import ../_vars
+
+.deckbuild-selections
+  &__collection
+    margin-bottom: 40px
+  &__filters
+    display: block
+  &__collectionitems--images
+    margin: 0
+    padding: 0
+    display: grid
+    gap: 10px
+    place-items: start center
+    grid-template-columns: repeat(2, 1fr)
+    @media screen and ( min-width: $breakpoint-ipad--vertical)
+      grid-template-columns: repeat(4, 1fr)
+    @media screen and ( min-width: $breakpoint-ipad--horizontal)
+      grid-template-columns: repeat(3, 1fr)
+  &__collectionitem--image
+    list-style: none
+  &__rowpiece_quant--image
+    text-align: center
+  &__collectionitems--rows
+    margin: 0
+    padding: 0
+  &__flaggroup
+    display: inline-block
+    margin-bottom: 8px
+
+.deckbuild-header
+  display: flex
+  align-items: baseline
+  margin-bottom: $space-small
+  &__title
+    margin: 0
+    flex: 0 0 auto
+  &__action
+    flex: 1 0 auto
+    cursor: pointer
+    color: var(--color-link)
+    text-decoration: underline
+    user-select: none
+    margin-left: $space-small
+    &--secondary
+      flex: 0 0 auto
+      margin: 0
+
+.deckbuild-filters
+  display: flex
+  flex-wrap: wrap
+  gap: $space-micro
+  margin-bottom: $space-medium
