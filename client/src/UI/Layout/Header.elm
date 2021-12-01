@@ -16,6 +16,7 @@ view msg user =
             [ ul [] <|
                 htmlList
                     [ ( True, li [] [ a [ href <| Route.toHref Route.Decks ] [ text "Decks" ] ] )
+                    , ( isJust user, li [] [ a [ href <| Route.toHref Route.MyDecks ] [ text "My Decks" ] ] )
                     , ( isJust user, li [] [ a [ href <| Route.toHref Route.Deck__New ] [ text "New Deck" ] ] )
                     , ( True, li [] [ a [ href <| Route.toHref Route.Search ] [ text "Cards" ] ] )
                     , ( isJust user, li [] [ a [ href <| Route.toHref Route.Profile ] [ text "My Profile" ] ] )

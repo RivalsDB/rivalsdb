@@ -1,9 +1,9 @@
-module Pages.Decks exposing (Model, Msg, page)
+module Pages.MyDecks exposing (Model, Msg, page)
 
 import API.Decklist
 import Deck exposing (DeckPostSave)
 import Effect exposing (Effect)
-import Gen.Params.Decks exposing (Params)
+import Gen.Params.MyDecks exposing (Params)
 import Html exposing (div, text)
 import Page
 import Request
@@ -16,12 +16,14 @@ import View exposing (View)
 
 page : Shared.Model -> Request.With Params -> Page.With Model Msg
 page shared _ =
-    Page.advanced
-        { init = init shared
-        , update = update
-        , view = view shared
-        , subscriptions = always Sub.none
-        }
+    Page.protected.advanced
+        (\user ->
+            { init = init shared user.id
+            , update = update
+            , view = view shared
+            , subscriptions = always Sub.none
+            }
+        )
 
 
 
@@ -33,10 +35,10 @@ type Model
     | Viewing (List DeckPostSave)
 
 
-init : Shared.Model -> ( Model, Effect Msg )
-init shared =
+init : Shared.Model -> String -> ( Model, Effect Msg )
+init shared userId =
     ( Loading
-    , API.Decklist.index shared.collection FetchedDecklists
+    , API.Decklist.indexForUser shared.collection FetchedDecklists userId
         |> Effect.fromCmd
     )
 
@@ -84,7 +86,7 @@ viewDecklists shared model =
     UI.Layout.Template.view FromShared
         shared
         [ div []
-            [ UI.Text.header [ text "Decklists" ]
+            [ UI.Text.header [ text "My Decklists" ]
             , UI.DecklistsIndex.view model
             ]
         ]

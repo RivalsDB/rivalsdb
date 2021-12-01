@@ -1,4 +1,4 @@
-module API.Decklist exposing (ResultCreate, ResultIndex, ResultRead, ResultUpdate, create, index, read, update)
+module API.Decklist exposing (ResultCreate, ResultIndex, ResultRead, ResultUpdate, create, index, indexForUser, read, update)
 
 import API.Auth exposing (auth)
 import Deck exposing (DeckPostSave)
@@ -62,5 +62,13 @@ index : Shared.Collection -> (ResultIndex -> msg) -> Cmd msg
 index collection msg =
     Http.get
         { url = "/api/v1/decklist"
+        , expect = Http.expectJson msg (Decode.list <| Deck.decoder collection)
+        }
+
+
+indexForUser : Shared.Collection -> (ResultIndex -> msg) -> String -> Cmd msg
+indexForUser collection msg userId =
+    Http.get
+        { url = "/api/v1/decklist?userId=" ++ userId
         , expect = Http.expectJson msg (Decode.list <| Deck.decoder collection)
         }

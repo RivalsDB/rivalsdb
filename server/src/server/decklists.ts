@@ -5,6 +5,7 @@ import {
   fetchDecklists,
   createUserIfNeeded,
   fetchDecklist,
+  fetchDecklistsForUser,
 } from "../db/index.js";
 import auth from "./auth.js";
 
@@ -153,8 +154,11 @@ const privateRoutes: FastifyPluginAsync = async (fastify, options) => {
 };
 
 const publicRoutes: FastifyPluginAsync = async (fastify, options) => {
-  fastify.get("/decklist", {
+  fastify.get<{ Querystring: { userId: string } }>("/decklist", {
     schema: {
+      querystring: {
+        userId: { type: "string" },
+      },
       response: {
         200: {
           type: "array",
@@ -180,8 +184,10 @@ const publicRoutes: FastifyPluginAsync = async (fastify, options) => {
         },
       },
     },
-    async handler() {
-      const decklists = await fetchDecklists();
+    async handler(req) {
+      const decklists = await (req.query.userId
+        ? fetchDecklistsForUser(req.query.userId)
+        : fetchDecklists());
       return decklists.map((decklist) => ({
         ...decklist,
         creatorDisplayName: decklist.displayName,

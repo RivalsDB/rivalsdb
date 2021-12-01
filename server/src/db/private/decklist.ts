@@ -92,6 +92,26 @@ export async function fetchDecklists(): Promise<ExtendedDecklist[]> {
       users.display_name
     FROM decklists
     LEFT JOIN users USING (user_id)
+    ORDER BY decklists.updated_at DESC
+  `);
+
+  return rows.map(rowToDecklist);
+}
+
+export async function fetchDecklistsForUser(
+  userId: string
+): Promise<ExtendedDecklist[]> {
+  const rows = await db.query(sql`
+    SELECT
+      decklist_id,
+      name,
+      user_id,
+      content,
+      users.display_name
+    FROM decklists
+    LEFT JOIN users USING (user_id)
+    WHERE user_id = ${userId}
+    ORDER BY decklists.updated_at DESC
   `);
 
   return rows.map(rowToDecklist);

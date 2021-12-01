@@ -4,6 +4,7 @@ export { DbError } from "./private/_errors.js";
 export {
   createDecklist,
   fetchDecklist,
+  fetchDecklistsForUser,
   updateDecklist,
   fetchDecklists,
 } from "./private/decklist.js";
