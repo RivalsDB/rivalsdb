@@ -14,8 +14,6 @@ async function main() {
   const cards = await fetchCards();
   const app = Elm.Main.init({ flags: cards });
 
-  preloadSigninModal();
-
   app.ports.initiateLogin.subscribe(async (email: string) => {
     const did = await signIn(email);
     await afterSignin(app, did);
@@ -28,6 +26,8 @@ async function main() {
   } else {
     trySignInFromCache(app);
   }
+
+  preloadSigninModal();
 }
 
 main();
