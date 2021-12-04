@@ -32,12 +32,13 @@ viewDecklistEntry deck =
                             )
                     )
                 , p [ class "deckindexcard__summary" ]
-                    [ Deck.leader deck.decklist |> Maybe.map (.name >> text) |> Maybe.withDefault (text "Unknown Leader")
-                    , text " • "
-                    , deck.decklist.haven |> Maybe.map (.name >> text) |> Maybe.withDefault (text "Unknown Haven")
-                    , text " • "
-                    , deck.decklist.agenda |> Maybe.map (.name >> text) |> Maybe.withDefault (text "Unknown Agenda")
-                    ]
+                    ([ Deck.leader deck.decklist |> Maybe.map (.name >> text)
+                     , deck.decklist.haven |> Maybe.map (.name >> text)
+                     , deck.decklist.agenda |> Maybe.map (.name >> text)
+                     ]
+                        |> List.filterMap identity
+                        |> List.intersperse (text " • ")
+                    )
                 ]
             ]
         ]
