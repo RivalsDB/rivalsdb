@@ -62,8 +62,8 @@ viewDeckTitleReadOnly : Deck.MetaPostSave -> Html msg
 viewDeckTitleReadOnly meta =
     div [ class "decklist__title" ]
         [ UI.Text.header [ text <| Deck.displayName meta.name ]
-        , p [ class "decklist__title-byline" ]
-            [ text " by "
+        , UI.Text.subheader
+            [ text "by "
             , text <| Deck.ownerDisplayName meta
             ]
         ]
@@ -74,19 +74,17 @@ viewDeckTitleEditable { startNameChange, changeName, endNameChange } name =
     div [ class "decklist__title" ]
         [ case name of
             Unnamed ->
-                p []
+                div []
                     [ span [ class "decklist__title-name" ]
-                        [ text "Unnamed"
-                        ]
+                        [ UI.Text.header [ text "Unnamed" ] ]
                     , span [ class "decklist__title-action", onClick startNameChange ]
                         [ text "(rename deck)" ]
                     ]
 
             Named someName ->
-                p []
+                div []
                     [ span [ class "decklist__title-name" ]
-                        [ text someName
-                        ]
+                        [ UI.Text.header [ text someName ] ]
                     , span [ class "decklist__title-action", onClick startNameChange ]
                         [ text "(rename deck)" ]
                     ]
@@ -195,16 +193,17 @@ factionEntryEditable { setLeader } ( character, isLeader ) =
         , classList [ ( "deck-faction__character--leader", isLeader ) ]
         ]
         ([ span
-            [ class "deck-faction__leader"
-            , class "deck-faction__leader--editable"
+            [ class "deck-faction__leader-button"
+            , class
+                (if isLeader then
+                    "deck-faction__leader-button--on"
+
+                 else
+                    "deck-faction__leader-button--off"
+                )
             , onClick (setLeader character)
             ]
-            (if isLeader then
-                [ Icon.icon ( Icon.Leader, Icon.Standard ) ]
-
-             else
-                []
-            )
+            [ div [ class "deck-faction__leader-icon" ] [ Icon.icon ( Icon.Leader, Icon.Standard ) ] ]
          , span [ class "deck-faction__bp" ] [ UI.Attribute.bloodPotency character.bloodPotency ]
          , span [ class "deck-faction__clan" ] [ Icon.clan Icon.Negative character.clan ]
          , span [ class "deck-faction__name" ] [ UI.CardName.withOverlay (Cards.FactionCard character) ]

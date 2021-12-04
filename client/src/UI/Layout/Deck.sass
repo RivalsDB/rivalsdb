@@ -1,8 +1,5 @@
 @import ../../_vars
 
-$action-bar-vertical-padding: $space-small
-$action-bar-content-height: 48px
-$action-bar-total-height: ($action-bar-vertical-padding * 2) + $action-bar-content-height
 .templ-deck
   display: grid
   gap: $space-small
@@ -40,12 +37,9 @@ $action-bar-total-height: ($action-bar-vertical-padding * 2) + $action-bar-conte
       background: var(--color-bg-close)
       z-index: $z-deckbuilder-actions
       margin: 0 ($safearea-margin * -1)
-      height: $action-bar-content-height
-      padding: $action-bar-vertical-padding $safearea-margin
+      height: 48px
+      padding: $space-small $safearea-margin
       text-align: center
-    &__decklist-wrapper
-      position: sticky
-      top: $action-bar-total-height
 
 // SEARCH PAGE USES THIS
 .deckbldr

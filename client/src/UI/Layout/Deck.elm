@@ -20,9 +20,7 @@ type alias ReadModel msg =
 writeMode : WriteModel msg -> Html msg
 writeMode model =
     main_ [ class "templ-deck" ]
-        [ section [ class "templ-deck__decklist" ]
-            [ div [ class "templ-deck__decklist-wrapper" ] model.decklist
-            ]
+        [ section [ class "templ-deck__decklist" ] model.decklist
         , section [ class "templ-deck__support" ] model.selectors
         , section [ class "templ-deck__actions" ] model.actions
         ]
@@ -31,9 +29,7 @@ writeMode model =
 readMode : ReadModel msg -> Html msg
 readMode model =
     main_ [ class "templ-deck" ]
-        [ section [ class "templ-deck__decklist" ]
-            [ div [ class "templ-deck__decklist-wrapper" ] model.decklist
-            ]
+        [ section [ class "templ-deck__decklist" ] model.decklist
         , section [ class "templ-deck__support" ] []
         , section [ class "templ-deck__actions" ] model.actions
         ]

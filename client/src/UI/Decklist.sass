@@ -2,7 +2,7 @@
 
 .decklist
   display: grid
-  gap: 0 12px
+  gap: 0 $space-small
   grid-template-columns: repeat(6, 1fr)
 
   &__title
@@ -35,45 +35,44 @@
     &__faction,
     &__library
       grid-row: 4 / 5
-      margin-top: 24px
+      margin-top: $space-large
     &__faction
       grid-column: 1 / 4
     &__library
       grid-column: 4 / 7
 
   &__title
-    margin-bottom: 12px
-  &__title-byline
-    line-height: 24px
-    font-size: 18px
+    margin-bottom: $space-medium
 
+  &__title-name
+    display: inline-block
   &__title-action
+    display: inline-block
     cursor: pointer
-    color: var(--color-redmedium)
+    color: var(--color-link)
     text-decoration: underline
     user-select: none
-    display: inline-block
-    margin-left: 0.5rem
+    margin-left: $space-micro
 
 .decklist
   &--section-header
     font-size: $font-size--sectionheader
-    line-height: 24px
+    line-height: $font-line-height-std
   &--subsection-header
     font-size: $font-size--body
-    line-height: 24px
+    line-height: $font-line-height-std
 
 .deck-library
   &__header
-    margin-bottom: 12px
+    margin-bottom: $space-small
     &--invalid
-      color: var(--color-redlight)
+      color: var(--color-warning-copy)
   &__section-header
-    margin-top: 12px
+    margin-top: $space-small
     &:first-child
       margin-top: 0
   &__entry
-    margin-top: 6px
+    margin-top: $space-nano
     display: flex
     align-items: center
     &:first-child
@@ -86,29 +85,29 @@
   &__entry-discipline
     $iconSize: 24px
     display: inline-block
-    margin-left: 6px
+    margin-left: $space-nano
     width: $iconSize
     height: $iconSize
 
 .deck-faction
   &__header
-    margin-bottom: 12px
+    margin-bottom: $space-small
     display: flex
     &--invalid
-      color: var(--color-redlight)
+      color: var(--color-warning-copy)
   &__title
     display: inline-block
-    margin-right: 6px
+    margin-right: $space-micro
   &__clan-list
     display: flex
   &__clan-item
     $iconSize: 24px
     display: inline-block
-    margin-left: 6px
+    margin-left: $space-nano
     width: $iconSize
     height: $iconSize
   &__character
-    margin-top: 6px
+    margin-top: $space-micro
     display: flex
     align-items: center
     &:first-child
@@ -117,25 +116,40 @@
       font-weight: bold
   &__leader-tag
     display: inline-block
-    margin-left: 6px
-  &__leader
-    width: 30px
-    height: 30px
-    border-radius: 15px
-    background: #CCC
-    &--editable
-      cursor: pointer
+    margin-left: $space-micro
+  &__leader-button
+    $size: 30px
+    width: $size
+    height: $size
+    border-radius: $size
+    cursor: pointer
+    .deck-faction__leader-icon
+      width: 100%
+      height: 100%
+    &--on
+      background: var(--color-bg-farthest)
+      transition: 0.2s
+    &--off
+      background: var(--color-bg-closest)
+      .deck-faction__leader-icon
+        opacity: 0.4
+        transition: 0.3s ease
+      &:hover
+        background: var(--color-bg-close)
+        .deck-faction__leader-icon
+          opacity: 1
+
   &__bp,
   &__clan,
   &__name
     display: inline-block
   &__name
-    margin-left: 6px
+    margin-left: $space-micro
 
   &__name,
   &__leader-tag
-    line-height: 24px
-    font-size: 15px
+    line-height: $font-line-height-std
+    font-size: $font-size--body
 
   &__clan,
   &__discipline
@@ -144,7 +158,7 @@
     height: $iconSize
 
   &__clan
-    margin-left: 6px
+    margin-left: $space-micro
 
   &__discipline
-    margin-left: 3px
+    margin-left: $space-nano
