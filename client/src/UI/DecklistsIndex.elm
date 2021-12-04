@@ -6,7 +6,7 @@ import Gen.Route as Route
 import Html exposing (Html, a, div, li, p, span, text, ul)
 import Html.Attributes exposing (class, href)
 import UI.Card
-import UI.Icon
+import UI.Icon as Icon
 
 
 view : List DeckPostSave -> Html unknown
@@ -27,8 +27,10 @@ viewDecklistEntry deck =
                 , p [ class "deckindexcard__clans" ]
                     (Deck.clansInFaction deck.decklist.faction
                         |> List.map
-                            (\( clan, _ ) ->
-                                span [ class "deckindexcard__clan" ] [ UI.Icon.clan UI.Icon.Negative clan ]
+                            (Tuple.first
+                                >> Icon.clan Icon.Negative
+                                >> List.singleton
+                                >> span [ class "deckindexcard__clan" ]
                             )
                     )
                 , p [ class "deckindexcard__summary" ]
