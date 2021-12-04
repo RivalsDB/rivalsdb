@@ -8,7 +8,7 @@ import Deck exposing (DeckPreSave, Name(..))
 import Effect exposing (Effect)
 import Gen.Params.Deck.New exposing (Params)
 import Gen.Route as Route
-import Html exposing (Html, div, li, span, text, ul)
+import Html exposing (Html, li, span, text, ul)
 import Html.Attributes exposing (class)
 import Html.Events exposing (onClick)
 import Page

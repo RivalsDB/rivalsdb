@@ -1,6 +1,6 @@
 module UI.Layout.Deck exposing (readMode, writeMode)
 
-import Html exposing (Html, div, main_, section)
+import Html exposing (Html, main_, section)
 import Html.Attributes exposing (class)
 
 
