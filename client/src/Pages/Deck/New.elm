@@ -8,12 +8,11 @@ import Deck exposing (DeckPreSave, Name(..))
 import Effect exposing (Effect)
 import Gen.Params.Deck.New exposing (Params)
 import Gen.Route as Route
-import Html exposing (Html, li, span, text, ul)
-import Html.Attributes exposing (class)
-import Html.Events exposing (onClick)
+import Html.Lazy as Lazy
 import Page
 import Request
 import Shared
+import UI.ActionBar
 import UI.DeckbuildSelections as DeckbuildSelections
 import UI.Decklist
 import UI.Icon as Icon
@@ -154,7 +153,7 @@ view shared model =
     UI.Layout.Template.view FromShared
         shared
         [ UI.Layout.Deck.writeMode
-            { actions = viewActions
+            { actions = [ Lazy.lazy UI.ActionBar.view actions ]
             , decklist = [ UI.Decklist.viewCreate decklistActions model.deck ]
             , selectors =
                 [ DeckbuildSelections.view shared.collection FromBuilderOptions model.builderOptions model.deck.decklist
@@ -163,12 +162,11 @@ view shared model =
         ]
 
 
-viewActions : List (Html Msg)
-viewActions =
-    [ ul [ class "actions-list" ]
-        [ li [ class "actions-item", onClick Save ]
-            [ span [ class "actions-icon" ] [ Icon.icon ( Icon.Save, Icon.Standard ) ]
-            , span [ class "actions-description" ] [ text "Save" ]
-            ]
-        ]
+actions : List (UI.ActionBar.Model Msg)
+actions =
+    [ { name = "Save"
+      , icon = Icon.Save
+      , action = Just Save
+      , href = Nothing
+      }
     ]

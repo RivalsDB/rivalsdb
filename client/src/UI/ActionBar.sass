@@ -1,0 +1,20 @@
+@import ../_vars
+
+.action-bar
+  &__item
+    display: inline-block
+    cursor: pointer
+    margin-left: $space-small
+    &:first-child
+      margin-left: 0
+    &--inactive
+      color: #999
+  &__icon
+    display: block
+    height: 30px
+  &__description
+    font-size: $font-size--small
+    text-align: center
+  &__link
+    color: var(--color-copy-medium)
+    text-decoration: none

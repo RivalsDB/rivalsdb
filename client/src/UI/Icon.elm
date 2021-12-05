@@ -35,6 +35,7 @@ type IconImage
     | Celerity
     | Conspiracy
     | Damage
+    | Delete
     | Dominate
     | Edit
     | Faction
@@ -247,6 +248,9 @@ imageOpts image =
 
         Damage ->
             ( class "ui-icon_damage", "Damage" )
+
+        Delete ->
+            ( class "ui-icon_delete", "Delete" )
 
         Dominate ->
             ( class "ui-icon_dominate", "Dominate" )

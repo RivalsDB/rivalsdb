@@ -34,6 +34,7 @@ items =
     , ( Icon.Title, "Medal by Deemak Daksina from the Noun Project" )
     , ( Icon.Edit, "edit by Gelso Designs from the Noun Project" )
     , ( Icon.Ritual, "ritual by Koson Rattanaphan from the Noun Project" )
+    , ( Icon.Delete, "Delete by Lagot Design from NounProject.com" )
     , ( Icon.Faction, "group by mikicon from the Noun Project" )
     , ( Icon.AgendaCard, "Crown by Marcy Boles from the Noun Project" )
     , ( Icon.Alchemy, "alchemy by Ragal Kartidev from the Noun Project" )

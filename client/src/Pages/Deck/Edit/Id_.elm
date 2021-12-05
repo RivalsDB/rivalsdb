@@ -8,12 +8,11 @@ import Deck exposing (DeckPostSave, Name(..))
 import Effect exposing (Effect)
 import Gen.Params.Deck.Edit.Id_ exposing (Params)
 import Gen.Route as Route
-import Html exposing (Html, li, span, text, ul)
-import Html.Attributes exposing (class)
-import Html.Events exposing (onClick)
+import Html.Lazy as Lazy
 import Page
 import Request
 import Shared
+import UI.ActionBar
 import UI.DeckbuildSelections as DeckbuildSelections
 import UI.Decklist
 import UI.Icon as Icon
@@ -187,23 +186,15 @@ view shared model =
             UI.Layout.Template.view FromShared
                 shared
                 [ UI.Layout.Deck.writeMode
-                    { actions = viewActions
+                    { actions = [ Lazy.lazy UI.ActionBar.view actions ]
                     , decklist = [ UI.Decklist.viewEdit decklistActions data.deck ]
                     , selectors = [ DeckbuildSelections.view shared.collection FromBuilderOptions data.builderOptions data.deck.decklist ]
                     }
                 ]
 
 
-viewActions : List (Html Msg)
-viewActions =
-    [ ul [ class "actions-list" ]
-        [ li [ class "actions-item", onClick Save ]
-            [ span [ class "actions-icon" ] [ Icon.icon ( Icon.Save, Icon.Standard ) ]
-            , span [ class "actions-description" ] [ text "Save" ]
-            ]
-        , li [ class "actions-item", onClick Delete ]
-            [ span [ class "actions-icon" ] [ Icon.icon ( Icon.Save, Icon.Standard ) ]
-            , span [ class "actions-description" ] [ text "Delete" ]
-            ]
-        ]
+actions : List (UI.ActionBar.Model Msg)
+actions =
+    [ { icon = Icon.Save, name = "Save", action = Just Save, href = Nothing }
+    , { icon = Icon.Delete, name = "Delete", action = Just Delete, href = Nothing }
     ]

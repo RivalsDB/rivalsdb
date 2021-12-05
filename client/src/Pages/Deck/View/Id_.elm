@@ -10,6 +10,7 @@ import Html.Attributes exposing (class, href)
 import Page
 import Request
 import Shared
+import UI.ActionBar
 import UI.Decklist
 import UI.Icon as Icon
 import UI.Layout.Deck
@@ -84,22 +85,20 @@ viewDecklist shared deck =
 
 viewActions : Maybe Shared.User -> Deck.MetaPostSave -> List (Html Msg)
 viewActions maybeUser meta =
-    [ ul [ class "actions-list" ]
-        (maybeUser
-            |> Maybe.map
-                (\user ->
-                    if user.id == meta.ownerId then
-                        [ li [ class "actions-item" ]
-                            [ a [ href <| Route.toHref (Route.Deck__Edit__Id_ { id = meta.id }) ]
-                                [ span [ class "actions-icon" ] [ Icon.icon ( Icon.Edit, Icon.Standard ) ]
-                                , span [ class "actions-description" ] [ text "Edit" ]
-                                ]
-                            ]
-                        ]
+    case maybeUser of
+        Nothing ->
+            []
 
-                    else
-                        []
-                )
-            |> Maybe.withDefault []
-        )
-    ]
+        Just user ->
+            if user.id == meta.ownerId then
+                [ UI.ActionBar.view
+                    [ { icon = Icon.Edit
+                      , name = "Edit"
+                      , action = Nothing
+                      , href = Just (Route.Deck__Edit__Id_ { id = meta.id })
+                      }
+                    ]
+                ]
+
+            else
+                []
