@@ -59,7 +59,7 @@ update msg model =
         FetchedDecklists (Ok decks) ->
             ( Viewing decks, Effect.none )
 
-        FetchedDecklists (Err _) ->
+        FetchedDecklists (Err a) ->
             ( model, Effect.none )
 
 

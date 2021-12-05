@@ -140,6 +140,7 @@ function rowToDecklist(row: {
     leader: row.content.leader,
     libraryDeck: row.content.libraryDeck,
     factionDeck: row.content.factionDeck,
-    displayName: row.display_name,
+    displayName:
+      typeof row.display_name === "string" ? row.display_name : undefined,
   };
 }

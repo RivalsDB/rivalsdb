@@ -107,7 +107,12 @@ type alias MetaPostSave =
 
 ownerDisplayName : MetaPostSave -> String
 ownerDisplayName meta =
-    Maybe.withDefault meta.ownerId meta.ownerName
+    case meta.ownerName of
+        Just name ->
+            name
+
+        Nothing ->
+            "Unknown " ++ String.slice -5 -1 meta.ownerId
 
 
 type alias Decklist =
@@ -314,7 +319,7 @@ metaDecoder =
         (metaNameDecoder "name")
         (Decode.field "id" Decode.string)
         (Decode.field "creatorId" Decode.string)
-        (Decode.field "creatorDisplayName" (Decode.maybe Decode.string))
+        (Decode.maybe (Decode.field "creatorDisplayName" Decode.string))
 
 
 metaNameDecoder : String -> Decoder Name
