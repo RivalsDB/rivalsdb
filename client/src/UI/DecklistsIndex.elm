@@ -22,7 +22,7 @@ viewDecklistEntry deck =
             [ div [ class "deckindexcard__illustration" ] [ illustrationImage deck.decklist ]
             , div [ class "deckindexcard__content" ]
                 [ p [ class "deckindexcard__name" ] [ text <| Deck.displayName deck.meta.name ]
-                , p [ class "deckindexcard__byline" ] [ text "by: ", text <| Deck.ownerDisplayName deck.meta ]
+                , p [ class "deckindexcard__byline" ] [ text "by ", text <| Deck.ownerDisplayName deck.meta ]
                 , p [ class "deckindexcard__clans" ]
                     (Deck.clansInFaction deck.decklist.faction
                         |> List.map
