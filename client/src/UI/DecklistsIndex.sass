@@ -1,20 +1,10 @@
 @import ../_vars
 
 .deckindex
-  margin: 20px 0
+  margin: $space-medium 0 $space-huge
   display: grid
-  grid-template-columns: repeat(1, 1fr)
-  gap: 16px
-
-@media screen and ( min-width: $breakpoint-ipad--vertical)
-  .deckindex
-    grid-template-columns: repeat(2, 1fr)
-@media screen and ( min-width: $breakpoint-ipad--horizontal)
-  .deckindex
-    grid-template-columns: repeat(3, 1fr)
-@media screen and ( min-width: $breakpoint-largest-width)
-  .deckindex
-    grid-template-columns: repeat(4, 1fr)
+  grid-template-columns: repeat(auto-fill, minmax(405px,1fr))
+  gap: $space-medium
 
 .deckindexcard
   background: #000
