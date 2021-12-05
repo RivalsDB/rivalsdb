@@ -1,4 +1,16 @@
-module API.Decklist exposing (ResultCreate, ResultIndex, ResultRead, ResultUpdate, create, index, indexForUser, read, update)
+module API.Decklist exposing
+    ( ResultCreate
+    , ResultDelete
+    , ResultIndex
+    , ResultRead
+    , ResultUpdate
+    , create
+    , delete
+    , index
+    , indexForUser
+    , read
+    , update
+    )
 
 import API.Auth exposing (auth)
 import Deck exposing (DeckPostSave)
@@ -38,6 +50,23 @@ update msg token deckId deck =
         , timeout = Nothing
         , tracker = Nothing
         , body = Http.jsonBody deck
+        , expect = Http.expectWhatever msg
+        }
+
+
+type alias ResultDelete =
+    Result Http.Error ()
+
+
+delete : (ResultDelete -> msg) -> Shared.Token -> String -> Cmd msg
+delete msg token deckId =
+    Http.request
+        { method = "DELETE"
+        , url = "/api/v1/decklist/" ++ deckId
+        , headers = [ auth token ]
+        , timeout = Nothing
+        , tracker = Nothing
+        , body = Http.emptyBody
         , expect = Http.expectWhatever msg
         }
 
