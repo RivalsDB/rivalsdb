@@ -10,9 +10,9 @@ import UI.Icon as Icon
 
 
 view : List DeckPostSave -> Html unknown
-view model =
+view decklists =
     ul [ class "deckindex" ]
-        (model |> List.map viewDecklistEntry)
+        (decklists |> List.map viewDecklistEntry)
 
 
 viewDecklistEntry : DeckPostSave -> Html msg
@@ -20,7 +20,6 @@ viewDecklistEntry deck =
     li [ class "deckindexitem" ]
         [ a [ class "deckindexcard", href <| Route.toHref (Route.Deck__View__Id_ { id = deck.meta.id }) ]
             [ div [ class "deckindexcard__illustration" ] [ illustrationImage deck.decklist ]
-            , div [ class "deckindexcard__illustration-overlay" ] []
             , div [ class "deckindexcard__content" ]
                 [ p [ class "deckindexcard__name" ] [ text <| Deck.displayName deck.meta.name ]
                 , p [ class "deckindexcard__byline" ] [ text "by: ", text <| Deck.ownerDisplayName deck.meta ]
@@ -50,12 +49,20 @@ illustrationImage : Deck.Decklist -> Html msg
 illustrationImage decklist =
     case Deck.leader decklist of
         Just leader ->
-            UI.Card.lazy (Cards.FactionCard leader)
+            characterBackground leader
 
         Nothing ->
             case Deck.fallbackLeader decklist of
                 Just fallbackLeader ->
-                    UI.Card.lazy (Cards.FactionCard fallbackLeader)
+                    characterBackground fallbackLeader
 
                 Nothing ->
                     span [] []
+
+
+characterBackground : Cards.Faction -> Html msg
+characterBackground character =
+    div [ class "char-bg" ]
+        [ div [ class "char-bg__img" ] [ UI.Card.lazy (Cards.FactionCard character) ]
+        , div [ class "char-bg__mask" ] []
+        ]
