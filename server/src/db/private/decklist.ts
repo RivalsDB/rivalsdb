@@ -29,6 +29,13 @@ export async function createDecklist(
   return { ...decklist, id: deckId, name, creatorId };
 }
 
+export async function deleteDecklist(decklistId: string): Promise<void> {
+  await db.query(sql`
+    DELETE FROM decklists
+    WHERE decklist_id = ${decklistId}
+  `);
+}
+
 export async function updateDecklist(
   decklistId: string,
   decklist: Omit<Decklist, "id" | "name" | "creatorId">,

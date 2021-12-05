@@ -3,6 +3,7 @@ export { DbError } from "./private/_errors.js";
 
 export {
   createDecklist,
+  deleteDecklist,
   fetchDecklist,
   fetchDecklistsForUser,
   updateDecklist,

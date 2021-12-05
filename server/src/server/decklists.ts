@@ -3,6 +3,7 @@ import {
   createDecklist,
   updateDecklist,
   fetchDecklists,
+  deleteDecklist,
   createUserIfNeeded,
   fetchDecklist,
   fetchDecklistsForUser,
@@ -151,6 +152,23 @@ const privateRoutes: FastifyPluginAsync = async (fastify, options) => {
       },
     }
   );
+  fastify.delete<{ Params: { deckId: string } }>("/decklist/:deckId", {
+    async handler(req, reply): Promise<void> {
+      const decklist = await fetchDecklist(req.params.deckId);
+      if (decklist == null) {
+        reply.code(404);
+        return reply.send();
+      }
+
+      if (decklist.creatorId !== req.user.id) {
+        reply.code(403);
+        return reply.send();
+      }
+
+      await deleteDecklist(decklist.id);
+      reply.code(204);
+    },
+  });
 };
 
 const publicRoutes: FastifyPluginAsync = async (fastify, options) => {
