@@ -1,6 +1,7 @@
 @import ../_vars
 
 .decklist
+  $spaceToFooter: $space-huge + $space-medium
   display: grid
   gap: 0 $space-small
   grid-template-columns: repeat(6, 1fr)
@@ -16,6 +17,9 @@
   &__faction,
   &__library
     grid-column: 1 / 7
+    margin-top: $space-medium
+  &__library
+    margin-bottom: $spaceToFooter
   @media screen and ( min-width: $breakpoint-ipad--horizontal)
     &__core-image
       display: block
@@ -36,6 +40,7 @@
     &__library
       grid-row: 4 / 5
       margin-top: $space-large
+      margin-bottom: $spaceToFooter
     &__faction
       grid-column: 1 / 4
     &__library
