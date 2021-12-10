@@ -28,6 +28,7 @@ items =
     , ( Icon.UnhostedAction, "Tai Chi by Adrien Coquet from the Noun Project" )
     , ( Icon.Action, "action by Adrien Coquet from the Noun Project" )
     , ( Icon.Special, "Cold by Adrien Coquet from the Noun Project" )
+    , ( Icon.Menu, "Menu by Star and Anchor Design from NounProject.com" )
     , ( Icon.Ongoing, "Infinity by Cengiz SARI from the Noun Project" )
     , ( Icon.Scheme, "Vote by Clea Doltz from the Noun Project" )
     , ( Icon.InfluenceModifier, "Handshake by Cuputo from the Noun Project" )

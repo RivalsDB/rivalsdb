@@ -48,6 +48,7 @@ type IconImage
     | Library
     | Malkavian
     | Mental
+    | Menu
     | Nosferatu
     | Obfuscate
     | Ongoing
@@ -290,6 +291,9 @@ imageOpts image =
 
         Mental ->
             ( class "ui-icon_mental", "Mental" )
+
+        Menu ->
+            ( class "ui-icon_menu", "Menu" )
 
         Nosferatu ->
             ( class "ui-icon_nosferatu", "Nosferatu" )
