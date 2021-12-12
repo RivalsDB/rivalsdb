@@ -205,6 +205,7 @@ type alias Library =
     { id : Id
     , name : Name
     , text : Text
+    , disciplines : List Discipline
     , illustrator : Illustrator
     , image : Image
     , set : Pack
@@ -340,8 +341,8 @@ discipline card =
         FactionCard c ->
             c.disciplines
 
-        LibraryCard _ ->
-            []
+        LibraryCard c ->
+            c.disciplines
 
         _ ->
             []
@@ -486,6 +487,7 @@ libraryDecoder =
         |> decodeId
         |> decodeName
         |> decodeText
+        |> decodeOptionalDisciplines
         |> decodeIllustrator
         |> decodeImage
         |> decodeSet
@@ -575,6 +577,11 @@ decodeMental =
 decodeDisciplines : Decoder (List Discipline -> b) -> Decoder b
 decodeDisciplines =
     required "disciplines" (list disciplineEnum.decoder)
+
+
+decodeOptionalDisciplines : Decoder (List Discipline -> b) -> Decoder b
+decodeOptionalDisciplines =
+    optional "disciplines" (list disciplineEnum.decoder) []
 
 
 decodeAttackType : Decoder (List AttackType -> b) -> Decoder b
