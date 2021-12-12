@@ -33,9 +33,9 @@ viewDecklistEntry deck =
                             )
                     )
                 , p [ class "deckindexcard__summary" ]
-                    ([ Deck.leader deck.decklist |> Maybe.map (.name >> nonBreaking >> text)
-                     , deck.decklist.haven |> Maybe.map (.name >> nonBreaking >> text)
-                     , deck.decklist.agenda |> Maybe.map (.name >> nonBreaking >> text)
+                    ([ Deck.leader deck.decklist |> Maybe.map summaryItem
+                     , deck.decklist.haven |> Maybe.map summaryItem
+                     , deck.decklist.agenda |> Maybe.map summaryItem
                      ]
                         |> List.filterMap identity
                         |> List.intersperse (text " • ")
@@ -45,9 +45,9 @@ viewDecklistEntry deck =
         ]
 
 
-nonBreaking : String -> String
-nonBreaking =
-    String.replace " " " "
+summaryItem : { a | name : String } -> Html msg
+summaryItem a =
+    span [ class "deckindexcard__summary-item" ] [ text a.name ]
 
 
 illustrationImage : Deck.Decklist -> Html msg
