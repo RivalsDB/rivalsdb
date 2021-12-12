@@ -5,6 +5,7 @@ import Deck exposing (DeckPostSave)
 import Effect exposing (Effect)
 import Gen.Params.Decks exposing (Params)
 import Html exposing (div, text)
+import Html.Attributes exposing (class)
 import Page
 import Request
 import Shared
@@ -83,7 +84,7 @@ viewDecklists : Shared.Model -> List DeckPostSave -> View Msg
 viewDecklists shared model =
     UI.Layout.Template.view FromShared
         shared
-        [ div []
+        [ div [ class "page-decks__content" ]
             [ UI.Text.header [ text "Decklists" ]
             , UI.DecklistsIndex.view model
             ]
