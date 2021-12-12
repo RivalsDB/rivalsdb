@@ -27,19 +27,21 @@
       grid-column: 2 / 3
       grid-row: 2/3
 
-@media screen and ( min-width: $breakpoint-ipad--horizontal)
-  .templ-deck
+.templ-deck
+  &__actions
+    background: var(--color-bg-close)
+    margin: 0 ($safearea-margin * -1)
+    height: 48px
+    padding: $space-small $safearea-margin
+    text-align: center
+
+  @media screen and ( min-width: $breakpoint-ipad--horizontal)
     position: sticky
     top: 0
     &__actions
       position: sticky
       top: 0
-      background: var(--color-bg-close)
       z-index: $z-deckbuilder-actions
-      margin: 0 ($safearea-margin * -1)
-      height: 48px
-      padding: $space-small $safearea-margin
-      text-align: center
 
 // SEARCH PAGE USES THIS
 .deckbldr
