@@ -4,7 +4,7 @@ import API.Decklist
 import Deck exposing (DeckPostSave)
 import Effect exposing (Effect)
 import Gen.Params.Decks exposing (Params)
-import Html exposing (div, h2, text)
+import Html exposing (div, text)
 import Page
 import Request
 import Shared
@@ -59,7 +59,7 @@ update msg model =
         FetchedDecklists (Ok decks) ->
             ( Viewing decks, Effect.none )
 
-        FetchedDecklists (Err a) ->
+        FetchedDecklists (Err _) ->
             ( model, Effect.none )
 
 
@@ -75,8 +75,8 @@ view shared model =
         Loading ->
             UI.Layout.Template.view FromShared shared [ text "Loading" ]
 
-        Viewing ddd ->
-            viewDecklists shared ddd
+        Viewing decks ->
+            viewDecklists shared decks
 
 
 viewDecklists : Shared.Model -> List DeckPostSave -> View Msg
