@@ -4,7 +4,7 @@ import API.Decklist
 import Deck exposing (DeckPostSave)
 import Effect exposing (Effect)
 import Gen.Params.Decks exposing (Params)
-import Html exposing (div, text)
+import Html exposing (div, h2, text)
 import Page
 import Request
 import Shared

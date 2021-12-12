@@ -1,5 +1,5 @@
 // @ts-ignore
-import mainElm from "../../.elm-spa/defaults/Main.elm";
+import mainElm from "../../src/Main.elm";
 
 interface Options {
   flags: any;

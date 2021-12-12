@@ -31,6 +31,7 @@ type alias Model =
     { collection : Collection
     , user : Maybe User
     , modal : ModalState
+    , burgerMenu : Bool
     , headerSearch : Maybe String
     , key : Key
     }
@@ -78,6 +79,7 @@ type Msg
     | HeaderClickedSignOut
     | HeaderSearchQueryChanged String
     | HeaderSearchQuerySubmitted
+    | ToggleBurgerMenu
 
 
 init : Request -> Flags -> ( Model, Cmd Msg )
@@ -94,6 +96,7 @@ init req flags =
     ( { collection = collection
       , user = Nothing
       , modal = Closed
+      , burgerMenu = False
       , headerSearch = Nothing
       , key = req.key
       }
@@ -111,6 +114,9 @@ update _ msg model =
 
                 Err _ ->
                     ( { model | user = Nothing }, Cmd.none )
+
+        ToggleBurgerMenu ->
+            ( { model | burgerMenu = not model.burgerMenu }, Cmd.none )
 
         ModalClose ->
             ( { model | modal = Closed }, Cmd.none )
