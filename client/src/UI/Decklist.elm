@@ -239,7 +239,7 @@ factionEntryReadOnly ( character, isLeader ) =
 viewLibrary : Deck.Library -> Html msg
 viewLibrary library =
     let
-        { actions, combat, other } =
+        { actions, combat, political } =
             groupLibraryCards library
     in
     div [ class "decklist__library", class "deck-library" ]
@@ -248,7 +248,7 @@ viewLibrary library =
             (List.concat
                 [ viewLibraryGroup "Actions" actions
                 , viewLibraryGroup "Combat" combat
-                , viewLibraryGroup "Other" other
+                , viewLibraryGroup "Political" political
                 ]
             )
         ]
@@ -292,7 +292,7 @@ libraryEntry ( card, n ) =
                         []
 
                     Just clan ->
-                        [ span [ class "deck-library__entry-discipline" ]
+                        [ span [ class "deck-library__entry-clan" ]
                             [ Icon.clan Icon.Negative clan ]
                         ]
                )
@@ -313,23 +313,42 @@ cardCount =
     List.foldl (\( _, n ) sum -> sum + n) 0
 
 
-groupLibraryCards : Deck.Library -> { actions : List ( Cards.Library, Int ), combat : List ( Cards.Library, Int ), other : List ( Cards.Library, Int ) }
+type alias LibraryGroups =
+    { actions : List ( Cards.Library, Int )
+    , combat : List ( Cards.Library, Int )
+    , political : List ( Cards.Library, Int )
+    }
+
+
+libraryGroups : LibraryGroups
+libraryGroups =
+    { actions = [], combat = [], political = [] }
+
+
+groupLibraryCards : Deck.Library -> LibraryGroups
 groupLibraryCards library =
     let
-        groups =
-            { actions = [], combat = [], other = [] }
-
         assignToGroup ( card, n ) oldGroups =
-            if List.any (\trait -> trait == Cards.Action || trait == Cards.UnhostedAction) card.traits then
-                { oldGroups | actions = ( card, n ) :: oldGroups.actions }
-
-            else if List.any (\trait -> trait == Cards.Attack || trait == Cards.Reaction) card.traits then
+            if List.any isCombatTrait card.traits then
                 { oldGroups | combat = ( card, n ) :: oldGroups.combat }
 
+            else if List.any isPoliticsTrait card.traits then
+                { oldGroups | political = ( card, n ) :: oldGroups.political }
+
             else
-                { oldGroups | other = ( card, n ) :: oldGroups.other }
+                { oldGroups | actions = ( card, n ) :: oldGroups.actions }
     in
-    Dict.values library |> List.foldl assignToGroup groups
+    Dict.values library |> List.foldl assignToGroup libraryGroups
+
+
+isCombatTrait : Cards.Trait -> Bool
+isCombatTrait trait =
+    trait == Cards.Attack || trait == Cards.Reaction
+
+
+isPoliticsTrait : Cards.Trait -> Bool
+isPoliticsTrait trait =
+    trait == Cards.InfluenceModifier || trait == Cards.Title || trait == Cards.Scheme
 
 
 factionSort : ( Cards.Faction, Bool ) -> ( Cards.Faction, Bool ) -> Order
