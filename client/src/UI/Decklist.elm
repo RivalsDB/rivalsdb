@@ -1,11 +1,12 @@
-module UI.Decklist exposing (Actions, viewCreate, viewDeck, viewEdit)
+module UI.Decklist exposing (Actions, viewCreate, viewEdit, viewRead)
 
 import Cards
 import Clan
+import Data.GameMode as GameMode exposing (GameMode)
 import Deck exposing (DeckPostSave, DeckPreSave, Name(..), isLeader)
 import Dict
-import Html exposing (Html, button, div, form, h3, h4, input, li, p, span, text, ul)
-import Html.Attributes exposing (class, classList, placeholder, type_)
+import Html exposing (Html, button, div, form, h3, h4, input, label, li, option, p, select, span, text, ul)
+import Html.Attributes exposing (class, classList, name, placeholder, selected, type_, value)
 import Html.Events exposing (onClick, onInput, onSubmit)
 import UI.Attribute
 import UI.Card
@@ -14,8 +15,8 @@ import UI.Icon as Icon
 import UI.Text
 
 
-viewDeck : DeckPostSave -> Html msg
-viewDeck { decklist, meta } =
+viewRead : DeckPostSave -> Html msg
+viewRead { decklist, meta } =
     div [ class "decklist" ]
         [ viewDeckTitleReadOnly meta
         , viewAgenda decklist.agenda
@@ -29,7 +30,7 @@ viewDeck { decklist, meta } =
 viewCreate : Actions msg -> DeckPreSave -> Html msg
 viewCreate actions { decklist, meta } =
     div [ class "decklist" ]
-        [ viewDeckTitleEditable actions meta.name
+        [ viewDeckTitleEditable actions meta.name meta.gameMode
         , viewAgenda decklist.agenda
         , viewHaven decklist.haven
         , viewLeader (Deck.leader decklist)
@@ -41,7 +42,7 @@ viewCreate actions { decklist, meta } =
 viewEdit : Actions msg -> DeckPostSave -> Html msg
 viewEdit actions { decklist, meta } =
     div [ class "decklist" ]
-        [ viewDeckTitleEditable actions meta.name
+        [ viewDeckTitleEditable actions meta.name meta.gameMode
         , viewAgenda decklist.agenda
         , viewHaven decklist.haven
         , viewLeader (Deck.leader decklist)
@@ -55,6 +56,7 @@ type alias Actions msg =
     , startNameChange : msg
     , endNameChange : msg
     , changeName : String -> msg
+    , setGameMode : GameMode -> msg
     }
 
 
@@ -62,40 +64,60 @@ viewDeckTitleReadOnly : Deck.MetaPostSave -> Html msg
 viewDeckTitleReadOnly meta =
     div [ class "decklist__title" ]
         [ UI.Text.header [ text <| Deck.displayName meta.name ]
-        , UI.Text.subheader
-            [ text "by "
-            , text <| Deck.ownerDisplayName meta
+        , div [ class "decklist__meta" ]
+            [ UI.Text.subheader [ text <| "by " ++ Deck.ownerDisplayName meta ]
+            , p [ class "decklist__game-mode" ]
+                [ text <| "(" ++ GameMode.name meta.gameMode ++ ")"
+                ]
             ]
         ]
 
 
-viewDeckTitleEditable : Actions msg -> Deck.Name -> Html msg
-viewDeckTitleEditable { startNameChange, changeName, endNameChange } name =
+viewDeckTitleEditable : Actions msg -> Deck.Name -> GameMode -> Html msg
+viewDeckTitleEditable { startNameChange, changeName, endNameChange, setGameMode } deckName gameMode =
     div [ class "decklist__title" ]
-        [ case name of
-            Unnamed ->
-                div []
+        [ div []
+            (case deckName of
+                Unnamed ->
                     [ span [ class "decklist__title-name" ]
                         [ UI.Text.header [ text "Unnamed" ] ]
                     , span [ class "decklist__title-action", onClick startNameChange ]
                         [ text "(rename deck)" ]
                     ]
 
-            Named someName ->
-                div []
+                Named someName ->
                     [ span [ class "decklist__title-name" ]
                         [ UI.Text.header [ text someName ] ]
                     , span [ class "decklist__title-action", onClick startNameChange ]
                         [ text "(rename deck)" ]
                     ]
 
-            BeingNamed _ ->
-                div []
+                BeingNamed _ ->
                     [ form [ onSubmit endNameChange ]
                         [ input [ placeholder "My Cool Deck", onInput changeName ] []
                         , button [ type_ "submit" ] [ text "ok" ]
                         ]
                     ]
+            )
+        , div [ class "decklist__meta" ]
+            [ label []
+                [ text "Best for:"
+                , select [ onInput (GameMode.fromString >> Maybe.withDefault GameMode.default >> setGameMode) ]
+                    ([ GameMode.Both
+                     , GameMode.HeadToHead
+                     , GameMode.Multiplayer
+                     ]
+                        |> List.map
+                            (\mode ->
+                                option
+                                    [ value <| GameMode.toString mode
+                                    , selected <| mode == gameMode
+                                    ]
+                                    [ text <| GameMode.name mode ]
+                            )
+                    )
+                ]
+            ]
         ]
 
 

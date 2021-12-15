@@ -24,6 +24,7 @@ module Deck exposing
 
 import Cards
 import Clan exposing (Clan)
+import Data.GameMode as GameMode exposing (GameMode)
 import Dict exposing (Dict)
 import Json.Decode as Decode exposing (Decoder)
 import Json.Encode as Encode
@@ -61,7 +62,7 @@ init =
         , faction = Dict.empty
         , library = Dict.empty
         }
-    , meta = { name = Unnamed }
+    , meta = { name = Unnamed, gameMode = GameMode.default }
     }
 
 
@@ -72,7 +73,7 @@ type alias DeckPostSave =
 
 
 type alias MetaPreSave =
-    { name : Name }
+    { name : Name, gameMode : GameMode }
 
 
 type Name
@@ -102,7 +103,7 @@ nameToString deckname =
 
 
 type alias MetaPostSave =
-    { name : Name, id : String, ownerId : String, ownerName : Maybe String }
+    { name : Name, id : String, ownerId : String, ownerName : Maybe String, gameMode : GameMode }
 
 
 ownerDisplayName : MetaPostSave -> String
@@ -268,7 +269,7 @@ isValidFaction deck =
 encode : Deck -> Maybe Encode.Value
 encode deck2 =
     let
-        encode_ decklist deckname =
+        encode_ decklist deckname gameMode =
             case ( decklist.agenda, decklist.haven ) of
                 ( Just agenda, Just haven ) ->
                     Just <|
@@ -278,17 +279,18 @@ encode deck2 =
                             , ( "haven", Encode.string haven.id )
                             , ( "factionDeck", encodeFaction decklist.faction )
                             , ( "libraryDeck", encodeLibrary decklist.library )
+                            , ( "gameMode", GameMode.encode gameMode )
                             ]
 
                 ( _, _ ) ->
                     Nothing
     in
     case deck2 of
-        PreSave deck ->
-            encode_ deck.decklist deck.meta.name
+        PreSave { decklist, meta } ->
+            encode_ decklist meta.name meta.gameMode
 
-        PostSave deck ->
-            encode_ deck.decklist deck.meta.name
+        PostSave { decklist, meta } ->
+            encode_ decklist meta.name meta.gameMode
 
 
 encodeName : Name -> Encode.Value
@@ -315,11 +317,12 @@ decoder collection =
 
 metaDecoder : Decoder MetaPostSave
 metaDecoder =
-    Decode.map4 MetaPostSave
+    Decode.map5 MetaPostSave
         (metaNameDecoder "name")
         (Decode.field "id" Decode.string)
         (Decode.field "creatorId" Decode.string)
         (Decode.maybe (Decode.field "creatorDisplayName" Decode.string))
+        (Decode.field "gameMode" GameMode.decode)
 
 
 metaNameDecoder : String -> Decoder Name

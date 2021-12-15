@@ -4,6 +4,7 @@ import API.Decklist
 import Auth
 import Browser.Navigation as Navigation exposing (Key)
 import Cards
+import Data.GameMode exposing (GameMode)
 import Deck exposing (DeckPostSave, Name(..))
 import Effect exposing (Effect)
 import Gen.Params.Deck.Edit.Id_ exposing (Params)
@@ -66,6 +67,7 @@ type Msg
     | StartRenameDeck
     | DeckNameChanged String
     | SaveNewDeckName
+    | SetGameMode GameMode
     | FetchedDecklist API.Decklist.ResultRead
 
 
@@ -166,6 +168,16 @@ update user msg modelx =
                 _ ->
                     ( Editing key model, Effect.none )
 
+        ( Editing key model, SetGameMode gameMode ) ->
+            let
+                oldDeck =
+                    model.deck
+
+                oldMeta =
+                    oldDeck.meta
+            in
+            ( Editing key { model | deck = { oldDeck | meta = { oldMeta | gameMode = gameMode } } }, Effect.none )
+
 
 decklistActions : UI.Decklist.Actions Msg
 decklistActions =
@@ -173,6 +185,7 @@ decklistActions =
     , startNameChange = StartRenameDeck
     , changeName = DeckNameChanged
     , endNameChange = SaveNewDeckName
+    , setGameMode = SetGameMode
     }
 
 
@@ -186,9 +199,9 @@ view shared model =
             UI.Layout.Template.view FromShared
                 shared
                 [ UI.Layout.Deck.writeMode
-                    { actions = [ Lazy.lazy UI.ActionBar.view actions ]
-                    , decklist = [ UI.Decklist.viewEdit decklistActions data.deck ]
-                    , selectors = [ DeckbuildSelections.view shared.collection FromBuilderOptions data.builderOptions data.deck.decklist ]
+                    { actions = Lazy.lazy UI.ActionBar.view actions
+                    , decklist = Lazy.lazy2 UI.Decklist.viewEdit decklistActions data.deck
+                    , selectors = DeckbuildSelections.view shared.collection FromBuilderOptions data.builderOptions data.deck.decklist
                     }
                 ]
 

@@ -6,7 +6,7 @@ import Deck exposing (DeckPostSave)
 import Effect exposing (Effect)
 import Gen.Params.Deck.View.Id_ exposing (Params)
 import Gen.Route as Route
-import Html exposing (Html, text)
+import Html exposing (Html, div, text)
 import Page
 import Request
 import Shared
@@ -100,20 +100,25 @@ viewDecklist shared deck =
         shared
         [ UI.Layout.Deck.readMode
             { actions = viewActions shared.user deck.meta
-            , decklist = [ UI.Decklist.viewDeck deck ]
+            , decklist = UI.Decklist.viewRead deck
             }
         ]
 
 
-viewActions : Maybe Shared.User -> Deck.MetaPostSave -> List (Html Msg)
+noView : Html Msg
+noView =
+    div [] []
+
+
+viewActions : Maybe Shared.User -> Deck.MetaPostSave -> Html Msg
 viewActions maybeUser meta =
     case maybeUser of
         Nothing ->
-            []
+            noView
 
         Just user ->
             if user.id == meta.ownerId then
-                [ UI.ActionBar.view
+                UI.ActionBar.view
                     [ { icon = Icon.Edit
                       , name = "Edit"
                       , action = Nothing
@@ -125,7 +130,6 @@ viewActions maybeUser meta =
                       , href = Nothing
                       }
                     ]
-                ]
 
             else
-                []
+                noView

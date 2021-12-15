@@ -4,6 +4,7 @@ import API.Decklist
 import Auth
 import Browser.Navigation as Navigation exposing (Key)
 import Cards
+import Data.GameMode exposing (GameMode)
 import Deck exposing (DeckPreSave, Name(..))
 import Effect exposing (Effect)
 import Gen.Params.Deck.New exposing (Params)
@@ -62,6 +63,7 @@ type Msg
     | SavedDecklist API.Decklist.ResultCreate
     | StartRenameDeck
     | DeckNameChanged String
+    | SetGameMode GameMode
     | SaveNewDeckName
 
 
@@ -106,17 +108,23 @@ update user msg model =
             let
                 oldDeck =
                     model.deck
+
+                oldMeta =
+                    oldDeck.meta
             in
-            ( { model | deck = { oldDeck | meta = { name = BeingNamed "" } } }, Effect.none )
+            ( { model | deck = { oldDeck | meta = { oldMeta | name = BeingNamed "" } } }, Effect.none )
 
         DeckNameChanged newName ->
             let
                 oldDeck =
                     model.deck
+
+                oldMeta =
+                    oldDeck.meta
             in
             case model.deck.meta.name of
                 BeingNamed _ ->
-                    ( { model | deck = { oldDeck | meta = { name = BeingNamed newName } } }, Effect.none )
+                    ( { model | deck = { oldDeck | meta = { oldMeta | name = BeingNamed newName } } }, Effect.none )
 
                 _ ->
                     ( model, Effect.none )
@@ -125,18 +133,31 @@ update user msg model =
             let
                 oldDeck =
                     model.deck
+
+                oldMeta =
+                    oldDeck.meta
             in
             case model.deck.meta.name of
                 BeingNamed newName ->
                     case String.trim newName of
                         "" ->
-                            ( { model | deck = { oldDeck | meta = { name = Unnamed } } }, Effect.none )
+                            ( { model | deck = { oldDeck | meta = { oldMeta | name = Unnamed } } }, Effect.none )
 
                         trimmedName ->
-                            ( { model | deck = { oldDeck | meta = { name = Named trimmedName } } }, Effect.none )
+                            ( { model | deck = { oldDeck | meta = { oldMeta | name = Named trimmedName } } }, Effect.none )
 
                 _ ->
                     ( model, Effect.none )
+
+        SetGameMode gameMode ->
+            let
+                oldDeck =
+                    model.deck
+
+                oldMeta =
+                    oldDeck.meta
+            in
+            ( { model | deck = { oldDeck | meta = { oldMeta | gameMode = gameMode } } }, Effect.none )
 
 
 decklistActions : UI.Decklist.Actions Msg
@@ -145,6 +166,7 @@ decklistActions =
     , startNameChange = StartRenameDeck
     , changeName = DeckNameChanged
     , endNameChange = SaveNewDeckName
+    , setGameMode = SetGameMode
     }
 
 
@@ -153,11 +175,9 @@ view shared model =
     UI.Layout.Template.view FromShared
         shared
         [ UI.Layout.Deck.writeMode
-            { actions = [ Lazy.lazy UI.ActionBar.view actions ]
-            , decklist = [ UI.Decklist.viewCreate decklistActions model.deck ]
-            , selectors =
-                [ DeckbuildSelections.view shared.collection FromBuilderOptions model.builderOptions model.deck.decklist
-                ]
+            { actions = Lazy.lazy UI.ActionBar.view actions
+            , decklist = Lazy.lazy2 UI.Decklist.viewCreate decklistActions model.deck
+            , selectors = DeckbuildSelections.view shared.collection FromBuilderOptions model.builderOptions model.deck.decklist
             }
         ]
 
