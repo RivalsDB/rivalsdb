@@ -1,25 +1,35 @@
 import { FastifyPluginAsync } from "fastify";
 import {
   createDecklist,
+  GAME_MODE,
+  makeDecklistId,
   updateDecklist,
   fetchDecklists,
   deleteDecklist,
   createUserIfNeeded,
   fetchDecklist,
+  gameModeFromString,
   fetchDecklistsForUser,
 } from "../db/index.js";
 import auth from "./auth.js";
 
 interface DeckInput {
-  name: string;
   agenda: string;
   haven: string;
   factionDeck: { [id: string]: boolean };
   libraryDeck: { [id: string]: number };
+  gameMode: "both" | "headToHead" | "multiplayer";
+  name?: string;
 }
-interface DeckOutput extends DeckInput {
+interface DeckOutput {
   id: string;
   creatorId: string;
+  name?: string;
+  agenda: string;
+  haven: string;
+  gameMode: "both" | "headToHead" | "multiplayer";
+  factionDeck: { [id: string]: boolean };
+  libraryDeck: { [id: string]: number };
 }
 
 function formatFactionDeck(faction: string[], leaderId: string) {
@@ -29,6 +39,12 @@ function formatFactionDeck(faction: string[], leaderId: string) {
   }, {});
 }
 
+function findLeader(factionDeck: Record<string, boolean>): string | null {
+  return (
+    Object.entries(factionDeck).find(([, isLeader]) => isLeader)?.[0] ?? null
+  );
+}
+
 const privateRoutes: FastifyPluginAsync = async (fastify, options) => {
   fastify.register(auth);
 
@@ -36,13 +52,17 @@ const privateRoutes: FastifyPluginAsync = async (fastify, options) => {
     schema: {
       body: {
         type: "object",
-        required: ["agenda", "factionDeck", "haven", "libraryDeck", "name"],
+        required: ["agenda", "factionDeck", "haven", "libraryDeck", "gameMode"],
         properties: {
           name: { type: "string" },
           agenda: { type: "string" },
           haven: { type: "string" },
           factionDeck: { type: "object" },
           libraryDeck: { type: "object" },
+          gameMode: {
+            type: "string",
+            enum: ["both", "headToHead", "multiplayer"],
+          },
         },
       },
       response: {
@@ -68,32 +88,41 @@ const privateRoutes: FastifyPluginAsync = async (fastify, options) => {
     },
 
     async handler(req, reply): Promise<DeckOutput> {
-      const leader = Object.entries(req.body.factionDeck).find(
-        ([, isLeader]) => isLeader
-      )?.[0];
-
-      if (!leader) {
+      const leader = findLeader(req.body.factionDeck);
+      if (leader === null) {
         reply.code(400);
         return reply.send("Invalid leader");
       }
 
-      await createUserIfNeeded(req.user.id, req.user.email);
+      const [deckId] = await Promise.all([
+        makeDecklistId(),
+        createUserIfNeeded(req.user.id, req.user.email),
+      ]);
 
-      const entry = await createDecklist(
-        req.user.id,
-        {
-          agenda: req.body.agenda,
-          haven: req.body.haven,
-          libraryDeck: req.body.libraryDeck,
-          factionDeck: Object.keys(req.body.factionDeck),
-          leader,
-        },
-        req.body.name
-      );
+      const decklist = {
+        agenda: req.body.agenda,
+        haven: req.body.haven,
+        libraryDeck: req.body.libraryDeck,
+        factionDeck: Object.keys(req.body.factionDeck),
+        leader,
+      };
+      const meta = {
+        creatorId: req.user.id,
+        gameMode: gameModeFromString(req.body.gameMode),
+        name: req.body.name,
+        id: deckId,
+      };
+      const entry = await createDecklist(decklist, meta);
 
       reply.code(201);
       return {
-        ...entry,
+        id: entry.id,
+        creatorId: entry.creatorId,
+        name: entry.name,
+        agenda: entry.agenda,
+        haven: entry.haven,
+        libraryDeck: entry.libraryDeck,
+        gameMode: entry.gameMode,
         factionDeck: formatFactionDeck(entry.factionDeck, entry.leader),
       };
     },
@@ -104,7 +133,13 @@ const privateRoutes: FastifyPluginAsync = async (fastify, options) => {
       schema: {
         body: {
           type: "object",
-          required: ["agenda", "factionDeck", "haven", "libraryDeck", "name"],
+          required: [
+            "agenda",
+            "factionDeck",
+            "haven",
+            "libraryDeck",
+            "gameMode",
+          ],
           properties: {
             name: { type: "string" },
             agenda: { type: "string" },
@@ -112,41 +147,42 @@ const privateRoutes: FastifyPluginAsync = async (fastify, options) => {
             factionDeck: { type: "object" },
             libraryDeck: { type: "object" },
           },
+          gameMode: {
+            type: "string",
+            enum: ["both", "headToHead", "multiplayer"],
+          },
         },
       },
 
       async handler(req, reply): Promise<void> {
-        const leader = Object.entries(req.body.factionDeck).find(
-          ([, isLeader]) => isLeader
-        )?.[0];
-
-        if (!leader) {
+        const leader = findLeader(req.body.factionDeck);
+        if (leader == null) {
           reply.code(400);
           return reply.send("Invalid leader");
         }
 
-        const decklist = await fetchDecklist(req.params.deckId);
-        if (decklist == null) {
+        const oldDecklist = await fetchDecklist(req.params.deckId);
+        if (oldDecklist == null) {
           reply.code(404);
           return reply.send();
-        }
-
-        if (decklist.creatorId !== req.user.id) {
+        } else if (oldDecklist.creatorId !== req.user.id) {
           reply.code(403);
           return reply.send();
         }
 
-        await updateDecklist(
-          decklist.id,
-          {
-            agenda: req.body.agenda,
-            haven: req.body.haven,
-            libraryDeck: req.body.libraryDeck,
-            factionDeck: Object.keys(req.body.factionDeck),
-            leader,
-          },
-          req.body.name
-        );
+        const newDecklist = {
+          agenda: req.body.agenda,
+          haven: req.body.haven,
+          libraryDeck: req.body.libraryDeck,
+          factionDeck: Object.keys(req.body.factionDeck),
+          leader,
+        };
+        const meta = {
+          name: req.body.name,
+          gameMode: gameModeFromString(req.body.gameMode),
+        };
+
+        await updateDecklist(oldDecklist.id, newDecklist, meta);
 
         reply.code(204);
       },
@@ -197,6 +233,10 @@ const publicRoutes: FastifyPluginAsync = async (fastify, options) => {
               id: { type: "string" },
               creatorId: { type: "string" },
               creatorDisplayName: { type: "string" },
+              gameMode: {
+                type: "string",
+                enum: ["both", "headToHead", "multiplayer"],
+              },
             },
           },
         },
@@ -234,6 +274,10 @@ const publicRoutes: FastifyPluginAsync = async (fastify, options) => {
             id: { type: "string" },
             creatorId: { type: "string" },
             creatorDisplayName: { type: "string" },
+            gameMode: {
+              type: "string",
+              enum: ["both", "headToHead", "multiplayer"],
+            },
           },
         },
       },
