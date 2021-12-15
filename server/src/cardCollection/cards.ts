@@ -3043,6 +3043,7 @@ export const cards: Array<Card> = [
   } as Library,
   {
     types: ["attack", "reaction"],
+    clan: "nosferatu",
     attackType: ["physical"],
     reactionType: ["physical", "mental"],
     name: "Cornered Rat",
