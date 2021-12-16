@@ -1,6 +1,7 @@
 module UI.DecklistsIndex exposing (view)
 
 import Cards
+import Data.GameMode as GameMode
 import Deck exposing (DeckPostSave)
 import Gen.Route as Route
 import Html exposing (Html, a, div, li, p, span, text, ul)
@@ -22,6 +23,7 @@ viewDecklistEntry deck =
             [ div [ class "deckindexcard__illustration" ] [ illustrationImage deck.decklist ]
             , div [ class "deckindexcard__content" ]
                 [ p [ class "deckindexcard__name" ] [ text <| Deck.displayName deck.meta.name ]
+                , p [ class "deckindexcard__game-mode" ] [ text <| GameMode.shortName deck.meta.gameMode ]
                 , p [ class "deckindexcard__byline" ] [ text "by ", text <| Deck.ownerDisplayName deck.meta ]
                 , p [ class "deckindexcard__clans" ]
                     (Deck.clansInFaction deck.decklist.faction

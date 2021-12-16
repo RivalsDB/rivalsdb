@@ -1,4 +1,4 @@
-module Data.GameMode exposing (GameMode(..), allows, decode, default, encode, fromString, name, toString)
+module Data.GameMode exposing (GameMode(..), allows, decode, default, encode, fromString, longName, shortName, toString)
 
 import Enum exposing (Enum)
 import Json.Decode exposing (Decoder)
@@ -35,8 +35,8 @@ default =
     Both
 
 
-name : GameMode -> String
-name mode =
+longName : GameMode -> String
+longName mode =
     case mode of
         HeadToHead ->
             "1v1"
@@ -46,6 +46,19 @@ name mode =
 
         Both ->
             "1v1 & Multiplayer"
+
+
+shortName : GameMode -> String
+shortName mode =
+    case mode of
+        HeadToHead ->
+            "1v1"
+
+        Multiplayer ->
+            "multi"
+
+        Both ->
+            "any"
 
 
 allows : GameMode -> GameMode -> Bool

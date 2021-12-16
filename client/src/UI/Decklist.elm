@@ -67,7 +67,7 @@ viewDeckTitleReadOnly meta =
         , div [ class "decklist__meta" ]
             [ UI.Text.subheader [ text <| "by " ++ Deck.ownerDisplayName meta ]
             , p [ class "decklist__game-mode" ]
-                [ text <| "(" ++ GameMode.name meta.gameMode ++ ")"
+                [ text <| "(" ++ GameMode.longName meta.gameMode ++ ")"
                 ]
             ]
         ]
@@ -113,7 +113,7 @@ viewDeckTitleEditable { startNameChange, changeName, endNameChange, setGameMode 
                                     [ value <| GameMode.toString mode
                                     , selected <| mode == gameMode
                                     ]
-                                    [ text <| GameMode.name mode ]
+                                    [ text <| GameMode.longName mode ]
                             )
                     )
                 ]

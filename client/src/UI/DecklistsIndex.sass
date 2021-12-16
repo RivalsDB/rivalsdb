@@ -20,16 +20,31 @@
     transform: translate3d(-50%,15%,0) scale(1.4,1.4)
     z-index: $z-deckindex-illustration
   &__content
+    $margin: 6px
     z-index: $z-deckindex-content
     position: absolute
-    top: 6px
-    left: 6px
-    right: 6px
-    bottom: 6px
+    top: $margin
+    left: $margin
+    right: $margin
+    bottom: $margin
   &__name
     font-size: 18px
     line-height: 24px
     color: #FFF
+  &__game-mode
+    $size: 36px
+    position: absolute
+    top: 0
+    right: 0
+    height: $size
+    width: $size
+    text-align: center
+    line-height: $size
+    border-radius: 100%
+    background: var(--color-stamp-bg)
+    font-size: 13px
+    color: var(--color-stamp-text)
+
   &__byline
     font-size: 15px
     line-height: 24px
