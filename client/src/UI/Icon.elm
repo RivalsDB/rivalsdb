@@ -9,6 +9,7 @@ module UI.Icon exposing
 
 import Cards
 import Data.Clan as Clan exposing (Clan)
+import Data.Discipline as Discipline exposing (Discipline)
 import Html exposing (Attribute, Html, span, text)
 import Html.Attributes exposing (class, title)
 
@@ -24,22 +25,16 @@ type IconImage
     | Agenda
     | AgendaCard
     | Alchemy
-    | Animalism
     | Attack
-    | Auspex
     | Blood
     | BloodPotencReq
     | BloodPotency
-    | BloodSorcery
     | Brujah
-    | Celerity
     | Conspiracy
     | Damage
     | Delete
-    | Dominate
     | Edit
     | Faction
-    | Fortitude
     | Gangrel
     | Haven
     | Influence
@@ -50,12 +45,8 @@ type IconImage
     | Mental
     | Menu
     | Nosferatu
-    | Obfuscate
     | Ongoing
     | Physical
-    | Potence
-    | Presence
-    | Protean
     | Ranged
     | Reaction
     | Ritual
@@ -66,12 +57,12 @@ type IconImage
     | Special
     | Kindred
     | ThinBlood
-    | ThinBloodAlchemy
     | Title
     | Toreador
     | Tremere
     | UnhostedAction
     | Ventrue
+    | Discipline Discipline
 
 
 type IconStyle
@@ -118,41 +109,9 @@ clan style c =
             icon ( Ventrue, style )
 
 
-discipline : Cards.Discipline -> Html msg
+discipline : Discipline -> Html msg
 discipline d =
-    case d of
-        Cards.Animalism ->
-            icon ( Animalism, Standard )
-
-        Cards.Auspex ->
-            icon ( Auspex, Standard )
-
-        Cards.BloodSorcery ->
-            icon ( BloodSorcery, Standard )
-
-        Cards.Celerity ->
-            icon ( Celerity, Standard )
-
-        Cards.Dominate ->
-            icon ( Dominate, Standard )
-
-        Cards.Fortitude ->
-            icon ( Fortitude, Standard )
-
-        Cards.Obfuscate ->
-            icon ( Obfuscate, Standard )
-
-        Cards.Potence ->
-            icon ( Potence, Standard )
-
-        Cards.Presence ->
-            icon ( Presence, Standard )
-
-        Cards.Protean ->
-            icon ( Protean, Standard )
-
-        Cards.ThinBloodAlchemy ->
-            icon ( ThinBloodAlchemy, Standard )
+    icon ( Discipline d, Standard )
 
 
 attackType : Cards.AttackType -> Html msg
@@ -202,6 +161,39 @@ styleClass style =
 imageOpts : IconImage -> ( Attribute msg, String )
 imageOpts image =
     case image of
+        Discipline Discipline.Animalism ->
+            ( class "ui-icon_animalism", "Animalism" )
+
+        Discipline Discipline.Auspex ->
+            ( class "ui-icon_auspex", "Auspex" )
+
+        Discipline Discipline.BloodSorcery ->
+            ( class "ui-icon_blood_sorcery", "Blood Sorcery" )
+
+        Discipline Discipline.Celerity ->
+            ( class "ui-icon_celerity", "Celerity" )
+
+        Discipline Discipline.Dominate ->
+            ( class "ui-icon_dominate", "Dominate" )
+
+        Discipline Discipline.Fortitude ->
+            ( class "ui-icon_fortitude", "Fortitude" )
+
+        Discipline Discipline.Obfuscate ->
+            ( class "ui-icon_obsfuscate", "Obfuscate" )
+
+        Discipline Discipline.Potence ->
+            ( class "ui-icon_potence", "Potence" )
+
+        Discipline Discipline.Presence ->
+            ( class "ui-icon_presence", "Presence" )
+
+        Discipline Discipline.Protean ->
+            ( class "ui-icon_protean", "Protean" )
+
+        Discipline Discipline.ThinBloodAlchemy ->
+            ( class "ui-icon_thin_blood_alchemy", "Thin-blood Alchemy" )
+
         Action ->
             ( class "ui-icon_action", "Action" )
 
@@ -214,14 +206,8 @@ imageOpts image =
         Alchemy ->
             ( class "ui-icon_alchemy", "Alchemy" )
 
-        Animalism ->
-            ( class "ui-icon_animalism", "Animalism" )
-
         Attack ->
             ( class "ui-icon_attack", "Attack" )
-
-        Auspex ->
-            ( class "ui-icon_auspex", "Auspex" )
 
         Blood ->
             ( class "ui-icon_blood", "Blood" )
@@ -232,14 +218,8 @@ imageOpts image =
         BloodPotency ->
             ( class "ui-icon_bloodpotency", "Blood Potency" )
 
-        BloodSorcery ->
-            ( class "ui-icon_blood_sorcery", "Blood Sorcery" )
-
         Brujah ->
             ( class "ui-icon_brujah", "Brujah" )
-
-        Celerity ->
-            ( class "ui-icon_celerity", "Celerity" )
 
         Conspiracy ->
             ( class "ui-icon_conspiracy", "Conspiracy" )
@@ -250,17 +230,11 @@ imageOpts image =
         Delete ->
             ( class "ui-icon_delete", "Delete" )
 
-        Dominate ->
-            ( class "ui-icon_dominate", "Dominate" )
-
         Edit ->
             ( class "ui-icon_edit", "Edit" )
 
         Faction ->
             ( class "ui-icon_faction", "Faction" )
-
-        Fortitude ->
-            ( class "ui-icon_fortitude", "Fortitude" )
 
         Gangrel ->
             ( class "ui-icon_gangrel", "Gangrel" )
@@ -295,23 +269,11 @@ imageOpts image =
         Nosferatu ->
             ( class "ui-icon_nosferatu", "Nosferatu" )
 
-        Obfuscate ->
-            ( class "ui-icon_obsfuscate", "Obfuscate" )
-
         Ongoing ->
             ( class "ui-icon_ongoing", "Ongoing" )
 
         Physical ->
             ( class "ui-icon_physical", "Physical" )
-
-        Potence ->
-            ( class "ui-icon_potence", "Potence" )
-
-        Presence ->
-            ( class "ui-icon_presence", "Presence" )
-
-        Protean ->
-            ( class "ui-icon_protean", "Protean" )
 
         Ranged ->
             ( class "ui-icon_ranged", "Ranged" )
@@ -339,9 +301,6 @@ imageOpts image =
 
         ThinBlood ->
             ( class "ui-icon_thinblood", "Thin Blood" )
-
-        ThinBloodAlchemy ->
-            ( class "ui-icon_thin_blood_alchemy", "Thin-blood Alchemy" )
 
         Title ->
             ( class "ui-icon_title", "Title" )

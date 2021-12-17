@@ -2,6 +2,7 @@ module UI.FilterSelection exposing (Model, Msg(..), attackTypes, clans, discipli
 
 import Cards exposing (Card)
 import Data.Clan as Clan exposing (Clan)
+import Data.Discipline as Discipline exposing (Discipline)
 import Html exposing (Html, div, input, label)
 import Html.Attributes exposing (class, classList, type_)
 import Html.Events exposing (onCheck)
@@ -70,21 +71,22 @@ clans =
         ]
 
 
-disciplines : Model Cards.Discipline msg
+disciplines : Model Discipline msg
 disciplines =
-    List.map modelHelper
-        [ ( Cards.Animalism, Icon.Animalism )
-        , ( Cards.Auspex, Icon.Auspex )
-        , ( Cards.Celerity, Icon.Celerity )
-        , ( Cards.Dominate, Icon.Dominate )
-        , ( Cards.Fortitude, Icon.Fortitude )
-        , ( Cards.Obfuscate, Icon.Obfuscate )
-        , ( Cards.Potence, Icon.Potence )
-        , ( Cards.Presence, Icon.Presence )
-        , ( Cards.Protean, Icon.Protean )
-        , ( Cards.BloodSorcery, Icon.BloodSorcery )
-        , ( Cards.ThinBloodAlchemy, Icon.ThinBloodAlchemy )
-        ]
+    [ Discipline.Animalism
+    , Discipline.Auspex
+    , Discipline.Celerity
+    , Discipline.Dominate
+    , Discipline.Fortitude
+    , Discipline.Obfuscate
+    , Discipline.Potence
+    , Discipline.Presence
+    , Discipline.Protean
+    , Discipline.BloodSorcery
+    , Discipline.ThinBloodAlchemy
+    ]
+        |> List.map (\d -> ( d, Icon.Discipline d ))
+        |> List.map modelHelper
 
 
 modelHelper : ( trait, Icon.IconImage ) -> ( trait, ( Html msg, Bool ) )

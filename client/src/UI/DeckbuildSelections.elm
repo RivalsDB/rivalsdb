@@ -2,6 +2,7 @@ module UI.DeckbuildSelections exposing (Model, Msg(..), init, update, view)
 
 import Cards exposing (Card)
 import Data.Clan exposing (Clan)
+import Data.Discipline exposing (Discipline)
 import Deck exposing (Decklist)
 import Dict
 import Html exposing (Html, div, h2, input, label, li, section, span, text, ul)
@@ -23,7 +24,7 @@ type alias Model msg =
     , secondaryFilters : UI.FilterSelection.Model Cards.Trait msg
     , attackTypeFilters : UI.FilterSelection.Model Cards.AttackType msg
     , clansFilters : UI.FilterSelection.Model Clan msg
-    , disciplineFilters : UI.FilterSelection.Model Cards.Discipline msg
+    , disciplineFilters : UI.FilterSelection.Model Discipline msg
     , textFilter : Maybe String
     , showAllFilters : Bool
     , showCollectionImages : Bool
@@ -49,7 +50,7 @@ type Msg
     | ClearFilters
     | FromAttackTypesFilter (UI.FilterSelection.Msg Cards.AttackType)
     | FromClansFilter (UI.FilterSelection.Msg Clan)
-    | FromDisciplinesFilter (UI.FilterSelection.Msg Cards.Discipline)
+    | FromDisciplinesFilter (UI.FilterSelection.Msg Discipline)
     | FromPrimaryFilter (UI.FilterSelection.Msg Cards.Trait)
     | FromSecondaryFilter (UI.FilterSelection.Msg Cards.Trait)
     | FromStacksFilter (UI.FilterSelection.Msg Cards.CardStack)

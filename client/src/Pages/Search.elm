@@ -2,6 +2,7 @@ module Pages.Search exposing (Model, Msg, page)
 
 import Cards exposing (Card)
 import Data.Clan exposing (Clan)
+import Data.Discipline exposing (Discipline)
 import Dict
 import Effect exposing (Effect)
 import Fuzzy
@@ -38,7 +39,7 @@ type alias Model =
     , secondaryFilters : UI.FilterSelection.Model Cards.Trait Msg
     , attackTypeFilters : UI.FilterSelection.Model Cards.AttackType Msg
     , clansFilters : UI.FilterSelection.Model Clan Msg
-    , disciplineFilters : UI.FilterSelection.Model Cards.Discipline Msg
+    , disciplineFilters : UI.FilterSelection.Model Discipline Msg
     , textFilter : Maybe String
     }
 
@@ -89,7 +90,7 @@ type Msg
     | FromSecondaryFilter (UI.FilterSelection.Msg Cards.Trait)
     | FromAttackTypesFilter (UI.FilterSelection.Msg Cards.AttackType)
     | FromClansFilter (UI.FilterSelection.Msg Clan)
-    | FromDisciplinesFilter (UI.FilterSelection.Msg Cards.Discipline)
+    | FromDisciplinesFilter (UI.FilterSelection.Msg Discipline)
     | TextFilterChanged String
 
 

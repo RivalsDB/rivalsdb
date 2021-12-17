@@ -7,7 +7,6 @@ module Cards exposing
     , Card(..)
     , CardStack(..)
     , Damage
-    , Discipline(..)
     , Faction
     , Haven
     , Id
@@ -31,6 +30,7 @@ module Cards exposing
     )
 
 import Data.Clan as Clan exposing (Clan)
+import Data.Discipline as Discipline exposing (Discipline)
 import Dict
 import Enum exposing (Enum)
 import Json.Decode as Decode exposing (Decoder, int, list, map, string)
@@ -92,37 +92,6 @@ type alias Damage =
 
 type alias Shield =
     Int
-
-
-type Discipline
-    = Animalism
-    | Auspex
-    | BloodSorcery
-    | Celerity
-    | Dominate
-    | Fortitude
-    | Obfuscate
-    | Potence
-    | Presence
-    | Protean
-    | ThinBloodAlchemy
-
-
-disciplineEnum : Enum Discipline
-disciplineEnum =
-    Enum.create
-        [ ( "animalism", Animalism )
-        , ( "auspex", Auspex )
-        , ( "celerity", Celerity )
-        , ( "dominate", Dominate )
-        , ( "fortitude", Fortitude )
-        , ( "obfuscate", Obfuscate )
-        , ( "potence", Potence )
-        , ( "presence", Presence )
-        , ( "protean", Protean )
-        , ( "blood sorcery", BloodSorcery )
-        , ( "thin-blood alchemy", ThinBloodAlchemy )
-        ]
 
 
 type Trait
@@ -477,7 +446,7 @@ factionDecoder =
         |> decodePhysical
         |> decodeSocial
         |> decodeMental
-        |> decodeDisciplines
+        |> required "disciplines" (list Discipline.decoder)
         |> map (\faction -> ( faction.id, FactionCard faction ))
 
 
@@ -487,7 +456,7 @@ libraryDecoder =
         |> decodeId
         |> decodeName
         |> decodeText
-        |> decodeOptionalDisciplines
+        |> optional "disciplines" (list Discipline.decoder) []
         |> decodeIllustrator
         |> decodeImage
         |> decodeSet
@@ -572,16 +541,6 @@ decodeSocial =
 decodeMental : Decoder (Int -> b) -> Decoder b
 decodeMental =
     required "attributeMental" int
-
-
-decodeDisciplines : Decoder (List Discipline -> b) -> Decoder b
-decodeDisciplines =
-    required "disciplines" (list disciplineEnum.decoder)
-
-
-decodeOptionalDisciplines : Decoder (List Discipline -> b) -> Decoder b
-decodeOptionalDisciplines =
-    optional "disciplines" (list disciplineEnum.decoder) []
 
 
 decodeAttackType : Decoder (List AttackType -> b) -> Decoder b
