@@ -1,7 +1,7 @@
 module UI.Decklist exposing (Actions, viewCreate, viewEdit, viewRead)
 
 import Cards
-import Clan
+import Data.Clan as Clan
 import Data.GameMode as GameMode exposing (GameMode)
 import Deck exposing (DeckPostSave, DeckPreSave, Name(..), isLeader)
 import Dict
@@ -385,7 +385,7 @@ factionSort ( a, aLeader ) ( b, bLeader ) =
         _ ->
             case compare (negate a.bloodPotency) (negate b.bloodPotency) of
                 EQ ->
-                    case Clan.compare_ a.clan b.clan of
+                    case compare (Clan.comparable a.clan) (Clan.comparable b.clan) of
                         EQ ->
                             compare a.name b.name
 

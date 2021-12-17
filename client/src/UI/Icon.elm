@@ -8,7 +8,7 @@ module UI.Icon exposing
     )
 
 import Cards
-import Clan exposing (Clan)
+import Data.Clan as Clan exposing (Clan)
 import Html exposing (Attribute, Html, span, text)
 import Html.Attributes exposing (class, title)
 
@@ -116,9 +116,6 @@ clan style c =
 
         Clan.Ventrue ->
             icon ( Ventrue, style )
-
-        Clan.All ->
-            icon ( Kindred, style )
 
 
 discipline : Cards.Discipline -> Html msg

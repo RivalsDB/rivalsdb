@@ -23,7 +23,7 @@ module Deck exposing
     )
 
 import Cards
-import Clan exposing (Clan)
+import Data.Clan exposing (Clan)
 import Data.GameMode as GameMode exposing (GameMode)
 import Dict exposing (Dict)
 import Json.Decode as Decode exposing (Decoder)

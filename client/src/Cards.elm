@@ -30,7 +30,7 @@ module Cards exposing
     , traits
     )
 
-import Clan exposing (Clan)
+import Data.Clan as Clan exposing (Clan)
 import Dict
 import Enum exposing (Enum)
 import Json.Decode as Decode exposing (Decoder, int, list, map, string)
@@ -324,7 +324,7 @@ clanRequirement : Card -> List Clan
 clanRequirement card =
     case card of
         FactionCard c ->
-            List.singleton c.clan
+            [ c.clan ]
 
         LibraryCard c ->
             c.clan
@@ -332,7 +332,7 @@ clanRequirement card =
                 |> Maybe.withDefault []
 
         _ ->
-            List.map Tuple.second Clan.enum.list
+            Clan.all
 
 
 discipline : Card -> List Discipline
@@ -472,7 +472,7 @@ factionDecoder =
         |> decodeIllustrator
         |> decodeImage
         |> decodeSet
-        |> decodeClan
+        |> required "clan" Clan.decoder
         |> decodeBloodPotency
         |> decodePhysical
         |> decodeSocial
@@ -491,7 +491,7 @@ libraryDecoder =
         |> decodeIllustrator
         |> decodeImage
         |> decodeSet
-        |> decodeMaybeClan
+        |> optional "clan" (Decode.map Just Clan.decoder) Nothing
         |> decodeBloodPotencyRequirement
         |> decodeDamage
         |> decodeShields
@@ -592,16 +592,6 @@ decodeAttackType =
 decodeTraits : Decoder (List Trait -> b) -> Decoder b
 decodeTraits =
     required "types" (list traitEnum.decoder)
-
-
-decodeClan : Decoder (Clan -> b) -> Decoder b
-decodeClan =
-    required "clan" Clan.enum.decoder
-
-
-decodeMaybeClan : Decoder (Maybe Clan -> b) -> Decoder b
-decodeMaybeClan =
-    optional "clan" (Decode.map Just Clan.enum.decoder) Nothing
 
 
 decodeSet : Decoder (Pack -> b) -> Decoder b

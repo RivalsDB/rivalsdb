@@ -1,7 +1,7 @@
 module UI.FilterSelection exposing (Model, Msg(..), attackTypes, clans, disciplines, isAllowed, primaryTraits, secondaryTraits, stacks, update, view)
 
 import Cards exposing (Card)
-import Clan exposing (Clan)
+import Data.Clan as Clan exposing (Clan)
 import Html exposing (Html, div, input, label)
 import Html.Attributes exposing (class, classList, type_)
 import Html.Events exposing (onCheck)

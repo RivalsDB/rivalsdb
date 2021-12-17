@@ -1,7 +1,7 @@
 module UI.DeckbuildSelections exposing (Model, Msg(..), init, update, view)
 
 import Cards exposing (Card)
-import Clan exposing (Clan)
+import Data.Clan exposing (Clan)
 import Deck exposing (Decklist)
 import Dict
 import Html exposing (Html, div, h2, input, label, li, section, span, text, ul)

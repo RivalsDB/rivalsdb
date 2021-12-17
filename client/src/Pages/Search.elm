@@ -1,7 +1,7 @@
 module Pages.Search exposing (Model, Msg, page)
 
 import Cards exposing (Card)
-import Clan exposing (Clan)
+import Data.Clan exposing (Clan)
 import Dict
 import Effect exposing (Effect)
 import Fuzzy
