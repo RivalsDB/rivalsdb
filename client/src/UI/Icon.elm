@@ -29,22 +29,18 @@ type IconImage
     | Blood
     | BloodPotencReq
     | BloodPotency
-    | Brujah
     | Conspiracy
     | Damage
     | Delete
     | Edit
     | Faction
-    | Gangrel
     | Haven
     | Influence
     | InfluenceModifier
     | Leader
     | Library
-    | Malkavian
     | Mental
     | Menu
-    | Nosferatu
     | Ongoing
     | Physical
     | Ranged
@@ -55,14 +51,10 @@ type IconImage
     | Shield
     | Social
     | Special
-    | Kindred
-    | ThinBlood
     | Title
-    | Toreador
-    | Tremere
     | UnhostedAction
-    | Ventrue
     | Discipline Discipline
+    | Clan Clan
 
 
 type IconStyle
@@ -81,37 +73,14 @@ type alias Icon =
 ------
 
 
-clan : IconStyle -> Clan -> Html msg
-clan style c =
-    case c of
-        Clan.Brujah ->
-            icon ( Brujah, style )
-
-        Clan.Gangrel ->
-            icon ( Gangrel, style )
-
-        Clan.Malkavian ->
-            icon ( Malkavian, style )
-
-        Clan.Nosferatu ->
-            icon ( Nosferatu, style )
-
-        Clan.ThinBlood ->
-            icon ( ThinBlood, style )
-
-        Clan.Toreador ->
-            icon ( Toreador, style )
-
-        Clan.Tremere ->
-            icon ( Tremere, style )
-
-        Clan.Ventrue ->
-            icon ( Ventrue, style )
-
-
 discipline : Discipline -> Html msg
 discipline d =
     icon ( Discipline d, Standard )
+
+
+clan : IconStyle -> Clan -> Html msg
+clan style c =
+    icon ( Clan c, style )
 
 
 attackType : Cards.AttackType -> Html msg
@@ -161,6 +130,30 @@ styleClass style =
 imageOpts : IconImage -> ( Attribute msg, String )
 imageOpts image =
     case image of
+        Clan Clan.Brujah ->
+            ( class "ui-icon_brujah", "Brujah" )
+
+        Clan Clan.Gangrel ->
+            ( class "ui-icon_gangrel", "Gangrel" )
+
+        Clan Clan.Malkavian ->
+            ( class "ui-icon_malkavian", "Malkavian" )
+
+        Clan Clan.Nosferatu ->
+            ( class "ui-icon_nosferatu", "Nosferatu" )
+
+        Clan Clan.ThinBlood ->
+            ( class "ui-icon_thinblood", "Thin Blood" )
+
+        Clan Clan.Toreador ->
+            ( class "ui-icon_toreador", "Toreador" )
+
+        Clan Clan.Tremere ->
+            ( class "ui-icon_tremere", "Tremere" )
+
+        Clan Clan.Ventrue ->
+            ( class "ui-icon_ventrue", "Ventrue" )
+
         Discipline Discipline.Animalism ->
             ( class "ui-icon_animalism", "Animalism" )
 
@@ -218,9 +211,6 @@ imageOpts image =
         BloodPotency ->
             ( class "ui-icon_bloodpotency", "Blood Potency" )
 
-        Brujah ->
-            ( class "ui-icon_brujah", "Brujah" )
-
         Conspiracy ->
             ( class "ui-icon_conspiracy", "Conspiracy" )
 
@@ -236,9 +226,6 @@ imageOpts image =
         Faction ->
             ( class "ui-icon_faction", "Faction" )
 
-        Gangrel ->
-            ( class "ui-icon_gangrel", "Gangrel" )
-
         Haven ->
             ( class "ui-icon_haven", "Haven" )
 
@@ -248,26 +235,17 @@ imageOpts image =
         InfluenceModifier ->
             ( class "ui-icon_influence_modifier", "Influence Modifier" )
 
-        Kindred ->
-            ( class "ui-icon_skull", "All Kindred" )
-
         Leader ->
             ( class "ui-icon_leader", "Leader" )
 
         Library ->
             ( class "ui-icon_library", "Library" )
 
-        Malkavian ->
-            ( class "ui-icon_malkavian", "Malkavian" )
-
         Mental ->
             ( class "ui-icon_mental", "Mental" )
 
         Menu ->
             ( class "ui-icon_menu", "Menu" )
-
-        Nosferatu ->
-            ( class "ui-icon_nosferatu", "Nosferatu" )
 
         Ongoing ->
             ( class "ui-icon_ongoing", "Ongoing" )
@@ -299,20 +277,8 @@ imageOpts image =
         Special ->
             ( class "ui-icon_special", "Special" )
 
-        ThinBlood ->
-            ( class "ui-icon_thinblood", "Thin Blood" )
-
         Title ->
             ( class "ui-icon_title", "Title" )
 
-        Toreador ->
-            ( class "ui-icon_toreador", "Toreador" )
-
-        Tremere ->
-            ( class "ui-icon_tremere", "Tremere" )
-
         UnhostedAction ->
             ( class "ui-icon_unhosted_action", "Unhosted Action" )
-
-        Ventrue ->
-            ( class "ui-icon_ventrue", "Ventrue" )

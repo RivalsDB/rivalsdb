@@ -59,16 +59,17 @@ attackTypes =
 
 clans : Model Clan msg
 clans =
-    List.map modelHelper
-        [ ( Clan.Brujah, Icon.Brujah )
-        , ( Clan.Gangrel, Icon.Gangrel )
-        , ( Clan.Malkavian, Icon.Malkavian )
-        , ( Clan.Nosferatu, Icon.Nosferatu )
-        , ( Clan.ThinBlood, Icon.ThinBlood )
-        , ( Clan.Toreador, Icon.Toreador )
-        , ( Clan.Tremere, Icon.Tremere )
-        , ( Clan.Ventrue, Icon.Ventrue )
-        ]
+    [ Clan.Brujah
+    , Clan.Gangrel
+    , Clan.Malkavian
+    , Clan.Nosferatu
+    , Clan.ThinBlood
+    , Clan.Toreador
+    , Clan.Tremere
+    , Clan.Ventrue
+    ]
+        |> List.map (\c -> ( c, Icon.Clan c ))
+        |> List.map modelHelper
 
 
 disciplines : Model Discipline msg
