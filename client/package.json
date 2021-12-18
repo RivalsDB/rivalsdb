@@ -14,16 +14,20 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@parcel/compressor-brotli": "^2.0.0",
-    "@parcel/compressor-gzip": "^2.0.0",
-    "@parcel/transformer-elm": "^2.0.0",
-    "@parcel/transformer-sass": "^2.0.0",
-    "concurrently": "^6.2.1",
+    "@parcel/compressor-brotli": "^2.0.1",
+    "@parcel/compressor-gzip": "^2.0.1",
+    "@parcel/transformer-elm": "^2.0.1",
+    "@parcel/transformer-inline-string": "^2.0.0",
+    "@parcel/transformer-sass": "^2.0.1",
     "elm": "^0.19.1-5",
     "elm-spa": "^6.0.4",
-    "magic-sdk": "^6.1.0",
-    "parcel": "^2.0.0",
-    "prettier": "^2.3.2"
+    "magic-sdk": "^7.0.0",
+    "parcel": "^2.0.1",
+    "prettier": "^2.5.1"
   },
-  "browserslist": "> 0.5%, last 2 versions, not dead"
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "devDependencies": {
+    "@parcel/optimizer-data-url": "^2.0.1",
+    "concurrently": "^6.5.0"
+  }
 }
