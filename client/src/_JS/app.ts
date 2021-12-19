@@ -1,5 +1,6 @@
 // @ts-ignore
 import mainElm from "../../src/Main.elm";
+import type { EventProps } from "./plausible";
 
 interface Options {
   flags: any;
@@ -19,6 +20,12 @@ export interface App {
 
     initiateLogin: {
       subscribe: (callback: (email: string) => void) => void;
+    };
+
+    trackEvent: {
+      subscribe: (
+        callback: (opts: { name: string; extra?: EventProps }) => void
+      ) => void;
     };
 
     signOut: {

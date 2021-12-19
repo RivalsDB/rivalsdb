@@ -97,7 +97,11 @@ update user msg modelx =
             ( Editing key { oldModel | deck = { oldDeck | decklist = Deck.setCard oldDeck.decklist change } }, Effect.none )
 
         ( Editing key oldModel, FromBuilderOptions subMsg ) ->
-            ( Editing key { oldModel | builderOptions = DeckbuildSelections.update subMsg oldModel.builderOptions }, Effect.none )
+            let
+                ( subModel, subEffect ) =
+                    DeckbuildSelections.update subMsg oldModel.builderOptions
+            in
+            ( Editing key { oldModel | builderOptions = subModel }, subEffect )
 
         ( Editing key model, ChoseLeader leader ) ->
             let

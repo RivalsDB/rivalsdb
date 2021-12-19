@@ -5,6 +5,7 @@ import Data.Clan exposing (Clan)
 import Data.Discipline exposing (Discipline)
 import Deck exposing (Decklist)
 import Dict
+import Effect exposing (Effect)
 import Html exposing (Html, div, h2, input, label, li, section, span, text, ul)
 import Html.Attributes exposing (checked, class, classList, name, type_)
 import Html.Events exposing (onClick)
@@ -59,29 +60,29 @@ type Msg
     | ToggleShowCollectionImages
 
 
-update : Msg -> Model msg -> Model msg
+update : Msg -> Model msg -> ( Model msg, Effect msg )
 update msg model =
     case msg of
         FromStacksFilter subMsg ->
-            { model | stackFilters = UI.FilterSelection.update subMsg model.stackFilters }
+            ( { model | stackFilters = UI.FilterSelection.update subMsg model.stackFilters }, Effect.none )
 
         FromPrimaryFilter subMsg ->
-            { model | primaryFilters = UI.FilterSelection.update subMsg model.primaryFilters }
+            ( { model | primaryFilters = UI.FilterSelection.update subMsg model.primaryFilters }, Effect.none )
 
         FromSecondaryFilter subMsg ->
-            { model | secondaryFilters = UI.FilterSelection.update subMsg model.secondaryFilters }
+            ( { model | secondaryFilters = UI.FilterSelection.update subMsg model.secondaryFilters }, Effect.none )
 
         FromAttackTypesFilter subMsg ->
-            { model | attackTypeFilters = UI.FilterSelection.update subMsg model.attackTypeFilters }
+            ( { model | attackTypeFilters = UI.FilterSelection.update subMsg model.attackTypeFilters }, Effect.none )
 
         FromClansFilter subMsg ->
-            { model | clansFilters = UI.FilterSelection.update subMsg model.clansFilters }
+            ( { model | clansFilters = UI.FilterSelection.update subMsg model.clansFilters }, Effect.none )
 
         FromDisciplinesFilter subMsg ->
-            { model | disciplineFilters = UI.FilterSelection.update subMsg model.disciplineFilters }
+            ( { model | disciplineFilters = UI.FilterSelection.update subMsg model.disciplineFilters }, Effect.none )
 
         ClearFilters ->
-            { model
+            ( { model
                 | stackFilters = UI.FilterSelection.stacks
                 , primaryFilters = UI.FilterSelection.primaryTraits
                 , secondaryFilters = UI.FilterSelection.secondaryTraits
@@ -89,16 +90,48 @@ update msg model =
                 , clansFilters = UI.FilterSelection.clans
                 , disciplineFilters = UI.FilterSelection.disciplines
                 , textFilter = Nothing
-            }
+              }
+            , Effect.fromShared (Shared.TrackEvent "Builder Clear Filters" Nothing)
+            )
 
         ToggleShowAllFilters ->
-            { model | showAllFilters = not model.showAllFilters }
+            let
+                newShowAllFilters =
+                    not model.showAllFilters
+            in
+            ( { model | showAllFilters = newShowAllFilters }
+            , Effect.fromShared
+                (Shared.TrackEvent
+                    (if newShowAllFilters then
+                        "Builder Show All Filters"
+
+                     else
+                        "Builder Hide All Filters"
+                    )
+                    Nothing
+                )
+            )
 
         ToggleShowCollectionImages ->
-            { model | showCollectionImages = not model.showCollectionImages }
+            let
+                newShowCollectionImages =
+                    not model.showCollectionImages
+            in
+            ( { model | showCollectionImages = newShowCollectionImages }
+            , Effect.fromShared
+                (Shared.TrackEvent
+                    (if newShowCollectionImages then
+                        "Builder Show Images"
+
+                     else
+                        "Builder Hide Images"
+                    )
+                    Nothing
+                )
+            )
 
         ChangedDecklist _ ->
-            model
+            ( model, Effect.none )
 
 
 view : Collection -> (Msg -> msg) -> Model msg -> Decklist -> Html msg

@@ -81,7 +81,11 @@ update user msg model =
             ( { model | deck = { oldDeck | decklist = Deck.setCard oldDeck.decklist change } }, Effect.none )
 
         FromBuilderOptions subMsg ->
-            ( { model | builderOptions = DeckbuildSelections.update subMsg model.builderOptions }, Effect.none )
+            let
+                ( subModel, subEffect ) =
+                    DeckbuildSelections.update subMsg model.builderOptions
+            in
+            ( { model | builderOptions = subModel }, subEffect )
 
         ChoseLeader leader ->
             let

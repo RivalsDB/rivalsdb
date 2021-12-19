@@ -8,6 +8,7 @@ import {
   trySignInFromCache,
 } from "./auth";
 import { fetchCards } from "./cardData";
+import { trackEvent } from "./plausible";
 import "../styles.sass";
 
 async function main() {
@@ -18,6 +19,10 @@ async function main() {
     const did = await signIn(email);
     await afterSignin(app, did);
   });
+
+  app.ports.trackEvent.subscribe((event) =>
+    trackEvent(event.name, event.extra)
+  );
 
   app.ports.signOut.subscribe(() => signOut());
 

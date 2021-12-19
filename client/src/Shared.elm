@@ -16,6 +16,7 @@ import Cards exposing (cardsDecoder)
 import Dict
 import Gen.Route as Route
 import Json.Decode as Json
+import Json.Encode as Encode
 import Request exposing (Request)
 
 
@@ -66,6 +67,9 @@ port signInReceiver : (Json.Value -> msg) -> Sub msg
 port initiateLogin : String -> Cmd msg
 
 
+port trackEvent : Json.Value -> Cmd msg
+
+
 port signOut : () -> Cmd msg
 
 
@@ -75,6 +79,7 @@ type Msg
     | ModalChangedEmail String
     | ModalSubmit
     | InitiateSignin String
+    | TrackEvent String (Maybe Encode.Value)
     | HeaderClickedSignIn
     | HeaderClickedSignOut
     | HeaderSearchQueryChanged String
@@ -147,11 +152,19 @@ update _ msg model =
         InitiateSignin email ->
             ( model, initiateLogin email )
 
+        TrackEvent name extra ->
+            ( model, trackEvent (encodeEvent name extra) )
+
         HeaderClickedSignIn ->
             ( { model | modal = Open Nothing }, Cmd.none )
 
         HeaderClickedSignOut ->
-            ( { model | user = Nothing }, signOut () )
+            ( { model | user = Nothing }
+            , Cmd.batch
+                [ signOut ()
+                , trackEvent (encodeEvent "Signed out" Nothing)
+                ]
+            )
 
         HeaderSearchQueryChanged query ->
             ( { model
@@ -169,7 +182,12 @@ update _ msg model =
         HeaderSearchQuerySubmitted ->
             case model.headerSearch of
                 Just search ->
-                    ( model, Browser.Navigation.pushUrl model.key <| Route.toHref Route.Search ++ "?search=" ++ search )
+                    ( model
+                    , Cmd.batch
+                        [ Browser.Navigation.pushUrl model.key <| Route.toHref Route.Search ++ "?search=" ++ search
+                        , trackEvent (encodeEvent "Used header search" Nothing)
+                        ]
+                    )
 
                 _ ->
                     ( model, Cmd.none )
@@ -183,3 +201,19 @@ subscriptions _ _ =
 userDecoder : Json.Decoder User
 userDecoder =
     Json.map2 User (Json.field "token" Json.string) (Json.field "user" Json.string)
+
+
+
+------------------
+-- EVENT TRACKING
+------------------
+
+
+encodeEvent : String -> Maybe Encode.Value -> Encode.Value
+encodeEvent name extra =
+    Encode.object
+        (( "eventName", Encode.string name )
+            :: (Maybe.map (\ex -> [ ( "extra", ex ) ]) extra
+                    |> Maybe.withDefault []
+               )
+        )
