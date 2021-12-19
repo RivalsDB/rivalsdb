@@ -12,6 +12,7 @@ import UI.Attribute
 import UI.Card
 import UI.CardName
 import UI.Icon as Icon
+import UI.Icon.Discipline
 import UI.Text
 
 
@@ -231,7 +232,7 @@ factionEntryEditable { setLeader } ( character, isLeader ) =
          , span [ class "deck-faction__name" ] [ UI.CardName.withOverlay (Cards.FactionCard character) ]
          ]
             ++ (character.disciplines
-                    |> List.map (span [ class "deck-faction__discipline" ] << List.singleton << Icon.discipline)
+                    |> List.map (span [ class "deck-faction__discipline" ] << List.singleton << UI.Icon.Discipline.discipline)
                )
         )
 
@@ -253,7 +254,7 @@ factionEntryReadOnly ( character, isLeader ) =
                     []
                )
             ++ (character.disciplines
-                    |> List.map (span [ class "deck-faction__discipline" ] << List.singleton << Icon.discipline)
+                    |> List.map (span [ class "deck-faction__discipline" ] << List.singleton << UI.Icon.Discipline.discipline)
                )
         )
 

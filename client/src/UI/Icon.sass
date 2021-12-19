@@ -22,13 +22,6 @@ $clan_icons: brujah gangrel malkavian nosferatu thinblood toreador tremere ventr
     -webkit-mask-image: var(--svg-ui-icon)
     mask-image: var(--svg-ui-icon)
 
-$discipline_icons: animalism auspex blood_sorcery celerity dominate fortitude obsfuscate potence presence protean thin_blood_alchemy
-@each $icon in $discipline_icons
-  .ui-icon_#{$icon}
-    --svg-ui-icon: url("data-url:../../assets/icons/discipline-#{$icon}.svg")
-    -webkit-mask-image: var(--svg-ui-icon)
-    mask-image: var(--svg-ui-icon)
-
 $other_icons: action agenda alchemy attack blood bloodpotency bloodpotencyrequirement conspiracy crown damage delete edit faction haven influence influence_modifier leader library mental menu ongoing physical ranged reaction ritual save scheme shield social special title unhosted_action
 @each $icon in $other_icons
   .ui-icon_#{$icon}

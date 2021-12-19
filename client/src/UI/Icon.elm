@@ -3,7 +3,6 @@ module UI.Icon exposing
     , IconStyle(..)
     , attackType
     , clan
-    , discipline
     , icon
     )
 
@@ -53,7 +52,6 @@ type IconImage
     | Special
     | Title
     | UnhostedAction
-    | Discipline Discipline
     | Clan Clan
 
 
@@ -71,11 +69,6 @@ type alias Icon =
 ------
 -- MATCHERS
 ------
-
-
-discipline : Discipline -> Html msg
-discipline d =
-    icon ( Discipline d, Standard )
 
 
 clan : IconStyle -> Clan -> Html msg
@@ -153,39 +146,6 @@ imageOpts image =
 
         Clan Clan.Ventrue ->
             ( class "ui-icon_ventrue", "Ventrue" )
-
-        Discipline Discipline.Animalism ->
-            ( class "ui-icon_animalism", "Animalism" )
-
-        Discipline Discipline.Auspex ->
-            ( class "ui-icon_auspex", "Auspex" )
-
-        Discipline Discipline.BloodSorcery ->
-            ( class "ui-icon_blood_sorcery", "Blood Sorcery" )
-
-        Discipline Discipline.Celerity ->
-            ( class "ui-icon_celerity", "Celerity" )
-
-        Discipline Discipline.Dominate ->
-            ( class "ui-icon_dominate", "Dominate" )
-
-        Discipline Discipline.Fortitude ->
-            ( class "ui-icon_fortitude", "Fortitude" )
-
-        Discipline Discipline.Obfuscate ->
-            ( class "ui-icon_obsfuscate", "Obfuscate" )
-
-        Discipline Discipline.Potence ->
-            ( class "ui-icon_potence", "Potence" )
-
-        Discipline Discipline.Presence ->
-            ( class "ui-icon_presence", "Presence" )
-
-        Discipline Discipline.Protean ->
-            ( class "ui-icon_protean", "Protean" )
-
-        Discipline Discipline.ThinBloodAlchemy ->
-            ( class "ui-icon_thin_blood_alchemy", "Thin-blood Alchemy" )
 
         Action ->
             ( class "ui-icon_action", "Action" )

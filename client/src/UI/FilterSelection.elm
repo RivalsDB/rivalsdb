@@ -7,6 +7,7 @@ import Html exposing (Html, div, input, label)
 import Html.Attributes exposing (class, classList, type_)
 import Html.Events exposing (onCheck)
 import UI.Icon as Icon
+import UI.Icon.Discipline as DisciplineIcon
 
 
 type alias Model value msg =
@@ -74,20 +75,19 @@ clans =
 
 disciplines : Model Discipline msg
 disciplines =
-    [ Discipline.Animalism
-    , Discipline.Auspex
-    , Discipline.Celerity
-    , Discipline.Dominate
-    , Discipline.Fortitude
-    , Discipline.Obfuscate
-    , Discipline.Potence
-    , Discipline.Presence
-    , Discipline.Protean
-    , Discipline.BloodSorcery
-    , Discipline.ThinBloodAlchemy
+    [ ( Discipline.Animalism, DisciplineIcon.animalism )
+    , ( Discipline.Auspex, DisciplineIcon.auspex )
+    , ( Discipline.Celerity, DisciplineIcon.celerity )
+    , ( Discipline.Dominate, DisciplineIcon.dominate )
+    , ( Discipline.Fortitude, DisciplineIcon.fortitude )
+    , ( Discipline.Obfuscate, DisciplineIcon.obfuscate )
+    , ( Discipline.Potence, DisciplineIcon.potence )
+    , ( Discipline.Presence, DisciplineIcon.presence )
+    , ( Discipline.Protean, DisciplineIcon.protean )
+    , ( Discipline.BloodSorcery, DisciplineIcon.thaumaturgy )
+    , ( Discipline.ThinBloodAlchemy, DisciplineIcon.thinBloodAlchemy )
     ]
-        |> List.map (\d -> ( d, Icon.Discipline d ))
-        |> List.map modelHelper
+        |> List.map (\( disc, ico ) -> ( disc, ( ico, False ) ))
 
 
 modelHelper : ( trait, Icon.IconImage ) -> ( trait, ( Html msg, Bool ) )

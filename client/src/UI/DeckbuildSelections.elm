@@ -16,6 +16,7 @@ import UI.Card
 import UI.CardName
 import UI.FilterSelection
 import UI.Icon as Icon
+import UI.Icon.Discipline
 
 
 type alias Model msg =
@@ -264,7 +265,7 @@ viewCardListRow msg deck card =
                     , span [ class "cardlist__extra-prop" ] [ UI.Attribute.physical props.physical ]
                     , span [ class "cardlist__extra-prop" ] [ UI.Attribute.social props.social ]
                     , span [ class "cardlist__extra-prop" ] [ UI.Attribute.mental props.mental ]
-                    , viewIconsList Icon.discipline props.disciplines
+                    , viewIconsList UI.Icon.Discipline.discipline props.disciplines
                     ]
 
                 Cards.LibraryCard props ->
