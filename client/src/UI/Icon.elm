@@ -8,7 +8,6 @@ module UI.Icon exposing
 
 import Cards
 import Data.Clan as Clan exposing (Clan)
-import Data.Discipline as Discipline exposing (Discipline)
 import Html exposing (Attribute, Html, span, text)
 import Html.Attributes exposing (class, title)
 
