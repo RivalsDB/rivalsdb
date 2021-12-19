@@ -1,4 +1,4 @@
-import { Magic } from "magic-sdk";
+import { Magic, RPCError } from "magic-sdk";
 import type { App } from "./app";
 
 const magic = new Magic("pk_live_1FB57945CEA1A727");
@@ -25,11 +25,16 @@ export async function signInWithQueryCrendetials(app: App): Promise<void> {
 }
 
 export async function trySignInFromCache(app: App): Promise<void> {
-  const isLoggedIn = await magic.user.isLoggedIn();
-  if (isLoggedIn) {
-    const did = await magic.user.getIdToken();
-    await afterSignin(app, did);
+  let did: string;
+  try {
+    did = await magic.user.getIdToken();
+  } catch (e) {
+    if (e instanceof RPCError) {
+      return;
+    }
+    throw e;
   }
+  await afterSignin(app, did);
 }
 
 export async function preloadSigninModal(): Promise<void> {
