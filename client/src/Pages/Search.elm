@@ -165,7 +165,7 @@ view shared model =
     UI.Layout.Template.view FromShared
         shared
         [ div [ class "searchpage__filters" ]
-            [ UI.Text.header [ text "Filtersasas" ]
+            [ UI.Text.header [ text "Filters" ]
             , div [ class "search-flaggroups" ]
                 [ div [ class "search-flaggroup" ] [ UI.FilterSelection.view FromStacksFilter model.stackFilters ]
                 , div [ class "search-flaggroup" ] [ UI.FilterSelection.view FromPrimaryFilter model.primaryFilters ]
