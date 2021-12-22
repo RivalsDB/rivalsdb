@@ -2,6 +2,7 @@ module Pages.Search exposing (Model, Msg, page)
 
 import Cards exposing (Card)
 import Data.Clan exposing (Clan)
+import Data.Collection exposing (Collection)
 import Data.Discipline exposing (Discipline)
 import Dict
 import Effect exposing (Effect)
@@ -13,7 +14,7 @@ import Html.Events exposing (onInput)
 import Html.Keyed as Keyed
 import Page
 import Request
-import Shared exposing (Collection)
+import Shared
 import UI.Card
 import UI.FilterSelection
 import UI.Layout.Template

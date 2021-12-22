@@ -4,6 +4,7 @@ import API.Decklist
 import Auth
 import Browser.Navigation as Navigation exposing (Key)
 import Cards
+import Data.Collection exposing (Collection)
 import Data.GameMode exposing (GameMode)
 import Deck exposing (DeckPostSave, Name(..))
 import Effect exposing (Effect)
@@ -49,7 +50,7 @@ type alias Data =
     }
 
 
-init : Shared.Collection -> Key -> String -> ( Model, Effect Msg )
+init : Collection -> Key -> String -> ( Model, Effect Msg )
 init collection key deckId =
     ( Loading key
     , Effect.fromCmd <| API.Decklist.read collection FetchedDecklist deckId

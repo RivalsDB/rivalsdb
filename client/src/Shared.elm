@@ -1,6 +1,5 @@
 port module Shared exposing
-    ( Collection
-    , Flags
+    ( Flags
     , Model
     , Msg(..)
     , Token
@@ -13,6 +12,7 @@ port module Shared exposing
 
 import Browser.Navigation exposing (Key)
 import Cards exposing (cardsDecoder)
+import Data.Collection exposing (Collection)
 import Dict
 import Gen.Route as Route
 import Json.Decode as Json
@@ -22,10 +22,6 @@ import Request exposing (Request)
 
 type alias Flags =
     Json.Value
-
-
-type alias Collection =
-    Dict.Dict Cards.Id Cards.Card
 
 
 type alias Model =

@@ -2,6 +2,7 @@ module UI.DeckbuildSelections exposing (Model, Msg(..), init, update, view)
 
 import Cards exposing (Card)
 import Data.Clan exposing (Clan)
+import Data.Collection exposing (Collection)
 import Data.Discipline exposing (Discipline)
 import Deck exposing (Decklist)
 import Dict
@@ -11,7 +12,7 @@ import Html.Attributes exposing (checked, class, classList, name, type_)
 import Html.Events exposing (onClick)
 import Html.Keyed as Keyed
 import Html.Lazy as Lazy
-import Shared exposing (Collection)
+import Shared
 import UI.Attribute
 import UI.Card
 import UI.CardName

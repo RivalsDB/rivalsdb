@@ -10,7 +10,7 @@ import UI.Card
 import UI.Icon as Icon
 
 
-view : List DeckPostSave -> Html unknown
+view : List DeckPostSave -> Html msg
 view decklists =
     ul [ class "deckindex" ]
         (decklists |> List.map viewDecklistEntry)

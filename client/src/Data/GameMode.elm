@@ -63,7 +63,7 @@ shortName mode =
 
 allows : GameMode -> GameMode -> Bool
 allows target current =
-    current == Both || current == target
+    current == Both || target == Both || current == target
 
 
 decode : Decoder GameMode

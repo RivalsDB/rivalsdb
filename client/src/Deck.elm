@@ -24,11 +24,11 @@ module Deck exposing
 
 import Cards
 import Data.Clan exposing (Clan)
+import Data.Collection exposing (Collection)
 import Data.GameMode as GameMode exposing (GameMode)
 import Dict exposing (Dict)
 import Json.Decode as Decode exposing (Decoder)
 import Json.Encode as Encode
-import Shared exposing (Collection)
 
 
 

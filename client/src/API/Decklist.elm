@@ -13,6 +13,7 @@ module API.Decklist exposing
     )
 
 import API.Auth exposing (auth)
+import Data.Collection exposing (Collection)
 import Deck exposing (DeckPostSave)
 import Http
 import Json.Decode as Decode
@@ -75,7 +76,7 @@ type alias ResultRead =
     Result Http.Error DeckPostSave
 
 
-read : Shared.Collection -> (ResultRead -> msg) -> String -> Cmd msg
+read : Collection -> (ResultRead -> msg) -> String -> Cmd msg
 read collection msg deckId =
     Http.get
         { url = "/api/v1/decklist/" ++ deckId
@@ -87,7 +88,7 @@ type alias ResultIndex =
     Result Http.Error (List DeckPostSave)
 
 
-index : Shared.Collection -> (ResultIndex -> msg) -> Cmd msg
+index : Collection -> (ResultIndex -> msg) -> Cmd msg
 index collection msg =
     Http.get
         { url = "/api/v1/decklist"
@@ -95,7 +96,7 @@ index collection msg =
         }
 
 
-indexForUser : Shared.Collection -> (ResultIndex -> msg) -> String -> Cmd msg
+indexForUser : Collection -> (ResultIndex -> msg) -> String -> Cmd msg
 indexForUser collection msg userId =
     Http.get
         { url = "/api/v1/decklist?userId=" ++ userId

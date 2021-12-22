@@ -1,4 +1,4 @@
-module Data.Clan exposing (Clan(..), all, comparable, decoder)
+module Data.Clan exposing (Clan(..), all, comparable, decoder, fromString, name, toString)
 
 import Enum exposing (Enum)
 import Json.Decode exposing (Decoder)
@@ -27,6 +27,16 @@ enum =
         , ( "tremere", Tremere )
         , ( "ventrue", Ventrue )
         ]
+
+
+toString : Clan -> String
+toString =
+    enum.toString
+
+
+fromString : String -> Maybe Clan
+fromString =
+    enum.fromString
 
 
 all : List Clan
@@ -65,3 +75,31 @@ comparable c =
 
         Ventrue ->
             8
+
+
+name : Clan -> String
+name c =
+    case c of
+        Brujah ->
+            "Brujah"
+
+        Gangrel ->
+            "Gangrel"
+
+        Malkavian ->
+            "Malkavian"
+
+        Nosferatu ->
+            "Nosferatu"
+
+        ThinBlood ->
+            "Thin-blood"
+
+        Toreador ->
+            "Toreador"
+
+        Tremere ->
+            "Tremere"
+
+        Ventrue ->
+            "Ventrue"
