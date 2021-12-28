@@ -2,7 +2,6 @@ module Pages.Deck.New exposing (Model, Msg, page)
 
 import API.Decklist
 import Auth
-import Browser.Navigation as Navigation exposing (Key)
 import Cards
 import Data.GameMode exposing (GameMode)
 import Deck exposing (DeckPreSave, Name(..))
@@ -23,10 +22,10 @@ import View exposing (View)
 
 
 page : Shared.Model -> Request.With Params -> Page.With Model Msg
-page shared req =
+page shared _ =
     Page.protected.advanced
         (\user ->
-            { init = init req.key
+            { init = init
             , update = update user
             , view = view shared
             , subscriptions = always Sub.none
@@ -39,17 +38,17 @@ page shared req =
 
 
 type alias Model =
-    { key : Key
-    , deck : DeckPreSave
+    { deck : DeckPreSave
     , builderOptions : DeckbuildSelections.Model Msg
+    , isSaving : Bool
     }
 
 
-init : Navigation.Key -> ( Model, Effect Msg )
-init key =
-    ( { key = key
-      , deck = Deck.init
+init : ( Model, Effect Msg )
+init =
+    ( { deck = Deck.init
       , builderOptions = DeckbuildSelections.init
+      , isSaving = False
       }
     , Effect.none
     )
@@ -95,18 +94,22 @@ update user msg model =
             ( { model | deck = { oldDeck | decklist = Deck.setLeader oldDeck.decklist leader } }, Effect.none )
 
         Save ->
-            case Deck.encode (Deck.PreSave model.deck) of
-                Just encodedDeck ->
-                    ( model, API.Decklist.create SavedDecklist user.token encodedDeck |> Effect.fromCmd )
+            if model.isSaving then
+                ( model, Effect.none )
 
-                _ ->
-                    ( model, Effect.none )
+            else
+                case Deck.encode (Deck.PreSave model.deck) of
+                    Nothing ->
+                        ( model, Effect.none )
+
+                    Just encodedDeck ->
+                        ( { model | isSaving = True }, API.Decklist.create SavedDecklist user.token encodedDeck |> Effect.fromCmd )
 
         SavedDecklist (Ok deckId) ->
-            ( model, Route.toHref (Route.Deck__View__Id_ { id = deckId }) |> Navigation.pushUrl model.key |> Effect.fromCmd )
+            ( { model | isSaving = False }, Effect.fromShared <| Shared.GoTo (Route.Deck__View__Id_ { id = deckId }) )
 
         SavedDecklist (Err _) ->
-            ( model, Effect.none )
+            ( { model | isSaving = False }, Effect.none )
 
         StartRenameDeck ->
             let

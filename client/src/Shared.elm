@@ -10,11 +10,11 @@ port module Shared exposing
     , update
     )
 
-import Browser.Navigation exposing (Key)
+import Browser.Navigation as Navigation exposing (Key)
 import Cards exposing (cardsDecoder)
 import Data.Collection exposing (Collection)
 import Dict
-import Gen.Route as Route
+import Gen.Route as Route exposing (Route)
 import Json.Decode as Json
 import Json.Encode as Encode
 import Request exposing (Request)
@@ -81,6 +81,8 @@ type Msg
     | HeaderSearchQueryChanged String
     | HeaderSearchQuerySubmitted
     | ToggleBurgerMenu
+    | Redirect Route
+    | GoTo Route
 
 
 init : Request -> Flags -> ( Model, Cmd Msg )
@@ -177,16 +179,22 @@ update _ msg model =
 
         HeaderSearchQuerySubmitted ->
             case model.headerSearch of
+                Nothing ->
+                    ( model, Cmd.none )
+
                 Just search ->
                     ( model
                     , Cmd.batch
-                        [ Browser.Navigation.pushUrl model.key <| Route.toHref Route.Search ++ "?search=" ++ search
+                        [ Navigation.pushUrl model.key <| Route.toHref Route.Search ++ "?search=" ++ search
                         , trackEvent (encodeEvent "Used header search" Nothing)
                         ]
                     )
 
-                _ ->
-                    ( model, Cmd.none )
+        Redirect route ->
+            ( model, Route.toHref route |> Navigation.replaceUrl model.key )
+
+        GoTo route ->
+            ( model, Route.toHref route |> Navigation.pushUrl model.key )
 
 
 subscriptions : Request -> Model -> Sub Msg

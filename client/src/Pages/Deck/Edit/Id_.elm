@@ -2,7 +2,6 @@ module Pages.Deck.Edit.Id_ exposing (Model, Msg, page)
 
 import API.Decklist
 import Auth
-import Browser.Navigation as Navigation exposing (Key)
 import Cards
 import Data.Collection exposing (Collection)
 import Data.GameMode exposing (GameMode)
@@ -27,7 +26,7 @@ page : Shared.Model -> Request.With Params -> Page.With Model Msg
 page shared req =
     Page.protected.advanced
         (\user ->
-            { init = init shared.collection req.key req.params.id
+            { init = init shared.collection req.params.id
             , update = update user
             , view = view shared
             , subscriptions = always Sub.none
@@ -40,21 +39,20 @@ page shared req =
 
 
 type Model
-    = Loading Key
-    | Editing Key Data
+    = Loading
+    | Editing Data
 
 
 type alias Data =
     { deck : DeckPostSave
     , builderOptions : DeckbuildSelections.Model Msg
+    , isSaving : Bool
     }
 
 
-init : Collection -> Key -> String -> ( Model, Effect Msg )
-init collection key deckId =
-    ( Loading key
-    , Effect.fromCmd <| API.Decklist.read collection FetchedDecklist deckId
-    )
+init : Collection -> String -> ( Model, Effect Msg )
+init collection deckId =
+    ( Loading, Effect.fromCmd <| API.Decklist.read collection FetchedDecklist deckId )
 
 
 type Msg
@@ -78,57 +76,61 @@ update user msg modelx =
         ( _, FromShared subMsg ) ->
             ( modelx, Effect.fromShared subMsg )
 
-        ( Loading key, FetchedDecklist (Ok deck) ) ->
-            ( Editing key { deck = deck, builderOptions = DeckbuildSelections.init }, Effect.none )
+        ( Loading, FetchedDecklist (Ok deck) ) ->
+            ( Editing { isSaving = False, deck = deck, builderOptions = DeckbuildSelections.init }, Effect.none )
 
         ( _, FetchedDecklist (Err _) ) ->
             ( modelx, Effect.none )
 
-        ( Loading _, _ ) ->
+        ( Loading, _ ) ->
             ( modelx, Effect.none )
 
-        ( Editing key oldModel, FetchedDecklist (Ok deck) ) ->
-            ( Editing key { oldModel | deck = deck }, Effect.none )
+        ( Editing oldModel, FetchedDecklist (Ok deck) ) ->
+            ( Editing { oldModel | deck = deck }, Effect.none )
 
-        ( Editing key oldModel, FromBuilderOptions (DeckbuildSelections.ChangedDecklist change) ) ->
+        ( Editing oldModel, FromBuilderOptions (DeckbuildSelections.ChangedDecklist change) ) ->
             let
                 oldDeck =
                     oldModel.deck
             in
-            ( Editing key { oldModel | deck = { oldDeck | decklist = Deck.setCard oldDeck.decklist change } }, Effect.none )
+            ( Editing { oldModel | deck = { oldDeck | decklist = Deck.setCard oldDeck.decklist change } }, Effect.none )
 
-        ( Editing key oldModel, FromBuilderOptions subMsg ) ->
+        ( Editing oldModel, FromBuilderOptions subMsg ) ->
             let
                 ( subModel, subEffect ) =
                     DeckbuildSelections.update subMsg oldModel.builderOptions
             in
-            ( Editing key { oldModel | builderOptions = subModel }, subEffect )
+            ( Editing { oldModel | builderOptions = subModel }, subEffect )
 
-        ( Editing key model, ChoseLeader leader ) ->
+        ( Editing model, ChoseLeader leader ) ->
             let
                 oldDeck =
                     model.deck
             in
-            ( Editing key { model | deck = { oldDeck | decklist = Deck.setLeader oldDeck.decklist leader } }, Effect.none )
+            ( Editing { model | deck = { oldDeck | decklist = Deck.setLeader oldDeck.decklist leader } }, Effect.none )
 
-        ( Editing key model, Save ) ->
-            case Deck.encode (Deck.PostSave model.deck) of
-                Just encodedDeck ->
-                    ( Editing key model, API.Decklist.update SavedDecklist user.token model.deck.meta.id encodedDeck |> Effect.fromCmd )
+        ( Editing model, Save ) ->
+            if model.isSaving then
+                ( Editing model, Effect.none )
 
-                _ ->
-                    ( Editing key model, Effect.none )
+            else
+                case Deck.encode (Deck.PostSave model.deck) of
+                    Nothing ->
+                        ( Editing model, Effect.none )
 
-        ( Editing key model, SavedDecklist _ ) ->
-            ( Editing key model, Effect.none )
+                    Just encodedDeck ->
+                        ( Editing { model | isSaving = True }, API.Decklist.update SavedDecklist user.token model.deck.meta.id encodedDeck |> Effect.fromCmd )
 
-        ( Editing key model, Delete ) ->
-            ( Editing key model, API.Decklist.delete DeletedDecklist user.token model.deck.meta.id |> Effect.fromCmd )
+        ( Editing model, SavedDecklist _ ) ->
+            ( Editing { model | isSaving = False }, Effect.none )
 
-        ( Editing key model, DeletedDecklist _ ) ->
-            ( Editing key model, Route.toHref Route.MyDecks |> Navigation.replaceUrl key |> Effect.fromCmd )
+        ( Editing model, Delete ) ->
+            ( Editing model, API.Decklist.delete DeletedDecklist user.token model.deck.meta.id |> Effect.fromCmd )
 
-        ( Editing key model, StartRenameDeck ) ->
+        ( Editing model, DeletedDecklist _ ) ->
+            ( Editing model, Effect.fromShared (Shared.Redirect Route.MyDecks) )
+
+        ( Editing model, StartRenameDeck ) ->
             let
                 oldDeck =
                     model.deck
@@ -136,9 +138,9 @@ update user msg modelx =
                 oldMeta =
                     oldDeck.meta
             in
-            ( Editing key { model | deck = { oldDeck | meta = { oldMeta | name = Deck.BeingNamed "" } } }, Effect.none )
+            ( Editing { model | deck = { oldDeck | meta = { oldMeta | name = Deck.BeingNamed "" } } }, Effect.none )
 
-        ( Editing key model, DeckNameChanged newName ) ->
+        ( Editing model, DeckNameChanged newName ) ->
             let
                 oldDeck =
                     model.deck
@@ -148,12 +150,12 @@ update user msg modelx =
             in
             case model.deck.meta.name of
                 BeingNamed _ ->
-                    ( Editing key { model | deck = { oldDeck | meta = { oldMeta | name = Deck.BeingNamed newName } } }, Effect.none )
+                    ( Editing { model | deck = { oldDeck | meta = { oldMeta | name = Deck.BeingNamed newName } } }, Effect.none )
 
                 _ ->
-                    ( Editing key model, Effect.none )
+                    ( Editing model, Effect.none )
 
-        ( Editing key model, SaveNewDeckName ) ->
+        ( Editing model, SaveNewDeckName ) ->
             let
                 oldDeck =
                     model.deck
@@ -165,15 +167,15 @@ update user msg modelx =
                 BeingNamed newName ->
                     case String.trim newName of
                         "" ->
-                            ( Editing key { model | deck = { oldDeck | meta = { oldMeta | name = Deck.Unnamed } } }, Effect.none )
+                            ( Editing { model | deck = { oldDeck | meta = { oldMeta | name = Deck.Unnamed } } }, Effect.none )
 
                         trimmedName ->
-                            ( Editing key { model | deck = { oldDeck | meta = { oldMeta | name = Deck.Named trimmedName } } }, Effect.none )
+                            ( Editing { model | deck = { oldDeck | meta = { oldMeta | name = Deck.Named trimmedName } } }, Effect.none )
 
                 _ ->
-                    ( Editing key model, Effect.none )
+                    ( Editing model, Effect.none )
 
-        ( Editing key model, SetGameMode gameMode ) ->
+        ( Editing model, SetGameMode gameMode ) ->
             let
                 oldDeck =
                     model.deck
@@ -181,7 +183,7 @@ update user msg modelx =
                 oldMeta =
                     oldDeck.meta
             in
-            ( Editing key { model | deck = { oldDeck | meta = { oldMeta | gameMode = gameMode } } }, Effect.none )
+            ( Editing { model | deck = { oldDeck | meta = { oldMeta | gameMode = gameMode } } }, Effect.none )
 
 
 decklistActions : UI.Decklist.Actions Msg
@@ -197,10 +199,10 @@ decklistActions =
 view : Shared.Model -> Model -> View Msg
 view shared model =
     case model of
-        Loading _ ->
+        Loading ->
             UI.Layout.Template.view FromShared shared []
 
-        Editing _ data ->
+        Editing data ->
             UI.Layout.Template.view FromShared
                 shared
                 [ UI.Layout.Deck.writeMode

@@ -1,7 +1,7 @@
 module Pages.Deck.View.Id_ exposing (Model, Msg, page)
 
 import API.Decklist
-import Browser.Navigation as Navigation exposing (Key)
+import Data.Collection exposing (Collection)
 import Deck exposing (DeckPostSave)
 import Effect exposing (Effect)
 import Gen.Params.Deck.View.Id_ exposing (Params)
@@ -21,7 +21,7 @@ import View exposing (View)
 page : Shared.Model -> Request.With Params -> Page.With Model Msg
 page shared req =
     Page.advanced
-        { init = init shared req
+        { init = init shared.collection req.params.id
         , update = update shared
         , view = view shared
         , subscriptions = always Sub.none
@@ -33,14 +33,14 @@ page shared req =
 
 
 type Model
-    = Loading Key
-    | Viewing Key DeckPostSave
+    = Loading
+    | Viewing DeckPostSave
 
 
-init : Shared.Model -> Request.With Params -> ( Model, Effect Msg )
-init shared req =
-    ( Loading req.key
-    , Effect.fromCmd <| API.Decklist.read shared.collection FetchedDecklist req.params.id
+init : Collection -> String -> ( Model, Effect Msg )
+init collection deckId =
+    ( Loading
+    , Effect.fromCmd <| API.Decklist.read collection FetchedDecklist deckId
     )
 
 
@@ -60,19 +60,19 @@ update shared msg model =
         ( _, FetchedDecklist (Err _) ) ->
             ( model, Effect.none )
 
-        ( Loading key, FetchedDecklist (Ok deck) ) ->
-            ( Viewing key deck, Effect.none )
+        ( Loading, FetchedDecklist (Ok deck) ) ->
+            ( Viewing deck, Effect.none )
 
-        ( Loading _, Delete ) ->
+        ( Loading, Delete ) ->
             ( model, Effect.none )
 
-        ( Loading key, DeletedDecklist _ ) ->
-            ( model, Route.toHref Route.MyDecks |> Navigation.replaceUrl key |> Effect.fromCmd )
+        ( Loading, DeletedDecklist _ ) ->
+            ( model, Effect.fromShared <| Shared.Redirect Route.MyDecks )
 
-        ( Viewing key _, FetchedDecklist (Ok deck) ) ->
-            ( Viewing key deck, Effect.none )
+        ( Viewing _, FetchedDecklist (Ok deck) ) ->
+            ( Viewing deck, Effect.none )
 
-        ( Viewing _ deck, Delete ) ->
+        ( Viewing deck, Delete ) ->
             case shared.user of
                 Just user ->
                     ( model, API.Decklist.delete DeletedDecklist user.token deck.meta.id |> Effect.fromCmd )
@@ -80,17 +80,17 @@ update shared msg model =
                 Nothing ->
                     ( model, Effect.none )
 
-        ( Viewing key _, DeletedDecklist _ ) ->
-            ( model, Route.toHref Route.MyDecks |> Navigation.replaceUrl key |> Effect.fromCmd )
+        ( Viewing _, DeletedDecklist _ ) ->
+            ( model, Effect.fromShared <| Shared.Redirect Route.MyDecks )
 
 
 view : Shared.Model -> Model -> View Msg
 view shared model =
     case model of
-        Loading _ ->
+        Loading ->
             UI.Layout.Template.view FromShared shared [ text "Loading" ]
 
-        Viewing _ deck ->
+        Viewing deck ->
             viewDecklist shared deck
 
 
