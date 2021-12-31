@@ -12,7 +12,6 @@ module Cards exposing
     , Id
     , Library
     , Shield
-    , Trait(..)
     , attackTypes
     , bloodPotency
     , cardsDecoder
@@ -31,6 +30,8 @@ module Cards exposing
 
 import Data.Clan as Clan exposing (Clan)
 import Data.Discipline as Discipline exposing (Discipline)
+import Data.Pack as Pack exposing (Pack)
+import Data.Trait as Trait exposing (Trait)
 import Dict
 import Enum exposing (Enum)
 import Json.Decode as Decode exposing (Decoder, int, list, map, string)
@@ -57,23 +58,6 @@ type alias Image =
     String
 
 
-type Pack
-    = Promo
-    | Core
-    | BloodAndAlchemy
-    | WolfAndRat
-
-
-pack : Enum Pack
-pack =
-    Enum.create
-        [ ( "Blood & Alchemy", BloodAndAlchemy )
-        , ( "Wolf & Rat", WolfAndRat )
-        , ( "Core", Core )
-        , ( "Promo", Promo )
-        ]
-
-
 type alias BloodPotency =
     Int
 
@@ -92,41 +76,6 @@ type alias Damage =
 
 type alias Shield =
     Int
-
-
-type Trait
-    = Action
-    | Alchemy
-    | Animal
-    | Attack
-    | Conspiracy
-    | InfluenceModifier
-    | Ongoing
-    | Reaction
-    | Ritual
-    | Scheme
-    | Special
-    | Title
-    | UnhostedAction
-
-
-traitEnum : Enum Trait
-traitEnum =
-    Enum.create
-        [ ( "action", Action )
-        , ( "alchemy", Alchemy )
-        , ( "animal", Animal )
-        , ( "attack", Attack )
-        , ( "conspiracy", Conspiracy )
-        , ( "influence modifier", InfluenceModifier )
-        , ( "ongoing", Ongoing )
-        , ( "reaction", Reaction )
-        , ( "ritual", Ritual )
-        , ( "scheme", Scheme )
-        , ( "special", Special )
-        , ( "title", Title )
-        , ( "unhosted action", UnhostedAction )
-        ]
 
 
 type AttackType
@@ -416,7 +365,7 @@ agendaDecoder =
         |> decodeText
         |> decodeIllustrator
         |> decodeImage
-        |> decodeSet
+        |> required "set" Pack.decoder
         |> map (\agenda -> ( agenda.id, AgendaCard agenda ))
 
 
@@ -428,7 +377,7 @@ havenDecoder =
         |> decodeText
         |> decodeIllustrator
         |> decodeImage
-        |> decodeSet
+        |> required "set" Pack.decoder
         |> map (\haven -> ( haven.id, HavenCard haven ))
 
 
@@ -440,7 +389,7 @@ factionDecoder =
         |> decodeText
         |> decodeIllustrator
         |> decodeImage
-        |> decodeSet
+        |> required "set" Pack.decoder
         |> required "clan" Clan.decoder
         |> decodeBloodPotency
         |> decodePhysical
@@ -459,12 +408,12 @@ libraryDecoder =
         |> optional "disciplines" (list Discipline.decoder) []
         |> decodeIllustrator
         |> decodeImage
-        |> decodeSet
+        |> required "set" Pack.decoder
         |> optional "clan" (Decode.map Just Clan.decoder) Nothing
         |> decodeBloodPotencyRequirement
         |> decodeDamage
         |> decodeShields
-        |> decodeTraits
+        |> required "types" (list Trait.decoder)
         |> decodeAttackType
         |> map (\library -> ( library.id, LibraryCard library ))
 
@@ -546,13 +495,3 @@ decodeMental =
 decodeAttackType : Decoder (List AttackType -> b) -> Decoder b
 decodeAttackType =
     optional "attackType" (list attackTypeEnum.decoder) []
-
-
-decodeTraits : Decoder (List Trait -> b) -> Decoder b
-decodeTraits =
-    required "types" (list traitEnum.decoder)
-
-
-decodeSet : Decoder (Pack -> b) -> Decoder b
-decodeSet =
-    required "set" pack.decoder

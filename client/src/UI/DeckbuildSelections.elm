@@ -4,6 +4,7 @@ import Cards exposing (Card)
 import Data.Clan exposing (Clan)
 import Data.Collection exposing (Collection)
 import Data.Discipline exposing (Discipline)
+import Data.Trait exposing (Trait)
 import Deck exposing (Decklist)
 import Dict
 import Effect exposing (Effect)
@@ -23,8 +24,8 @@ import UI.Icon.V2
 
 type alias Model msg =
     { stackFilters : UI.FilterSelection.Model Cards.CardStack msg
-    , primaryFilters : UI.FilterSelection.Model Cards.Trait msg
-    , secondaryFilters : UI.FilterSelection.Model Cards.Trait msg
+    , primaryFilters : UI.FilterSelection.Model Trait msg
+    , secondaryFilters : UI.FilterSelection.Model Trait msg
     , attackTypeFilters : UI.FilterSelection.Model Cards.AttackType msg
     , clansFilters : UI.FilterSelection.Model Clan msg
     , disciplineFilters : UI.FilterSelection.Model Discipline msg
@@ -54,8 +55,8 @@ type Msg
     | FromAttackTypesFilter (UI.FilterSelection.Msg Cards.AttackType)
     | FromClansFilter (UI.FilterSelection.Msg Clan)
     | FromDisciplinesFilter (UI.FilterSelection.Msg Discipline)
-    | FromPrimaryFilter (UI.FilterSelection.Msg Cards.Trait)
-    | FromSecondaryFilter (UI.FilterSelection.Msg Cards.Trait)
+    | FromPrimaryFilter (UI.FilterSelection.Msg Trait)
+    | FromSecondaryFilter (UI.FilterSelection.Msg Trait)
     | FromStacksFilter (UI.FilterSelection.Msg Cards.CardStack)
     | ToggleShowAllFilters
     | ToggleShowCollectionImages

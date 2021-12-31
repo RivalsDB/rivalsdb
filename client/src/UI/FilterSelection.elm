@@ -3,6 +3,7 @@ module UI.FilterSelection exposing (Model, Msg(..), attackTypes, clans, discipli
 import Cards exposing (Card)
 import Data.Clan as Clan exposing (Clan)
 import Data.Discipline as Discipline exposing (Discipline)
+import Data.Trait as Trait exposing (Trait)
 import Html exposing (Html, div, input, label)
 import Html.Attributes exposing (class, classList, type_)
 import Html.Events exposing (onCheck)
@@ -24,27 +25,27 @@ stacks =
         ]
 
 
-primaryTraits : Model Cards.Trait msg
+primaryTraits : Model Trait msg
 primaryTraits =
     List.map modelHelper
-        [ ( Cards.Action, Icon.Action )
-        , ( Cards.UnhostedAction, Icon.UnhostedAction )
-        , ( Cards.Attack, Icon.Attack )
-        , ( Cards.Reaction, Icon.Reaction )
-        , ( Cards.InfluenceModifier, Icon.InfluenceModifier )
+        [ ( Trait.Action, Icon.Action )
+        , ( Trait.UnhostedAction, Icon.UnhostedAction )
+        , ( Trait.Attack, Icon.Attack )
+        , ( Trait.Reaction, Icon.Reaction )
+        , ( Trait.InfluenceModifier, Icon.InfluenceModifier )
         ]
 
 
-secondaryTraits : Model Cards.Trait msg
+secondaryTraits : Model Trait msg
 secondaryTraits =
     List.map modelHelper
-        [ ( Cards.Ongoing, Icon.Ongoing )
-        , ( Cards.Scheme, Icon.Scheme )
-        , ( Cards.Title, Icon.Title )
-        , ( Cards.Conspiracy, Icon.Conspiracy )
-        , ( Cards.Alchemy, Icon.Alchemy )
-        , ( Cards.Ritual, Icon.Ritual )
-        , ( Cards.Special, Icon.Special )
+        [ ( Trait.Ongoing, Icon.Ongoing )
+        , ( Trait.Scheme, Icon.Scheme )
+        , ( Trait.Title, Icon.Title )
+        , ( Trait.Conspiracy, Icon.Conspiracy )
+        , ( Trait.Alchemy, Icon.Alchemy )
+        , ( Trait.Ritual, Icon.Ritual )
+        , ( Trait.Special, Icon.Special )
         ]
 
 

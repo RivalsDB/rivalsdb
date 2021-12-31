@@ -3,6 +3,7 @@ module UI.Decklist exposing (Actions, viewCreate, viewEdit, viewRead)
 import Cards
 import Data.Clan as Clan
 import Data.GameMode as GameMode exposing (GameMode)
+import Data.Trait as Trait
 import Deck exposing (DeckPostSave, DeckPreSave, Name(..), isLeader)
 import Dict
 import Html exposing (Html, button, div, form, h3, h4, input, label, li, option, p, select, span, text, ul)
@@ -352,26 +353,16 @@ groupLibraryCards : Deck.Library -> LibraryGroups
 groupLibraryCards library =
     let
         assignToGroup ( card, n ) oldGroups =
-            if List.any isCombatTrait card.traits then
+            if List.any Trait.isCombat card.traits then
                 { oldGroups | combat = ( card, n ) :: oldGroups.combat }
 
-            else if List.any isPoliticsTrait card.traits then
+            else if List.any Trait.isPolitical card.traits then
                 { oldGroups | political = ( card, n ) :: oldGroups.political }
 
             else
                 { oldGroups | actions = ( card, n ) :: oldGroups.actions }
     in
     Dict.values library |> List.foldl assignToGroup libraryGroups
-
-
-isCombatTrait : Cards.Trait -> Bool
-isCombatTrait trait =
-    trait == Cards.Attack || trait == Cards.Reaction
-
-
-isPoliticsTrait : Cards.Trait -> Bool
-isPoliticsTrait trait =
-    trait == Cards.InfluenceModifier || trait == Cards.Title || trait == Cards.Scheme
 
 
 factionSort : ( Cards.Faction, Bool ) -> ( Cards.Faction, Bool ) -> Order
