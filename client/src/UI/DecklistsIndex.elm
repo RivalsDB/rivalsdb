@@ -4,10 +4,11 @@ import Cards
 import Data.GameMode as GameMode
 import Deck exposing (DeckPostSave)
 import Gen.Route as Route
-import Html exposing (Html, a, div, li, p, span, text, ul)
+import Html exposing (Html, a, div, li, p, span, text)
 import Html.Attributes exposing (class, href)
+import Html.Keyed exposing (ul)
 import UI.Card
-import UI.Icon as Icon
+import UI.Icon.V2 as Icon
 
 
 view : List DeckPostSave -> Html msg
@@ -16,9 +17,10 @@ view decklists =
         (decklists |> List.map viewDecklistEntry)
 
 
-viewDecklistEntry : DeckPostSave -> Html msg
+viewDecklistEntry : DeckPostSave -> ( String, Html msg )
 viewDecklistEntry deck =
-    li [ class "deckindexitem" ]
+    ( deck.meta.id
+    , li [ class "deckindexitem" ]
         [ a [ class "deckindexcard", href <| Route.toHref (Route.Deck__View__Id_ { id = deck.meta.id }) ]
             [ div [ class "deckindexcard__illustration" ] [ illustrationImage deck.decklist ]
             , div [ class "deckindexcard__content" ]
@@ -35,9 +37,9 @@ viewDecklistEntry deck =
                             )
                     )
                 , p [ class "deckindexcard__summary" ]
-                    ([ Deck.leader deck.decklist |> Maybe.map summaryItem
-                     , deck.decklist.haven |> Maybe.map summaryItem
-                     , deck.decklist.agenda |> Maybe.map summaryItem
+                    ([ Deck.leader deck.decklist |> Maybe.map (.name >> summaryItem)
+                     , deck.decklist.haven |> Maybe.map (.name >> summaryItem)
+                     , deck.decklist.agenda |> Maybe.map (.name >> summaryItem)
                      ]
                         |> List.filterMap identity
                         |> List.intersperse (text " • ")
@@ -45,11 +47,12 @@ viewDecklistEntry deck =
                 ]
             ]
         ]
+    )
 
 
-summaryItem : { a | name : String } -> Html msg
-summaryItem a =
-    span [ class "deckindexcard__summary-item" ] [ text a.name ]
+summaryItem : String -> Html msg
+summaryItem name =
+    span [ class "deckindexcard__summary-item" ] [ text name ]
 
 
 illustrationImage : Deck.Decklist -> Html msg

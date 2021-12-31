@@ -15,13 +15,6 @@
   span
     visibility: hidden
 
-$clan_icons: brujah gangrel malkavian nosferatu thinblood toreador tremere ventrue
-@each $icon in $clan_icons
-  .ui-icon_#{$icon}
-    --svg-ui-icon: url("data-url:../../assets/icons/clan-#{$icon}.svg")
-    -webkit-mask-image: var(--svg-ui-icon)
-    mask-image: var(--svg-ui-icon)
-
 $other_icons: action agenda alchemy attack blood bloodpotency bloodpotencyrequirement conspiracy crown damage delete edit faction haven influence influence_modifier leader library mental menu ongoing physical ranged reaction ritual save scheme shield social special title unhosted_action
 @each $icon in $other_icons
   .ui-icon_#{$icon}

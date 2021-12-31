@@ -2,12 +2,10 @@ module UI.Icon exposing
     ( IconImage(..)
     , IconStyle(..)
     , attackType
-    , clan
     , icon
     )
 
 import Cards
-import Data.Clan as Clan exposing (Clan)
 import Html exposing (Attribute, Html, span, text)
 import Html.Attributes exposing (class, title)
 
@@ -51,7 +49,6 @@ type IconImage
     | Special
     | Title
     | UnhostedAction
-    | Clan Clan
 
 
 type IconStyle
@@ -68,11 +65,6 @@ type alias Icon =
 ------
 -- MATCHERS
 ------
-
-
-clan : IconStyle -> Clan -> Html msg
-clan style c =
-    icon ( Clan c, style )
 
 
 attackType : Cards.AttackType -> Html msg
@@ -122,30 +114,6 @@ styleClass style =
 imageOpts : IconImage -> ( Attribute msg, String )
 imageOpts image =
     case image of
-        Clan Clan.Brujah ->
-            ( class "ui-icon_brujah", "Brujah" )
-
-        Clan Clan.Gangrel ->
-            ( class "ui-icon_gangrel", "Gangrel" )
-
-        Clan Clan.Malkavian ->
-            ( class "ui-icon_malkavian", "Malkavian" )
-
-        Clan Clan.Nosferatu ->
-            ( class "ui-icon_nosferatu", "Nosferatu" )
-
-        Clan Clan.ThinBlood ->
-            ( class "ui-icon_thinblood", "Thin Blood" )
-
-        Clan Clan.Toreador ->
-            ( class "ui-icon_toreador", "Toreador" )
-
-        Clan Clan.Tremere ->
-            ( class "ui-icon_tremere", "Tremere" )
-
-        Clan Clan.Ventrue ->
-            ( class "ui-icon_ventrue", "Ventrue" )
-
         Action ->
             ( class "ui-icon_action", "Action" )
 

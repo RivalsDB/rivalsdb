@@ -18,7 +18,7 @@ import UI.Card
 import UI.CardName
 import UI.FilterSelection
 import UI.Icon as Icon
-import UI.Icon.Discipline
+import UI.Icon.V2
 
 
 type alias Model msg =
@@ -294,17 +294,17 @@ viewCardListRow msg deck card =
         , span [ class "cardlist__props" ]
             (case card of
                 Cards.FactionCard props ->
-                    [ span [ class "cardlist__clan" ] [ Icon.clan Icon.Negative props.clan ]
+                    [ span [ class "cardlist__clan" ] [ UI.Icon.V2.clan UI.Icon.V2.Standard props.clan ]
                     , span [] [ UI.Attribute.bloodPotency props.bloodPotency ]
                     , span [ class "cardlist__extra-prop" ] [ UI.Attribute.physical props.physical ]
                     , span [ class "cardlist__extra-prop" ] [ UI.Attribute.social props.social ]
                     , span [ class "cardlist__extra-prop" ] [ UI.Attribute.mental props.mental ]
-                    , viewIconsList UI.Icon.Discipline.discipline props.disciplines
+                    , viewIconsList (UI.Icon.V2.discipline UI.Icon.V2.Standard) props.disciplines
                     ]
 
                 Cards.LibraryCard props ->
                     [ span [ class "cardlist__clan" ]
-                        [ props.clan |> Maybe.map (Icon.clan Icon.Negative) |> Maybe.withDefault (text "")
+                        [ props.clan |> Maybe.map (UI.Icon.V2.clan UI.Icon.V2.Standard) |> Maybe.withDefault (text "")
                         ]
                     , span [] [ UI.Attribute.bloodPotencyRequirement props.bloodPotency ]
                     , span [ class "cardlist__extra-prop" ] [ UI.Attribute.damage props.damage ]

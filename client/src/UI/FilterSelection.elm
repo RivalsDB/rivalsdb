@@ -7,7 +7,7 @@ import Html exposing (Html, div, input, label)
 import Html.Attributes exposing (class, classList, type_)
 import Html.Events exposing (onCheck)
 import UI.Icon as Icon
-import UI.Icon.Discipline as DisciplineIcon
+import UI.Icon.V2 as DisciplineIcon
 
 
 type alias Model value msg =
@@ -60,34 +60,17 @@ attackTypes =
 
 clans : Model Clan msg
 clans =
-    [ Clan.Brujah
-    , Clan.Gangrel
-    , Clan.Malkavian
-    , Clan.Nosferatu
-    , Clan.ThinBlood
-    , Clan.Toreador
-    , Clan.Tremere
-    , Clan.Ventrue
-    ]
-        |> List.map (\c -> ( c, Icon.Clan c ))
-        |> List.map modelHelper
+    toModel (DisciplineIcon.clan DisciplineIcon.Standard) Clan.all
 
 
 disciplines : Model Discipline msg
 disciplines =
-    [ ( Discipline.Animalism, DisciplineIcon.animalism )
-    , ( Discipline.Auspex, DisciplineIcon.auspex )
-    , ( Discipline.Celerity, DisciplineIcon.celerity )
-    , ( Discipline.Dominate, DisciplineIcon.dominate )
-    , ( Discipline.Fortitude, DisciplineIcon.fortitude )
-    , ( Discipline.Obfuscate, DisciplineIcon.obfuscate )
-    , ( Discipline.Potence, DisciplineIcon.potence )
-    , ( Discipline.Presence, DisciplineIcon.presence )
-    , ( Discipline.Protean, DisciplineIcon.protean )
-    , ( Discipline.BloodSorcery, DisciplineIcon.thaumaturgy )
-    , ( Discipline.ThinBloodAlchemy, DisciplineIcon.thinBloodAlchemy )
-    ]
-        |> List.map (\( disc, ico ) -> ( disc, ( ico, False ) ))
+    toModel (DisciplineIcon.discipline DisciplineIcon.Standard) Discipline.all
+
+
+toModel : (a -> Html msg) -> List a -> Model a msg
+toModel iconForItem =
+    List.map (\item -> ( item, ( iconForItem item, False ) ))
 
 
 modelHelper : ( trait, Icon.IconImage ) -> ( trait, ( Html msg, Bool ) )

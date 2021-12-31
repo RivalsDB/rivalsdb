@@ -12,7 +12,7 @@ import UI.Attribute
 import UI.Card
 import UI.CardName
 import UI.Icon as Icon
-import UI.Icon.Discipline
+import UI.Icon.V2
 import UI.Text
 
 
@@ -200,7 +200,7 @@ viewFaction toFactionEntry decklist =
                     |> List.map
                         (\( clan, _ ) ->
                             span [ class "deck-faction__clan-item" ]
-                                [ Icon.clan Icon.Negative clan ]
+                                [ UI.Icon.V2.clan UI.Icon.V2.Negative clan ]
                         )
                 )
             ]
@@ -228,11 +228,11 @@ factionEntryEditable { setLeader } ( character, isLeader ) =
             ]
             [ div [ class "deck-faction__leader-icon" ] [ Icon.icon ( Icon.Leader, Icon.Standard ) ] ]
          , span [ class "deck-faction__bp" ] [ UI.Attribute.bloodPotency character.bloodPotency ]
-         , span [ class "deck-faction__clan" ] [ Icon.clan Icon.Negative character.clan ]
+         , span [ class "deck-faction__clan" ] [ UI.Icon.V2.clan UI.Icon.V2.Negative character.clan ]
          , span [ class "deck-faction__name" ] [ UI.CardName.withOverlay (Cards.FactionCard character) ]
          ]
             ++ (character.disciplines
-                    |> List.map (span [ class "deck-faction__discipline" ] << List.singleton << UI.Icon.Discipline.discipline)
+                    |> List.map (span [ class "deck-faction__discipline" ] << List.singleton << UI.Icon.V2.discipline UI.Icon.V2.Negative)
                )
         )
 
@@ -244,7 +244,7 @@ factionEntryReadOnly ( character, isLeader ) =
         , classList [ ( "deck-faction__character--leader", isLeader ) ]
         ]
         ([ span [ class "deck-faction__bp" ] [ UI.Attribute.bloodPotency character.bloodPotency ]
-         , span [ class "deck-faction__clan" ] [ Icon.clan Icon.Negative character.clan ]
+         , span [ class "deck-faction__clan" ] [ UI.Icon.V2.clan UI.Icon.V2.Negative character.clan ]
          , span [ class "deck-faction__name" ] [ UI.CardName.withOverlay (Cards.FactionCard character) ]
          ]
             ++ (if isLeader then
@@ -254,7 +254,7 @@ factionEntryReadOnly ( character, isLeader ) =
                     []
                )
             ++ (character.disciplines
-                    |> List.map (span [ class "deck-faction__discipline" ] << List.singleton << UI.Icon.Discipline.discipline)
+                    |> List.map (span [ class "deck-faction__discipline" ] << List.singleton << UI.Icon.V2.discipline UI.Icon.V2.Standard)
                )
         )
 
@@ -316,7 +316,7 @@ libraryEntry ( card, n ) =
 
                     Just clan ->
                         [ span [ class "deck-library__entry-clan" ]
-                            [ Icon.clan Icon.Negative clan ]
+                            [ UI.Icon.V2.clan UI.Icon.V2.Negative clan ]
                         ]
                )
         )

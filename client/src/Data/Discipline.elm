@@ -1,4 +1,4 @@
-module Data.Discipline exposing (Discipline(..), decoder)
+module Data.Discipline exposing (Discipline(..), all, decoder)
 
 import Enum exposing (Enum)
 import Json.Decode exposing (Decoder)
@@ -33,6 +33,11 @@ enum =
         , ( "blood sorcery", BloodSorcery )
         , ( "thin-blood alchemy", ThinBloodAlchemy )
         ]
+
+
+all : List Discipline
+all =
+    List.map Tuple.second enum.list
 
 
 decoder : Decoder Discipline
