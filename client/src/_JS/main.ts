@@ -1,3 +1,4 @@
+import Plausible from "plausible-tracker";
 import { Elm } from "./app";
 import {
   afterSignin,
@@ -8,10 +9,13 @@ import {
   trySignInFromCache,
 } from "./auth";
 import { fetchCards } from "./cardData";
-import { trackEvent } from "./plausible";
 import "../styles.sass";
 
 async function main() {
+  const plausible = Plausible({ domain: "rivalsdb.app" });
+  plausible.enableAutoPageviews();
+  plausible.enableAutoOutboundTracking();
+
   const cards = await fetchCards();
   const app = Elm.Main.init({ flags: cards });
 
@@ -21,7 +25,7 @@ async function main() {
   });
 
   app.ports.trackEvent.subscribe((event) =>
-    trackEvent(event.name, event.extra)
+    plausible.trackEvent(event.name, { props: event.extra })
   );
 
   app.ports.signOut.subscribe(() => signOut());

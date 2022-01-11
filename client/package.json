@@ -20,10 +20,11 @@
     "@parcel/transformer-elm": "^2.0.1",
     "@parcel/transformer-inline-string": "^2.0.0",
     "@parcel/transformer-sass": "^2.0.1",
-    "elm-spa": "^6.0.4",
     "elm": "^0.19.1-5",
+    "elm-spa": "^6.0.4",
     "magic-sdk": "^7.0.0",
     "parcel": "^2.0.1",
+    "plausible-tracker": "^0.3.4",
     "prettier": "^2.5.1"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead",

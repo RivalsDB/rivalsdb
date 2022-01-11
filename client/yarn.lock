@@ -3944,6 +3944,11 @@ picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.2.3:
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.0.tgz#f1f061de8f6a4bf022892e2d128234fb98302972"
   integrity sha512-lY1Q/PiJGC2zOv/z391WOTD+Z02bCgsFfvxoXXf6h7kv9o+WmsmzYqrAwY63sNgOxE4xEdq0WyUnXfKeBrSvYw==
 
+plausible-tracker@^0.3.4:
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/plausible-tracker/-/plausible-tracker-0.3.4.tgz#6c4fb5888f62d0ab9b069fef7e3a06e2e728c65c"
+  integrity sha512-pc5fMmtagAlTYKOUcMk+AfV0t3bVpYv+zTEsBTFQL6n8frExxK54GBauxzbKF1hLZ16ggx/84mA4/ujLgbvvmQ==
+
 pn@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/pn/-/pn-1.1.0.tgz#e2f4cef0e219f463c179ab37463e4e1ecdccbafb"
