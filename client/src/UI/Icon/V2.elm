@@ -5,7 +5,7 @@ import Data.Discipline as Discipline exposing (Discipline)
 import Html exposing (Html, span)
 import Html.Attributes as Attr
 import Svg exposing (Attribute, Svg, g, path, svg)
-import Svg.Attributes exposing (class, d, fill, fillRule, viewBox)
+import Svg.Attributes exposing (class, d, fillRule, viewBox)
 
 
 type Style
