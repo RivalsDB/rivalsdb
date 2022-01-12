@@ -24,9 +24,10 @@ async function main() {
     await afterSignin(app, did);
   });
 
-  app.ports.trackEvent.subscribe((event) =>
-    plausible.trackEvent(event.name, { props: event.extra })
-  );
+  app.ports.trackEvent.subscribe((event) => {
+    plausible.trackEvent(event.name, { props: event.extra });
+    console.log("got", event);
+  });
 
   app.ports.signOut.subscribe(() => signOut());
 
