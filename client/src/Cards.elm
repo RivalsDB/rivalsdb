@@ -23,6 +23,7 @@ module Cards exposing
     , image
     , maxPerDeck
     , name
+    , set
     , stack
     , text
     , traits
@@ -202,6 +203,22 @@ image card =
 
         LibraryCard c ->
             c.image
+
+
+set : Card -> Pack
+set card =
+    case card of
+        AgendaCard c ->
+            c.set
+
+        HavenCard c ->
+            c.set
+
+        FactionCard c ->
+            c.set
+
+        LibraryCard c ->
+            c.set
 
 
 traits : Card -> List Trait

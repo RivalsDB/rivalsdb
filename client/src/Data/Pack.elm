@@ -1,4 +1,4 @@
-module Data.Pack exposing (Pack, decoder)
+module Data.Pack exposing (Pack, decoder, toString)
 
 import Enum exposing (Enum)
 import Json.Decode exposing (Decoder)
@@ -24,3 +24,8 @@ enum =
 decoder : Decoder Pack
 decoder =
     enum.decoder
+
+
+toString : Pack -> String
+toString =
+    enum.toString

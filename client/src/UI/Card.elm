@@ -1,8 +1,9 @@
 module UI.Card exposing (eager, lazy)
 
 import Cards exposing (Card)
+import Data.Pack as Pack
 import Html exposing (Attribute, Html, div, img)
-import Html.Attributes exposing (attribute, class, src, title)
+import Html.Attributes as Attr exposing (attribute, class, src)
 
 
 lazy : Card -> Html msg
@@ -20,9 +21,21 @@ common loading card =
     div [ class "cardimage" ]
         [ img
             [ class "cardimage"
-            , title <| Cards.name card
+            , title card
             , src <| Cards.image card
             , loading
             ]
             []
         ]
+
+
+title : Card -> Attribute msg
+title card =
+    let
+        name =
+            Cards.name card
+
+        pack =
+            Pack.toString (Cards.set card)
+    in
+    Attr.title <| name ++ " - " ++ pack
