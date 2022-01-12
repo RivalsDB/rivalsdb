@@ -3,6 +3,8 @@ import Fuse from "fuse.js";
 
 import { cards } from "../../cardCollection/cards.js";
 import { discordBotToken } from "../../env.js";
+import { Service } from "../../typings/Service.js";
+
 import { registerCommands, cardCommand } from "./commands.js";
 
 const imagesByCardName = new Map(cards.map(({ name, image }) => [name, image]));
@@ -15,7 +17,7 @@ const fuse = new Fuse(cardNames, {
 
 const list = new Intl.ListFormat("en", { style: "long", type: "disjunction" });
 
-export async function startBot() {
+export async function createBot(): Promise<Service> {
   console.log("BOT: init start");
 
   console.log("BOT: register commands");
@@ -65,8 +67,17 @@ export async function startBot() {
       throw e;
     }
   });
-
-  console.log("BOT: login");
-  await client.login(discordBotToken);
   console.log("BOT: init done");
+
+  return {
+    async run() {
+      await client.login(discordBotToken);
+      console.log("BOT: running");
+    },
+    async shutdown() {
+      console.log("BOT: shutdown start");
+      client.destroy();
+      console.log("BOT: shutdown done");
+    },
+  };
 }

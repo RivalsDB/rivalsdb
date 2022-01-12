@@ -1,16 +1,26 @@
 import { createServer } from "./server/server.js";
-import { startBot } from "./bot/index.js";
+import { createBot } from "./bot/index.js";
 import { runBotServer } from "./env.js";
+import { Service } from "./typings/Service.js";
 
-createServer().then(async ({ run, shutdown }) => {
-  await run();
+const noopService: Service = {
+  async run() {},
+  async shutdown() {},
+};
 
-  if (runBotServer) {
-    await startBot();
-    console.log("Bot is running");
+Promise.all([createServer(), runBotServer ? createBot() : noopService]).then(
+  ([server, bot]) => {
+    server.run();
+    bot.run();
+
+    const shutdown = () => {
+      server.shutdown();
+      bot.shutdown();
+      process.exit(0);
+    };
+
+    process.on("SIGINT", shutdown);
+    process.on("SIGTERM", shutdown);
+    process.on("SIGQUIT", shutdown);
   }
-
-  process.on("SIGINT", shutdown);
-  process.on("SIGTERM", shutdown);
-  process.on("SIGQUIT", shutdown);
-});
+);

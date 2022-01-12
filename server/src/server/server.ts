@@ -8,6 +8,7 @@ import { closeDbPool } from "../db/index.js";
 import cardsRoutes from "./cards.js";
 import decklistsRoutes from "./decklists.js";
 import usersRoutes from "./users.js";
+import { Service } from "../typings/Service.js";
 
 const dirname = new URL(import.meta.url).pathname;
 const cardImagesFolder = path.join(
@@ -29,7 +30,7 @@ const clientDistFolder = path.join(
   "dist"
 );
 
-export async function createServer() {
+export async function createServer(): Promise<Service> {
   console.log("SERVER: init start");
   const fastify = Fastify({ logger: true });
 

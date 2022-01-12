@@ -1,1 +1,1 @@
-export { startBot } from "./private/bot.js";
+export { createBot } from "./private/bot.js";
