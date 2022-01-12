@@ -30,6 +30,7 @@ const clientDistFolder = path.join(
 );
 
 export async function createServer() {
+  console.log("SERVER: init start");
   const fastify = Fastify({ logger: true });
 
   fastify.register(fastifyCors);
@@ -58,6 +59,7 @@ export async function createServer() {
 
   fastify.addHook("onClose", closeDbPool);
 
+  console.log("SERVER: init done");
   return {
     async run() {
       try {
@@ -65,6 +67,12 @@ export async function createServer() {
       } catch (err) {
         fastify.log.error(err);
       }
+      console.log("SERVER: listening");
+    },
+    async shutdown() {
+      console.log("SERVER: shutdown start");
+      await fastify.close();
+      console.log("SERVER: shutdown done");
     },
   };
 }

@@ -16,9 +16,14 @@ const fuse = new Fuse(cardNames, {
 const list = new Intl.ListFormat("en", { style: "long", type: "disjunction" });
 
 export async function startBot() {
+  console.log("BOT: init start");
+
+  console.log("BOT: register commands");
   await registerCommands();
 
   const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+
+  console.log("BOT: setup interactions");
   client.on("interactionCreate", async (interaction) => {
     if (!interaction.isCommand()) return;
     if (interaction.commandName !== cardCommand.name) return;
@@ -61,5 +66,7 @@ export async function startBot() {
     }
   });
 
-  return client.login(discordBotToken);
+  console.log("BOT: login");
+  await client.login(discordBotToken);
+  console.log("BOT: init done");
 }
