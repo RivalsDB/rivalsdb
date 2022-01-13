@@ -216,7 +216,7 @@ userDecoder =
 encodeEvent : String -> Maybe Encode.Value -> Encode.Value
 encodeEvent name extra =
     Encode.object
-        (( "eventName", Encode.string name )
+        (( "name", Encode.string name )
             :: (Maybe.map (\ex -> [ ( "extra", ex ) ]) extra
                     |> Maybe.withDefault []
                )
