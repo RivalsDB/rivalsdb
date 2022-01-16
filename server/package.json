@@ -2,10 +2,13 @@
   "name": "@rivalsdb/server",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "build": "tsc",
     "db-apply-migrations": "pg-migrations apply --directory migrations",
-    "dev": "sh bin/watch.sh"
+    "watch": "concurrently \"npm:watch-*\"",
+    "watch-build": "tsc --watch",
+    "watch-run": "nodemon --watch -- --require dotenv/config dist/index.js"
   },
   "author": "Luiz Socrate <luiz@socrate.com.br>",
   "license": "MIT",
@@ -31,9 +34,11 @@
   },
   "devDependencies": {
     "ava": "^4.0.1",
+    "concurrently": "^7.0.0",
     "dotenv": "^10.0.0",
     "nodemon": "^2.0.15",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "ts-node": "^10.4.0"
   },
   "volta": {
     "node": "16.8.0"
@@ -42,5 +47,12 @@
     "node": "16.8.0",
     "yarn": "1.x"
   },
-  "type": "module"
+  "ava": {
+    "extensions": {
+      "ts": "module"
+    },
+    "nodeArguments": [
+      "--loader=ts-node/esm"
+    ]
+  }
 }
