@@ -153,7 +153,7 @@ update msg model =
             ( Viewing key decklist newFilters
             , Effect.batch
                 [ urlFollowFilters key newFilters
-                , trackFiltering "game mode" (Maybe.withDefault "NONE" agendaId)
+                , trackFiltering "agenda" (Maybe.withDefault "NONE" agendaId)
                 ]
             )
 
@@ -165,7 +165,7 @@ update msg model =
             ( Viewing key decklist newFilters
             , Effect.batch
                 [ urlFollowFilters key newFilters
-                , trackFiltering "game mode" (Maybe.withDefault "NONE" havenId)
+                , trackFiltering "haven" (Maybe.withDefault "NONE" havenId)
                 ]
             )
 
@@ -177,7 +177,7 @@ update msg model =
             ( Viewing key decklist newFilters
             , Effect.batch
                 [ urlFollowFilters key newFilters
-                , trackFiltering "game mode" (Maybe.withDefault "NONE" leaderId)
+                , trackFiltering "leader" (Maybe.withDefault "NONE" leaderId)
                 ]
             )
 
@@ -189,7 +189,7 @@ update msg model =
             ( Viewing key decklist newFilters
             , Effect.batch
                 [ urlFollowFilters key newFilters
-                , trackFiltering "game mode" (Maybe.map Clan.toString clan |> Maybe.withDefault "NONE")
+                , trackFiltering "clan" (Maybe.map Clan.toString clan |> Maybe.withDefault "NONE")
                 ]
             )
 
