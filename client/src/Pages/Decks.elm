@@ -15,6 +15,7 @@ import Html exposing (Html, div, label, option, p, select, span, text)
 import Html.Attributes exposing (class, for, name, selected, value)
 import Html.Events exposing (onInput)
 import Html.Lazy as Lazy
+import Json.Encode as Encode
 import Page
 import Request
 import Shared
@@ -138,9 +139,10 @@ update msg model =
                     { filters | gameMode = gameMode }
             in
             ( Viewing key decklist newFilters
-            , (Route.toHref Route.Decks ++ filtersToQueryString newFilters)
-                |> Navigation.replaceUrl key
-                |> Effect.fromCmd
+            , Effect.batch
+                [ urlFollowFilters key newFilters
+                , trackFiltering "game mode" (GameMode.toString gameMode)
+                ]
             )
 
         ( Viewing key decklist filters, FilterByAgenda agendaId ) ->
@@ -149,9 +151,10 @@ update msg model =
                     { filters | agenda = agendaId }
             in
             ( Viewing key decklist newFilters
-            , (Route.toHref Route.Decks ++ filtersToQueryString newFilters)
-                |> Navigation.replaceUrl key
-                |> Effect.fromCmd
+            , Effect.batch
+                [ urlFollowFilters key newFilters
+                , trackFiltering "game mode" (Maybe.withDefault "NONE" agendaId)
+                ]
             )
 
         ( Viewing key decklist filters, FilterByHaven havenId ) ->
@@ -160,9 +163,10 @@ update msg model =
                     { filters | haven = havenId }
             in
             ( Viewing key decklist newFilters
-            , (Route.toHref Route.Decks ++ filtersToQueryString newFilters)
-                |> Navigation.replaceUrl key
-                |> Effect.fromCmd
+            , Effect.batch
+                [ urlFollowFilters key newFilters
+                , trackFiltering "game mode" (Maybe.withDefault "NONE" havenId)
+                ]
             )
 
         ( Viewing key decklist filters, FilterByLeader leaderId ) ->
@@ -171,9 +175,10 @@ update msg model =
                     { filters | leader = leaderId }
             in
             ( Viewing key decklist newFilters
-            , (Route.toHref Route.Decks ++ filtersToQueryString newFilters)
-                |> Navigation.replaceUrl key
-                |> Effect.fromCmd
+            , Effect.batch
+                [ urlFollowFilters key newFilters
+                , trackFiltering "game mode" (Maybe.withDefault "NONE" leaderId)
+                ]
             )
 
         ( Viewing key decklist filters, FilterByClan clan ) ->
@@ -182,10 +187,26 @@ update msg model =
                     { filters | clan = clan }
             in
             ( Viewing key decklist newFilters
-            , (Route.toHref Route.Decks ++ filtersToQueryString newFilters)
-                |> Navigation.replaceUrl key
-                |> Effect.fromCmd
+            , Effect.batch
+                [ urlFollowFilters key newFilters
+                , trackFiltering "game mode" (Maybe.map Clan.toString clan |> Maybe.withDefault "NONE")
+                ]
             )
+
+
+urlFollowFilters : Key -> Filters -> Effect msg
+urlFollowFilters key filters =
+    (Route.toHref Route.Decks ++ filtersToQueryString filters)
+        |> Navigation.replaceUrl key
+        |> Effect.fromCmd
+
+
+trackFiltering : String -> String -> Effect Msg
+trackFiltering by val =
+    Encode.object [ ( by, Encode.string val ) ]
+        |> Just
+        |> Shared.TrackEvent "Deck index: filter"
+        |> Effect.fromShared
 
 
 
