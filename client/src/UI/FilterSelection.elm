@@ -12,7 +12,7 @@ import UI.Icon.V2 as DisciplineIcon
 
 
 type alias Model value msg =
-    List ( value, ( Html msg, Bool ) )
+    List ( value, Bool, Html msg )
 
 
 stacks : Model Cards.CardStack msg
@@ -71,12 +71,12 @@ disciplines =
 
 toModel : (a -> Html msg) -> List a -> Model a msg
 toModel iconForItem =
-    List.map (\item -> ( item, ( iconForItem item, False ) ))
+    List.map (\item -> ( item, False, iconForItem item ))
 
 
-modelHelper : ( trait, Icon.IconImage ) -> ( trait, ( Html msg, Bool ) )
+modelHelper : ( trait, Icon.IconImage ) -> ( trait, Bool, Html msg )
 modelHelper ( trait, icon ) =
-    ( trait, ( Icon.icon ( icon, Icon.Standard ), False ) )
+    ( trait, False, Icon.icon ( icon, Icon.Standard ) )
 
 
 type Msg value
@@ -88,12 +88,12 @@ update msg model =
     case msg of
         ChangedValue changedKey newValue ->
             List.map
-                (\option ->
-                    if Tuple.first option == changedKey then
-                        Tuple.mapSecond (Tuple.mapSecond (always newValue)) option
+                (\( key, oldValue, html ) ->
+                    if key == changedKey then
+                        ( key, newValue, html )
 
                     else
-                        option
+                        ( key, oldValue, html )
                 )
                 model
 
@@ -104,8 +104,8 @@ view msg options =
         (List.map (viewFilterOption msg) options)
 
 
-viewFilterOption : (Msg value -> msg) -> ( value, ( Html msg, Bool ) ) -> Html msg
-viewFilterOption msg ( value, ( icon, isActive ) ) =
+viewFilterOption : (Msg value -> msg) -> ( value, Bool, Html msg ) -> Html msg
+viewFilterOption msg ( value, isActive, icon ) =
     label
         [ class "filterpicker__option"
         , classList [ ( "filterpicker__option--active", isActive ) ]
@@ -129,7 +129,7 @@ isAllowed toValues model card =
     let
         whitelist =
             List.filterMap
-                (\( key, ( _, isOn ) ) ->
+                (\( key, isOn, _ ) ->
                     if isOn then
                         Just key
 
