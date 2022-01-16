@@ -1,15 +1,18 @@
 module Pages.Decks exposing (Model, Msg, page)
 
 import API.Decklist
+import Browser.Navigation as Navigation exposing (Key)
 import Cards exposing (CardStack(..))
 import Data.Clan as Clan exposing (Clan)
 import Data.Collection exposing (Collection)
 import Data.GameMode as GameMode exposing (GameMode)
 import Deck exposing (DeckPostSave)
+import Dict exposing (Dict)
 import Effect exposing (Effect)
 import Gen.Params.Decks exposing (Params)
+import Gen.Route as Route
 import Html exposing (Html, div, label, option, p, select, span, text)
-import Html.Attributes exposing (class, for, name, value)
+import Html.Attributes exposing (class, for, name, selected, value)
 import Html.Events exposing (onInput)
 import Html.Lazy as Lazy
 import Page
@@ -22,9 +25,9 @@ import View exposing (View)
 
 
 page : Shared.Model -> Request.With Params -> Page.With Model Msg
-page shared _ =
+page shared req =
     Page.advanced
-        { init = init shared
+        { init = init req shared
         , update = update
         , view = view shared
         , subscriptions = always Sub.none
@@ -36,8 +39,8 @@ page shared _ =
 
 
 type Model
-    = Loading
-    | Viewing (List DeckPostSave) Filters
+    = Loading Key Filters
+    | Viewing Key (List DeckPostSave) Filters
 
 
 type alias Filters =
@@ -49,9 +52,49 @@ type alias Filters =
     }
 
 
-init : Shared.Model -> ( Model, Effect Msg )
-init shared =
-    ( Loading
+filtersFromQueryString : Dict String String -> Filters
+filtersFromQueryString query =
+    let
+        gameMode =
+            Dict.get "mode" query
+                |> Maybe.andThen GameMode.fromString
+                |> Maybe.withDefault GameMode.Both
+    in
+    { gameMode = gameMode
+    , agenda = Dict.get "agenda" query
+    , haven = Dict.get "haven" query
+    , leader = Dict.get "leader" query
+    , clan = Dict.get "clan" query |> Maybe.andThen Clan.fromString
+    }
+
+
+filtersToQueryString : Filters -> String
+filtersToQueryString filters =
+    let
+        query =
+            [ Maybe.map (\agenda -> ( "agenda", agenda )) filters.agenda
+            , Maybe.map (\haven -> ( "haven", haven )) filters.haven
+            , Maybe.map (\leader -> ( "leader", leader )) filters.leader
+            , Maybe.map (\clan -> ( "clan", Clan.toString clan )) filters.clan
+            , if filters.gameMode == GameMode.Both then
+                Nothing
+
+              else
+                Just ( "mode", GameMode.toString filters.gameMode )
+            ]
+                |> List.filterMap (Maybe.map (\( name, value ) -> name ++ "=" ++ value))
+                |> String.join "&"
+    in
+    if String.length query > 0 then
+        "?" ++ query
+
+    else
+        ""
+
+
+init : Request.With Params -> Shared.Model -> ( Model, Effect Msg )
+init req shared =
+    ( Loading req.key (filtersFromQueryString req.query)
     , API.Decklist.index shared.collection FetchedDecklists
         |> Effect.fromCmd
     )
@@ -77,29 +120,72 @@ update msg model =
         ( _, FromShared subMsg ) ->
             ( model, Effect.fromShared subMsg )
 
-        ( _, FetchedDecklists (Ok decks) ) ->
-            ( Viewing decks { gameMode = GameMode.Both, agenda = Nothing, haven = Nothing, leader = Nothing, clan = Nothing }, Effect.none )
+        ( Loading key filters, FetchedDecklists (Ok decklists) ) ->
+            ( Viewing key decklists filters, Effect.none )
 
-        ( _, FetchedDecklists (Err _) ) ->
+        ( Loading _ _, _ ) ->
             ( model, Effect.none )
 
-        ( Loading, _ ) ->
-            ( Loading, Effect.none )
+        ( Viewing key _ filters, FetchedDecklists (Ok decklists) ) ->
+            ( Viewing key decklists filters, Effect.none )
 
-        ( Viewing decklsit filters, FilterByGameMode gameMode ) ->
-            ( Viewing decklsit { filters | gameMode = gameMode }, Effect.none )
+        ( Viewing _ _ _, FetchedDecklists (Err _) ) ->
+            ( model, Effect.none )
 
-        ( Viewing decklsit filters, FilterByAgenda agendaId ) ->
-            ( Viewing decklsit { filters | agenda = agendaId }, Effect.none )
+        ( Viewing key decklist filters, FilterByGameMode gameMode ) ->
+            let
+                newFilters =
+                    { filters | gameMode = gameMode }
+            in
+            ( Viewing key decklist newFilters
+            , (Route.toHref Route.Decks ++ filtersToQueryString newFilters)
+                |> Navigation.replaceUrl key
+                |> Effect.fromCmd
+            )
 
-        ( Viewing decklsit filters, FilterByHaven havenId ) ->
-            ( Viewing decklsit { filters | haven = havenId }, Effect.none )
+        ( Viewing key decklist filters, FilterByAgenda agendaId ) ->
+            let
+                newFilters =
+                    { filters | agenda = agendaId }
+            in
+            ( Viewing key decklist newFilters
+            , (Route.toHref Route.Decks ++ filtersToQueryString newFilters)
+                |> Navigation.replaceUrl key
+                |> Effect.fromCmd
+            )
 
-        ( Viewing decklsit filters, FilterByLeader leaderId ) ->
-            ( Viewing decklsit { filters | leader = leaderId }, Effect.none )
+        ( Viewing key decklist filters, FilterByHaven havenId ) ->
+            let
+                newFilters =
+                    { filters | haven = havenId }
+            in
+            ( Viewing key decklist newFilters
+            , (Route.toHref Route.Decks ++ filtersToQueryString newFilters)
+                |> Navigation.replaceUrl key
+                |> Effect.fromCmd
+            )
 
-        ( Viewing decklsit filters, FilterByClan clan ) ->
-            ( Viewing decklsit { filters | clan = clan }, Effect.none )
+        ( Viewing key decklist filters, FilterByLeader leaderId ) ->
+            let
+                newFilters =
+                    { filters | leader = leaderId }
+            in
+            ( Viewing key decklist newFilters
+            , (Route.toHref Route.Decks ++ filtersToQueryString newFilters)
+                |> Navigation.replaceUrl key
+                |> Effect.fromCmd
+            )
+
+        ( Viewing key decklist filters, FilterByClan clan ) ->
+            let
+                newFilters =
+                    { filters | clan = clan }
+            in
+            ( Viewing key decklist newFilters
+            , (Route.toHref Route.Decks ++ filtersToQueryString newFilters)
+                |> Navigation.replaceUrl key
+                |> Effect.fromCmd
+            )
 
 
 
@@ -111,27 +197,29 @@ update msg model =
 view : Shared.Model -> Model -> View Msg
 view shared model =
     case model of
-        Loading ->
+        Loading _ _ ->
             UI.Layout.Template.view FromShared shared [ text "Loading" ]
 
-        Viewing decks filters ->
+        Viewing _ decks filters ->
             viewDecklists shared decks filters
 
 
 viewDecklists : Shared.Model -> List DeckPostSave -> Filters -> View Msg
 viewDecklists shared decks filters =
-    UI.Layout.Template.view FromShared
+    Debug.log (Debug.toString filters)
+        UI.Layout.Template.view
+        FromShared
         shared
         [ div [ class "page-decks__content" ]
             [ UI.Text.header [ text "Decklists" ]
-            , Lazy.lazy viewDecklistFilters shared.collection
+            , Lazy.lazy2 viewDecklistFilters shared.collection filters
             , UI.DecklistsIndex.view (filterDecks filters decks)
             ]
         ]
 
 
-viewDecklistFilters : Collection -> Html Msg
-viewDecklistFilters collection =
+viewDecklistFilters : Collection -> Filters -> Html Msg
+viewDecklistFilters collection filters =
     let
         { agendaStack, havenStack, factionStack } =
             Data.Collection.groupByStack collection
@@ -150,12 +238,16 @@ viewDecklistFilters collection =
                  ]
                     |> List.map
                         (\mode ->
-                            option [ value <| GameMode.toString mode ] [ text <| GameMode.longName mode ]
+                            option
+                                [ value <| GameMode.toString mode
+                                , selected <| mode == filters.gameMode
+                                ]
+                                [ text <| GameMode.longName mode ]
                         )
                 )
             ]
-        , viewSelect { label = "Agenda", onSelect = FilterByAgenda, anyName = "Any agenda" } (List.sortBy .name agendaStack)
-        , viewSelect { label = "Haven", onSelect = FilterByHaven, anyName = "Any haven" } (List.sortBy .name havenStack)
+        , viewSelect { label = "Agenda", onSelect = FilterByAgenda, anyName = "Any agenda", selected = filters.agenda } (List.sortBy .name agendaStack)
+        , viewSelect { label = "Haven", onSelect = FilterByHaven, anyName = "Any haven", selected = filters.haven } (List.sortBy .name havenStack)
         , span [ class "deck-index-filters__filter" ]
             [ label [ for "clan" ] [ text "Clans" ]
             , select [ name "clan", onInput (Clan.fromString >> FilterByClan) ]
@@ -163,12 +255,19 @@ viewDecklistFilters collection =
                     :: (Clan.all
                             |> List.map
                                 (\clan ->
-                                    option [ value <| Clan.toString clan ] [ text <| Clan.name clan ]
+                                    option
+                                        [ value <| Clan.toString clan
+                                        , filters.clan
+                                            |> Maybe.map ((==) clan)
+                                            |> Maybe.withDefault False
+                                            |> selected
+                                        ]
+                                        [ text <| Clan.name clan ]
                                 )
                        )
                 )
             ]
-        , viewSelect { label = "Leader", onSelect = FilterByLeader, anyName = "Any leader" } (List.sortBy .name factionStack)
+        , viewSelect { label = "Leader", onSelect = FilterByLeader, anyName = "Any leader", selected = filters.leader } (List.sortBy .name factionStack)
         ]
 
 
@@ -176,6 +275,7 @@ type alias SelectSettings msg =
     { label : String
     , onSelect : Maybe String -> msg
     , anyName : String
+    , selected : Maybe String
     }
 
 
@@ -198,7 +298,18 @@ viewSelect settings entries =
                 )
             ]
             (option [ value "none" ] [ text settings.anyName ]
-                :: List.map (\entry -> option [ value entry.id ] [ text entry.name ]) entries
+                :: List.map
+                    (\entry ->
+                        option
+                            [ value entry.id
+                            , settings.selected
+                                |> Maybe.map ((==) entry.id)
+                                |> Maybe.withDefault False
+                                |> selected
+                            ]
+                            [ text entry.name ]
+                    )
+                    entries
             )
         ]
 

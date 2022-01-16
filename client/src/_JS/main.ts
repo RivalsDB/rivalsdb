@@ -4,7 +4,7 @@ import {
   afterSignin,
   preloadSigninModal,
   signIn,
-  signInWithQueryCrendetials,
+  signinWithQueryCredentials,
   signOut,
   trySignInFromCache,
 } from "./auth";
@@ -15,6 +15,8 @@ async function main() {
   const plausible = Plausible({ domain: "rivalsdb.app" });
   plausible.enableAutoPageviews();
   plausible.enableAutoOutboundTracking();
+
+  preloadSigninModal();
 
   const cards = await fetchCards();
   const app = Elm.Main.init({ flags: cards });
@@ -31,12 +33,10 @@ async function main() {
   app.ports.signOut.subscribe(() => signOut());
 
   if (window.location.search) {
-    signInWithQueryCrendetials(app);
+    signinWithQueryCredentials(app, window.location.search);
   } else {
     trySignInFromCache(app);
   }
-
-  preloadSigninModal();
 }
 
 main();
