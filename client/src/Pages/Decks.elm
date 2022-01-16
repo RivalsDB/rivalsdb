@@ -227,8 +227,7 @@ view shared model =
 
 viewDecklists : Shared.Model -> List DeckPostSave -> Filters -> View Msg
 viewDecklists shared decks filters =
-    Debug.log (Debug.toString filters)
-        UI.Layout.Template.view
+    UI.Layout.Template.view
         FromShared
         shared
         [ div [ class "page-decks__content" ]
