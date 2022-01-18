@@ -34,11 +34,9 @@ export async function trySignInFromCache(app: App): Promise<void> {
   } catch (e) {
     if (e instanceof RPCError) {
       console.log("RPCError", e);
-      return;
     }
     if (e instanceof SDKError) {
       console.log("SDKError", e);
-      return;
     }
     throw e;
   }

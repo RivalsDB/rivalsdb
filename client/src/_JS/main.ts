@@ -16,8 +16,6 @@ async function main() {
   plausible.enableAutoPageviews();
   plausible.enableAutoOutboundTracking();
 
-  preloadSigninModal();
-
   const cards = await fetchCards();
   const app = Elm.Main.init({ flags: cards });
 
@@ -37,6 +35,8 @@ async function main() {
   } else {
     trySignInFromCache(app);
   }
+
+  preloadSigninModal();
 }
 
 main();
