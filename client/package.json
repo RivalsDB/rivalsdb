@@ -6,7 +6,7 @@
     "build": "yarn build-spa && yarn build-parcel",
     "watch-parcel": "parcel src/index.html",
     "watch-spa": "elm-spa watch",
-    "watch": "concurrently \"npm:watch-*\""
+    "watch": "concurrently --group \"npm:watch-*\""
   },
   "engines": {
     "node": "16.8.0",
@@ -29,6 +29,6 @@
   },
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "devDependencies": {
-    "concurrently": "^6.5.0"
+    "concurrently": "^7.0.0"
   }
 }
