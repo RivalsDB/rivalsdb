@@ -19,7 +19,7 @@ export class Auth {
 
     const credential = this.readCredential();
     if (credential) {
-      this.tryLoginWithCredential(credential);
+      this.tryLoginWithCredential(credential); // async, but don't wait
       return this;
     }
 
@@ -28,11 +28,12 @@ export class Auth {
       return this;
     }
 
-    this.tryLoginFromMagic();
+    this.tryLoginFromMagic(); // async, but don't wait
   }
 
   public async signOut(): Promise<void> {
     await this.magic.user.logout();
+    localStorage.removeItem(this.storageKey);
   }
 
   public async signIn(email: string): Promise<void> {
@@ -74,7 +75,11 @@ export class Auth {
 
   private readCredential(): string | null {
     const searchParams = new URLSearchParams(window.location.search);
-    return searchParams.get("magic_credential");
+    const credential = searchParams.get("magic_credential");
+    if (credential) {
+      window.location.replace(window.location.origin);
+    }
+    return credential;
   }
 
   private async tryLoginWithCredential(credential: string): Promise<boolean> {
