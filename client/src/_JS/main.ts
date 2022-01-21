@@ -1,42 +1,20 @@
-import Plausible from "plausible-tracker";
-import { Elm } from "./app";
-import {
-  afterSignin,
-  preloadSigninModal,
-  signIn,
-  signinWithQueryCredentials,
-  signOut,
-  trySignInFromCache,
-} from "./auth";
-import { fetchCards } from "./cardData";
 import "../styles.sass";
 
-async function main() {
-  const plausible = Plausible({ domain: "rivalsdb.app" });
-  plausible.enableAutoPageviews();
-  plausible.enableAutoOutboundTracking();
+import { Elm } from "./app";
+import { Auth } from "./auth";
+import { fetchCards } from "./cardData";
+import { Tracker } from "./tracker";
 
+async function main() {
   const cards = await fetchCards();
   const app = Elm.Main.init({ flags: cards });
 
-  app.ports.initiateLogin.subscribe(async (email: string) => {
-    const did = await signIn(email);
-    await afterSignin(app, did);
-  });
+  const tracker = new Tracker();
+  app.ports.trackEvent.subscribe((ev) => tracker.trackEvent(ev.name, ev.extra));
 
-  app.ports.trackEvent.subscribe((event) =>
-    plausible.trackEvent(event.name, { props: event.extra })
-  );
-
-  app.ports.signOut.subscribe(() => signOut());
-
-  if (window.location.search) {
-    signinWithQueryCredentials(app, window.location.search);
-  } else {
-    trySignInFromCache(app);
-  }
-
-  preloadSigninModal();
+  const auth = new Auth((userData) => app.ports.signInReceiver.send(userData));
+  app.ports.initiateLogin.subscribe((email) => auth.signIn(email));
+  app.ports.signOut.subscribe(() => auth.signOut());
 }
 
 main();

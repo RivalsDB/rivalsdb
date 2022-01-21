@@ -1,6 +1,5 @@
 // @ts-ignore
 import mainElm from "../../src/Main.elm";
-import type { EventProps } from "./plausible";
 
 interface Options {
   flags: any;
@@ -12,25 +11,23 @@ interface Elm {
   };
 }
 
+interface Elm2Js<Argument> {
+  subscribe: (callback: (arg: Argument) => void) => void;
+}
+interface Js2Elm<Argument> {
+  send: (arg: Argument) => void;
+}
+
 export interface App {
   ports: {
-    signInReceiver: {
-      send: (props: { token: string; user: string }) => void;
-    };
+    signInReceiver: Js2Elm<{ token: string; user: string }>;
 
-    initiateLogin: {
-      subscribe: (callback: (email: string) => void) => void;
-    };
-
-    trackEvent: {
-      subscribe: (
-        callback: (opts: { name: string; extra?: EventProps }) => void
-      ) => void;
-    };
-
-    signOut: {
-      subscribe: (callback: () => void) => void;
-    };
+    initiateLogin: Elm2Js<string>;
+    trackEvent: Elm2Js<{
+      name: string;
+      extra?: { [propName: string]: string };
+    }>;
+    signOut: Elm2Js<undefined>;
   };
 }
 
