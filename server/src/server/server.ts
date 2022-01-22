@@ -6,7 +6,10 @@ import path from "path";
 import { serverPort } from "../env.js";
 import { closeDbPool } from "../db/index.js";
 import cardsRoutes from "./cards.js";
-import decklistsRoutes from "./decklists.js";
+import {
+  v1Routes as decklistV1Routes,
+  v2Routes as decklistV2Routes,
+} from "./decklists.js";
 import usersRoutes from "./users.js";
 import { Service } from "../typings/Service.js";
 
@@ -37,9 +40,10 @@ export async function createServer(): Promise<Service> {
   fastify.register(fastifyCors);
   fastify.register(fastifyCompress);
 
-  fastify.register(decklistsRoutes, { prefix: "/api/v1" });
+  fastify.register(decklistV1Routes, { prefix: "/api/v1" });
   fastify.register(cardsRoutes, { prefix: "/api/v1" });
   fastify.register(usersRoutes, { prefix: "/api/v1" });
+  fastify.register(decklistV2Routes, { prefix: "/api/v2" });
 
   fastify.register(fastifyStatic, {
     root: cardImagesFolder,

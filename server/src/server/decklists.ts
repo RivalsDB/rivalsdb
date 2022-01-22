@@ -1,15 +1,15 @@
+import { create } from "domain";
 import { FastifyPluginAsync } from "fastify";
 import {
   createDecklist,
-  GAME_MODE,
+  createUserIfNeeded,
+  deleteDecklist,
+  fetchDecklist,
+  fetchDecklists,
+  fetchDecklistsForUser,
+  gameModeFromString,
   makeDecklistId,
   updateDecklist,
-  fetchDecklists,
-  deleteDecklist,
-  createUserIfNeeded,
-  fetchDecklist,
-  gameModeFromString,
-  fetchDecklistsForUser,
 } from "../db/index.js";
 import auth from "./auth.js";
 
@@ -45,9 +45,7 @@ function findLeader(factionDeck: Record<string, boolean>): string | null {
   );
 }
 
-const privateRoutes: FastifyPluginAsync = async (fastify, options) => {
-  fastify.register(auth);
-
+const postV1: FastifyPluginAsync = async (fastify) => {
   fastify.post<{ Body: DeckInput }>("/decklist", {
     schema: {
       body: {
@@ -127,6 +125,9 @@ const privateRoutes: FastifyPluginAsync = async (fastify, options) => {
       };
     },
   });
+};
+
+const putV1: FastifyPluginAsync = async (fastify) => {
   fastify.put<{ Params: { deckId: string }; Body: DeckInput }>(
     "/decklist/:deckId",
     {
@@ -146,10 +147,10 @@ const privateRoutes: FastifyPluginAsync = async (fastify, options) => {
             haven: { type: "string" },
             factionDeck: { type: "object" },
             libraryDeck: { type: "object" },
-          },
-          gameMode: {
-            type: "string",
-            enum: ["both", "headToHead", "multiplayer"],
+            gameMode: {
+              type: "string",
+              enum: ["both", "headToHead", "multiplayer"],
+            },
           },
         },
       },
@@ -188,6 +189,78 @@ const privateRoutes: FastifyPluginAsync = async (fastify, options) => {
       },
     }
   );
+};
+
+const putV2: FastifyPluginAsync = async (fastify) => {
+  fastify.put<{ Params: { deckId: string }; Body: DeckInput }>(
+    "/decklist/:deckId",
+    {
+      schema: {
+        body: {
+          type: "object",
+          required: [
+            "agenda",
+            "factionDeck",
+            "haven",
+            "libraryDeck",
+            "gameMode",
+          ],
+          properties: {
+            name: { type: "string" },
+            agenda: { type: "string" },
+            haven: { type: "string" },
+            factionDeck: { type: "object" },
+            libraryDeck: { type: "object" },
+            gameMode: {
+              type: "string",
+              enum: ["both", "headToHead", "multiplayer"],
+            },
+          },
+        },
+      },
+
+      async handler(req, reply): Promise<void> {
+        const leader = findLeader(req.body.factionDeck);
+        if (leader == null) {
+          reply.code(400);
+          return reply.send("Invalid leader");
+        }
+
+        const newDecklist = {
+          agenda: req.body.agenda,
+          haven: req.body.haven,
+          libraryDeck: req.body.libraryDeck,
+          factionDeck: Object.keys(req.body.factionDeck),
+          leader,
+        };
+        const meta = {
+          creatorId: req.user.id,
+          gameMode: gameModeFromString(req.body.gameMode),
+          name: req.body.name,
+          id: req.params.deckId,
+        };
+
+        const oldDecklist = await fetchDecklist(req.params.deckId);
+        if (oldDecklist == null) {
+          await createDecklist(newDecklist, meta);
+          reply.code(201);
+          return reply.send();
+        }
+
+        if (oldDecklist.creatorId !== req.user.id) {
+          reply.code(403);
+          return reply.send();
+        }
+
+        await updateDecklist(oldDecklist.id, newDecklist, meta);
+
+        reply.code(204);
+      },
+    }
+  );
+};
+
+const deleteV1: FastifyPluginAsync = async (fastify) => {
   fastify.delete<{ Params: { deckId: string } }>("/decklist/:deckId", {
     async handler(req, reply): Promise<void> {
       const decklist = await fetchDecklist(req.params.deckId);
@@ -207,7 +280,7 @@ const privateRoutes: FastifyPluginAsync = async (fastify, options) => {
   });
 };
 
-const publicRoutes: FastifyPluginAsync = async (fastify, options) => {
+const indexV1: FastifyPluginAsync = async (fastify) => {
   fastify.get<{ Querystring: { userId: string } }>("/decklist", {
     schema: {
       querystring: {
@@ -253,7 +326,9 @@ const publicRoutes: FastifyPluginAsync = async (fastify, options) => {
       }));
     },
   });
+};
 
+const getV1: FastifyPluginAsync = async (fastify) => {
   fastify.get<{ Params: { deckId: string } }>("/decklist/:deckId", {
     schema: {
       response: {
@@ -298,8 +373,21 @@ const publicRoutes: FastifyPluginAsync = async (fastify, options) => {
   });
 };
 
-const routes: FastifyPluginAsync = async (fastify) => {
-  fastify.register(publicRoutes);
-  fastify.register(privateRoutes);
+export const v1Routes: FastifyPluginAsync = async (fastify) => {
+  fastify.register(indexV1);
+  fastify.register(getV1);
+
+  fastify.register(async (fastify) => {
+    fastify.register(auth);
+    fastify.register(postV1);
+    fastify.register(putV1);
+    fastify.register(deleteV1);
+  });
 };
-export default routes;
+
+export const v2Routes: FastifyPluginAsync = async (fastify) => {
+  fastify.register(async (fastify) => {
+    fastify.register(auth);
+    fastify.register(putV2);
+  });
+};
