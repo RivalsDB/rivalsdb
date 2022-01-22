@@ -1,10 +1,8 @@
 module API.Decklist exposing
-    ( ResultCreate
-    , ResultDelete
+    ( ResultDelete
     , ResultIndex
     , ResultRead
     , ResultUpdate
-    , create
     , delete
     , index
     , indexForUser
@@ -14,28 +12,11 @@ module API.Decklist exposing
 
 import API.Auth exposing (auth)
 import Data.Collection exposing (Collection)
-import Deck exposing (DeckPostSave)
+import Data.Deck exposing (Deck)
 import Http
 import Json.Decode as Decode
 import Json.Encode as Encode
 import Shared
-
-
-type alias ResultCreate =
-    Result Http.Error String
-
-
-create : (ResultCreate -> msg) -> Shared.Token -> Encode.Value -> Cmd msg
-create msg token deck =
-    Http.request
-        { method = "POST"
-        , url = "/api/v1/decklist"
-        , headers = [ auth token ]
-        , timeout = Nothing
-        , tracker = Nothing
-        , body = Http.jsonBody deck
-        , expect = Http.expectJson msg (Decode.field "id" Decode.string)
-        }
 
 
 type alias ResultUpdate =
@@ -46,7 +27,7 @@ update : (ResultUpdate -> msg) -> Shared.Token -> String -> Encode.Value -> Cmd 
 update msg token deckId deck =
     Http.request
         { method = "PUT"
-        , url = "/api/v1/decklist/" ++ deckId
+        , url = "/api/v2/decklist/" ++ deckId
         , headers = [ auth token ]
         , timeout = Nothing
         , tracker = Nothing
@@ -73,26 +54,26 @@ delete msg token deckId =
 
 
 type alias ResultRead =
-    Result Http.Error DeckPostSave
+    Result Http.Error Deck
 
 
 read : Collection -> (ResultRead -> msg) -> String -> Cmd msg
 read collection msg deckId =
     Http.get
         { url = "/api/v1/decklist/" ++ deckId
-        , expect = Http.expectJson msg (Deck.decoder collection)
+        , expect = Http.expectJson msg (Data.Deck.decoder collection)
         }
 
 
 type alias ResultIndex =
-    Result Http.Error (List DeckPostSave)
+    Result Http.Error (List Deck)
 
 
 index : Collection -> (ResultIndex -> msg) -> Cmd msg
 index collection msg =
     Http.get
         { url = "/api/v1/decklist"
-        , expect = Http.expectJson msg (Decode.list <| Deck.decoder collection)
+        , expect = Http.expectJson msg (Decode.list <| Data.Deck.decoder collection)
         }
 
 
@@ -100,5 +81,5 @@ indexForUser : Collection -> (ResultIndex -> msg) -> String -> Cmd msg
 indexForUser collection msg userId =
     Http.get
         { url = "/api/v1/decklist?userId=" ++ userId
-        , expect = Http.expectJson msg (Decode.list <| Deck.decoder collection)
+        , expect = Http.expectJson msg (Decode.list <| Data.Deck.decoder collection)
         }

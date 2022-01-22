@@ -1,10 +1,10 @@
-module UI.Decklist exposing (Actions, viewCreate, viewEdit, viewRead)
+module UI.Decklist exposing (Actions, viewRead, viewWrite)
 
 import Cards
 import Data.Clan as Clan
+import Data.Deck as Deck exposing (Deck, Name(..), isLeader)
 import Data.GameMode as GameMode exposing (GameMode)
 import Data.Trait as Trait
-import Deck exposing (DeckPostSave, DeckPreSave, Name(..), isLeader)
 import Dict
 import Html exposing (Html, button, div, form, h3, h4, input, label, li, option, p, select, span, text, ul)
 import Html.Attributes exposing (class, classList, name, placeholder, selected, type_, value)
@@ -17,7 +17,7 @@ import UI.Icon.V2
 import UI.Text
 
 
-viewRead : DeckPostSave -> Html msg
+viewRead : Deck -> Html msg
 viewRead { decklist, meta } =
     div [ class "decklist" ]
         [ viewDeckTitleReadOnly meta
@@ -29,20 +29,8 @@ viewRead { decklist, meta } =
         ]
 
 
-viewCreate : Actions msg -> DeckPreSave -> Html msg
-viewCreate actions { decklist, meta } =
-    div [ class "decklist" ]
-        [ viewDeckTitleEditable actions meta.name meta.gameMode
-        , viewAgenda decklist.agenda
-        , viewHaven decklist.haven
-        , viewLeader (Deck.leader decklist)
-        , viewFaction (factionEntryEditable actions) decklist
-        , viewLibrary decklist.library
-        ]
-
-
-viewEdit : Actions msg -> DeckPostSave -> Html msg
-viewEdit actions { decklist, meta } =
+viewWrite : Actions msg -> Deck -> Html msg
+viewWrite actions { decklist, meta } =
     div [ class "decklist" ]
         [ viewDeckTitleEditable actions meta.name meta.gameMode
         , viewAgenda decklist.agenda

@@ -3,9 +3,9 @@ module UI.DeckbuildSelections exposing (Model, Msg(..), init, update, view)
 import Cards exposing (Card)
 import Data.Clan exposing (Clan)
 import Data.Collection exposing (Collection)
+import Data.Deck exposing (Decklist)
 import Data.Discipline exposing (Discipline)
 import Data.Trait exposing (Trait)
-import Deck exposing (Decklist)
 import Dict
 import Effect exposing (Effect)
 import Html exposing (Html, div, h2, input, label, li, section, span, text, ul)
@@ -13,6 +13,7 @@ import Html.Attributes exposing (checked, class, classList, name, type_)
 import Html.Events exposing (onClick)
 import Html.Keyed as Keyed
 import Html.Lazy as Lazy
+import Port.Event
 import Shared
 import UI.Attribute
 import UI.Card
@@ -93,7 +94,7 @@ update msg model =
                 , disciplineFilters = UI.FilterSelection.disciplines
                 , textFilter = Nothing
               }
-            , Effect.fromShared (Shared.TrackEvent "Builder Clear Filters" Nothing)
+            , Effect.fromCmd <| Port.Event.track Port.Event.BuilderClearFilters
             )
 
         ToggleShowAllFilters ->
@@ -102,16 +103,14 @@ update msg model =
                     not model.showAllFilters
             in
             ( { model | showAllFilters = newShowAllFilters }
-            , Effect.fromShared
-                (Shared.TrackEvent
+            , Effect.fromCmd <|
+                Port.Event.track
                     (if newShowAllFilters then
-                        "Builder Show All Filters"
+                        Port.Event.BuilderShowAllFilters
 
                      else
-                        "Builder Hide All Filters"
+                        Port.Event.BuilderHideAllFilters
                     )
-                    Nothing
-                )
             )
 
         ToggleShowCollectionImages ->
@@ -120,15 +119,14 @@ update msg model =
                     not model.showCollectionImages
             in
             ( { model | showCollectionImages = newShowCollectionImages }
-            , Effect.fromShared
-                (Shared.TrackEvent
+            , Effect.fromCmd
+                (Port.Event.track
                     (if newShowCollectionImages then
-                        "Builder Show Images"
+                        Port.Event.BuilderShowImages
 
                      else
-                        "Builder Hide Images"
+                        Port.Event.BuilderHideImages
                     )
-                    Nothing
                 )
             )
 
@@ -275,7 +273,7 @@ viewCardListImage : (Msg -> msg) -> Decklist -> Card -> Html msg
 viewCardListImage msg deck card =
     li [ class "deckbuild-selections__collectionitem--image" ]
         [ UI.Card.lazy card
-        , div [ class "deckbuild-selections__rowpiece_quant--image" ] [ viewQuantityPicker msg card (Deck.copiesInDeck deck card) ]
+        , div [ class "deckbuild-selections__rowpiece_quant--image" ] [ viewQuantityPicker msg card (Data.Deck.copiesInDeck deck card) ]
         ]
 
 
@@ -290,7 +288,7 @@ viewCardList collection msg data decklist =
 viewCardListRow : (Msg -> msg) -> Decklist -> Card -> Html msg
 viewCardListRow msg deck card =
     li [ class "cardlist__row" ]
-        [ span [ class "cardlist__quant--row" ] [ viewQuantityPicker msg card (Deck.copiesInDeck deck card) ]
+        [ span [ class "cardlist__quant--row" ] [ viewQuantityPicker msg card (Data.Deck.copiesInDeck deck card) ]
         , span [ class "cardlist__name" ] [ UI.CardName.withOverlay card ]
         , span [ class "cardlist__props" ]
             (case card of

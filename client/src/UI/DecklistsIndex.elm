@@ -1,8 +1,8 @@
 module UI.DecklistsIndex exposing (view)
 
 import Cards
+import Data.Deck as Deck exposing (Deck)
 import Data.GameMode as GameMode
-import Deck exposing (DeckPostSave)
 import Gen.Route as Route
 import Html exposing (Html, a, div, li, p, span, text)
 import Html.Attributes exposing (class, href)
@@ -11,13 +11,13 @@ import UI.Card
 import UI.Icon.V2 as Icon
 
 
-view : List DeckPostSave -> Html msg
+view : List Deck -> Html msg
 view decklists =
     ul [ class "deckindex" ]
         (decklists |> List.map viewDecklistEntry)
 
 
-viewDecklistEntry : DeckPostSave -> ( String, Html msg )
+viewDecklistEntry : Deck -> ( String, Html msg )
 viewDecklistEntry deck =
     ( deck.meta.id
     , li [ class "deckindexitem" ]

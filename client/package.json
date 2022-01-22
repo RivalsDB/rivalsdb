@@ -23,6 +23,7 @@
     "elm": "^0.19.1-5",
     "elm-spa": "^6.0.4",
     "magic-sdk": "^7.0.0",
+    "nanoid": "^3.2.0",
     "parcel": "^2.0.1",
     "plausible-tracker": "^0.3.4",
     "prettier": "^2.5.1"

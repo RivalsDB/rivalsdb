@@ -3,13 +3,15 @@ module Pages.Deck.New exposing (Model, Msg, page)
 import API.Decklist
 import Auth
 import Cards
+import Data.Deck as Deck exposing (Deck, Name(..))
 import Data.GameMode exposing (GameMode)
-import Deck exposing (DeckPreSave, Name(..))
 import Effect exposing (Effect)
 import Gen.Params.Deck.New exposing (Params)
 import Gen.Route as Route
+import Html
 import Html.Lazy as Lazy
 import Page
+import Port.UniqueId exposing (UniqueId)
 import Request
 import Shared
 import UI.ActionBar
@@ -28,7 +30,7 @@ page shared _ =
             { init = init
             , update = update user
             , view = view shared
-            , subscriptions = always Sub.none
+            , subscriptions = subscriptions
             }
         )
 
@@ -37,8 +39,13 @@ page shared _ =
 -- INIT
 
 
-type alias Model =
-    { deck : DeckPreSave
+type Model
+    = Loading
+    | Deckbuilding DeckbuildingModel
+
+
+type alias DeckbuildingModel =
+    { deck : Deck
     , builderOptions : DeckbuildSelections.Model Msg
     , isSaving : Bool
     }
@@ -46,20 +53,21 @@ type alias Model =
 
 init : ( Model, Effect Msg )
 init =
-    ( { deck = Deck.init
-      , builderOptions = DeckbuildSelections.init
-      , isSaving = False
-      }
-    , Effect.none
-    )
+    ( Loading, Effect.fromCmd Port.UniqueId.requestId )
+
+
+subscriptions : Model -> Sub Msg
+subscriptions _ =
+    Port.UniqueId.onReceiveId ReceivedId
 
 
 type Msg
     = FromShared Shared.Msg
+    | ReceivedId (Maybe UniqueId)
     | FromBuilderOptions DeckbuildSelections.Msg
     | ChoseLeader Cards.Faction
     | Save
-    | SavedDecklist API.Decklist.ResultCreate
+    | SavedDecklist API.Decklist.ResultUpdate
     | StartRenameDeck
     | DeckNameChanged String
     | SetGameMode GameMode
@@ -68,103 +76,123 @@ type Msg
 
 update : Auth.User -> Msg -> Model -> ( Model, Effect Msg )
 update user msg model =
-    case msg of
-        FromShared subMsg ->
+    case ( model, msg ) of
+        ( _, FromShared subMsg ) ->
             ( model, Effect.fromShared subMsg )
 
-        FromBuilderOptions (DeckbuildSelections.ChangedDecklist change) ->
+        ( Loading, ReceivedId maybeId ) ->
+            case maybeId of
+                Just uniqueId ->
+                    ( Deckbuilding
+                        { deck = Deck.create uniqueId user.id Nothing
+                        , builderOptions = DeckbuildSelections.init
+                        , isSaving = False
+                        }
+                    , Effect.none
+                    )
+
+                Nothing ->
+                    ( model, Effect.none )
+
+        ( Deckbuilding _, ReceivedId _ ) ->
+            ( model, Effect.none )
+
+        ( Loading, _ ) ->
+            ( model, Effect.none )
+
+        ( Deckbuilding model2, FromBuilderOptions (DeckbuildSelections.ChangedDecklist change) ) ->
             let
                 oldDeck =
-                    model.deck
+                    model2.deck
             in
-            ( { model | deck = { oldDeck | decklist = Deck.setCard oldDeck.decklist change } }, Effect.none )
+            ( Deckbuilding { model2 | deck = { oldDeck | decklist = Deck.setCard oldDeck.decklist change } }, Effect.none )
 
-        FromBuilderOptions subMsg ->
+        ( Deckbuilding model2, FromBuilderOptions subMsg ) ->
             let
                 ( subModel, subEffect ) =
-                    DeckbuildSelections.update subMsg model.builderOptions
+                    DeckbuildSelections.update subMsg model2.builderOptions
             in
-            ( { model | builderOptions = subModel }, subEffect )
+            ( Deckbuilding { model2 | builderOptions = subModel }, subEffect )
 
-        ChoseLeader leader ->
+        ( Deckbuilding model2, ChoseLeader leader ) ->
             let
                 oldDeck =
-                    model.deck
+                    model2.deck
             in
-            ( { model | deck = { oldDeck | decklist = Deck.setLeader oldDeck.decklist leader } }, Effect.none )
+            ( Deckbuilding { model2 | deck = { oldDeck | decklist = Deck.setLeader oldDeck.decklist leader } }, Effect.none )
 
-        Save ->
-            if model.isSaving then
+        ( Deckbuilding model2, Save ) ->
+            if model2.isSaving then
                 ( model, Effect.none )
 
             else
-                case Deck.encode (Deck.PreSave model.deck) of
+                case Deck.encode model2.deck of
                     Nothing ->
                         ( model, Effect.none )
 
                     Just encodedDeck ->
-                        ( { model | isSaving = True }, API.Decklist.create SavedDecklist user.token encodedDeck |> Effect.fromCmd )
+                        ( Deckbuilding { model2 | isSaving = True }, API.Decklist.update SavedDecklist user.token model2.deck.meta.id encodedDeck |> Effect.fromCmd )
 
-        SavedDecklist (Ok deckId) ->
-            ( { model | isSaving = False }, Effect.fromShared <| Shared.GoTo (Route.Deck__View__Id_ { id = deckId }) )
+        ( Deckbuilding model2, SavedDecklist (Ok _) ) ->
+            ( Deckbuilding { model2 | isSaving = False }, Effect.fromShared <| Shared.GoTo (Route.Deck__View__Id_ { id = model2.deck.meta.id }) )
 
-        SavedDecklist (Err _) ->
-            ( { model | isSaving = False }, Effect.none )
+        ( Deckbuilding model2, SavedDecklist (Err _) ) ->
+            ( Deckbuilding { model2 | isSaving = False }, Effect.none )
 
-        StartRenameDeck ->
+        ( Deckbuilding model2, StartRenameDeck ) ->
             let
                 oldDeck =
-                    model.deck
+                    model2.deck
 
                 oldMeta =
                     oldDeck.meta
             in
-            ( { model | deck = { oldDeck | meta = { oldMeta | name = BeingNamed "" } } }, Effect.none )
+            ( Deckbuilding { model2 | deck = { oldDeck | meta = { oldMeta | name = BeingNamed "" } } }, Effect.none )
 
-        DeckNameChanged newName ->
+        ( Deckbuilding model2, DeckNameChanged newName ) ->
             let
                 oldDeck =
-                    model.deck
+                    model2.deck
 
                 oldMeta =
                     oldDeck.meta
             in
-            case model.deck.meta.name of
+            case model2.deck.meta.name of
                 BeingNamed _ ->
-                    ( { model | deck = { oldDeck | meta = { oldMeta | name = BeingNamed newName } } }, Effect.none )
+                    ( Deckbuilding { model2 | deck = { oldDeck | meta = { oldMeta | name = BeingNamed newName } } }, Effect.none )
 
                 _ ->
                     ( model, Effect.none )
 
-        SaveNewDeckName ->
+        ( Deckbuilding model2, SaveNewDeckName ) ->
             let
                 oldDeck =
-                    model.deck
+                    model2.deck
 
                 oldMeta =
                     oldDeck.meta
             in
-            case model.deck.meta.name of
+            case model2.deck.meta.name of
                 BeingNamed newName ->
                     case String.trim newName of
                         "" ->
-                            ( { model | deck = { oldDeck | meta = { oldMeta | name = Unnamed } } }, Effect.none )
+                            ( Deckbuilding { model2 | deck = { oldDeck | meta = { oldMeta | name = Unnamed } } }, Effect.none )
 
                         trimmedName ->
-                            ( { model | deck = { oldDeck | meta = { oldMeta | name = Named trimmedName } } }, Effect.none )
+                            ( Deckbuilding { model2 | deck = { oldDeck | meta = { oldMeta | name = Named trimmedName } } }, Effect.none )
 
                 _ ->
                     ( model, Effect.none )
 
-        SetGameMode gameMode ->
+        ( Deckbuilding model2, SetGameMode gameMode ) ->
             let
                 oldDeck =
-                    model.deck
+                    model2.deck
 
                 oldMeta =
                     oldDeck.meta
             in
-            ( { model | deck = { oldDeck | meta = { oldMeta | gameMode = gameMode } } }, Effect.none )
+            ( Deckbuilding { model2 | deck = { oldDeck | meta = { oldMeta | gameMode = gameMode } } }, Effect.none )
 
 
 decklistActions : UI.Decklist.Actions Msg
@@ -181,11 +209,16 @@ view : Shared.Model -> Model -> View Msg
 view shared model =
     UI.Layout.Template.view FromShared
         shared
-        [ UI.Layout.Deck.writeMode
-            { actions = Lazy.lazy UI.ActionBar.view actions
-            , decklist = Lazy.lazy2 UI.Decklist.viewCreate decklistActions model.deck
-            , selectors = DeckbuildSelections.view shared.collection FromBuilderOptions model.builderOptions model.deck.decklist
-            }
+        [ case model of
+            Loading ->
+                Html.text "Loading..."
+
+            Deckbuilding { deck, builderOptions } ->
+                UI.Layout.Deck.writeMode
+                    { actions = Lazy.lazy UI.ActionBar.view actions
+                    , decklist = Lazy.lazy2 UI.Decklist.viewWrite decklistActions deck
+                    , selectors = DeckbuildSelections.view shared.collection FromBuilderOptions builderOptions deck.decklist
+                    }
         ]
 
 

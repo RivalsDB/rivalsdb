@@ -2,12 +2,13 @@ module Pages.Deck.View.Id_ exposing (Model, Msg, page)
 
 import API.Decklist
 import Data.Collection exposing (Collection)
-import Deck exposing (DeckPostSave)
+import Data.Deck as Deck exposing (Deck)
 import Effect exposing (Effect)
 import Gen.Params.Deck.View.Id_ exposing (Params)
 import Gen.Route as Route
 import Html exposing (Html, div, text)
 import Page
+import Port.Auth exposing (User)
 import Request
 import Shared
 import UI.ActionBar
@@ -34,7 +35,7 @@ page shared req =
 
 type Model
     = Loading
-    | Viewing DeckPostSave
+    | Viewing Deck
 
 
 init : Collection -> String -> ( Model, Effect Msg )
@@ -94,7 +95,7 @@ view shared model =
             viewDecklist shared deck
 
 
-viewDecklist : Shared.Model -> DeckPostSave -> View Msg
+viewDecklist : Shared.Model -> Deck -> View Msg
 viewDecklist shared deck =
     UI.Layout.Template.view FromShared
         shared
@@ -110,7 +111,7 @@ noView =
     div [] []
 
 
-viewActions : Maybe Shared.User -> Deck.MetaPostSave -> Html Msg
+viewActions : Maybe User -> Deck.MetaPostSave -> Html Msg
 viewActions maybeUser meta =
     case maybeUser of
         Nothing ->

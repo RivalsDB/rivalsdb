@@ -1,7 +1,7 @@
 module Pages.MyDecks exposing (Model, Msg, page)
 
 import API.Decklist
-import Deck exposing (DeckPostSave)
+import Data.Deck exposing (Deck)
 import Effect exposing (Effect)
 import Gen.Params.MyDecks exposing (Params)
 import Html exposing (div, text)
@@ -33,7 +33,7 @@ page shared _ =
 
 type Model
     = Loading
-    | Viewing (List DeckPostSave)
+    | Viewing (List Deck)
 
 
 init : Shared.Model -> String -> ( Model, Effect Msg )
@@ -82,7 +82,7 @@ view shared model =
             viewDecklists shared ddd
 
 
-viewDecklists : Shared.Model -> List DeckPostSave -> View Msg
+viewDecklists : Shared.Model -> List Deck -> View Msg
 viewDecklists shared model =
     UI.Layout.Template.view FromShared
         shared

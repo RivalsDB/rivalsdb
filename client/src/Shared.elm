@@ -1,9 +1,8 @@
-port module Shared exposing
+module Shared exposing
     ( Flags
     , Model
     , Msg(..)
     , Token
-    , User
     , init
     , isModalOpen
     , subscriptions
@@ -16,7 +15,8 @@ import Data.Collection exposing (Collection)
 import Dict
 import Gen.Route as Route exposing (Route)
 import Json.Decode as Json
-import Json.Encode as Encode
+import Port.Auth exposing (User)
+import Port.Event
 import Request exposing (Request)
 
 
@@ -32,10 +32,6 @@ type alias Model =
     , headerSearch : Maybe String
     , key : Key
     }
-
-
-type alias User =
-    { token : Token, id : String }
 
 
 type alias Token =
@@ -57,25 +53,12 @@ isModalOpen model =
             False
 
 
-port signInReceiver : (Json.Value -> msg) -> Sub msg
-
-
-port initiateLogin : String -> Cmd msg
-
-
-port trackEvent : Json.Value -> Cmd msg
-
-
-port signOut : () -> Cmd msg
-
-
 type Msg
-    = GotSignIn Json.Value
+    = GotSignIn (Maybe User)
     | ModalClose
     | ModalChangedEmail String
     | ModalSubmit
     | InitiateSignin String
-    | TrackEvent String (Maybe Encode.Value)
     | HeaderClickedSignIn
     | HeaderClickedSignOut
     | HeaderSearchQueryChanged String
@@ -110,13 +93,8 @@ init req flags =
 update : Request -> Msg -> Model -> ( Model, Cmd Msg )
 update _ msg model =
     case msg of
-        GotSignIn json ->
-            case Json.decodeValue userDecoder json of
-                Ok user ->
-                    ( { model | user = Just user }, Cmd.none )
-
-                Err _ ->
-                    ( { model | user = Nothing }, Cmd.none )
+        GotSignIn maybeUser ->
+            ( { model | user = maybeUser }, Cmd.none )
 
         ToggleBurgerMenu ->
             ( { model | burgerMenu = not model.burgerMenu }, Cmd.none )
@@ -142,16 +120,13 @@ update _ msg model =
         ModalSubmit ->
             case model.modal of
                 Open (Just email) ->
-                    ( { model | modal = Closed }, initiateLogin email )
+                    ( { model | modal = Closed }, Port.Auth.startSignin email )
 
                 _ ->
                     ( model, Cmd.none )
 
         InitiateSignin email ->
-            ( model, initiateLogin email )
-
-        TrackEvent name extra ->
-            ( model, trackEvent (encodeEvent name extra) )
+            ( model, Port.Auth.startSignin email )
 
         HeaderClickedSignIn ->
             ( { model | modal = Open Nothing }, Cmd.none )
@@ -159,8 +134,8 @@ update _ msg model =
         HeaderClickedSignOut ->
             ( { model | user = Nothing }
             , Cmd.batch
-                [ signOut ()
-                , trackEvent (encodeEvent "Signed out" Nothing)
+                [ Port.Auth.startSignout
+                , Port.Event.track Port.Event.SignedOut
                 ]
             )
 
@@ -186,7 +161,7 @@ update _ msg model =
                     ( model
                     , Cmd.batch
                         [ Navigation.pushUrl model.key <| Route.toHref Route.Search ++ "?search=" ++ search
-                        , trackEvent (encodeEvent "Used header search" Nothing)
+                        , Port.Event.track (Port.Event.HeaderSearchUsed search)
                         ]
                     )
 
@@ -199,25 +174,4 @@ update _ msg model =
 
 subscriptions : Request -> Model -> Sub Msg
 subscriptions _ _ =
-    signInReceiver GotSignIn
-
-
-userDecoder : Json.Decoder User
-userDecoder =
-    Json.map2 User (Json.field "token" Json.string) (Json.field "user" Json.string)
-
-
-
-------------------
--- EVENT TRACKING
-------------------
-
-
-encodeEvent : String -> Maybe Encode.Value -> Encode.Value
-encodeEvent name extra =
-    Encode.object
-        (( "name", Encode.string name )
-            :: (Maybe.map (\ex -> [ ( "extra", ex ) ]) extra
-                    |> Maybe.withDefault []
-               )
-        )
+    Port.Auth.receivedSignin GotSignIn

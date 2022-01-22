@@ -1,18 +1,16 @@
-module Deck exposing
-    ( Deck(..)
-    , DeckPostSave
-    , DeckPreSave
+module Data.Deck exposing
+    ( Deck
     , Decklist
     , Library
     , MetaPostSave
     , Name(..)
     , clansInFaction
     , copiesInDeck
+    , create
     , decoder
     , displayName
     , encode
     , fallbackLeader
-    , init
     , isLeader
     , isValidFaction
     , isValidLibrary
@@ -31,49 +29,22 @@ import Json.Decode as Decode exposing (Decoder)
 import Json.Encode as Encode
 
 
-
---------------------------------------------------
---------------------------------------------------
---------------------------------------------------
--- REWRITE DECK
---------------------------------------------------
---------------------------------------------------
---------------------------------------------------
--- type NewDeckType = NewDeckType Decklist Meta
--- type alias Meta = { etc : "stuff"}
-
-
-type Deck
-    = PreSave DeckPreSave
-    | PostSave DeckPostSave
-
-
-type alias DeckPreSave =
+type alias Deck =
     { decklist : Decklist
-    , meta : MetaPreSave
+    , meta : MetaPostSave
     }
 
 
-init : DeckPreSave
-init =
+create : String -> String -> Maybe String -> Deck
+create id ownerId ownerName =
     { decklist =
         { agenda = Nothing
         , haven = Nothing
         , faction = Dict.empty
         , library = Dict.empty
         }
-    , meta = { name = Unnamed, gameMode = GameMode.default }
+    , meta = { name = Unnamed, id = id, ownerId = ownerId, ownerName = ownerName, gameMode = GameMode.default }
     }
-
-
-type alias DeckPostSave =
-    { decklist : Decklist
-    , meta : MetaPostSave
-    }
-
-
-type alias MetaPreSave =
-    { name : Name, gameMode : GameMode }
 
 
 type Name
@@ -267,30 +238,21 @@ isValidFaction deck =
 
 
 encode : Deck -> Maybe Encode.Value
-encode deck2 =
-    let
-        encode_ decklist deckname gameMode =
-            case ( decklist.agenda, decklist.haven ) of
-                ( Just agenda, Just haven ) ->
-                    Just <|
-                        Encode.object
-                            [ ( "name", encodeName deckname )
-                            , ( "agenda", Encode.string agenda.id )
-                            , ( "haven", Encode.string haven.id )
-                            , ( "factionDeck", encodeFaction decklist.faction )
-                            , ( "libraryDeck", encodeLibrary decklist.library )
-                            , ( "gameMode", GameMode.encode gameMode )
-                            ]
+encode { decklist, meta } =
+    case ( decklist.agenda, decklist.haven ) of
+        ( Just agenda, Just haven ) ->
+            Just <|
+                Encode.object
+                    [ ( "name", encodeName meta.name )
+                    , ( "agenda", Encode.string agenda.id )
+                    , ( "haven", Encode.string haven.id )
+                    , ( "factionDeck", encodeFaction decklist.faction )
+                    , ( "libraryDeck", encodeLibrary decklist.library )
+                    , ( "gameMode", GameMode.encode meta.gameMode )
+                    ]
 
-                ( _, _ ) ->
-                    Nothing
-    in
-    case deck2 of
-        PreSave { decklist, meta } ->
-            encode_ decklist meta.name meta.gameMode
-
-        PostSave { decklist, meta } ->
-            encode_ decklist meta.name meta.gameMode
+        ( _, _ ) ->
+            Nothing
 
 
 encodeName : Name -> Encode.Value
@@ -308,9 +270,9 @@ encodeLibrary =
     Dict.values >> List.map (Tuple.mapBoth .id Encode.int) >> Encode.object
 
 
-decoder : Collection -> Decoder DeckPostSave
+decoder : Collection -> Decoder Deck
 decoder collection =
-    Decode.map2 DeckPostSave
+    Decode.map2 Deck
         (decklistDecoder collection)
         metaDecoder
 

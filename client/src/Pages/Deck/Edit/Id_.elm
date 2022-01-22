@@ -4,8 +4,8 @@ import API.Decklist
 import Auth
 import Cards
 import Data.Collection exposing (Collection)
+import Data.Deck as Deck exposing (Deck, Name(..))
 import Data.GameMode exposing (GameMode)
-import Deck exposing (DeckPostSave, Name(..))
 import Effect exposing (Effect)
 import Gen.Params.Deck.Edit.Id_ exposing (Params)
 import Gen.Route as Route
@@ -44,7 +44,7 @@ type Model
 
 
 type alias Data =
-    { deck : DeckPostSave
+    { deck : Deck
     , builderOptions : DeckbuildSelections.Model Msg
     , isSaving : Bool
     }
@@ -114,7 +114,7 @@ update user msg modelx =
                 ( Editing model, Effect.none )
 
             else
-                case Deck.encode (Deck.PostSave model.deck) of
+                case Deck.encode model.deck of
                     Nothing ->
                         ( Editing model, Effect.none )
 
@@ -207,7 +207,7 @@ view shared model =
                 shared
                 [ UI.Layout.Deck.writeMode
                     { actions = Lazy.lazy UI.ActionBar.view actions
-                    , decklist = Lazy.lazy2 UI.Decklist.viewEdit decklistActions data.deck
+                    , decklist = Lazy.lazy2 UI.Decklist.viewWrite decklistActions data.deck
                     , selectors = DeckbuildSelections.view shared.collection FromBuilderOptions data.builderOptions data.deck.decklist
                     }
                 ]

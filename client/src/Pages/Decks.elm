@@ -5,8 +5,8 @@ import Browser.Navigation as Navigation exposing (Key)
 import Cards exposing (CardStack(..))
 import Data.Clan as Clan exposing (Clan)
 import Data.Collection exposing (Collection)
+import Data.Deck as Deck exposing (Deck)
 import Data.GameMode as GameMode exposing (GameMode)
-import Deck exposing (DeckPostSave)
 import Dict exposing (Dict)
 import Effect exposing (Effect)
 import Gen.Params.Decks exposing (Params)
@@ -17,6 +17,7 @@ import Html.Events exposing (onInput)
 import Html.Lazy as Lazy
 import Json.Encode as Encode
 import Page
+import Port.Event
 import Request
 import Shared
 import UI.DecklistsIndex
@@ -41,7 +42,7 @@ page shared req =
 
 type Model
     = Loading Key Filters
-    | Viewing Key (List DeckPostSave) Filters
+    | Viewing Key (List Deck) Filters
 
 
 type alias Filters =
@@ -141,7 +142,7 @@ update msg model =
             ( Viewing key decklist newFilters
             , Effect.batch
                 [ urlFollowFilters key newFilters
-                , trackFiltering "game mode" (GameMode.toString gameMode)
+                , Effect.fromCmd <| Port.Event.track (Port.Event.DeckIndexFilter ( "game mode", GameMode.toString gameMode ))
                 ]
             )
 
@@ -153,7 +154,7 @@ update msg model =
             ( Viewing key decklist newFilters
             , Effect.batch
                 [ urlFollowFilters key newFilters
-                , trackFiltering "agenda" (Maybe.withDefault "NONE" agendaId)
+                , Effect.fromCmd <| Port.Event.track (Port.Event.DeckIndexFilter ( "agenda", Maybe.withDefault "NONE" agendaId ))
                 ]
             )
 
@@ -165,7 +166,7 @@ update msg model =
             ( Viewing key decklist newFilters
             , Effect.batch
                 [ urlFollowFilters key newFilters
-                , trackFiltering "haven" (Maybe.withDefault "NONE" havenId)
+                , Effect.fromCmd <| Port.Event.track (Port.Event.DeckIndexFilter ( "haven", Maybe.withDefault "NONE" havenId ))
                 ]
             )
 
@@ -177,7 +178,7 @@ update msg model =
             ( Viewing key decklist newFilters
             , Effect.batch
                 [ urlFollowFilters key newFilters
-                , trackFiltering "leader" (Maybe.withDefault "NONE" leaderId)
+                , Effect.fromCmd <| Port.Event.track (Port.Event.DeckIndexFilter ( "leader", Maybe.withDefault "NONE" leaderId ))
                 ]
             )
 
@@ -189,7 +190,7 @@ update msg model =
             ( Viewing key decklist newFilters
             , Effect.batch
                 [ urlFollowFilters key newFilters
-                , trackFiltering "clan" (Maybe.map Clan.toString clan |> Maybe.withDefault "NONE")
+                , Effect.fromCmd <| Port.Event.track (Port.Event.DeckIndexFilter ( "clan", Maybe.map Clan.toString clan |> Maybe.withDefault "NONE" ))
                 ]
             )
 
@@ -199,14 +200,6 @@ urlFollowFilters key filters =
     (Route.toHref Route.Decks ++ filtersToQueryString filters)
         |> Navigation.replaceUrl key
         |> Effect.fromCmd
-
-
-trackFiltering : String -> String -> Effect Msg
-trackFiltering by val =
-    Encode.object [ ( by, Encode.string val ) ]
-        |> Just
-        |> Shared.TrackEvent "Deck index: filter"
-        |> Effect.fromShared
 
 
 
@@ -225,7 +218,7 @@ view shared model =
             viewDecklists shared decks filters
 
 
-viewDecklists : Shared.Model -> List DeckPostSave -> Filters -> View Msg
+viewDecklists : Shared.Model -> List Deck -> Filters -> View Msg
 viewDecklists shared decks filters =
     UI.Layout.Template.view
         FromShared
@@ -340,7 +333,7 @@ viewSelect settings entries =
 -------------
 
 
-filterDecks : Filters -> List DeckPostSave -> List DeckPostSave
+filterDecks : Filters -> List Deck -> List Deck
 filterDecks filters decks =
     decks
         |> List.filter
@@ -353,12 +346,12 @@ filterDecks filters decks =
             )
 
 
-gameModeAllowed : Filters -> DeckPostSave -> Bool
+gameModeAllowed : Filters -> Deck -> Bool
 gameModeAllowed filters deck =
     GameMode.allows filters.gameMode deck.meta.gameMode
 
 
-agendaAllowed : Filters -> DeckPostSave -> Bool
+agendaAllowed : Filters -> Deck -> Bool
 agendaAllowed filters deck =
     case ( filters.agenda, deck.decklist.agenda ) of
         ( Just whitelistedAgendaId, Just deckAgenda ) ->
@@ -371,7 +364,7 @@ agendaAllowed filters deck =
             False
 
 
-havenAllowed : Filters -> DeckPostSave -> Bool
+havenAllowed : Filters -> Deck -> Bool
 havenAllowed filters deck =
     case ( filters.haven, deck.decklist.haven ) of
         ( Just whitelistedHavenId, Just deckHaven ) ->
@@ -384,7 +377,7 @@ havenAllowed filters deck =
             False
 
 
-clanAllowed : Filters -> DeckPostSave -> Bool
+clanAllowed : Filters -> Deck -> Bool
 clanAllowed filters deck =
     case filters.clan of
         Just whitelistedClan ->
@@ -396,7 +389,7 @@ clanAllowed filters deck =
             True
 
 
-leaderAllowed : Filters -> DeckPostSave -> Bool
+leaderAllowed : Filters -> Deck -> Bool
 leaderAllowed filters deck =
     case ( filters.leader, Deck.leader deck.decklist ) of
         ( Just whitelistedLeaderId, Just leader ) ->
