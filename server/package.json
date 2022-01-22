@@ -6,9 +6,7 @@
   "scripts": {
     "build": "tsc",
     "db-apply-migrations": "pg-migrations apply --directory migrations",
-    "watch": "concurrently \"npm:watch-*\"",
-    "watch-build": "tsc --watch",
-    "watch-run": "nodemon --watch -- --require dotenv/config dist/index.js"
+    "watch": "sh bin/watch.sh"
   },
   "author": "Luiz Socrate <luiz@socrate.com.br>",
   "license": "MIT",
