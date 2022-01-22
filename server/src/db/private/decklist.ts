@@ -56,8 +56,9 @@ export async function createDecklist(
     )
     RETURNING *
   `);
-  const { content, created_at, updated_at, ...otherProps } = inserted;
-  return { ...content, ...otherProps };
+  const { content, created_at, updated_at, decklist_id, ...otherProps } =
+    inserted;
+  return { ...content, ...otherProps, id: decklist_id };
 }
 
 export async function deleteDecklist(decklistId: string): Promise<void> {
