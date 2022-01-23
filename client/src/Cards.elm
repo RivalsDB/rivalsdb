@@ -6,6 +6,7 @@ module Cards exposing
     , BloodPotencyRequirement
     , Card(..)
     , CardStack(..)
+    , City
     , Damage
     , Faction
     , Haven
@@ -25,6 +26,7 @@ module Cards exposing
     , name
     , set
     , stack
+    , stackComparable
     , text
     , traits
     )
@@ -48,10 +50,6 @@ type alias Name =
 
 
 type alias Text =
-    String
-
-
-type alias Illustrator =
     String
 
 
@@ -97,18 +95,27 @@ attackTypeEnum =
 
 
 type alias Agenda =
-    { id : Id, name : Name, text : Text, illustrator : Illustrator, image : Image, set : Pack }
+    { id : Id, name : Name, text : Text, image : Image, set : Pack }
 
 
 type alias Haven =
-    { id : Id, name : Name, text : Text, illustrator : Illustrator, image : Image, set : Pack }
+    { id : Id, name : Name, text : Text, image : Image, set : Pack }
+
+
+type alias City =
+    { id : Id
+    , name : Name
+    , text : Text
+    , image : Image
+    , set : Pack
+    , traits : List Trait
+    }
 
 
 type alias Faction =
     { id : Id
     , name : Name
     , text : Text
-    , illustrator : Illustrator
     , image : Image
     , set : Pack
     , clan : Clan
@@ -125,7 +132,6 @@ type alias Library =
     , name : Name
     , text : Text
     , disciplines : List Discipline
-    , illustrator : Illustrator
     , image : Image
     , set : Pack
     , clan : Maybe Clan
@@ -142,6 +148,7 @@ type Card
     | HavenCard Haven
     | FactionCard Faction
     | LibraryCard Library
+    | CityCard City
 
 
 type CardStack
@@ -149,6 +156,7 @@ type CardStack
     | HavenStack
     | FactionStack
     | LibraryStack
+    | CityStack
 
 
 
@@ -172,6 +180,9 @@ id card =
         LibraryCard c ->
             c.id
 
+        CityCard c ->
+            c.id
+
 
 name : Card -> String
 name card =
@@ -186,6 +197,9 @@ name card =
             c.name
 
         LibraryCard c ->
+            c.name
+
+        CityCard c ->
             c.name
 
 
@@ -204,6 +218,9 @@ image card =
         LibraryCard c ->
             c.image
 
+        CityCard c ->
+            c.image
+
 
 set : Card -> Pack
 set card =
@@ -218,6 +235,9 @@ set card =
             c.set
 
         LibraryCard c ->
+            c.set
+
+        CityCard c ->
             c.set
 
 
@@ -296,22 +316,42 @@ bloodPotency card =
             0
 
 
-stack : Card -> List CardStack
+stack : Card -> CardStack
 stack card =
-    List.singleton
-        (case card of
-            AgendaCard _ ->
-                AgendaStack
+    case card of
+        AgendaCard _ ->
+            AgendaStack
 
-            HavenCard _ ->
-                HavenStack
+        HavenCard _ ->
+            HavenStack
 
-            FactionCard _ ->
-                FactionStack
+        FactionCard _ ->
+            FactionStack
 
-            LibraryCard _ ->
-                LibraryStack
-        )
+        LibraryCard _ ->
+            LibraryStack
+
+        CityCard _ ->
+            CityStack
+
+
+stackComparable : Card -> Int
+stackComparable card =
+    case card of
+        CityCard _ ->
+            0
+
+        AgendaCard _ ->
+            1
+
+        HavenCard _ ->
+            2
+
+        FactionCard _ ->
+            3
+
+        LibraryCard _ ->
+            4
 
 
 text : Card -> String
@@ -329,12 +369,18 @@ text card =
         LibraryCard c ->
             c.text
 
+        CityCard c ->
+            c.text
+
 
 maxPerDeck : Card -> Int
 maxPerDeck card =
     case card of
         LibraryCard _ ->
             3
+
+        CityCard _ ->
+            0
 
         _ ->
             1
@@ -354,24 +400,30 @@ cardsDecoder =
 cardDecoder : Decoder ( Id, Card )
 cardDecoder =
     Decode.succeed decoderForCardType
-        |> required "types" (list string)
+        |> required "stack" string
         |> Decode.andThen identity
 
 
-decoderForCardType : List String -> Decoder ( Id, Card )
-decoderForCardType cardTypes =
-    case cardTypes of
-        [ "agenda" ] ->
+decoderForCardType : String -> Decoder ( Id, Card )
+decoderForCardType st =
+    case st of
+        "agenda" ->
             agendaDecoder
 
-        [ "haven" ] ->
+        "haven" ->
             havenDecoder
 
-        [ "character" ] ->
+        "faction" ->
             factionDecoder
 
-        _ ->
+        "city" ->
+            cityDecoder
+
+        "library" ->
             libraryDecoder
+
+        _ ->
+            Decode.fail "Unrecognized card stack"
 
 
 agendaDecoder : Decoder ( Id, Card )
@@ -380,7 +432,6 @@ agendaDecoder =
         |> decodeId
         |> decodeName
         |> decodeText
-        |> decodeIllustrator
         |> decodeImage
         |> required "set" Pack.decoder
         |> map (\agenda -> ( agenda.id, AgendaCard agenda ))
@@ -392,7 +443,6 @@ havenDecoder =
         |> decodeId
         |> decodeName
         |> decodeText
-        |> decodeIllustrator
         |> decodeImage
         |> required "set" Pack.decoder
         |> map (\haven -> ( haven.id, HavenCard haven ))
@@ -404,7 +454,6 @@ factionDecoder =
         |> decodeId
         |> decodeName
         |> decodeText
-        |> decodeIllustrator
         |> decodeImage
         |> required "set" Pack.decoder
         |> required "clan" Clan.decoder
@@ -423,7 +472,6 @@ libraryDecoder =
         |> decodeName
         |> decodeText
         |> optional "disciplines" (list Discipline.decoder) []
-        |> decodeIllustrator
         |> decodeImage
         |> required "set" Pack.decoder
         |> optional "clan" (Decode.map Just Clan.decoder) Nothing
@@ -433,6 +481,18 @@ libraryDecoder =
         |> required "types" (list Trait.decoder)
         |> decodeAttackType
         |> map (\library -> ( library.id, LibraryCard library ))
+
+
+cityDecoder : Decoder ( Id, Card )
+cityDecoder =
+    Decode.succeed City
+        |> decodeId
+        |> decodeName
+        |> decodeText
+        |> decodeImage
+        |> required "set" Pack.decoder
+        |> required "types" (list Trait.decoder)
+        |> map (\library -> ( library.id, CityCard library ))
 
 
 
@@ -467,11 +527,6 @@ decodeDamage =
 decodeId : Decoder (String -> b) -> Decoder b
 decodeId =
     required "id" string
-
-
-decodeIllustrator : Decoder (String -> b) -> Decoder b
-decodeIllustrator =
-    required "illustrator" string
 
 
 decodeImage : Decoder (String -> b) -> Decoder b

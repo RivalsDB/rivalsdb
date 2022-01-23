@@ -1,4 +1,4 @@
-module UI.FilterSelection exposing (Model, Msg(..), attackTypes, clans, disciplines, isAllowed, primaryTraits, secondaryTraits, stacks, update, view)
+module UI.FilterSelection exposing (Model, Msg(..), allStacks, attackTypes, clans, disciplines, isAllowed, playerStacks, primaryTraits, secondaryTraits, update, view)
 
 import Cards exposing (Card)
 import Data.Clan as Clan exposing (Clan)
@@ -15,10 +15,21 @@ type alias Model value msg =
     List ( value, Bool, Html msg )
 
 
-stacks : Model Cards.CardStack msg
-stacks =
+playerStacks : Model Cards.CardStack msg
+playerStacks =
     List.map modelHelper
         [ ( Cards.AgendaStack, Icon.AgendaCard )
+        , ( Cards.HavenStack, Icon.Haven )
+        , ( Cards.FactionStack, Icon.Faction )
+        , ( Cards.LibraryStack, Icon.Library )
+        ]
+
+
+allStacks : Model Cards.CardStack msg
+allStacks =
+    List.map modelHelper
+        [ ( Cards.CityStack, Icon.City )
+        , ( Cards.AgendaStack, Icon.AgendaCard )
         , ( Cards.HavenStack, Icon.Haven )
         , ( Cards.FactionStack, Icon.Faction )
         , ( Cards.LibraryStack, Icon.Library )

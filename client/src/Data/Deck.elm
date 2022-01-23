@@ -202,6 +202,9 @@ copiesInDeck deck card =
         Cards.LibraryCard { id } ->
             Dict.get id deck.library |> Maybe.map Tuple.second |> Maybe.withDefault 0
 
+        Cards.CityCard _ ->
+            0
+
 
 isLeader : Decklist -> Cards.Faction -> Bool
 isLeader deck character =

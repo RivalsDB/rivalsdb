@@ -25,6 +25,7 @@ type IconImage
     | Blood
     | BloodPotencReq
     | BloodPotency
+    | City
     | Conspiracy
     | Damage
     | Delete
@@ -137,6 +138,9 @@ imageOpts image =
 
         BloodPotency ->
             ( class "ui-icon_bloodpotency", "Blood Potency" )
+
+        City ->
+            ( class "ui-icon_city", "City" )
 
         Conspiracy ->
             ( class "ui-icon_conspiracy", "Conspiracy" )

@@ -13,6 +13,7 @@ type alias GroupedByStacks =
     , factionStack : List Cards.Faction
     , havenStack : List Cards.Haven
     , libraryStack : List Cards.Library
+    , cityStack : List Cards.City
     }
 
 
@@ -33,9 +34,13 @@ groupByStack =
 
                     Cards.LibraryCard c ->
                         { grouped | libraryStack = c :: grouped.libraryStack }
+
+                    Cards.CityCard c ->
+                        { grouped | cityStack = c :: grouped.cityStack }
             )
             { agendaStack = []
             , factionStack = []
             , havenStack = []
             , libraryStack = []
+            , cityStack = []
             }

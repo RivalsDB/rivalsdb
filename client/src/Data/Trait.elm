@@ -18,6 +18,13 @@ type Trait
     | Special
     | Title
     | UnhostedAction
+    | SanFrancisco
+    | Event
+    | SecondInquisition
+    | Mortal
+    | Antagonist
+    | Retainer
+    | Citizen
 
 
 enum : Enum Trait
@@ -36,6 +43,13 @@ enum =
         , ( "special", Special )
         , ( "title", Title )
         , ( "unhosted action", UnhostedAction )
+        , ( "san francisco", SanFrancisco )
+        , ( "event", Event )
+        , ( "second inquisition", SecondInquisition )
+        , ( "mortal", Mortal )
+        , ( "antagonist", Antagonist )
+        , ( "retainer", Retainer )
+        , ( "citizen", Citizen )
         ]
 
 

@@ -14,7 +14,6 @@ import Html.Events exposing (onClick)
 import Html.Keyed as Keyed
 import Html.Lazy as Lazy
 import Port.Event
-import Shared
 import UI.Attribute
 import UI.Card
 import UI.CardName
@@ -38,7 +37,7 @@ type alias Model msg =
 
 init : Model msg
 init =
-    { stackFilters = UI.FilterSelection.stacks
+    { stackFilters = UI.FilterSelection.playerStacks
     , primaryFilters = UI.FilterSelection.primaryTraits
     , secondaryFilters = UI.FilterSelection.secondaryTraits
     , attackTypeFilters = UI.FilterSelection.attackTypes
@@ -86,7 +85,7 @@ update msg model =
 
         ClearFilters ->
             ( { model
-                | stackFilters = UI.FilterSelection.stacks
+                | stackFilters = UI.FilterSelection.playerStacks
                 , primaryFilters = UI.FilterSelection.primaryTraits
                 , secondaryFilters = UI.FilterSelection.secondaryTraits
                 , attackTypeFilters = UI.FilterSelection.attackTypes
@@ -136,16 +135,20 @@ update msg model =
 
 view : Collection -> (Msg -> msg) -> Model msg -> Decklist -> Html msg
 view collection msg data decklist =
+    let
+        playerCardsCollection =
+            collection |> Dict.filter (\_ card -> Cards.stack card /= Cards.CityStack)
+    in
     section [ class "deckbuild-selections" ]
         [ Lazy.lazy3 viewHeader msg headerFilters data.showAllFilters
         , Lazy.lazy2 viewFilters msg data
         , Lazy.lazy3 viewHeader msg headerCards data.showCollectionImages
         , div [ class "deckbuild-selections__collection" ] <|
             if data.showCollectionImages then
-                viewCardListImages collection msg data decklist
+                viewCardListImages playerCardsCollection msg data decklist
 
             else
-                viewCardList collection msg data decklist
+                viewCardList playerCardsCollection msg data decklist
         ]
 
 
@@ -378,7 +381,7 @@ filterFlags : Model msg -> Card -> Bool
 filterFlags data card =
     UI.FilterSelection.isAllowed Cards.clanRequirement data.clansFilters card
         && UI.FilterSelection.isAllowed Cards.traits data.secondaryFilters card
-        && UI.FilterSelection.isAllowed Cards.stack data.stackFilters card
+        && UI.FilterSelection.isAllowed (Cards.stack >> List.singleton) data.stackFilters card
         && UI.FilterSelection.isAllowed Cards.discipline data.disciplineFilters card
         && UI.FilterSelection.isAllowed Cards.traits data.primaryFilters card
         && UI.FilterSelection.isAllowed Cards.attackTypes data.attackTypeFilters card
@@ -386,22 +389,7 @@ filterFlags data card =
 
 cardSort : Card -> Card -> Order
 cardSort a b =
-    let
-        stack card =
-            case card of
-                Cards.AgendaCard _ ->
-                    1
-
-                Cards.HavenCard _ ->
-                    2
-
-                Cards.FactionCard _ ->
-                    3
-
-                Cards.LibraryCard _ ->
-                    4
-    in
-    case compare (stack a) (stack b) of
+    case compare (Cards.stackComparable a) (Cards.stackComparable b) of
         EQ ->
             compare (Cards.name a) (Cards.name b)
 

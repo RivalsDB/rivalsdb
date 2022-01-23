@@ -50,7 +50,7 @@ init : Shared.Model -> ( Model, Effect Msg )
 init shared =
     ( { collection = shared.collection
       , matches = matchesForQuery shared.collection shared.headerSearch
-      , stackFilters = UI.FilterSelection.stacks
+      , stackFilters = UI.FilterSelection.allStacks
       , primaryFilters = UI.FilterSelection.primaryTraits
       , secondaryFilters = UI.FilterSelection.secondaryTraits
       , attackTypeFilters = UI.FilterSelection.attackTypes
@@ -146,7 +146,7 @@ view shared model =
     let
         filter card =
             UI.FilterSelection.isAllowed Cards.traits model.secondaryFilters card
-                && UI.FilterSelection.isAllowed Cards.stack model.stackFilters card
+                && UI.FilterSelection.isAllowed (Cards.stack >> List.singleton) model.stackFilters card
                 && UI.FilterSelection.isAllowed Cards.discipline model.disciplineFilters card
                 && UI.FilterSelection.isAllowed Cards.traits model.primaryFilters card
                 && UI.FilterSelection.isAllowed Cards.clan model.clansFilters card
@@ -200,22 +200,7 @@ view shared model =
 
 cardSort : Card -> Card -> Order
 cardSort a b =
-    let
-        stack card =
-            case card of
-                Cards.AgendaCard _ ->
-                    1
-
-                Cards.HavenCard _ ->
-                    2
-
-                Cards.FactionCard _ ->
-                    3
-
-                Cards.LibraryCard _ ->
-                    4
-    in
-    case compare (stack a) (stack b) of
+    case compare (Cards.stackComparable a) (Cards.stackComparable b) of
         EQ ->
             case compare (Cards.bloodPotency a) (Cards.bloodPotency b) of
                 EQ ->
