@@ -5,7 +5,7 @@ import Auth
 import Effect exposing (Effect)
 import Gen.Params.Profile exposing (Params)
 import Html exposing (Html, button, form, h1, input, label, text)
-import Html.Attributes exposing (disabled, placeholder, type_, value)
+import Html.Attributes exposing (class, disabled, placeholder, type_, value)
 import Html.Events exposing (onInput, onSubmit)
 import Page
 import Request
@@ -120,13 +120,20 @@ view shared model =
 
 viewHeader : Html msg
 viewHeader =
-    h1 [] [ text "My Profile" ]
+    h1 [ class "profile__header" ] [ text "My Profile" ]
 
 
 viewForm : List (Html.Attribute Msg) -> Bool -> Html Msg
 viewForm inputAttrs canSave =
     form [ onSubmit DisplayNameSave ]
-        [ label [] [ text "Display Name" ]
-        , input inputAttrs []
-        , button [ type_ "submit", disabled (not canSave) ] [ text "save" ]
+        [ label [ class "profile__item" ]
+            [ text "Display Name:"
+            , input inputAttrs []
+            ]
+        , button
+            [ class "profile__save"
+            , type_ "submit"
+            , disabled (not canSave)
+            ]
+            [ text "save" ]
         ]
