@@ -221,7 +221,7 @@ factionEntryEditable { setLeader } ( character, isLeader ) =
          , span [ class "deck-faction__name" ] [ UI.CardName.withOverlay (Cards.FactionCard character) ]
          ]
             ++ (character.disciplines
-                    |> List.map (span [ class "deck-faction__discipline" ] << List.singleton << UI.Icon.V2.discipline UI.Icon.V2.Negative)
+                    |> List.map (span [ class "deck-faction__discipline" ] << List.singleton << UI.Icon.V2.discipline UI.Icon.V2.Standard)
                )
         )
 
