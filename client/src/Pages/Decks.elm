@@ -15,7 +15,6 @@ import Html exposing (Html, div, label, option, p, select, span, text)
 import Html.Attributes exposing (class, for, name, selected, value)
 import Html.Events exposing (onInput)
 import Html.Lazy as Lazy
-import Json.Encode as Encode
 import Page
 import Port.Event
 import Request
