@@ -93,28 +93,3 @@
     display: inline-block
     width: $itemSize
     height: $itemSize
-
-.quantpick
-  $optHeight: 32px
-  $optWidth: 20px
-  display: inline-block
-
-  &__option
-    display: inline-block
-    width: $optWidth
-    height: $optHeight
-    line-height: $optHeight
-    text-align: center
-    cursor: pointer
-    font-size: var(--font-size--default)
-    background: var(--color-bg-closest)
-    box-shadow: inset 0 0 2px var(--color-bg-farthest)
-
-    &--active
-      background: var(--color-bg-farthest)
-      box-shadow: inset 0 0 2px var(--color-bg-closest)
-      color: var(--color-copy-highlight)
-      font-weight: bold
-
-  &__radio
-    display: none

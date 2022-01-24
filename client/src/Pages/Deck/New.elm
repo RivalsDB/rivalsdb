@@ -72,6 +72,7 @@ type Msg
     | DeckNameChanged String
     | SetGameMode GameMode
     | SaveNewDeckName
+    | ChangedCard ( Cards.Card, Int )
 
 
 update : Auth.User -> Msg -> Model -> ( Model, Effect Msg )
@@ -194,6 +195,16 @@ update user msg model =
             in
             ( Deckbuilding { model2 | deck = { oldDeck | meta = { oldMeta | gameMode = gameMode } } }, Effect.none )
 
+        ( Deckbuilding model2, ChangedCard choice ) ->
+            let
+                oldDeck =
+                    model2.deck
+
+                oldDecklist =
+                    oldDeck.decklist
+            in
+            ( Deckbuilding { model2 | deck = { oldDeck | decklist = Deck.setCard oldDecklist choice } }, Effect.none )
+
 
 decklistActions : UI.Decklist.Actions Msg
 decklistActions =
@@ -202,6 +213,7 @@ decklistActions =
     , changeName = DeckNameChanged
     , endNameChange = SaveNewDeckName
     , setGameMode = SetGameMode
+    , changeCard = ChangedCard
     }
 
 

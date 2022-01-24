@@ -20,6 +20,7 @@ import UI.CardName
 import UI.FilterSelection
 import UI.Icon as Icon
 import UI.Icon.V2
+import UI.QuantityPicker
 
 
 type alias Model msg =
@@ -276,7 +277,9 @@ viewCardListImage : (Msg -> msg) -> Decklist -> Card -> Html msg
 viewCardListImage msg deck card =
     li [ class "deckbuild-selections__collectionitem--image" ]
         [ UI.Card.lazy card
-        , div [ class "deckbuild-selections__rowpiece_quant--image" ] [ viewQuantityPicker msg card (Data.Deck.copiesInDeck deck card) ]
+        , div [ class "deckbuild-selections__rowpiece_quant--image" ]
+            [ UI.QuantityPicker.view (msg << ChangedDecklist) card (Data.Deck.copiesInDeck deck card)
+            ]
         ]
 
 
@@ -291,7 +294,9 @@ viewCardList collection msg data decklist =
 viewCardListRow : (Msg -> msg) -> Decklist -> Card -> Html msg
 viewCardListRow msg deck card =
     li [ class "cardlist__row" ]
-        [ span [ class "cardlist__quant--row" ] [ viewQuantityPicker msg card (Data.Deck.copiesInDeck deck card) ]
+        [ span [ class "cardlist__quant--row" ]
+            [ UI.QuantityPicker.view (msg << ChangedDecklist) card (Data.Deck.copiesInDeck deck card)
+            ]
         , span [ class "cardlist__name" ] [ UI.CardName.withOverlay card ]
         , span [ class "cardlist__props" ]
             (case card of
@@ -328,31 +333,6 @@ viewIconsList viewIcon iconTypes =
                 (viewIcon
                     >> List.singleton
                     >> li [ class "char-icons-list__item" ]
-                )
-        )
-
-
-viewQuantityPicker : (Msg -> msg) -> Card -> Int -> Html msg
-viewQuantityPicker msg card copiesInDeck =
-    div [ class "quantpick" ]
-        (Cards.maxPerDeck card
-            |> List.range 0
-            |> List.map
-                (\n ->
-                    label
-                        [ class "quantpick__option"
-                        , classList [ ( "quantpick__option--active", n == copiesInDeck ) ]
-                        ]
-                        [ text <| String.fromInt n
-                        , input
-                            [ type_ "radio"
-                            , name <| "count-" ++ Cards.id card
-                            , checked <| n == copiesInDeck
-                            , onClick <| msg <| ChangedDecklist ( card, n )
-                            , class "quantpick__radio"
-                            ]
-                            []
-                        ]
                 )
         )
 

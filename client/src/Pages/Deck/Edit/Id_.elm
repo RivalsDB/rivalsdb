@@ -68,6 +68,7 @@ type Msg
     | SaveNewDeckName
     | SetGameMode GameMode
     | FetchedDecklist API.Decklist.ResultRead
+    | ChangedCard ( Cards.Card, Int )
 
 
 update : Auth.User -> Msg -> Model -> ( Model, Effect Msg )
@@ -185,6 +186,16 @@ update user msg modelx =
             in
             ( Editing { model | deck = { oldDeck | meta = { oldMeta | gameMode = gameMode } } }, Effect.none )
 
+        ( Editing model, ChangedCard choice ) ->
+            let
+                oldDeck =
+                    model.deck
+
+                oldDecklist =
+                    oldDeck.decklist
+            in
+            ( Editing { model | deck = { oldDeck | decklist = Deck.setCard oldDecklist choice } }, Effect.none )
+
 
 decklistActions : UI.Decklist.Actions Msg
 decklistActions =
@@ -193,6 +204,7 @@ decklistActions =
     , changeName = DeckNameChanged
     , endNameChange = SaveNewDeckName
     , setGameMode = SetGameMode
+    , changeCard = ChangedCard
     }
 
 

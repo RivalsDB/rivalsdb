@@ -14,6 +14,7 @@ import UI.Card
 import UI.CardName
 import UI.Icon as Icon
 import UI.Icon.V2
+import UI.QuantityPicker as QuantityPicker
 import UI.Text
 
 
@@ -24,8 +25,8 @@ viewRead { decklist, meta } =
         , viewAgenda decklist.agenda
         , viewHaven decklist.haven
         , viewLeader (Deck.leader decklist)
-        , viewFaction factionEntryReadOnly decklist
-        , viewLibrary decklist.library
+        , viewFaction factionEntryRead decklist
+        , viewLibrary libraryEntryRead decklist.library
         ]
 
 
@@ -36,8 +37,8 @@ viewWrite actions { decklist, meta } =
         , viewAgenda decklist.agenda
         , viewHaven decklist.haven
         , viewLeader (Deck.leader decklist)
-        , viewFaction (factionEntryEditable actions) decklist
-        , viewLibrary decklist.library
+        , viewFaction (factionEntryWrite actions) decklist
+        , viewLibrary (libraryEntryWrite actions) decklist.library
         ]
 
 
@@ -47,6 +48,7 @@ type alias Actions msg =
     , endNameChange : msg
     , changeName : String -> msg
     , setGameMode : GameMode -> msg
+    , changeCard : QuantityPicker.Choice -> msg
     }
 
 
@@ -198,8 +200,30 @@ viewFaction toFactionEntry decklist =
         ]
 
 
-factionEntryEditable : Actions msg -> ( Cards.Faction, Bool ) -> Html msg
-factionEntryEditable { setLeader } ( character, isLeader ) =
+factionEntryRead : ( Cards.Faction, Bool ) -> Html msg
+factionEntryRead ( character, isLeader ) =
+    li
+        [ class "deck-faction__character"
+        , classList [ ( "deck-faction__character--leader", isLeader ) ]
+        ]
+        ([ span [ class "deck-faction__bp" ] [ UI.Attribute.bloodPotency character.bloodPotency ]
+         , span [ class "deck-faction__clan" ] [ UI.Icon.V2.clan UI.Icon.V2.Negative character.clan ]
+         , span [ class "deck-faction__name" ] [ UI.CardName.withOverlay (Cards.FactionCard character) ]
+         ]
+            ++ (if isLeader then
+                    [ span [ class "deck-faction__leader-tag" ] [ text "(Leader)" ] ]
+
+                else
+                    []
+               )
+            ++ (character.disciplines
+                    |> List.map (span [ class "deck-faction__discipline" ] << List.singleton << UI.Icon.V2.discipline UI.Icon.V2.Standard)
+               )
+        )
+
+
+factionEntryWrite : Actions msg -> ( Cards.Faction, Bool ) -> Html msg
+factionEntryWrite { setLeader } ( character, isLeader ) =
     li
         [ class "deck-faction__character"
         , classList [ ( "deck-faction__character--leader", isLeader ) ]
@@ -226,58 +250,31 @@ factionEntryEditable { setLeader } ( character, isLeader ) =
         )
 
 
-factionEntryReadOnly : ( Cards.Faction, Bool ) -> Html msg
-factionEntryReadOnly ( character, isLeader ) =
-    li
-        [ class "deck-faction__character"
-        , classList [ ( "deck-faction__character--leader", isLeader ) ]
-        ]
-        ([ span [ class "deck-faction__bp" ] [ UI.Attribute.bloodPotency character.bloodPotency ]
-         , span [ class "deck-faction__clan" ] [ UI.Icon.V2.clan UI.Icon.V2.Negative character.clan ]
-         , span [ class "deck-faction__name" ] [ UI.CardName.withOverlay (Cards.FactionCard character) ]
-         ]
-            ++ (if isLeader then
-                    [ span [ class "deck-faction__leader-tag" ] [ text "(Leader)" ] ]
-
-                else
-                    []
-               )
-            ++ (character.disciplines
-                    |> List.map (span [ class "deck-faction__discipline" ] << List.singleton << UI.Icon.V2.discipline UI.Icon.V2.Standard)
-               )
-        )
-
-
-viewLibrary : Deck.Library -> Html msg
-viewLibrary library =
+viewLibrary : (( Cards.Library, Int ) -> Html msg) -> Deck.Library -> Html msg
+viewLibrary viewLibraryEntry library =
     let
         { actions, combat, political } =
             groupLibraryCards library
     in
     div [ class "decklist__library", class "deck-library" ]
-        [ viewLibraryHeader library
+        [ h3
+            [ class "decklist--section-header"
+            , class "deck-library__header"
+            , classList [ ( "deck-library__header--invalid", not <| Deck.isValidLibrary library ) ]
+            ]
+            [ titleAndCardCount "Library" (Dict.values library |> cardCount) ]
         , div []
             (List.concat
-                [ viewLibraryGroup "Actions" actions
-                , viewLibraryGroup "Combat" combat
-                , viewLibraryGroup "Political" political
+                [ viewLibraryGroup viewLibraryEntry "Actions" actions
+                , viewLibraryGroup viewLibraryEntry "Combat" combat
+                , viewLibraryGroup viewLibraryEntry "Political" political
                 ]
             )
         ]
 
 
-viewLibraryHeader : Deck.Library -> Html msg
-viewLibraryHeader library =
-    h3
-        [ class "decklist--section-header"
-        , class "deck-library__header"
-        , classList [ ( "deck-library__header--invalid", not <| Deck.isValidLibrary library ) ]
-        ]
-        [ titleAndCardCount "Library" (Dict.values library |> cardCount) ]
-
-
-viewLibraryGroup : String -> List ( Cards.Library, Int ) -> List (Html msg)
-viewLibraryGroup name group =
+viewLibraryGroup : (( Cards.Library, Int ) -> Html msg) -> String -> List ( Cards.Library, Int ) -> List (Html msg)
+viewLibraryGroup viewLibraryEntry name group =
     if cardCount group < 1 then
         []
 
@@ -287,16 +284,36 @@ viewLibraryGroup name group =
         , ul []
             (group
                 |> List.sortBy (Tuple.first >> .name)
-                |> List.map libraryEntry
+                |> List.map viewLibraryEntry
             )
         ]
 
 
-libraryEntry : ( Cards.Library, Int ) -> Html msg
-libraryEntry ( card, n ) =
+libraryEntryRead : ( Cards.Library, Int ) -> Html msg
+libraryEntryRead ( card, n ) =
     li [ class "deck-library__entry" ]
         ([ span [ class "deck-library__entry-count" ] [ text (String.fromInt n) ]
          , span [ class "deck-library__entry-times" ] [ text "×" ]
+         , UI.CardName.withOverlay (Cards.LibraryCard card)
+         ]
+            ++ (case card.clan of
+                    Nothing ->
+                        []
+
+                    Just clan ->
+                        [ span [ class "deck-library__entry-clan" ]
+                            [ UI.Icon.V2.clan UI.Icon.V2.Negative clan ]
+                        ]
+               )
+        )
+
+
+libraryEntryWrite : Actions msg -> ( Cards.Library, Int ) -> Html msg
+libraryEntryWrite { changeCard } ( card, n ) =
+    li [ class "deck-library__entry" ]
+        ([ span [ class "deck-library__entry-picker" ]
+            [ QuantityPicker.view changeCard (Cards.LibraryCard card) n
+            ]
          , UI.CardName.withOverlay (Cards.LibraryCard card)
          ]
             ++ (case card.clan of
