@@ -15,6 +15,7 @@ type Event
     | BuilderHideAllFilters
     | BuilderShowImages
     | BuilderHideImages
+    | HandSimulatorUsed String
 
 
 track : Event -> Cmd msg
@@ -42,6 +43,12 @@ encode event =
 
         BuilderHideImages ->
             object [ ( "name", string "Builder Hide Images" ) ]
+
+        HandSimulatorUsed page ->
+            object
+                [ ( "name", string "Hand Simulator used" )
+                , ( "extra", object [ ( "page", string page ) ] )
+                ]
 
         HeaderSearchUsed query ->
             object

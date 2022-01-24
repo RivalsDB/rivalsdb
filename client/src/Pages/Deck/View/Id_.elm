@@ -9,6 +9,7 @@ import Gen.Route as Route
 import Html exposing (Html, text)
 import Page
 import Port.Auth exposing (User)
+import Port.Event
 import Request
 import Shared
 import UI.ActionBar
@@ -84,8 +85,17 @@ update shared msg model =
                 Nothing ->
                     ( model, Effect.none )
 
-        ( Viewing deck _, DrawTestHand ) ->
-            ( model, UI.HandTester.generateHand NewHand deck.decklist |> Effect.fromCmd )
+        ( Viewing deck hand, DrawTestHand ) ->
+            ( model
+            , Effect.batch
+                [ Effect.fromCmd <| UI.HandTester.generateHand NewHand deck.decklist
+                , if UI.HandTester.isNotSet hand then
+                    Effect.none
+
+                  else
+                    Effect.fromCmd <| Port.Event.track (Port.Event.HandSimulatorUsed "deck_view")
+                ]
+            )
 
         ( Viewing deck _, NewHand newHand ) ->
             ( Viewing deck newHand, Effect.none )

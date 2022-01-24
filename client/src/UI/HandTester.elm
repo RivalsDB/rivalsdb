@@ -1,4 +1,4 @@
-module UI.HandTester exposing (HandTest, empty, generateHand, view)
+module UI.HandTester exposing (HandTest, empty, generateHand, isNotSet, view)
 
 import Cards exposing (Card)
 import Data.Deck as Deck
@@ -17,6 +17,11 @@ type alias HandTest =
 empty : HandTest
 empty =
     []
+
+
+isNotSet : HandTest -> Bool
+isNotSet =
+    List.isEmpty
 
 
 generateHand : (HandTest -> msg) -> Deck.Decklist -> Cmd msg
