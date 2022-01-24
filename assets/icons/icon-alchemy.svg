@@ -1,31 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" version="1.0" style="shape-rendering:geometricPrecision;text-rendering:geometricPrecision;image-rendering:optimizeQuality;" viewBox="0 0 10000 12500" x="0px" y="0px" fill-rule="evenodd" clip-rule="evenodd">
-	<defs>
-		<style type="text/css">
-			.fil0 {fill:black;fill-rule:nonzero}
-		</style>
-	</defs>
-	<g>
-		<path class="fil0" d="M7379 4766l-669 1159 669 1159c170,-350 266,-743 266,-1159 0,-415 -96,-809 -266,-1159z" />
-		<path class="fil0" d="M5849 4435l1337 0c-455,-668 -1191,-1092 -2000,-1148l663 1148z" />
-		<polygon class="fil0" points="4395,4435 5605,4435 5000,3388 " />
-		<path class="fil0" d="M2814 4435l1337 0 663 -1148c-809,56 -1545,480 -2000,1148z" />
-		<path class="fil0" d="M3290 5925l-669 -1159c-170,350 -266,744 -266,1159 0,416 96,809 266,1159l669 -1159z" />
-		<polygon class="fil0" points="4028,7203 3413,6137 2797,7203 " />
-		<path class="fil0" d="M4814 8564l-664 -1149 -1336 0c456,668 1190,1093 2000,1149z" />
-		<path class="fil0" d="M5850 7415l-664 1149c810,-56 1545,-481 2000,-1149l-1336 0z" />
-		<polygon class="fil0" points="6285,6661 5972,7203 7203,7203 6587,6137 " />
-		<path class="fil0" d="M3535 5925l301 522c-72,-160 -111,-336 -111,-522 0,-184 39,-360 109,-518l-299 518z" />
-		<polygon class="fil0" points="4028,4648 2797,4648 3413,5713 " />
-		<path class="fil0" d="M5727 4648l-1454 0 -306 529c239,-330 621,-526 1030,-527 412,0 795,194 1036,528l-306 -530z" />
-		<polygon class="fil0" points="6587,5714 7203,4648 5972,4648 " />
-		<path class="fil0" d="M6164 6446l301 -521 -300 -520c71,159 110,335 110,520 0,186 -39,362 -111,521z" />
-		<path class="fil0" d="M5728 7203l306 -531c-240,332 -623,529 -1034,529 -412,0 -795,-198 -1035,-531l308 533 1455 0z" />
-		<polygon class="fil0" points="5000,8463 5605,7415 4395,7415 " />
-		<path class="fil0" d="M4039 6380l855 -510 0 -1002c-543,54 -957,511 -957,1057 0,163 37,317 102,455z" />
-		<path class="fil0" d="M5850 6563l-852 -509 -850 507c200,269 516,427 852,427 336,0 649,-157 850,-425z" />
-		<path class="fil0" d="M5106 5873l854 509c66,-138 103,-293 103,-457 0,-546 -414,-1003 -957,-1057l0 1005z" />
-		<path class="fil0" d="M5517 2380l-1034 0 0 734c341,-62 693,-62 1034,0l0 -734z" />
-		<polygon class="fil0" points="5517,1674 5517,1436 4483,1436 4483,1674 " />
-		<path class="fil0" d="M4174 1887c-77,0 -141,63 -141,140 0,77 64,140 141,140 551,0 1101,0 1652,0 77,0 141,-62 141,-140 0,-77 -63,-140 -141,-140 -551,0 -1101,0 -1652,0z" />
-	</g>
+<svg width="500" height="500" version="1.1" viewBox="0 0 132.3 132.3" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style type="text/css">.fil0 {fill:black;fill-rule:nonzero}</style>
+  </defs>
+  <g clip-rule="evenodd" shape-rendering="geometricPrecision">
+    <path class="fil0" d="m110.3 61.8-12.42 21.51 12.42 21.51c3.155-6.496 4.937-13.79 4.937-21.51 0-7.702-1.782-15.01-4.937-21.51z" image-rendering="optimizeQuality" stroke-width=".01856"/>
+    <path class="fil0" d="m81.9 55.66h24.81c-8.445-12.4-22.1-20.27-37.12-21.31z" image-rendering="optimizeQuality" stroke-width=".01856"/>
+    <polygon class="fil0" transform="matrix(.01856 0 0 .01856 -26.65 -26.65)" points="5e3 3388 4395 4435 5605 4435" image-rendering="optimizeQuality"/>
+    <path class="fil0" d="m25.57 55.66h24.81l12.3-21.31c-15.01 1.039-28.67 8.909-37.12 21.31z" image-rendering="optimizeQuality" stroke-width=".01856"/>
+    <path class="fil0" d="m34.41 83.31-12.42-21.51c-3.155 6.496-4.937 13.81-4.937 21.51 0 7.721 1.782 15.01 4.937 21.51z" image-rendering="optimizeQuality" stroke-width=".01856"/>
+    <polygon class="fil0" transform="matrix(.01856 0 0 .01856 -26.65 -26.65)" points="2797 7203 4028 7203 3413 6137" image-rendering="optimizeQuality"/>
+    <path class="fil0" d="m62.69 132.3-12.32-21.32h-24.8c8.463 12.4 22.09 20.29 37.12 21.32z" image-rendering="optimizeQuality" stroke-width=".01856"/>
+    <path class="fil0" d="m81.92 111-12.32 21.32c15.03-1.039 28.67-8.927 37.12-21.32z" image-rendering="optimizeQuality" stroke-width=".01856"/>
+    <polygon class="fil0" transform="matrix(.01856 0 0 .01856 -26.65 -26.65)" points="6587 6137 6285 6661 5972 7203 7203 7203" image-rendering="optimizeQuality"/>
+    <path class="fil0" d="m38.96 83.31 5.586 9.688c-1.336-2.97-2.06-6.236-2.06-9.688 0-3.415 0.7238-6.681 2.023-9.614z" image-rendering="optimizeQuality" stroke-width=".01856"/>
+    <polygon class="fil0" transform="matrix(.01856 0 0 .01856 -26.65 -26.65)" points="3413 5713 4028 4648 2797 4648" image-rendering="optimizeQuality"/>
+    <path class="fil0" d="m79.64 59.61h-26.99l-5.679 9.818c4.436-6.125 11.53-9.762 19.12-9.781 7.646 0 14.75 3.601 19.23 9.799z" image-rendering="optimizeQuality" stroke-width=".01856"/>
+    <polygon class="fil0" transform="matrix(.01856 0 0 .01856 -26.65 -26.65)" points="5972 4648 6587 5714 7203 4648" image-rendering="optimizeQuality"/>
+    <path class="fil0" d="m87.75 92.98 5.586-9.669-5.568-9.651c1.318 2.951 2.042 6.217 2.042 9.651 0 3.452-0.7238 6.719-2.06 9.669z" image-rendering="optimizeQuality" stroke-width=".01856"/>
+    <path class="fil0" d="m79.66 107 5.679-9.855c-4.454 6.162-11.56 9.818-19.19 9.818-7.646 0-14.75-3.675-19.21-9.855l5.716 9.892z" image-rendering="optimizeQuality" stroke-width=".01856"/>
+    <polygon class="fil0" transform="matrix(.01856 0 0 .01856 -26.65 -26.65)" points="4395 7415 5e3 8463 5605 7415" image-rendering="optimizeQuality"/>
+    <g stroke-width=".01856">
+      <path class="fil0" d="m48.31 91.76 15.87-9.465v-18.6c-10.08 1.002-17.76 9.484-17.76 19.62 0 3.025 0.6867 5.883 1.893 8.445z" image-rendering="optimizeQuality"/>
+      <path class="fil0" d="m81.92 95.15-15.81-9.447-15.78 9.41c3.712 4.992 9.577 7.925 15.81 7.925s12.05-2.914 15.78-7.888z" image-rendering="optimizeQuality"/>
+      <path class="fil0" d="m68.11 82.35 15.85 9.447c1.225-2.561 1.912-5.438 1.912-8.482 0-10.13-7.684-18.62-17.76-19.62z" image-rendering="optimizeQuality"/>
+      <path class="fil0" d="m75.74 17.52h-19.19v13.62c6.329-1.151 12.86-1.151 19.19 0z" image-rendering="optimizeQuality"/>
+    </g>
+    <polygon class="fil0" transform="matrix(.01856 0 0 .01856 -26.65 -26.65)" points="4483 1674 5517 1674 5517 1436 4483 1436" image-rendering="optimizeQuality"/>
+    <path class="fil0" d="m50.82 8.37c-1.429 0-2.617 1.169-2.617 2.598s1.188 2.598 2.617 2.598h30.66c1.429 0 2.617-1.151 2.617-2.598 0-1.429-1.169-2.598-2.617-2.598h-30.66z" image-rendering="optimizeQuality" stroke-width=".01856"/>
+  </g>
 </svg>

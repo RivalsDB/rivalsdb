@@ -31,6 +31,7 @@ type IconImage
     | Delete
     | Edit
     | Faction
+    | HandOfCards
     | Haven
     | Influence
     | InfluenceModifier
@@ -156,6 +157,9 @@ imageOpts image =
 
         Faction ->
             ( class "ui-icon_faction", "Faction" )
+
+        HandOfCards ->
+            ( class "ui-icon_hand_of_cards", "Draw Simulation" )
 
         Haven ->
             ( class "ui-icon_haven", "Haven" )
