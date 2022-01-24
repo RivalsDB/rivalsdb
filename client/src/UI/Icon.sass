@@ -15,10 +15,17 @@
   span
     visibility: hidden
 
-$other_icons: action agenda alchemy attack blood bloodpotency bloodpotencyrequirement city conspiracy crown damage delete edit faction hand_of_cards haven influence influence_modifier leader library mental menu ongoing physical ranged reaction ritual save scheme shield social special title unhosted_action
+$other_icons: action agenda alchemy attack blood bloodpotencyrequirement city conspiracy crown damage delete edit faction hand_of_cards haven influence influence_modifier leader library mental menu ongoing physical ranged reaction ritual save scheme shield social special title unhosted_action
 @each $icon in $other_icons
   .ui-icon_#{$icon}
     --svg-ui-icon: url("data-url:../../assets/icons/icon-#{$icon}.svg")
+    -webkit-mask-image: var(--svg-ui-icon)
+    mask-image: var(--svg-ui-icon)
+
+$bugged_when_inlined: bloodpotency
+@each $icon in $bugged_when_inlined
+  .ui-icon_#{$icon}
+    --svg-ui-icon: url("../../assets/icons/icon-#{$icon}.svg")
     -webkit-mask-image: var(--svg-ui-icon)
     mask-image: var(--svg-ui-icon)
 
