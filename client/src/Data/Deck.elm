@@ -1,6 +1,7 @@
 module Data.Deck exposing
     ( Deck
     , Decklist
+    , Faction
     , Library
     , MetaPostSave
     , Name(..)

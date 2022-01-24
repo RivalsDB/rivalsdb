@@ -6,13 +6,14 @@ import Data.Deck as Deck exposing (Deck)
 import Effect exposing (Effect)
 import Gen.Params.Deck.View.Id_ exposing (Params)
 import Gen.Route as Route
-import Html exposing (Html, div, text)
+import Html exposing (Html, text)
 import Page
 import Port.Auth exposing (User)
 import Request
 import Shared
 import UI.ActionBar
 import UI.Decklist
+import UI.HandTester exposing (HandTest)
 import UI.Icon as Icon
 import UI.Layout.Deck
 import UI.Layout.Template
@@ -35,7 +36,7 @@ page shared req =
 
 type Model
     = Loading
-    | Viewing Deck
+    | Viewing Deck HandTest
 
 
 init : Collection -> String -> ( Model, Effect Msg )
@@ -50,6 +51,8 @@ type Msg
     | FetchedDecklist API.Decklist.ResultRead
     | Delete
     | DeletedDecklist API.Decklist.ResultDelete
+    | DrawTestHand
+    | NewHand HandTest
 
 
 update : Shared.Model -> Msg -> Model -> ( Model, Effect Msg )
@@ -61,19 +64,19 @@ update shared msg model =
         ( _, FetchedDecklist (Err _) ) ->
             ( model, Effect.none )
 
-        ( Loading, FetchedDecklist (Ok deck) ) ->
-            ( Viewing deck, Effect.none )
-
-        ( Loading, Delete ) ->
-            ( model, Effect.none )
-
-        ( Loading, DeletedDecklist _ ) ->
+        ( _, DeletedDecklist _ ) ->
             ( model, Effect.fromShared <| Shared.Redirect Route.MyDecks )
 
-        ( Viewing _, FetchedDecklist (Ok deck) ) ->
-            ( Viewing deck, Effect.none )
+        ( Loading, FetchedDecklist (Ok deck) ) ->
+            ( Viewing deck [], Effect.none )
 
-        ( Viewing deck, Delete ) ->
+        ( Loading, _ ) ->
+            ( model, Effect.none )
+
+        ( Viewing _ _, FetchedDecklist (Ok deck) ) ->
+            ( Viewing deck UI.HandTester.empty, Effect.none )
+
+        ( Viewing deck _, Delete ) ->
             case shared.user of
                 Just user ->
                     ( model, API.Decklist.delete DeletedDecklist user.token deck.meta.id |> Effect.fromCmd )
@@ -81,8 +84,11 @@ update shared msg model =
                 Nothing ->
                     ( model, Effect.none )
 
-        ( Viewing _, DeletedDecklist _ ) ->
-            ( model, Effect.fromShared <| Shared.Redirect Route.MyDecks )
+        ( Viewing deck _, DrawTestHand ) ->
+            ( model, UI.HandTester.generateHand NewHand deck.decklist |> Effect.fromCmd )
+
+        ( Viewing deck _, NewHand newHand ) ->
+            ( Viewing deck newHand, Effect.none )
 
 
 view : Shared.Model -> Model -> View Msg
@@ -91,46 +97,56 @@ view shared model =
         Loading ->
             UI.Layout.Template.view FromShared shared [ text "Loading" ]
 
-        Viewing deck ->
-            viewDecklist shared deck
+        Viewing deck hand ->
+            viewDecklist shared deck hand
 
 
-viewDecklist : Shared.Model -> Deck -> View Msg
-viewDecklist shared deck =
+viewDecklist : Shared.Model -> Deck -> HandTest -> View Msg
+viewDecklist shared deck hand =
     UI.Layout.Template.view FromShared
         shared
         [ UI.Layout.Deck.readMode
             { actions = viewActions shared.user deck.meta
             , decklist = UI.Decklist.viewRead deck
+            , aside = UI.HandTester.view hand
             }
         ]
-
-
-noView : Html Msg
-noView =
-    div [] []
 
 
 viewActions : Maybe User -> Deck.MetaPostSave -> Html Msg
 viewActions maybeUser meta =
     case maybeUser of
         Nothing ->
-            noView
+            UI.ActionBar.view loggedOutActions
 
         Just user ->
             if user.id == meta.ownerId then
-                UI.ActionBar.view
-                    [ { icon = Icon.Edit
-                      , name = "Edit"
-                      , action = Nothing
-                      , href = Just (Route.Deck__Edit__Id_ { id = meta.id })
-                      }
-                    , { icon = Icon.Delete
-                      , name = "Delete"
-                      , action = Just Delete
-                      , href = Nothing
-                      }
-                    ]
+                UI.ActionBar.view (loggedOutActions ++ loggedInActions meta)
 
             else
-                noView
+                UI.ActionBar.view loggedOutActions
+
+
+loggedInActions : Deck.MetaPostSave -> List (UI.ActionBar.Model Msg)
+loggedInActions meta =
+    [ { icon = Icon.Edit
+      , name = "Edit"
+      , action = Nothing
+      , href = Just (Route.Deck__Edit__Id_ { id = meta.id })
+      }
+    , { icon = Icon.Delete
+      , name = "Delete"
+      , action = Just Delete
+      , href = Nothing
+      }
+    ]
+
+
+loggedOutActions : List (UI.ActionBar.Model Msg)
+loggedOutActions =
+    [ { icon = Icon.HandOfCards
+      , name = "Hand Test"
+      , action = Just DrawTestHand
+      , href = Nothing
+      }
+    ]

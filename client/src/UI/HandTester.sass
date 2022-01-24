@@ -1,0 +1,11 @@
+@import ../_vars
+
+.handtester
+  &__header
+    margin-bottom: $space-small
+  &__cards
+    display: grid
+    grid-template-columns: repeat(auto-fill, minmax(160px,1fr))
+    gap: $space-small
+    @media screen and ( min-width: $breakpoint-ipad--horizontal)
+      grid-template-columns: repeat(auto-fill, minmax(180px,1fr))

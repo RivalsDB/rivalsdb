@@ -14,6 +14,7 @@ type alias WriteModel msg =
 type alias ReadModel msg =
     { actions : Html msg
     , decklist : Html msg
+    , aside : Html msg
     }
 
 
@@ -30,6 +31,6 @@ readMode : ReadModel msg -> Html msg
 readMode model =
     main_ [ class "templ-deck" ]
         [ section [ class "templ-deck__decklist" ] [ model.decklist ]
-        , section [ class "templ-deck__support" ] []
+        , section [ class "templ-deck__support" ] [ model.aside ]
         , section [ class "templ-deck__actions" ] [ model.actions ]
         ]
