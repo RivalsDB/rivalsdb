@@ -4,6 +4,7 @@ import Cards exposing (Card)
 import Data.Clan exposing (Clan)
 import Data.Collection exposing (Collection)
 import Data.Discipline exposing (Discipline)
+import Data.Pack as Pack exposing (Pack)
 import Data.Trait exposing (Trait)
 import Dict
 import Effect exposing (Effect)
@@ -19,6 +20,7 @@ import Shared
 import UI.Card
 import UI.FilterSelection
 import UI.Layout.Template
+import UI.MultiSelect
 import UI.Text
 import View exposing (View)
 
@@ -42,6 +44,7 @@ type alias Model =
     , attackTypeFilters : UI.FilterSelection.Model Cards.AttackType Msg
     , clansFilters : UI.FilterSelection.Model Clan Msg
     , disciplineFilters : UI.FilterSelection.Model Discipline Msg
+    , packFilters : UI.MultiSelect.Model Pack
     , textFilter : Maybe String
     }
 
@@ -56,6 +59,7 @@ init shared =
       , attackTypeFilters = UI.FilterSelection.attackTypes
       , clansFilters = UI.FilterSelection.clans
       , disciplineFilters = UI.FilterSelection.disciplines
+      , packFilters = UI.MultiSelect.init Pack.list
       , textFilter = Nothing
       }
     , Effect.none
@@ -93,6 +97,7 @@ type Msg
     | FromAttackTypesFilter (UI.FilterSelection.Msg Cards.AttackType)
     | FromClansFilter (UI.FilterSelection.Msg Clan)
     | FromDisciplinesFilter (UI.FilterSelection.Msg Discipline)
+    | FromPackFilter (UI.MultiSelect.Msg Pack)
     | TextFilterChanged String
 
 
@@ -136,6 +141,9 @@ update msg model =
         FromDisciplinesFilter subMsg ->
             ( { model | disciplineFilters = UI.FilterSelection.update subMsg model.disciplineFilters }, Effect.none )
 
+        FromPackFilter subMsg ->
+            ( { model | packFilters = UI.MultiSelect.update subMsg model.packFilters }, Effect.none )
+
 
 
 -- VIEW
@@ -151,6 +159,7 @@ view shared model =
                 && UI.FilterSelection.isAllowed Cards.traits model.primaryFilters card
                 && UI.FilterSelection.isAllowed Cards.clan model.clansFilters card
                 && UI.FilterSelection.isAllowed Cards.attackTypes model.attackTypeFilters card
+                && isPackAllowed model.packFilters card
 
         filteredCards =
             case model.textFilter of
@@ -168,18 +177,28 @@ view shared model =
         shared
         [ div [ class "searchpage__filters" ]
             [ UI.Text.header [ text "Filters" ]
-            , div [ class "search-flaggroups" ]
-                [ div [ class "search-flaggroup" ] [ UI.FilterSelection.view FromStacksFilter model.stackFilters ]
-                , div [ class "search-flaggroup" ] [ UI.FilterSelection.view FromPrimaryFilter model.primaryFilters ]
-                , div [ class "search-flaggroup" ] [ UI.FilterSelection.view FromSecondaryFilter model.secondaryFilters ]
-                , div [ class "search-flaggroup" ] [ UI.FilterSelection.view FromAttackTypesFilter model.attackTypeFilters ]
-                , div [ class "search-flaggroup" ] [ UI.FilterSelection.view FromClansFilter model.clansFilters ]
-                , div [ class "search-flaggroup" ] [ UI.FilterSelection.view FromDisciplinesFilter model.disciplineFilters ]
+            , div [ class "filter-group" ]
+                [ div [ class "filter-group__flags" ] [ UI.FilterSelection.view FromStacksFilter model.stackFilters ]
+                , div [ class "filter-group__flags" ] [ UI.FilterSelection.view FromPrimaryFilter model.primaryFilters ]
+                , div [ class "filter-group__flags" ] [ UI.FilterSelection.view FromSecondaryFilter model.secondaryFilters ]
+                , div [ class "filter-group__flags" ] [ UI.FilterSelection.view FromAttackTypesFilter model.attackTypeFilters ]
+                , div [ class "filter-group__flags" ] [ UI.FilterSelection.view FromClansFilter model.clansFilters ]
+                , div [ class "filter-group__flags" ] [ UI.FilterSelection.view FromDisciplinesFilter model.disciplineFilters ]
                 ]
-            , div [ class "search-text" ]
+            , div [ class "filter-group" ]
                 [ label []
-                    [ text "Filter by text: "
-                    , input [ onInput TextFilterChanged, type_ "search", spellcheck False ] []
+                    [ text "Card pack: "
+                    , span [ class "search__pack" ]
+                        [ UI.MultiSelect.autoSorted "Card Pack" FromPackFilter model.packFilters
+                        ]
+                    ]
+                ]
+            , div [ class "filter-group" ]
+                [ div [ class "search-text" ]
+                    [ label []
+                        [ text "Card text: "
+                        , input [ onInput TextFilterChanged, type_ "search", spellcheck False ] []
+                        ]
                     ]
                 ]
             ]
@@ -196,6 +215,16 @@ view shared model =
                 )
             ]
         ]
+
+
+isPackAllowed : UI.MultiSelect.Model Pack -> Card -> Bool
+isPackAllowed packSelection card =
+    case UI.MultiSelect.selected packSelection of
+        [] ->
+            True
+
+        allowedPacks ->
+            List.member (Cards.set card) allowedPacks
 
 
 cardSort : Card -> Card -> Order

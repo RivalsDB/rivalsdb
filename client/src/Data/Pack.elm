@@ -1,4 +1,4 @@
-module Data.Pack exposing (Pack, all, decoder, toString)
+module Data.Pack exposing (Pack, decoder, list, toString)
 
 import Enum exposing (Enum)
 import Json.Decode exposing (Decoder)
@@ -31,6 +31,6 @@ toString =
     enum.toString
 
 
-all : List Pack
-all =
-    List.map Tuple.second enum.list
+list : List ( String, Pack )
+list =
+    enum.list

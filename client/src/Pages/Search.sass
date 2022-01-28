@@ -1,19 +1,20 @@
 @import ../_vars
 
 .search
-  &-flaggroups
-    display: flex
-    flex-wrap: wrap
-    max-width: 840px
-    overflow: hidden
-    margin-top: $space-medium
-    gap: $space-micro
-
-  &-flaggroup
-    flex: 0 0 max-content
-
-  &-text
+  &-group
     margin-top: $space-small
+  &__pack
+    display: inline-block
+
+.filter-group
+  display: flex
+  flex-wrap: wrap
+  max-width: 840px
+  overflow: hidden
+  margin-top: $space-medium
+  gap: $space-micro
+  &__flags
+    flex: 0 0 max-content
 
 .searchresults
   margin-top: $space-medium

@@ -13,15 +13,25 @@ type alias Model value =
 
 
 type alias Option value =
-    ( value, String )
+    ( String, value )
+
+
+optionName : Option value -> String
+optionName =
+    Tuple.first
+
+
+optionValue : Option value -> value
+optionValue =
+    Tuple.second
 
 
 selected : Model value -> List value
 selected model =
-    List.map Tuple.first model.selected
+    List.map Tuple.second model.selected
 
 
-init : List ( value, String ) -> Model value
+init : List (Option value) -> Model value
 init options =
     { available = options, selected = [] }
 
@@ -37,7 +47,7 @@ update msg model =
         SelectOption selectedName ->
             let
                 ( matches, newAvailable ) =
-                    List.partition (Tuple.second >> (==) selectedName) model.available
+                    List.partition (optionName >> (==) selectedName) model.available
 
                 newSelected =
                     model.selected ++ matches
@@ -47,7 +57,7 @@ update msg model =
         RemoveOption removedValue ->
             let
                 ( matches, newSelected ) =
-                    List.partition (Tuple.first >> (==) removedValue) model.selected
+                    List.partition (optionValue >> (==) removedValue) model.selected
 
                 newAvailable =
                     model.available ++ matches
@@ -73,7 +83,7 @@ view_ description msg model =
             , value description
             ]
             (model.available
-                |> List.map Tuple.second
+                |> List.map optionName
                 |> List.sort
                 |> List.append [ description ]
                 |> List.map (\name -> option [ value name ] [ text name ])
@@ -82,7 +92,14 @@ view_ description msg model =
 
 
 viewSelectedOption : (Msg value -> msg) -> Option value -> Html msg
-viewSelectedOption msg ( value, name ) =
+viewSelectedOption msg option =
+    let
+        name =
+            optionName option
+
+        value =
+            optionValue option
+    in
     span [ class "multiselect__selected-option" ]
         [ span [ class "multiselect__selected-title" ] [ text name ]
         , button
