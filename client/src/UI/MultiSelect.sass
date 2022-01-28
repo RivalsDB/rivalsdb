@@ -1,0 +1,34 @@
+@import ../_vars
+
+.multiselect
+  display: flex
+  width: 100%
+  gap: 0 $space-medium
+  &--no-selection
+    gap: 0
+
+  &__line
+    flex: 0 1 auto
+    display: flex
+    flex-wrap: wrap
+    gap: 0 $space-small
+
+  &__selected-option
+    display: inline-block
+    flex: 0 0 fit-content
+    background: var(--color-transparent-lighter)
+
+  &__dropdown
+    flex: 1 0 auto
+
+  &__selected-title
+    border-radius: 4px
+    padding: 0 4px
+
+  &__selected-option-remove
+    all: unset
+    margin-left: $space-nano
+    cursor: pointer
+    margin: 2px $space-nano
+    line-height: 20px
+    display: inline-block
