@@ -20,7 +20,7 @@ import Shared
 import UI.Card
 import UI.FilterSelection
 import UI.Layout.Template
-import UI.MultiSelect
+import UI.MultiSelect as MultiSelect
 import UI.Text
 import View exposing (View)
 
@@ -44,7 +44,7 @@ type alias Model =
     , attackTypeFilters : UI.FilterSelection.Model Cards.AttackType Msg
     , clansFilters : UI.FilterSelection.Model Clan Msg
     , disciplineFilters : UI.FilterSelection.Model Discipline Msg
-    , packFilters : UI.MultiSelect.Model Pack
+    , packFilters : MultiSelect.Model Pack
     , textFilter : Maybe String
     }
 
@@ -59,7 +59,7 @@ init shared =
       , attackTypeFilters = UI.FilterSelection.attackTypes
       , clansFilters = UI.FilterSelection.clans
       , disciplineFilters = UI.FilterSelection.disciplines
-      , packFilters = UI.MultiSelect.init Pack.list
+      , packFilters = MultiSelect.init Pack.list
       , textFilter = Nothing
       }
     , Effect.none
@@ -97,7 +97,7 @@ type Msg
     | FromAttackTypesFilter (UI.FilterSelection.Msg Cards.AttackType)
     | FromClansFilter (UI.FilterSelection.Msg Clan)
     | FromDisciplinesFilter (UI.FilterSelection.Msg Discipline)
-    | FromPackFilter (UI.MultiSelect.Msg Pack)
+    | FromPackFilter (MultiSelect.Msg Pack)
     | TextFilterChanged String
 
 
@@ -142,7 +142,7 @@ update msg model =
             ( { model | disciplineFilters = UI.FilterSelection.update subMsg model.disciplineFilters }, Effect.none )
 
         FromPackFilter subMsg ->
-            ( { model | packFilters = UI.MultiSelect.update subMsg model.packFilters }, Effect.none )
+            ( { model | packFilters = MultiSelect.update subMsg model.packFilters }, Effect.none )
 
 
 
@@ -189,7 +189,7 @@ view shared model =
                 [ label []
                     [ text "Card pack: "
                     , span [ class "search__pack" ]
-                        [ UI.MultiSelect.autoSorted "Card Pack" FromPackFilter model.packFilters
+                        [ MultiSelect.autoSorted "Card Pack" FromPackFilter model.packFilters
                         ]
                     ]
                 ]
@@ -217,9 +217,9 @@ view shared model =
         ]
 
 
-isPackAllowed : UI.MultiSelect.Model Pack -> Card -> Bool
+isPackAllowed : MultiSelect.Model Pack -> Card -> Bool
 isPackAllowed packSelection card =
-    case UI.MultiSelect.selected packSelection of
+    case MultiSelect.selected packSelection of
         [] ->
             True
 
