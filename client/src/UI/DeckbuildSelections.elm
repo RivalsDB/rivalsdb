@@ -8,8 +8,8 @@ import Data.Discipline exposing (Discipline)
 import Data.Trait exposing (Trait)
 import Dict
 import Effect exposing (Effect)
-import Html exposing (Html, div, h2, input, label, li, section, span, text, ul)
-import Html.Attributes exposing (checked, class, classList, name, type_)
+import Html exposing (Html, div, h2, li, section, span, text, ul)
+import Html.Attributes exposing (class)
 import Html.Events exposing (onClick)
 import Html.Keyed as Keyed
 import Html.Lazy as Lazy
