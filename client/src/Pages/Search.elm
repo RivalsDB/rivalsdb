@@ -189,7 +189,7 @@ view shared model =
                 [ label []
                     [ text "Card pack: "
                     , span [ class "search__pack" ]
-                        [ MultiSelect.autoSorted "Card Pack" FromPackFilter model.packFilters
+                        [ Html.map FromPackFilter <| MultiSelect.autoSorted "Card Pack" model.packFilters
                         ]
                     ]
                 ]

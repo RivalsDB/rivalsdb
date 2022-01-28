@@ -65,21 +65,21 @@ update msg model =
             { model | available = newAvailable, selected = newSelected }
 
 
-autoSorted : String -> (Msg value -> msg) -> Model value -> Html msg
+autoSorted : String -> Model value -> Html (Msg value)
 autoSorted =
-    Lazy.lazy3 view_
+    Lazy.lazy2 view_
 
 
-view_ : String -> (Msg value -> msg) -> Model value -> Html msg
-view_ description msg model =
+view_ : String -> Model value -> Html (Msg value)
+view_ description model =
     div
         [ class "multiselect"
         , classList [ ( "multiselect--no-selection", List.isEmpty model.selected ) ]
         ]
-        [ div [ class "multiselect__line" ] (List.map (viewSelectedOption msg) model.selected)
+        [ div [ class "multiselect__line" ] (List.map viewSelectedOption model.selected)
         , select
             [ class "multiselect__dropdown"
-            , onInput (msg << SelectOption)
+            , onInput SelectOption
             , value description
             ]
             (model.available
@@ -91,8 +91,8 @@ view_ description msg model =
         ]
 
 
-viewSelectedOption : (Msg value -> msg) -> Option value -> Html msg
-viewSelectedOption msg option =
+viewSelectedOption : Option value -> Html (Msg value)
+viewSelectedOption option =
     let
         name =
             optionName option
@@ -104,7 +104,7 @@ viewSelectedOption msg option =
         [ span [ class "multiselect__selected-title" ] [ text name ]
         , button
             [ class "multiselect__selected-option-remove"
-            , onClick <| msg (RemoveOption value)
+            , onClick <| RemoveOption value
             , title <| ("Unselect " ++ name)
             ]
             [ text "⮿" ]

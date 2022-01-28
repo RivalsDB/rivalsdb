@@ -198,7 +198,7 @@ viewSecondaryFilters msg data =
         [ label []
             [ text "Card pack: "
             , span [ class "search__pack" ]
-                [ MultiSelect.autoSorted "Card Pack" (msg << FromPackFilter) data.packFilters
+                [ Html.map (msg << FromPackFilter) <| MultiSelect.autoSorted "Card Pack" data.packFilters
                 ]
             ]
         ]
