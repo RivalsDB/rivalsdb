@@ -5,10 +5,11 @@ import Data.Clan exposing (Clan)
 import Data.Collection exposing (Collection)
 import Data.Deck exposing (Decklist)
 import Data.Discipline exposing (Discipline)
+import Data.Pack as Pack exposing (Pack)
 import Data.Trait exposing (Trait)
 import Dict
 import Effect exposing (Effect)
-import Html exposing (Html, div, h2, li, section, span, text, ul)
+import Html exposing (Html, div, h2, label, li, section, span, text, ul)
 import Html.Attributes exposing (class)
 import Html.Events exposing (onClick)
 import Html.Keyed as Keyed
@@ -20,6 +21,7 @@ import UI.CardName
 import UI.FilterSelection
 import UI.Icon as Icon
 import UI.Icon.V2
+import UI.MultiSelect as MultiSelect
 import UI.QuantityPicker
 
 
@@ -30,6 +32,7 @@ type alias Model msg =
     , attackTypeFilters : UI.FilterSelection.Model Cards.AttackType msg
     , clansFilters : UI.FilterSelection.Model Clan msg
     , disciplineFilters : UI.FilterSelection.Model Discipline msg
+    , packFilters : MultiSelect.Model Pack
     , textFilter : Maybe String
     , showAllFilters : Bool
     , showCollectionImages : Bool
@@ -44,6 +47,7 @@ init =
     , attackTypeFilters = UI.FilterSelection.attackTypes
     , clansFilters = UI.FilterSelection.clans
     , disciplineFilters = UI.FilterSelection.disciplines
+    , packFilters = MultiSelect.init Pack.list
     , textFilter = Nothing
     , showAllFilters = False
     , showCollectionImages = False
@@ -59,6 +63,7 @@ type Msg
     | FromPrimaryFilter (UI.FilterSelection.Msg Trait)
     | FromSecondaryFilter (UI.FilterSelection.Msg Trait)
     | FromStacksFilter (UI.FilterSelection.Msg Cards.CardStack)
+    | FromPackFilter (MultiSelect.Msg Pack)
     | ToggleShowAllFilters
     | ToggleShowCollectionImages
 
@@ -84,6 +89,9 @@ update msg model =
         FromDisciplinesFilter subMsg ->
             ( { model | disciplineFilters = UI.FilterSelection.update subMsg model.disciplineFilters }, Effect.none )
 
+        FromPackFilter subMsg ->
+            ( { model | packFilters = MultiSelect.update subMsg model.packFilters }, Effect.none )
+
         ClearFilters ->
             ( { model
                 | stackFilters = UI.FilterSelection.playerStacks
@@ -92,6 +100,7 @@ update msg model =
                 , attackTypeFilters = UI.FilterSelection.attackTypes
                 , clansFilters = UI.FilterSelection.clans
                 , disciplineFilters = UI.FilterSelection.disciplines
+                , packFilters = MultiSelect.init Pack.list
                 , textFilter = Nothing
               }
             , Effect.fromCmd <| Port.Event.track Port.Event.BuilderClearFilters
@@ -185,6 +194,14 @@ viewSecondaryFilters msg data =
     [ UI.FilterSelection.view (msg << FromSecondaryFilter) data.secondaryFilters
     , UI.FilterSelection.view (msg << FromAttackTypesFilter) data.attackTypeFilters
     , UI.FilterSelection.view (msg << FromDisciplinesFilter) data.disciplineFilters
+    , div []
+        [ label []
+            [ text "Card pack: "
+            , span [ class "search__pack" ]
+                [ MultiSelect.autoSorted "Card Pack" (msg << FromPackFilter) data.packFilters
+                ]
+            ]
+        ]
     ]
 
 
@@ -365,6 +382,17 @@ filterFlags data card =
         && UI.FilterSelection.isAllowed Cards.discipline data.disciplineFilters card
         && UI.FilterSelection.isAllowed Cards.traits data.primaryFilters card
         && UI.FilterSelection.isAllowed Cards.attackTypes data.attackTypeFilters card
+        && isPackAllowed data.packFilters card
+
+
+isPackAllowed : MultiSelect.Model Pack -> Card -> Bool
+isPackAllowed packSelection card =
+    case MultiSelect.selected packSelection of
+        [] ->
+            True
+
+        allowedPacks ->
+            List.member (Cards.set card) allowedPacks
 
 
 cardSort : Card -> Card -> Order
