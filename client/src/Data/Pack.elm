@@ -1,4 +1,4 @@
-module Data.Pack exposing (Pack, decoder, toString)
+module Data.Pack exposing (Pack, all, decoder, toString)
 
 import Enum exposing (Enum)
 import Json.Decode exposing (Decoder)
@@ -14,9 +14,9 @@ type Pack
 enum : Enum Pack
 enum =
     Enum.create
-        [ ( "Blood & Alchemy", BloodAndAlchemy )
+        [ ( "Core", Core )
         , ( "Wolf & Rat", WolfAndRat )
-        , ( "Core", Core )
+        , ( "Blood & Alchemy", BloodAndAlchemy )
         , ( "Promo", Promo )
         ]
 
@@ -29,3 +29,8 @@ decoder =
 toString : Pack -> String
 toString =
     enum.toString
+
+
+all : List Pack
+all =
+    List.map Tuple.second enum.list
