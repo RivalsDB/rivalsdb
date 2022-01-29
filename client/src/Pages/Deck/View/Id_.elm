@@ -1,12 +1,14 @@
 module Pages.Deck.View.Id_ exposing (Model, Msg, page)
 
 import API.Decklist
+import API.ErrorHandler
 import Data.Collection exposing (Collection)
 import Data.Deck as Deck exposing (Deck)
 import Effect exposing (Effect)
 import Gen.Params.Deck.View.Id_ exposing (Params)
 import Gen.Route as Route
 import Html exposing (Html, text)
+import Http
 import Page
 import Port.Auth exposing (User)
 import Port.Event
@@ -62,11 +64,19 @@ update shared msg model =
         ( _, FromShared subMsg ) ->
             ( model, Effect.fromShared subMsg )
 
-        ( _, FetchedDecklist (Err _) ) ->
-            ( model, Effect.none )
+        ( _, FetchedDecklist (Err e) ) ->
+            ( model, API.ErrorHandler.standardAlert e )
 
-        ( _, DeletedDecklist _ ) ->
-            ( model, Effect.fromShared <| Shared.Redirect Route.MyDecks )
+        ( _, DeletedDecklist (Ok _) ) ->
+            ( model
+            , Effect.batch
+                [ Effect.fromShared (Shared.Redirect Route.MyDecks)
+                , Effect.fromShared (Shared.ToastSuccess "Deck deleted!" Nothing)
+                ]
+            )
+
+        ( _, DeletedDecklist (Err e) ) ->
+            ( model, API.ErrorHandler.standardAlert e )
 
         ( Loading, FetchedDecklist (Ok deck) ) ->
             ( Viewing deck [], Effect.none )

@@ -1,5 +1,6 @@
 module Pages.Profile exposing (Model, Msg, page)
 
+import API.ErrorHandler
 import API.User
 import Auth
 import Effect exposing (Effect)
@@ -62,8 +63,8 @@ update user msg model =
         ( _, FetchedUser (Ok { displayName }) ) ->
             ( Loaded { displayName = displayName }, Effect.none )
 
-        ( _, FetchedUser (Err _) ) ->
-            ( Loading, Effect.none )
+        ( _, FetchedUser (Err e) ) ->
+            ( Loading, API.ErrorHandler.standardAlert e )
 
         ( Loading, _ ) ->
             ( model, Effect.none )
@@ -80,8 +81,11 @@ update user msg model =
         ( _, DisplayNameSave ) ->
             ( model, Effect.none )
 
-        ( _, SavedDisplayName _ ) ->
-            ( model, Effect.none )
+        ( _, SavedDisplayName (Ok _) ) ->
+            ( model, Effect.fromShared (Shared.ToastSuccess "Saved!" (Just "Nickname saved")) )
+
+        ( _, SavedDisplayName (Err e) ) ->
+            ( model, API.ErrorHandler.standardAlert e )
 
 
 

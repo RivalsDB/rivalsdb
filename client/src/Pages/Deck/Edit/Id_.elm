@@ -1,6 +1,7 @@
 module Pages.Deck.Edit.Id_ exposing (Model, Msg, page)
 
 import API.Decklist
+import API.ErrorHandler
 import Auth
 import Cards
 import Data.Collection exposing (Collection)
@@ -122,14 +123,25 @@ update user msg modelx =
                     Just encodedDeck ->
                         ( Editing { model | isSaving = True }, API.Decklist.update SavedDecklist user.token model.deck.meta.id encodedDeck |> Effect.fromCmd )
 
-        ( Editing model, SavedDecklist _ ) ->
-            ( Editing { model | isSaving = False }, Effect.none )
+        ( Editing model, SavedDecklist (Ok _) ) ->
+            ( Editing { model | isSaving = False }, Effect.fromShared (Shared.ToastSuccess "Deck saved!" Nothing) )
+
+        ( Editing model, SavedDecklist (Err e) ) ->
+            ( Editing { model | isSaving = False }, API.ErrorHandler.standardAlert e )
 
         ( Editing model, Delete ) ->
             ( Editing model, API.Decklist.delete DeletedDecklist user.token model.deck.meta.id |> Effect.fromCmd )
 
-        ( Editing model, DeletedDecklist _ ) ->
-            ( Editing model, Effect.fromShared (Shared.Redirect Route.MyDecks) )
+        ( Editing model, DeletedDecklist (Ok _) ) ->
+            ( Editing model
+            , Effect.batch
+                [ Effect.fromShared (Shared.Redirect Route.MyDecks)
+                , Effect.fromShared (Shared.ToastSuccess "Deck deleted" Nothing)
+                ]
+            )
+
+        ( Editing model, DeletedDecklist (Err e) ) ->
+            ( Editing model, API.ErrorHandler.standardAlert e )
 
         ( Editing model, StartRenameDeck ) ->
             let

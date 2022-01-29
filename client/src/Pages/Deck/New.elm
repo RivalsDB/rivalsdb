@@ -1,6 +1,7 @@
 module Pages.Deck.New exposing (Model, Msg, page)
 
 import API.Decklist
+import API.ErrorHandler
 import Auth
 import Cards
 import Data.Deck as Deck exposing (Deck, Name(..))
@@ -135,10 +136,15 @@ update user msg model =
                         ( Deckbuilding { model2 | isSaving = True }, API.Decklist.update SavedDecklist user.token model2.deck.meta.id encodedDeck |> Effect.fromCmd )
 
         ( Deckbuilding model2, SavedDecklist (Ok _) ) ->
-            ( Deckbuilding { model2 | isSaving = False }, Effect.fromShared <| Shared.GoTo (Route.Deck__View__Id_ { id = model2.deck.meta.id }) )
+            ( Deckbuilding { model2 | isSaving = False }
+            , Effect.batch
+                [ Effect.fromShared <| Shared.GoTo (Route.Deck__View__Id_ { id = model2.deck.meta.id })
+                , Effect.fromShared (Shared.ToastSuccess "Deck saved!" Nothing)
+                ]
+            )
 
-        ( Deckbuilding model2, SavedDecklist (Err _) ) ->
-            ( Deckbuilding { model2 | isSaving = False }, Effect.none )
+        ( Deckbuilding model2, SavedDecklist (Err e) ) ->
+            ( Deckbuilding { model2 | isSaving = False }, API.ErrorHandler.standardAlert e )
 
         ( Deckbuilding model2, StartRenameDeck ) ->
             let
