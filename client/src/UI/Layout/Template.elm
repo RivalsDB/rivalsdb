@@ -4,18 +4,32 @@ import Html exposing (Html, div)
 import Html.Attributes exposing (class)
 import Html.Lazy as Lazy
 import Shared
-import UI.Layout.Footer
-import UI.Layout.Header
-import UI.Layout.Modal
-import Util exposing (htmlList)
+import UI.Layout.Footer as Footer
+import UI.Layout.Header as Header
+import UI.Layout.Modal as Modal
+import UI.Layout.Toast as Toast
 import View exposing (View)
 
 
 view : (Shared.Msg -> msg) -> Shared.Model -> List (Html msg) -> View msg
 view sharedMsg shared content =
-    htmlList
-        [ ( Lazy.lazy2 UI.Layout.Header.view sharedMsg shared, True )
-        , ( UI.Layout.Modal.view sharedMsg, Shared.isModalOpen shared )
-        , ( div [ class "page-content" ] content, True )
-        , ( UI.Layout.Footer.view, True )
-        ]
+    [ div [ class "page" ]
+        (List.concat
+            [ [ Lazy.lazy2 Header.view sharedMsg shared
+              , Lazy.lazy viewContent content
+              , Footer.view
+              ]
+            , [ Lazy.lazy Toast.view shared.toast ]
+            , if Shared.isModalOpen shared then
+                [ Modal.view sharedMsg ]
+
+              else
+                []
+            ]
+        )
+    ]
+
+
+viewContent : List (Html msg) -> Html msg
+viewContent =
+    div [ class "page-content" ]

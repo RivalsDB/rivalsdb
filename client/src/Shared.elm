@@ -18,6 +18,7 @@ import Json.Decode as Json
 import Port.Auth exposing (User)
 import Port.Event
 import Request exposing (Request)
+import UI.Layout.Toast as Toast
 
 
 type alias Flags =
@@ -30,6 +31,7 @@ type alias Model =
     , modal : ModalState
     , burgerMenu : Bool
     , headerSearch : Maybe String
+    , toast : Toast.Model
     , key : Key
     }
 
@@ -66,6 +68,9 @@ type Msg
     | ToggleBurgerMenu
     | Redirect Route
     | GoTo Route
+    | FromToast Toast.Msg
+    | ToastSuccess String (Maybe String)
+    | ToastError String (Maybe String)
 
 
 init : Request -> Flags -> ( Model, Cmd Msg )
@@ -84,6 +89,7 @@ init req flags =
       , modal = Closed
       , burgerMenu = False
       , headerSearch = Nothing
+      , toast = Toast.init
       , key = req.key
       }
     , Cmd.none
@@ -93,6 +99,15 @@ init req flags =
 update : Request -> Msg -> Model -> ( Model, Cmd Msg )
 update _ msg model =
     case msg of
+        FromToast subMsg ->
+            ( { model | toast = Toast.update subMsg model.toast }, Cmd.none )
+
+        ToastSuccess title subtitle ->
+            ( model, Cmd.map FromToast <| Toast.create Toast.Success title subtitle )
+
+        ToastError title subtitle ->
+            ( model, Cmd.map FromToast <| Toast.create Toast.Error title subtitle )
+
         GotSignIn maybeUser ->
             ( { model | user = maybeUser }, Cmd.none )
 
@@ -174,4 +189,7 @@ update _ msg model =
 
 subscriptions : Request -> Model -> Sub Msg
 subscriptions _ _ =
-    Port.Auth.receivedSignin GotSignIn
+    Sub.batch
+        [ Port.Auth.receivedSignin GotSignIn
+        , Sub.map FromToast Toast.subscriptions
+        ]

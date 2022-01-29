@@ -1,0 +1,44 @@
+@import ../../_vars
+
+.page-toast
+  position: absolute
+  right: 0
+  top: $header-height + $space-medium
+  z-index: $z-toast
+  display: flex
+  flex-direction: column
+  gap: $space-medium
+  align-items: flex-end
+  overflow: hidden
+  pointer-events: none
+
+.toast
+  pointer-events: auto
+  padding: 8px 16px
+  width: fit-content
+  min-width: 40px
+  max-width: 130px
+  line-height: 16px
+  color: var(--color-copy-highlight)
+  &--success
+    background: var(--color-bg-closest)
+  &--error
+    background: var(--color-bg-warning)
+  &__title
+    font-weight: bold
+    font-size: $font-size--body
+  &__subtitle
+    font-size: $font-size--discreet
+    margin-top: $space-nano
+
+.toast
+  animation-name: toastSlide
+  animation-duration: 0.4s
+  animation-timing-function: ease-out
+
+@keyframes toastSlide
+  from
+    transform: translate3d(100%,0,0)
+
+  to
+    transform: translate3d(0,0,0)
