@@ -1,17 +1,17 @@
-import { create } from "domain";
 import { FastifyPluginAsync } from "fastify";
 import {
   createDecklist,
   createUserIfNeeded,
   deleteDecklist,
   fetchDecklist,
-  fetchDecklists,
-  fetchDecklistsForUser,
+  fetchPublicDecklistsForUser,
+  fetchPublicDecklists,
   gameModeFromString,
   makeDecklistId,
   updateDecklist,
+  fetchAllDecklistsForUser,
 } from "../db/index.js";
-import auth from "./auth.js";
+import { assertAuthenticated, maybeAuth, signInRequired } from "./auth.js";
 
 interface DeckInput {
   agenda: string;
@@ -20,6 +20,15 @@ interface DeckInput {
   libraryDeck: { [id: string]: number };
   gameMode: "both" | "headToHead" | "multiplayer";
   name?: string;
+}
+interface DeckInputV2 {
+  agenda: string;
+  haven: string;
+  factionDeck: { [id: string]: boolean };
+  libraryDeck: { [id: string]: number };
+  gameMode: "both" | "headToHead" | "multiplayer";
+  name?: string;
+  public?: boolean;
 }
 interface DeckOutput {
   id: string;
@@ -80,21 +89,26 @@ const postV1: FastifyPluginAsync = async (fastify) => {
             },
             id: { type: "string" },
             creatorId: { type: "string" },
+            public: { type: "boolean" },
           },
         },
       },
     },
 
     async handler(req, reply): Promise<DeckOutput> {
+      assertAuthenticated(req.authentication);
+
       const leader = findLeader(req.body.factionDeck);
       if (leader === null) {
         reply.code(400);
         return reply.send("Invalid leader");
       }
 
+      const { id: userId, email: userEmail } = req.authentication;
+
       const [deckId] = await Promise.all([
         makeDecklistId(),
-        createUserIfNeeded(req.user.id, req.user.email),
+        createUserIfNeeded(userId, userEmail),
       ]);
 
       const decklist = {
@@ -105,10 +119,11 @@ const postV1: FastifyPluginAsync = async (fastify) => {
         leader,
       };
       const meta = {
-        creatorId: req.user.id,
+        creatorId: userId,
         gameMode: gameModeFromString(req.body.gameMode),
         name: req.body.name,
         id: deckId,
+        public: true,
       };
       const entry = await createDecklist(decklist, meta);
 
@@ -151,11 +166,14 @@ const putV1: FastifyPluginAsync = async (fastify) => {
               type: "string",
               enum: ["both", "headToHead", "multiplayer"],
             },
+            public: { type: "boolean" },
           },
         },
       },
 
       async handler(req, reply): Promise<void> {
+        assertAuthenticated(req.authentication);
+
         const leader = findLeader(req.body.factionDeck);
         if (leader == null) {
           reply.code(400);
@@ -166,7 +184,7 @@ const putV1: FastifyPluginAsync = async (fastify) => {
         if (oldDecklist == null) {
           reply.code(404);
           return reply.send();
-        } else if (oldDecklist.creatorId !== req.user.id) {
+        } else if (oldDecklist.creatorId !== req.authentication.id) {
           reply.code(403);
           return reply.send();
         }
@@ -181,6 +199,7 @@ const putV1: FastifyPluginAsync = async (fastify) => {
         const meta = {
           name: req.body.name,
           gameMode: gameModeFromString(req.body.gameMode),
+          public: oldDecklist.public,
         };
 
         await updateDecklist(oldDecklist.id, newDecklist, meta);
@@ -192,7 +211,7 @@ const putV1: FastifyPluginAsync = async (fastify) => {
 };
 
 const putV2: FastifyPluginAsync = async (fastify) => {
-  fastify.put<{ Params: { deckId: string }; Body: DeckInput }>(
+  fastify.put<{ Params: { deckId: string }; Body: DeckInputV2 }>(
     "/decklist/:deckId",
     {
       schema: {
@@ -215,11 +234,14 @@ const putV2: FastifyPluginAsync = async (fastify) => {
               type: "string",
               enum: ["both", "headToHead", "multiplayer"],
             },
+            public: { type: "boolean" },
           },
         },
       },
 
       async handler(req, reply): Promise<void> {
+        assertAuthenticated(req.authentication);
+
         const leader = findLeader(req.body.factionDeck);
         if (leader == null) {
           reply.code(400);
@@ -234,10 +256,11 @@ const putV2: FastifyPluginAsync = async (fastify) => {
           leader,
         };
         const meta = {
-          creatorId: req.user.id,
+          creatorId: req.authentication.id,
           gameMode: gameModeFromString(req.body.gameMode),
           name: req.body.name,
           id: req.params.deckId,
+          public: req.body.public ?? true,
         };
 
         const oldDecklist = await fetchDecklist(req.params.deckId);
@@ -247,7 +270,7 @@ const putV2: FastifyPluginAsync = async (fastify) => {
           return reply.send();
         }
 
-        if (oldDecklist.creatorId !== req.user.id) {
+        if (oldDecklist.creatorId !== req.authentication.id) {
           reply.code(403);
           return reply.send();
         }
@@ -263,13 +286,15 @@ const putV2: FastifyPluginAsync = async (fastify) => {
 const deleteV1: FastifyPluginAsync = async (fastify) => {
   fastify.delete<{ Params: { deckId: string } }>("/decklist/:deckId", {
     async handler(req, reply): Promise<void> {
+      assertAuthenticated(req.authentication);
+
       const decklist = await fetchDecklist(req.params.deckId);
       if (decklist == null) {
         reply.code(404);
         return reply.send();
       }
 
-      if (decklist.creatorId !== req.user.id) {
+      if (decklist.creatorId !== req.authentication.id) {
         reply.code(403);
         return reply.send();
       }
@@ -281,7 +306,7 @@ const deleteV1: FastifyPluginAsync = async (fastify) => {
 };
 
 const indexV1: FastifyPluginAsync = async (fastify) => {
-  fastify.get<{ Querystring: { userId: string } }>("/decklist", {
+  fastify.get<{ Querystring: { userId?: string } }>("/decklist", {
     schema: {
       querystring: {
         userId: { type: "string" },
@@ -310,15 +335,19 @@ const indexV1: FastifyPluginAsync = async (fastify) => {
                 type: "string",
                 enum: ["both", "headToHead", "multiplayer"],
               },
+              public: { type: "boolean" },
             },
           },
         },
       },
     },
     async handler(req) {
-      const decklists = await (req.query.userId
-        ? fetchDecklistsForUser(req.query.userId)
-        : fetchDecklists());
+      const decklists = await (req.query.userId == null
+        ? fetchPublicDecklists()
+        : req.query.userId === maybeAuth(req.authentication)?.id
+        ? fetchAllDecklistsForUser(req.query.userId)
+        : fetchPublicDecklistsForUser(req.query.userId));
+
       return decklists.map((decklist) => ({
         ...decklist,
         creatorDisplayName: decklist.displayName,
@@ -353,6 +382,7 @@ const getV1: FastifyPluginAsync = async (fastify) => {
               type: "string",
               enum: ["both", "headToHead", "multiplayer"],
             },
+            public: { type: "boolean" },
           },
         },
       },
@@ -378,7 +408,7 @@ export const v1Routes: FastifyPluginAsync = async (fastify) => {
   fastify.register(getV1);
 
   fastify.register(async (fastify) => {
-    fastify.register(auth);
+    fastify.register(signInRequired);
     fastify.register(postV1);
     fastify.register(putV1);
     fastify.register(deleteV1);
@@ -387,7 +417,7 @@ export const v1Routes: FastifyPluginAsync = async (fastify) => {
 
 export const v2Routes: FastifyPluginAsync = async (fastify) => {
   fastify.register(async (fastify) => {
-    fastify.register(auth);
+    fastify.register(signInRequired);
     fastify.register(putV2);
   });
 };

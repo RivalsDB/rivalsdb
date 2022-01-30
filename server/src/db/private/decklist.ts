@@ -15,6 +15,7 @@ interface MetaDecklist {
   id: string;
   creatorId: string;
   gameMode: GAME_MODE;
+  public: boolean;
   name?: string;
 }
 
@@ -42,6 +43,7 @@ export async function createDecklist(
       content,
       name,
       game_mode,
+      public,
       created_at,
       updated_at
     )
@@ -51,6 +53,7 @@ export async function createDecklist(
       ${decklist},
       ${stringOrNull(meta.name)},
       ${meta.gameMode},
+      ${meta.public},
       NOW(),
       NOW()
     )
@@ -71,7 +74,7 @@ export async function deleteDecklist(decklistId: string): Promise<void> {
 export async function updateDecklist(
   decklistId: string,
   decklist: Decklist,
-  meta: Pick<MetaDecklist, "gameMode" | "name">
+  meta: Pick<MetaDecklist, "gameMode" | "name" | "public">
 ): Promise<void> {
   await db.query(sql`
     UPDATE
@@ -80,6 +83,7 @@ export async function updateDecklist(
       content = ${decklist},
       name = ${stringOrNull(meta.name)},
       game_mode = ${meta.gameMode},
+      public = ${meta.public},
       updated_at = NOW()
     WHERE
       decklist_id = ${decklistId}
@@ -99,6 +103,7 @@ interface ExtendedDecklist {
   factionDeck: string[];
   displayName?: string;
   gameMode: GAME_MODE;
+  public: boolean;
 }
 
 export async function fetchDecklist(
@@ -111,6 +116,7 @@ export async function fetchDecklist(
       user_id,
       content,
       game_mode,
+      public,
       users.display_name
     FROM decklists
     LEFT JOIN users USING (user_id)
@@ -124,38 +130,62 @@ export async function fetchDecklist(
   return rowToDecklist(row);
 }
 
-export async function fetchDecklists(): Promise<ExtendedDecklist[]> {
+export async function fetchPublicDecklists(): Promise<ExtendedDecklist[]> {
   const rows = await db.query(sql`
     SELECT
-      decklist_id,
-      name,
-      user_id,
-      content,
-      game_mode,
-      users.display_name
-    FROM decklists
-    LEFT JOIN users USING (user_id)
-    ORDER BY decklists.updated_at DESC
+      d.decklist_id,
+      d.name,
+      d.user_id,
+      d.content,
+      d.game_mode,
+      d.public,
+      u.display_name
+    FROM decklists AS d
+    LEFT JOIN users AS u USING (user_id)
+    WHERE d.public IS true
+    ORDER BY d.updated_at DESC
   `);
 
   return rows.map(rowToDecklist);
 }
 
-export async function fetchDecklistsForUser(
+export async function fetchPublicDecklistsForUser(
   userId: string
 ): Promise<ExtendedDecklist[]> {
   const rows = await db.query(sql`
     SELECT
-      decklist_id,
-      name,
-      user_id,
-      content,
-      game_mode,
-      users.display_name
-    FROM decklists
-    LEFT JOIN users USING (user_id)
-    WHERE user_id = ${userId}
-    ORDER BY decklists.updated_at DESC
+      d.decklist_id,
+      d.name,
+      d.user_id,
+      d.content,
+      d.game_mode,
+      d.public,
+      u.display_name
+    FROM decklists AS d
+    LEFT JOIN users AS u USING (user_id)
+    WHERE d.user_id = ${userId} AND d.public IS true
+    ORDER BY d.updated_at DESC
+  `);
+
+  return rows.map(rowToDecklist);
+}
+
+export async function fetchAllDecklistsForUser(
+  userId: string
+): Promise<ExtendedDecklist[]> {
+  const rows = await db.query(sql`
+    SELECT
+      d.decklist_id,
+      d.name,
+      d.user_id,
+      d.content,
+      d.game_mode,
+      d.public,
+      u.display_name
+    FROM decklists AS d
+    LEFT JOIN users AS u USING (user_id)
+    WHERE d.user_id = ${userId}
+    ORDER BY d.updated_at DESC
   `);
 
   return rows.map(rowToDecklist);
@@ -168,6 +198,7 @@ function rowToDecklist(row: {
   content: Omit<Decklist, "id" | "name" | "creatorId">;
   display_name?: string;
   game_mode: string;
+  public: boolean;
 }): ExtendedDecklist {
   return {
     id: row.decklist_id,
@@ -181,5 +212,6 @@ function rowToDecklist(row: {
     displayName:
       typeof row.display_name === "string" ? row.display_name : undefined,
     gameMode: gameModeFromString(row.game_mode),
+    public: row.public,
   };
 }

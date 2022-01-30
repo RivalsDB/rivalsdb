@@ -1,6 +1,6 @@
 import { FastifyPluginAsync } from "fastify";
 import { fetchUser, updateUser, DbError } from "../db/index.js";
-import auth from "./auth.js";
+import { assertAuthenticated, signInRequired } from "./auth.js";
 
 interface UserInput {
   displayName: string;
@@ -10,8 +10,8 @@ interface UserOutput {
   displayName?: string;
 }
 
-const privateRoutes: FastifyPluginAsync = async (fastify, options) => {
-  fastify.register(auth);
+const privateRoutes: FastifyPluginAsync = async (fastify) => {
+  fastify.register(signInRequired);
 
   fastify.put<{ Params: { userId: string }; Body: UserInput }>(
     "/users/:userId",
@@ -27,13 +27,15 @@ const privateRoutes: FastifyPluginAsync = async (fastify, options) => {
       },
 
       async handler(req, reply): Promise<void> {
+        assertAuthenticated(req.authentication);
+
         const user = await fetchUser(req.params.userId);
         if (user == null) {
           reply.code(404);
           return reply.send();
         }
 
-        if (user.userId !== req.user.id) {
+        if (user.userId !== req.authentication.id) {
           reply.code(403);
           return reply.send({ error: "ACCESS_DENIED" });
         }
@@ -52,7 +54,7 @@ const privateRoutes: FastifyPluginAsync = async (fastify, options) => {
   );
 };
 
-const publicRoutes: FastifyPluginAsync = async (fastify, options) => {
+const publicRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.get<{ Params: { userId: string } }>("/users/:userId", {
     schema: {
       response: {

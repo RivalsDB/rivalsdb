@@ -1,4 +1,4 @@
-import Fastify from "fastify";
+import Fastify, { FastifyPluginAsync } from "fastify";
 import fastifyCors from "fastify-cors";
 import fastifyStatic from "fastify-static";
 import fastifyCompress from "fastify-compress";
@@ -12,6 +12,7 @@ import {
 } from "./decklists.js";
 import usersRoutes from "./users.js";
 import { Service } from "../typings/Service.js";
+import { authenticated } from "./auth.js";
 
 const dirname = new URL(import.meta.url).pathname;
 const cardImagesFolder = path.join(
@@ -33,18 +34,21 @@ const clientDistFolder = path.join(
   "dist"
 );
 
+const api: FastifyPluginAsync = async (fastify) => {
+  fastify.register(authenticated);
+  fastify.register(decklistV1Routes, { prefix: "/v1" });
+  fastify.register(cardsRoutes, { prefix: "/v1" });
+  fastify.register(usersRoutes, { prefix: "/v1" });
+  fastify.register(decklistV2Routes, { prefix: "/v2" });
+};
+
 export async function createServer(): Promise<Service> {
   console.log("SERVER: init start");
   const fastify = Fastify({ logger: true });
 
   fastify.register(fastifyCors);
   fastify.register(fastifyCompress);
-
-  fastify.register(decklistV1Routes, { prefix: "/api/v1" });
-  fastify.register(cardsRoutes, { prefix: "/api/v1" });
-  fastify.register(usersRoutes, { prefix: "/api/v1" });
-  fastify.register(decklistV2Routes, { prefix: "/api/v2" });
-
+  fastify.register(api, { prefix: "/api" });
   fastify.register(fastifyStatic, {
     root: cardImagesFolder,
     wildcard: false,

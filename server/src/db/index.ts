@@ -5,10 +5,11 @@ export {
   createDecklist,
   deleteDecklist,
   fetchDecklist,
-  fetchDecklistsForUser,
+  fetchPublicDecklists,
+  fetchPublicDecklistsForUser,
   makeDecklistId,
+  fetchAllDecklistsForUser,
   updateDecklist,
-  fetchDecklists,
 } from "./private/decklist.js";
 
 export { createUserIfNeeded, updateUser, fetchUser } from "./private/user.js";
