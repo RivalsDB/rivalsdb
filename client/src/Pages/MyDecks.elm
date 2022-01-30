@@ -1,12 +1,14 @@
 module Pages.MyDecks exposing (Model, Msg, page)
 
 import API.Decklist
+import Data.Collection exposing (Collection)
 import Data.Deck exposing (Deck)
 import Effect exposing (Effect)
 import Gen.Params.MyDecks exposing (Params)
 import Html exposing (div, text)
 import Html.Attributes exposing (class)
 import Page
+import Port.Auth exposing (User)
 import Request
 import Shared
 import UI.DecklistsIndex
@@ -19,7 +21,7 @@ page : Shared.Model -> Request.With Params -> Page.With Model Msg
 page shared _ =
     Page.protected.advanced
         (\user ->
-            { init = init shared user.id
+            { init = init shared.collection user
             , update = update
             , view = view shared
             , subscriptions = always Sub.none
@@ -36,10 +38,10 @@ type Model
     | Viewing (List Deck)
 
 
-init : Shared.Model -> String -> ( Model, Effect Msg )
-init shared userId =
+init : Collection -> User -> ( Model, Effect Msg )
+init collection user =
     ( Loading
-    , API.Decklist.indexForUser shared.collection FetchedDecklists userId
+    , API.Decklist.indexForUser collection FetchedDecklists user.token user.id
         |> Effect.fromCmd
     )
 

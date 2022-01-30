@@ -77,9 +77,14 @@ index collection msg =
         }
 
 
-indexForUser : Collection -> (ResultIndex -> msg) -> String -> Cmd msg
-indexForUser collection msg userId =
-    Http.get
-        { url = "/api/v1/decklist?userId=" ++ userId
+indexForUser : Collection -> (ResultIndex -> msg) -> Shared.Token -> String -> Cmd msg
+indexForUser collection msg token userId =
+    Http.request
+        { method = "GET"
+        , url = "/api/v1/decklist?userId=" ++ userId
+        , headers = [ auth token ]
         , expect = Http.expectJson msg (Decode.list <| Data.Deck.decoder collection)
+        , body = Http.emptyBody
+        , timeout = Nothing
+        , tracker = Nothing
         }
