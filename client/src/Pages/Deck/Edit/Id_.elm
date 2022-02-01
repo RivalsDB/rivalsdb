@@ -7,6 +7,7 @@ import Cards
 import Data.Collection exposing (Collection)
 import Data.Deck as Deck exposing (Deck, Name(..))
 import Data.GameMode exposing (GameMode)
+import Data.Visibility exposing (Visibility)
 import Effect exposing (Effect)
 import Gen.Params.Deck.Edit.Id_ exposing (Params)
 import Gen.Route as Route
@@ -68,6 +69,7 @@ type Msg
     | DeckNameChanged String
     | SaveNewDeckName
     | SetGameMode GameMode
+    | SetVisibility Visibility
     | FetchedDecklist API.Decklist.ResultRead
     | ChangedCard ( Cards.Card, Int )
 
@@ -198,6 +200,16 @@ update user msg modelx =
             in
             ( Editing { model | deck = { oldDeck | meta = { oldMeta | gameMode = gameMode } } }, Effect.none )
 
+        ( Editing model, SetVisibility visibility ) ->
+            let
+                oldDeck =
+                    model.deck
+
+                oldMeta =
+                    oldDeck.meta
+            in
+            ( Editing { model | deck = { oldDeck | meta = { oldMeta | visibility = visibility } } }, Effect.none )
+
         ( Editing model, ChangedCard choice ) ->
             let
                 oldDeck =
@@ -216,6 +228,7 @@ decklistActions =
     , changeName = DeckNameChanged
     , endNameChange = SaveNewDeckName
     , setGameMode = SetGameMode
+    , setVisibility = SetVisibility
     , changeCard = ChangedCard
     }
 

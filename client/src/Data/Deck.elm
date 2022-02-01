@@ -3,7 +3,7 @@ module Data.Deck exposing
     , Decklist
     , Faction
     , Library
-    , MetaPostSave
+    , Meta
     , Name(..)
     , clansInFaction
     , copiesInDeck
@@ -25,6 +25,7 @@ import Cards
 import Data.Clan exposing (Clan)
 import Data.Collection exposing (Collection)
 import Data.GameMode as GameMode exposing (GameMode)
+import Data.Visibility as Visibility exposing (Visibility)
 import Dict exposing (Dict)
 import Json.Decode as Decode exposing (Decoder)
 import Json.Encode as Encode
@@ -32,7 +33,7 @@ import Json.Encode as Encode
 
 type alias Deck =
     { decklist : Decklist
-    , meta : MetaPostSave
+    , meta : Meta
     }
 
 
@@ -44,7 +45,14 @@ create id ownerId ownerName =
         , faction = Dict.empty
         , library = Dict.empty
         }
-    , meta = { name = Unnamed, id = id, ownerId = ownerId, ownerName = ownerName, gameMode = GameMode.default }
+    , meta =
+        { name = Unnamed
+        , id = id
+        , ownerId = ownerId
+        , ownerName = ownerName
+        , gameMode = GameMode.default
+        , visibility = Visibility.Public
+        }
     }
 
 
@@ -74,11 +82,17 @@ nameToString deckname =
             ""
 
 
-type alias MetaPostSave =
-    { name : Name, id : String, ownerId : String, ownerName : Maybe String, gameMode : GameMode }
+type alias Meta =
+    { name : Name
+    , id : String
+    , ownerId : String
+    , ownerName : Maybe String
+    , gameMode : GameMode
+    , visibility : Visibility
+    }
 
 
-ownerDisplayName : MetaPostSave -> String
+ownerDisplayName : Meta -> String
 ownerDisplayName meta =
     case meta.ownerName of
         Just name ->
@@ -253,6 +267,7 @@ encode { decklist, meta } =
                     , ( "factionDeck", encodeFaction decklist.faction )
                     , ( "libraryDeck", encodeLibrary decklist.library )
                     , ( "gameMode", GameMode.encode meta.gameMode )
+                    , ( "public", Visibility.encode meta.visibility )
                     ]
 
         ( _, _ ) ->
@@ -281,14 +296,15 @@ decoder collection =
         metaDecoder
 
 
-metaDecoder : Decoder MetaPostSave
+metaDecoder : Decoder Meta
 metaDecoder =
-    Decode.map5 MetaPostSave
+    Decode.map6 Meta
         (metaNameDecoder "name")
         (Decode.field "id" Decode.string)
         (Decode.field "creatorId" Decode.string)
         (Decode.maybe (Decode.field "creatorDisplayName" Decode.string))
         (Decode.field "gameMode" GameMode.decode)
+        (Decode.field "public" Visibility.decode)
 
 
 metaNameDecoder : String -> Decoder Name

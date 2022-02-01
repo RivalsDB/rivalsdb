@@ -6,6 +6,7 @@ import Auth
 import Cards
 import Data.Deck as Deck exposing (Deck, Name(..))
 import Data.GameMode exposing (GameMode)
+import Data.Visibility exposing (Visibility)
 import Effect exposing (Effect)
 import Gen.Params.Deck.New exposing (Params)
 import Gen.Route as Route
@@ -72,6 +73,7 @@ type Msg
     | StartRenameDeck
     | DeckNameChanged String
     | SetGameMode GameMode
+    | SetVisibility Visibility
     | SaveNewDeckName
     | ChangedCard ( Cards.Card, Int )
 
@@ -201,6 +203,16 @@ update user msg model =
             in
             ( Deckbuilding { model2 | deck = { oldDeck | meta = { oldMeta | gameMode = gameMode } } }, Effect.none )
 
+        ( Deckbuilding model2, SetVisibility visibility ) ->
+            let
+                oldDeck =
+                    model2.deck
+
+                oldMeta =
+                    oldDeck.meta
+            in
+            ( Deckbuilding { model2 | deck = { oldDeck | meta = { oldMeta | visibility = visibility } } }, Effect.none )
+
         ( Deckbuilding model2, ChangedCard choice ) ->
             let
                 oldDeck =
@@ -219,6 +231,7 @@ decklistActions =
     , changeName = DeckNameChanged
     , endNameChange = SaveNewDeckName
     , setGameMode = SetGameMode
+    , setVisibility = SetVisibility
     , changeCard = ChangedCard
     }
 

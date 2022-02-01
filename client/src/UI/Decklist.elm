@@ -5,6 +5,7 @@ import Data.Clan as Clan
 import Data.Deck as Deck exposing (Deck, Name(..), isLeader)
 import Data.GameMode as GameMode exposing (GameMode)
 import Data.Trait as Trait
+import Data.Visibility as Visibility exposing (Visibility)
 import Dict
 import Html exposing (Html, button, div, form, h3, h4, input, label, li, option, p, select, span, text, ul)
 import Html.Attributes exposing (class, classList, name, placeholder, selected, type_, value)
@@ -33,7 +34,7 @@ viewRead { decklist, meta } =
 viewWrite : Actions msg -> Deck -> Html msg
 viewWrite actions { decklist, meta } =
     div [ class "decklist" ]
-        [ viewDeckTitleEditable actions meta.name meta.gameMode
+        [ viewDeckTitleEditable actions meta
         , viewAgenda decklist.agenda
         , viewHaven decklist.haven
         , viewLeader (Deck.leader decklist)
@@ -48,28 +49,29 @@ type alias Actions msg =
     , endNameChange : msg
     , changeName : String -> msg
     , setGameMode : GameMode -> msg
+    , setVisibility : Visibility -> msg
     , changeCard : QuantityPicker.Choice -> msg
     }
 
 
-viewDeckTitleReadOnly : Deck.MetaPostSave -> Html msg
+viewDeckTitleReadOnly : Deck.Meta -> Html msg
 viewDeckTitleReadOnly meta =
     div [ class "decklist__title" ]
         [ UI.Text.header [ text <| Deck.displayName meta.name ]
         , div [ class "decklist__meta" ]
             [ UI.Text.subheader [ text <| "by " ++ Deck.ownerDisplayName meta ]
-            , p [ class "decklist__game-mode" ]
-                [ text <| "(" ++ GameMode.longName meta.gameMode ++ ")"
+            , p [ class "decklist__details" ]
+                [ text <| "(" ++ String.join " • " [ Visibility.toString meta.visibility, GameMode.longName meta.gameMode ] ++ ")"
                 ]
             ]
         ]
 
 
-viewDeckTitleEditable : Actions msg -> Deck.Name -> GameMode -> Html msg
-viewDeckTitleEditable { startNameChange, changeName, endNameChange, setGameMode } deckName gameMode =
+viewDeckTitleEditable : Actions msg -> Deck.Meta -> Html msg
+viewDeckTitleEditable { startNameChange, changeName, endNameChange, setGameMode, setVisibility } meta =
     div [ class "decklist__title" ]
         [ div []
-            (case deckName of
+            (case meta.name of
                 Unnamed ->
                     [ span [ class "decklist__title-name" ]
                         [ UI.Text.header [ text "Unnamed" ] ]
@@ -93,8 +95,36 @@ viewDeckTitleEditable { startNameChange, changeName, endNameChange, setGameMode 
             )
         , div [ class "decklist__meta" ]
             [ label []
-                [ text "Best for:"
-                , select [ onInput (GameMode.fromString >> Maybe.withDefault GameMode.default >> setGameMode) ]
+                [ text "Visibility: "
+                , select
+                    [ onInput
+                        (Visibility.fromString
+                            >> Maybe.withDefault Visibility.default
+                            >> setVisibility
+                        )
+                    ]
+                    ([ Visibility.Public
+                     , Visibility.Private
+                     ]
+                        |> List.map
+                            (\mode ->
+                                option
+                                    [ value <| Visibility.toString mode
+                                    , selected <| mode == meta.visibility
+                                    ]
+                                    [ text <| Visibility.toString mode ]
+                            )
+                    )
+                ]
+            , label []
+                [ text "Best for: "
+                , select
+                    [ onInput
+                        (GameMode.fromString
+                            >> Maybe.withDefault GameMode.default
+                            >> setGameMode
+                        )
+                    ]
                     ([ GameMode.Both
                      , GameMode.HeadToHead
                      , GameMode.Multiplayer
@@ -103,7 +133,7 @@ viewDeckTitleEditable { startNameChange, changeName, endNameChange, setGameMode 
                             (\mode ->
                                 option
                                     [ value <| GameMode.toString mode
-                                    , selected <| mode == gameMode
+                                    , selected <| mode == meta.gameMode
                                     ]
                                     [ text <| GameMode.longName mode ]
                             )

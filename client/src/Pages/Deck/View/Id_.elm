@@ -134,7 +134,7 @@ viewDecklist shared deck hand =
         ]
 
 
-viewActions : Maybe User -> Deck.MetaPostSave -> Html Msg
+viewActions : Maybe User -> Deck.Meta -> Html Msg
 viewActions maybeUser meta =
     case maybeUser of
         Nothing ->
@@ -148,7 +148,7 @@ viewActions maybeUser meta =
                 UI.ActionBar.view loggedOutActions
 
 
-loggedInActions : Deck.MetaPostSave -> List (UI.ActionBar.Model Msg)
+loggedInActions : Deck.Meta -> List (UI.ActionBar.Model Msg)
 loggedInActions meta =
     [ { icon = Icon.Edit
       , name = "Edit"
