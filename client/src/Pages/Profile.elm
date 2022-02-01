@@ -39,7 +39,7 @@ type Model
 
 init : Auth.User -> ( Model, Effect Msg )
 init user =
-    ( Loading, Effect.fromCmd <| API.User.read FetchedUser user.id )
+    ( Loading, Effect.fromCmd <| API.User.read FetchedUser (Just user.token) user.id )
 
 
 

@@ -13,7 +13,7 @@ import Gen.Route as Route
 import Html.Lazy as Lazy
 import Page
 import Request
-import Shared
+import Shared exposing (Token)
 import UI.ActionBar
 import UI.DeckbuildSelections as DeckbuildSelections
 import UI.Decklist
@@ -27,7 +27,7 @@ page : Shared.Model -> Request.With Params -> Page.With Model Msg
 page shared req =
     Page.protected.advanced
         (\user ->
-            { init = init shared.collection req.params.id
+            { init = init shared.collection user.token req.params.id
             , update = update user
             , view = view shared
             , subscriptions = always Sub.none
@@ -51,9 +51,9 @@ type alias Data =
     }
 
 
-init : Collection -> String -> ( Model, Effect Msg )
-init collection deckId =
-    ( Loading, Effect.fromCmd <| API.Decklist.read collection FetchedDecklist deckId )
+init : Collection -> Token -> String -> ( Model, Effect Msg )
+init collection token deckId =
+    ( Loading, Effect.fromCmd <| API.Decklist.read collection FetchedDecklist (Just token) deckId )
 
 
 type Msg

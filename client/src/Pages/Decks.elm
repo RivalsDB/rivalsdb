@@ -96,7 +96,7 @@ filtersToQueryString filters =
 init : Request.With Params -> Shared.Model -> ( Model, Effect Msg )
 init req shared =
     ( Loading req.key (filtersFromQueryString req.query)
-    , API.Decklist.index shared.collection FetchedDecklists
+    , API.Decklist.index shared.collection FetchedDecklists (Maybe.map .token shared.user)
         |> Effect.fromCmd
     )
 

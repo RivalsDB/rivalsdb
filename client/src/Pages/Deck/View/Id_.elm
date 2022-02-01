@@ -26,7 +26,7 @@ import View exposing (View)
 page : Shared.Model -> Request.With Params -> Page.With Model Msg
 page shared req =
     Page.advanced
-        { init = init shared.collection req.params.id
+        { init = init shared req.params.id
         , update = update shared
         , view = view shared
         , subscriptions = always Sub.none
@@ -42,10 +42,11 @@ type Model
     | Viewing Deck HandTest
 
 
-init : Collection -> String -> ( Model, Effect Msg )
-init collection deckId =
+init : Shared.Model -> String -> ( Model, Effect Msg )
+init { collection, user } deckId =
     ( Loading
-    , Effect.fromCmd <| API.Decklist.read collection FetchedDecklist deckId
+    , API.Decklist.read collection FetchedDecklist (Maybe.map .token user) deckId
+        |> Effect.fromCmd
     )
 
 

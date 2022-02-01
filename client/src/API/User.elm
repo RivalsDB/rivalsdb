@@ -1,25 +1,22 @@
 module API.User exposing (ResultRead, ResultSaveDisplayName, read, saveDisplayName)
 
-import API.Auth exposing (auth)
+import API.API exposing (get, put)
+import Data.UserProfile as UserProfile exposing (UserProfile)
 import Http
-import Json.Decode as Decode exposing (field, maybe, string)
 import Json.Encode as Encode
 import Shared
-
-
-type alias UserProfile =
-    { userId : String, displayName : Maybe String }
 
 
 type alias ResultRead =
     Result Http.Error UserProfile
 
 
-read : (ResultRead -> msg) -> String -> Cmd msg
-read msg userId =
-    Http.get
-        { url = "/api/v1/users/" ++ userId
-        , expect = Http.expectJson msg userProfileDecoder
+read : (ResultRead -> msg) -> Maybe Shared.Token -> String -> Cmd msg
+read msg token userId =
+    get
+        { token = token
+        , url = "/api/v1/users/" ++ userId
+        , expect = Http.expectJson msg UserProfile.decode
         }
 
 
@@ -29,19 +26,9 @@ type alias ResultSaveDisplayName =
 
 saveDisplayName : (ResultSaveDisplayName -> msg) -> Shared.Token -> String -> String -> Cmd msg
 saveDisplayName msg token userId displayName =
-    Http.request
-        { method = "PUT"
+    put
+        { token = Just token
         , url = "/api/v1/users/" ++ userId
-        , headers = [ auth token ]
-        , timeout = Nothing
-        , tracker = Nothing
         , body = Http.jsonBody (Encode.object [ ( "displayName", Encode.string displayName ) ])
         , expect = Http.expectWhatever msg
         }
-
-
-userProfileDecoder : Decode.Decoder UserProfile
-userProfileDecoder =
-    Decode.map2 UserProfile
-        (field "userId" string)
-        (maybe (field "displayName" string))
