@@ -90,6 +90,6 @@ viewDecklists shared model =
         shared
         [ div [ class "page-my-decks__content" ]
             [ UI.Text.header [ text "My Decklists" ]
-            , UI.DecklistsIndex.view model
+            , UI.DecklistsIndex.viewMine model
             ]
         ]

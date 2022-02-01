@@ -225,7 +225,7 @@ viewDecklists shared decks filters =
         [ div [ class "page-decks__content" ]
             [ UI.Text.header [ text "Decklists" ]
             , Lazy.lazy2 viewDecklistFilters shared.collection filters
-            , UI.DecklistsIndex.view (filterDecks filters decks)
+            , UI.DecklistsIndex.viewAll (filterDecks filters decks)
             ]
         ]
 

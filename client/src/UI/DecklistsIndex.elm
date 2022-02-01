@@ -1,8 +1,9 @@
-module UI.DecklistsIndex exposing (view)
+module UI.DecklistsIndex exposing (viewAll, viewMine)
 
 import Cards
 import Data.Deck as Deck exposing (Deck)
 import Data.GameMode as GameMode
+import Data.Visibility as Visibility
 import Gen.Route as Route
 import Html exposing (Html, a, div, li, p, span, text)
 import Html.Attributes exposing (class, href)
@@ -11,14 +12,25 @@ import UI.Card
 import UI.Icon.V2 as Icon
 
 
-view : List Deck -> Html msg
-view decklists =
+type Style
+    = All
+    | Mine
+
+
+viewAll : List Deck -> Html msg
+viewAll decklists =
     ul [ class "deckindex" ]
-        (decklists |> List.map viewDecklistEntry)
+        (decklists |> List.map (viewDecklistEntry All))
 
 
-viewDecklistEntry : Deck -> ( String, Html msg )
-viewDecklistEntry deck =
+viewMine : List Deck -> Html msg
+viewMine decklists =
+    ul [ class "deckindex" ]
+        (decklists |> List.map (viewDecklistEntry Mine))
+
+
+viewDecklistEntry : Style -> Deck -> ( String, Html msg )
+viewDecklistEntry style deck =
     ( deck.meta.id
     , li [ class "deckindexitem" ]
         [ a [ class "deckindexcard", href <| Route.toHref (Route.Deck__View__Id_ { id = deck.meta.id }) ]
@@ -26,7 +38,13 @@ viewDecklistEntry deck =
             , div [ class "deckindexcard__content" ]
                 [ p [ class "deckindexcard__name" ] [ text <| Deck.displayName deck.meta.name ]
                 , p [ class "deckindexcard__game-mode" ] [ text <| GameMode.shortName deck.meta.gameMode ]
-                , p [ class "deckindexcard__byline" ] [ text "by ", text <| Deck.ownerDisplayName deck.meta ]
+                , p [ class "deckindexcard__subtitle" ]
+                    (if style == All then
+                        [ text "by ", text <| Deck.ownerDisplayName deck.meta ]
+
+                     else
+                        [ text <| Visibility.toString deck.meta.visibility ]
+                    )
                 , p [ class "deckindexcard__clans" ]
                     (Deck.clansInFaction deck.decklist.faction
                         |> List.map
