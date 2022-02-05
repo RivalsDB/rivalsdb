@@ -10,7 +10,10 @@ import {
   v1Routes as decklistV1Routes,
   v2Routes as decklistV2Routes,
 } from "./decklists.js";
-import usersRoutes from "./users.js";
+import {
+  v1routes as usersV1Routes,
+  v2routes as usersV2Routes,
+} from "./users.js";
 import { Service } from "../typings/Service.js";
 import { authenticated } from "./auth.js";
 
@@ -38,7 +41,8 @@ const api: FastifyPluginAsync = async (fastify) => {
   fastify.register(authenticated);
   fastify.register(decklistV1Routes, { prefix: "/v1" });
   fastify.register(cardsRoutes, { prefix: "/v1" });
-  fastify.register(usersRoutes, { prefix: "/v1" });
+  fastify.register(usersV1Routes, { prefix: "/v1" });
+  fastify.register(usersV2Routes, { prefix: "/v2" });
   fastify.register(decklistV2Routes, { prefix: "/v2" });
 };
 

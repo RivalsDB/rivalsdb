@@ -6,7 +6,7 @@ import Json.Decode as Json
 port signInReceiver : (Json.Value -> msg) -> Sub msg
 
 
-port initiateLogin : String -> Cmd msg
+port initiateLogin : () -> Cmd msg
 
 
 port signOut : () -> Cmd msg
@@ -17,9 +17,9 @@ startSignout =
     signOut ()
 
 
-startSignin : String -> Cmd msg
+startSignin : Cmd msg
 startSignin =
-    initiateLogin
+    initiateLogin ()
 
 
 type alias User =

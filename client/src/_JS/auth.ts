@@ -1,6 +1,4 @@
-import { Magic, MagicUserMetadata } from "magic-sdk";
-
-const API_KEY = "pk_live_1FB57945CEA1A727";
+import createAuth0Client, { Auth0Client, User } from "@auth0/auth0-spa-js";
 
 interface UserData {
   token: string;
@@ -8,166 +6,92 @@ interface UserData {
   email: string;
 }
 
+type OnUserData = (userData: UserData) => void;
+
 export class Auth {
-  private magic;
-  private storageKey = "authdata";
-  constructor(private onUserData: (userData: UserData) => void) {
-    this.magic = new Magic(API_KEY);
-    this.magic.preload();
+  private onUserData: OnUserData | undefined;
+  private constructor(private auth0: Auth0Client) {
+    window.setInterval(async () => {
+      const isAuthenticated = await this.auth0.isAuthenticated();
+      if (!isAuthenticated) return;
 
-    this.watchStorageForUserData();
+      const userData = await this.fetchUserData();
+      if (!userData) return;
 
-    const credential = this.readCredential();
-    if (credential) {
-      this.tryLoginWithCredential(credential); // async, but don't wait
-      return this;
+      this.forwardUserData(userData);
+    }, 60e3);
+  }
+
+  public static async create(): Promise<Auth> {
+    const auth0 = await createAuth0Client({
+      domain: "rivalsdb.eu.auth0.com",
+      client_id: "jfoDbFRgDspBrj1h9NXY9RUgXIwfKHUQ",
+      audience: "https://www.rivalsdb.app/api",
+      cacheLocation: "localstorage",
+    });
+
+    const instance = new Auth(auth0);
+
+    const isAuthenticated = await auth0.isAuthenticated();
+    if (isAuthenticated) {
+      return instance;
     }
 
-    const loggedInFromCache = this.tryLoginFromStorage();
-    if (loggedInFromCache) {
-      return this;
+    const searchParams = new URLSearchParams(window.location.search);
+    if (searchParams.has("code") && searchParams.has("state")) {
+      await auth0.handleRedirectCallback();
+      window.history.replaceState({}, document.title, "/");
     }
+    return instance;
+  }
 
-    this.tryLoginFromMagic(); // async, but don't wait
+  public async signIn(): Promise<void> {
+    await this.auth0.loginWithPopup();
+
+    const userData = await this.fetchUserData();
+    if (!userData) return;
+
+    this.forwardUserData(userData);
+    this.createUserInRivalsDB(userData);
   }
 
   public async signOut(): Promise<void> {
-    await this.magic.user.logout();
-    localStorage.removeItem(this.storageKey);
+    await this.auth0.logout({ localOnly: true });
   }
 
-  public async signIn(email: string): Promise<void> {
-    const redirectURI = window.location.origin;
-    const token = await this.magic.auth.loginWithMagicLink({
-      email,
-      redirectURI,
-    });
-    if (!token) return;
-
-    const metadata = await this.magic.user.getMetadata();
-
-    const userData = this.makeUserData(token, metadata);
-    this.onUserData(userData);
-
-    const refreshAt = this.cacheUserData(userData);
-    this.scheduleUserDataRefresh(refreshAt);
+  public setUserDataCallback(onUserData: OnUserData): this {
+    this.onUserData = onUserData;
+    return this;
   }
 
-  private watchStorageForUserData() {
-    window.addEventListener("storage", (ev) => {
-      if (ev.key === this.storageKey && ev.newValue !== null) {
-        const userdata = this.parseDated(ev.newValue);
-        if (userdata) {
-          this.onUserData(userdata);
-        }
-      }
-    });
-  }
-
-  private makeUserData(token: string, metadata: MagicUserMetadata): UserData {
-    const { issuer: user, email } = metadata;
-    if (!user || !email) {
-      throw Error("Bad auth metadata");
-    }
-
-    return { token, user, email };
-  }
-
-  private readCredential(): string | null {
-    const searchParams = new URLSearchParams(window.location.search);
-    const credential = searchParams.get("magic_credential");
-    if (credential) {
-      window.location.replace(window.location.origin);
-    }
-    return credential;
-  }
-
-  private async tryLoginWithCredential(credential: string): Promise<boolean> {
-    const token = await this.magic.auth.loginWithCredential(credential);
-    if (!token) return false;
-
-    const metadata = await this.magic.user.getMetadata();
-    if (!metadata.issuer || !metadata.email) return false;
-
-    const userData = { token, user: metadata.issuer, email: metadata.email };
-    this.onUserData(userData);
-
-    const refreshAt = this.cacheUserData(userData);
-    this.scheduleUserDataRefresh(refreshAt);
-
-    return true;
-  }
-
-  private tryLoginFromStorage(): boolean {
-    const cachedUserData = this.readCachedUserData();
-    if (!cachedUserData) return false;
-    this.onUserData(cachedUserData);
-    return true;
-  }
-
-  private async tryLoginFromMagic(): Promise<boolean> {
-    const isLoggedIn = await this.magic.user.isLoggedIn();
-    if (!isLoggedIn) return false;
-
-    const [token, metadata] = await Promise.all([
-      this.magic.user.getIdToken(),
-      this.magic.user.getMetadata(),
+  public async fetchUserData(): Promise<null | UserData> {
+    const [token, user] = await Promise.all([
+      this.auth0.getTokenSilently(),
+      this.auth0.getUser(),
     ]);
-    if (!metadata.issuer || !metadata.email) return false;
 
-    const userData = { token, user: metadata.issuer, email: metadata.email };
+    const email = user?.email;
+    if (typeof email !== "string") return null;
+
+    const userId = user?.sub;
+    if (typeof userId !== "string") return null;
+
+    return { email, token, user: userId };
+  }
+
+  private forwardUserData(userData: UserData): void {
+    if (!this.onUserData) return;
     this.onUserData(userData);
-
-    const refreshAt = this.cacheUserData(userData);
-    this.scheduleUserDataRefresh(refreshAt);
-
-    return true;
   }
 
-  private cacheUserData(userdata: UserData): number {
-    const expirestAt = Date.now() + 14 * 60 * 1000;
-    const dated = { ...userdata, expirestAt };
-    localStorage.setItem(this.storageKey, JSON.stringify(dated));
-    return expirestAt;
-  }
-
-  private scheduleUserDataRefresh(refreshAt: number): void {
-    const timeout = refreshAt - Date.now();
-    if (timeout > 0) {
-      window.setTimeout(() => this.tryLoginFromMagic(), timeout);
-    } else {
-      this.tryLoginFromMagic();
-    }
-  }
-
-  private readCachedUserData(): UserData | null {
-    const json = localStorage.getItem(this.storageKey);
-    if (!json) return null;
-
-    const userData = this.parseDated(json);
-    if (userData === null) {
-      localStorage.removeItem(this.storageKey);
-    }
-
-    return userData;
-  }
-
-  private parseDated(json: string): UserData | null {
-    const obj = JSON.parse(json);
-    const { token, user, email, expirestAt } = obj;
-
-    if (typeof expirestAt !== "number" || expirestAt < Date.now()) {
-      return null;
-    }
-
-    if (
-      typeof token !== "string" ||
-      typeof user !== "string" ||
-      typeof email === "string"
-    ) {
-      return null;
-    }
-
-    return { token, user, email };
+  private async createUserInRivalsDB(userData: UserData): Promise<void> {
+    await fetch("/api/v2/users", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${userData.token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: userData.email }),
+    });
   }
 }

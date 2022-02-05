@@ -4,7 +4,6 @@ module Shared exposing
     , Msg(..)
     , Token
     , init
-    , isModalOpen
     , subscriptions
     , update
     )
@@ -28,7 +27,6 @@ type alias Flags =
 type alias Model =
     { collection : Collection
     , user : Maybe User
-    , modal : ModalState
     , burgerMenu : Bool
     , headerSearch : Maybe String
     , toast : Toast.Model
@@ -40,27 +38,9 @@ type alias Token =
     String
 
 
-type ModalState
-    = Open (Maybe String)
-    | Closed
-
-
-isModalOpen : Model -> Bool
-isModalOpen model =
-    case model.modal of
-        Open _ ->
-            True
-
-        _ ->
-            False
-
-
 type Msg
     = GotSignIn (Maybe User)
-    | ModalClose
-    | ModalChangedEmail String
-    | ModalSubmit
-    | InitiateSignin String
+    | InitiateSignin
     | HeaderClickedSignIn
     | HeaderClickedSignOut
     | HeaderSearchQueryChanged String
@@ -86,7 +66,6 @@ init req flags =
     in
     ( { collection = collection
       , user = Nothing
-      , modal = Closed
       , burgerMenu = False
       , headerSearch = Nothing
       , toast = Toast.init
@@ -114,37 +93,11 @@ update _ msg model =
         ToggleBurgerMenu ->
             ( { model | burgerMenu = not model.burgerMenu }, Cmd.none )
 
-        ModalClose ->
-            ( { model | modal = Closed }, Cmd.none )
-
-        ModalChangedEmail emailInput ->
-            ( { model
-                | modal =
-                    Open
-                        (case String.trim emailInput of
-                            "" ->
-                                Nothing
-
-                            str ->
-                                Just str
-                        )
-              }
-            , Cmd.none
-            )
-
-        ModalSubmit ->
-            case model.modal of
-                Open (Just email) ->
-                    ( { model | modal = Closed }, Port.Auth.startSignin email )
-
-                _ ->
-                    ( model, Cmd.none )
-
-        InitiateSignin email ->
-            ( model, Port.Auth.startSignin email )
+        InitiateSignin ->
+            ( model, Port.Auth.startSignin )
 
         HeaderClickedSignIn ->
-            ( { model | modal = Open Nothing }, Cmd.none )
+            ( model, Port.Auth.startSignin )
 
         HeaderClickedSignOut ->
             ( { model | user = Nothing }

@@ -2,7 +2,6 @@ module UI.Layout.Toast exposing (Model, Msg(..), Style(..), create, init, subscr
 
 import Html exposing (Html, div, p, text)
 import Html.Attributes exposing (class)
-import Html.Events exposing (onMouseEnter, onMouseLeave)
 import Task
 import Time
 

@@ -14,6 +14,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@auth0/auth0-spa-js": "^1.19.4",
     "@parcel/compressor-brotli": "^2.0.1",
     "@parcel/compressor-gzip": "^2.0.1",
     "@parcel/optimizer-data-url": "^2.0.1",
@@ -22,10 +23,9 @@
     "@parcel/transformer-sass": "^2.0.1",
     "elm": "^0.19.1-5",
     "elm-spa": "^6.0.4",
-    "magic-sdk": "^7.0.0",
     "nanoid": "^3.2.0",
     "parcel": "^2.0.1",
-    "plausible-tracker": "^0.3.4",
+    "plausible-tracker": "^0.3.5",
     "prettier": "^2.5.1"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead",

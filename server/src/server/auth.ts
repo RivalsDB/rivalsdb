@@ -1,85 +1,33 @@
-import { Magic, SDKError, ErrorCode } from "@magic-sdk/admin";
 import { FastifyPluginAsync } from "fastify";
+import auth0Verify from "fastify-auth0-verify";
 import fastifyPlugin from "fastify-plugin";
-import { magicSecretKey } from "../env.js";
 
-export const NoAuth = Symbol("NoAuth");
-export const Expired = Symbol("Expired");
-export const AuthError = Symbol("AuthError");
-type AuthFail = typeof NoAuth | typeof Expired | typeof AuthError;
-interface Authentication {
-  id: string;
-  email: string;
-}
-
-export function maybeAuth(
-  result: Authentication | AuthFail
-): Authentication | undefined {
-  switch (result) {
-    case NoAuth:
-    case Expired:
-    case AuthError:
-      return undefined;
-    default:
-      return result;
+declare module "fastify-jwt" {
+  interface FastifyJWT {
+    payload: {
+      aud: string[];
+      iat: number;
+      exp: number;
+      iss: string;
+      sub: string;
+      azp: string;
+      scope: string;
+    };
   }
 }
-
-export function assertAuthenticated(
-  result: Authentication | AuthFail
-): asserts result is Authentication {
-  if (maybeAuth(result) == null) {
-    throw new Error("Auth error!");
-  }
-}
-
-declare module "fastify" {
-  interface FastifyRequest {
-    authentication: Authentication | AuthFail;
-  }
-}
-
-const mAdmin = new Magic(magicSecretKey);
 
 const authenticatedPlugin: FastifyPluginAsync = async (fastify) => {
-  fastify.addHook("preHandler", async (req, reply) => {
-    const { authorization } = req.headers;
-    if (!authorization) {
-      req.authentication = NoAuth;
-      return;
-    }
+  fastify.register(auth0Verify, {
+    domain: "rivalsdb.eu.auth0.com",
+    audience: "https://www.rivalsdb.app/api",
+  });
 
-    const didToken = mAdmin.utils.parseAuthorizationHeader(authorization);
-
+  fastify.addHook("preHandler", async (req) => {
     try {
-      mAdmin.token.validate(didToken);
+      await req.jwtVerify();
     } catch (e) {
-      if (!(e instanceof SDKError)) {
-        req.authentication = AuthError;
-        throw e;
-      }
-
-      if (
-        e.code === ErrorCode.ServiceError ||
-        e.code === ErrorCode.ApiKeyMissing
-      ) {
-        req.authentication = AuthError;
-        reply.code(500);
-        return reply.send();
-      }
-      req.authentication = Expired;
-      return;
+      console.log(e);
     }
-
-    const issuer = mAdmin.token.getIssuer(didToken);
-    const { email } = await mAdmin.users.getMetadataByIssuer(issuer);
-    if (!email) {
-      req.authentication = AuthError;
-      reply.code(400);
-      return reply.send();
-    }
-
-    req.authentication = { email, id: issuer };
   });
 };
 
@@ -87,19 +35,9 @@ export const authenticated = fastifyPlugin(authenticatedPlugin);
 
 const signInRequiredPlugin: FastifyPluginAsync = async (fastify) => {
   fastify.addHook("preHandler", async (req, reply) => {
-    switch (req.authentication) {
-      case Expired:
-      case NoAuth: {
-        reply.code(401);
-        return reply.send();
-      }
-      case AuthError: {
-        reply.code(500);
-        return reply.send();
-      }
-      default: {
-        return;
-      }
+    if (!req.user) {
+      reply.code(401);
+      return reply.send();
     }
   });
 };

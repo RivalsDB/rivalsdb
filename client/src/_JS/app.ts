@@ -24,7 +24,7 @@ export interface App {
     // Auth
     //------
     signInReceiver: Js2Elm<{ token: string; user: string }>;
-    initiateLogin: Elm2Js<string>;
+    initiateLogin: Elm2Js<undefined>;
     trackEvent: Elm2Js<{
       name: string;
       extra?: { [propName: string]: string };

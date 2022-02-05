@@ -2,13 +2,11 @@ module Pages.Deck.View.Id_ exposing (Model, Msg, page)
 
 import API.Decklist
 import API.ErrorHandler
-import Data.Collection exposing (Collection)
 import Data.Deck as Deck exposing (Deck)
 import Effect exposing (Effect)
 import Gen.Params.Deck.View.Id_ exposing (Params)
 import Gen.Route as Route
 import Html exposing (Html, text)
-import Http
 import Page
 import Port.Auth exposing (User)
 import Port.Event

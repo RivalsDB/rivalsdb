@@ -15,7 +15,7 @@ read : (ResultRead -> msg) -> Maybe Shared.Token -> String -> Cmd msg
 read msg token userId =
     get
         { token = token
-        , url = "/api/v1/users/" ++ userId
+        , url = "/api/v2/users/" ++ userId
         , expect = Http.expectJson msg UserProfile.decode
         }
 
@@ -28,7 +28,7 @@ saveDisplayName : (ResultSaveDisplayName -> msg) -> Shared.Token -> String -> St
 saveDisplayName msg token userId displayName =
     put
         { token = Just token
-        , url = "/api/v1/users/" ++ userId
+        , url = "/api/v2/users/" ++ userId
         , body = Http.jsonBody (Encode.object [ ( "displayName", Encode.string displayName ) ])
         , expect = Http.expectWhatever msg
         }

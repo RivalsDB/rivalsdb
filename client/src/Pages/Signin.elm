@@ -52,7 +52,7 @@ update msg model =
                     ( { model | email = email, canSubmit = True }, Effect.none )
 
         Send ->
-            ( model, Effect.fromShared <| Shared.InitiateSignin model.email )
+            ( model, Effect.fromShared <| Shared.InitiateSignin )
 
 
 view : Shared.Model -> Model -> View Msg
