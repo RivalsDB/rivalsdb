@@ -6,6 +6,7 @@ import path from "path";
 import { serverPort } from "../env.js";
 import { closeDbPool } from "../db/index.js";
 import cardsRoutes from "./cards.js";
+import announcementsRoutes from "./announcements.js";
 import {
   v1Routes as decklistV1Routes,
   v2Routes as decklistV2Routes,
@@ -41,6 +42,7 @@ const api: FastifyPluginAsync = async (fastify) => {
   fastify.register(authenticated);
   fastify.register(decklistV1Routes, { prefix: "/v1" });
   fastify.register(cardsRoutes, { prefix: "/v1" });
+  fastify.register(announcementsRoutes, { prefix: "/v2" });
   fastify.register(usersV1Routes, { prefix: "/v1" });
   fastify.register(usersV2Routes, { prefix: "/v2" });
   fastify.register(decklistV2Routes, { prefix: "/v2" });

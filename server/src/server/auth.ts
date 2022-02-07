@@ -26,7 +26,7 @@ const authenticatedPlugin: FastifyPluginAsync = async (fastify) => {
     try {
       await req.jwtVerify();
     } catch (e) {
-      console.log(e);
+      // noop
     }
   });
 };

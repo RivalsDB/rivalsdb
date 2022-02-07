@@ -15,3 +15,5 @@ export {
 export { createUserIfNeeded, updateUser, fetchUser } from "./private/user.js";
 
 export { GAME_MODE, gameModeFromString } from "./private/enums.js";
+
+export { fetchPublishedAnnoncements } from "./private/announcements.js";
