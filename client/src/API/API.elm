@@ -1,4 +1,4 @@
-module API.API exposing (delete, get, put)
+module API.API exposing (delete, get, patch, put)
 
 import Http exposing (Header)
 import Shared exposing (Token)
@@ -43,6 +43,19 @@ put : PutRequest msg -> Cmd msg
 put req =
     Http.request
         { method = "PUT"
+        , url = req.url
+        , headers = headers req.token
+        , timeout = Nothing
+        , tracker = Nothing
+        , body = req.body
+        , expect = req.expect
+        }
+
+
+patch : PutRequest msg -> Cmd msg
+patch req =
+    Http.request
+        { method = "PATCH"
         , url = req.url
         , headers = headers req.token
         , timeout = Nothing

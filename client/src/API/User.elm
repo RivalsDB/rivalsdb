@@ -1,6 +1,6 @@
 module API.User exposing (ResultRead, ResultSaveDisplayName, read, saveDisplayName)
 
-import API.API exposing (get, put)
+import API.API exposing (get, patch)
 import Data.UserProfile as UserProfile exposing (UserProfile)
 import Http
 import Json.Encode as Encode
@@ -26,7 +26,7 @@ type alias ResultSaveDisplayName =
 
 saveDisplayName : (ResultSaveDisplayName -> msg) -> Shared.Token -> String -> String -> Cmd msg
 saveDisplayName msg token userId displayName =
-    put
+    patch
         { token = Just token
         , url = "/api/v2/users/" ++ userId
         , body = Http.jsonBody (Encode.object [ ( "displayName", Encode.string displayName ) ])
