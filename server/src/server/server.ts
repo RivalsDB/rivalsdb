@@ -28,6 +28,8 @@ const cardImagesFolder = path.join(
   "assets",
   "card"
 );
+const logoFolder = path.join(dirname, "..", "..", "..", "..", "assets", "logo");
+
 const clientDistFolder = path.join(
   dirname,
   "..",
@@ -60,6 +62,13 @@ export async function createServer(): Promise<Service> {
     wildcard: false,
     preCompressed: true,
     prefix: "/card",
+    decorateReply: false,
+  });
+  fastify.register(fastifyStatic, {
+    root: logoFolder,
+    wildcard: false,
+    preCompressed: true,
+    prefix: "/logo",
     decorateReply: false,
   });
   fastify.register(fastifyStatic, {
