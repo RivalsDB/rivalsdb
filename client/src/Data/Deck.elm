@@ -12,7 +12,10 @@ module Data.Deck exposing
     , displayName
     , encode
     , fallbackLeader
+    , isEmptyFaction
+    , isEmptyLibrary
     , isLeader
+    , isValid
     , isValidFaction
     , isValidLibrary
     , leader
@@ -140,13 +143,24 @@ type alias Library =
     Dict Cards.Id ( Cards.Library, Int )
 
 
+librarySize : Library -> Int
+librarySize =
+    Dict.values
+        >> List.foldl (\( _, n ) sum -> sum + n) 0
+
+
 isValidLibrary : Library -> Bool
 isValidLibrary library =
     let
         deckSize =
-            List.foldl (\( _, n ) sum -> sum + n) 0 <| Dict.values library
+            librarySize library
     in
-    (deckSize == 0) || (deckSize >= 40 && deckSize <= 60)
+    deckSize >= 40 && deckSize <= 60
+
+
+isEmptyLibrary : Library -> Bool
+isEmptyLibrary =
+    librarySize >> (==) 0
 
 
 setCard : Decklist -> ( Cards.Card, Int ) -> Decklist
@@ -243,10 +257,23 @@ setLeader deck newLeader =
 
 isValidFaction : Decklist -> Bool
 isValidFaction deck =
+    (leader deck |> Maybe.map (always True) |> Maybe.withDefault False)
+        && (Dict.size deck.faction == 7)
+
+
+isEmptyFaction : Decklist -> Bool
+isEmptyFaction deck =
     Dict.isEmpty deck.faction
-        || ((leader deck |> Maybe.map (always True) |> Maybe.withDefault False)
-                && (Dict.size deck.faction == 7)
-           )
+
+
+isValid : Decklist -> Bool
+isValid deck =
+    case ( deck.agenda, deck.haven ) of
+        ( Just _, Just _ ) ->
+            isValidFaction deck && isValidLibrary deck.library
+
+        ( _, _ ) ->
+            False
 
 
 

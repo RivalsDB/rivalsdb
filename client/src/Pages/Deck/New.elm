@@ -6,7 +6,7 @@ import Auth
 import Cards
 import Data.Deck as Deck exposing (Deck, Name(..))
 import Data.GameMode exposing (GameMode)
-import Data.Visibility exposing (Visibility)
+import Data.Visibility exposing (Visibility(..))
 import Effect exposing (Effect)
 import Gen.Params.Deck.New exposing (Params)
 import Gen.Route as Route
@@ -128,6 +128,9 @@ update user msg model =
         ( Deckbuilding model2, Save ) ->
             if model2.isSaving then
                 ( model, Effect.none )
+
+            else if model2.deck.meta.visibility == Public && (not <| Deck.isValid model2.deck.decklist) then
+                ( model, Effect.fromShared (Shared.ToastError "Illegal deck" (Just "Illegal decks cannot be Public. Either make your deck legal or make it Private before saving it.")) )
 
             else
                 case Deck.encode model2.deck of

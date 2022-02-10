@@ -17,6 +17,7 @@ import Http
 import Json.Decode as Decode
 import Json.Encode as Encode
 import Shared
+import Svg exposing (metadata)
 
 
 type alias ResultUpdate =
@@ -29,8 +30,33 @@ update msg token deckId deck =
         { token = Just token
         , url = "/api/v2/decklist/" ++ deckId
         , body = Http.jsonBody deck
-        , expect = Http.expectWhatever msg
+        , expect = expectJson msg
         }
+
+
+expectJson : (ResultUpdate -> msg) -> Http.Expect msg
+expectJson toMsg =
+    Http.expectStringResponse toMsg <|
+        \response ->
+            case response of
+                Http.BadUrl_ url ->
+                    Err (Http.BadUrl url)
+
+                Http.Timeout_ ->
+                    Err Http.Timeout
+
+                Http.NetworkError_ ->
+                    Err Http.NetworkError
+
+                Http.BadStatus_ metadata body ->
+                    if metadata.statusCode == 400 then
+                        Err <| Http.BadBody body
+
+                    else
+                        Err <| Http.BadStatus metadata.statusCode
+
+                Http.GoodStatus_ _ _ ->
+                    Ok ()
 
 
 type alias ResultDelete =

@@ -209,7 +209,11 @@ viewFaction toFactionEntry decklist =
     div [ class "decklist__faction", class "deck-faction" ]
         [ div
             [ class "deck-faction__header"
-            , classList [ ( "deck-faction__header--invalid", not <| Deck.isValidFaction decklist ) ]
+            , classList
+                [ ( "deck-faction__header--invalid"
+                  , not <| (Deck.isEmptyFaction decklist || Deck.isValidFaction decklist)
+                  )
+                ]
             ]
             [ h3
                 [ class "decklist--section-header"
@@ -290,7 +294,14 @@ viewLibrary viewLibraryEntry library =
         [ h3
             [ class "decklist--section-header"
             , class "deck-library__header"
-            , classList [ ( "deck-library__header--invalid", not <| Deck.isValidLibrary library ) ]
+            , classList
+                [ ( "deck-library__header--invalid"
+                  , not <|
+                        (Deck.isEmptyLibrary library
+                            || Deck.isValidLibrary library
+                        )
+                  )
+                ]
             ]
             [ titleAndCardCount "Library" (Dict.values library |> cardCount) ]
         , div []
