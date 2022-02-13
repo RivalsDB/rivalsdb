@@ -32,4 +32,4 @@ toBrowserDocument view =
 
 title : String
 title =
-    "Rivals DB"
+    "Rivals DB - A deckbuilder for Vampire: The Masquerade Rivals"
