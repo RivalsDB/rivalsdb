@@ -14,7 +14,7 @@ import Request
 import Shared
 import UI.ActionBar
 import UI.Decklist
-import UI.HandTester exposing (HandTest)
+import UI.HandTester as HandTest
 import UI.Icon as Icon
 import UI.Layout.Deck
 import UI.Layout.Template
@@ -37,7 +37,7 @@ page shared req =
 
 type Model
     = Loading
-    | Viewing Deck HandTest
+    | Viewing Deck HandTest.Model
 
 
 init : Shared.Model -> String -> ( Model, Effect Msg )
@@ -54,7 +54,7 @@ type Msg
     | Delete
     | DeletedDecklist API.Decklist.ResultDelete
     | DrawTestHand
-    | NewHand HandTest
+    | FromHandTest HandTest.Msg
 
 
 update : Shared.Model -> Msg -> Model -> ( Model, Effect Msg )
@@ -78,13 +78,13 @@ update shared msg model =
             ( model, API.ErrorHandler.standardAlert e )
 
         ( Loading, FetchedDecklist (Ok deck) ) ->
-            ( Viewing deck [], Effect.none )
+            ( Viewing deck (HandTest.init deck.decklist), Effect.none )
 
         ( Loading, _ ) ->
             ( model, Effect.none )
 
         ( Viewing _ _, FetchedDecklist (Ok deck) ) ->
-            ( Viewing deck UI.HandTester.empty, Effect.none )
+            ( Viewing deck (HandTest.init deck.decklist), Effect.none )
 
         ( Viewing deck _, Delete ) ->
             case shared.user of
@@ -94,20 +94,21 @@ update shared msg model =
                 Nothing ->
                     ( model, Effect.none )
 
-        ( Viewing deck hand, DrawTestHand ) ->
+        ( Viewing _ hand, DrawTestHand ) ->
             ( model
             , Effect.batch
-                [ Effect.fromCmd <| UI.HandTester.generateHand NewHand deck.decklist
-                , if UI.HandTester.isNotSet hand then
+                [ HandTest.shuffle hand |> Cmd.map FromHandTest |> Effect.fromCmd
+                , if HandTest.isNotSet hand then
                     Effect.none
 
                   else
-                    Effect.fromCmd <| Port.Event.track (Port.Event.HandSimulatorUsed "deck_view")
+                    Port.Event.track (Port.Event.HandSimulatorUsed "deck_view") |> Effect.fromCmd
                 ]
             )
 
-        ( Viewing deck _, NewHand newHand ) ->
-            ( Viewing deck newHand, Effect.none )
+        ( Viewing deck oldHand, FromHandTest subMsg ) ->
+            HandTest.update subMsg oldHand
+                |> Tuple.mapBoth (\newHand -> Viewing deck newHand) (Cmd.map FromHandTest >> Effect.fromCmd)
 
 
 view : Shared.Model -> Model -> View Msg
@@ -120,14 +121,14 @@ view shared model =
             viewDecklist shared deck hand
 
 
-viewDecklist : Shared.Model -> Deck -> HandTest -> View Msg
+viewDecklist : Shared.Model -> Deck -> HandTest.Model -> View Msg
 viewDecklist shared deck hand =
     UI.Layout.Template.view FromShared
         shared
         [ UI.Layout.Deck.readMode
             { actions = viewActions shared.user deck.meta
             , decklist = UI.Decklist.viewRead deck
-            , aside = UI.HandTester.view hand
+            , aside = Html.map FromHandTest <| HandTest.view hand
             }
         ]
 
