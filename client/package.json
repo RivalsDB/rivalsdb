@@ -9,8 +9,11 @@
     "watch": "concurrently --group \"npm:watch-*\""
   },
   "engines": {
-    "node": "16.8.0",
+    "node": "16.14.0",
     "yarn": "1.x"
+  },
+  "volta": {
+    "node": "16.14.0"
   },
   "license": "MIT",
   "dependencies": {
@@ -25,11 +28,11 @@
     "elm-spa": "^6.0.4",
     "nanoid": "^3.2.0",
     "parcel": "^2.0.1",
-    "plausible-tracker": "^0.3.5",
-    "prettier": "^2.5.1"
+    "plausible-tracker": "^0.3.5"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "devDependencies": {
-    "concurrently": "^7.0.0"
+    "concurrently": "^7.0.0",
+    "prettier": "^2.5.1"
   }
 }
