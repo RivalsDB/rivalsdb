@@ -47,6 +47,7 @@ type IconImage
     | Save
     | Scheme
     | Shield
+    | Skull
     | Social
     | Special
     | Title
@@ -205,6 +206,9 @@ imageOpts image =
 
         Shield ->
             ( class "ui-icon_shield", "Shield" )
+
+        Skull ->
+            ( class "ui-icon_skull", "Kindred Patron" )
 
         Social ->
             ( class "ui-icon_social", "Social" )

@@ -17,6 +17,7 @@ import UI.Icon as Icon
 import UI.Icon.V2
 import UI.QuantityPicker as QuantityPicker
 import UI.Text
+import UI.Username
 
 
 viewRead : Deck -> Html msg
@@ -59,7 +60,10 @@ viewDeckTitleReadOnly meta =
     div [ class "decklist__title" ]
         [ UI.Text.header [ text <| Deck.displayName meta.name ]
         , div [ class "decklist__meta" ]
-            [ UI.Text.subheader [ text <| "by " ++ Deck.ownerDisplayName meta ]
+            [ UI.Text.subheader
+                [ text "by "
+                , UI.Username.view meta.patronage (Deck.ownerDisplayName meta)
+                ]
             , p [ class "decklist__details" ]
                 [ text <| "(" ++ String.join " • " [ Visibility.toString meta.visibility, GameMode.longName meta.gameMode ] ++ ")"
                 ]

@@ -28,6 +28,7 @@ import Cards
 import Data.Clan exposing (Clan)
 import Data.Collection exposing (Collection)
 import Data.GameMode as GameMode exposing (GameMode)
+import Data.Patronage as Patronage exposing (Patronage)
 import Data.Visibility as Visibility exposing (Visibility)
 import Dict exposing (Dict)
 import Json.Decode as Decode exposing (Decoder)
@@ -53,6 +54,7 @@ create id ownerId ownerName =
         , id = id
         , ownerId = ownerId
         , ownerName = ownerName
+        , patronage = Patronage.default
         , gameMode = GameMode.default
         , visibility = Visibility.Public
         }
@@ -90,6 +92,7 @@ type alias Meta =
     , id : String
     , ownerId : String
     , ownerName : Maybe String
+    , patronage : Patronage
     , gameMode : GameMode
     , visibility : Visibility
     }
@@ -325,11 +328,12 @@ decoder collection =
 
 metaDecoder : Decoder Meta
 metaDecoder =
-    Decode.map6 Meta
+    Decode.map7 Meta
         (metaNameDecoder "name")
         (Decode.field "id" Decode.string)
         (Decode.field "creatorId" Decode.string)
         (Decode.maybe (Decode.field "creatorDisplayName" Decode.string))
+        (Decode.field "creatorPatronage" Patronage.decoder)
         (Decode.field "gameMode" GameMode.decode)
         (Decode.field "public" Visibility.decode)
 

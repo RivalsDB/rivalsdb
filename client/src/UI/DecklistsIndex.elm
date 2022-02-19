@@ -10,6 +10,7 @@ import Html.Attributes exposing (class, href)
 import Html.Keyed exposing (ul)
 import UI.Card
 import UI.Icon.V2 as Icon
+import UI.Username
 
 
 type Style
@@ -40,7 +41,9 @@ viewDecklistEntry style deck =
                 , p [ class "deckindexcard__game-mode" ] [ text <| GameMode.shortName deck.meta.gameMode ]
                 , p [ class "deckindexcard__subtitle" ]
                     (if style == All then
-                        [ text "by ", text <| Deck.ownerDisplayName deck.meta ]
+                        [ text "by "
+                        , UI.Username.view deck.meta.patronage (Deck.ownerDisplayName deck.meta)
+                        ]
 
                      else
                         [ text <| Visibility.toString deck.meta.visibility ]
