@@ -21,7 +21,7 @@ patreonButton =
             [ div [ class "patreon__w1" ]
                 [ div [ class "patreon__w2" ]
                     [ span [ class "patreon__w3" ]
-                        [ svg [ viewBox "0 0 569 546", class "patreon__svg" ]
+                        [ svg [ viewBox "0 0 569 546", Svg.Attributes.class "patreon__svg" ]
                             [ g []
                                 [ circle [ cx "362.589996", cy "204.589996", r "204.589996" ] []
                                 , rect [ height "545.799988", width "100", x "0", y "0" ] []
