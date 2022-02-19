@@ -7,6 +7,8 @@ import Json.Decode exposing (Decoder)
 type Clan
     = Brujah
     | Gangrel
+    | Hecata
+    | Lasombra
     | Malkavian
     | Nosferatu
     | ThinBlood
@@ -20,6 +22,8 @@ enum =
     Enum.create
         [ ( "brujah", Brujah )
         , ( "gangrel", Gangrel )
+        , ( "hecata", Hecata )
+        , ( "lasombra", Lasombra )
         , ( "malkavian", Malkavian )
         , ( "nosferatu", Nosferatu )
         , ( "thin-blood", ThinBlood )
@@ -49,32 +53,9 @@ decoder =
     enum.decoder
 
 
-comparable : Clan -> Int
-comparable c =
-    case c of
-        Brujah ->
-            1
-
-        Gangrel ->
-            2
-
-        Malkavian ->
-            3
-
-        Nosferatu ->
-            4
-
-        ThinBlood ->
-            5
-
-        Toreador ->
-            6
-
-        Tremere ->
-            7
-
-        Ventrue ->
-            8
+comparable : Clan -> String
+comparable =
+    name
 
 
 name : Clan -> String
@@ -85,6 +66,12 @@ name c =
 
         Gangrel ->
             "Gangrel"
+
+        Hecata ->
+            "Hecata"
+
+        Lasombra ->
+            "Lasombra"
 
         Malkavian ->
             "Malkavian"

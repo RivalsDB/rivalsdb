@@ -9,14 +9,16 @@ type Pack
     | Core
     | BloodAndAlchemy
     | WolfAndRat
+    | ShadowsAndShrouds
 
 
 enum : Enum Pack
 enum =
     Enum.create
         [ ( "Core", Core )
-        , ( "Wolf & Rat", WolfAndRat )
         , ( "Blood & Alchemy", BloodAndAlchemy )
+        , ( "Wolf & Rat", WolfAndRat )
+        , ( "Shadows & Shrouds ", ShadowsAndShrouds )
         , ( "Promo", Promo )
         ]
 

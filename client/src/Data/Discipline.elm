@@ -12,6 +12,7 @@ type Discipline
     | Dominate
     | Fortitude
     | Obfuscate
+    | Oblivion
     | Potence
     | Presence
     | Protean
@@ -27,6 +28,7 @@ enum =
         , ( "dominate", Dominate )
         , ( "fortitude", Fortitude )
         , ( "obfuscate", Obfuscate )
+        , ( "oblivion", Oblivion )
         , ( "potence", Potence )
         , ( "presence", Presence )
         , ( "protean", Protean )
