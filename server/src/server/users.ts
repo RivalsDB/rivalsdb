@@ -6,10 +6,12 @@ import {
   DbError,
 } from "../db/index.js";
 import { signInRequired } from "./auth.js";
+import { fetchById, toTransferObject } from "../entity/user.js";
 
 interface UserOutput {
   userId: string;
   displayName?: string;
+  patronage: string;
 }
 
 const v1Update: FastifyPluginAsync = async (fastify) => {
@@ -128,17 +130,18 @@ const read: FastifyPluginAsync = async (fastify) => {
           properties: {
             userId: { type: "string" },
             displayName: { type: "string" },
+            patronage: { type: "string" },
           },
         },
       },
     },
     async handler(req, reply): Promise<UserOutput> {
-      const user = await fetchUser(req.params.userId);
+      const user = await fetchById(req.params.userId);
       if (user == null) {
         reply.code(404);
         return reply.send();
       }
-      return { userId: user.userId, displayName: user.displayName };
+      return toTransferObject(user);
     },
   });
 };

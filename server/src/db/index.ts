@@ -1,14 +1,10 @@
-export { closeDbPool } from "./private/_db.js";
+export { closeDbPool, db, sql } from "./private/_db.js";
 export { DbError } from "./private/_errors.js";
 
 export {
   createDecklist,
   deleteDecklist,
-  fetchDecklist,
-  fetchPublicDecklists,
-  fetchPublicDecklistsForUser,
   makeDecklistId,
-  fetchAllDecklistsForUser,
   updateDecklist,
 } from "./private/decklist.js";
 

@@ -1,17 +1,20 @@
 import { FastifyPluginAsync } from "fastify";
 import {
   createDecklist,
-  createUserIfNeeded,
   deleteDecklist,
-  fetchDecklist,
-  fetchPublicDecklistsForUser,
-  fetchPublicDecklists,
   gameModeFromString,
   makeDecklistId,
   updateDecklist,
-  fetchAllDecklistsForUser,
 } from "../db/index.js";
 import { signInRequired } from "./auth.js";
+import {
+  fetchAllByUser,
+  fetchAllPublic,
+  fetchAllPublicByUser,
+  fetchById,
+  toTransferObject,
+  TransferObject,
+} from "../entity/decklist.js";
 
 interface DeckInput {
   agenda: string;
@@ -171,7 +174,7 @@ const putV1: FastifyPluginAsync = async (fastify) => {
           return reply.send("Invalid leader");
         }
 
-        const oldDecklist = await fetchDecklist(req.params.deckId);
+        const oldDecklist = await fetchById(req.params.deckId);
         if (oldDecklist == null) {
           reply.code(404);
           return reply.send();
@@ -252,7 +255,7 @@ const putV2: FastifyPluginAsync = async (fastify) => {
           public: req.body.public ?? true,
         };
 
-        const oldDecklist = await fetchDecklist(req.params.deckId);
+        const oldDecklist = await fetchById(req.params.deckId);
         if (oldDecklist == null) {
           await createDecklist(newDecklist, meta);
           reply.code(201);
@@ -275,7 +278,7 @@ const putV2: FastifyPluginAsync = async (fastify) => {
 const deleteV1: FastifyPluginAsync = async (fastify) => {
   fastify.delete<{ Params: { deckId: string } }>("/decklist/:deckId", {
     async handler(req, reply): Promise<void> {
-      const decklist = await fetchDecklist(req.params.deckId);
+      const decklist = await fetchById(req.params.deckId);
       if (decklist == null) {
         reply.code(404);
         return reply.send();
@@ -318,6 +321,10 @@ const indexV1: FastifyPluginAsync = async (fastify) => {
               id: { type: "string" },
               creatorId: { type: "string" },
               creatorDisplayName: { type: "string" },
+              creatorPatronage: {
+                type: "string",
+                enum: ["not_patron", "kindred"],
+              },
               gameMode: {
                 type: "string",
                 enum: ["both", "headToHead", "multiplayer"],
@@ -328,18 +335,14 @@ const indexV1: FastifyPluginAsync = async (fastify) => {
         },
       },
     },
-    async handler(req) {
+    async handler(req): Promise<TransferObject[]> {
       const decklists = await (req.query.userId == null
-        ? fetchPublicDecklists()
+        ? fetchAllPublic()
         : req.query.userId === req.user?.sub
-        ? fetchAllDecklistsForUser(req.query.userId)
-        : fetchPublicDecklistsForUser(req.query.userId));
+        ? fetchAllByUser(req.query.userId)
+        : fetchAllPublicByUser(req.query.userId));
 
-      return decklists.map((decklist) => ({
-        ...decklist,
-        creatorDisplayName: decklist.displayName,
-        factionDeck: formatFactionDeck(decklist.factionDeck, decklist.leader),
-      }));
+      return decklists.map(toTransferObject);
     },
   });
 };
@@ -365,6 +368,10 @@ const getV1: FastifyPluginAsync = async (fastify) => {
             id: { type: "string" },
             creatorId: { type: "string" },
             creatorDisplayName: { type: "string" },
+            creatorPatronage: {
+              type: "string",
+              enum: ["not_patron", "kindred"],
+            },
             gameMode: {
               type: "string",
               enum: ["both", "headToHead", "multiplayer"],
@@ -374,18 +381,14 @@ const getV1: FastifyPluginAsync = async (fastify) => {
         },
       },
     },
-    async handler(req, reply) {
-      const decklist = await fetchDecklist(req.params.deckId);
-      if (decklist == null) {
+    async handler(req, reply): Promise<TransferObject> {
+      const decklist = await fetchById(req.params.deckId);
+      if (decklist === null) {
         reply.code(404);
         return reply.send();
       }
 
-      return {
-        ...decklist,
-        creatorDisplayName: decklist.displayName,
-        factionDeck: formatFactionDeck(decklist.factionDeck, decklist.leader),
-      };
+      return toTransferObject(decklist);
     },
   });
 };

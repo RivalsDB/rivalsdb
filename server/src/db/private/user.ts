@@ -1,10 +1,23 @@
 import { isSQLError, db, sql, SQLQuery } from "./_db.js";
 import { DbError } from "./_errors.js";
 
+type Patronage = "not_patron" | "kindred";
+
 interface User {
   userId: string;
   email: string;
+  patronage: Patronage;
   displayName?: string;
+}
+
+function rowToUser(row: any): User {
+  return {
+    userId: row.user_id,
+    email: row.email,
+    displayName:
+      typeof row.display_name === "string" ? row.display_name : undefined,
+    patronage: row.patronage_type === "kindred" ? "kindred" : "not_patron",
+  };
 }
 
 export async function fetchUser(id: string): Promise<null | User> {
@@ -12,7 +25,8 @@ export async function fetchUser(id: string): Promise<null | User> {
   SELECT
     user_id,
     email,
-    display_name
+    display_name,
+    patronage_type
   FROM users
   WHERE user_id = ${id}
   LIMIT 1
@@ -21,12 +35,7 @@ export async function fetchUser(id: string): Promise<null | User> {
   if (!res) {
     return null;
   }
-  return {
-    userId: res.user_id,
-    email: res.email,
-    displayName:
-      typeof res.display_name === "string" ? res.display_name : undefined,
-  };
+  return rowToUser(res);
 }
 
 export async function createUserIfNeeded(id: string, email: string) {
