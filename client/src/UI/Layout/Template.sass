@@ -4,9 +4,11 @@
 .page
   align-content: stretch
   display: grid
-  grid-template-rows: $header-height auto 160px
   justify-content: stretch
   min-height: 100vh
+  grid-template-rows: $header-height auto 210px
+  @media screen and ( min-width: $breakpoint-ipad--vertical)
+    grid-template-rows: $header-height auto 150px
 
   .page-header
     grid-row: 1 / 2
@@ -20,14 +22,4 @@
   .page-footer
     grid-row: 3 / 4
     background: var(--color-bg-farthest)
-    padding: $space-small $safearea-margin
-
-  .footer-legal
-    font-size: var(--font-size--micro)
-    color: var(--color-footer-text)
-    line-height: 1.2
-
-    p
-      margin-top: $space-nano
-      &:first-of-type
-        margin-top: 0
+    padding: $space-large $safearea-margin $space-small

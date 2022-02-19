@@ -1,0 +1,21 @@
+
+@import ../../_vars
+
+.footer
+  &__patreon
+    margin-bottom: $space-medium
+
+  &__legal
+    font-size: var(--font-size--micro)
+    color: var(--color-footer-text)
+    line-height: 1.2
+
+    p
+      margin-top: $space-nano
+      &:first-of-type
+        margin-top: 0
+
+@media screen and ( min-width: $breakpoint-ipad--vertical)
+  .footer
+    display: flex
+    gap: $space-huge
