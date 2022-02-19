@@ -21,6 +21,7 @@ type IconImage
     | Agenda
     | AgendaCard
     | Alchemy
+    | Animal
     | Attack
     | Blood
     | BloodPotencReq
@@ -128,6 +129,9 @@ imageOpts image =
 
         Alchemy ->
             ( class "ui-icon_alchemy", "Alchemy" )
+
+        Animal ->
+            ( class "ui-icon_animal", "Animal" )
 
         Attack ->
             ( class "ui-icon_attack", "Attack" )

@@ -56,6 +56,7 @@ secondaryTraits =
         , ( Trait.Conspiracy, Icon.Conspiracy )
         , ( Trait.Alchemy, Icon.Alchemy )
         , ( Trait.Ritual, Icon.Ritual )
+        , ( Trait.Animal, Icon.Animal )
         , ( Trait.Special, Icon.Special )
         ]
 

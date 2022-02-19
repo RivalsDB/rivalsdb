@@ -46,6 +46,7 @@ items =
     , ( Icon.Conspiracy, "Global processing by Vectors Point from the Noun Project" )
     , ( Icon.Reaction, "Shield by Viktor Vorobyev from the Noun Project" )
     , ( Icon.HandOfCards, "Hand Of Cards by Daniel Solis from NounProject.com" )
+    , ( Icon.Animal, "Animal by Rfourtytwo from NounProject.com" )
     ]
 
 
