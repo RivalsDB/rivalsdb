@@ -26,7 +26,7 @@
     "@parcel/transformer-sass": "^2.0.1",
     "elm": "^0.19.1-5",
     "elm-spa": "^6.0.4",
-    "nanoid": "^3.2.0",
+    "nanoid": "^3.3.1",
     "parcel": "^2.0.1",
     "plausible-tracker": "^0.3.5"
   },
