@@ -18,7 +18,7 @@ enum =
         [ ( "Core", Core )
         , ( "Blood & Alchemy", BloodAndAlchemy )
         , ( "Wolf & Rat", WolfAndRat )
-        , ( "Shadows & Shrouds ", ShadowsAndShrouds )
+        , ( "Shadows & Shrouds", ShadowsAndShrouds )
         , ( "Promo", Promo )
         ]
 
