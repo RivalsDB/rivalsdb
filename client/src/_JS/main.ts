@@ -1,10 +1,11 @@
+import { generateId } from "@rivalsdb/id";
+
 import "../styles.sass";
 
 import { Elm } from "./app";
 import { Auth } from "./auth";
 import { fetchCards } from "./cardData";
 import { Tracker } from "./tracker";
-import { generateId } from "./idGenerator";
 
 async function main() {
   const [cards, auth] = await Promise.all([fetchCards(), Auth.create()]);

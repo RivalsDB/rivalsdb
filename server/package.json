@@ -15,6 +15,7 @@
     "@databases/pg-migrations": "^5.0.0",
     "@discordjs/builders": "^0.12.0",
     "@discordjs/rest": "^0.3.0",
+    "@rivalsdb/id": "../shared/id/",
     "@types/node": "16.11.21",
     "discord-api-types": "^0.27.0",
     "discord.js": "^13.6.0",
@@ -25,7 +26,6 @@
     "fastify-plugin": "^3.0.1",
     "fastify-static": "^4.4.2",
     "fuse.js": "^6.5.3",
-    "nanoid": "^3.3.1",
     "typescript": "^4.5.5"
   },
   "devDependencies": {

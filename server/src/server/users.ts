@@ -1,12 +1,12 @@
 import { FastifyPluginAsync } from "fastify";
-import {
-  createUserIfNeeded,
-  fetchUser,
-  updateUser,
-  DbError,
-} from "../db/index.js";
 import { signInRequired } from "./auth.js";
-import { fetchById, toTransferObject } from "../entity/user.js";
+import {
+  fetchById,
+  toTransferObject,
+  createIdempotent,
+  update,
+  UserError,
+} from "../entity/user.js";
 
 interface UserOutput {
   userId: string;
@@ -29,21 +29,21 @@ const v1Update: FastifyPluginAsync = async (fastify) => {
       },
 
       async handler(req, reply): Promise<void> {
-        const user = await fetchUser(req.params.userId);
+        const user = await fetchById(req.params.userId);
         if (user == null) {
           reply.code(404);
           return reply.send();
         }
 
-        if (user.userId !== req.user.sub) {
+        if (user.id !== req.user.sub) {
           reply.code(403);
           return reply.send({ error: "ACCESS_DENIED" });
         }
 
-        const res = await updateUser(user.userId, {
+        const res = await update(user.id, {
           displayName: req.body.displayName,
         });
-        if (res === DbError.DISPLAY_NAME_MUST_BE_UNIQUE) {
+        if (res === UserError.DISPLAY_NAME_MUST_BE_UNIQUE) {
           reply.code(403);
           return reply.send({ error: "DISPLAY_NAME_MUST_BE_UNIQUE" });
         }
@@ -69,13 +69,13 @@ const v2Update: FastifyPluginAsync = async (fastify) => {
     },
 
     async handler(req, reply): Promise<void> {
-      const user = await fetchUser(req.params.userId);
+      const user = await fetchById(req.params.userId);
       if (user == null) {
         reply.code(404);
         return reply.send();
       }
 
-      if (user.userId !== req.user.sub) {
+      if (user.id !== req.user.sub) {
         reply.code(403);
         return reply.send({ error: "ACCESS_DENIED" });
       }
@@ -90,8 +90,8 @@ const v2Update: FastifyPluginAsync = async (fastify) => {
         return reply.send();
       }
 
-      const res = await updateUser(user.userId, newProps);
-      if (res === DbError.DISPLAY_NAME_MUST_BE_UNIQUE) {
+      const res = await update(user.id, newProps);
+      if (res === UserError.DISPLAY_NAME_MUST_BE_UNIQUE) {
         reply.code(403);
         return reply.send({ error: "DISPLAY_NAME_MUST_BE_UNIQUE" });
       }
@@ -114,7 +114,7 @@ const v2Create: FastifyPluginAsync = async (fastify) => {
     },
 
     async handler(req, reply): Promise<void> {
-      await createUserIfNeeded(req.user.sub, req.body.email);
+      await createIdempotent({ id: req.user.sub, email: req.body.email });
       reply.code(201);
       reply.send();
     },

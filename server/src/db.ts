@@ -1,5 +1,5 @@
 import createConnectionPool from "@databases/pg";
-import { databaseUrl } from "../../env.js";
+import { databaseUrl } from "./env.js";
 
 export { sql, SQLQuery, isSQLError } from "@databases/pg";
 

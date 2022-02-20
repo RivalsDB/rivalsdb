@@ -4,7 +4,7 @@ import fastifyStatic from "fastify-static";
 import fastifyCompress from "fastify-compress";
 import path from "path";
 import { serverPort } from "../env.js";
-import { closeDbPool } from "../db/index.js";
+import { closeDbPool } from "../db.js";
 import cardsRoutes from "./cards.js";
 import announcementsRoutes from "./announcements.js";
 import {

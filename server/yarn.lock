@@ -242,6 +242,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@rivalsdb/id@../shared/id/":
+  version "1.0.0"
+  dependencies:
+    nanoid "^3.3.1"
+
 "@sapphire/async-queue@^1.1.9":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@sapphire/async-queue/-/async-queue-1.2.0.tgz#7a56afd318101d338433d7180ebd6af349243268"

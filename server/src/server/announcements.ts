@@ -1,5 +1,5 @@
 import { FastifyPluginAsync } from "fastify";
-import { fetchPublishedAnnoncements } from "../db/index.js";
+import { fetchAllPublished, toTransferObject } from "../entity/announcement.js";
 
 const routes: FastifyPluginAsync = async (fastify) => {
   fastify.get("/announcements", {
@@ -19,8 +19,8 @@ const routes: FastifyPluginAsync = async (fastify) => {
       },
     },
     async handler() {
-      const announcements = await fetchPublishedAnnoncements();
-      return announcements;
+      const announcements = await fetchAllPublished();
+      return announcements.map(toTransferObject);
     },
   });
 };

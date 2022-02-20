@@ -960,6 +960,11 @@
     chrome-trace-event "^1.0.2"
     nullthrows "^1.1.1"
 
+"@rivalsdb/id@../shared/id":
+  version "1.0.0"
+  dependencies:
+    nanoid "^3.3.1"
+
 "@swc/helpers@^0.2.11":
   version "0.2.14"
   resolved "https://registry.yarnpkg.com/@swc/helpers/-/helpers-0.2.14.tgz#20288c3627442339dd3d743c944f7043ee3590f0"

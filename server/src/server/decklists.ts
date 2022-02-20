@@ -1,20 +1,8 @@
+import { generateId } from "@rivalsdb/id";
 import { FastifyPluginAsync } from "fastify";
-import {
-  createDecklist,
-  deleteDecklist,
-  gameModeFromString,
-  makeDecklistId,
-  updateDecklist,
-} from "../db/index.js";
 import { signInRequired } from "./auth.js";
-import {
-  fetchAllByUser,
-  fetchAllPublic,
-  fetchAllPublicByUser,
-  fetchById,
-  toTransferObject,
-  TransferObject,
-} from "../entity/decklist.js";
+import * as Deck from "../entity/deck.js";
+import * as GameMode from "../entity/gameMode.js";
 
 interface DeckInput {
   agenda: string;
@@ -34,21 +22,14 @@ interface DeckInputV2 {
   public?: boolean;
 }
 interface DeckOutput {
-  id: string;
-  creatorId: string;
-  name?: string;
   agenda: string;
-  haven: string;
-  gameMode: "both" | "headToHead" | "multiplayer";
+  creatorId: string;
   factionDeck: { [id: string]: boolean };
+  gameMode: "both" | "headToHead" | "multiplayer";
+  haven: string;
+  id: string;
   libraryDeck: { [id: string]: number };
-}
-
-function formatFactionDeck(faction: string[], leaderId: string) {
-  return faction.reduce<Record<string, boolean>>((faction, cardId) => {
-    faction[cardId] = cardId === leaderId;
-    return faction;
-  }, {});
+  name?: string;
 }
 
 function findLeader(factionDeck: Record<string, boolean>): string | null {
@@ -105,34 +86,31 @@ const postV1: FastifyPluginAsync = async (fastify) => {
         return reply.send("Invalid leader");
       }
 
-      const deckId = await makeDecklistId();
+      const id = await generateId();
 
-      const decklist = {
-        agenda: req.body.agenda,
-        haven: req.body.haven,
-        libraryDeck: req.body.libraryDeck,
-        factionDeck: Object.keys(req.body.factionDeck),
-        leader,
-      };
-      const meta = {
-        creatorId: req.user.sub,
-        gameMode: gameModeFromString(req.body.gameMode),
-        name: req.body.name,
-        id: deckId,
-        public: true,
-      };
-      const entry = await createDecklist(decklist, meta);
+      const agenda = req.body.agenda;
+      const factionDeck = Object.keys(req.body.factionDeck);
+      const haven = req.body.haven;
+      const libraryDeck = req.body.libraryDeck;
+      const decklist = { agenda, factionDeck, haven, leader, libraryDeck };
+
+      const creatorId = req.user.sub;
+      const gameMode = GameMode.fromString(req.body.gameMode);
+      const name = req.body.name;
+      const meta = { creatorId, gameMode, name, public: true };
+
+      await Deck.create(id, decklist, meta);
 
       reply.code(201);
       return {
-        id: entry.id,
-        creatorId: entry.creatorId,
-        name: entry.name,
-        agenda: entry.agenda,
-        haven: entry.haven,
-        libraryDeck: entry.libraryDeck,
-        gameMode: entry.gameMode,
-        factionDeck: formatFactionDeck(entry.factionDeck, entry.leader),
+        agenda,
+        creatorId,
+        haven,
+        id,
+        libraryDeck,
+        name,
+        factionDeck: req.body.factionDeck,
+        gameMode: GameMode.toString(gameMode),
       };
     },
   });
@@ -174,11 +152,11 @@ const putV1: FastifyPluginAsync = async (fastify) => {
           return reply.send("Invalid leader");
         }
 
-        const oldDecklist = await fetchById(req.params.deckId);
+        const oldDecklist = await Deck.fetchById(req.params.deckId);
         if (oldDecklist == null) {
           reply.code(404);
           return reply.send();
-        } else if (oldDecklist.creatorId !== req.user.sub) {
+        } else if (oldDecklist.creator.id !== req.user.sub) {
           reply.code(403);
           return reply.send();
         }
@@ -190,13 +168,13 @@ const putV1: FastifyPluginAsync = async (fastify) => {
           factionDeck: Object.keys(req.body.factionDeck),
           leader,
         };
-        const meta = {
+        const newMeta = {
+          ...oldDecklist.meta,
           name: req.body.name,
-          gameMode: gameModeFromString(req.body.gameMode),
-          public: oldDecklist.public,
+          gameMode: GameMode.fromString(req.body.gameMode),
         };
 
-        await updateDecklist(oldDecklist.id, newDecklist, meta);
+        await Deck.update(oldDecklist.id, newDecklist, newMeta);
 
         reply.code(204);
       },
@@ -240,7 +218,7 @@ const putV2: FastifyPluginAsync = async (fastify) => {
           return reply.send("Invalid leader");
         }
 
-        const newDecklist = {
+        const decklist = {
           agenda: req.body.agenda,
           haven: req.body.haven,
           libraryDeck: req.body.libraryDeck,
@@ -249,25 +227,24 @@ const putV2: FastifyPluginAsync = async (fastify) => {
         };
         const meta = {
           creatorId: req.user.sub,
-          gameMode: gameModeFromString(req.body.gameMode),
+          public: true,
           name: req.body.name,
-          id: req.params.deckId,
-          public: req.body.public ?? true,
+          gameMode: GameMode.fromString(req.body.gameMode),
         };
 
-        const oldDecklist = await fetchById(req.params.deckId);
-        if (oldDecklist == null) {
-          await createDecklist(newDecklist, meta);
+        const oldDeck = await Deck.fetchById(req.params.deckId);
+        if (oldDeck == null) {
+          await Deck.create(req.params.deckId, decklist, meta);
           reply.code(201);
           return reply.send();
         }
 
-        if (oldDecklist.creatorId !== req.user.sub) {
+        if (oldDeck.creator.id !== req.user.sub) {
           reply.code(403);
           return reply.send();
         }
 
-        await updateDecklist(oldDecklist.id, newDecklist, meta);
+        await Deck.update(req.params.deckId, decklist, meta);
 
         reply.code(204);
       },
@@ -278,18 +255,18 @@ const putV2: FastifyPluginAsync = async (fastify) => {
 const deleteV1: FastifyPluginAsync = async (fastify) => {
   fastify.delete<{ Params: { deckId: string } }>("/decklist/:deckId", {
     async handler(req, reply): Promise<void> {
-      const decklist = await fetchById(req.params.deckId);
+      const decklist = await Deck.fetchById(req.params.deckId);
       if (decklist == null) {
         reply.code(404);
         return reply.send();
       }
 
-      if (decklist.creatorId !== req.user.sub) {
+      if (decklist.creator.id !== req.user.sub) {
         reply.code(403);
         return reply.send();
       }
 
-      await deleteDecklist(decklist.id);
+      await Deck.destroyById(decklist.id);
       reply.code(204);
     },
   });
@@ -335,14 +312,14 @@ const indexV1: FastifyPluginAsync = async (fastify) => {
         },
       },
     },
-    async handler(req): Promise<TransferObject[]> {
+    async handler(req): Promise<Deck.TransferObject[]> {
       const decklists = await (req.query.userId == null
-        ? fetchAllPublic()
+        ? Deck.fetchAllPublic()
         : req.query.userId === req.user?.sub
-        ? fetchAllByUser(req.query.userId)
-        : fetchAllPublicByUser(req.query.userId));
+        ? Deck.fetchAllByUser(req.query.userId)
+        : Deck.fetchAllPublicByUser(req.query.userId));
 
-      return decklists.map(toTransferObject);
+      return decklists.map(Deck.toTransferObject);
     },
   });
 };
@@ -381,14 +358,14 @@ const getV1: FastifyPluginAsync = async (fastify) => {
         },
       },
     },
-    async handler(req, reply): Promise<TransferObject> {
-      const decklist = await fetchById(req.params.deckId);
+    async handler(req, reply): Promise<Deck.TransferObject> {
+      const decklist = await Deck.fetchById(req.params.deckId);
       if (decklist === null) {
         reply.code(404);
         return reply.send();
       }
 
-      return toTransferObject(decklist);
+      return Deck.toTransferObject(decklist);
     },
   });
 };
