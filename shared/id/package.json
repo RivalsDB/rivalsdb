@@ -1,7 +1,7 @@
 {
   "name": "@rivalsdb/id",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "index.js",
   "type": "module",
   "license": "MIT",
   "dependencies": {
