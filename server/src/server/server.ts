@@ -5,6 +5,7 @@ import fastifyCompress from "fastify-compress";
 import path from "path";
 import { serverPort } from "../env.js";
 import { closeDbPool } from "../db.js";
+import { captureApiErrors } from "../monitoring.js";
 import cardsRoutes from "./cards.js";
 import announcementsRoutes from "./announcements.js";
 import {
@@ -54,6 +55,7 @@ export async function createServer(): Promise<Service> {
   console.log("SERVER: init start");
   const fastify = Fastify({ logger: true });
 
+  fastify.register(captureApiErrors);
   fastify.register(fastifyCors);
   fastify.register(fastifyCompress);
   fastify.register(api, { prefix: "/api" });

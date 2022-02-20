@@ -29,3 +29,13 @@ if (typeof process.env.DATABASE_URL !== "string") {
   throw Error("Missing environment variable DATABASE_URL");
 }
 export const databaseUrl = process.env.DATABASE_URL;
+
+export const sentryDsn =
+  typeof process.env.SENTRY_DSN === "string"
+    ? process.env.SENTRY_DSN
+    : undefined;
+
+if (typeof process.env.ENVIRONMENT !== "string") {
+  throw Error("Missing environment variable ENVIRONMENT");
+}
+export const environment = process.env.ENVIRONMENT;

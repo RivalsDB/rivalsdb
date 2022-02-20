@@ -4,6 +4,7 @@ import Fuse from "fuse.js";
 import { cards } from "../../cardCollection/cards.js";
 import { discordBotToken } from "../../env.js";
 import { Service } from "../../typings/Service.js";
+import { captureBotError } from "../../monitoring.js";
 
 import { registerCommands, cardCommand } from "./commands.js";
 
@@ -61,6 +62,7 @@ export async function createBot(): Promise<Service> {
         )}?`,
       });
     } catch (e) {
+      captureBotError(e);
       if (e instanceof DiscordAPIError) {
         return;
       }

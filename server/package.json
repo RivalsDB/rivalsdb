@@ -16,6 +16,8 @@
     "@discordjs/builders": "^0.12.0",
     "@discordjs/rest": "^0.3.0",
     "@rivalsdb/id": "../shared/id/",
+    "@sentry/node": "^6.17.9",
+    "@sentry/tracing": "^6.17.9",
     "@types/node": "16.11.21",
     "discord-api-types": "^0.27.0",
     "discord.js": "^13.6.0",
