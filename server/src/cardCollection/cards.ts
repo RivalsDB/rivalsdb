@@ -427,8 +427,8 @@ export const cards: Array<Card> = [
     illustrator: "Darko Stojanovic",
     set: "Shadows & Shrouds",
     disciplines: ["dominate", "oblivion"],
-    id: "sas-mai-yinying",
-    image: "https://www.rivalsdb.app/card/sas-mai-yinying.webp",
+    id: "sas-mei-yinying",
+    image: "https://www.rivalsdb.app/card/sas-mei-yinying.webp",
     stack: "faction",
   } as Faction,
   {
