@@ -169,7 +169,8 @@ const putV1: FastifyPluginAsync = async (fastify) => {
           leader,
         };
         const newMeta = {
-          ...oldDecklist.meta,
+          creatorId: oldDecklist.meta.creatorId,
+          public: oldDecklist.meta.public,
           name: req.body.name,
           gameMode: GameMode.fromString(req.body.gameMode),
         };
@@ -227,7 +228,7 @@ const putV2: FastifyPluginAsync = async (fastify) => {
         };
         const meta = {
           creatorId: req.user.sub,
-          public: true,
+          public: req.body.public ?? true,
           name: req.body.name,
           gameMode: GameMode.fromString(req.body.gameMode),
         };
