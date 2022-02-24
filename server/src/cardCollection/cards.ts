@@ -400,7 +400,7 @@ export const cards: Array<Card> = [
     illustrator: "János Orbán",
     set: "Shadows & Shrouds",
     id: "sas-bind-the-spirit",
-    image: "https://www.rivalsdb.app/card/sas-bind-the-spirit.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-bind-the-spirit.webp",
     stack: "library",
   } as Library,
   {
@@ -412,7 +412,7 @@ export const cards: Array<Card> = [
     illustrator: "Marco Primo",
     set: "Shadows & Shrouds",
     id: "sas-court-of-blood",
-    image: "https://www.rivalsdb.app/card/sas-court-of-blood.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-court-of-blood.webp",
     stack: "library",
   } as Library,
   {
@@ -428,7 +428,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["dominate", "oblivion"],
     id: "sas-mei-yinying",
-    image: "https://www.rivalsdb.app/card/sas-mei-yinying.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-mei-yinying.webp",
     stack: "faction",
   } as Faction,
   {
@@ -439,7 +439,7 @@ export const cards: Array<Card> = [
     illustrator: "Harvey Bunda",
     set: "Shadows & Shrouds",
     id: "sas-mental-block",
-    image: "https://www.rivalsdb.app/card/sas-mental-block.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-mental-block.webp",
     stack: "library",
   } as Library,
   {
@@ -449,7 +449,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Shadows & Shrouds",
     id: "sas-mission-cemetery",
-    image: "https://www.rivalsdb.app/card/sas-mission-cemetery.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-mission-cemetery.webp",
     stack: "haven",
   } as Haven,
   {
@@ -459,7 +459,7 @@ export const cards: Array<Card> = [
     illustrator: "Mara Miranda Escota",
     set: "Shadows & Shrouds",
     id: "sas-most-impressive",
-    image: "https://www.rivalsdb.app/card/sas-most-impressive.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-most-impressive.webp",
     stack: "agenda",
   } as Agenda,
   {
@@ -475,7 +475,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["auspex", "oblivion"],
     id: "sas-scott",
-    image: "https://www.rivalsdb.app/card/sas-scott.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-scott.webp",
     stack: "faction",
   } as Faction,
   {
@@ -485,7 +485,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Shadows & Shrouds",
     id: "sas-the-big-house",
-    image: "https://www.rivalsdb.app/card/sas-the-big-house.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-the-big-house.webp",
     stack: "haven",
   } as Haven,
   {
@@ -495,7 +495,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Shadows & Shrouds",
     id: "sas-wake-the-dead",
-    image: "https://www.rivalsdb.app/card/sas-wake-the-dead.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-wake-the-dead.webp",
     stack: "agenda",
   } as Agenda,
   {
@@ -511,7 +511,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["oblivion", "potence"],
     id: "sas-adrian-beltza",
-    image: "https://www.rivalsdb.app/card/sas-adrian-beltza.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-adrian-beltza.webp",
     stack: "faction",
   } as Faction,
   {
@@ -527,7 +527,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["auspex", "fortitude", "oblivion"],
     id: "sas-annika",
-    image: "https://www.rivalsdb.app/card/sas-annika.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-annika.webp",
     stack: "faction",
   } as Faction,
   {
@@ -539,7 +539,7 @@ export const cards: Array<Card> = [
     illustrator: "Marco Primo",
     set: "Shadows & Shrouds",
     id: "sas-arms-of-ahriman",
-    image: "https://www.rivalsdb.app/card/sas-arms-of-ahriman.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-arms-of-ahriman.webp",
     stack: "library",
   } as Library,
   {
@@ -555,7 +555,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["potence"],
     id: "sas-astrid-malhela",
-    image: "https://www.rivalsdb.app/card/sas-astrid-malhela.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-astrid-malhela.webp",
     stack: "faction",
   } as Faction,
   {
@@ -571,7 +571,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["oblivion"],
     id: "sas-bianca-giovanni",
-    image: "https://www.rivalsdb.app/card/sas-bianca-giovanni.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-bianca-giovanni.webp",
     stack: "faction",
   } as Faction,
   {
@@ -582,7 +582,7 @@ export const cards: Array<Card> = [
     illustrator: "Mara Miranda Escota",
     set: "Shadows & Shrouds",
     id: "sas-clairvoyance",
-    image: "https://www.rivalsdb.app/card/sas-clairvoyance.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-clairvoyance.webp",
     stack: "library",
   } as Library,
   {
@@ -596,7 +596,7 @@ export const cards: Array<Card> = [
     illustrator: "Dawn Nique",
     set: "Shadows & Shrouds",
     id: "sas-cloud-memory",
-    image: "https://www.rivalsdb.app/card/sas-cloud-memory.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-cloud-memory.webp",
     stack: "library",
   } as Library,
   {
@@ -606,7 +606,8 @@ export const cards: Array<Card> = [
     illustrator: "Irene Francisco",
     set: "Shadows & Shrouds",
     id: "sas-death-is-only-the-beginning",
-    image: "https://www.rivalsdb.app/card/sas-death-is-only-the-beginning.webp",
+    image:
+      "https://www.rivalsdb.app/card/sas-temp-death-is-only-the-beginning.webp",
     stack: "agenda",
   } as Agenda,
   {
@@ -617,7 +618,7 @@ export const cards: Array<Card> = [
     illustrator: "János Orbán",
     set: "Shadows & Shrouds",
     id: "sas-diminish",
-    image: "https://www.rivalsdb.app/card/sas-diminish.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-diminish.webp",
     stack: "library",
   } as Library,
   {
@@ -627,7 +628,7 @@ export const cards: Array<Card> = [
     illustrator: "Marco Primo",
     set: "Shadows & Shrouds",
     id: "sas-early-grave",
-    image: "https://www.rivalsdb.app/card/sas-early-grave.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-early-grave.webp",
     stack: "library",
   } as Library,
   {
@@ -643,7 +644,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["oblivion", "oblivion"],
     id: "sas-enzo-cappa",
-    image: "https://www.rivalsdb.app/card/sas-enzo-cappa.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-enzo-cappa.webp",
     stack: "faction",
   } as Faction,
   {
@@ -653,7 +654,7 @@ export const cards: Array<Card> = [
     illustrator: "Marco Primo",
     set: "Shadows & Shrouds",
     id: "sas-eternal-life-mortuary",
-    image: "https://www.rivalsdb.app/card/sas-eternal-life-mortuary.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-eternal-life-mortuary.webp",
     stack: "haven",
   } as Haven,
   {
@@ -663,7 +664,7 @@ export const cards: Array<Card> = [
     illustrator: "Adelijah Ocampo",
     set: "Shadows & Shrouds",
     id: "sas-fight-makes-right",
-    image: "https://www.rivalsdb.app/card/sas-fight-makes-right.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-fight-makes-right.webp",
     stack: "library",
   } as Library,
   {
@@ -676,7 +677,7 @@ export const cards: Array<Card> = [
     shield: 1,
     set: "Shadows & Shrouds",
     id: "sas-flesh-of-marble",
-    image: "https://www.rivalsdb.app/card/sas-flesh-of-marble.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-flesh-of-marble.webp",
     stack: "library",
   } as Library,
   {
@@ -692,7 +693,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["dominate", "dominate", "potence"],
     id: "sas-gia-de-emparan",
-    image: "https://www.rivalsdb.app/card/sas-gia-de-emparan.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-gia-de-emparan.webp",
     stack: "faction",
   } as Faction,
   {
@@ -703,7 +704,7 @@ export const cards: Array<Card> = [
     illustrator: "Marco Primo",
     set: "Shadows & Shrouds",
     id: "sas-grave-robbing",
-    image: "https://www.rivalsdb.app/card/sas-grave-robbing.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-grave-robbing.webp",
     stack: "library",
   } as Library,
   {
@@ -716,7 +717,7 @@ export const cards: Array<Card> = [
     illustrator: "Marco Primo",
     set: "Shadows & Shrouds",
     id: "sas-graveyard-smash",
-    image: "https://www.rivalsdb.app/card/sas-graveyard-smash.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-graveyard-smash.webp",
     stack: "library",
   } as Library,
   {
@@ -729,7 +730,7 @@ export const cards: Array<Card> = [
     illustrator: "Adelijah Ocampo",
     set: "Shadows & Shrouds",
     id: "sas-high-stakes",
-    image: "https://www.rivalsdb.app/card/sas-high-stakes.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-high-stakes.webp",
     stack: "library",
   } as Library,
   {
@@ -742,7 +743,7 @@ export const cards: Array<Card> = [
     illustrator: "Harvey Bunda",
     set: "Shadows & Shrouds",
     id: "sas-its-your-funeral",
-    image: "https://www.rivalsdb.app/card/sas-its-your-funeral.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-its-your-funeral.webp",
     stack: "library",
   } as Library,
   {
@@ -755,7 +756,7 @@ export const cards: Array<Card> = [
     illustrator: "Irene Francisco",
     set: "Shadows & Shrouds",
     id: "sas-interrogation",
-    image: "https://www.rivalsdb.app/card/sas-interrogation.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-interrogation.webp",
     stack: "library",
   } as Library,
   {
@@ -771,7 +772,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["oblivion", "oblivion"],
     id: "sas-juan-carlos-diaz",
-    image: "https://www.rivalsdb.app/card/sas-juan-carlos-diaz.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-juan-carlos-diaz.webp",
     stack: "faction",
   } as Faction,
   {
@@ -787,7 +788,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["fortitude"],
     id: "sas-kristin",
-    image: "https://www.rivalsdb.app/card/sas-kristin.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-kristin.webp",
     stack: "faction",
   } as Faction,
   {
@@ -803,7 +804,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["auspex", "oblivion"],
     id: "sas-kwame",
-    image: "https://www.rivalsdb.app/card/sas-kwame.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-kwame.webp",
     stack: "faction",
   } as Faction,
   {
@@ -815,7 +816,7 @@ export const cards: Array<Card> = [
     illustrator: "János Orbán",
     set: "Shadows & Shrouds",
     id: "sas-legate",
-    image: "https://www.rivalsdb.app/card/sas-legate.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-legate.webp",
     stack: "library",
   } as Library,
   {
@@ -829,7 +830,7 @@ export const cards: Array<Card> = [
     illustrator: "Joyce Maureira",
     set: "Shadows & Shrouds",
     id: "sas-living-shadow",
-    image: "https://www.rivalsdb.app/card/sas-living-shadow.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-living-shadow.webp",
     stack: "library",
   } as Library,
   {
@@ -845,7 +846,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["dominate", "oblivion", "potence"],
     id: "sas-markus-kumnyama",
-    image: "https://www.rivalsdb.app/card/sas-markus-kumnyama.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-markus-kumnyama.webp",
     stack: "faction",
   } as Faction,
   {
@@ -859,7 +860,7 @@ export const cards: Array<Card> = [
     illustrator: "János Orbán",
     set: "Shadows & Shrouds",
     id: "sas-money-shot",
-    image: "https://www.rivalsdb.app/card/sas-money-shot.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-money-shot.webp",
     stack: "library",
   } as Library,
   {
@@ -875,7 +876,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["auspex"],
     id: "sas-nathaniel",
-    image: "https://www.rivalsdb.app/card/sas-nathaniel.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-nathaniel.webp",
     stack: "faction",
   } as Faction,
   {
@@ -886,7 +887,7 @@ export const cards: Array<Card> = [
     illustrator: "Irene Francisco",
     set: "Shadows & Shrouds",
     id: "sas-necromancy",
-    image: "https://www.rivalsdb.app/card/sas-necromancy.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-necromancy.webp",
     stack: "library",
   } as Library,
   {
@@ -902,7 +903,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["oblivion", "potence", "potence"],
     id: "sas-piero-calderon",
-    image: "https://www.rivalsdb.app/card/sas-piero-calderon.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-piero-calderon.webp",
     stack: "faction",
   } as Faction,
   {
@@ -912,7 +913,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Shadows & Shrouds",
     id: "sas-prizefighter",
-    image: "https://www.rivalsdb.app/card/sas-prizefighter.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-prizefighter.webp",
     stack: "agenda",
   } as Agenda,
   {
@@ -926,7 +927,7 @@ export const cards: Array<Card> = [
     illustrator: "Joyce Maureira",
     set: "Shadows & Shrouds",
     id: "sas-prowess-from-pain",
-    image: "https://www.rivalsdb.app/card/sas-prowess-from-pain.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-prowess-from-pain.webp",
     stack: "library",
   } as Library,
   {
@@ -942,7 +943,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["dominate", "oblivion"],
     id: "sas-rachany-sok",
-    image: "https://www.rivalsdb.app/card/sas-rachany-sok.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-rachany-sok.webp",
     stack: "faction",
   } as Faction,
   {
@@ -958,7 +959,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["dominate", "oblivion"],
     id: "sas-raven-smith",
-    image: "https://www.rivalsdb.app/card/sas-raven-smith.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-raven-smith.webp",
     stack: "faction",
   } as Faction,
   {
@@ -972,7 +973,7 @@ export const cards: Array<Card> = [
     illustrator: "Harvey Bunda",
     set: "Shadows & Shrouds",
     id: "sas-shadow-boxing",
-    image: "https://www.rivalsdb.app/card/sas-shadow-boxing.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-shadow-boxing.webp",
     stack: "library",
   } as Library,
   {
@@ -983,7 +984,7 @@ export const cards: Array<Card> = [
     illustrator: "János Orbán",
     set: "Shadows & Shrouds",
     id: "sas-shadow-cloak",
-    image: "https://www.rivalsdb.app/card/sas-shadow-cloak.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-shadow-cloak.webp",
     stack: "library",
   } as Library,
   {
@@ -993,7 +994,8 @@ export const cards: Array<Card> = [
     illustrator: "Mara Miranda Escota",
     set: "Shadows & Shrouds",
     id: "sas-sixth-tradition-destruction",
-    image: "https://www.rivalsdb.app/card/sas-sixth-tradition-destruction.webp",
+    image:
+      "https://www.rivalsdb.app/card/sas-temp-sixth-tradition-destruction.webp",
     stack: "library",
   } as Library,
   {
@@ -1009,7 +1011,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["fortitude", "oblivion"],
     id: "sas-sophia-giovanni",
-    image: "https://www.rivalsdb.app/card/sas-sophia-giovanni.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-sophia-giovanni.webp",
     stack: "faction",
   } as Faction,
   {
@@ -1055,7 +1057,7 @@ export const cards: Array<Card> = [
     illustrator: "János Orbán",
     set: "Shadows & Shrouds",
     id: "sas-soul-crushing",
-    image: "https://www.rivalsdb.app/card/sas-soul-crushing.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-soul-crushing.webp",
     stack: "library",
   } as Library,
   {
@@ -1066,7 +1068,7 @@ export const cards: Array<Card> = [
     illustrator: "Harvey Bunda",
     set: "Shadows & Shrouds",
     id: "sas-spectral-possession",
-    image: "https://www.rivalsdb.app/card/sas-spectral-possession.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-spectral-possession.webp",
     stack: "library",
   } as Library,
   {
@@ -1077,7 +1079,7 @@ export const cards: Array<Card> = [
     illustrator: "Mira Miranda Escota",
     set: "Shadows & Shrouds",
     id: "sas-spirits-touch",
-    image: "https://www.rivalsdb.app/card/sas-spirits-touch.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-spirits-touch.webp",
     stack: "library",
   } as Library,
   {
@@ -1088,7 +1090,7 @@ export const cards: Array<Card> = [
     illustrator: "Joyce Maureira",
     set: "Shadows & Shrouds",
     id: "sas-summon-spirit",
-    image: "https://www.rivalsdb.app/card/sas-summon-spirit.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-summon-spirit.webp",
     stack: "library",
   } as Library,
   {
@@ -1102,7 +1104,7 @@ export const cards: Array<Card> = [
     illustrator: "János Orbán",
     set: "Shadows & Shrouds",
     id: "sas-tenebrous-avatar",
-    image: "https://www.rivalsdb.app/card/sas-tenebrous-avatar.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-tenebrous-avatar.webp",
     stack: "library",
   } as Library,
   {
@@ -1113,7 +1115,7 @@ export const cards: Array<Card> = [
     illustrator: "János Orbán",
     set: "Shadows & Shrouds",
     id: "sas-the-gift-of-false-life",
-    image: "https://www.rivalsdb.app/card/sas-the-gift-of-false-life.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-the-gift-of-false-life.webp",
     stack: "library",
   } as Library,
   {
@@ -1124,7 +1126,7 @@ export const cards: Array<Card> = [
     illustrator: "Adelijah Ocampo",
     set: "Shadows & Shrouds",
     id: "sas-the-scent-of-death",
-    image: "https://www.rivalsdb.app/card/sas-the-scent-of-death.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-the-scent-of-death.webp",
     stack: "library",
   } as Library,
   {
@@ -1134,7 +1136,7 @@ export const cards: Array<Card> = [
     illustrator: "Marco Primo",
     set: "Shadows & Shrouds",
     id: "sas-the-tenderloin",
-    image: "https://www.rivalsdb.app/card/sas-the-tenderloin.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-the-tenderloin.webp",
     stack: "haven",
   } as Haven,
   {
@@ -1148,7 +1150,7 @@ export const cards: Array<Card> = [
     illustrator: "Timothy Terrenal",
     set: "Shadows & Shrouds",
     id: "sas-throwing-shade",
-    image: "https://www.rivalsdb.app/card/sas-throwing-shade.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-throwing-shade.webp",
     stack: "library",
   } as Library,
   {
@@ -1162,7 +1164,7 @@ export const cards: Array<Card> = [
     illustrator: "???",
     set: "Shadows & Shrouds",
     id: "sas-utter-darkness",
-    image: "https://www.rivalsdb.app/card/sas-utter-darkness.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-utter-darkness.webp",
     stack: "library",
   } as Library,
   {
@@ -1173,7 +1175,7 @@ export const cards: Array<Card> = [
     illustrator: "János Orbán",
     set: "Shadows & Shrouds",
     id: "sas-whats-yours-is-mine",
-    image: "https://www.rivalsdb.app/card/sas-whats-yours-is-mine.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-whats-yours-is-mine.webp",
     stack: "library",
   } as Library,
   {
@@ -1183,7 +1185,7 @@ export const cards: Array<Card> = [
     illustrator: "Marco Primo",
     set: "Shadows & Shrouds",
     id: "sas-winning",
-    image: "https://www.rivalsdb.app/card/sas-winning.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-winning.webp",
     stack: "library",
   } as Library,
   {
@@ -1199,7 +1201,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["oblivion"],
     id: "sas-zahara",
-    image: "https://www.rivalsdb.app/card/sas-zahara.webp",
+    image: "https://www.rivalsdb.app/card/sas-temp-zahara.webp",
     stack: "faction",
   } as Faction,
   {

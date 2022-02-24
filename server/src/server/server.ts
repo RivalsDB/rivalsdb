@@ -65,6 +65,8 @@ export async function createServer(): Promise<Service> {
     preCompressed: true,
     prefix: "/card",
     decorateReply: false,
+    maxAge: "7d",
+    lastModified: false,
   });
   fastify.register(fastifyStatic, {
     root: logoFolder,
