@@ -9,9 +9,9 @@ import Data.Pack as Pack exposing (Pack)
 import Data.Trait exposing (Trait)
 import Dict
 import Effect exposing (Effect)
-import Html exposing (Html, div, h2, label, li, section, span, text, ul)
-import Html.Attributes exposing (class)
-import Html.Events exposing (onClick)
+import Html exposing (Html, div, h2, input, label, li, section, span, text, ul)
+import Html.Attributes exposing (class, spellcheck, type_)
+import Html.Events exposing (onClick, onInput)
 import Html.Keyed as Keyed
 import Html.Lazy as Lazy
 import Port.Event
@@ -66,6 +66,7 @@ type Msg
     | FromPackFilter (MultiSelect.Msg Pack)
     | ToggleShowAllFilters
     | ToggleShowCollectionImages
+    | TextFilterChanged String
 
 
 update : Msg -> Model msg -> ( Model msg, Effect msg )
@@ -104,6 +105,22 @@ update msg model =
                 , textFilter = Nothing
               }
             , Effect.fromCmd <| Port.Event.track Port.Event.BuilderClearFilters
+            )
+
+        TextFilterChanged text ->
+            let
+                cleanText =
+                    text |> String.trim |> String.toLower
+            in
+            ( { model
+                | textFilter =
+                    if cleanText == "" then
+                        Nothing
+
+                    else
+                        Just cleanText
+              }
+            , Effect.none
             )
 
         ToggleShowAllFilters ->
@@ -194,6 +211,12 @@ viewSecondaryFilters msg data =
     [ UI.FilterSelection.view (msg << FromSecondaryFilter) data.secondaryFilters
     , UI.FilterSelection.view (msg << FromAttackTypesFilter) data.attackTypeFilters
     , UI.FilterSelection.view (msg << FromDisciplinesFilter) data.disciplineFilters
+    , div []
+        [ label []
+            [ text "Card text: "
+            , input [ onInput (msg << TextFilterChanged), type_ "search", spellcheck False ] []
+            ]
+        ]
     , div []
         [ label []
             [ text "Card pack: "
