@@ -10,7 +10,7 @@ import Dict
 import Effect exposing (Effect)
 import Fuzzy
 import Gen.Params.Search exposing (Params)
-import Html exposing (..)
+import Html exposing (div, input, label, li, span, text)
 import Html.Attributes exposing (class, spellcheck, type_)
 import Html.Events exposing (onInput)
 import Html.Keyed as Keyed
