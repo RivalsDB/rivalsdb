@@ -1,14 +1,14 @@
 module UI.Decklist exposing (Actions, viewRead, viewWrite)
 
 import Cards
-import Data.Clan as Clan
+import Data.Clan as Clan exposing (Clan)
 import Data.Deck as Deck exposing (Deck, Name(..), isLeader)
 import Data.GameMode as GameMode exposing (GameMode)
 import Data.Trait as Trait
 import Data.Visibility as Visibility exposing (Visibility)
 import Dict
 import Html exposing (Html, button, div, form, h3, h4, input, label, li, option, p, select, span, text, ul)
-import Html.Attributes exposing (class, classList, name, placeholder, selected, type_, value)
+import Html.Attributes exposing (class, classList, name, placeholder, selected, title, type_, value)
 import Html.Events exposing (onClick, onInput, onSubmit)
 import UI.Attribute
 import UI.Card
@@ -244,9 +244,9 @@ factionEntryRead ( character, isLeader ) =
         [ class "deck-faction__character"
         , classList [ ( "deck-faction__character--leader", isLeader ) ]
         ]
-        ([ span [ class "deck-faction__bp" ] [ UI.Attribute.bloodPotency character.bloodPotency ]
-         , span [ class "deck-faction__clan" ] [ UI.Icon.V2.clan UI.Icon.V2.Negative character.clan ]
-         , span [ class "deck-faction__name" ] [ UI.CardName.withOverlay (Cards.FactionCard character) ]
+        ([ viewFactionBP character.bloodPotency
+         , viewFactionClan character.clan
+         , viewFactionName character
          ]
             ++ (if isLeader then
                     [ span [ class "deck-faction__leader-tag" ] [ text "(Leader)" ] ]
@@ -261,31 +261,51 @@ factionEntryRead ( character, isLeader ) =
 
 
 factionEntryWrite : Actions msg -> ( Cards.Faction, Bool ) -> Html msg
-factionEntryWrite { setLeader } ( character, isLeader ) =
-    li
-        [ class "deck-faction__character"
-        , classList [ ( "deck-faction__character--leader", isLeader ) ]
-        ]
-        ([ span
-            [ class "deck-faction__leader-button"
-            , class
-                (if isLeader then
-                    "deck-faction__leader-button--on"
+factionEntryWrite { setLeader, changeCard } ( character, isLeader ) =
+    li [ class "deck-faction__character", classList [ ( "deck-faction__character--leader", isLeader ) ] ]
+        (List.concat
+            [ [ span
+                    [ class "deck-faction__leader-button"
+                    , class
+                        (if isLeader then
+                            "deck-faction__leader-button--on"
 
-                 else
-                    "deck-faction__leader-button--off"
-                )
-            , onClick (setLeader character)
+                         else
+                            "deck-faction__leader-button--off"
+                        )
+                    , onClick (setLeader character)
+                    ]
+                    [ div [ class "deck-faction__leader-icon" ] [ Icon.icon ( Icon.Leader, Icon.Standard ) ] ]
+              , viewFactionBP character.bloodPotency
+              , viewFactionClan character.clan
+              , viewFactionName character
+              ]
+            , character.disciplines
+                |> List.map (span [ class "deck-faction__discipline" ] << List.singleton << UI.Icon.V2.discipline UI.Icon.V2.Standard)
+            , [ button
+                    [ class "deck-faction__remove"
+                    , title "Remove"
+                    , onClick (changeCard ( Cards.FactionCard character, 0 ))
+                    ]
+                    [ text "X" ]
+              ]
             ]
-            [ div [ class "deck-faction__leader-icon" ] [ Icon.icon ( Icon.Leader, Icon.Standard ) ] ]
-         , span [ class "deck-faction__bp" ] [ UI.Attribute.bloodPotency character.bloodPotency ]
-         , span [ class "deck-faction__clan" ] [ UI.Icon.V2.clan UI.Icon.V2.Negative character.clan ]
-         , span [ class "deck-faction__name" ] [ UI.CardName.withOverlay (Cards.FactionCard character) ]
-         ]
-            ++ (character.disciplines
-                    |> List.map (span [ class "deck-faction__discipline" ] << List.singleton << UI.Icon.V2.discipline UI.Icon.V2.Standard)
-               )
         )
+
+
+viewFactionBP : Cards.BloodPotency -> Html msg
+viewFactionBP bp =
+    span [ class "deck-faction__bp" ] [ UI.Attribute.bloodPotency bp ]
+
+
+viewFactionClan : Clan -> Html msg
+viewFactionClan clan =
+    span [ class "deck-faction__clan" ] [ UI.Icon.V2.clan UI.Icon.V2.Negative clan ]
+
+
+viewFactionName : Cards.Faction -> Html msg
+viewFactionName character =
+    span [ class "deck-faction__name" ] [ UI.CardName.withOverlay (Cards.FactionCard character) ]
 
 
 viewLibrary : (( Cards.Library, Int ) -> Html msg) -> Deck.Library -> Html msg
