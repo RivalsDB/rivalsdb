@@ -2,7 +2,7 @@ module UI.Layout.Header exposing (view)
 
 import Gen.Route as Route
 import Html exposing (Html, a, button, div, form, header, input, li, span, text, ul)
-import Html.Attributes exposing (class, classList, href, placeholder, spellcheck, type_)
+import Html.Attributes exposing (class, classList, href, placeholder, spellcheck, type_, value)
 import Html.Events exposing (onClick, onInput, onSubmit)
 import Shared
 import UI.Icon as Icon
@@ -60,6 +60,7 @@ view msg shared =
                                 , placeholder "Card search"
                                 , type_ "search"
                                 , spellcheck False
+                                , value shared.headerSearchInput
                                 ]
                                 []
                             ]

@@ -28,6 +28,7 @@ type alias Model =
     { collection : Collection
     , user : Maybe User
     , burgerMenu : Bool
+    , headerSearchInput : String
     , headerSearch : Maybe String
     , toast : Toast.Model
     , key : Key
@@ -67,6 +68,7 @@ init req flags =
     ( { collection = collection
       , user = Nothing
       , burgerMenu = False
+      , headerSearchInput = ""
       , headerSearch = Nothing
       , toast = Toast.init
       , key = req.key
@@ -109,7 +111,8 @@ update _ msg model =
 
         HeaderSearchQueryChanged query ->
             ( { model
-                | headerSearch =
+                | headerSearchInput = query
+                , headerSearch =
                     case String.trim query of
                         "" ->
                             Nothing
@@ -126,7 +129,7 @@ update _ msg model =
                     ( model, Cmd.none )
 
                 Just search ->
-                    ( model
+                    ( { model | headerSearchInput = "" }
                     , Cmd.batch
                         [ Navigation.pushUrl model.key <| Route.toHref Route.Search ++ "?search=" ++ search
                         , Port.Event.track (Port.Event.HeaderSearchUsed search)

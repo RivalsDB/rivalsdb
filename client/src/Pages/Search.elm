@@ -152,26 +152,14 @@ update msg model =
 view : Shared.Model -> Model -> View Msg
 view shared model =
     let
-        filter card =
-            UI.FilterSelection.isAllowed Cards.traits model.secondaryFilters card
-                && UI.FilterSelection.isAllowed (Cards.stack >> List.singleton) model.stackFilters card
-                && UI.FilterSelection.isAllowed Cards.discipline model.disciplineFilters card
-                && UI.FilterSelection.isAllowed Cards.traits model.primaryFilters card
-                && UI.FilterSelection.isAllowed Cards.clan model.clansFilters card
-                && UI.FilterSelection.isAllowed Cards.attackTypes model.attackTypeFilters card
-                && isPackAllowed model.packFilters card
-
-        filteredCards =
-            case model.textFilter of
-                Nothing ->
-                    List.filter filter model.matches
-
-                Just needle ->
-                    List.filter (Cards.findTextInCard needle) model.matches
-                        |> List.filter filter
-
         sortedCards =
-            List.sortWith cardSort filteredCards
+            model.matches
+                |> List.filter
+                    (\card ->
+                        matchTextFilter model card
+                            && matchFilterSelections model card
+                    )
+                |> List.sortWith cardSort
     in
     UI.Layout.Template.view FromShared
         shared
@@ -215,6 +203,27 @@ view shared model =
                 )
             ]
         ]
+
+
+matchTextFilter : Model -> Card -> Bool
+matchTextFilter model card =
+    case model.textFilter of
+        Just needle ->
+            Cards.findTextInCard needle card
+
+        Nothing ->
+            True
+
+
+matchFilterSelections : Model -> Card -> Bool
+matchFilterSelections model card =
+    UI.FilterSelection.isAllowed Cards.traits model.secondaryFilters card
+        && UI.FilterSelection.isAllowed (Cards.stack >> List.singleton) model.stackFilters card
+        && UI.FilterSelection.isAllowed Cards.discipline model.disciplineFilters card
+        && UI.FilterSelection.isAllowed Cards.traits model.primaryFilters card
+        && UI.FilterSelection.isAllowed Cards.clan model.clansFilters card
+        && UI.FilterSelection.isAllowed Cards.attackTypes model.attackTypeFilters card
+        && isPackAllowed model.packFilters card
 
 
 isPackAllowed : MultiSelect.Model Pack -> Card -> Bool
