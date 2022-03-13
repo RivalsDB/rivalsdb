@@ -546,7 +546,7 @@ export const cards: Array<Card> = [
     types: ["character"],
     clan: "lasombra",
     name: "Astrid Malhela",
-    text: "Party - **Pay 1 [agenda]:** This attack has +3 Intel. If the attack defeats the target, gain 1 [influence].",
+    text: "Party - **Pay 1 [agenda]:** This attack has +3 Intel. If the attack defeats the target, gain 1 [prestige].",
     bloodPotency: 3,
     attributePhysical: 0,
     attributeSocial: 1,
