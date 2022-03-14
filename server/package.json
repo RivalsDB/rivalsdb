@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc",
     "db-apply-migrations": "pg-migrations apply --directory migrations",
+    "migrations:create": "touch migrations/$(date +%s)-migration-name.sql",
     "watch": "sh bin/watch.sh"
   },
   "author": "Luiz Socrate <luiz@socrate.com.br>",
