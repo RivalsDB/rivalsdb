@@ -16,7 +16,7 @@ import UI.ActionBar
 import UI.Decklist
 import UI.HandTester as HandTest
 import UI.Icon as Icon
-import UI.Layout.Deck
+import UI.Layout.TSplit
 import UI.Layout.Template
 import View exposing (View)
 
@@ -125,10 +125,10 @@ viewDecklist : Shared.Model -> Deck -> HandTest.Model -> View Msg
 viewDecklist shared deck hand =
     UI.Layout.Template.view FromShared
         shared
-        [ UI.Layout.Deck.readMode
-            { actions = viewActions shared.user deck.meta
-            , decklist = UI.Decklist.viewRead deck
-            , aside = Html.map FromHandTest <| HandTest.view hand
+        [ UI.Layout.TSplit.view
+            { bar = viewActions shared.user deck.meta
+            , main = UI.Decklist.viewRead deck
+            , secondary = Html.map FromHandTest <| HandTest.view hand
             }
         ]
 

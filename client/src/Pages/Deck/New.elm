@@ -20,7 +20,7 @@ import UI.ActionBar
 import UI.DeckbuildSelections as DeckbuildSelections
 import UI.Decklist
 import UI.Icon as Icon
-import UI.Layout.Deck
+import UI.Layout.TSplit
 import UI.Layout.Template
 import View exposing (View)
 
@@ -248,10 +248,10 @@ view shared model =
                 Html.text "Loading..."
 
             Deckbuilding { deck, builderOptions } ->
-                UI.Layout.Deck.writeMode
-                    { actions = Lazy.lazy UI.ActionBar.view actions
-                    , decklist = Lazy.lazy2 UI.Decklist.viewWrite decklistActions deck
-                    , selectors = DeckbuildSelections.view shared.collection FromBuilderOptions builderOptions deck.decklist
+                UI.Layout.TSplit.view
+                    { bar = Lazy.lazy UI.ActionBar.view actions
+                    , main = Lazy.lazy2 UI.Decklist.viewWrite decklistActions deck
+                    , secondary = DeckbuildSelections.view shared.collection FromBuilderOptions builderOptions deck.decklist
                     }
         ]
 

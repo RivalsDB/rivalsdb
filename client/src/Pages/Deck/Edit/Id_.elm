@@ -19,7 +19,7 @@ import UI.ActionBar
 import UI.DeckbuildSelections as DeckbuildSelections
 import UI.Decklist
 import UI.Icon as Icon
-import UI.Layout.Deck
+import UI.Layout.TSplit
 import UI.Layout.Template
 import View exposing (View)
 
@@ -242,10 +242,10 @@ view shared model =
         Editing data ->
             UI.Layout.Template.view FromShared
                 shared
-                [ UI.Layout.Deck.writeMode
-                    { actions = Lazy.lazy UI.ActionBar.view actions
-                    , decklist = Lazy.lazy2 UI.Decklist.viewWrite decklistActions data.deck
-                    , selectors = DeckbuildSelections.view shared.collection FromBuilderOptions data.builderOptions data.deck.decklist
+                [ UI.Layout.TSplit.view
+                    { bar = Lazy.lazy UI.ActionBar.view actions
+                    , main = Lazy.lazy2 UI.Decklist.viewWrite decklistActions data.deck
+                    , secondary = DeckbuildSelections.view shared.collection FromBuilderOptions data.builderOptions data.deck.decklist
                     }
                 ]
 

@@ -1,47 +1,45 @@
 @import ../../_vars
 
-.templ-deck
+.tsplit
   display: grid
   gap: $space-small
   grid-template-columns: repeat(1, 1fr)
-  &__actions
+  &__bar
     grid-column: 1 / 2
     grid-row: 1 / 2
-  &__decklist
+  &__main
     grid-column: 1 / 2
     grid-row: 2 / 3
-  &__support
+  &__secondary
     grid-column: 1 / 2
     grid-row: 3 / 4
 
-  @media screen and ( min-width: $breakpoint-ipad--horizontal)
+@media screen and ( min-width: $breakpoint-ipad--horizontal)
+  .tsplit
     gap: $space-medium $space-large
     grid-template-columns: repeat(2, 1fr)
-    &__actions
+
+    &__bar
       grid-column: 1 / 3
 
-    &__decklist
+    &__main
       grid-column: 1 / 2
       grid-row: 2 / 3
-    &__support
+    &__secondary
       grid-column: 2 / 3
       grid-row: 2/3
 
-.templ-deck
-  &__actions
-    background: var(--color-bg-close)
-    margin: 0 ($safearea-margin * -1)
-    height: 48px
-    padding: $space-small $safearea-margin
-    text-align: center
+.tsplit__bar
+  background: var(--color-bg-close)
+  margin: 0 ($safearea-margin * -1)
+  height: 48px
+  padding: $space-small $safearea-margin
+  text-align: center
 
   @media screen and ( min-width: $breakpoint-ipad--horizontal)
     position: sticky
     top: 0
-    &__actions
-      position: sticky
-      top: 0
-      z-index: $z-deckbuilder-actions
+    z-index: $z-deckbuilder-actions
 
 // SEARCH PAGE USES THIS
 .deckbldr
