@@ -1,6 +1,7 @@
 import { generateId } from "@rivalsdb/id";
 import { FastifyPluginAsync } from "fastify";
 import { signInRequired } from "./auth.js";
+import * as DeckMeta from "../entity/decklistMeta.js";
 import * as Deck from "../entity/deck.js";
 import * as GameMode from "../entity/gameMode.js";
 
@@ -20,6 +21,7 @@ interface DeckInputV2 {
   gameMode: "both" | "headToHead" | "multiplayer";
   name?: string;
   public?: boolean;
+  description?: string;
 }
 interface DeckOutput {
   agenda: string;
@@ -208,6 +210,7 @@ const putV2: FastifyPluginAsync = async (fastify) => {
               enum: ["both", "headToHead", "multiplayer"],
             },
             public: { type: "boolean" },
+            description: { type: "string" },
           },
         },
       },
@@ -236,6 +239,11 @@ const putV2: FastifyPluginAsync = async (fastify) => {
         const oldDeck = await Deck.fetchById(req.params.deckId);
         if (oldDeck == null) {
           await Deck.create(req.params.deckId, decklist, meta);
+          await DeckMeta.updateOrCreate(
+            req.params.deckId,
+            req.body.description
+          );
+
           reply.code(201);
           return reply.send();
         }
@@ -246,6 +254,7 @@ const putV2: FastifyPluginAsync = async (fastify) => {
         }
 
         await Deck.update(req.params.deckId, decklist, meta);
+        await DeckMeta.updateOrCreate(req.params.deckId, req.body.description);
 
         reply.code(204);
       },
@@ -325,6 +334,59 @@ const indexV1: FastifyPluginAsync = async (fastify) => {
   });
 };
 
+const indexV2: FastifyPluginAsync = async (fastify) => {
+  fastify.get<{ Querystring: { userId?: string } }>("/decklist", {
+    schema: {
+      querystring: {
+        userId: { type: "string" },
+      },
+      response: {
+        200: {
+          type: "array",
+          items: {
+            type: "object",
+            properties: {
+              name: { type: "string" },
+              agenda: { type: "string" },
+              haven: { type: "string" },
+              factionDeck: {
+                type: "object",
+                additionalProperties: { type: "boolean" },
+              },
+              libraryDeck: {
+                type: "object",
+                additionalProperties: { type: "integer" },
+              },
+              id: { type: "string" },
+              creatorId: { type: "string" },
+              creatorDisplayName: { type: "string" },
+              creatorPatronage: {
+                type: "string",
+                enum: ["not_patron", "kindred"],
+              },
+              gameMode: {
+                type: "string",
+                enum: ["both", "headToHead", "multiplayer"],
+              },
+              public: { type: "boolean" },
+              description: { type: "string" },
+            },
+          },
+        },
+      },
+    },
+    async handler(req): Promise<Deck.TransferObject[]> {
+      const decklists = await (req.query.userId == null
+        ? Deck.fetchAllPublic()
+        : req.query.userId === req.user?.sub
+        ? Deck.fetchAllByUser(req.query.userId)
+        : Deck.fetchAllPublicByUser(req.query.userId));
+
+      return decklists.map(Deck.toTransferObject);
+    },
+  });
+};
+
 const getV1: FastifyPluginAsync = async (fastify) => {
   fastify.get<{ Params: { deckId: string } }>("/decklist/:deckId", {
     schema: {
@@ -371,6 +433,53 @@ const getV1: FastifyPluginAsync = async (fastify) => {
   });
 };
 
+const getV2: FastifyPluginAsync = async (fastify) => {
+  fastify.get<{ Params: { deckId: string } }>("/decklist/:deckId", {
+    schema: {
+      response: {
+        200: {
+          type: "object",
+          properties: {
+            name: { type: "string" },
+            agenda: { type: "string" },
+            haven: { type: "string" },
+            factionDeck: {
+              type: "object",
+              additionalProperties: { type: "boolean" },
+            },
+            libraryDeck: {
+              type: "object",
+              additionalProperties: { type: "integer" },
+            },
+            id: { type: "string" },
+            creatorId: { type: "string" },
+            creatorDisplayName: { type: "string" },
+            creatorPatronage: {
+              type: "string",
+              enum: ["not_patron", "kindred"],
+            },
+            gameMode: {
+              type: "string",
+              enum: ["both", "headToHead", "multiplayer"],
+            },
+            public: { type: "boolean" },
+            description: { type: "string" },
+          },
+        },
+      },
+    },
+    async handler(req, reply): Promise<Deck.TransferObject> {
+      const decklist = await Deck.fetchById(req.params.deckId);
+      if (decklist === null) {
+        reply.code(404);
+        return reply.send();
+      }
+
+      return Deck.toTransferObject(decklist);
+    },
+  });
+};
+
 export const v1Routes: FastifyPluginAsync = async (fastify) => {
   fastify.register(indexV1);
   fastify.register(getV1);
@@ -384,6 +493,9 @@ export const v1Routes: FastifyPluginAsync = async (fastify) => {
 };
 
 export const v2Routes: FastifyPluginAsync = async (fastify) => {
+  fastify.register(indexV2);
+  fastify.register(getV2);
+
   fastify.register(async (fastify) => {
     fastify.register(signInRequired);
     fastify.register(putV2);
