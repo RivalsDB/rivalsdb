@@ -25,11 +25,9 @@ import UI.Icon.V2 as IconV2
 
 
 
-------------
-------------
--- NEW WAY
-------------
-------------
+----------
+-- Model
+----------
 
 
 type alias Option value never =
@@ -43,9 +41,21 @@ type alias Model value never =
     List (Option value never)
 
 
+
+----------
+-- MSGS
+----------
+
+
 type Msg value
     = ChangedValue value Bool
     | Noop
+
+
+
+----------
+-- UPDATE
+----------
 
 
 update : Msg value -> Model value never -> Model value never
@@ -64,6 +74,12 @@ update msg model =
 
         Noop ->
             model
+
+
+
+-------------
+-- Creators
+-------------
 
 
 allStacks : Model Cards.CardStack never
@@ -135,6 +151,12 @@ disciplines =
             )
 
 
+
+---------
+-- VIEW
+---------
+
+
 view : List (Option value never) -> Html (Msg value)
 view options =
     div [ class "filterpicker" ]
@@ -159,6 +181,12 @@ viewFilterOption option =
             ]
             []
         ]
+
+
+
+------------------
+-- Filter helper
+------------------
 
 
 isAllowed : (Card -> List value) -> Model value never -> Card -> Bool
