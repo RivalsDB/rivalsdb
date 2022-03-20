@@ -47,7 +47,7 @@ type Model
 
 type alias Data =
     { deck : Deck
-    , builderOptions : DeckbuildSelections.Model Msg
+    , builderOptions : DeckbuildSelections.Model
     , isSaving : Bool
     }
 

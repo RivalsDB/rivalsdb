@@ -10,7 +10,7 @@ import Data.Visibility exposing (Visibility(..))
 import Effect exposing (Effect)
 import Gen.Params.Deck.New exposing (Params)
 import Gen.Route as Route
-import Html
+import Html exposing (div)
 import Html.Lazy as Lazy
 import Page
 import Port.UniqueId exposing (UniqueId)
@@ -48,9 +48,15 @@ type Model
 
 type alias DeckbuildingModel =
     { deck : Deck
-    , builderOptions : DeckbuildSelections.Model Msg
+    , builderOptions : DeckbuildSelections.Model
     , isSaving : Bool
+    , secondaryTab : SecondaryTab
     }
+
+
+type SecondaryTab
+    = Builder
+    | Description
 
 
 init : ( Model, Effect Msg )
@@ -91,6 +97,7 @@ update user msg model =
                         { deck = Deck.create uniqueId user.id Nothing
                         , builderOptions = DeckbuildSelections.init
                         , isSaving = False
+                        , secondaryTab = Builder
                         }
                     , Effect.none
                     )
@@ -251,7 +258,12 @@ view shared model =
                 UI.Layout.TSplit.view
                     { bar = Lazy.lazy UI.ActionBar.view actions
                     , main = Lazy.lazy2 UI.Decklist.viewWrite decklistActions deck
-                    , secondary = DeckbuildSelections.view shared.collection FromBuilderOptions builderOptions deck.decklist
+                    , secondary =
+                        DeckbuildSelections.view
+                            shared.collection
+                            FromBuilderOptions
+                            builderOptions
+                            deck.decklist
                     }
         ]
 

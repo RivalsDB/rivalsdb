@@ -38,12 +38,12 @@ page shared _ =
 type alias Model =
     { matches : List Card
     , collection : Collection
-    , stackFilters : UI.FilterSelection.Model Cards.CardStack Msg
-    , primaryFilters : UI.FilterSelection.Model Trait Msg
-    , secondaryFilters : UI.FilterSelection.Model Trait Msg
-    , attackTypeFilters : UI.FilterSelection.Model Cards.AttackType Msg
-    , clansFilters : UI.FilterSelection.Model Clan Msg
-    , disciplineFilters : UI.FilterSelection.Model Discipline Msg
+    , stackFilters : UI.FilterSelection.Model Cards.CardStack Never
+    , primaryFilters : UI.FilterSelection.Model Trait Never
+    , secondaryFilters : UI.FilterSelection.Model Trait Never
+    , attackTypeFilters : UI.FilterSelection.Model Cards.AttackType Never
+    , clansFilters : UI.FilterSelection.Model Clan Never
+    , disciplineFilters : UI.FilterSelection.Model Discipline Never
     , packFilters : MultiSelect.Model Pack
     , textFilter : Maybe String
     }
@@ -166,12 +166,24 @@ view shared model =
         [ div [ class "searchpage__filters" ]
             [ UI.Text.header [ text "Filters" ]
             , div [ class "filter-group" ]
-                [ div [ class "filter-group__flags" ] [ UI.FilterSelection.view FromStacksFilter model.stackFilters ]
-                , div [ class "filter-group__flags" ] [ UI.FilterSelection.view FromPrimaryFilter model.primaryFilters ]
-                , div [ class "filter-group__flags" ] [ UI.FilterSelection.view FromSecondaryFilter model.secondaryFilters ]
-                , div [ class "filter-group__flags" ] [ UI.FilterSelection.view FromAttackTypesFilter model.attackTypeFilters ]
-                , div [ class "filter-group__flags" ] [ UI.FilterSelection.view FromClansFilter model.clansFilters ]
-                , div [ class "filter-group__flags" ] [ UI.FilterSelection.view FromDisciplinesFilter model.disciplineFilters ]
+                [ div [ class "filter-group__flags" ]
+                    [ Html.map FromStacksFilter <| UI.FilterSelection.view model.stackFilters
+                    ]
+                , div [ class "filter-group__flags" ]
+                    [ Html.map FromPrimaryFilter <| UI.FilterSelection.view model.primaryFilters
+                    ]
+                , div [ class "filter-group__flags" ]
+                    [ Html.map FromSecondaryFilter <| UI.FilterSelection.view model.secondaryFilters
+                    ]
+                , div [ class "filter-group__flags" ]
+                    [ Html.map FromAttackTypesFilter <| UI.FilterSelection.view model.attackTypeFilters
+                    ]
+                , div [ class "filter-group__flags" ]
+                    [ Html.map FromClansFilter <| UI.FilterSelection.view model.clansFilters
+                    ]
+                , div [ class "filter-group__flags" ]
+                    [ Html.map FromDisciplinesFilter <| UI.FilterSelection.view model.disciplineFilters
+                    ]
                 ]
             , div [ class "filter-group" ]
                 [ label []
