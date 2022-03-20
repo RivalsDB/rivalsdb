@@ -4,13 +4,14 @@ import API.Decklist
 import API.ErrorHandler
 import Auth
 import Cards
+import Data.Collection as Collection
 import Data.Deck as Deck exposing (Deck, Name(..))
 import Data.GameMode exposing (GameMode)
 import Data.Visibility exposing (Visibility(..))
 import Effect exposing (Effect)
 import Gen.Params.Deck.New exposing (Params)
 import Gen.Route as Route
-import Html exposing (div)
+import Html
 import Html.Lazy as Lazy
 import Page
 import Port.UniqueId exposing (UniqueId)
@@ -259,11 +260,11 @@ view shared model =
                     { bar = Lazy.lazy UI.ActionBar.view actions
                     , main = Lazy.lazy2 UI.Decklist.viewWrite decklistActions deck
                     , secondary =
-                        DeckbuildSelections.view
-                            shared.collection
-                            FromBuilderOptions
-                            builderOptions
-                            deck.decklist
+                        Html.map FromBuilderOptions <|
+                            DeckbuildSelections.view
+                                (Collection.playerCards shared.collection)
+                                builderOptions
+                                deck.decklist
                     }
         ]
 

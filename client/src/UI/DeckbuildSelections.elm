@@ -171,29 +171,26 @@ update msg model =
             ( { model | activeTab = tab }, Effect.none )
 
 
-view : Collection -> (Msg -> msg) -> Model -> Decklist -> Html msg
-view collection msg data decklist =
-    let
-        playerCardsCollection =
-            collection |> Dict.filter (\_ card -> Cards.stack card /= Cards.CityStack)
-    in
+view : Collection -> Model -> Decklist -> Html Msg
+view playerCardsCollection model decklist =
     div []
-        [ nav [] [ viewTabs data.activeTab ]
+        [ nav [] [ viewTabs model.activeTab ]
         , section [ class "deckbuild-selections" ]
-            [ Lazy.lazy3 viewHeader msg headerFilters data.showAllFilters
-            , Html.map msg <| Lazy.lazy viewFilters data
-            , Lazy.lazy3 viewHeader msg headerCards data.showCollectionImages
+            [ Lazy.lazy2 viewHeader headerFilters model.showAllFilters
+            , Lazy.lazy viewFilters model
+            , Lazy.lazy2 viewHeader headerCards model.showCollectionImages
             , div [ class "deckbuild-selections__collection" ] <|
-                if data.showCollectionImages then
-                    viewCardListImages playerCardsCollection msg data decklist
+                [ if model.showCollectionImages then
+                    viewCardListImages playerCardsCollection model decklist
 
-                else
-                    viewCardList playerCardsCollection msg data decklist
+                  else
+                    viewCardList playerCardsCollection model decklist
+                ]
             ]
         ]
 
 
-viewTabs : Tab -> Html msg
+viewTabs : Tab -> Html Msg
 viewTabs activeTab =
     ol [ class "deckbuild-tabs" ]
         [ li
@@ -307,13 +304,13 @@ headerCards =
     }
 
 
-viewHeader : (Msg -> msg) -> HeaderOptions -> Bool -> Html msg
-viewHeader msg opts isToggleOn =
+viewHeader : HeaderOptions -> Bool -> Html Msg
+viewHeader opts isToggleOn =
     div [ class "deckbuild-header" ]
         ([ h2 [ class "deckbuild-header__title" ] [ text opts.title ]
          , span
             [ class "deckbuild-header__action"
-            , onClick (msg opts.primary.action)
+            , onClick opts.primary.action
             ]
             [ text <|
                 if isToggleOn then
@@ -331,7 +328,7 @@ viewHeader msg opts isToggleOn =
                         [ span
                             [ class "deckbuild-header__action"
                             , class "deckbuild-header__action--secondary"
-                            , onClick (msg s.action)
+                            , onClick s.action
                             ]
                             [ text s.text ]
                         ]
@@ -339,37 +336,35 @@ viewHeader msg opts isToggleOn =
         )
 
 
-viewCardListImages : Collection -> (Msg -> msg) -> Model -> Decklist -> List (Html msg)
-viewCardListImages collection msg data decklist =
-    [ Keyed.ul [ class "deckbuild-selections__collectionitems--images" ] <|
-        List.map (\c -> ( Cards.id c, viewCardListImage msg decklist c )) <|
-            cardsToShow collection data
-    ]
+viewCardListImages : Collection -> Model -> Decklist -> Html Msg
+viewCardListImages collection model decklist =
+    Keyed.ul [ class "deckbuild-selections__collectionitems--images" ] <|
+        List.map (\c -> ( Cards.id c, viewCardListImage decklist c )) <|
+            cardsToShow collection model
 
 
-viewCardListImage : (Msg -> msg) -> Decklist -> Card -> Html msg
-viewCardListImage msg deck card =
+viewCardListImage : Decklist -> Card -> Html Msg
+viewCardListImage deck card =
     li [ class "deckbuild-selections__collectionitem--image" ]
         [ UI.Card.lazy card
         , div [ class "deckbuild-selections__rowpiece_quant--image" ]
-            [ UI.QuantityPicker.view (msg << ChangedDecklist) card (Data.Deck.copiesInDeck deck card)
+            [ UI.QuantityPicker.view ChangedDecklist card (Data.Deck.copiesInDeck deck card)
             ]
         ]
 
 
-viewCardList : Collection -> (Msg -> msg) -> Model -> Decklist -> List (Html msg)
-viewCardList collection msg data decklist =
-    [ Keyed.ul [ class "deckbuild-selections__collectionitems--rows" ] <|
-        List.map (\c -> ( Cards.id c, viewCardListRow msg decklist c )) <|
-            cardsToShow collection data
-    ]
+viewCardList : Collection -> Model -> Decklist -> Html Msg
+viewCardList collection model decklist =
+    Keyed.ul [ class "deckbuild-selections__collectionitems--rows" ] <|
+        List.map (\c -> ( Cards.id c, viewCardListRow decklist c )) <|
+            cardsToShow collection model
 
 
-viewCardListRow : (Msg -> msg) -> Decklist -> Card -> Html msg
-viewCardListRow msg deck card =
+viewCardListRow : Decklist -> Card -> Html Msg
+viewCardListRow deck card =
     li [ class "cardlist__row" ]
         [ span [ class "cardlist__quant--row" ]
-            [ UI.QuantityPicker.view (msg << ChangedDecklist) card (Data.Deck.copiesInDeck deck card)
+            [ UI.QuantityPicker.view ChangedDecklist card (Data.Deck.copiesInDeck deck card)
             ]
         , span [ class "cardlist__name" ] [ UI.CardName.withOverlay card ]
         , span [ class "cardlist__props" ]
@@ -412,23 +407,23 @@ viewIconsList viewIcon iconTypes =
 
 
 cardsToShow : Collection -> Model -> List Card
-cardsToShow collection data =
-    filteredCards collection data |> List.sortWith cardSort
+cardsToShow collection model =
+    filteredCards collection model |> List.sortWith cardSort
 
 
 filteredCards : Collection -> Model -> List Card
-filteredCards collection data =
+filteredCards collection model =
     let
         cards =
             Dict.values collection
     in
-    case data.textFilter of
+    case model.textFilter of
         Nothing ->
-            List.filter (filterFlags data) cards
+            List.filter (filterFlags model) cards
 
         Just needle ->
             List.filter (Cards.findTextInCard needle) cards
-                |> List.filter (filterFlags data)
+                |> List.filter (filterFlags model)
 
 
 filterFlags : Model -> Card -> Bool
