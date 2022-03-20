@@ -50,6 +50,7 @@ type alias Data =
     { deck : Deck
     , builderOptions : DeckbuildSelections.Model
     , isSaving : Bool
+    , description : String
     }
 
 
@@ -82,7 +83,14 @@ update user msg modelx =
             ( modelx, Effect.fromShared subMsg )
 
         ( Loading, FetchedDecklist (Ok deck) ) ->
-            ( Editing { isSaving = False, deck = deck, builderOptions = DeckbuildSelections.init }, Effect.none )
+            ( Editing
+                { isSaving = False
+                , deck = deck
+                , builderOptions = DeckbuildSelections.init
+                , description = ""
+                }
+            , Effect.none
+            )
 
         ( _, FetchedDecklist (Err _) ) ->
             ( modelx, Effect.none )
@@ -92,20 +100,6 @@ update user msg modelx =
 
         ( Editing oldModel, FetchedDecklist (Ok deck) ) ->
             ( Editing { oldModel | deck = deck }, Effect.none )
-
-        ( Editing oldModel, FromBuilderOptions (DeckbuildSelections.ChangedDecklist change) ) ->
-            let
-                oldDeck =
-                    oldModel.deck
-            in
-            ( Editing { oldModel | deck = { oldDeck | decklist = Deck.setCard oldDeck.decklist change } }, Effect.none )
-
-        ( Editing oldModel, FromBuilderOptions subMsg ) ->
-            let
-                ( subModel, subEffect ) =
-                    DeckbuildSelections.update subMsg oldModel.builderOptions
-            in
-            ( Editing { oldModel | builderOptions = subModel }, subEffect )
 
         ( Editing model, ChoseLeader leader ) ->
             let
@@ -221,6 +215,25 @@ update user msg modelx =
             in
             ( Editing { model | deck = { oldDeck | decklist = Deck.setCard oldDecklist choice } }, Effect.none )
 
+        ( Editing oldModel, FromBuilderOptions subMsg ) ->
+            case subMsg of
+                DeckbuildSelections.Internal _ ->
+                    let
+                        ( subModel, subEffect ) =
+                            DeckbuildSelections.update subMsg oldModel.builderOptions
+                    in
+                    ( Editing { oldModel | builderOptions = subModel }, subEffect )
+
+                DeckbuildSelections.External (DeckbuildSelections.ChangedDecklist change) ->
+                    let
+                        oldDeck =
+                            oldModel.deck
+                    in
+                    ( Editing { oldModel | deck = { oldDeck | decklist = Deck.setCard oldDeck.decklist change } }, Effect.none )
+
+                DeckbuildSelections.External (DeckbuildSelections.DescriptionChanged newDescription) ->
+                    ( Editing { oldModel | description = newDescription }, Effect.none )
+
 
 decklistActions : UI.Decklist.Actions Msg
 decklistActions =
@@ -252,6 +265,7 @@ view shared model =
                                 (Collection.playerCards shared.collection)
                                 data.builderOptions
                                 data.deck.decklist
+                                data.description
                     }
                 ]
 

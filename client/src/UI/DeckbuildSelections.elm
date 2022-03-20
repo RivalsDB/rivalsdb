@@ -1,5 +1,6 @@
-module UI.DeckbuildSelections exposing (Model, Msg(..), init, update, view)
+module UI.DeckbuildSelections exposing (ExternalMsg(..), Model, Msg(..), init, update, view)
 
+import Browser exposing (UrlRequest(..))
 import Cards exposing (Card)
 import Data.Clan exposing (Clan)
 import Data.Collection exposing (Collection)
@@ -9,8 +10,8 @@ import Data.Pack as Pack exposing (Pack)
 import Data.Trait exposing (Trait)
 import Dict
 import Effect exposing (Effect)
-import Html exposing (Html, div, h2, input, label, li, nav, ol, section, span, text, ul)
-import Html.Attributes exposing (class, classList, spellcheck, type_)
+import Html exposing (Html, div, h2, input, label, li, nav, ol, section, span, text, textarea, ul)
+import Html.Attributes exposing (attribute, class, classList, for, id, spellcheck, type_, value)
 import Html.Events exposing (onClick, onInput)
 import Html.Keyed as Keyed
 import Html.Lazy as Lazy
@@ -57,13 +58,22 @@ init =
     , textFilter = Nothing
     , showAllFilters = False
     , showCollectionImages = False
-    , activeTab = Editor
+    , activeTab = Description
     }
 
 
 type Msg
+    = Internal InternalMsg
+    | External ExternalMsg
+
+
+type ExternalMsg
     = ChangedDecklist ( Card, Int )
-    | ClearFilters
+    | DescriptionChanged String
+
+
+type InternalMsg
+    = ClearFilters
     | FromAttackTypesFilter (UI.FilterSelection.Msg Cards.AttackType)
     | FromClansFilter (UI.FilterSelection.Msg Clan)
     | FromDisciplinesFilter (UI.FilterSelection.Msg Discipline)
@@ -80,28 +90,31 @@ type Msg
 update : Msg -> Model -> ( Model, Effect msg )
 update msg model =
     case msg of
-        FromStacksFilter subMsg ->
+        External _ ->
+            ( model, Effect.none )
+
+        Internal (FromStacksFilter subMsg) ->
             ( { model | stackFilters = UI.FilterSelection.update subMsg model.stackFilters }, Effect.none )
 
-        FromPrimaryFilter subMsg ->
+        Internal (FromPrimaryFilter subMsg) ->
             ( { model | primaryFilters = UI.FilterSelection.update subMsg model.primaryFilters }, Effect.none )
 
-        FromSecondaryFilter subMsg ->
+        Internal (FromSecondaryFilter subMsg) ->
             ( { model | secondaryFilters = UI.FilterSelection.update subMsg model.secondaryFilters }, Effect.none )
 
-        FromAttackTypesFilter subMsg ->
+        Internal (FromAttackTypesFilter subMsg) ->
             ( { model | attackTypeFilters = UI.FilterSelection.update subMsg model.attackTypeFilters }, Effect.none )
 
-        FromClansFilter subMsg ->
+        Internal (FromClansFilter subMsg) ->
             ( { model | clansFilters = UI.FilterSelection.update subMsg model.clansFilters }, Effect.none )
 
-        FromDisciplinesFilter subMsg ->
+        Internal (FromDisciplinesFilter subMsg) ->
             ( { model | disciplineFilters = UI.FilterSelection.update subMsg model.disciplineFilters }, Effect.none )
 
-        FromPackFilter subMsg ->
+        Internal (FromPackFilter subMsg) ->
             ( { model | packFilters = MultiSelect.update subMsg model.packFilters }, Effect.none )
 
-        ClearFilters ->
+        Internal ClearFilters ->
             ( { model
                 | stackFilters = UI.FilterSelection.playerStacks
                 , primaryFilters = UI.FilterSelection.primaryTraits
@@ -115,7 +128,7 @@ update msg model =
             , Effect.fromCmd <| Port.Event.track Port.Event.BuilderClearFilters
             )
 
-        TextFilterChanged text ->
+        Internal (TextFilterChanged text) ->
             let
                 cleanText =
                     text |> String.trim |> String.toLower
@@ -131,7 +144,7 @@ update msg model =
             , Effect.none
             )
 
-        ToggleShowAllFilters ->
+        Internal ToggleShowAllFilters ->
             let
                 newShowAllFilters =
                     not model.showAllFilters
@@ -147,7 +160,7 @@ update msg model =
                     )
             )
 
-        ToggleShowCollectionImages ->
+        Internal ToggleShowCollectionImages ->
             let
                 newShowCollectionImages =
                     not model.showCollectionImages
@@ -164,29 +177,43 @@ update msg model =
                 )
             )
 
-        ChangedDecklist _ ->
-            ( model, Effect.none )
-
-        ActivateTab tab ->
+        Internal (ActivateTab tab) ->
             ( { model | activeTab = tab }, Effect.none )
 
 
-view : Collection -> Model -> Decklist -> Html Msg
-view playerCardsCollection model decklist =
-    div []
+view : Collection -> Model -> Decklist -> String -> Html Msg
+view playerCardsCollection model decklist description =
+    div [ class "builder-aside" ]
         [ nav [] [ viewTabs model.activeTab ]
-        , section [ class "deckbuild-selections" ]
-            [ Lazy.lazy2 viewHeader headerFilters model.showAllFilters
-            , Lazy.lazy viewFilters model
-            , Lazy.lazy2 viewHeader headerCards model.showCollectionImages
-            , div [ class "deckbuild-selections__collection" ] <|
-                [ if model.showCollectionImages then
-                    viewCardListImages playerCardsCollection model decklist
+        , case model.activeTab of
+            Editor ->
+                section [ class "deckbuild-selections" ]
+                    [ Lazy.lazy2 viewHeader headerFilters model.showAllFilters
+                    , Lazy.lazy viewFilters model
+                    , Lazy.lazy2 viewHeader headerCards model.showCollectionImages
+                    , Lazy.lazy3 viewCardSelection playerCardsCollection model decklist
+                    ]
 
-                  else
-                    viewCardList playerCardsCollection model decklist
-                ]
-            ]
+            Description ->
+                section [ class "deckbuild-description" ]
+                    [ h2 [] [ text "Description" ]
+                    , label [ class "deckbuild-description__label", for "description" ]
+                        [ span [ class "deckbuild-description__label-label" ]
+                            [ text "Deck description"
+                            ]
+                        , span [ class "deckbuild-description__label-extra" ]
+                            [ text "(this supports markdown)"
+                            ]
+                        ]
+                    , textarea
+                        [ onInput (External << DescriptionChanged)
+                        , attribute "autocorrect" "on"
+                        , class "deckbuild-description__input"
+                        , id "description"
+                        , value description
+                        ]
+                        []
+                    ]
         ]
 
 
@@ -194,19 +221,32 @@ viewTabs : Tab -> Html Msg
 viewTabs activeTab =
     ol [ class "deckbuild-tabs" ]
         [ li
-            [ classList
+            [ onClick (Internal (ActivateTab Editor))
+            , classList
                 [ ( "deckbuild-tabs__tab", True )
                 , ( "deckbuild-tabs__tab--active", activeTab == Editor )
                 ]
             ]
             [ text "Editor" ]
         , li
-            [ classList
+            [ onClick (Internal (ActivateTab Description))
+            , classList
                 [ ( "deckbuild-tabs__tab", True )
                 , ( "deckbuild-tabs__tab--active", activeTab == Description )
                 ]
             ]
             [ text "Description" ]
+        ]
+
+
+viewCardSelection : Collection -> Model -> Decklist -> Html Msg
+viewCardSelection playerCardsCollection model decklist =
+    div [ class "deckbuild-selections__collection" ] <|
+        [ if model.showCollectionImages then
+            viewCardListImages playerCardsCollection model decklist
+
+          else
+            viewCardList playerCardsCollection model decklist
         ]
 
 
@@ -231,28 +271,28 @@ viewFilters data =
 
 viewMainFilters : Model -> List (Html Msg)
 viewMainFilters data =
-    [ Html.map FromStacksFilter <| UI.FilterSelection.view data.stackFilters
-    , Html.map FromPrimaryFilter <| UI.FilterSelection.view data.primaryFilters
-    , Html.map FromClansFilter <| UI.FilterSelection.view data.clansFilters
+    [ Html.map (Internal << FromStacksFilter) <| UI.FilterSelection.view data.stackFilters
+    , Html.map (Internal << FromPrimaryFilter) <| UI.FilterSelection.view data.primaryFilters
+    , Html.map (Internal << FromClansFilter) <| UI.FilterSelection.view data.clansFilters
     ]
 
 
 viewSecondaryFilters : Model -> List (Html Msg)
 viewSecondaryFilters data =
-    [ Html.map FromSecondaryFilter <| UI.FilterSelection.view data.secondaryFilters
-    , Html.map FromAttackTypesFilter <| UI.FilterSelection.view data.attackTypeFilters
-    , Html.map FromDisciplinesFilter <| UI.FilterSelection.view data.disciplineFilters
+    [ Html.map (Internal << FromSecondaryFilter) <| UI.FilterSelection.view data.secondaryFilters
+    , Html.map (Internal << FromAttackTypesFilter) <| UI.FilterSelection.view data.attackTypeFilters
+    , Html.map (Internal << FromDisciplinesFilter) <| UI.FilterSelection.view data.disciplineFilters
     , div []
         [ label []
             [ text "Card text: "
-            , input [ onInput TextFilterChanged, type_ "search", spellcheck False ] []
+            , input [ onInput (Internal << TextFilterChanged), type_ "search", spellcheck False ] []
             ]
         ]
     , div []
         [ label []
             [ text "Card pack: "
             , span [ class "search__pack" ]
-                [ Html.map FromPackFilter <| MultiSelect.autoSorted "Card Pack" data.packFilters
+                [ Html.map (Internal << FromPackFilter) <| MultiSelect.autoSorted "Card Pack" data.packFilters
                 ]
             ]
         ]
@@ -284,11 +324,11 @@ headerFilters : HeaderOptions
 headerFilters =
     { title = "Filters"
     , primary =
-        { action = ToggleShowAllFilters
+        { action = Internal ToggleShowAllFilters
         , toggleOnTxt = "(hide filters)"
         , toggleOffTxt = "(show more)"
         }
-    , secondary = Just { action = ClearFilters, text = "Clear filters" }
+    , secondary = Just { action = Internal ClearFilters, text = "Clear filters" }
     }
 
 
@@ -296,7 +336,7 @@ headerCards : HeaderOptions
 headerCards =
     { title = "Cards"
     , primary =
-        { action = ToggleShowCollectionImages
+        { action = Internal ToggleShowCollectionImages
         , toggleOnTxt = "(hide images)"
         , toggleOffTxt = "(show images)"
         }
@@ -348,7 +388,7 @@ viewCardListImage deck card =
     li [ class "deckbuild-selections__collectionitem--image" ]
         [ UI.Card.lazy card
         , div [ class "deckbuild-selections__rowpiece_quant--image" ]
-            [ UI.QuantityPicker.view ChangedDecklist card (Data.Deck.copiesInDeck deck card)
+            [ UI.QuantityPicker.view (External << ChangedDecklist) card (Data.Deck.copiesInDeck deck card)
             ]
         ]
 
@@ -364,7 +404,7 @@ viewCardListRow : Decklist -> Card -> Html Msg
 viewCardListRow deck card =
     li [ class "cardlist__row" ]
         [ span [ class "cardlist__quant--row" ]
-            [ UI.QuantityPicker.view ChangedDecklist card (Data.Deck.copiesInDeck deck card)
+            [ UI.QuantityPicker.view (External << ChangedDecklist) card (Data.Deck.copiesInDeck deck card)
             ]
         , span [ class "cardlist__name" ] [ UI.CardName.withOverlay card ]
         , span [ class "cardlist__props" ]

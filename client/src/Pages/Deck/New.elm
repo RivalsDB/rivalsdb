@@ -51,13 +51,8 @@ type alias DeckbuildingModel =
     { deck : Deck
     , builderOptions : DeckbuildSelections.Model
     , isSaving : Bool
-    , secondaryTab : SecondaryTab
+    , description : String
     }
-
-
-type SecondaryTab
-    = Builder
-    | Description
 
 
 init : ( Model, Effect Msg )
@@ -98,7 +93,7 @@ update user msg model =
                         { deck = Deck.create uniqueId user.id Nothing
                         , builderOptions = DeckbuildSelections.init
                         , isSaving = False
-                        , secondaryTab = Builder
+                        , description = ""
                         }
                     , Effect.none
                     )
@@ -111,20 +106,6 @@ update user msg model =
 
         ( Loading, _ ) ->
             ( model, Effect.none )
-
-        ( Deckbuilding model2, FromBuilderOptions (DeckbuildSelections.ChangedDecklist change) ) ->
-            let
-                oldDeck =
-                    model2.deck
-            in
-            ( Deckbuilding { model2 | deck = { oldDeck | decklist = Deck.setCard oldDeck.decklist change } }, Effect.none )
-
-        ( Deckbuilding model2, FromBuilderOptions subMsg ) ->
-            let
-                ( subModel, subEffect ) =
-                    DeckbuildSelections.update subMsg model2.builderOptions
-            in
-            ( Deckbuilding { model2 | builderOptions = subModel }, subEffect )
 
         ( Deckbuilding model2, ChoseLeader leader ) ->
             let
@@ -234,6 +215,25 @@ update user msg model =
             in
             ( Deckbuilding { model2 | deck = { oldDeck | decklist = Deck.setCard oldDecklist choice } }, Effect.none )
 
+        ( Deckbuilding model2, FromBuilderOptions subMsg ) ->
+            case subMsg of
+                DeckbuildSelections.Internal _ ->
+                    let
+                        ( subModel, subEffect ) =
+                            DeckbuildSelections.update subMsg model2.builderOptions
+                    in
+                    ( Deckbuilding { model2 | builderOptions = subModel }, subEffect )
+
+                DeckbuildSelections.External (DeckbuildSelections.ChangedDecklist change) ->
+                    let
+                        oldDeck =
+                            model2.deck
+                    in
+                    ( Deckbuilding { model2 | deck = { oldDeck | decklist = Deck.setCard oldDeck.decklist change } }, Effect.none )
+
+                DeckbuildSelections.External (DeckbuildSelections.DescriptionChanged newDescription) ->
+                    ( Deckbuilding { model2 | description = newDescription }, Effect.none )
+
 
 decklistActions : UI.Decklist.Actions Msg
 decklistActions =
@@ -255,7 +255,7 @@ view shared model =
             Loading ->
                 Html.text "Loading..."
 
-            Deckbuilding { deck, builderOptions } ->
+            Deckbuilding { deck, builderOptions, description } ->
                 UI.Layout.TSplit.view
                     { bar = Lazy.lazy UI.ActionBar.view actions
                     , main = Lazy.lazy2 UI.Decklist.viewWrite decklistActions deck
@@ -265,6 +265,7 @@ view shared model =
                                 (Collection.playerCards shared.collection)
                                 builderOptions
                                 deck.decklist
+                                description
                     }
         ]
 

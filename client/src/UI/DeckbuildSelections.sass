@@ -1,5 +1,9 @@
 @import ../_vars
 
+.builder-aside
+  nav
+    margin-bottom: $space-large
+
 .deckbuild-selections
   &__collection
     margin-bottom: 40px
@@ -55,8 +59,24 @@
   display: grid
   grid-template-columns: repeat(2,1fr)
   &__tab
-    padding: 8px 16px
+    padding: $space-small $space-medium
     text-align: center
     cursor: pointer
+    border: 2px solid var(--color-bg-farthest)
+    background: var(--color-bg-far)
     &--active
-      background-color: #ccc
+      background: var(--color-bg-farthest)
+
+.deckbuild-description
+  &__label
+    display: block
+    font-size: $font-size--small
+    margin-top: $space-medium
+  &__label-label
+    display: none
+  &__input
+    display: block
+    box-sizing: border-box
+    width: 100%
+    padding: $space-micro
+    height: 10rem
