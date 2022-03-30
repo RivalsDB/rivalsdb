@@ -3299,7 +3299,7 @@ export const cards: Array<Card> = [
     attackType: [],
     name: "Seneschal",
     text: "Exert 5 Influence: Attach to the acting character. Action: Target foe loses 1 Prestige. If no one controls the Prince of the City, they lose 2 instead.",
-    bloodPotency: 3,
+    bloodPotency: 5,
     attributePhysical: 0,
     attributeSocial: 0,
     attributeMental: 0,
