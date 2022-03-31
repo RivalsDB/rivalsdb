@@ -6,7 +6,7 @@ import Data.Deck as Deck exposing (Deck)
 import Effect exposing (Effect)
 import Gen.Params.Deck.View.Id_ exposing (Params)
 import Gen.Route as Route
-import Html exposing (Html, button, div, h1, h2, nav, text)
+import Html exposing (Html, button, div, nav, text)
 import Html.Attributes exposing (class)
 import Html.Events exposing (onClick)
 import Markdown
