@@ -10,8 +10,8 @@ import Data.Pack as Pack exposing (Pack)
 import Data.Trait exposing (Trait)
 import Dict
 import Effect exposing (Effect)
-import Html exposing (Html, div, h2, input, label, li, nav, ol, section, span, text, textarea, ul)
-import Html.Attributes exposing (attribute, class, classList, for, id, spellcheck, type_, value)
+import Html exposing (Html, div, h2, input, label, li, nav, section, span, text, textarea, ul)
+import Html.Attributes exposing (attribute, class, for, id, spellcheck, type_, value)
 import Html.Events exposing (onClick, onInput)
 import Html.Keyed as Keyed
 import Html.Lazy as Lazy
@@ -24,6 +24,7 @@ import UI.Icon as Icon
 import UI.Icon.V2
 import UI.MultiSelect as MultiSelect
 import UI.QuantityPicker
+import UI.TopTabs
 
 
 type Tab
@@ -32,8 +33,7 @@ type Tab
 
 
 type alias Model =
-    { activeTab : Tab
-    , attackTypeFilters : UI.FilterSelection.Model Cards.AttackType Never
+    { attackTypeFilters : UI.FilterSelection.Model Cards.AttackType Never
     , clansFilters : UI.FilterSelection.Model Clan Never
     , disciplineFilters : UI.FilterSelection.Model Discipline Never
     , packFilters : MultiSelect.Model Pack
@@ -43,6 +43,7 @@ type alias Model =
     , showCollectionImages : Bool
     , stackFilters : UI.FilterSelection.Model Cards.CardStack Never
     , textFilter : Maybe String
+    , topTabs : UI.TopTabs.Model Tab
     }
 
 
@@ -58,7 +59,11 @@ init =
     , textFilter = Nothing
     , showAllFilters = False
     , showCollectionImages = False
-    , activeTab = Description
+    , topTabs =
+        UI.TopTabs.init
+            ( ( Editor, "Editor" )
+            , [ ( Description, "Description" ) ]
+            )
     }
 
 
@@ -84,7 +89,7 @@ type InternalMsg
     | ToggleShowAllFilters
     | ToggleShowCollectionImages
     | TextFilterChanged String
-    | ActivateTab Tab
+    | FromTopTabs (UI.TopTabs.Msg Tab)
 
 
 update : Msg -> Model -> ( Model, Effect msg )
@@ -177,15 +182,17 @@ update msg model =
                 )
             )
 
-        Internal (ActivateTab tab) ->
-            ( { model | activeTab = tab }, Effect.none )
+        Internal (FromTopTabs subMsg) ->
+            ( { model | topTabs = UI.TopTabs.update subMsg model.topTabs }, Effect.none )
 
 
-view : Collection -> Model -> Decklist -> String -> Html Msg
+view : Collection -> Model -> Decklist -> Maybe String -> Html Msg
 view playerCardsCollection model decklist description =
     div [ class "builder-aside" ]
-        [ nav [] [ viewTabs model.activeTab ]
-        , case model.activeTab of
+        [ nav []
+            [ Html.map (Internal << FromTopTabs) <| UI.TopTabs.view model.topTabs
+            ]
+        , case UI.TopTabs.activeTab model.topTabs of
             Editor ->
                 section [ class "deckbuild-selections" ]
                     [ Lazy.lazy2 viewHeader headerFilters model.showAllFilters
@@ -210,32 +217,10 @@ view playerCardsCollection model decklist description =
                         , attribute "autocorrect" "on"
                         , class "deckbuild-description__input"
                         , id "description"
-                        , value description
+                        , value (Maybe.withDefault "" description)
                         ]
                         []
                     ]
-        ]
-
-
-viewTabs : Tab -> Html Msg
-viewTabs activeTab =
-    ol [ class "deckbuild-tabs" ]
-        [ li
-            [ onClick (Internal (ActivateTab Editor))
-            , classList
-                [ ( "deckbuild-tabs__tab", True )
-                , ( "deckbuild-tabs__tab--active", activeTab == Editor )
-                ]
-            ]
-            [ text "Editor" ]
-        , li
-            [ onClick (Internal (ActivateTab Description))
-            , classList
-                [ ( "deckbuild-tabs__tab", True )
-                , ( "deckbuild-tabs__tab--active", activeTab == Description )
-                ]
-            ]
-            [ text "Description" ]
         ]
 
 

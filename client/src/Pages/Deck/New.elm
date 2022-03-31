@@ -51,7 +51,6 @@ type alias DeckbuildingModel =
     { deck : Deck
     , builderOptions : DeckbuildSelections.Model
     , isSaving : Bool
-    , description : String
     }
 
 
@@ -93,7 +92,6 @@ update user msg model =
                         { deck = Deck.create uniqueId user.id Nothing
                         , builderOptions = DeckbuildSelections.init
                         , isSaving = False
-                        , description = ""
                         }
                     , Effect.none
                     )
@@ -232,7 +230,16 @@ update user msg model =
                     ( Deckbuilding { model2 | deck = { oldDeck | decklist = Deck.setCard oldDeck.decklist change } }, Effect.none )
 
                 DeckbuildSelections.External (DeckbuildSelections.DescriptionChanged newDescription) ->
-                    ( Deckbuilding { model2 | description = newDescription }, Effect.none )
+                    let
+                        oldDeck =
+                            model2.deck
+
+                        oldMeta =
+                            oldDeck.meta
+                    in
+                    ( Deckbuilding { model2 | deck = { oldDeck | meta = { oldMeta | description = Just newDescription } } }
+                    , Effect.none
+                    )
 
 
 decklistActions : UI.Decklist.Actions Msg
@@ -255,7 +262,7 @@ view shared model =
             Loading ->
                 Html.text "Loading..."
 
-            Deckbuilding { deck, builderOptions, description } ->
+            Deckbuilding { deck, builderOptions } ->
                 UI.Layout.TSplit.view
                     { bar = Lazy.lazy UI.ActionBar.view actions
                     , main = Lazy.lazy2 UI.Decklist.viewWrite decklistActions deck
@@ -265,7 +272,7 @@ view shared model =
                                 (Collection.playerCards shared.collection)
                                 builderOptions
                                 deck.decklist
-                                description
+                                deck.meta.description
                     }
         ]
 

@@ -50,7 +50,6 @@ type alias Data =
     { deck : Deck
     , builderOptions : DeckbuildSelections.Model
     , isSaving : Bool
-    , description : String
     }
 
 
@@ -87,7 +86,6 @@ update user msg modelx =
                 { isSaving = False
                 , deck = deck
                 , builderOptions = DeckbuildSelections.init
-                , description = ""
                 }
             , Effect.none
             )
@@ -232,7 +230,16 @@ update user msg modelx =
                     ( Editing { oldModel | deck = { oldDeck | decklist = Deck.setCard oldDeck.decklist change } }, Effect.none )
 
                 DeckbuildSelections.External (DeckbuildSelections.DescriptionChanged newDescription) ->
-                    ( Editing { oldModel | description = newDescription }, Effect.none )
+                    let
+                        oldDeck =
+                            oldModel.deck
+
+                        oldMeta =
+                            oldDeck.meta
+                    in
+                    ( Editing { oldModel | deck = { oldDeck | meta = { oldMeta | description = Just newDescription } } }
+                    , Effect.none
+                    )
 
 
 decklistActions : UI.Decklist.Actions Msg
@@ -265,7 +272,7 @@ view shared model =
                                 (Collection.playerCards shared.collection)
                                 data.builderOptions
                                 data.deck.decklist
-                                data.description
+                                data.deck.meta.description
                     }
                 ]
 

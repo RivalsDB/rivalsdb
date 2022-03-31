@@ -65,7 +65,7 @@ type alias ResultDelete =
 
 delete : (ResultDelete -> msg) -> Shared.Token -> String -> Cmd msg
 delete msg token deckId =
-    API.delete { token = Just token, url = "/api/v1/decklist/" ++ deckId, expect = Http.expectWhatever msg }
+    API.delete { token = Just token, url = "/api/v2/decklist/" ++ deckId, expect = Http.expectWhatever msg }
 
 
 type alias ResultRead =
@@ -76,7 +76,7 @@ read : Collection -> (ResultRead -> msg) -> Maybe Shared.Token -> String -> Cmd 
 read collection msg token deckId =
     API.get
         { token = token
-        , url = "/api/v1/decklist/" ++ deckId
+        , url = "/api/v2/decklist/" ++ deckId
         , expect = Http.expectJson msg (Data.Deck.decoder collection)
         }
 
@@ -89,7 +89,7 @@ index : Collection -> (ResultIndex -> msg) -> Maybe Shared.Token -> Cmd msg
 index collection msg token =
     API.get
         { token = token
-        , url = "/api/v1/decklist"
+        , url = "/api/v2/decklist"
         , expect = Http.expectJson msg (Decode.list <| Data.Deck.decoder collection)
         }
 
@@ -98,6 +98,6 @@ indexForUser : Collection -> (ResultIndex -> msg) -> Shared.Token -> String -> C
 indexForUser collection msg token userId =
     API.get
         { token = Just token
-        , url = "/api/v1/decklist?userId=" ++ userId
+        , url = "/api/v2/decklist?userId=" ++ userId
         , expect = Http.expectJson msg (Decode.list <| Data.Deck.decoder collection)
         }

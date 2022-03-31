@@ -1,0 +1,34 @@
+@import ../../../_vars
+
+.deckview__aside
+  nav
+    margin-bottom: $space-large
+
+.deckview__description
+  h1,h2,h3
+    line-height: 1
+  h1, h2
+    font-weight: bold
+  h1
+    font-size: 140%
+  h2
+    font-size: 120%
+  h3
+    font-size: 100%
+    color: var(--color-copy-highlight)
+  p
+    font-size: 100%
+
+  blockquote
+    padding: $space-small 0 $space-small 2ch
+
+  h1,h2
+    margin-top: $space-large
+  h3,h4,h5,h6
+    margin-top: $space-medium
+  h1,h2,h3
+    & + p
+      margin-top: $space-small
+
+.deckview__drawtrigger
+  margin-bottom: $space-medium
