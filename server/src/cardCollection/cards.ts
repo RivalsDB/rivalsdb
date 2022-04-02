@@ -4755,7 +4755,7 @@ export const cards: Array<Card> = [
     name: "We Are Legend",
     clan: "gangrel",
     types: ["action"],
-    text: "Gain 1 [influence]. Then draw 2 cards and discard 1 of them.",
+    text: "Gain 1 [prestige]. Then draw 2 cards and discard 1 of them.",
     set: "Wolf & Rat",
     illustrator: "Irene Francisco",
     id: "war-we-are-legend",
