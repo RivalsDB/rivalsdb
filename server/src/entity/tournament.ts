@@ -25,7 +25,7 @@ type TournamentResult = {
     agenda: string;
     creatorId: string;
     creatorPatronage: PatronageType;
-    factionDeck: string[];
+    factionDeck: Record<string, boolean>;
     gameMode: GameMode.DB;
     haven: string;
     libraryDeck: Record<string, number>;
@@ -82,7 +82,6 @@ export const fetchHallOfFame = async (): Promise<TournamentResult[]> => {
           agenda: deck.content.agenda,
           creatorId: deck.user_id,
           creatorPatronage: deck.patronage_type,
-          factionDeck: deck.content.factionDeck,
           gameMode: deck.game_mode,
           haven: deck.content.haven,
           libraryDeck: deck.content.libraryDeck,
@@ -90,6 +89,13 @@ export const fetchHallOfFame = async (): Promise<TournamentResult[]> => {
           placement: deck.placement,
           creatorDisplayName: deck.display_name ?? undefined,
           name: deck.name ?? undefined,
+          factionDeck: deck.content.factionDeck.reduce<Record<string, boolean>>(
+            (faction, cardId) => {
+              faction[cardId] = cardId === deck.content.leader;
+              return faction;
+            },
+            {}
+          ),
         })),
       };
     })
