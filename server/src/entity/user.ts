@@ -14,7 +14,7 @@ export type User = {
 
 export const toTransferObject = (user: User) => ({
   userId: user.id,
-  patronage: Patronage.toString(user.patronage),
+  patronage: user.patronage,
   displayName: user.displayName,
 });
 

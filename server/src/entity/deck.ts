@@ -4,13 +4,21 @@ import * as Patronage from "./patronage.js";
 import { User } from "./user.js";
 import { WithMeta } from "./decklistMeta.js";
 
-type Deck = {
+export type Content = {
+  agenda: string;
+  haven: string;
+  leader: string;
+  factionDeck: string[];
+  libraryDeck: Record<string, number>;
+};
+
+export type Deck = {
   id: string;
   decklist: Decklist;
   meta: Meta;
 };
 
-type WithCreator<D> = D & {
+export type WithCreator<D> = D & {
   creator: Pick<User, "id" | "displayName" | "patronage">;
 };
 
@@ -55,7 +63,7 @@ export const toTransferObject = (
   libraryDeck: deck.decklist.libraryDeck,
   name: deck.meta.name,
   public: deck.meta.public,
-  creatorPatronage: Patronage.toString(deck.creator?.patronage),
+  creatorPatronage: deck.creator?.patronage ?? "not_patron",
   gameMode: GameMode.toString(deck.meta.gameMode),
   factionDeck: deck.decklist.factionDeck.reduce<Record<string, boolean>>(
     (faction, cardId) => {
