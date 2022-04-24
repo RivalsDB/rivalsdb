@@ -19,6 +19,8 @@ view msg shared =
             ([ li [ class "nav__item" ]
                 [ a [ href <| Route.toHref Route.Decks ] [ text "Decks" ] ]
              , li [ class "nav__item" ]
+                [ a [ href <| Route.toHref Route.Tournaments ] [ text "Tournaments" ] ]
+             , li [ class "nav__item" ]
                 [ a [ href <| Route.toHref Route.Search ] [ text "Cards" ] ]
              ]
                 ++ (if isSignedId shared.user then

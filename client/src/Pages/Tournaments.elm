@@ -6,7 +6,7 @@ import Data.Deck exposing (Deck)
 import Data.Tournament as Tournament exposing (Placement, Tournament)
 import Effect exposing (Effect)
 import Gen.Params.Tournaments exposing (Params)
-import Html exposing (Html, dd, div, dl, dt, h2, li, ol, span, text, ul)
+import Html exposing (Html, div, h2, li, ol, span, text, ul)
 import Html.Attributes exposing (class)
 import Page
 import Request
