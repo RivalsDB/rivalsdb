@@ -1,0 +1,32 @@
+@import ../_vars
+
+.page-tournaments
+  &__content
+    margin: $space-medium 0 $space-huge
+  &__tournaments-list
+    margin-top: $space-medium
+
+.tournament-list
+  &__item
+    margin-top: $space-medium
+    &:first-child
+      margin-top: 0
+  &__event-name,
+  &__event-subtitle
+    line-height: $font-line-height-std
+  &__event-name
+    font-size: $font-size--sectionheader
+  &__event-subtitle
+    font-size: $font-size--body
+  &__decks
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    gap: $space-medium
+  &__deck
+    margin-top: $space-medium
+    flex: 1 0 340px
+    max-width: 476px
+
+  &__deck-placement
+    margin-bottom: $space-nano

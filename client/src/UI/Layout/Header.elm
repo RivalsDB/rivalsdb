@@ -92,6 +92,11 @@ view msg shared =
                             ]
                         ]
                     , li [ class "burgernav__item" ]
+                        [ a [ class "burgernav__link", href <| Route.toHref Route.Tournaments ]
+                            [ text "Deck Collections"
+                            ]
+                        ]
+                    , li [ class "burgernav__item" ]
                         [ a [ class "burgernav__link", href <| Route.toHref Route.Profile ]
                             [ text "My Profile"
                             ]
