@@ -39,6 +39,7 @@ export const fetchHallOfFame = async (): Promise<TournamentResult[]> => {
   const tournamentRows: TournamentRow[] = await db.query(sql`
     SELECT tournament_id, name, start_date::text, end_date::text, size
     FROM tournaments
+    ORDER BY end_date DESC
   `);
 
   return await Promise.all(
@@ -68,6 +69,7 @@ export const fetchHallOfFame = async (): Promise<TournamentResult[]> => {
         INNER JOIN decklists AS d ON p.decklist_id = d.decklist_id
         INNER JOIN users AS u ON d.user_id = u.user_id
         WHERE p.tournament_id = ${trow.tournament_id}
+        ORDER BY p.placement ASC
     `);
       return {
         tournament: {
