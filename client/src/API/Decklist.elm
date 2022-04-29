@@ -65,7 +65,7 @@ type alias ResultDelete =
 
 delete : (ResultDelete -> msg) -> Shared.Token -> String -> Cmd msg
 delete msg token deckId =
-    API.delete { token = Just token, url = "/api/v2/decklist/" ++ deckId, expect = Http.expectWhatever msg }
+    API.delete { token = Just token, url = "/api/v1/decklist/" ++ deckId, expect = Http.expectWhatever msg }
 
 
 type alias ResultRead =
