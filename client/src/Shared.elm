@@ -11,10 +11,11 @@ module Shared exposing
 import Browser.Navigation as Navigation exposing (Key)
 import Cards exposing (Card, Id, cardsDecoder)
 import Data.Collection exposing (Collection)
+import Data.User as User exposing (User)
 import Dict
 import Gen.Route as Route exposing (Route)
 import Json.Decode as Json exposing (Decoder)
-import Port.Auth exposing (User)
+import Port.Auth
 import Port.Event
 import Request exposing (Request)
 import UI.Layout.Toast as Toast
@@ -58,16 +59,16 @@ type Msg
 init : Request -> Flags -> ( Model, Cmd Msg )
 init req flags =
     let
-        { collection, strictFilterInitial } =
+        { collection, strictFilterInitial, user } =
             case Json.decodeValue flagsDecoder flags of
                 Ok decoded ->
                     decoded
 
                 Err _ ->
-                    { collection = Dict.empty, strictFilterInitial = False }
+                    { collection = Dict.empty, strictFilterInitial = False, user = Nothing }
     in
     ( { collection = collection
-      , user = Nothing
+      , user = user
       , burgerMenu = False
       , headerSearchInput = ""
       , headerSearch = Nothing
@@ -154,11 +155,12 @@ subscriptions _ _ =
 
 
 type alias DecodedFlags =
-    { collection : Dict.Dict Id Card, strictFilterInitial : Bool }
+    { collection : Dict.Dict Id Card, strictFilterInitial : Bool, user : Maybe User }
 
 
 flagsDecoder : Decoder DecodedFlags
 flagsDecoder =
-    Json.map2 DecodedFlags
+    Json.map3 DecodedFlags
         (Json.field "cards" cardsDecoder)
         (Json.field "strictFilterInitial" Json.bool)
+        (Json.maybe <| Json.field "userData" User.decode)

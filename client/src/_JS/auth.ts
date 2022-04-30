@@ -22,7 +22,7 @@ export class Auth {
     }, 60e3);
   }
 
-  public static async create(): Promise<Auth> {
+  public static async create(): Promise<{ auth: Auth; userData?: UserData }> {
     const auth0 = await createAuth0Client({
       domain: "rivalsdb.eu.auth0.com",
       client_id: "jfoDbFRgDspBrj1h9NXY9RUgXIwfKHUQ",
@@ -30,11 +30,12 @@ export class Auth {
       cacheLocation: "localstorage",
     });
 
-    const instance = new Auth(auth0);
+    const auth = new Auth(auth0);
 
     const isAuthenticated = await auth0.isAuthenticated();
     if (isAuthenticated) {
-      return instance;
+      const userData = await auth.fetchUserData();
+      return { auth, userData };
     }
 
     const searchParams = new URLSearchParams(window.location.search);
@@ -42,7 +43,7 @@ export class Auth {
       await auth0.handleRedirectCallback();
       window.history.replaceState({}, document.title, "/");
     }
-    return instance;
+    return { auth };
   }
 
   public async signIn(): Promise<void> {
@@ -64,17 +65,17 @@ export class Auth {
     return this;
   }
 
-  public async fetchUserData(): Promise<null | UserData> {
+  public async fetchUserData(): Promise<undefined | UserData> {
     const [token, user] = await Promise.all([
       this.auth0.getTokenSilently(),
       this.auth0.getUser(),
     ]);
 
     const email = user?.email;
-    if (typeof email !== "string") return null;
+    if (typeof email !== "string") return undefined;
 
     const userId = user?.sub;
-    if (typeof userId !== "string") return null;
+    if (typeof userId !== "string") return undefined;
 
     return { email, token, user: userId };
   }

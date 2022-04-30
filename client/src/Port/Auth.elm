@@ -1,5 +1,6 @@
-port module Port.Auth exposing (User, receivedSignin, startSignin, startSignout)
+port module Port.Auth exposing (receivedSignin, startSignin, startSignout)
 
+import Data.User as User exposing (User)
 import Json.Decode as Json
 
 
@@ -22,23 +23,14 @@ startSignin =
     initiateLogin ()
 
 
-type alias User =
-    { token : String, id : String }
-
-
 receivedSignin : (Maybe User -> msg) -> Sub msg
 receivedSignin onSignIn =
     signInReceiver
         (\json ->
-            case Json.decodeValue decodeUser json of
+            case Json.decodeValue User.decode json of
                 Ok user ->
                     onSignIn <| Just user
 
                 Err _ ->
                     onSignIn <| Nothing
         )
-
-
-decodeUser : Json.Decoder User
-decodeUser =
-    Json.map2 User (Json.field "token" Json.string) (Json.field "user" Json.string)

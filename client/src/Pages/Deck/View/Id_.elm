@@ -3,6 +3,7 @@ module Pages.Deck.View.Id_ exposing (Model, Msg, page)
 import API.Decklist
 import API.ErrorHandler
 import Data.Deck as Deck exposing (Deck)
+import Data.User exposing (User)
 import Effect exposing (Effect)
 import Gen.Params.Deck.View.Id_ exposing (Params)
 import Gen.Route as Route
@@ -11,7 +12,6 @@ import Html.Attributes exposing (class)
 import Html.Events exposing (onClick)
 import Markdown
 import Page
-import Port.Auth exposing (User)
 import Port.Event
 import Request
 import Shared

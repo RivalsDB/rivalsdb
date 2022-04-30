@@ -3,12 +3,12 @@ module Pages.MyDecks exposing (Model, Msg, page)
 import API.Decklist
 import Data.Collection exposing (Collection)
 import Data.Deck exposing (Deck)
+import Data.User exposing (User)
 import Effect exposing (Effect)
 import Gen.Params.MyDecks exposing (Params)
 import Html exposing (div, li, text, ul)
 import Html.Attributes exposing (class)
 import Page
-import Port.Auth exposing (User)
 import Request
 import Shared
 import UI.DeckCard
