@@ -5,7 +5,8 @@ module UI.FilterSelection exposing
     , attackTypes
     , clans
     , disciplines
-    , isAllowed
+    , isAllowedStrict
+    , isAllowedWide
     , playerStacks
     , primaryTraits
     , secondaryTraits
@@ -189,22 +190,39 @@ viewFilterOption option =
 ------------------
 
 
-isAllowed : (Card -> List value) -> Model value never -> Card -> Bool
-isAllowed toValues model card =
-    let
-        whitelist =
-            List.filterMap
-                (\{ value, selected } ->
-                    if selected then
-                        Just value
+isAllowedWide : (Card -> List value) -> Model value never -> Card -> Bool
+isAllowedWide toValues model card =
+    case extractWhitelist model of
+        [] ->
+            True
 
-                    else
-                        Nothing
-                )
-                model
-    in
-    if List.isEmpty whitelist then
-        True
+        whitelist ->
+            List.any (contains whitelist) (toValues card)
 
-    else
-        toValues card |> List.any (\cardValue -> List.member cardValue whitelist)
+
+isAllowedStrict : (Card -> List value) -> Model value never -> Card -> Bool
+isAllowedStrict toValues model card =
+    case extractWhitelist model of
+        [] ->
+            True
+
+        whitelist ->
+            List.all (contains <| toValues card) whitelist
+
+
+extractWhitelist : Model value never -> List value
+extractWhitelist model =
+    List.filterMap
+        (\{ value, selected } ->
+            if selected then
+                Just value
+
+            else
+                Nothing
+        )
+        model
+
+
+contains : List a -> a -> Bool
+contains xs x =
+    List.member x xs

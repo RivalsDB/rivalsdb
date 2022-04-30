@@ -40,6 +40,7 @@ type alias Model =
     , primaryFilters : UI.FilterSelection.Model Trait Never
     , secondaryFilters : UI.FilterSelection.Model Trait Never
     , showAllFilters : Bool
+    , strictFilters : Bool
     , showCollectionImages : Bool
     , stackFilters : UI.FilterSelection.Model Cards.CardStack Never
     , textFilter : Maybe String
@@ -58,6 +59,7 @@ init =
     , packFilters = MultiSelect.init Pack.list
     , textFilter = Nothing
     , showAllFilters = False
+    , strictFilters = False
     , showCollectionImages = False
     , topTabs =
         UI.TopTabs.init
@@ -87,6 +89,7 @@ type InternalMsg
     | FromStacksFilter (UI.FilterSelection.Msg Cards.CardStack)
     | FromPackFilter (MultiSelect.Msg Pack)
     | ToggleShowAllFilters
+    | ToggleStrictFilters
     | ToggleShowCollectionImages
     | TextFilterChanged String
     | FromTopTabs (UI.TopTabs.Msg Tab)
@@ -165,6 +168,15 @@ update msg model =
                     )
             )
 
+        Internal ToggleStrictFilters ->
+            let
+                newStrictFilters =
+                    not model.strictFilters
+            in
+            ( { model | strictFilters = newStrictFilters }
+            , Effect.fromCmd <| Port.Event.track (Port.Event.BuilderToggleStrictFilters newStrictFilters)
+            )
+
         Internal ToggleShowCollectionImages ->
             let
                 newShowCollectionImages =
@@ -195,9 +207,9 @@ view playerCardsCollection model decklist description =
         , case UI.TopTabs.activeTab model.topTabs of
             Editor ->
                 section [ class "deckbuild-selections" ]
-                    [ Lazy.lazy2 viewHeader headerFilters model.showAllFilters
+                    [ Lazy.lazy2 viewFiltersHeader model.showAllFilters model.strictFilters
                     , Lazy.lazy viewFilters model
-                    , Lazy.lazy2 viewHeader headerCards model.showCollectionImages
+                    , Lazy.lazy viewCardlistHeader model.showCollectionImages
                     , Lazy.lazy3 viewCardSelection playerCardsCollection model decklist
                     ]
 
@@ -290,75 +302,46 @@ viewSecondaryFilters data =
 -----------------
 
 
-type alias HeaderOptions =
-    { title : String
-    , primary :
-        { action : Msg
-        , toggleOnTxt : String
-        , toggleOffTxt : String
-        }
-    , secondary :
-        Maybe
-            { action : Msg
-            , text : String
-            }
-    }
-
-
-headerFilters : HeaderOptions
-headerFilters =
-    { title = "Filters"
-    , primary =
-        { action = Internal ToggleShowAllFilters
-        , toggleOnTxt = "(hide filters)"
-        , toggleOffTxt = "(show more)"
-        }
-    , secondary = Just { action = Internal ClearFilters, text = "Clear filters" }
-    }
-
-
-headerCards : HeaderOptions
-headerCards =
-    { title = "Cards"
-    , primary =
-        { action = Internal ToggleShowCollectionImages
-        , toggleOnTxt = "(hide images)"
-        , toggleOffTxt = "(show images)"
-        }
-    , secondary = Nothing
-    }
-
-
-viewHeader : HeaderOptions -> Bool -> Html Msg
-viewHeader opts isToggleOn =
+viewFiltersHeader : Bool -> Bool -> Html Msg
+viewFiltersHeader isToggleOn strictFiltersOn =
     div [ class "deckbuild-header" ]
-        ([ h2 [ class "deckbuild-header__title" ] [ text opts.title ]
-         , span
-            [ class "deckbuild-header__action"
-            , onClick opts.primary.action
-            ]
+        [ h2 [ class "deckbuild-header__title" ]
+            [ text "Filters" ]
+        , span [ class "deckbuild-header__action", onClick <| Internal ToggleShowAllFilters ]
             [ text <|
                 if isToggleOn then
-                    opts.primary.toggleOnTxt
+                    "(hide filters)"
 
                 else
-                    opts.primary.toggleOffTxt
+                    "(show more)"
             ]
-         ]
-            ++ (case opts.secondary of
-                    Nothing ->
-                        []
+        , span [ class "deckbuild-header__action", onClick <| Internal ToggleStrictFilters ]
+            [ text <|
+                if strictFiltersOn then
+                    "(using strict filters)"
 
-                    Just s ->
-                        [ span
-                            [ class "deckbuild-header__action"
-                            , class "deckbuild-header__action--secondary"
-                            , onClick s.action
-                            ]
-                            [ text s.text ]
-                        ]
-               )
-        )
+                else
+                    "(using wide filters)"
+            ]
+        , span [ class "deckbuild-header__action", class "deckbuild-header__action--secondary", onClick <| Internal ClearFilters ]
+            [ text "Clear filters" ]
+        ]
+
+
+viewCardlistHeader : Bool -> Html Msg
+viewCardlistHeader isToggleOn =
+    div [ class "deckbuild-header" ]
+        [ h2 [ class "deckbuild-header__title" ]
+            [ text "Cards" ]
+        , span [ class "deckbuild-header__action", onClick <| Internal ToggleShowCollectionImages ]
+            [ text <|
+                if isToggleOn then
+                    "(hide images)"
+
+                else
+                    "(show images)"
+            ]
+        ]
 
 
 viewCardListImages : Collection -> Model -> Decklist -> Html Msg
@@ -453,12 +436,20 @@ filteredCards collection model =
 
 filterFlags : Model -> Card -> Bool
 filterFlags data card =
-    UI.FilterSelection.isAllowed Cards.clanRequirement data.clansFilters card
-        && UI.FilterSelection.isAllowed Cards.traits data.secondaryFilters card
-        && UI.FilterSelection.isAllowed (Cards.stack >> List.singleton) data.stackFilters card
-        && UI.FilterSelection.isAllowed Cards.discipline data.disciplineFilters card
-        && UI.FilterSelection.isAllowed Cards.traits data.primaryFilters card
-        && UI.FilterSelection.isAllowed Cards.attackTypes data.attackTypeFilters card
+    let
+        filter =
+            if data.strictFilters then
+                UI.FilterSelection.isAllowedStrict
+
+            else
+                UI.FilterSelection.isAllowedWide
+    in
+    filter Cards.clanRequirement data.clansFilters card
+        && filter Cards.traits data.secondaryFilters card
+        && filter (Cards.stack >> List.singleton) data.stackFilters card
+        && filter Cards.discipline data.disciplineFilters card
+        && filter Cards.traits data.primaryFilters card
+        && filter Cards.attackTypes data.attackTypeFilters card
         && isPackAllowed data.packFilters card
 
 

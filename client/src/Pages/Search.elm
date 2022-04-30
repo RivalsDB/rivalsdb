@@ -229,12 +229,12 @@ matchTextFilter model card =
 
 matchFilterSelections : Model -> Card -> Bool
 matchFilterSelections model card =
-    UI.FilterSelection.isAllowed Cards.traits model.secondaryFilters card
-        && UI.FilterSelection.isAllowed (Cards.stack >> List.singleton) model.stackFilters card
-        && UI.FilterSelection.isAllowed Cards.discipline model.disciplineFilters card
-        && UI.FilterSelection.isAllowed Cards.traits model.primaryFilters card
-        && UI.FilterSelection.isAllowed Cards.clan model.clansFilters card
-        && UI.FilterSelection.isAllowed Cards.attackTypes model.attackTypeFilters card
+    UI.FilterSelection.isAllowedWide Cards.traits model.secondaryFilters card
+        && UI.FilterSelection.isAllowedWide (Cards.stack >> List.singleton) model.stackFilters card
+        && UI.FilterSelection.isAllowedWide Cards.discipline model.disciplineFilters card
+        && UI.FilterSelection.isAllowedWide Cards.traits model.primaryFilters card
+        && UI.FilterSelection.isAllowedWide Cards.clan model.clansFilters card
+        && UI.FilterSelection.isAllowedWide Cards.attackTypes model.attackTypeFilters card
         && isPackAllowed model.packFilters card
 
 
