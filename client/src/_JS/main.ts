@@ -7,10 +7,13 @@ import { Auth } from "./auth";
 import { fetchCards } from "./cardData";
 import { Tracker } from "./tracker";
 
+const getRandomInt = (max: number) => Math.floor(Math.random() * max);
+
 async function main() {
   const [cards, auth] = await Promise.all([fetchCards(), Auth.create()]);
+  const strictFilterInitial = getRandomInt(2) === 0 ? false : true;
 
-  const app = Elm.Main.init({ flags: cards });
+  const app = Elm.Main.init({ flags: { cards, strictFilterInitial } });
 
   app.ports.generateId.subscribe(async () =>
     generateId().then(app.ports.receivedId.send)

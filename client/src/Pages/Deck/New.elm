@@ -31,7 +31,7 @@ page shared _ =
     Page.protected.advanced
         (\user ->
             { init = init
-            , update = update user
+            , update = update shared user
             , view = view shared
             , subscriptions = subscriptions
             }
@@ -79,8 +79,8 @@ type Msg
     | ChangedCard ( Cards.Card, Int )
 
 
-update : Auth.User -> Msg -> Model -> ( Model, Effect Msg )
-update user msg model =
+update : Shared.Model -> Auth.User -> Msg -> Model -> ( Model, Effect Msg )
+update shared user msg model =
     case ( model, msg ) of
         ( _, FromShared subMsg ) ->
             ( model, Effect.fromShared subMsg )
@@ -90,7 +90,7 @@ update user msg model =
                 Just uniqueId ->
                     ( Deckbuilding
                         { deck = Deck.create uniqueId user.id Nothing
-                        , builderOptions = DeckbuildSelections.init
+                        , builderOptions = DeckbuildSelections.init shared.strictFilterInitial
                         , isSaving = False
                         }
                     , Effect.none

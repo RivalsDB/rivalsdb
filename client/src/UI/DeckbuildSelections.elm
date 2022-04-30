@@ -48,8 +48,8 @@ type alias Model =
     }
 
 
-init : Model
-init =
+init : Bool -> Model
+init strictFilters =
     { stackFilters = UI.FilterSelection.playerStacks
     , primaryFilters = UI.FilterSelection.primaryTraits
     , secondaryFilters = UI.FilterSelection.secondaryTraits
@@ -59,7 +59,7 @@ init =
     , packFilters = MultiSelect.init Pack.list
     , textFilter = Nothing
     , showAllFilters = False
-    , strictFilters = False
+    , strictFilters = strictFilters
     , showCollectionImages = False
     , topTabs =
         UI.TopTabs.init
