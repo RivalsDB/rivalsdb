@@ -9,12 +9,13 @@ module Shared exposing
     )
 
 import Browser.Navigation as Navigation exposing (Key)
-import Cards exposing (cardsDecoder)
+import Cards exposing (Card, Id, cardsDecoder)
 import Data.Collection exposing (Collection)
+import Data.User as User exposing (User)
 import Dict
 import Gen.Route as Route exposing (Route)
-import Json.Decode as Json
-import Port.Auth exposing (User)
+import Json.Decode as Json exposing (Decoder)
+import Port.Auth
 import Port.Event
 import Request exposing (Request)
 import UI.Layout.Toast as Toast
@@ -32,6 +33,7 @@ type alias Model =
     , headerSearch : Maybe String
     , toast : Toast.Model
     , key : Key
+    , strictFilterInitial : Bool
     }
 
 
@@ -57,23 +59,24 @@ type Msg
 init : Request -> Flags -> ( Model, Cmd Msg )
 init req flags =
     let
-        collection =
-            case Json.decodeValue cardsDecoder flags of
-                Ok cards ->
-                    cards
+        { collection, strictFilterInitial, user } =
+            case Json.decodeValue flagsDecoder flags of
+                Ok decoded ->
+                    decoded
 
                 Err _ ->
-                    Dict.empty
+                    { collection = Dict.empty, strictFilterInitial = False, user = Nothing }
     in
     ( { collection = collection
-      , user = Nothing
+      , user = user
       , burgerMenu = False
       , headerSearchInput = ""
       , headerSearch = Nothing
       , toast = Toast.init
       , key = req.key
+      , strictFilterInitial = strictFilterInitial
       }
-    , Cmd.none
+    , Port.Event.track (Port.Event.BuilderToggleStrictFilters strictFilterInitial)
     )
 
 
@@ -149,3 +152,15 @@ subscriptions _ _ =
         [ Port.Auth.receivedSignin GotSignIn
         , Sub.map FromToast Toast.subscriptions
         ]
+
+
+type alias DecodedFlags =
+    { collection : Dict.Dict Id Card, strictFilterInitial : Bool, user : Maybe User }
+
+
+flagsDecoder : Decoder DecodedFlags
+flagsDecoder =
+    Json.map3 DecodedFlags
+        (Json.field "cards" cardsDecoder)
+        (Json.field "strictFilterInitial" Json.bool)
+        (Json.maybe <| Json.field "userData" User.decode)

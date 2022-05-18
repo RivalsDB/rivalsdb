@@ -1,4 +1,11 @@
 @import ../_vars
 
-.page-my-decks__content
-  margin-top: $space-medium
+.page-my-decks
+  &__content
+    margin-top: $space-medium
+
+  &__decks
+    margin: $space-medium 0 $space-huge
+    display: grid
+    grid-template-columns: repeat(auto-fit, minmax(340px,1fr))
+    gap: $space-medium

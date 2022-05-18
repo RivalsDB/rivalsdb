@@ -57,6 +57,7 @@ create id ownerId ownerName =
         , patronage = Patronage.default
         , gameMode = GameMode.default
         , visibility = Visibility.Public
+        , description = Nothing
         }
     }
 
@@ -95,6 +96,7 @@ type alias Meta =
     , patronage : Patronage
     , gameMode : GameMode
     , visibility : Visibility
+    , description : Maybe String
     }
 
 
@@ -289,16 +291,19 @@ encode : Deck -> Maybe Encode.Value
 encode { decklist, meta } =
     case ( decklist.agenda, decklist.haven ) of
         ( Just agenda, Just haven ) ->
-            Just <|
-                Encode.object
-                    [ ( "name", encodeName meta.name )
-                    , ( "agenda", Encode.string agenda.id )
-                    , ( "haven", Encode.string haven.id )
-                    , ( "factionDeck", encodeFaction decklist.faction )
-                    , ( "libraryDeck", encodeLibrary decklist.library )
-                    , ( "gameMode", GameMode.encode meta.gameMode )
-                    , ( "public", Visibility.encode meta.visibility )
-                    ]
+            List.concat
+                [ [ ( "name", encodeName meta.name )
+                  , ( "agenda", Encode.string agenda.id )
+                  , ( "haven", Encode.string haven.id )
+                  , ( "factionDeck", encodeFaction decklist.faction )
+                  , ( "libraryDeck", encodeLibrary decklist.library )
+                  , ( "gameMode", GameMode.encode meta.gameMode )
+                  , ( "public", Visibility.encode meta.visibility )
+                  ]
+                , meta.description |> Maybe.map (\d -> [ ( "description", Encode.string d ) ]) |> Maybe.withDefault []
+                ]
+                |> Encode.object
+                |> Just
 
         ( _, _ ) ->
             Nothing
@@ -328,7 +333,7 @@ decoder collection =
 
 metaDecoder : Decoder Meta
 metaDecoder =
-    Decode.map7 Meta
+    Decode.map8 Meta
         (metaNameDecoder "name")
         (Decode.field "id" Decode.string)
         (Decode.field "creatorId" Decode.string)
@@ -336,6 +341,7 @@ metaDecoder =
         (Decode.field "creatorPatronage" Patronage.decoder)
         (Decode.field "gameMode" GameMode.decode)
         (Decode.field "public" Visibility.decode)
+        (Decode.maybe <| Decode.field "description" Decode.string)
 
 
 metaNameDecoder : String -> Decoder Name

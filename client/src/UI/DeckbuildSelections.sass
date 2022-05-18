@@ -1,5 +1,9 @@
 @import ../_vars
 
+.builder-aside
+  nav
+    margin-bottom: $space-large
+
 .deckbuild-selections
   &__collection
     margin-bottom: 40px
@@ -31,22 +35,37 @@
   display: flex
   align-items: baseline
   margin-bottom: $space-small
+  gap: $space-micro
   &__title
     margin: 0
     flex: 0 0 auto
   &__action
-    flex: 1 0 auto
+    flex: 0 0 auto
     cursor: pointer
     color: var(--color-link)
     text-decoration: underline
     user-select: none
-    margin-left: $space-small
     &--secondary
-      flex: 0 0 auto
+      flex: 1 0 auto
       margin: 0
+      text-align: right
 
 .deckbuild-filters
   display: flex
   flex-wrap: wrap
   gap: $space-micro
   margin-bottom: $space-medium
+
+.deckbuild-description
+  &__label
+    display: block
+    font-size: $font-size--small
+    margin-top: $space-medium
+  &__label-label
+    display: none
+  &__input
+    display: block
+    box-sizing: border-box
+    width: 100%
+    padding: $space-micro
+    height: 10rem

@@ -3,15 +3,15 @@ module Pages.MyDecks exposing (Model, Msg, page)
 import API.Decklist
 import Data.Collection exposing (Collection)
 import Data.Deck exposing (Deck)
+import Data.User exposing (User)
 import Effect exposing (Effect)
 import Gen.Params.MyDecks exposing (Params)
-import Html exposing (div, text)
+import Html exposing (div, li, text, ul)
 import Html.Attributes exposing (class)
 import Page
-import Port.Auth exposing (User)
 import Request
 import Shared
-import UI.DecklistsIndex
+import UI.DeckCard
 import UI.Layout.Template
 import UI.Text
 import View exposing (View)
@@ -90,6 +90,9 @@ viewDecklists shared model =
         shared
         [ div [ class "page-my-decks__content" ]
             [ UI.Text.header [ text "My Decklists" ]
-            , UI.DecklistsIndex.viewMine model
+            , ul [ class "page-my-decks__decks" ]
+                (model
+                    |> List.map (\deck -> li [] [ UI.DeckCard.viewPublic deck ])
+                )
             ]
         ]

@@ -2,14 +2,23 @@ import { db, sql } from "../db.js";
 import * as GameMode from "./gameMode.js";
 import * as Patronage from "./patronage.js";
 import { User } from "./user.js";
+import { WithMeta } from "./decklistMeta.js";
 
-type Deck = {
+export type Content = {
+  agenda: string;
+  haven: string;
+  leader: string;
+  factionDeck: string[];
+  libraryDeck: Record<string, number>;
+};
+
+export type Deck = {
   id: string;
   decklist: Decklist;
   meta: Meta;
 };
 
-type WithCreator<D> = D & {
+export type WithCreator<D> = D & {
   creator: Pick<User, "id" | "displayName" | "patronage">;
 };
 
@@ -40,9 +49,12 @@ export type TransferObject = {
   libraryDeck: Record<string, number>;
   name?: string;
   public: boolean;
+  description?: string;
 };
 
-export const toTransferObject = (deck: WithCreator<Deck>): TransferObject => ({
+export const toTransferObject = (
+  deck: WithMeta<WithCreator<Deck>>
+): TransferObject => ({
   agenda: deck.decklist.agenda,
   creatorDisplayName: deck.creator?.displayName,
   creatorId: deck.meta.creatorId,
@@ -51,7 +63,7 @@ export const toTransferObject = (deck: WithCreator<Deck>): TransferObject => ({
   libraryDeck: deck.decklist.libraryDeck,
   name: deck.meta.name,
   public: deck.meta.public,
-  creatorPatronage: Patronage.toString(deck.creator?.patronage),
+  creatorPatronage: deck.creator?.patronage ?? "not_patron",
   gameMode: GameMode.toString(deck.meta.gameMode),
   factionDeck: deck.decklist.factionDeck.reduce<Record<string, boolean>>(
     (faction, cardId) => {
@@ -60,6 +72,7 @@ export const toTransferObject = (deck: WithCreator<Deck>): TransferObject => ({
     },
     {}
   ),
+  description: deck.description,
 });
 
 const DECKLIST_SELECT = sql`
@@ -71,11 +84,13 @@ SELECT
   d.game_mode,
   d.public,
   u.display_name,
-  u.patronage_type
+  u.patronage_type,
+  m.description
 FROM decklists AS d
-LEFT JOIN users AS u USING (user_id)
+INNER JOIN users AS u USING (user_id)
+LEFT JOIN decklist_metas AS m USING (decklist_id)
 `;
-function fromRow(row: any): WithCreator<Deck> {
+function fromRow(row: any): WithMeta<WithCreator<Deck>> {
   return {
     id: row.decklist_id,
     meta: {
@@ -97,10 +112,14 @@ function fromRow(row: any): WithCreator<Deck> {
       displayName:
         typeof row.display_name === "string" ? row.display_name : undefined,
     },
+    description:
+      typeof row.description === "string" ? row.description : undefined,
   };
 }
 
-export const fetchAllPublic = async (): Promise<WithCreator<Deck>[]> => {
+export const fetchAllPublic = async (): Promise<
+  WithMeta<WithCreator<Deck>>[]
+> => {
   const rows = await db.query(
     sql`${DECKLIST_SELECT}
     WHERE d.public IS true
@@ -112,7 +131,7 @@ export const fetchAllPublic = async (): Promise<WithCreator<Deck>[]> => {
 
 export const fetchAllPublicByUser = async (
   userId: string
-): Promise<WithCreator<Deck>[]> => {
+): Promise<WithMeta<WithCreator<Deck>>[]> => {
   const rows = await db.query(
     sql`${DECKLIST_SELECT}
     WHERE d.public IS true AND d.user_id = ${userId}
@@ -124,7 +143,7 @@ export const fetchAllPublicByUser = async (
 
 export const fetchAllByUser = async (
   userId: string
-): Promise<WithCreator<Deck>[]> => {
+): Promise<WithMeta<WithCreator<Deck>>[]> => {
   const rows = await db.query(
     sql`${DECKLIST_SELECT}
     WHERE d.user_id = ${userId}
@@ -136,7 +155,7 @@ export const fetchAllByUser = async (
 
 export const fetchById = async (
   decklistId: string
-): Promise<null | WithCreator<Deck>> => {
+): Promise<null | WithMeta<WithCreator<Deck>>> => {
   const [row] = await db.query(
     sql`${DECKLIST_SELECT}
     WHERE d.decklist_id = ${decklistId}

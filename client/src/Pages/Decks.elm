@@ -11,15 +11,16 @@ import Dict exposing (Dict)
 import Effect exposing (Effect)
 import Gen.Params.Decks exposing (Params)
 import Gen.Route as Route
-import Html exposing (Html, div, label, option, p, select, span, text)
+import Html exposing (Html, div, label, li, option, p, select, span, text)
 import Html.Attributes exposing (class, for, name, selected, value)
 import Html.Events exposing (onInput)
+import Html.Keyed exposing (ul)
 import Html.Lazy as Lazy
 import Page
 import Port.Event
 import Request
 import Shared
-import UI.DecklistsIndex
+import UI.DeckCard
 import UI.Layout.Template
 import UI.Text
 import View exposing (View)
@@ -225,7 +226,10 @@ viewDecklists shared decks filters =
         [ div [ class "page-decks__content" ]
             [ UI.Text.header [ text "Decklists" ]
             , Lazy.lazy2 viewDecklistFilters shared.collection filters
-            , UI.DecklistsIndex.viewAll (filterDecks filters decks)
+            , ul [ class "page-decks__decks" ]
+                (filterDecks filters decks
+                    |> List.map (\deck -> ( deck.meta.id, li [] [ UI.DeckCard.viewPublic deck ] ))
+                )
             ]
         ]
 

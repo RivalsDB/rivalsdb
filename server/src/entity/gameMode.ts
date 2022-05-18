@@ -4,6 +4,8 @@ export const enum GameMode {
   both,
 }
 
+export type DB = "both" | "headToHead" | "multiplayer";
+
 export function fromString(str: string): GameMode {
   switch (str) {
     case "headToHead":

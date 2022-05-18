@@ -1,157 +1,228 @@
-module UI.FilterSelection exposing (Model, Msg(..), allStacks, attackTypes, clans, disciplines, isAllowed, playerStacks, primaryTraits, secondaryTraits, update, view)
+module UI.FilterSelection exposing
+    ( Model
+    , Msg
+    , allStacks
+    , attackTypes
+    , clans
+    , disciplines
+    , isAllowedStrict
+    , isAllowedWide
+    , playerStacks
+    , primaryTraits
+    , secondaryTraits
+    , update
+    , view
+    )
 
 import Cards exposing (Card)
-import Data.Clan as Clan exposing (Clan)
+import Data.Clan as Clan
 import Data.Discipline as Discipline exposing (Discipline)
 import Data.Trait as Trait exposing (Trait)
 import Html exposing (Html, div, input, label)
 import Html.Attributes exposing (class, classList, type_)
 import Html.Events exposing (onCheck)
 import UI.Icon as Icon
-import UI.Icon.V2 as DisciplineIcon
+import UI.Icon.V2 as IconV2
 
 
-type alias Model value msg =
-    List ( value, Bool, Html msg )
+
+----------
+-- Model
+----------
 
 
-playerStacks : Model Cards.CardStack msg
-playerStacks =
-    List.map modelHelper
-        [ ( Cards.AgendaStack, Icon.AgendaCard )
-        , ( Cards.HavenStack, Icon.Haven )
-        , ( Cards.FactionStack, Icon.Faction )
-        , ( Cards.LibraryStack, Icon.Library )
-        ]
+type alias Option value never =
+    { value : value
+    , selected : Bool
+    , icon : Html never
+    }
 
 
-allStacks : Model Cards.CardStack msg
-allStacks =
-    List.map modelHelper
-        [ ( Cards.CityStack, Icon.City )
-        , ( Cards.AgendaStack, Icon.AgendaCard )
-        , ( Cards.HavenStack, Icon.Haven )
-        , ( Cards.FactionStack, Icon.Faction )
-        , ( Cards.LibraryStack, Icon.Library )
-        ]
+type alias Model value never =
+    List (Option value never)
 
 
-primaryTraits : Model Trait msg
-primaryTraits =
-    List.map modelHelper
-        [ ( Trait.Action, Icon.Action )
-        , ( Trait.UnhostedAction, Icon.UnhostedAction )
-        , ( Trait.Attack, Icon.Attack )
-        , ( Trait.Reaction, Icon.Reaction )
-        , ( Trait.InfluenceModifier, Icon.InfluenceModifier )
-        ]
 
-
-secondaryTraits : Model Trait msg
-secondaryTraits =
-    List.map modelHelper
-        [ ( Trait.Ongoing, Icon.Ongoing )
-        , ( Trait.Scheme, Icon.Scheme )
-        , ( Trait.Title, Icon.Title )
-        , ( Trait.Conspiracy, Icon.Conspiracy )
-        , ( Trait.Alchemy, Icon.Alchemy )
-        , ( Trait.Ritual, Icon.Ritual )
-        , ( Trait.Animal, Icon.Animal )
-        , ( Trait.Special, Icon.Special )
-        ]
-
-
-attackTypes : Model Cards.AttackType msg
-attackTypes =
-    List.map modelHelper
-        [ ( Cards.Physical, Icon.Physical )
-        , ( Cards.Social, Icon.Social )
-        , ( Cards.Mental, Icon.Mental )
-        , ( Cards.Ranged, Icon.Ranged )
-        ]
-
-
-clans : Model Clan msg
-clans =
-    toModel (DisciplineIcon.clan DisciplineIcon.Standard) Clan.all
-
-
-disciplines : Model Discipline msg
-disciplines =
-    toModel (DisciplineIcon.discipline DisciplineIcon.Standard) Discipline.all
-
-
-toModel : (a -> Html msg) -> List a -> Model a msg
-toModel iconForItem =
-    List.map (\item -> ( item, False, iconForItem item ))
-
-
-modelHelper : ( trait, Icon.IconImage ) -> ( trait, Bool, Html msg )
-modelHelper ( trait, icon ) =
-    ( trait, False, Icon.icon ( icon, Icon.Standard ) )
+----------
+-- MSGS
+----------
 
 
 type Msg value
     = ChangedValue value Bool
+    | Noop
 
 
-update : Msg value -> Model value msg -> Model value msg
+
+----------
+-- UPDATE
+----------
+
+
+update : Msg value -> Model value never -> Model value never
 update msg model =
     case msg of
-        ChangedValue changedKey newValue ->
+        ChangedValue changedValued newSelected ->
             List.map
-                (\( key, oldValue, html ) ->
-                    if key == changedKey then
-                        ( key, newValue, html )
+                (\option ->
+                    if option.value /= changedValued then
+                        option
 
                     else
-                        ( key, oldValue, html )
+                        { option | selected = newSelected }
                 )
                 model
 
+        Noop ->
+            model
 
-view : (Msg value -> msg) -> Model value msg -> Html msg
-view msg options =
+
+
+-------------
+-- Creators
+-------------
+
+
+allStacks : Model Cards.CardStack never
+allStacks =
+    [ { value = Cards.CityStack, selected = False, icon = Icon.icon ( Icon.City, Icon.Standard ) }
+    , { value = Cards.AgendaStack, selected = False, icon = Icon.icon ( Icon.AgendaCard, Icon.Standard ) }
+    , { value = Cards.HavenStack, selected = False, icon = Icon.icon ( Icon.Haven, Icon.Standard ) }
+    , { value = Cards.FactionStack, selected = False, icon = Icon.icon ( Icon.Faction, Icon.Standard ) }
+    , { value = Cards.LibraryStack, selected = False, icon = Icon.icon ( Icon.Library, Icon.Standard ) }
+    ]
+
+
+playerStacks : Model Cards.CardStack never
+playerStacks =
+    [ { value = Cards.AgendaStack, selected = False, icon = Icon.icon ( Icon.AgendaCard, Icon.Standard ) }
+    , { value = Cards.HavenStack, selected = False, icon = Icon.icon ( Icon.Haven, Icon.Standard ) }
+    , { value = Cards.FactionStack, selected = False, icon = Icon.icon ( Icon.Faction, Icon.Standard ) }
+    , { value = Cards.LibraryStack, selected = False, icon = Icon.icon ( Icon.Library, Icon.Standard ) }
+    ]
+
+
+primaryTraits : Model Trait never
+primaryTraits =
+    [ { value = Trait.Action, selected = False, icon = Icon.icon ( Icon.Action, Icon.Standard ) }
+    , { value = Trait.UnhostedAction, selected = False, icon = Icon.icon ( Icon.UnhostedAction, Icon.Standard ) }
+    , { value = Trait.Attack, selected = False, icon = Icon.icon ( Icon.Attack, Icon.Standard ) }
+    , { value = Trait.Reaction, selected = False, icon = Icon.icon ( Icon.Reaction, Icon.Standard ) }
+    , { value = Trait.InfluenceModifier, selected = False, icon = Icon.icon ( Icon.InfluenceModifier, Icon.Standard ) }
+    ]
+
+
+secondaryTraits : Model Trait never
+secondaryTraits =
+    [ { value = Trait.Ongoing, selected = False, icon = Icon.icon ( Icon.Ongoing, Icon.Standard ) }
+    , { value = Trait.Scheme, selected = False, icon = Icon.icon ( Icon.Scheme, Icon.Standard ) }
+    , { value = Trait.Title, selected = False, icon = Icon.icon ( Icon.Title, Icon.Standard ) }
+    , { value = Trait.Conspiracy, selected = False, icon = Icon.icon ( Icon.Conspiracy, Icon.Standard ) }
+    , { value = Trait.Alchemy, selected = False, icon = Icon.icon ( Icon.Alchemy, Icon.Standard ) }
+    , { value = Trait.Ritual, selected = False, icon = Icon.icon ( Icon.Ritual, Icon.Standard ) }
+    , { value = Trait.Animal, selected = False, icon = Icon.icon ( Icon.Animal, Icon.Standard ) }
+    , { value = Trait.Special, selected = False, icon = Icon.icon ( Icon.Special, Icon.Standard ) }
+    ]
+
+
+attackTypes : Model Cards.AttackType never
+attackTypes =
+    [ { value = Cards.Physical, selected = False, icon = Icon.icon ( Icon.Physical, Icon.Standard ) }
+    , { value = Cards.Social, selected = False, icon = Icon.icon ( Icon.Social, Icon.Standard ) }
+    , { value = Cards.Mental, selected = False, icon = Icon.icon ( Icon.Mental, Icon.Standard ) }
+    , { value = Cards.Ranged, selected = False, icon = Icon.icon ( Icon.Ranged, Icon.Standard ) }
+    ]
+
+
+clans : Model Clan.Clan never
+clans =
+    Clan.all
+        |> List.map
+            (\clan ->
+                { value = clan, selected = False, icon = IconV2.clan IconV2.Standard clan }
+            )
+
+
+disciplines : Model Discipline never
+disciplines =
+    Discipline.all
+        |> List.map
+            (\discipline ->
+                { value = discipline, selected = False, icon = IconV2.discipline IconV2.Standard discipline }
+            )
+
+
+
+---------
+-- VIEW
+---------
+
+
+view : List (Option value never) -> Html (Msg value)
+view options =
     div [ class "filterpicker" ]
-        (List.map (viewFilterOption msg) options)
+        (List.map viewFilterOption options)
 
 
-viewFilterOption : (Msg value -> msg) -> ( value, Bool, Html msg ) -> Html msg
-viewFilterOption msg ( value, isActive, icon ) =
+viewFilterOption : Option value never -> Html (Msg value)
+viewFilterOption option =
     label
         [ class "filterpicker__option"
-        , classList [ ( "filterpicker__option--active", isActive ) ]
+        , classList [ ( "filterpicker__option--active", option.selected ) ]
         ]
         [ div
             [ class "filterpicker__box"
-            , classList [ ( "filterpicker__box--active", isActive ) ]
+            , classList [ ( "filterpicker__box--active", option.selected ) ]
             ]
-            [ icon ]
+            [ Html.map (always Noop) option.icon ]
         , input
             [ class "filterpicker__checkbox"
             , type_ "checkbox"
-            , onCheck (ChangedValue value >> msg)
+            , onCheck (ChangedValue option.value)
             ]
             []
         ]
 
 
-isAllowed : (Card -> List value) -> Model value msg -> Card -> Bool
-isAllowed toValues model card =
-    let
-        whitelist =
-            List.filterMap
-                (\( key, isOn, _ ) ->
-                    if isOn then
-                        Just key
 
-                    else
-                        Nothing
-                )
-                model
-    in
-    if List.isEmpty whitelist then
-        True
+------------------
+-- Filter helper
+------------------
 
-    else
-        toValues card |> List.any (\cardValue -> List.member cardValue whitelist)
+
+isAllowedWide : (Card -> List value) -> Model value never -> Card -> Bool
+isAllowedWide toValues model card =
+    case extractWhitelist model of
+        [] ->
+            True
+
+        whitelist ->
+            List.any (contains whitelist) (toValues card)
+
+
+isAllowedStrict : (Card -> List value) -> Model value never -> Card -> Bool
+isAllowedStrict toValues model card =
+    case extractWhitelist model of
+        [] ->
+            True
+
+        whitelist ->
+            List.all (contains <| toValues card) whitelist
+
+
+extractWhitelist : Model value never -> List value
+extractWhitelist model =
+    List.filterMap
+        (\{ value, selected } ->
+            if selected then
+                Just value
+
+            else
+                Nothing
+        )
+        model
+
+
+contains : List a -> a -> Bool
+contains xs x =
+    List.member x xs

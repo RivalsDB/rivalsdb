@@ -19,6 +19,8 @@ view msg shared =
             ([ li [ class "nav__item" ]
                 [ a [ href <| Route.toHref Route.Decks ] [ text "Decks" ] ]
              , li [ class "nav__item" ]
+                [ a [ href <| Route.toHref Route.Tournaments ] [ text "Tournaments" ] ]
+             , li [ class "nav__item" ]
                 [ a [ href <| Route.toHref Route.Search ] [ text "Cards" ] ]
              ]
                 ++ (if isSignedId shared.user then
@@ -89,6 +91,11 @@ view msg shared =
                     , li [ class "burgernav__item" ]
                         [ a [ class "burgernav__link", href <| Route.toHref Route.Deck__New ]
                             [ text "New Deck"
+                            ]
+                        ]
+                    , li [ class "burgernav__item" ]
+                        [ a [ class "burgernav__link", href <| Route.toHref Route.Tournaments ]
+                            [ text "Deck Collections"
                             ]
                         ]
                     , li [ class "burgernav__item" ]

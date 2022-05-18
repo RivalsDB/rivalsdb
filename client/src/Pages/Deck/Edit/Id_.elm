@@ -4,13 +4,14 @@ import API.Decklist
 import API.ErrorHandler
 import Auth
 import Cards
-import Data.Collection exposing (Collection)
+import Data.Collection as Collection exposing (Collection)
 import Data.Deck as Deck exposing (Deck, Name(..))
 import Data.GameMode exposing (GameMode)
 import Data.Visibility exposing (Visibility)
 import Effect exposing (Effect)
 import Gen.Params.Deck.Edit.Id_ exposing (Params)
 import Gen.Route as Route
+import Html
 import Html.Lazy as Lazy
 import Page
 import Request
@@ -19,7 +20,7 @@ import UI.ActionBar
 import UI.DeckbuildSelections as DeckbuildSelections
 import UI.Decklist
 import UI.Icon as Icon
-import UI.Layout.Deck
+import UI.Layout.TSplit
 import UI.Layout.Template
 import View exposing (View)
 
@@ -29,7 +30,7 @@ page shared req =
     Page.protected.advanced
         (\user ->
             { init = init shared.collection user.token req.params.id
-            , update = update user
+            , update = update shared user
             , view = view shared
             , subscriptions = always Sub.none
             }
@@ -47,7 +48,7 @@ type Model
 
 type alias Data =
     { deck : Deck
-    , builderOptions : DeckbuildSelections.Model Msg
+    , builderOptions : DeckbuildSelections.Model
     , isSaving : Bool
     }
 
@@ -74,14 +75,20 @@ type Msg
     | ChangedCard ( Cards.Card, Int )
 
 
-update : Auth.User -> Msg -> Model -> ( Model, Effect Msg )
-update user msg modelx =
+update : Shared.Model -> Auth.User -> Msg -> Model -> ( Model, Effect Msg )
+update shared user msg modelx =
     case ( modelx, msg ) of
         ( _, FromShared subMsg ) ->
             ( modelx, Effect.fromShared subMsg )
 
         ( Loading, FetchedDecklist (Ok deck) ) ->
-            ( Editing { isSaving = False, deck = deck, builderOptions = DeckbuildSelections.init }, Effect.none )
+            ( Editing
+                { isSaving = False
+                , deck = deck
+                , builderOptions = DeckbuildSelections.init shared.strictFilterInitial
+                }
+            , Effect.none
+            )
 
         ( _, FetchedDecklist (Err _) ) ->
             ( modelx, Effect.none )
@@ -91,20 +98,6 @@ update user msg modelx =
 
         ( Editing oldModel, FetchedDecklist (Ok deck) ) ->
             ( Editing { oldModel | deck = deck }, Effect.none )
-
-        ( Editing oldModel, FromBuilderOptions (DeckbuildSelections.ChangedDecklist change) ) ->
-            let
-                oldDeck =
-                    oldModel.deck
-            in
-            ( Editing { oldModel | deck = { oldDeck | decklist = Deck.setCard oldDeck.decklist change } }, Effect.none )
-
-        ( Editing oldModel, FromBuilderOptions subMsg ) ->
-            let
-                ( subModel, subEffect ) =
-                    DeckbuildSelections.update subMsg oldModel.builderOptions
-            in
-            ( Editing { oldModel | builderOptions = subModel }, subEffect )
 
         ( Editing model, ChoseLeader leader ) ->
             let
@@ -220,6 +213,34 @@ update user msg modelx =
             in
             ( Editing { model | deck = { oldDeck | decklist = Deck.setCard oldDecklist choice } }, Effect.none )
 
+        ( Editing oldModel, FromBuilderOptions subMsg ) ->
+            case subMsg of
+                DeckbuildSelections.Internal _ ->
+                    let
+                        ( subModel, subEffect ) =
+                            DeckbuildSelections.update subMsg oldModel.builderOptions
+                    in
+                    ( Editing { oldModel | builderOptions = subModel }, subEffect )
+
+                DeckbuildSelections.External (DeckbuildSelections.ChangedDecklist change) ->
+                    let
+                        oldDeck =
+                            oldModel.deck
+                    in
+                    ( Editing { oldModel | deck = { oldDeck | decklist = Deck.setCard oldDeck.decklist change } }, Effect.none )
+
+                DeckbuildSelections.External (DeckbuildSelections.DescriptionChanged newDescription) ->
+                    let
+                        oldDeck =
+                            oldModel.deck
+
+                        oldMeta =
+                            oldDeck.meta
+                    in
+                    ( Editing { oldModel | deck = { oldDeck | meta = { oldMeta | description = Just newDescription } } }
+                    , Effect.none
+                    )
+
 
 decklistActions : UI.Decklist.Actions Msg
 decklistActions =
@@ -242,10 +263,16 @@ view shared model =
         Editing data ->
             UI.Layout.Template.view FromShared
                 shared
-                [ UI.Layout.Deck.writeMode
-                    { actions = Lazy.lazy UI.ActionBar.view actions
-                    , decklist = Lazy.lazy2 UI.Decklist.viewWrite decklistActions data.deck
-                    , selectors = DeckbuildSelections.view shared.collection FromBuilderOptions data.builderOptions data.deck.decklist
+                [ UI.Layout.TSplit.view
+                    { bar = Lazy.lazy UI.ActionBar.view actions
+                    , main = Lazy.lazy2 UI.Decklist.viewWrite decklistActions data.deck
+                    , secondary =
+                        Html.map FromBuilderOptions <|
+                            DeckbuildSelections.view
+                                (Collection.playerCards shared.collection)
+                                data.builderOptions
+                                data.deck.decklist
+                                data.deck.meta.description
                     }
                 ]
 

@@ -1,4 +1,4 @@
-module Data.Collection exposing (Collection, groupByStack)
+module Data.Collection exposing (Collection, groupByStack, playerCards)
 
 import Cards
 import Dict
@@ -15,6 +15,11 @@ type alias GroupedByStacks =
     , libraryStack : List Cards.Library
     , cityStack : List Cards.City
     }
+
+
+playerCards : Collection -> Collection
+playerCards =
+    Dict.filter (\_ card -> Cards.stack card /= Cards.CityStack)
 
 
 groupByStack : Collection -> GroupedByStacks

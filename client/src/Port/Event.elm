@@ -1,6 +1,6 @@
 port module Port.Event exposing (Event(..), track)
 
-import Json.Encode as Json exposing (Value, object, string)
+import Json.Encode as Json exposing (Value, bool, object, string)
 
 
 port trackEvent : Value -> Cmd msg
@@ -12,6 +12,7 @@ type Event
     | DeckIndexFilter ( String, String )
     | BuilderClearFilters
     | BuilderShowAllFilters
+    | BuilderToggleStrictFilters Bool
     | BuilderHideAllFilters
     | BuilderShowImages
     | BuilderHideImages
@@ -43,6 +44,12 @@ encode event =
 
         BuilderHideImages ->
             object [ ( "name", string "Builder Hide Images" ) ]
+
+        BuilderToggleStrictFilters strictOn ->
+            object
+                [ ( "name", string "Builder Toggle Strict Filters" )
+                , ( "extra", object [ ( "strict", bool strictOn ) ] )
+                ]
 
         HandSimulatorUsed page ->
             object
