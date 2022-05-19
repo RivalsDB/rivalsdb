@@ -1,12 +1,16 @@
 module UI.FilterSelection exposing
     ( Model
     , Msg
+    , PrimaryTrait
+    , SecondaryTrait
     , allStacks
     , attackTypes
     , clans
     , disciplines
     , isAllowedStrict
     , isAllowedWide
+    , pickPrimaryTraits
+    , pickSecondaryTraits
     , playerStacks
     , primaryTraits
     , secondaryTraits
@@ -17,7 +21,6 @@ module UI.FilterSelection exposing
 import Cards exposing (Card)
 import Data.Clan as Clan
 import Data.Discipline as Discipline exposing (Discipline)
-import Data.Trait as Trait exposing (Trait)
 import Html exposing (Html, div, input, label)
 import Html.Attributes exposing (class, classList, type_)
 import Html.Events exposing (onCheck)
@@ -102,26 +105,107 @@ playerStacks =
     ]
 
 
-primaryTraits : Model Trait never
+type PrimaryTrait
+    = Action
+    | Attack
+    | InfluenceModifier
+    | Reaction
+    | UnhostedAction
+
+
+pickPrimaryTraits : Card -> List PrimaryTrait
+pickPrimaryTraits c =
+    case c of
+        Cards.LibraryCard { traits } ->
+            [ ( traits.action, Action )
+            , ( traits.attack, Attack )
+            , ( traits.influenceModifier, InfluenceModifier )
+            , ( traits.reaction, Reaction )
+            , ( traits.unhostedAction, UnhostedAction )
+            ]
+                |> List.filterMap
+                    (\( b, v ) ->
+                        if b then
+                            Just v
+
+                        else
+                            Nothing
+                    )
+
+        _ ->
+            []
+
+
+primaryTraits : Model PrimaryTrait never
 primaryTraits =
-    [ { value = Trait.Action, selected = False, icon = Icon.icon ( Icon.Action, Icon.Standard ) }
-    , { value = Trait.UnhostedAction, selected = False, icon = Icon.icon ( Icon.UnhostedAction, Icon.Standard ) }
-    , { value = Trait.Attack, selected = False, icon = Icon.icon ( Icon.Attack, Icon.Standard ) }
-    , { value = Trait.Reaction, selected = False, icon = Icon.icon ( Icon.Reaction, Icon.Standard ) }
-    , { value = Trait.InfluenceModifier, selected = False, icon = Icon.icon ( Icon.InfluenceModifier, Icon.Standard ) }
+    [ { value = Action, selected = False, icon = Icon.icon ( Icon.Action, Icon.Standard ) }
+    , { value = UnhostedAction, selected = False, icon = Icon.icon ( Icon.UnhostedAction, Icon.Standard ) }
+    , { value = Attack, selected = False, icon = Icon.icon ( Icon.Attack, Icon.Standard ) }
+    , { value = Reaction, selected = False, icon = Icon.icon ( Icon.Reaction, Icon.Standard ) }
+    , { value = InfluenceModifier, selected = False, icon = Icon.icon ( Icon.InfluenceModifier, Icon.Standard ) }
     ]
 
 
-secondaryTraits : Model Trait never
+type SecondaryTrait
+    = Alchemy
+    | Animal
+    | Conspiracy
+    | Ongoing
+    | Ritual
+    | Scheme
+    | Special
+    | Title
+
+
+pickSecondaryTraits : Card -> List SecondaryTrait
+pickSecondaryTraits c =
+    case c of
+        Cards.LibraryCard { traits } ->
+            [ ( traits.alchemy, Alchemy )
+            , ( traits.animal, Animal )
+            , ( traits.conspiracy, Conspiracy )
+            , ( traits.ongoing, Ongoing )
+            , ( traits.ritual, Ritual )
+            , ( traits.scheme, Scheme )
+            , ( traits.special, Special )
+            , ( traits.title, Title )
+            ]
+                |> List.filterMap
+                    (\( b, v ) ->
+                        if b then
+                            Just v
+
+                        else
+                            Nothing
+                    )
+
+        Cards.CityCard { traits } ->
+            [ ( traits.ongoing, Ongoing )
+            , ( traits.title, Title )
+            ]
+                |> List.filterMap
+                    (\( b, v ) ->
+                        if b then
+                            Just v
+
+                        else
+                            Nothing
+                    )
+
+        _ ->
+            []
+
+
+secondaryTraits : Model SecondaryTrait never
 secondaryTraits =
-    [ { value = Trait.Ongoing, selected = False, icon = Icon.icon ( Icon.Ongoing, Icon.Standard ) }
-    , { value = Trait.Scheme, selected = False, icon = Icon.icon ( Icon.Scheme, Icon.Standard ) }
-    , { value = Trait.Title, selected = False, icon = Icon.icon ( Icon.Title, Icon.Standard ) }
-    , { value = Trait.Conspiracy, selected = False, icon = Icon.icon ( Icon.Conspiracy, Icon.Standard ) }
-    , { value = Trait.Alchemy, selected = False, icon = Icon.icon ( Icon.Alchemy, Icon.Standard ) }
-    , { value = Trait.Ritual, selected = False, icon = Icon.icon ( Icon.Ritual, Icon.Standard ) }
-    , { value = Trait.Animal, selected = False, icon = Icon.icon ( Icon.Animal, Icon.Standard ) }
-    , { value = Trait.Special, selected = False, icon = Icon.icon ( Icon.Special, Icon.Standard ) }
+    [ { value = Ongoing, selected = False, icon = Icon.icon ( Icon.Ongoing, Icon.Standard ) }
+    , { value = Scheme, selected = False, icon = Icon.icon ( Icon.Scheme, Icon.Standard ) }
+    , { value = Title, selected = False, icon = Icon.icon ( Icon.Title, Icon.Standard ) }
+    , { value = Conspiracy, selected = False, icon = Icon.icon ( Icon.Conspiracy, Icon.Standard ) }
+    , { value = Alchemy, selected = False, icon = Icon.icon ( Icon.Alchemy, Icon.Standard ) }
+    , { value = Ritual, selected = False, icon = Icon.icon ( Icon.Ritual, Icon.Standard ) }
+    , { value = Animal, selected = False, icon = Icon.icon ( Icon.Animal, Icon.Standard ) }
+    , { value = Special, selected = False, icon = Icon.icon ( Icon.Special, Icon.Standard ) }
     ]
 
 

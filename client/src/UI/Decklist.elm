@@ -4,7 +4,6 @@ import Cards
 import Data.Clan as Clan exposing (Clan)
 import Data.Deck as Deck exposing (Deck, Name(..), isLeader)
 import Data.GameMode as GameMode exposing (GameMode)
-import Data.Trait as Trait
 import Data.Visibility as Visibility exposing (Visibility)
 import Dict
 import Html exposing (Html, button, div, form, h3, h4, input, label, li, option, p, select, span, text, ul)
@@ -423,10 +422,10 @@ groupLibraryCards : Deck.Library -> LibraryGroups
 groupLibraryCards library =
     let
         assignToGroup ( card, n ) oldGroups =
-            if List.any Trait.isCombat card.traits then
+            if card.traits.attack || card.traits.reaction then
                 { oldGroups | combat = ( card, n ) :: oldGroups.combat }
 
-            else if List.any Trait.isPolitical card.traits then
+            else if card.traits.influenceModifier || card.traits.scheme || card.traits.title then
                 { oldGroups | political = ( card, n ) :: oldGroups.political }
 
             else

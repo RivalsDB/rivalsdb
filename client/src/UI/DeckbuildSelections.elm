@@ -7,7 +7,6 @@ import Data.Collection exposing (Collection)
 import Data.Deck exposing (Decklist)
 import Data.Discipline exposing (Discipline)
 import Data.Pack as Pack exposing (Pack)
-import Data.Trait exposing (Trait)
 import Dict
 import Effect exposing (Effect)
 import Html exposing (Html, div, h2, input, label, li, nav, section, span, text, textarea, ul)
@@ -19,7 +18,7 @@ import Port.Event
 import UI.Attribute
 import UI.Card
 import UI.CardName
-import UI.FilterSelection
+import UI.FilterSelection as Filter
 import UI.Icon as Icon
 import UI.Icon.V2
 import UI.MultiSelect as MultiSelect
@@ -33,16 +32,16 @@ type Tab
 
 
 type alias Model =
-    { attackTypeFilters : UI.FilterSelection.Model Cards.AttackType Never
-    , clansFilters : UI.FilterSelection.Model Clan Never
-    , disciplineFilters : UI.FilterSelection.Model Discipline Never
+    { attackTypeFilters : Filter.Model Cards.AttackType Never
+    , clansFilters : Filter.Model Clan Never
+    , disciplineFilters : Filter.Model Discipline Never
     , packFilters : MultiSelect.Model Pack
-    , primaryFilters : UI.FilterSelection.Model Trait Never
-    , secondaryFilters : UI.FilterSelection.Model Trait Never
+    , primaryFilters : Filter.Model Filter.PrimaryTrait Never
+    , secondaryFilters : Filter.Model Filter.SecondaryTrait Never
     , showAllFilters : Bool
     , strictFilters : Bool
     , showCollectionImages : Bool
-    , stackFilters : UI.FilterSelection.Model Cards.CardStack Never
+    , stackFilters : Filter.Model Cards.CardStack Never
     , textFilter : Maybe String
     , topTabs : UI.TopTabs.Model Tab
     }
@@ -50,12 +49,12 @@ type alias Model =
 
 init : Bool -> Model
 init strictFilters =
-    { stackFilters = UI.FilterSelection.playerStacks
-    , primaryFilters = UI.FilterSelection.primaryTraits
-    , secondaryFilters = UI.FilterSelection.secondaryTraits
-    , attackTypeFilters = UI.FilterSelection.attackTypes
-    , clansFilters = UI.FilterSelection.clans
-    , disciplineFilters = UI.FilterSelection.disciplines
+    { stackFilters = Filter.playerStacks
+    , primaryFilters = Filter.primaryTraits
+    , secondaryFilters = Filter.secondaryTraits
+    , attackTypeFilters = Filter.attackTypes
+    , clansFilters = Filter.clans
+    , disciplineFilters = Filter.disciplines
     , packFilters = MultiSelect.init Pack.list
     , textFilter = Nothing
     , showAllFilters = False
@@ -81,12 +80,12 @@ type ExternalMsg
 
 type InternalMsg
     = ClearFilters
-    | FromAttackTypesFilter (UI.FilterSelection.Msg Cards.AttackType)
-    | FromClansFilter (UI.FilterSelection.Msg Clan)
-    | FromDisciplinesFilter (UI.FilterSelection.Msg Discipline)
-    | FromPrimaryFilter (UI.FilterSelection.Msg Trait)
-    | FromSecondaryFilter (UI.FilterSelection.Msg Trait)
-    | FromStacksFilter (UI.FilterSelection.Msg Cards.CardStack)
+    | FromAttackTypesFilter (Filter.Msg Cards.AttackType)
+    | FromClansFilter (Filter.Msg Clan)
+    | FromDisciplinesFilter (Filter.Msg Discipline)
+    | FromPrimaryFilter (Filter.Msg Filter.PrimaryTrait)
+    | FromSecondaryFilter (Filter.Msg Filter.SecondaryTrait)
+    | FromStacksFilter (Filter.Msg Cards.CardStack)
     | FromPackFilter (MultiSelect.Msg Pack)
     | ToggleShowAllFilters
     | ToggleStrictFilters
@@ -102,34 +101,34 @@ update msg model =
             ( model, Effect.none )
 
         Internal (FromStacksFilter subMsg) ->
-            ( { model | stackFilters = UI.FilterSelection.update subMsg model.stackFilters }, Effect.none )
+            ( { model | stackFilters = Filter.update subMsg model.stackFilters }, Effect.none )
 
         Internal (FromPrimaryFilter subMsg) ->
-            ( { model | primaryFilters = UI.FilterSelection.update subMsg model.primaryFilters }, Effect.none )
+            ( { model | primaryFilters = Filter.update subMsg model.primaryFilters }, Effect.none )
 
         Internal (FromSecondaryFilter subMsg) ->
-            ( { model | secondaryFilters = UI.FilterSelection.update subMsg model.secondaryFilters }, Effect.none )
+            ( { model | secondaryFilters = Filter.update subMsg model.secondaryFilters }, Effect.none )
 
         Internal (FromAttackTypesFilter subMsg) ->
-            ( { model | attackTypeFilters = UI.FilterSelection.update subMsg model.attackTypeFilters }, Effect.none )
+            ( { model | attackTypeFilters = Filter.update subMsg model.attackTypeFilters }, Effect.none )
 
         Internal (FromClansFilter subMsg) ->
-            ( { model | clansFilters = UI.FilterSelection.update subMsg model.clansFilters }, Effect.none )
+            ( { model | clansFilters = Filter.update subMsg model.clansFilters }, Effect.none )
 
         Internal (FromDisciplinesFilter subMsg) ->
-            ( { model | disciplineFilters = UI.FilterSelection.update subMsg model.disciplineFilters }, Effect.none )
+            ( { model | disciplineFilters = Filter.update subMsg model.disciplineFilters }, Effect.none )
 
         Internal (FromPackFilter subMsg) ->
             ( { model | packFilters = MultiSelect.update subMsg model.packFilters }, Effect.none )
 
         Internal ClearFilters ->
             ( { model
-                | stackFilters = UI.FilterSelection.playerStacks
-                , primaryFilters = UI.FilterSelection.primaryTraits
-                , secondaryFilters = UI.FilterSelection.secondaryTraits
-                , attackTypeFilters = UI.FilterSelection.attackTypes
-                , clansFilters = UI.FilterSelection.clans
-                , disciplineFilters = UI.FilterSelection.disciplines
+                | stackFilters = Filter.playerStacks
+                , primaryFilters = Filter.primaryTraits
+                , secondaryFilters = Filter.secondaryTraits
+                , attackTypeFilters = Filter.attackTypes
+                , clansFilters = Filter.clans
+                , disciplineFilters = Filter.disciplines
                 , packFilters = MultiSelect.init Pack.list
                 , textFilter = Nothing
               }
@@ -268,17 +267,17 @@ viewFilters data =
 
 viewMainFilters : Model -> List (Html Msg)
 viewMainFilters data =
-    [ Html.map (Internal << FromStacksFilter) <| UI.FilterSelection.view data.stackFilters
-    , Html.map (Internal << FromPrimaryFilter) <| UI.FilterSelection.view data.primaryFilters
-    , Html.map (Internal << FromClansFilter) <| UI.FilterSelection.view data.clansFilters
+    [ Html.map (Internal << FromStacksFilter) <| Filter.view data.stackFilters
+    , Html.map (Internal << FromPrimaryFilter) <| Filter.view data.primaryFilters
+    , Html.map (Internal << FromClansFilter) <| Filter.view data.clansFilters
     ]
 
 
 viewSecondaryFilters : Model -> List (Html Msg)
 viewSecondaryFilters data =
-    [ Html.map (Internal << FromSecondaryFilter) <| UI.FilterSelection.view data.secondaryFilters
-    , Html.map (Internal << FromAttackTypesFilter) <| UI.FilterSelection.view data.attackTypeFilters
-    , Html.map (Internal << FromDisciplinesFilter) <| UI.FilterSelection.view data.disciplineFilters
+    [ Html.map (Internal << FromSecondaryFilter) <| Filter.view data.secondaryFilters
+    , Html.map (Internal << FromAttackTypesFilter) <| Filter.view data.attackTypeFilters
+    , Html.map (Internal << FromDisciplinesFilter) <| Filter.view data.disciplineFilters
     , div []
         [ label []
             [ text "Card text: "
@@ -439,16 +438,16 @@ filterFlags data card =
     let
         filter =
             if data.strictFilters then
-                UI.FilterSelection.isAllowedStrict
+                Filter.isAllowedStrict
 
             else
-                UI.FilterSelection.isAllowedWide
+                Filter.isAllowedWide
     in
     filter Cards.clanRequirement data.clansFilters card
-        && filter Cards.traits data.secondaryFilters card
+        && filter Filter.pickSecondaryTraits data.secondaryFilters card
         && filter (Cards.stack >> List.singleton) data.stackFilters card
         && filter Cards.discipline data.disciplineFilters card
-        && filter Cards.traits data.primaryFilters card
+        && filter Filter.pickPrimaryTraits data.primaryFilters card
         && filter Cards.attackTypes data.attackTypeFilters card
         && isPackAllowed data.packFilters card
 

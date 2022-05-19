@@ -5,7 +5,6 @@ import Data.Clan exposing (Clan)
 import Data.Collection exposing (Collection)
 import Data.Discipline exposing (Discipline)
 import Data.Pack as Pack exposing (Pack)
-import Data.Trait exposing (Trait)
 import Dict
 import Effect exposing (Effect)
 import Fuzzy
@@ -18,7 +17,7 @@ import Page
 import Request
 import Shared
 import UI.Card
-import UI.FilterSelection
+import UI.FilterSelection as Filter
 import UI.Layout.Template
 import UI.MultiSelect as MultiSelect
 import UI.Text
@@ -38,12 +37,12 @@ page shared _ =
 type alias Model =
     { matches : List Card
     , collection : Collection
-    , stackFilters : UI.FilterSelection.Model Cards.CardStack Never
-    , primaryFilters : UI.FilterSelection.Model Trait Never
-    , secondaryFilters : UI.FilterSelection.Model Trait Never
-    , attackTypeFilters : UI.FilterSelection.Model Cards.AttackType Never
-    , clansFilters : UI.FilterSelection.Model Clan Never
-    , disciplineFilters : UI.FilterSelection.Model Discipline Never
+    , stackFilters : Filter.Model Cards.CardStack Never
+    , primaryFilters : Filter.Model Filter.PrimaryTrait Never
+    , secondaryFilters : Filter.Model Filter.SecondaryTrait Never
+    , attackTypeFilters : Filter.Model Cards.AttackType Never
+    , clansFilters : Filter.Model Clan Never
+    , disciplineFilters : Filter.Model Discipline Never
     , packFilters : MultiSelect.Model Pack
     , textFilter : Maybe String
     }
@@ -53,12 +52,12 @@ init : Shared.Model -> ( Model, Effect Msg )
 init shared =
     ( { collection = shared.collection
       , matches = matchesForQuery shared.collection shared.headerSearch
-      , stackFilters = UI.FilterSelection.allStacks
-      , primaryFilters = UI.FilterSelection.primaryTraits
-      , secondaryFilters = UI.FilterSelection.secondaryTraits
-      , attackTypeFilters = UI.FilterSelection.attackTypes
-      , clansFilters = UI.FilterSelection.clans
-      , disciplineFilters = UI.FilterSelection.disciplines
+      , stackFilters = Filter.allStacks
+      , primaryFilters = Filter.primaryTraits
+      , secondaryFilters = Filter.secondaryTraits
+      , attackTypeFilters = Filter.attackTypes
+      , clansFilters = Filter.clans
+      , disciplineFilters = Filter.disciplines
       , packFilters = MultiSelect.init Pack.list
       , textFilter = Nothing
       }
@@ -91,12 +90,12 @@ fuzzySort query items =
 
 type Msg
     = FromShared Shared.Msg
-    | FromStacksFilter (UI.FilterSelection.Msg Cards.CardStack)
-    | FromPrimaryFilter (UI.FilterSelection.Msg Trait)
-    | FromSecondaryFilter (UI.FilterSelection.Msg Trait)
-    | FromAttackTypesFilter (UI.FilterSelection.Msg Cards.AttackType)
-    | FromClansFilter (UI.FilterSelection.Msg Clan)
-    | FromDisciplinesFilter (UI.FilterSelection.Msg Discipline)
+    | FromStacksFilter (Filter.Msg Cards.CardStack)
+    | FromPrimaryFilter (Filter.Msg Filter.PrimaryTrait)
+    | FromSecondaryFilter (Filter.Msg Filter.SecondaryTrait)
+    | FromAttackTypesFilter (Filter.Msg Cards.AttackType)
+    | FromClansFilter (Filter.Msg Clan)
+    | FromDisciplinesFilter (Filter.Msg Discipline)
     | FromPackFilter (MultiSelect.Msg Pack)
     | TextFilterChanged String
 
@@ -124,22 +123,22 @@ update msg model =
             ( model, Effect.fromShared subMsg )
 
         FromStacksFilter subMsg ->
-            ( { model | stackFilters = UI.FilterSelection.update subMsg model.stackFilters }, Effect.none )
+            ( { model | stackFilters = Filter.update subMsg model.stackFilters }, Effect.none )
 
         FromPrimaryFilter subMsg ->
-            ( { model | primaryFilters = UI.FilterSelection.update subMsg model.primaryFilters }, Effect.none )
+            ( { model | primaryFilters = Filter.update subMsg model.primaryFilters }, Effect.none )
 
         FromSecondaryFilter subMsg ->
-            ( { model | secondaryFilters = UI.FilterSelection.update subMsg model.secondaryFilters }, Effect.none )
+            ( { model | secondaryFilters = Filter.update subMsg model.secondaryFilters }, Effect.none )
 
         FromAttackTypesFilter subMsg ->
-            ( { model | attackTypeFilters = UI.FilterSelection.update subMsg model.attackTypeFilters }, Effect.none )
+            ( { model | attackTypeFilters = Filter.update subMsg model.attackTypeFilters }, Effect.none )
 
         FromClansFilter subMsg ->
-            ( { model | clansFilters = UI.FilterSelection.update subMsg model.clansFilters }, Effect.none )
+            ( { model | clansFilters = Filter.update subMsg model.clansFilters }, Effect.none )
 
         FromDisciplinesFilter subMsg ->
-            ( { model | disciplineFilters = UI.FilterSelection.update subMsg model.disciplineFilters }, Effect.none )
+            ( { model | disciplineFilters = Filter.update subMsg model.disciplineFilters }, Effect.none )
 
         FromPackFilter subMsg ->
             ( { model | packFilters = MultiSelect.update subMsg model.packFilters }, Effect.none )
@@ -167,22 +166,22 @@ view shared model =
             [ UI.Text.header [ text "Filters" ]
             , div [ class "filter-group" ]
                 [ div [ class "filter-group__flags" ]
-                    [ Html.map FromStacksFilter <| UI.FilterSelection.view model.stackFilters
+                    [ Html.map FromStacksFilter <| Filter.view model.stackFilters
                     ]
                 , div [ class "filter-group__flags" ]
-                    [ Html.map FromPrimaryFilter <| UI.FilterSelection.view model.primaryFilters
+                    [ Html.map FromPrimaryFilter <| Filter.view model.primaryFilters
                     ]
                 , div [ class "filter-group__flags" ]
-                    [ Html.map FromSecondaryFilter <| UI.FilterSelection.view model.secondaryFilters
+                    [ Html.map FromSecondaryFilter <| Filter.view model.secondaryFilters
                     ]
                 , div [ class "filter-group__flags" ]
-                    [ Html.map FromAttackTypesFilter <| UI.FilterSelection.view model.attackTypeFilters
+                    [ Html.map FromAttackTypesFilter <| Filter.view model.attackTypeFilters
                     ]
                 , div [ class "filter-group__flags" ]
-                    [ Html.map FromClansFilter <| UI.FilterSelection.view model.clansFilters
+                    [ Html.map FromClansFilter <| Filter.view model.clansFilters
                     ]
                 , div [ class "filter-group__flags" ]
-                    [ Html.map FromDisciplinesFilter <| UI.FilterSelection.view model.disciplineFilters
+                    [ Html.map FromDisciplinesFilter <| Filter.view model.disciplineFilters
                     ]
                 ]
             , div [ class "filter-group" ]
@@ -229,12 +228,12 @@ matchTextFilter model card =
 
 matchFilterSelections : Model -> Card -> Bool
 matchFilterSelections model card =
-    UI.FilterSelection.isAllowedWide Cards.traits model.secondaryFilters card
-        && UI.FilterSelection.isAllowedWide (Cards.stack >> List.singleton) model.stackFilters card
-        && UI.FilterSelection.isAllowedWide Cards.discipline model.disciplineFilters card
-        && UI.FilterSelection.isAllowedWide Cards.traits model.primaryFilters card
-        && UI.FilterSelection.isAllowedWide Cards.clan model.clansFilters card
-        && UI.FilterSelection.isAllowedWide Cards.attackTypes model.attackTypeFilters card
+    Filter.isAllowedWide Filter.pickSecondaryTraits model.secondaryFilters card
+        && Filter.isAllowedWide (Cards.stack >> List.singleton) model.stackFilters card
+        && Filter.isAllowedWide Cards.discipline model.disciplineFilters card
+        && Filter.isAllowedWide Filter.pickPrimaryTraits model.primaryFilters card
+        && Filter.isAllowedWide Cards.clan model.clansFilters card
+        && Filter.isAllowedWide Cards.attackTypes model.attackTypeFilters card
         && isPackAllowed model.packFilters card
 
 

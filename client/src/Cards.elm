@@ -28,13 +28,11 @@ module Cards exposing
     , stack
     , stackComparable
     , text
-    , traits
     )
 
 import Data.Clan as Clan exposing (Clan)
 import Data.Discipline as Discipline exposing (Discipline)
 import Data.Pack as Pack exposing (Pack)
-import Data.Trait as Trait exposing (Trait)
 import Dict
 import Enum exposing (Enum)
 import Json.Decode as Decode exposing (Decoder, int, list, map, string)
@@ -108,7 +106,20 @@ type alias City =
     , text : Text
     , image : Image
     , set : Pack
-    , traits : List Trait
+    , traits : CityTraits
+    }
+
+
+type alias CityTraits =
+    { antagonist : Bool
+    , citizen : Bool
+    , event : Bool
+    , mortal : Bool
+    , ongoing : Bool
+    , retainer : Bool
+    , sanFrancisco : Bool
+    , secondInquisition : Bool
+    , title : Bool
     }
 
 
@@ -138,8 +149,25 @@ type alias Library =
     , bloodPotency : BloodPotencyRequirement
     , damage : Maybe Damage
     , shield : Maybe Shield
-    , traits : List Trait
+    , traits : LibraryTraits
     , attackType : List AttackType
+    }
+
+
+type alias LibraryTraits =
+    { action : Bool
+    , alchemy : Bool
+    , animal : Bool
+    , attack : Bool
+    , conspiracy : Bool
+    , influenceModifier : Bool
+    , ongoing : Bool
+    , reaction : Bool
+    , ritual : Bool
+    , scheme : Bool
+    , special : Bool
+    , title : Bool
+    , unhostedAction : Bool
     }
 
 
@@ -239,16 +267,6 @@ set card =
 
         CityCard c ->
             c.set
-
-
-traits : Card -> List Trait
-traits card =
-    case card of
-        LibraryCard c ->
-            c.traits
-
-        _ ->
-            []
 
 
 attackTypes : Card -> List AttackType
@@ -478,7 +496,7 @@ libraryDecoder =
         |> decodeBloodPotencyRequirement
         |> decodeDamage
         |> decodeShields
-        |> required "types" (list Trait.decoder)
+        |> required "types" decodeLibraryTraits
         |> decodeAttackType
         |> map (\library -> ( library.id, LibraryCard library ))
 
@@ -491,7 +509,7 @@ cityDecoder =
         |> decodeText
         |> decodeImage
         |> required "set" Pack.decoder
-        |> required "types" (list Trait.decoder)
+        |> required "types" decodeCityTraits
         |> map (\library -> ( library.id, CityCard library ))
 
 
@@ -507,6 +525,130 @@ findTextInCard needle card =
 
 
 -- FIELD DECODERS
+
+
+decodeCityTraits : Decoder CityTraits
+decodeCityTraits =
+    let
+        init =
+            { antagonist = False
+            , citizen = False
+            , event = False
+            , mortal = False
+            , ongoing = False
+            , retainer = False
+            , sanFrancisco = False
+            , secondInquisition = False
+            , title = False
+            }
+    in
+    Decode.map
+        (List.foldl
+            (\str ts ->
+                case str of
+                    "title" ->
+                        { ts | title = True }
+
+                    "san francisco" ->
+                        { ts | sanFrancisco = True }
+
+                    "event" ->
+                        { ts | event = True }
+
+                    "second inquisition" ->
+                        { ts | secondInquisition = True }
+
+                    "mortal" ->
+                        { ts | mortal = True }
+
+                    "ongoing" ->
+                        { ts | ongoing = True }
+
+                    "antagonist" ->
+                        { ts | antagonist = True }
+
+                    "retainer" ->
+                        { ts | retainer = True }
+
+                    "citizen" ->
+                        { ts | citizen = True }
+
+                    _ ->
+                        ts
+            )
+            init
+        )
+        (Decode.list Decode.string)
+
+
+decodeLibraryTraits : Decoder LibraryTraits
+decodeLibraryTraits =
+    let
+        init =
+            { action = False
+            , alchemy = False
+            , animal = False
+            , attack = False
+            , conspiracy = False
+            , influenceModifier = False
+            , ongoing = False
+            , reaction = False
+            , ritual = False
+            , scheme = False
+            , special = False
+            , title = False
+            , unhostedAction = False
+            }
+    in
+    Decode.map
+        (List.foldl
+            (\str ts ->
+                case str of
+                    "action" ->
+                        { ts | action = True }
+
+                    "alchemy" ->
+                        { ts | alchemy = True }
+
+                    "animal" ->
+                        { ts | animal = True }
+
+                    "attack" ->
+                        { ts | attack = True }
+
+                    "conspiracy" ->
+                        { ts | conspiracy = True }
+
+                    "influence modifier" ->
+                        { ts | influenceModifier = True }
+
+                    "ongoing" ->
+                        { ts | ongoing = True }
+
+                    "reaction" ->
+                        { ts | reaction = True }
+
+                    "ritual" ->
+                        { ts | ritual = True }
+
+                    "scheme" ->
+                        { ts | scheme = True }
+
+                    "special" ->
+                        { ts | special = True }
+
+                    "title" ->
+                        { ts | title = True }
+
+                    "unhosted action" ->
+                        { ts | unhostedAction = True }
+
+                    _ ->
+                        ts
+            )
+            init
+        )
+        (Decode.list Decode.string)
 
 
 decodeBloodPotency : Decoder (Int -> b) -> Decoder b
