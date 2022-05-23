@@ -107,5 +107,5 @@ viewSelectedOption option =
             , onClick <| RemoveOption value
             , title <| ("Unselect " ++ name)
             ]
-            [ text "⮿" ]
+            [ text "ⓧ" ]
         ]

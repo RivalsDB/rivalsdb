@@ -36,6 +36,7 @@ type alias Model =
     , clansFilters : Filter.Model Clan Never
     , disciplineFilters : Filter.Model Discipline Never
     , packFilters : MultiSelect.Model Pack
+    , bloodPotencyFilters : MultiSelect.Model Int
     , primaryFilters : Filter.Model Filter.PrimaryTrait Never
     , secondaryFilters : Filter.Model Filter.SecondaryTrait Never
     , showAllFilters : Bool
@@ -56,6 +57,7 @@ init strictFilters =
     , clansFilters = Filter.clans
     , disciplineFilters = Filter.disciplines
     , packFilters = MultiSelect.init Pack.list
+    , bloodPotencyFilters = MultiSelect.init <| List.map (\n -> ( String.fromInt n, n )) [ 0, 1, 2, 3, 4, 5, 6 ]
     , textFilter = Nothing
     , showAllFilters = False
     , strictFilters = strictFilters
@@ -87,6 +89,7 @@ type InternalMsg
     | FromSecondaryFilter (Filter.Msg Filter.SecondaryTrait)
     | FromStacksFilter (Filter.Msg Cards.CardStack)
     | FromPackFilter (MultiSelect.Msg Pack)
+    | FromBloodPotencyFilter (MultiSelect.Msg Int)
     | ToggleShowAllFilters
     | ToggleStrictFilters
     | ToggleShowCollectionImages
@@ -120,6 +123,9 @@ update msg model =
 
         Internal (FromPackFilter subMsg) ->
             ( { model | packFilters = MultiSelect.update subMsg model.packFilters }, Effect.none )
+
+        Internal (FromBloodPotencyFilter subMsg) ->
+            ( { model | bloodPotencyFilters = MultiSelect.update subMsg model.bloodPotencyFilters }, Effect.none )
 
         Internal ClearFilters ->
             ( { model
@@ -278,18 +284,28 @@ viewSecondaryFilters data =
     [ Html.map (Internal << FromSecondaryFilter) <| Filter.view data.secondaryFilters
     , Html.map (Internal << FromAttackTypesFilter) <| Filter.view data.attackTypeFilters
     , Html.map (Internal << FromDisciplinesFilter) <| Filter.view data.disciplineFilters
-    , div []
-        [ label []
-            [ text "Card text: "
-            , input [ onInput (Internal << TextFilterChanged), type_ "search", spellcheck False ] []
+    , div [ class "deckbuild-filters__multi" ]
+        [ label [ class "deckbuild-filters__multi-label", for "bp-multi" ]
+            [ text "Blood Potency"
+            ]
+        , span
+            [ class "deckbuild-filters__multi-select", id "bp-multi" ]
+            [ Html.map (Internal << FromBloodPotencyFilter) <| MultiSelect.autoSorted "Blood Potency" data.bloodPotencyFilters
+            ]
+        ]
+    , div [ class "deckbuild-filters__multi" ]
+        [ label [ class "deckbuild-filters__multi-label", for "pack-multi" ]
+            [ text "Card pack"
+            ]
+        , span
+            [ class "deckbuild-filters__multi-select", id "pack-multi" ]
+            [ Html.map (Internal << FromPackFilter) <| MultiSelect.autoSorted "Card Pack" data.packFilters
             ]
         ]
     , div []
         [ label []
-            [ text "Card pack: "
-            , span [ class "search__pack" ]
-                [ Html.map (Internal << FromPackFilter) <| MultiSelect.autoSorted "Card Pack" data.packFilters
-                ]
+            [ text "Card text: "
+            , input [ onInput (Internal << TextFilterChanged), type_ "search", spellcheck False ] []
             ]
         ]
     ]
@@ -450,6 +466,7 @@ filterFlags data card =
         && filter Filter.pickPrimaryTraits data.primaryFilters card
         && filter Cards.attackTypes data.attackTypeFilters card
         && isPackAllowed data.packFilters card
+        && isBloodPotencyAllowed data.bloodPotencyFilters card
 
 
 isPackAllowed : MultiSelect.Model Pack -> Card -> Bool
@@ -460,6 +477,28 @@ isPackAllowed packSelection card =
 
         allowedPacks ->
             List.member (Cards.set card) allowedPacks
+
+
+isBloodPotencyAllowed : MultiSelect.Model Int -> Card -> Bool
+isBloodPotencyAllowed bpSelection card =
+    case ( MultiSelect.selected bpSelection, card ) of
+        ( [], _ ) ->
+            True
+
+        ( _, Cards.CityCard _ ) ->
+            False
+
+        ( _, Cards.HavenCard _ ) ->
+            True
+
+        ( _, Cards.AgendaCard _ ) ->
+            True
+
+        ( allowedBps, Cards.FactionCard { bloodPotency } ) ->
+            List.member bloodPotency allowedBps
+
+        ( allowedBps, Cards.LibraryCard { bloodPotency } ) ->
+            Maybe.map (\bp -> List.member bp allowedBps) bloodPotency |> Maybe.withDefault False
 
 
 cardSort : Card -> Card -> Order
