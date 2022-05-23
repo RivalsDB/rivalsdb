@@ -2416,7 +2416,7 @@ export const cards: Array<Card> = [
   {
     types: ["agenda"],
     name: "Hunt the Hunters",
-    text: "The first time you defeat a Second Inquisition during each of your turns, gain 1 [influence] and 1 [agenda], then shuffle it and any cards in the City Deck discard pile into the City Deck. If you reach 13 ]agenda], you win!",
+    text: "The first time you defeat a Second Inquisition during each of your turns, gain 1 [prestige] and 1 [agenda], then shuffle it and any cards in the City Deck discard pile into the City Deck. If you reach 13 [agenda], you win!",
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-hunt-the-hunters",
@@ -3767,7 +3767,7 @@ export const cards: Array<Card> = [
   } as Library,
   {
     types: ["unhosted action", "ongoing"],
-    name: "Thid Tradition: The Progeny",
+    name: "Third Tradition: The Progeny",
     text: "Pay 1 Prestige. Ongoing . At the start of your turn, each player with 4+ vampires in their coterie chooses to either lose 1 Prestige or discard 1 card.",
     illustrator: "Mara Miranda",
     set: "Blood & Alchemy",
@@ -4141,7 +4141,7 @@ export const cards: Array<Card> = [
   {
     types: ["action", "ongoing"],
     name: "Constant Surveillance",
-    text: "Pay 1 [influence]: Cover target foe's Agenda or Haven with this card, or pay 1 additional [influence] to cover both.\nOngoing - Covered cards have no text. At the start of your next turn, burn this card.",
+    text: "Pay 1 [prestige]: Cover target foe's Agenda or Haven with this card, or pay 1 additional [prestige] to cover both.\nOngoing - Covered cards have no text. At the start of your next turn, burn this card.",
     set: "Wolf & Rat",
     illustrator: "Timothy Terrenal",
     id: "war-constant-surveillance",
@@ -4165,7 +4165,7 @@ export const cards: Array<Card> = [
   {
     types: ["unhosted action", "ongoing"],
     name: "Cracking the Case",
-    text: "Add 4 [influence] from the general supply to this card.\nRemove X [influence] from this card: Target attacker has +X Intel for this attack. When empty, burn this.",
+    text: "Add 4 [prestige] from the general supply to this card.\nRemove X [prestige] from this card: Target attacker has +X Intel for this attack. When empty, burn this.",
     set: "Wolf & Rat",
     illustrator: "Felipe Gaona",
     id: "war-cracking-the-case",
@@ -4420,7 +4420,7 @@ export const cards: Array<Card> = [
     attributeSocial: 0,
     attributeMental: 1,
     disciplines: ["obfuscate", "potence"],
-    text: "Exhaust: Remove 1 token from target Ongoing or unattached face-down card controlled by any player. Use this ability only in The Streets.\nPay 1 [influence]: Discard the card instead.",
+    text: "Exhaust: Remove 1 token from target Ongoing or unattached face-down card controlled by any player. Use this ability only in The Streets.\nPay 1 [prestige]: Discard the card instead.",
     illustrator: "Felipe Gaona",
     set: "Wolf & Rat",
     id: "war-kim-phan",
@@ -4526,7 +4526,7 @@ export const cards: Array<Card> = [
   {
     name: "Second Tradition: The Domain",
     types: ["action", "ongoing"],
-    text: "Ongoing - Exhaust: Attach a City Deck Citizen or Vagrant in The Streets to this card (max 2). They are still in The Streets and may be attacked. Foes must pay you 1 [influence] to attack Mortals attached to this.",
+    text: "Ongoing - Exhaust: Attach a City Deck Citizen or Vagrant in The Streets to this card (max 2). They are still in The Streets and may be attacked. Foes must pay you 1 [prestige] to attack Mortals attached to this.",
     set: "Wolf & Rat",
     illustrator: "Mara Miranda-Escota",
     id: "war-second-tradition-the-domain",
@@ -4679,7 +4679,7 @@ export const cards: Array<Card> = [
   {
     name: "The Shakedown",
     types: ["action"],
-    text: "Look at target foe's hand, then name an Attack type. The target discards all Attack cards of that type. If the acting character has the Sheriff Title, gain 1 [influence] for each card discarded this way.",
+    text: "Look at target foe's hand, then name an Attack type. The target discards all Attack cards of that type. If the acting character has the Sheriff Title, gain 1 [prestige] for each card discarded this way.",
     set: "Wolf & Rat",
     illustrator: "Irene Francisco",
     id: "war-the-shakedown",
