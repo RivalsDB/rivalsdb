@@ -48,8 +48,8 @@ type alias Model =
     }
 
 
-init : Bool -> Model
-init strictFilters =
+init : Model
+init =
     { stackFilters = Filter.playerStacks
     , primaryFilters = Filter.primaryTraits
     , secondaryFilters = Filter.secondaryTraits
@@ -60,7 +60,7 @@ init strictFilters =
     , bloodPotencyFilters = MultiSelect.init <| List.map (\n -> ( String.fromInt n, n )) [ 0, 1, 2, 3, 4, 5, 6 ]
     , textFilter = Nothing
     , showAllFilters = False
-    , strictFilters = strictFilters
+    , strictFilters = False
     , showCollectionImages = False
     , topTabs =
         UI.TopTabs.init

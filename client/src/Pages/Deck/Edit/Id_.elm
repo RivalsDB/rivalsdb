@@ -30,7 +30,7 @@ page shared req =
     Page.protected.advanced
         (\user ->
             { init = init shared.collection user.token req.params.id
-            , update = update shared user
+            , update = update user
             , view = view shared
             , subscriptions = always Sub.none
             }
@@ -75,8 +75,8 @@ type Msg
     | ChangedCard ( Cards.Card, Int )
 
 
-update : Shared.Model -> Auth.User -> Msg -> Model -> ( Model, Effect Msg )
-update shared user msg modelx =
+update : Auth.User -> Msg -> Model -> ( Model, Effect Msg )
+update user msg modelx =
     case ( modelx, msg ) of
         ( _, FromShared subMsg ) ->
             ( modelx, Effect.fromShared subMsg )
@@ -85,7 +85,7 @@ update shared user msg modelx =
             ( Editing
                 { isSaving = False
                 , deck = deck
-                , builderOptions = DeckbuildSelections.init shared.strictFilterInitial
+                , builderOptions = DeckbuildSelections.init
                 }
             , Effect.none
             )

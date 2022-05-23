@@ -33,7 +33,6 @@ type alias Model =
     , headerSearch : Maybe String
     , toast : Toast.Model
     , key : Key
-    , strictFilterInitial : Bool
     }
 
 
@@ -59,13 +58,13 @@ type Msg
 init : Request -> Flags -> ( Model, Cmd Msg )
 init req flags =
     let
-        { collection, strictFilterInitial, user } =
+        { collection, user } =
             case Json.decodeValue flagsDecoder flags of
                 Ok decoded ->
                     decoded
 
                 Err _ ->
-                    { collection = Dict.empty, strictFilterInitial = False, user = Nothing }
+                    { collection = Dict.empty, user = Nothing }
     in
     ( { collection = collection
       , user = user
@@ -74,9 +73,8 @@ init req flags =
       , headerSearch = Nothing
       , toast = Toast.init
       , key = req.key
-      , strictFilterInitial = strictFilterInitial
       }
-    , Port.Event.track (Port.Event.BuilderToggleStrictFilters strictFilterInitial)
+    , Cmd.none
     )
 
 
@@ -155,12 +153,11 @@ subscriptions _ _ =
 
 
 type alias DecodedFlags =
-    { collection : Dict.Dict Id Card, strictFilterInitial : Bool, user : Maybe User }
+    { collection : Dict.Dict Id Card, user : Maybe User }
 
 
 flagsDecoder : Decoder DecodedFlags
 flagsDecoder =
-    Json.map3 DecodedFlags
+    Json.map2 DecodedFlags
         (Json.field "cards" cardsDecoder)
-        (Json.field "strictFilterInitial" Json.bool)
         (Json.maybe <| Json.field "userData" User.decode)
