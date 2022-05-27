@@ -11,6 +11,7 @@ module Shared exposing
 import Browser.Navigation as Navigation exposing (Key)
 import Cards exposing (Card, Id, cardsDecoder)
 import Data.Collection exposing (Collection)
+import Data.Deck exposing (Deck)
 import Data.User as User exposing (User)
 import Dict
 import Gen.Route as Route exposing (Route)
@@ -33,6 +34,7 @@ type alias Model =
     , headerSearch : Maybe String
     , toast : Toast.Model
     , key : Key
+    , cachedDecks : List Deck
     }
 
 
@@ -53,6 +55,7 @@ type Msg
     | FromToast Toast.Msg
     | ToastSuccess String (Maybe String)
     | ToastError String (Maybe String)
+    | CacheDecks (List Deck)
 
 
 init : Request -> Flags -> ( Model, Cmd Msg )
@@ -73,6 +76,7 @@ init req flags =
       , headerSearch = Nothing
       , toast = Toast.init
       , key = req.key
+      , cachedDecks = []
       }
     , Cmd.none
     )
@@ -142,6 +146,9 @@ update _ msg model =
 
         GoTo route ->
             ( model, Route.toHref route |> Navigation.pushUrl model.key )
+
+        CacheDecks decks ->
+            ( { model | cachedDecks = decks }, Cmd.none )
 
 
 subscriptions : Request -> Model -> Sub Msg

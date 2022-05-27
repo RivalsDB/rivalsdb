@@ -36,10 +36,6 @@ page shared req =
         }
 
 
-
--- INIT
-
-
 type Model
     = Loading Key Filters
     | Viewing Key (List Deck) Filters
@@ -96,10 +92,19 @@ filtersToQueryString filters =
 
 init : Request.With Params -> Shared.Model -> ( Model, Effect Msg )
 init req shared =
-    ( Loading req.key (filtersFromQueryString req.query)
-    , API.Decklist.index shared.collection FetchedDecklists (Maybe.map .token shared.user)
-        |> Effect.fromCmd
-    )
+    let
+        filters =
+            filtersFromQueryString req.query
+
+        fetchDecks =
+            Effect.fromCmd <| API.Decklist.index shared.collection FetchedDecklists (Maybe.map .token shared.user)
+    in
+    case shared.cachedDecks of
+        [] ->
+            ( Loading req.key filters, fetchDecks )
+
+        cachedDecks ->
+            ( Viewing req.key cachedDecks filters, fetchDecks )
 
 
 
@@ -123,13 +128,13 @@ update msg model =
             ( model, Effect.fromShared subMsg )
 
         ( Loading key filters, FetchedDecklists (Ok decklists) ) ->
-            ( Viewing key decklists filters, Effect.none )
+            ( Viewing key decklists filters, Effect.fromShared <| Shared.CacheDecks decklists )
+
+        ( Viewing key _ filters, FetchedDecklists (Ok decklists) ) ->
+            ( Viewing key decklists filters, Effect.fromShared <| Shared.CacheDecks decklists )
 
         ( Loading _ _, _ ) ->
             ( model, Effect.none )
-
-        ( Viewing key _ filters, FetchedDecklists (Ok decklists) ) ->
-            ( Viewing key decklists filters, Effect.none )
 
         ( Viewing _ _ _, FetchedDecklists (Err _) ) ->
             ( model, Effect.none )
