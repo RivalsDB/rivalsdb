@@ -432,6 +432,189 @@ const havens: Record<CardId, Haven> = {
   },
 };
 
+type Clan =
+  | "brujah"
+  | "gangrel"
+  | "hecata"
+  | "lasombra"
+  | "malkavian"
+  | "nosferatu"
+  | "thin-blood"
+  | "toreador"
+  | "tremere"
+  | "ventrue";
+
+type Discipline =
+  | "animalism"
+  | "auspex"
+  | "blood sorcery"
+  | "celerity"
+  | "dominate"
+  | "fortitude"
+  | "obfuscate"
+  | "oblivion"
+  | "potence"
+  | "presence"
+  | "protean"
+  | "thin-blood alchemy";
+
+type Faction = {
+  stack: "faction";
+  name: string;
+  clan: Clan;
+  bloodPotency: number;
+  physical: number;
+  social: number;
+  mental: number;
+  disciplines?: Discipline[];
+  text: string;
+  illustrator: string;
+  set: CardSet;
+};
+
+const factions: Record<CardId, Faction> = {
+  "baa-april-smith": {
+    stack: "faction",
+    name: "April Smith",
+    clan: "thin-blood",
+    text: text(
+      `Party - Attackers with [thin-blood alchemy] in this party gain +1 [blood-potency] and [fortitude] this attack.
+
+      **Pay 1 [prestige]:** Each 1 [blood-potency] character in your coterie has +1 [shield] this turn.
+      `
+    ),
+    bloodPotency: 1,
+    physical: 0,
+    social: 0,
+    mental: 1,
+    illustrator: "Felipe Gaona",
+    set: "Blood & Alchemy",
+  },
+  "baa-aurora-nix": {
+    stack: "faction",
+    name: "Aurora Nix",
+    clan: "tremere",
+    text: text(
+      `Attacker - If this attack deals 1+ [damage] to the target, put a Fear token on the target.`
+    ),
+    bloodPotency: 5,
+    physical: 2,
+    social: 0,
+    mental: 1,
+    illustrator: "Joyce Maureira",
+    set: "Blood & Alchemy",
+    disciplines: ["auspex", "auspex"],
+  },
+  "sas-markus-kumnyama": {
+    stack: "faction",
+    clan: "lasombra",
+    name: "Markus Kumnyama",
+    text: text(
+      `**Reach** _(May attack characters in The Streets from your Haven.)_
+
+      As this character performs an Action, place 1 [agenda] from the general supply on them.`
+    ),
+    bloodPotency: 6,
+    physical: 2,
+    social: 0,
+    mental: 1,
+    illustrator: "Ana Horbunova",
+    set: "Shadows & Shrouds",
+    disciplines: ["dominate", "oblivion", "potence"],
+  },
+};
+
+type LibraryCardType =
+  | "1 per player"
+  | "2 actions"
+  | "action"
+  | "animal"
+  | "alchemy"
+  | "attack"
+  | "conspiracy"
+  | "influence modifier"
+  | "ongoing"
+  | "reaction"
+  | "ritual"
+  | "scheme"
+  | "special"
+  | "title"
+  | "unhosted action"
+  | "unique";
+
+type AttackType = "mental" | "physical" | "ranged" | "social";
+
+type Library = {
+  stack: "library";
+  name: string;
+  clan?: Clan;
+  bloodPotencyRequirement?: number;
+  damage?: number;
+  shield?: number;
+  types: LibraryCardType[];
+  attack?: AttackType;
+  reactions?: AttackType[];
+  text: string;
+  disciplines?: Discipline[];
+  illustrator: string;
+  set: CardSet;
+};
+
+const libraries: Record<CardId, Library> = {
+  "sas-winning": {
+    stack: "library",
+    name: "Winning",
+    types: ["action"],
+    text: text(
+      `Put 1 [agenda] from the general supply on each character in your coterie.`
+    ),
+    illustrator: "Marco Primo",
+    set: "Shadows & Shrouds",
+  },
+  "core-seneschal": {
+    stack: "library",
+    name: "Seneschal",
+    bloodPotencyRequirement: 5,
+    types: ["action", "title", "unique"],
+    text: text(
+      `**Exert 5 Influence:** Attach to the acting character.
+
+      **Action:** Target foe loses 1 [prestige]. If no one controls the Prince of the City, they lose 2 instead.`
+    ),
+    illustrator: "The Creation Studio",
+    set: "Core",
+  },
+  "core-insanity-defense": {
+    stack: "library",
+    name: "Insanity Defense",
+    clan: "malkavian",
+    bloodPotencyRequirement: 0,
+    shield: 2,
+    types: ["reaction"],
+    text: text(`Additional +1 [shield] against [mental] attacks.`),
+    reactions: ["physical", "social", "mental"],
+    illustrator: "The Creation Studio",
+    set: "Core",
+  },
+  "war-cornered-rat": {
+    stack: "library",
+    name: "Cornered Rat",
+    clan: "nosferatu",
+    bloodPotencyRequirement: 3,
+    damage: 0,
+    types: ["attack", "reaction"],
+    attack: "physical",
+    reactions: ["physical", "mental"],
+    text: text(
+      `Attacker - Deal [damage] equal to this character's [blood] minus their current [blood].
+
+      Reaction - Deal 1 [physical] [damage] to the attacker for every 2 [damage] they are dealing to you (prior to damage prevention).`
+    ),
+    illustrator: "Harvey Bunda",
+    set: "Wolf & Rat",
+  } as Library,
+};
+
 function text(str: string): string {
   return str
     .split("\n")
