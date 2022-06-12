@@ -1,7 +1,7 @@
 import Fastify, { FastifyPluginAsync } from "fastify";
-import fastifyCors from "fastify-cors";
-import fastifyStatic from "fastify-static";
-import fastifyCompress from "fastify-compress";
+import fastifyCors from "@fastify/cors";
+import fastifyStatic from "@fastify/static";
+import fastifyCompress from "@fastify/compress";
 import path from "path";
 import { serverPort } from "../env.js";
 import { closeDbPool } from "../db.js";

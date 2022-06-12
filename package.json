@@ -16,11 +16,11 @@
     "url": "https://github.com/lsocrate/rivalsdb/issues"
   },
   "homepage": "https://rivalsdb.app",
-  "engines": {
-    "node": "16.14.0",
-    "yarn": "1.x"
-  },
   "volta": {
-    "node": "16.14.0"
+    "node": "18.3.0"
+  },
+  "engines": {
+    "node": "18.3.0",
+    "yarn": "1.x"
   }
 }

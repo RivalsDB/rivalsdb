@@ -4,35 +4,36 @@
     "build-parcel": "parcel build src/index.html",
     "build-spa": "elm-spa gen",
     "build": "yarn build-spa && yarn build-parcel",
-    "watch-parcel": "parcel src/index.html",
+    "watch-parcel": "PARCEL_ELM_NO_DEBUG=1 parcel src/index.html",
     "watch-spa": "elm-spa watch",
     "watch": "concurrently --group \"npm:watch-*\""
   },
-  "engines": {
-    "node": "16.14.0",
-    "yarn": "1.x"
-  },
   "volta": {
-    "node": "16.14.0"
+    "node": "18.3.0"
+  },
+  "engines": {
+    "node": "18.3.0",
+    "yarn": "1.x"
   },
   "license": "MIT",
   "dependencies": {
-    "@auth0/auth0-spa-js": "^1.21.0",
-    "@parcel/compressor-brotli": "^2.0.1",
-    "@parcel/compressor-gzip": "^2.0.1",
-    "@parcel/optimizer-data-url": "^2.0.1",
-    "@parcel/transformer-elm": "^2.0.1",
-    "@parcel/transformer-inline-string": "^2.0.0",
-    "@parcel/transformer-sass": "^2.0.1",
+    "@auth0/auth0-spa-js": "^1.22.0",
+    "@parcel/compressor-brotli": "^2.6.0",
+    "@parcel/compressor-gzip": "^2.6.0",
+    "@parcel/optimizer-data-url": "^2.6.0",
+    "@parcel/transformer-elm": "^2.6.0",
+    "@parcel/transformer-inline-string": "^2.6.0",
+    "@parcel/transformer-sass": "^2.6.0",
     "@rivalsdb/id": "../shared/id",
     "elm": "^0.19.1-5",
     "elm-spa": "^6.0.4",
-    "parcel": "^2.0.1",
-    "plausible-tracker": "^0.3.5"
+    "parcel": "^2.6.0",
+    "plausible-tracker": "^0.3.8"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "devDependencies": {
-    "concurrently": "^7.1.0",
+    "buffer": "^6.0.3",
+    "concurrently": "^7.2.1",
     "prettier": "^2.6.2"
   }
 }

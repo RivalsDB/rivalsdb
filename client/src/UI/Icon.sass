@@ -25,9 +25,8 @@ $other_icons: action agenda alchemy animal attack blood bloodpotencyrequirement 
 $bugged_when_inlined: bloodpotency
 @each $icon in $bugged_when_inlined
   .ui-icon_#{$icon}
-    --svg-ui-icon: url("../../assets/icons/icon-#{$icon}.svg")
-    -webkit-mask-image: var(--svg-ui-icon)
-    mask-image: var(--svg-ui-icon)
+    -webkit-mask-image: url("../../assets/icons/icon-#{$icon}.svg")
+    mask-image: url("../../assets/icons/icon-#{$icon}.svg")
 
 .ui-icon--colored
   &.ui-icon_bloodpotency

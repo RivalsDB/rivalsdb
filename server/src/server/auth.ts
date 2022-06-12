@@ -2,7 +2,7 @@ import { FastifyPluginAsync } from "fastify";
 import auth0Verify from "fastify-auth0-verify";
 import fastifyPlugin from "fastify-plugin";
 
-declare module "fastify-jwt" {
+declare module "@fastify/jwt" {
   interface FastifyJWT {
     payload: {
       aud: string[];
