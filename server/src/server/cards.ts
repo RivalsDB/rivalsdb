@@ -1,5 +1,14 @@
 import { FastifyPluginAsync } from "fastify";
-import { cards } from "../cardCollection/cards.js";
+import { cards as unstructuredCards } from "../cardCollection/cards.js";
+import * as structured from "../cardCollection/structuredCards.js";
+import * as convert from "../cardCollection/conversion.js";
+
+const allUnstructured = unstructuredCards.concat(
+  Object.entries(structured.agendas).map(convert.toUnstructuredAgenda),
+  Object.entries(structured.havens).map(convert.toUnstructuredHaven),
+  Object.entries(structured.libraries).map(convert.toUnstructuredLibrary),
+  Object.entries(structured.factions).map(convert.toUnstructuredFaction)
+);
 
 const routes: FastifyPluginAsync = async (fastify) => {
   fastify.get("/cards", {
@@ -28,15 +37,13 @@ const routes: FastifyPluginAsync = async (fastify) => {
               stack: { type: "string" },
               text: { type: "string" },
               types: { type: "array", items: { type: "string" } },
-              // flavor: { type: "string" },
-              // illustrator: { type: "string" },
             },
           },
         },
       },
     },
     async handler() {
-      return cards;
+      return allUnstructured;
     },
   });
 };

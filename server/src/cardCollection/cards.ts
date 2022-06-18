@@ -1,3 +1,5 @@
+import { baseUrl } from "../env.js";
+
 type Card = Agenda | Haven | Faction | Library | City;
 
 type CardSet =
@@ -5,7 +7,8 @@ type CardSet =
   | "Blood & Alchemy"
   | "Promo"
   | "Wolf & Rat"
-  | "Shadows & Shrouds";
+  | "Shadows & Shrouds"
+  | "Heart of Europe";
 
 type Clan =
   | "brujah"
@@ -36,14 +39,20 @@ type Discipline =
 type AttackType = "mental" | "physical" | "ranged" | "social";
 
 type LibraryCardType =
+  | "1 per player"
+  | "2 actions"
   | "action"
+  | "alchemy"
   | "animal"
   | "attack"
   | "conspiracy"
+  | "event"
   | "influence modifier"
+  | "trap"
   | "ongoing"
   | "reaction"
   | "ritual"
+  | "unique"
   | "scheme"
   | "special"
   | "title"
@@ -60,7 +69,7 @@ type CityCardType =
   | "citizen"
   | "second inquisition";
 
-type Agenda = {
+export type Agenda = {
   id: string;
   illustrator: string;
   image: string;
@@ -71,7 +80,7 @@ type Agenda = {
   stack: "agenda";
 };
 
-type Haven = {
+export type Haven = {
   id: string;
   illustrator: string;
   image: string;
@@ -82,7 +91,7 @@ type Haven = {
   stack: "haven";
 };
 
-type Faction = {
+export type Faction = {
   attributeMental: number;
   attributePhysical: number;
   attributeSocial: number;
@@ -100,7 +109,7 @@ type Faction = {
   stack: "faction";
 };
 
-type Library = {
+export type Library = {
   attackType?: AttackType[];
   reactionType?: AttackType[];
   bloodPotency?: number;
@@ -119,7 +128,7 @@ type Library = {
   stack: "library";
 };
 
-type City = {
+export type City = {
   stack: "city";
   id: string;
   illustrator: string;
@@ -139,7 +148,7 @@ export const cards: Array<Card> = [
     stack: "city",
     set: "Core",
     id: "core-prince-of-the-city",
-    image: "https://www.rivalsdb.app/card/core-prince-of-the-city.webp",
+    image: `${baseUrl}/card/core-prince-of-the-city.webp`,
     illustrator: "The Creation Studio",
     name: "Prince of the City",
     text: "This character's Secrecy is always 0.\nThis character has +2 Influence.\nAt the start of your turn, gain 1 [prestige] and 1 [agenda].",
@@ -150,7 +159,7 @@ export const cards: Array<Card> = [
     stack: "city",
     set: "Core",
     id: "core-meeting-at-alcatraz",
-    image: "https://www.rivalsdb.app/card/core-meeting-at-alcatraz.webp",
+    image: `${baseUrl}/card/core-meeting-at-alcatraz.webp`,
     illustrator: "The Creation Studio",
     name: "Meeting at Alcatraz",
     text: "Each player must move their Leader to The Streets (unless in torport). They become a separate party. The active player's Leader doesn't return to their Haven this turn, but other characters may join their party.",
@@ -161,7 +170,7 @@ export const cards: Array<Card> = [
     stack: "city",
     set: "Core",
     id: "core-chinese-new-year",
-    image: "https://www.rivalsdb.app/card/core-chinese-new-year.webp",
+    image: `${baseUrl}/card/core-chinese-new-year.webp`,
     illustrator: "Darko Stojanovic",
     name: "Chinese New Year",
     text: "Shuffle all Events in the burned pile into the CIty Deck.",
@@ -172,7 +181,7 @@ export const cards: Array<Card> = [
     stack: "city",
     set: "Core",
     id: "core-castro-street-party",
-    image: "https://www.rivalsdb.app/card/core-castro-street-party.webp",
+    image: `${baseUrl}/card/core-castro-street-party.webp`,
     illustrator: "The Creation Studio",
     name: "Castro Street Party",
     text: "Ongoing - Characters in The Streets have +1 Secrecy.",
@@ -184,7 +193,7 @@ export const cards: Array<Card> = [
     stack: "city",
     set: "Core",
     id: "core-gallery-openning",
-    image: "https://www.rivalsdb.app/card/core-gallery-openning.webp",
+    image: `${baseUrl}/card/core-gallery-openning.webp`,
     illustrator: "The Creation Studio",
     name: "Gallery Opening",
     text: "Each player may discard up to 2 cards. For each discard, they gain 1 [prestige].",
@@ -197,7 +206,7 @@ export const cards: Array<Card> = [
     stack: "city",
     set: "Core",
     id: "core-city-on-the-brink",
-    image: "https://www.rivalsdb.app/card/core-city-on-the-brink.webp",
+    image: `${baseUrl}/card/core-city-on-the-brink.webp`,
     illustrator: "Darko Stojanovic",
     name: "City on the Brink",
     text: "Ongoing - When you defeat a foe's character, gain 1 [agenda].",
@@ -209,7 +218,7 @@ export const cards: Array<Card> = [
     stack: "city",
     set: "Core",
     id: "core-the-hunger",
-    image: "https://www.rivalsdb.app/card/core-the-hunger.webp",
+    image: `${baseUrl}/card/core-the-hunger.webp`,
     illustrator: "Darko Stojanovic",
     name: "The Hunger",
     text: "Ongoing - Vagrants in The Streets award 1 [agenda] when defeated.\nAt the end of your turn, lose 1 [prestige] for each character in your coterie who is not at maximum [blood].",
@@ -220,7 +229,7 @@ export const cards: Array<Card> = [
     stack: "city",
     set: "Core",
     id: "core-wandering-the-bart-tunnels",
-    image: "https://www.rivalsdb.app/card/core-wandering-the-bart-tunnels.webp",
+    image: `${baseUrl}/card/core-wandering-the-bart-tunnels.webp`,
     illustrator: "The Creation Studio",
     name: "Wandering the BART Tunnels",
     text: "Ongoing - Every character not in their Haven is a separate party.",
@@ -231,7 +240,7 @@ export const cards: Array<Card> = [
     stack: "city",
     set: "Core",
     id: "core-cable-car-accident",
-    image: "https://www.rivalsdb.app/card/core-cable-car-accident.webp",
+    image: `${baseUrl}/card/core-cable-car-accident.webp`,
     illustrator: "Darko Stojanovic",
     name: "Cable Car Accident",
     text: "Ongoing - Characters in The Streets do not return to their Haven at the start of their turn.",
@@ -242,7 +251,7 @@ export const cards: Array<Card> = [
     stack: "city",
     set: "Core",
     id: "core-san-francisco-fog",
-    image: "https://www.rivalsdb.app/card/core-san-francisco-fog.webp",
+    image: `${baseUrl}/card/core-san-francisco-fog.webp`,
     illustrator: "The Creation Studio",
     name: "San Francisco Fog",
     text: "Ongoing - [ranged] cards cannot be played.",
@@ -254,7 +263,7 @@ export const cards: Array<Card> = [
     stack: "city",
     set: "Core",
     id: "core-protests-in-the-streets",
-    image: "https://www.rivalsdb.app/card/core-protests-in-the-streets.webp",
+    image: `${baseUrl}/card/core-protests-in-the-streets.webp`,
     illustrator: "Marco Primo",
     name: "Protests in the Streets",
     text: "Ongoing - When a character attacks a Mortal in The Streets, that attacker loses 1 [blood].",
@@ -265,7 +274,7 @@ export const cards: Array<Card> = [
     stack: "city",
     set: "Core",
     id: "core-special-affairs-division",
-    image: "https://www.rivalsdb.app/card/core-special-affairs-division.webp",
+    image: `${baseUrl}/card/core-special-affairs-division.webp`,
     illustrator: "The Creation Studio",
     name: "Special Affairs Division",
     text: "When defeated, gain 1 [agenda] and discard this.\nOngoing - At the end of your turn, deal 1 Aggravated [damage] to a character in your coterie not protected by Secrecy.\n+1 Intel; stacks with other S.A.D.",
@@ -278,7 +287,7 @@ export const cards: Array<Card> = [
     stack: "city",
     set: "Core",
     id: "core-special-affairs-division",
-    image: "https://www.rivalsdb.app/card/core-special-affairs-division.webp",
+    image: `${baseUrl}/card/core-special-affairs-division.webp`,
     illustrator: "The Creation Studio",
     name: "Special Affairs Division",
     text: "When defeated, gain 1 [agenda] and discard this.\nOngoing - At the end of your turn, deal 1 Aggravated [damage] to a character in your coterie not protected by Secrecy.\n+1 Intel; stacks with other S.A.D.",
@@ -291,7 +300,7 @@ export const cards: Array<Card> = [
     stack: "city",
     set: "Core",
     id: "core-vagrant",
-    image: "https://www.rivalsdb.app/card/core-vagrant.webp",
+    image: `${baseUrl}/card/core-vagrant.webp`,
     illustrator: "Amy Wilkins",
     name: "Vagrant",
     text: "When defeated, choose one:\nBurn - Mend 2 [blood].\nAttach - Exhaust Vagrant: Prevent 1 [damage] to this character.",
@@ -304,7 +313,7 @@ export const cards: Array<Card> = [
     stack: "city",
     set: "Core",
     id: "core-addict",
-    image: "https://www.rivalsdb.app/card/core-addict.webp",
+    image: `${baseUrl}/card/core-addict.webp`,
     illustrator: "Marco Primo",
     name: "Addict",
     text: "When defeated, gain 1 [agenda] and choose one:\nBurn - Mend 3 [blood].\nAttach - Draw 1 card. Gain [auspex].",
@@ -317,7 +326,7 @@ export const cards: Array<Card> = [
     stack: "city",
     set: "Core",
     id: "core-chef",
-    image: "https://www.rivalsdb.app/card/core-chef.webp",
+    image: `${baseUrl}/card/core-chef.webp`,
     illustrator: "The Creation Studio",
     name: "Chef",
     text: "When defeated, gain 1 [agenda] and choose one:\nBurn - Mend 3 [blood].\nAttach - Draw 1 card. Gain [presence].",
@@ -330,7 +339,7 @@ export const cards: Array<Card> = [
     stack: "city",
     set: "Core",
     id: "core-student",
-    image: "https://www.rivalsdb.app/card/core-student.webp",
+    image: `${baseUrl}/card/core-student.webp`,
     illustrator: "The Creation Studio",
     name: "Student",
     text: "When defeated, gain 1 [agenda] and choose one:\nBurn - Mend 3 [blood].\nAttach - Gain +1 [mental].",
@@ -343,7 +352,7 @@ export const cards: Array<Card> = [
     stack: "city",
     set: "Core",
     id: "core-tour-guide",
-    image: "https://www.rivalsdb.app/card/core-tour-guide.webp",
+    image: `${baseUrl}/card/core-tour-guide.webp`,
     illustrator: "The Creation Studio",
     name: "Tour Guide",
     text: "When defeated, gain 1 [agenda] and choose one:\nBurn - Mend 3 [blood].\nAttach - Gain +1 [social].",
@@ -356,7 +365,7 @@ export const cards: Array<Card> = [
     stack: "city",
     set: "Core",
     id: "core-athlete",
-    image: "https://www.rivalsdb.app/card/core-athlete.webp",
+    image: `${baseUrl}/card/core-athlete.webp`,
     illustrator: "Marco Primo",
     name: "Athlete",
     text: "When defeated, gain 1 [agenda] and choose one:\nBurn - Mend 3 [blood].\nAttach - Gain +1 [physical].",
@@ -369,7 +378,7 @@ export const cards: Array<Card> = [
     stack: "city",
     set: "Core",
     id: "core-cop",
-    image: "https://www.rivalsdb.app/card/core-cop.webp",
+    image: `${baseUrl}/card/core-cop.webp`,
     illustrator: "The Creation Studio",
     name: "Cop",
     text: "When defeated, gain 1 [agenda] and choose one:\nBurn - Mend 3 [blood].\nAttach - Gain [dominate] and +1 [blood-potency].",
@@ -382,7 +391,7 @@ export const cards: Array<Card> = [
     stack: "city",
     set: "Core",
     id: "core-skateboarder",
-    image: "https://www.rivalsdb.app/card/core-skateboarder.webp",
+    image: `${baseUrl}/card/core-skateboarder.webp`,
     illustrator: "The Creation Studio",
     name: "Skateboarder",
     text: "When defeated, gain 1 [agenda] and choose one:\nBurn - Mend 3 [blood].\nAttach - Gain [celerity] and +1 [blood-potency].",
@@ -400,7 +409,7 @@ export const cards: Array<Card> = [
     illustrator: "János Orbán",
     set: "Shadows & Shrouds",
     id: "sas-bind-the-spirit",
-    image: "https://www.rivalsdb.app/card/sas-bind-the-spirit.webp",
+    image: `${baseUrl}/card/sas-bind-the-spirit.webp`,
     stack: "library",
   } as Library,
   {
@@ -412,7 +421,7 @@ export const cards: Array<Card> = [
     illustrator: "Marco Primo",
     set: "Shadows & Shrouds",
     id: "sas-court-of-blood",
-    image: "https://www.rivalsdb.app/card/sas-court-of-blood.webp",
+    image: `${baseUrl}/card/sas-court-of-blood.webp`,
     stack: "library",
   } as Library,
   {
@@ -428,7 +437,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["dominate", "oblivion"],
     id: "sas-mei-yinying",
-    image: "https://www.rivalsdb.app/card/sas-mei-yinying.webp",
+    image: `${baseUrl}/card/sas-mei-yinying.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -439,7 +448,7 @@ export const cards: Array<Card> = [
     illustrator: "Harvey Bunda",
     set: "Shadows & Shrouds",
     id: "sas-mental-block",
-    image: "https://www.rivalsdb.app/card/sas-mental-block.webp",
+    image: `${baseUrl}/card/sas-mental-block.webp`,
     stack: "library",
   } as Library,
   {
@@ -449,7 +458,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Shadows & Shrouds",
     id: "sas-mission-cemetery",
-    image: "https://www.rivalsdb.app/card/sas-mission-cemetery.webp",
+    image: `${baseUrl}/card/sas-mission-cemetery.webp`,
     stack: "haven",
   } as Haven,
   {
@@ -459,7 +468,7 @@ export const cards: Array<Card> = [
     illustrator: "Mara Miranda Escota",
     set: "Shadows & Shrouds",
     id: "sas-most-impressive",
-    image: "https://www.rivalsdb.app/card/sas-most-impressive.webp",
+    image: `${baseUrl}/card/sas-most-impressive.webp`,
     stack: "agenda",
   } as Agenda,
   {
@@ -475,7 +484,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["auspex", "oblivion"],
     id: "sas-scott",
-    image: "https://www.rivalsdb.app/card/sas-scott.webp",
+    image: `${baseUrl}/card/sas-scott.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -485,7 +494,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Shadows & Shrouds",
     id: "sas-the-big-house",
-    image: "https://www.rivalsdb.app/card/sas-the-big-house.webp",
+    image: `${baseUrl}/card/sas-the-big-house.webp`,
     stack: "haven",
   } as Haven,
   {
@@ -495,7 +504,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Shadows & Shrouds",
     id: "sas-wake-the-dead",
-    image: "https://www.rivalsdb.app/card/sas-wake-the-dead.webp",
+    image: `${baseUrl}/card/sas-wake-the-dead.webp`,
     stack: "agenda",
   } as Agenda,
   {
@@ -511,7 +520,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["oblivion", "potence"],
     id: "sas-adrian-beltza",
-    image: "https://www.rivalsdb.app/card/sas-adrian-beltza.webp",
+    image: `${baseUrl}/card/sas-adrian-beltza.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -527,7 +536,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["auspex", "fortitude", "oblivion"],
     id: "sas-annika",
-    image: "https://www.rivalsdb.app/card/sas-annika.webp",
+    image: `${baseUrl}/card/sas-annika.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -539,7 +548,7 @@ export const cards: Array<Card> = [
     illustrator: "Marco Primo",
     set: "Shadows & Shrouds",
     id: "sas-arms-of-ahriman",
-    image: "https://www.rivalsdb.app/card/sas-arms-of-ahriman.webp",
+    image: `${baseUrl}/card/sas-arms-of-ahriman.webp`,
     stack: "library",
   } as Library,
   {
@@ -555,7 +564,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["potence"],
     id: "sas-astrid-malhela",
-    image: "https://www.rivalsdb.app/card/sas-astrid-malhela.webp",
+    image: `${baseUrl}/card/sas-astrid-malhela.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -571,7 +580,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["oblivion"],
     id: "sas-bianca-giovanni",
-    image: "https://www.rivalsdb.app/card/sas-bianca-giovanni.webp",
+    image: `${baseUrl}/card/sas-bianca-giovanni.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -582,7 +591,7 @@ export const cards: Array<Card> = [
     illustrator: "Mara Miranda Escota",
     set: "Shadows & Shrouds",
     id: "sas-clairvoyance",
-    image: "https://www.rivalsdb.app/card/sas-clairvoyance.webp",
+    image: `${baseUrl}/card/sas-clairvoyance.webp`,
     stack: "library",
   } as Library,
   {
@@ -596,7 +605,7 @@ export const cards: Array<Card> = [
     illustrator: "Dawn Nique",
     set: "Shadows & Shrouds",
     id: "sas-cloud-memory",
-    image: "https://www.rivalsdb.app/card/sas-cloud-memory.webp",
+    image: `${baseUrl}/card/sas-cloud-memory.webp`,
     stack: "library",
   } as Library,
   {
@@ -606,7 +615,7 @@ export const cards: Array<Card> = [
     illustrator: "Irene Francisco",
     set: "Shadows & Shrouds",
     id: "sas-death-is-only-the-beginning",
-    image: "https://www.rivalsdb.app/card/sas-death-is-only-the-beginning.webp",
+    image: `${baseUrl}/card/sas-death-is-only-the-beginning.webp`,
     stack: "agenda",
   } as Agenda,
   {
@@ -617,7 +626,7 @@ export const cards: Array<Card> = [
     illustrator: "János Orbán",
     set: "Shadows & Shrouds",
     id: "sas-diminish",
-    image: "https://www.rivalsdb.app/card/sas-diminish.webp",
+    image: `${baseUrl}/card/sas-diminish.webp`,
     stack: "library",
   } as Library,
   {
@@ -627,7 +636,7 @@ export const cards: Array<Card> = [
     illustrator: "Marco Primo",
     set: "Shadows & Shrouds",
     id: "sas-early-grave",
-    image: "https://www.rivalsdb.app/card/sas-early-grave.webp",
+    image: `${baseUrl}/card/sas-early-grave.webp`,
     stack: "library",
   } as Library,
   {
@@ -643,7 +652,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["oblivion", "oblivion"],
     id: "sas-enzo-cappa",
-    image: "https://www.rivalsdb.app/card/sas-enzo-cappa.webp",
+    image: `${baseUrl}/card/sas-enzo-cappa.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -653,7 +662,7 @@ export const cards: Array<Card> = [
     illustrator: "Marco Primo",
     set: "Shadows & Shrouds",
     id: "sas-eternal-life-mortuary",
-    image: "https://www.rivalsdb.app/card/sas-eternal-life-mortuary.webp",
+    image: `${baseUrl}/card/sas-eternal-life-mortuary.webp`,
     stack: "haven",
   } as Haven,
   {
@@ -663,7 +672,7 @@ export const cards: Array<Card> = [
     illustrator: "Adelijah Ocampo",
     set: "Shadows & Shrouds",
     id: "sas-fight-makes-right",
-    image: "https://www.rivalsdb.app/card/sas-fight-makes-right.webp",
+    image: `${baseUrl}/card/sas-fight-makes-right.webp`,
     stack: "library",
   } as Library,
   {
@@ -676,7 +685,7 @@ export const cards: Array<Card> = [
     shield: 1,
     set: "Shadows & Shrouds",
     id: "sas-flesh-of-marble",
-    image: "https://www.rivalsdb.app/card/sas-flesh-of-marble.webp",
+    image: `${baseUrl}/card/sas-flesh-of-marble.webp`,
     stack: "library",
   } as Library,
   {
@@ -692,7 +701,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["dominate", "dominate", "potence"],
     id: "sas-gia-de-emparan",
-    image: "https://www.rivalsdb.app/card/sas-gia-de-emparan.webp",
+    image: `${baseUrl}/card/sas-gia-de-emparan.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -703,7 +712,7 @@ export const cards: Array<Card> = [
     illustrator: "Marco Primo",
     set: "Shadows & Shrouds",
     id: "sas-grave-robbing",
-    image: "https://www.rivalsdb.app/card/sas-grave-robbing.webp",
+    image: `${baseUrl}/card/sas-grave-robbing.webp`,
     stack: "library",
   } as Library,
   {
@@ -716,7 +725,7 @@ export const cards: Array<Card> = [
     illustrator: "Marco Primo",
     set: "Shadows & Shrouds",
     id: "sas-graveyard-smash",
-    image: "https://www.rivalsdb.app/card/sas-graveyard-smash.webp",
+    image: `${baseUrl}/card/sas-graveyard-smash.webp`,
     stack: "library",
   } as Library,
   {
@@ -729,7 +738,7 @@ export const cards: Array<Card> = [
     illustrator: "Adelijah Ocampo",
     set: "Shadows & Shrouds",
     id: "sas-high-stakes",
-    image: "https://www.rivalsdb.app/card/sas-high-stakes.webp",
+    image: `${baseUrl}/card/sas-high-stakes.webp`,
     stack: "library",
   } as Library,
   {
@@ -742,7 +751,7 @@ export const cards: Array<Card> = [
     illustrator: "Harvey Bunda",
     set: "Shadows & Shrouds",
     id: "sas-its-your-funeral",
-    image: "https://www.rivalsdb.app/card/sas-its-your-funeral.webp",
+    image: `${baseUrl}/card/sas-its-your-funeral.webp`,
     stack: "library",
   } as Library,
   {
@@ -755,7 +764,7 @@ export const cards: Array<Card> = [
     illustrator: "Irene Francisco",
     set: "Shadows & Shrouds",
     id: "sas-interrogation",
-    image: "https://www.rivalsdb.app/card/sas-interrogation.webp",
+    image: `${baseUrl}/card/sas-interrogation.webp`,
     stack: "library",
   } as Library,
   {
@@ -771,7 +780,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["oblivion", "oblivion"],
     id: "sas-juan-carlos-diaz",
-    image: "https://www.rivalsdb.app/card/sas-juan-carlos-diaz.webp",
+    image: `${baseUrl}/card/sas-juan-carlos-diaz.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -787,7 +796,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["fortitude"],
     id: "sas-kristin",
-    image: "https://www.rivalsdb.app/card/sas-kristin.webp",
+    image: `${baseUrl}/card/sas-kristin.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -803,7 +812,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["auspex", "oblivion"],
     id: "sas-kwame",
-    image: "https://www.rivalsdb.app/card/sas-kwame.webp",
+    image: `${baseUrl}/card/sas-kwame.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -815,7 +824,7 @@ export const cards: Array<Card> = [
     illustrator: "János Orbán",
     set: "Shadows & Shrouds",
     id: "sas-legate",
-    image: "https://www.rivalsdb.app/card/sas-legate.webp",
+    image: `${baseUrl}/card/sas-legate.webp`,
     stack: "library",
   } as Library,
   {
@@ -829,7 +838,7 @@ export const cards: Array<Card> = [
     illustrator: "Joyce Maureira",
     set: "Shadows & Shrouds",
     id: "sas-living-shadow",
-    image: "https://www.rivalsdb.app/card/sas-living-shadow.webp",
+    image: `${baseUrl}/card/sas-living-shadow.webp`,
     stack: "library",
   } as Library,
   {
@@ -845,7 +854,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["dominate", "oblivion", "potence"],
     id: "sas-markus-kumnyama",
-    image: "https://www.rivalsdb.app/card/sas-markus-kumnyama.webp",
+    image: `${baseUrl}/card/sas-markus-kumnyama.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -859,7 +868,7 @@ export const cards: Array<Card> = [
     illustrator: "János Orbán",
     set: "Shadows & Shrouds",
     id: "sas-money-shot",
-    image: "https://www.rivalsdb.app/card/sas-money-shot.webp",
+    image: `${baseUrl}/card/sas-money-shot.webp`,
     stack: "library",
   } as Library,
   {
@@ -875,7 +884,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["auspex"],
     id: "sas-nathaniel",
-    image: "https://www.rivalsdb.app/card/sas-nathaniel.webp",
+    image: `${baseUrl}/card/sas-nathaniel.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -886,7 +895,7 @@ export const cards: Array<Card> = [
     illustrator: "Irene Francisco",
     set: "Shadows & Shrouds",
     id: "sas-necromancy",
-    image: "https://www.rivalsdb.app/card/sas-necromancy.webp",
+    image: `${baseUrl}/card/sas-necromancy.webp`,
     stack: "library",
   } as Library,
   {
@@ -902,7 +911,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["oblivion", "potence", "potence"],
     id: "sas-piero-calderon",
-    image: "https://www.rivalsdb.app/card/sas-piero-calderon.webp",
+    image: `${baseUrl}/card/sas-piero-calderon.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -912,7 +921,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Shadows & Shrouds",
     id: "sas-prizefighter",
-    image: "https://www.rivalsdb.app/card/sas-prizefighter.webp",
+    image: `${baseUrl}/card/sas-prizefighter.webp`,
     stack: "agenda",
   } as Agenda,
   {
@@ -926,7 +935,7 @@ export const cards: Array<Card> = [
     illustrator: "Joyce Maureira",
     set: "Shadows & Shrouds",
     id: "sas-prowess-from-pain",
-    image: "https://www.rivalsdb.app/card/sas-prowess-from-pain.webp",
+    image: `${baseUrl}/card/sas-prowess-from-pain.webp`,
     stack: "library",
   } as Library,
   {
@@ -942,7 +951,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["dominate", "oblivion"],
     id: "sas-rachany-sok",
-    image: "https://www.rivalsdb.app/card/sas-rachany-sok.webp",
+    image: `${baseUrl}/card/sas-rachany-sok.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -958,7 +967,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["dominate", "oblivion"],
     id: "sas-raven-smith",
-    image: "https://www.rivalsdb.app/card/sas-raven-smith.webp",
+    image: `${baseUrl}/card/sas-raven-smith.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -972,7 +981,7 @@ export const cards: Array<Card> = [
     illustrator: "Harvey Bunda",
     set: "Shadows & Shrouds",
     id: "sas-shadow-boxing",
-    image: "https://www.rivalsdb.app/card/sas-shadow-boxing.webp",
+    image: `${baseUrl}/card/sas-shadow-boxing.webp`,
     stack: "library",
   } as Library,
   {
@@ -983,7 +992,7 @@ export const cards: Array<Card> = [
     illustrator: "János Orbán",
     set: "Shadows & Shrouds",
     id: "sas-shadow-cloak",
-    image: "https://www.rivalsdb.app/card/sas-shadow-cloak.webp",
+    image: `${baseUrl}/card/sas-shadow-cloak.webp`,
     stack: "library",
   } as Library,
   {
@@ -993,7 +1002,7 @@ export const cards: Array<Card> = [
     illustrator: "Mara Miranda Escota",
     set: "Shadows & Shrouds",
     id: "sas-sixth-tradition-destruction",
-    image: "https://www.rivalsdb.app/card/sas-sixth-tradition-destruction.webp",
+    image: `${baseUrl}/card/sas-sixth-tradition-destruction.webp`,
     stack: "library",
   } as Library,
   {
@@ -1009,7 +1018,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["fortitude", "oblivion"],
     id: "sas-sophia-giovanni",
-    image: "https://www.rivalsdb.app/card/sas-sophia-giovanni.webp",
+    image: `${baseUrl}/card/sas-sophia-giovanni.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -1025,7 +1034,7 @@ export const cards: Array<Card> = [
     set: "Promo",
     disciplines: ["presence", "potence"],
     id: "xxx-annabelle",
-    image: "https://www.rivalsdb.app/card/xxx-annabelle.webp",
+    image: `${baseUrl}/card/xxx-annabelle.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -1041,7 +1050,7 @@ export const cards: Array<Card> = [
     set: "Promo",
     disciplines: ["obfuscate"],
     id: "xxx-natasha-blank",
-    image: "https://www.rivalsdb.app/card/xxx-natasha-blank.webp",
+    image: `${baseUrl}/card/xxx-natasha-blank.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -1055,7 +1064,7 @@ export const cards: Array<Card> = [
     illustrator: "János Orbán",
     set: "Shadows & Shrouds",
     id: "sas-soul-crushing",
-    image: "https://www.rivalsdb.app/card/sas-soul-crushing.webp",
+    image: `${baseUrl}/card/sas-soul-crushing.webp`,
     stack: "library",
   } as Library,
   {
@@ -1066,7 +1075,7 @@ export const cards: Array<Card> = [
     illustrator: "Harvey Bunda",
     set: "Shadows & Shrouds",
     id: "sas-spectral-possession",
-    image: "https://www.rivalsdb.app/card/sas-spectral-possession.webp",
+    image: `${baseUrl}/card/sas-spectral-possession.webp`,
     stack: "library",
   } as Library,
   {
@@ -1077,7 +1086,7 @@ export const cards: Array<Card> = [
     illustrator: "Mira Miranda Escota",
     set: "Shadows & Shrouds",
     id: "sas-spirits-touch",
-    image: "https://www.rivalsdb.app/card/sas-spirits-touch.webp",
+    image: `${baseUrl}/card/sas-spirits-touch.webp`,
     stack: "library",
   } as Library,
   {
@@ -1088,7 +1097,7 @@ export const cards: Array<Card> = [
     illustrator: "Joyce Maureira",
     set: "Shadows & Shrouds",
     id: "sas-summon-spirit",
-    image: "https://www.rivalsdb.app/card/sas-summon-spirit.webp",
+    image: `${baseUrl}/card/sas-summon-spirit.webp`,
     stack: "library",
   } as Library,
   {
@@ -1102,7 +1111,7 @@ export const cards: Array<Card> = [
     illustrator: "János Orbán",
     set: "Shadows & Shrouds",
     id: "sas-tenebrous-avatar",
-    image: "https://www.rivalsdb.app/card/sas-tenebrous-avatar.webp",
+    image: `${baseUrl}/card/sas-tenebrous-avatar.webp`,
     stack: "library",
   } as Library,
   {
@@ -1113,7 +1122,7 @@ export const cards: Array<Card> = [
     illustrator: "János Orbán",
     set: "Shadows & Shrouds",
     id: "sas-the-gift-of-false-life",
-    image: "https://www.rivalsdb.app/card/sas-the-gift-of-false-life.webp",
+    image: `${baseUrl}/card/sas-the-gift-of-false-life.webp`,
     stack: "library",
   } as Library,
   {
@@ -1124,7 +1133,7 @@ export const cards: Array<Card> = [
     illustrator: "Adelijah Ocampo",
     set: "Shadows & Shrouds",
     id: "sas-the-scent-of-death",
-    image: "https://www.rivalsdb.app/card/sas-the-scent-of-death.webp",
+    image: `${baseUrl}/card/sas-the-scent-of-death.webp`,
     stack: "library",
   } as Library,
   {
@@ -1134,7 +1143,7 @@ export const cards: Array<Card> = [
     illustrator: "Marco Primo",
     set: "Shadows & Shrouds",
     id: "sas-the-tenderloin",
-    image: "https://www.rivalsdb.app/card/sas-the-tenderloin.webp",
+    image: `${baseUrl}/card/sas-the-tenderloin.webp`,
     stack: "haven",
   } as Haven,
   {
@@ -1148,7 +1157,7 @@ export const cards: Array<Card> = [
     illustrator: "Timothy Terrenal",
     set: "Shadows & Shrouds",
     id: "sas-throwing-shade",
-    image: "https://www.rivalsdb.app/card/sas-throwing-shade.webp",
+    image: `${baseUrl}/card/sas-throwing-shade.webp`,
     stack: "library",
   } as Library,
   {
@@ -1162,7 +1171,7 @@ export const cards: Array<Card> = [
     illustrator: "???",
     set: "Shadows & Shrouds",
     id: "sas-utter-darkness",
-    image: "https://www.rivalsdb.app/card/sas-utter-darkness.webp",
+    image: `${baseUrl}/card/sas-utter-darkness.webp`,
     stack: "library",
   } as Library,
   {
@@ -1173,7 +1182,7 @@ export const cards: Array<Card> = [
     illustrator: "János Orbán",
     set: "Shadows & Shrouds",
     id: "sas-whats-yours-is-mine",
-    image: "https://www.rivalsdb.app/card/sas-whats-yours-is-mine.webp",
+    image: `${baseUrl}/card/sas-whats-yours-is-mine.webp`,
     stack: "library",
   } as Library,
   {
@@ -1183,7 +1192,7 @@ export const cards: Array<Card> = [
     illustrator: "Marco Primo",
     set: "Shadows & Shrouds",
     id: "sas-winning",
-    image: "https://www.rivalsdb.app/card/sas-winning.webp",
+    image: `${baseUrl}/card/sas-winning.webp`,
     stack: "library",
   } as Library,
   {
@@ -1199,7 +1208,7 @@ export const cards: Array<Card> = [
     set: "Shadows & Shrouds",
     disciplines: ["oblivion"],
     id: "sas-zahara",
-    image: "https://www.rivalsdb.app/card/sas-zahara.webp",
+    image: `${baseUrl}/card/sas-zahara.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -1213,7 +1222,7 @@ export const cards: Array<Card> = [
     flavor: "Isn't every Saturday already special?",
     set: "Core",
     id: "core-38-special",
-    image: "https://www.rivalsdb.app/card/core-38-special.webp",
+    image: `${baseUrl}/card/core-38-special.webp`,
     stack: "library",
   } as Library,
   {
@@ -1230,7 +1239,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-a-biting-comment",
-    image: "https://www.rivalsdb.app/card/core-a-biting-comment.webp",
+    image: `${baseUrl}/card/core-a-biting-comment.webp`,
     stack: "library",
   } as Library,
   {
@@ -1244,7 +1253,7 @@ export const cards: Array<Card> = [
     illustrator: "Timothy Terrenal",
     set: "Blood & Alchemy",
     id: "baa-absolution",
-    image: "https://www.rivalsdb.app/card/baa-absolution.webp",
+    image: `${baseUrl}/card/baa-absolution.webp`,
     stack: "library",
   } as Library,
   {
@@ -1260,7 +1269,7 @@ export const cards: Array<Card> = [
     set: "Blood & Alchemy",
     disciplines: ["auspex", "blood sorcery", "blood sorcery"],
     id: "baa-alejandro-lopez",
-    image: "https://www.rivalsdb.app/card/baa-alejandro-lopez.webp",
+    image: `${baseUrl}/card/baa-alejandro-lopez.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -1274,7 +1283,7 @@ export const cards: Array<Card> = [
     illustrator: "Mara Miranda",
     set: "Blood & Alchemy",
     id: "baa-all-the-angles",
-    image: "https://www.rivalsdb.app/card/baa-all-the-angles.webp",
+    image: `${baseUrl}/card/baa-all-the-angles.webp`,
     stack: "library",
   } as Library,
   {
@@ -1289,7 +1298,7 @@ export const cards: Array<Card> = [
     illustrator: "Marco Primo",
     set: "Core",
     id: "core-all-tied up",
-    image: "https://www.rivalsdb.app/card/core-all-tied-up.webp",
+    image: `${baseUrl}/card/core-all-tied-up.webp`,
     stack: "library",
   } as Library,
   {
@@ -1305,7 +1314,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Blood & Alchemy",
     id: "baa-april-smith",
-    image: "https://www.rivalsdb.app/card/baa-april-smith.webp",
+    image: `${baseUrl}/card/baa-april-smith.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -1320,7 +1329,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Core",
     id: "core-artist-lofts",
-    image: "https://www.rivalsdb.app/card/core-artist-lofts.webp",
+    image: `${baseUrl}/card/core-artist-lofts.webp`,
     stack: "haven",
   } as Haven,
   {
@@ -1335,7 +1344,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-assert-authority",
-    image: "https://www.rivalsdb.app/card/core-assert-authority.webp",
+    image: `${baseUrl}/card/core-assert-authority.webp`,
     stack: "library",
   } as Library,
   {
@@ -1347,7 +1356,7 @@ export const cards: Array<Card> = [
     illustrator: "Irene Francisco",
     set: "Blood & Alchemy",
     id: "baa-athanor-corporis",
-    image: "https://www.rivalsdb.app/card/baa-athanor-corporis.webp",
+    image: `${baseUrl}/card/baa-athanor-corporis.webp`,
     stack: "library",
   } as Library,
   {
@@ -1363,7 +1372,7 @@ export const cards: Array<Card> = [
     set: "Blood & Alchemy",
     disciplines: ["auspex", "auspex"],
     id: "baa-aurora-nix",
-    image: "https://www.rivalsdb.app/card/baa-aurora-nix.webp",
+    image: `${baseUrl}/card/baa-aurora-nix.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -1378,7 +1387,7 @@ export const cards: Array<Card> = [
     illustrator: "Harvey Bunda",
     set: "Blood & Alchemy",
     id: "baa-baals-caress",
-    image: "https://www.rivalsdb.app/card/baa-baals-caress.webp",
+    image: `${baseUrl}/card/baa-baals-caress.webp`,
     stack: "library",
   } as Library,
   {
@@ -1390,7 +1399,7 @@ export const cards: Array<Card> = [
     illustrator: "Adelijah Ocampo",
     set: "Blood & Alchemy",
     id: "baa-back-to-formula",
-    image: "https://www.rivalsdb.app/card/baa-back-to-formula.webp",
+    image: `${baseUrl}/card/baa-back-to-formula.webp`,
     stack: "library",
   } as Library,
   {
@@ -1408,7 +1417,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-backhanded-compliment",
-    image: "https://www.rivalsdb.app/card/core-backhanded-compliment.webp",
+    image: `${baseUrl}/card/core-backhanded-compliment.webp`,
     stack: "library",
   } as Library,
   {
@@ -1422,7 +1431,7 @@ export const cards: Array<Card> = [
     illustrator: "Timothy Terrenal",
     set: "Blood & Alchemy",
     id: "baa-backup",
-    image: "https://www.rivalsdb.app/card/baa-backup.webp",
+    image: `${baseUrl}/card/baa-backup.webp`,
     stack: "library",
   } as Library,
   {
@@ -1438,7 +1447,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["obfuscate", "obfuscate"],
     id: "core-bad-penny",
-    image: "https://www.rivalsdb.app/card/core-bad-penny.webp",
+    image: `${baseUrl}/card/core-bad-penny.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -1453,7 +1462,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Core",
     id: "core-balance-of-power",
-    image: "https://www.rivalsdb.app/card/core-balance-of-power.webp",
+    image: `${baseUrl}/card/core-balance-of-power.webp`,
     stack: "library",
   } as Library,
   {
@@ -1468,7 +1477,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-base-of-power",
-    image: "https://www.rivalsdb.app/card/core-base-of-power.webp",
+    image: `${baseUrl}/card/core-base-of-power.webp`,
     stack: "agenda",
   } as Agenda,
   {
@@ -1486,7 +1495,7 @@ export const cards: Array<Card> = [
     flavor: "Splatter up!",
     set: "Core",
     id: "core-baseball-bat",
-    image: "https://www.rivalsdb.app/card/core-baseball-bat.webp",
+    image: `${baseUrl}/card/core-baseball-bat.webp`,
     stack: "library",
   } as Library,
   {
@@ -1501,7 +1510,7 @@ export const cards: Array<Card> = [
     set: "Core",
     attackType: [],
     id: "core-beauty-is-a-beast",
-    image: "https://www.rivalsdb.app/card/core-beauty-is-a-beast.webp",
+    image: `${baseUrl}/card/core-beauty-is-a-beast.webp`,
     stack: "library",
   } as Library,
   {
@@ -1517,7 +1526,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["auspex", "celerity"],
     id: "core-bella-forte",
-    image: "https://www.rivalsdb.app/card/core-bella-forte.webp",
+    image: `${baseUrl}/card/core-bella-forte.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -1533,7 +1542,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["celerity", "potence"],
     id: "core-beretta",
-    image: "https://www.rivalsdb.app/card/core-beretta.webp",
+    image: `${baseUrl}/card/core-beretta.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -1548,7 +1557,7 @@ export const cards: Array<Card> = [
     illustrator: "Darko Stojanovic",
     set: "Core",
     id: "core-blood-for-blood",
-    image: "https://www.rivalsdb.app/card/core-blood-for-blood.webp",
+    image: `${baseUrl}/card/core-blood-for-blood.webp`,
     stack: "library",
   } as Library,
   {
@@ -1560,7 +1569,7 @@ export const cards: Array<Card> = [
     illustrator: "Timothy Terrenal",
     set: "Blood & Alchemy",
     id: "baa-blood-makes-noise",
-    image: "https://www.rivalsdb.app/card/baa-blood-makes-noise.webp",
+    image: `${baseUrl}/card/baa-blood-makes-noise.webp`,
     stack: "library",
   } as Library,
   {
@@ -1572,7 +1581,7 @@ export const cards: Array<Card> = [
     illustrator: "Adelijah Ocampo",
     set: "Blood & Alchemy",
     id: "baa-blood-of-potency",
-    image: "https://www.rivalsdb.app/card/baa-blood-of-potency.webp",
+    image: `${baseUrl}/card/baa-blood-of-potency.webp`,
     stack: "library",
   } as Library,
   {
@@ -1588,7 +1597,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["presence"],
     id: "core-bong-cha-park",
-    image: "https://www.rivalsdb.app/card/core-bong-cha-park.webp",
+    image: `${baseUrl}/card/core-bong-cha-park.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -1603,7 +1612,7 @@ export const cards: Array<Card> = [
     illustrator: "Mara Miranda",
     set: "Blood & Alchemy",
     id: "baa-break-down",
-    image: "https://www.rivalsdb.app/card/baa-break-down.webp",
+    image: `${baseUrl}/card/baa-break-down.webp`,
     stack: "library",
   } as Library,
   {
@@ -1619,7 +1628,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["potence", "presence"],
     id: "core-brother",
-    image: "https://www.rivalsdb.app/card/core-brother.webp",
+    image: `${baseUrl}/card/core-brother.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -1635,7 +1644,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["dominate", "presence"],
     id: "core-bruno-wagner",
-    image: "https://www.rivalsdb.app/card/core-bruno-wagner.webp",
+    image: `${baseUrl}/card/core-bruno-wagner.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -1651,7 +1660,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["celerity", "presence"],
     id: "core-bunny-benitez",
-    image: "https://www.rivalsdb.app/card/core-bunny-benitez.webp",
+    image: `${baseUrl}/card/core-bunny-benitez.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -1665,7 +1674,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-burning-down-the-house",
-    image: "https://www.rivalsdb.app/card/core-burning-down-the-house.webp",
+    image: `${baseUrl}/card/core-burning-down-the-house.webp`,
     stack: "library",
   } as Library,
   {
@@ -1677,7 +1686,7 @@ export const cards: Array<Card> = [
     illustrator: "Irene Francisco",
     set: "Blood & Alchemy",
     id: "baa-calcinatio",
-    image: "https://www.rivalsdb.app/card/baa-calcinatio.webp",
+    image: `${baseUrl}/card/baa-calcinatio.webp`,
     stack: "library",
   } as Library,
   {
@@ -1693,7 +1702,7 @@ export const cards: Array<Card> = [
     illustrator: "Joyce Maureira",
     set: "Blood & Alchemy",
     id: "baa-caleb-walker",
-    image: "https://www.rivalsdb.app/card/baa-caleb-walker.webp",
+    image: `${baseUrl}/card/baa-caleb-walker.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -1709,7 +1718,7 @@ export const cards: Array<Card> = [
     set: "Blood & Alchemy",
     disciplines: ["thin-blood alchemy"],
     id: "baa-candi-liu",
-    image: "https://www.rivalsdb.app/card/baa-candi-liu.webp",
+    image: `${baseUrl}/card/baa-candi-liu.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -1725,7 +1734,7 @@ export const cards: Array<Card> = [
     set: "Blood & Alchemy",
     disciplines: ["blood sorcery"],
     id: "baa-claudia-sterling",
-    image: "https://www.rivalsdb.app/card/baa-claudia-sterling.webp",
+    image: `${baseUrl}/card/baa-claudia-sterling.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -1743,7 +1752,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-cloak-of-shadows",
-    image: "https://www.rivalsdb.app/card/core-cloak-of-shadows.webp",
+    image: `${baseUrl}/card/core-cloak-of-shadows.webp`,
     stack: "library",
   } as Library,
   {
@@ -1758,7 +1767,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-coup-de-grace",
-    image: "https://www.rivalsdb.app/card/core-coup-de-grace.webp",
+    image: `${baseUrl}/card/core-coup-de-grace.webp`,
     stack: "library",
   } as Library,
   {
@@ -1772,7 +1781,7 @@ export const cards: Array<Card> = [
     illustrator: "Harvey Bunda",
     set: "Blood & Alchemy",
     id: "baa-crossbow",
-    image: "https://www.rivalsdb.app/card/baa-crossbow.webp",
+    image: `${baseUrl}/card/baa-crossbow.webp`,
     stack: "library",
   } as Library,
   {
@@ -1786,7 +1795,7 @@ export const cards: Array<Card> = [
     illustrator: "Mara Miranda",
     set: "Blood & Alchemy",
     id: "baa-dangerous-mixture",
-    image: "https://www.rivalsdb.app/card/baa-dangerous-mixture.webp",
+    image: `${baseUrl}/card/baa-dangerous-mixture.webp`,
     stack: "library",
   } as Library,
   {
@@ -1802,7 +1811,7 @@ export const cards: Array<Card> = [
     set: "Blood & Alchemy",
     disciplines: ["auspex", "dominate"],
     id: "baa-darius-wolfe",
-    image: "https://www.rivalsdb.app/card/baa-darius-wolfe.webp",
+    image: `${baseUrl}/card/baa-darius-wolfe.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -1814,7 +1823,7 @@ export const cards: Array<Card> = [
     illustrator: "Irene Francisco",
     set: "Blood & Alchemy",
     id: "baa-defense-of-the-sacred-haven",
-    image: "https://www.rivalsdb.app/card/baa-defense-of-the-sacred-haven.webp",
+    image: `${baseUrl}/card/baa-defense-of-the-sacred-haven.webp`,
     stack: "library",
   } as Library,
   {
@@ -1832,7 +1841,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-demand-obedience",
-    image: "https://www.rivalsdb.app/card/core-demand-obedience.webp",
+    image: `${baseUrl}/card/core-demand-obedience.webp`,
     stack: "library",
   } as Library,
   {
@@ -1846,7 +1855,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-destroy-the-plans",
-    image: "https://www.rivalsdb.app/card/core-destroy-the-plans.webp",
+    image: `${baseUrl}/card/core-destroy-the-plans.webp`,
     stack: "library",
   } as Library,
   {
@@ -1864,7 +1873,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-dignity-of-the-office",
-    image: "https://www.rivalsdb.app/card/core-dignity-of-the-office.webp",
+    image: `${baseUrl}/card/core-dignity-of-the-office.webp`,
     stack: "library",
   } as Library,
   {
@@ -1879,7 +1888,7 @@ export const cards: Array<Card> = [
     illustrator: "Marco Primo",
     set: "Core",
     id: "core-distraction",
-    image: "https://www.rivalsdb.app/card/core-distraction.webp",
+    image: `${baseUrl}/card/core-distraction.webp`,
     stack: "library",
   } as Library,
   {
@@ -1895,7 +1904,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["auspex", "obfuscate"],
     id: "core-doc",
-    image: "https://www.rivalsdb.app/card/core-doc.webp",
+    image: `${baseUrl}/card/core-doc.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -1910,7 +1919,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Core",
     id: "core-dragons-roost",
-    image: "https://www.rivalsdb.app/card/core-dragons-roost.webp",
+    image: `${baseUrl}/card/core-dragons-roost.webp`,
     stack: "haven",
   } as Haven,
   {
@@ -1925,7 +1934,7 @@ export const cards: Array<Card> = [
     illustrator: "Marco Primo",
     set: "Core",
     id: "core-drain-them-slowly",
-    image: "https://www.rivalsdb.app/card/core-drain-them-slowly.webp",
+    image: `${baseUrl}/card/core-drain-them-slowly.webp`,
     stack: "agenda",
   } as Agenda,
   {
@@ -1944,7 +1953,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-drive-by",
-    image: "https://www.rivalsdb.app/card/core-drive-by.webp",
+    image: `${baseUrl}/card/core-drive-by.webp`,
     stack: "library",
   } as Library,
   {
@@ -1960,7 +1969,7 @@ export const cards: Array<Card> = [
     illustrator: "Drew Tucker",
     set: "Core",
     id: "core-dumpster-dive",
-    image: "https://www.rivalsdb.app/card/core-dumpster-dive.webp",
+    image: `${baseUrl}/card/core-dumpster-dive.webp`,
     stack: "library",
   } as Library,
   {
@@ -1974,7 +1983,7 @@ export const cards: Array<Card> = [
     attackType: [],
     set: "Core",
     id: "core-emergency-bloodbag",
-    image: "https://www.rivalsdb.app/card/core-emergency-bloodbag.webp",
+    image: `${baseUrl}/card/core-emergency-bloodbag.webp`,
     stack: "library",
   } as Library,
   {
@@ -1986,7 +1995,7 @@ export const cards: Array<Card> = [
     illustrator: "Harvey Bunda",
     set: "Blood & Alchemy",
     id: "baa-enervate",
-    image: "https://www.rivalsdb.app/card/baa-enervate.webp",
+    image: `${baseUrl}/card/baa-enervate.webp`,
     stack: "library",
   } as Library,
   {
@@ -1997,7 +2006,7 @@ export const cards: Array<Card> = [
     illustrator: "Irene Francisco",
     set: "Blood & Alchemy",
     id: "baa-envelop",
-    image: "https://www.rivalsdb.app/card/baa-envelop.webp",
+    image: `${baseUrl}/card/baa-envelop.webp`,
     stack: "library",
   } as Library,
   {
@@ -2012,7 +2021,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-everything-is-connected",
-    image: "https://www.rivalsdb.app/card/core-everything-is-connected.webp",
+    image: `${baseUrl}/card/core-everything-is-connected.webp`,
     stack: "library",
   } as Library,
   {
@@ -2024,7 +2033,7 @@ export const cards: Array<Card> = [
     illustrator: "Adelijah Ocampo",
     set: "Blood & Alchemy",
     id: "baa-extinguish-vitae",
-    image: "https://www.rivalsdb.app/card/baa-extinguish-vitae.webp",
+    image: `${baseUrl}/card/baa-extinguish-vitae.webp`,
     stack: "library",
   } as Library,
   {
@@ -2040,7 +2049,7 @@ export const cards: Array<Card> = [
     set: "Blood & Alchemy",
     disciplines: ["auspex", "blood sorcery"],
     id: "baa-faith-gray",
-    image: "https://www.rivalsdb.app/card/baa-faith-gray.webp",
+    image: `${baseUrl}/card/baa-faith-gray.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -2055,7 +2064,7 @@ export const cards: Array<Card> = [
     illustrator: "Marco Primo",
     set: "Core",
     id: "core-fame-and-fortune",
-    image: "https://www.rivalsdb.app/card/core-fame-and-fortune.webp",
+    image: `${baseUrl}/card/core-fame-and-fortune.webp`,
     stack: "library",
   } as Library,
   {
@@ -2066,7 +2075,7 @@ export const cards: Array<Card> = [
     illustrator: "Timothy Terrenal",
     set: "Blood & Alchemy",
     id: "baa-far-reach",
-    image: "https://www.rivalsdb.app/card/baa-far-reach.webp",
+    image: `${baseUrl}/card/baa-far-reach.webp`,
     stack: "library",
   } as Library,
   {
@@ -2084,7 +2093,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-faulty-logic",
-    image: "https://www.rivalsdb.app/card/core-faulty-logic.webp",
+    image: `${baseUrl}/card/core-faulty-logic.webp`,
     stack: "library",
   } as Library,
   {
@@ -2098,7 +2107,7 @@ export const cards: Array<Card> = [
     illustrator: "Adelijah Ocampo",
     set: "Blood & Alchemy",
     id: "baa-first-ones-free",
-    image: "https://www.rivalsdb.app/card/baa-first-ones-free.webp",
+    image: `${baseUrl}/card/baa-first-ones-free.webp`,
     stack: "library",
   } as Library,
   {
@@ -2112,8 +2121,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Core",
     id: "core-first-tradition-the-masquerade",
-    image:
-      "https://www.rivalsdb.app/card/core-first-tradition-the-masquerade.webp",
+    image: `${baseUrl}/card/core-first-tradition-the-masquerade.webp`,
     stack: "library",
   } as Library,
   {
@@ -2125,7 +2133,7 @@ export const cards: Array<Card> = [
     illustrator: "Adelijah Ocampo",
     set: "Blood & Alchemy",
     id: "baa-fixatio",
-    image: "https://www.rivalsdb.app/card/baa-fixatio.webp",
+    image: `${baseUrl}/card/baa-fixatio.webp`,
     stack: "library",
   } as Library,
   {
@@ -2139,7 +2147,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Core",
     id: "core-fleetness",
-    image: "https://www.rivalsdb.app/card/core-fleetness.webp",
+    image: `${baseUrl}/card/core-fleetness.webp`,
     stack: "library",
   } as Library,
   {
@@ -2155,7 +2163,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["presence"],
     id: "core-flick",
-    image: "https://www.rivalsdb.app/card/core-flick.webp",
+    image: `${baseUrl}/card/core-flick.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -2173,7 +2181,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-fragmented-mind",
-    image: "https://www.rivalsdb.app/card/core-fragmented-mind.webp",
+    image: `${baseUrl}/card/core-fragmented-mind.webp`,
     stack: "library",
   } as Library,
   {
@@ -2187,7 +2195,7 @@ export const cards: Array<Card> = [
     illustrator: "Krasen Maximov",
     set: "Core",
     id: "core-free-money",
-    image: "https://www.rivalsdb.app/card/core-free-money.webp",
+    image: `${baseUrl}/card/core-free-money.webp`,
     stack: "library",
   } as Library,
   {
@@ -2203,7 +2211,7 @@ export const cards: Array<Card> = [
     set: "Blood & Alchemy",
     disciplines: ["thin-blood alchemy"],
     id: "baa-frog",
-    image: "https://www.rivalsdb.app/card/baa-frog.webp",
+    image: `${baseUrl}/card/baa-frog.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -2220,7 +2228,7 @@ export const cards: Array<Card> = [
     illustrator: "Drew Tucker",
     set: "Core",
     id: "core-gang-up",
-    image: "https://www.rivalsdb.app/card/core-gang-up.webp",
+    image: `${baseUrl}/card/core-gang-up.webp`,
     stack: "library",
   } as Library,
   {
@@ -2235,7 +2243,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-greed",
-    image: "https://www.rivalsdb.app/card/core-greed.webp",
+    image: `${baseUrl}/card/core-greed.webp`,
     stack: "library",
   } as Library,
   {
@@ -2251,7 +2259,7 @@ export const cards: Array<Card> = [
     set: "Blood & Alchemy",
     disciplines: ["blood sorcery", "dominate"],
     id: "baa-grigori",
-    image: "https://www.rivalsdb.app/card/baa-grigori.webp",
+    image: `${baseUrl}/card/baa-grigori.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -2267,7 +2275,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["auspex", "dominate"],
     id: "core-guvnah",
-    image: "https://www.rivalsdb.app/card/core-guvnah.webp",
+    image: `${baseUrl}/card/core-guvnah.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -2281,7 +2289,7 @@ export const cards: Array<Card> = [
     set: "Blood & Alchemy",
     attackType: [],
     id: "baa-haze",
-    image: "https://www.rivalsdb.app/card/baa-haze.webp",
+    image: `${baseUrl}/card/baa-haze.webp`,
     stack: "library",
   } as Library,
   {
@@ -2295,7 +2303,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-hedge-your-bets",
-    image: "https://www.rivalsdb.app/card/core-hedge-your-bets.webp",
+    image: `${baseUrl}/card/core-hedge-your-bets.webp`,
     stack: "library",
   } as Library,
   {
@@ -2310,7 +2318,7 @@ export const cards: Array<Card> = [
     illustrator: "Mara Miranda",
     set: "Blood & Alchemy",
     id: "baa-heightened-senses",
-    image: "https://www.rivalsdb.app/card/baa-heightened-senses.webp",
+    image: `${baseUrl}/card/baa-heightened-senses.webp`,
     stack: "library",
   } as Library,
   {
@@ -2325,7 +2333,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-herald",
-    image: "https://www.rivalsdb.app/card/core-herald.webp",
+    image: `${baseUrl}/card/core-herald.webp`,
     stack: "library",
   } as Library,
   {
@@ -2343,7 +2351,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-holdout-dagger",
-    image: "https://www.rivalsdb.app/card/core-holdout-dagger.webp",
+    image: `${baseUrl}/card/core-holdout-dagger.webp`,
     stack: "library",
   } as Library,
   {
@@ -2358,7 +2366,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Core",
     id: "core-house-of-pain",
-    image: "https://www.rivalsdb.app/card/core-house-of-pain.webp",
+    image: `${baseUrl}/card/core-house-of-pain.webp`,
     stack: "haven",
   } as Haven,
   {
@@ -2374,7 +2382,7 @@ export const cards: Array<Card> = [
     illustrator: "Joyce Maureira",
     set: "Blood & Alchemy",
     id: "baa-hua-jiang",
-    image: "https://www.rivalsdb.app/card/baa-hua-jiang.webp",
+    image: `${baseUrl}/card/baa-hua-jiang.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -2390,7 +2398,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["dominate"],
     id: "core-humberto-garcia",
-    image: "https://www.rivalsdb.app/card/core-humberto-garcia.webp",
+    image: `${baseUrl}/card/core-humberto-garcia.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -2408,7 +2416,7 @@ export const cards: Array<Card> = [
     illustrator: "Drew Tucker",
     set: "Core",
     id: "core-humiliate",
-    image: "https://www.rivalsdb.app/card/core-humiliate.webp",
+    image: `${baseUrl}/card/core-humiliate.webp`,
     stack: "library",
   } as Library,
   {
@@ -2418,7 +2426,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-hunt-the-hunters",
-    image: "https://www.rivalsdb.app/card/core-hunt-the-hunters.webp",
+    image: `${baseUrl}/card/core-hunt-the-hunters.webp`,
     stack: "agenda",
   } as Agenda,
   {
@@ -2434,7 +2442,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["celerity", "potence", "presence"],
     id: "core-hydra",
-    image: "https://www.rivalsdb.app/card/core-hydra.webp",
+    image: `${baseUrl}/card/core-hydra.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -2451,7 +2459,7 @@ export const cards: Array<Card> = [
     illustrator: "Marco Primo",
     set: "Core",
     id: "core-incite-rebellion",
-    image: "https://www.rivalsdb.app/card/core-incite-rebellion.webp",
+    image: `${baseUrl}/card/core-incite-rebellion.webp`,
     stack: "library",
   } as Library,
   {
@@ -2466,7 +2474,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Core",
     id: "core-influencer",
-    image: "https://www.rivalsdb.app/card/core-influencer.webp",
+    image: `${baseUrl}/card/core-influencer.webp`,
     stack: "library",
   } as Library,
   {
@@ -2482,7 +2490,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["dominate", "obfuscate"],
     id: "core-inmate-745943",
-    image: "https://www.rivalsdb.app/card/core-inmate-745943.webp",
+    image: `${baseUrl}/card/core-inmate-745943.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -2500,7 +2508,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-insanity-defense",
-    image: "https://www.rivalsdb.app/card/core-insanity-defense.webp",
+    image: `${baseUrl}/card/core-insanity-defense.webp`,
     stack: "library",
   } as Library,
   {
@@ -2514,7 +2522,7 @@ export const cards: Array<Card> = [
     illustrator: "Mara Miranda",
     set: "Blood & Alchemy",
     id: "baa-intimidation",
-    image: "https://www.rivalsdb.app/card/baa-intimidation.webp",
+    image: `${baseUrl}/card/baa-intimidation.webp`,
     stack: "library",
   } as Library,
   {
@@ -2530,7 +2538,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["auspex", "presence"],
     id: "core-iris-lokken",
-    image: "https://www.rivalsdb.app/card/core-iris-lokken.webp",
+    image: `${baseUrl}/card/core-iris-lokken.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -2548,7 +2556,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-irresistible-voice",
-    image: "https://www.rivalsdb.app/card/core-irresistible-voice.webp",
+    image: `${baseUrl}/card/core-irresistible-voice.webp`,
     stack: "library",
   } as Library,
   {
@@ -2564,7 +2572,7 @@ export const cards: Array<Card> = [
     set: "Blood & Alchemy",
     disciplines: ["thin-blood alchemy"],
     id: "baa-jacob-frost",
-    image: "https://www.rivalsdb.app/card/baa-jacob-frost.webp",
+    image: `${baseUrl}/card/baa-jacob-frost.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -2580,7 +2588,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["obfuscate"],
     id: "core-jesus",
-    image: "https://www.rivalsdb.app/card/core-jesus.webp",
+    image: `${baseUrl}/card/core-jesus.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -2596,7 +2604,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["auspex"],
     id: "core-john-kartunen",
-    image: "https://www.rivalsdb.app/card/core-john-kartunen.webp",
+    image: `${baseUrl}/card/core-john-kartunen.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -2612,7 +2620,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["presence", "presence"],
     id: "core-johnny",
-    image: "https://www.rivalsdb.app/card/core-johnny.webp",
+    image: `${baseUrl}/card/core-johnny.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -2628,7 +2636,7 @@ export const cards: Array<Card> = [
     set: "Blood & Alchemy",
     disciplines: ["thin-blood alchemy"],
     id: "baa-joseph-drake",
-    image: "https://www.rivalsdb.app/card/baa-joseph-drake.webp",
+    image: `${baseUrl}/card/baa-joseph-drake.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -2644,7 +2652,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["presence"],
     id: "core-june-bryant",
-    image: "https://www.rivalsdb.app/card/core-june-bryant.webp",
+    image: `${baseUrl}/card/core-june-bryant.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -2660,7 +2668,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["auspex"],
     id: "core-karma",
-    image: "https://www.rivalsdb.app/card/core-karma.webp",
+    image: `${baseUrl}/card/core-karma.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -2675,7 +2683,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-keeper-of-elysium",
-    image: "https://www.rivalsdb.app/card/core-keeper-of-elysium.webp",
+    image: `${baseUrl}/card/core-keeper-of-elysium.webp`,
     stack: "library",
   } as Library,
   {
@@ -2692,7 +2700,7 @@ export const cards: Array<Card> = [
     illustrator: "Marco Primo",
     set: "Core",
     id: "core-kneecapped",
-    image: "https://www.rivalsdb.app/card/core-kneecapped.webp",
+    image: `${baseUrl}/card/core-kneecapped.webp`,
     stack: "library",
   } as Library,
   {
@@ -2709,7 +2717,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-know-your-place",
-    image: "https://www.rivalsdb.app/card/core-know-your-place.webp",
+    image: `${baseUrl}/card/core-know-your-place.webp`,
     stack: "library",
   } as Library,
   {
@@ -2719,7 +2727,7 @@ export const cards: Array<Card> = [
     illustrator: "Darko Stojanovic",
     set: "Blood & Alchemy",
     id: "baa-knowledge-is-power",
-    image: "https://www.rivalsdb.app/card/baa-knowledge-is-power.webp",
+    image: `${baseUrl}/card/baa-knowledge-is-power.webp`,
     stack: "agenda",
   } as Agenda,
   {
@@ -2734,7 +2742,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Core",
     id: "core-late-night-snack",
-    image: "https://www.rivalsdb.app/card/core-late-night-snack.webp",
+    image: `${baseUrl}/card/core-late-night-snack.webp`,
     stack: "library",
   } as Library,
   {
@@ -2752,7 +2760,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-lightning-strike",
-    image: "https://www.rivalsdb.app/card/core-lightning-strike.webp",
+    image: `${baseUrl}/card/core-lightning-strike.webp`,
     stack: "library",
   } as Library,
   {
@@ -2768,7 +2776,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["auspex", "celerity", "presence"],
     id: "core-lixue-chen",
-    image: "https://www.rivalsdb.app/card/core-lixue-chen.webp",
+    image: `${baseUrl}/card/core-lixue-chen.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -2784,7 +2792,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["celerity", "presence"],
     id: "core-liza-holt",
-    image: "https://www.rivalsdb.app/card/core-liza-holt.webp",
+    image: `${baseUrl}/card/core-liza-holt.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -2800,7 +2808,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["dominate"],
     id: "core-lolita",
-    image: "https://www.rivalsdb.app/card/core-lolita.webp",
+    image: `${baseUrl}/card/core-lolita.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -2815,7 +2823,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-long-term-investment",
-    image: "https://www.rivalsdb.app/card/core-long-term-investment.webp",
+    image: `${baseUrl}/card/core-long-term-investment.webp`,
     stack: "library",
   } as Library,
   {
@@ -2831,7 +2839,7 @@ export const cards: Array<Card> = [
     set: "Blood & Alchemy",
     disciplines: ["blood sorcery"],
     id: "baa-lorenzo-murik",
-    image: "https://www.rivalsdb.app/card/baa-lorenzo-murik.webp",
+    image: `${baseUrl}/card/baa-lorenzo-murik.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -2845,7 +2853,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-lost-glory",
-    image: "https://www.rivalsdb.app/card/core-lost-glory.webp",
+    image: `${baseUrl}/card/core-lost-glory.webp`,
     stack: "library",
   } as Library,
   {
@@ -2860,7 +2868,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-manipulate-the-masses",
-    image: "https://www.rivalsdb.app/card/core-manipulate-the-masses.webp",
+    image: `${baseUrl}/card/core-manipulate-the-masses.webp`,
     stack: "agenda",
   } as Agenda,
   {
@@ -2875,7 +2883,7 @@ export const cards: Array<Card> = [
     attackType: [],
     set: "Core",
     id: "core-marked-man",
-    image: "https://www.rivalsdb.app/card/core-marked-man.webp",
+    image: `${baseUrl}/card/core-marked-man.webp`,
     stack: "library",
   } as Library,
   {
@@ -2889,7 +2897,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-mercy",
-    image: "https://www.rivalsdb.app/card/core-mercy.webp",
+    image: `${baseUrl}/card/core-mercy.webp`,
     stack: "library",
   } as Library,
   {
@@ -2904,7 +2912,7 @@ export const cards: Array<Card> = [
     illustrator: "Harvey Bunda",
     set: "Blood & Alchemy",
     id: "baa-mesmerize",
-    image: "https://www.rivalsdb.app/card/baa-mesmerize.webp",
+    image: `${baseUrl}/card/baa-mesmerize.webp`,
     stack: "library",
   } as Library,
   {
@@ -2921,7 +2929,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-molotov-cocktail",
-    image: "https://www.rivalsdb.app/card/core-molotov-cocktail.webp",
+    image: `${baseUrl}/card/core-molotov-cocktail.webp`,
     stack: "library",
   } as Library,
   {
@@ -2937,7 +2945,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["fortitude", "fortitude"],
     id: "core-montgomery-white",
-    image: "https://www.rivalsdb.app/card/core-montgomery-white.webp",
+    image: `${baseUrl}/card/core-montgomery-white.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -2953,7 +2961,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["auspex", "presence"],
     id: "core-muhammad-zadeh",
-    image: "https://www.rivalsdb.app/card/core-muhammad-zadeh.webp",
+    image: `${baseUrl}/card/core-muhammad-zadeh.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -2969,7 +2977,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["presence"],
     id: "core-nancy-witt",
-    image: "https://www.rivalsdb.app/card/core-nancy-witt.webp",
+    image: `${baseUrl}/card/core-nancy-witt.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -2984,7 +2992,7 @@ export const cards: Array<Card> = [
     illustrator: "Cold Castle Studios",
     set: "Core",
     id: "core-old-post-office",
-    image: "https://www.rivalsdb.app/card/core-old-post-office.webp",
+    image: `${baseUrl}/card/core-old-post-office.webp`,
     stack: "haven",
   } as Haven,
   {
@@ -2995,7 +3003,7 @@ export const cards: Array<Card> = [
     illustrator: "Adelijah Ocampo",
     set: "Blood & Alchemy",
     id: "baa-out-of-time",
-    image: "https://www.rivalsdb.app/card/baa-out-of-time.webp",
+    image: `${baseUrl}/card/baa-out-of-time.webp`,
     stack: "library",
   } as Library,
   {
@@ -3009,7 +3017,7 @@ export const cards: Array<Card> = [
     illustrator: "Mara Miranda",
     set: "Blood & Alchemy",
     id: "baa-peer-pressure",
-    image: "https://www.rivalsdb.app/card/baa-peer-pressure.webp",
+    image: `${baseUrl}/card/baa-peer-pressure.webp`,
     stack: "library",
   } as Library,
   {
@@ -3025,7 +3033,7 @@ export const cards: Array<Card> = [
     set: "Blood & Alchemy",
     disciplines: ["blood sorcery", "dominate"],
     id: "baa-phuoc-dihn",
-    image: "https://www.rivalsdb.app/card/baa-phuoc-dihn.webp",
+    image: `${baseUrl}/card/baa-phuoc-dihn.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -3040,7 +3048,7 @@ export const cards: Array<Card> = [
     illustrator: "Amy Wilkins",
     set: "Core",
     id: "core-playthings",
-    image: "https://www.rivalsdb.app/card/core-playthings.webp",
+    image: `${baseUrl}/card/core-playthings.webp`,
     stack: "agenda",
   } as Agenda,
   {
@@ -3057,7 +3065,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-power-play",
-    image: "https://www.rivalsdb.app/card/core-power-play.webp",
+    image: `${baseUrl}/card/core-power-play.webp`,
     stack: "library",
   } as Library,
   {
@@ -3072,7 +3080,7 @@ export const cards: Array<Card> = [
     illustrator: "Darko Stojanovic",
     set: "Core",
     id: "core-pr-firm",
-    image: "https://www.rivalsdb.app/card/core-pr-firm.webp",
+    image: `${baseUrl}/card/core-pr-firm.webp`,
     stack: "library",
   } as Library,
   {
@@ -3084,7 +3092,7 @@ export const cards: Array<Card> = [
     set: "Blood & Alchemy",
     attackType: [],
     id: "baa-premonition",
-    image: "https://www.rivalsdb.app/card/baa-premonition.webp",
+    image: `${baseUrl}/card/baa-premonition.webp`,
     stack: "library",
   } as Library,
   {
@@ -3099,7 +3107,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-primogen",
-    image: "https://www.rivalsdb.app/card/core-primogen.webp",
+    image: `${baseUrl}/card/core-primogen.webp`,
     stack: "library",
   } as Library,
   {
@@ -3110,7 +3118,7 @@ export const cards: Array<Card> = [
     attackType: [],
     set: "Blood & Alchemy",
     id: "baa-rain-of-blood",
-    image: "https://www.rivalsdb.app/card/baa-rain-of-blood.webp",
+    image: `${baseUrl}/card/baa-rain-of-blood.webp`,
     stack: "library",
   } as Library,
   {
@@ -3127,7 +3135,7 @@ export const cards: Array<Card> = [
     illustrator: "Marco Primo",
     set: "Core",
     id: "core-rain-on-your-parade",
-    image: "https://www.rivalsdb.app/card/core-rain-on-your-parade.webp",
+    image: `${baseUrl}/card/core-rain-on-your-parade.webp`,
     stack: "library",
   } as Library,
   {
@@ -3143,7 +3151,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["dominate", "fortitude", "presence"],
     id: "core-randolph-marz",
-    image: "https://www.rivalsdb.app/card/core-randolph-marz.webp",
+    image: `${baseUrl}/card/core-randolph-marz.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -3153,7 +3161,7 @@ export const cards: Array<Card> = [
     illustrator: "Darko Stojanovic",
     set: "Blood & Alchemy",
     id: "baa-recruitment-drive",
-    image: "https://www.rivalsdb.app/card/baa-recruitment-drive.webp",
+    image: `${baseUrl}/card/baa-recruitment-drive.webp`,
     stack: "agenda",
   } as Agenda,
   {
@@ -3163,7 +3171,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Blood & Alchemy",
     id: "baa-rites-of-the-blood",
-    image: "https://www.rivalsdb.app/card/baa-rites-of-the-blood.webp",
+    image: `${baseUrl}/card/baa-rites-of-the-blood.webp`,
     stack: "agenda",
   } as Agenda,
   {
@@ -3178,7 +3186,7 @@ export const cards: Array<Card> = [
     illustrator: "Cold Castle Studios",
     set: "Core",
     id: "core-royal-retreat",
-    image: "https://www.rivalsdb.app/card/core-royal-retreat.webp",
+    image: `${baseUrl}/card/core-royal-retreat.webp`,
     stack: "haven",
   } as Haven,
   {
@@ -3193,7 +3201,7 @@ export const cards: Array<Card> = [
     illustrator: "Darko Stojanovic",
     set: "Core",
     id: "core-royal-review",
-    image: "https://www.rivalsdb.app/card/core-royal-review.webp",
+    image: `${baseUrl}/card/core-royal-review.webp`,
     stack: "library",
   } as Library,
   {
@@ -3210,7 +3218,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-scoped-30-06",
-    image: "https://www.rivalsdb.app/card/core-scoped-30-06.webp",
+    image: `${baseUrl}/card/core-scoped-30-06.webp`,
     stack: "library",
   } as Library,
   {
@@ -3225,7 +3233,7 @@ export const cards: Array<Card> = [
     illustrator: "Harvey Bunda",
     set: "Blood & Alchemy",
     id: "baa-scorpions-touch",
-    image: "https://www.rivalsdb.app/card/baa-scorpions-touch.webp",
+    image: `${baseUrl}/card/baa-scorpions-touch.webp`,
     stack: "library",
   } as Library,
   {
@@ -3243,7 +3251,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-scry-the-soul",
-    image: "https://www.rivalsdb.app/card/core-scry-the-soul.webp",
+    image: `${baseUrl}/card/core-scry-the-soul.webp`,
     stack: "library",
   } as Library,
   {
@@ -3258,7 +3266,7 @@ export const cards: Array<Card> = [
     attackType: [],
     set: "Core",
     id: "core-search-engine",
-    image: "https://www.rivalsdb.app/card/core-search-engine.webp",
+    image: `${baseUrl}/card/core-search-engine.webp`,
     stack: "library",
   } as Library,
   {
@@ -3276,7 +3284,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-seduction",
-    image: "https://www.rivalsdb.app/card/core-seduction.webp",
+    image: `${baseUrl}/card/core-seduction.webp`,
     stack: "library",
   } as Library,
   {
@@ -3289,7 +3297,7 @@ export const cards: Array<Card> = [
     illustrator: "Timothy Terrenal",
     set: "Blood & Alchemy",
     id: "baa-seek-knowledge",
-    image: "https://www.rivalsdb.app/card/baa-seek-knowledge.webp",
+    image: `${baseUrl}/card/baa-seek-knowledge.webp`,
     stack: "library",
   } as Library,
   {
@@ -3304,7 +3312,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-seneschal",
-    image: "https://www.rivalsdb.app/card/core-seneschal.webp",
+    image: `${baseUrl}/card/core-seneschal.webp`,
     stack: "library",
   } as Library,
   {
@@ -3320,7 +3328,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["celerity", "presence"],
     id: "core-shades",
-    image: "https://www.rivalsdb.app/card/core-shades.webp",
+    image: `${baseUrl}/card/core-shades.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -3335,7 +3343,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-sheriff",
-    image: "https://www.rivalsdb.app/card/core-sheriff.webp",
+    image: `${baseUrl}/card/core-sheriff.webp`,
     stack: "library",
   } as Library,
   {
@@ -3351,7 +3359,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["potence"],
     id: "core-skunk",
-    image: "https://www.rivalsdb.app/card/core-skunk.webp",
+    image: `${baseUrl}/card/core-skunk.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -3368,7 +3376,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-slap-in-the-face",
-    image: "https://www.rivalsdb.app/card/core-slap-in-the-face.webp",
+    image: `${baseUrl}/card/core-slap-in-the-face.webp`,
     stack: "library",
   } as Library,
   {
@@ -3380,7 +3388,7 @@ export const cards: Array<Card> = [
     illustrator: "Irene Francisco",
     set: "Blood & Alchemy",
     id: "baa-sleep-of-the-damned",
-    image: "https://www.rivalsdb.app/card/baa-sleep-of-the-damned.webp",
+    image: `${baseUrl}/card/baa-sleep-of-the-damned.webp`,
     stack: "library",
   } as Library,
   {
@@ -3396,7 +3404,7 @@ export const cards: Array<Card> = [
     set: "Promo",
     disciplines: ["celerity"],
     id: "xxx-smoke",
-    image: "https://www.rivalsdb.app/card/xxx-smoke.webp",
+    image: `${baseUrl}/card/xxx-smoke.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -3412,7 +3420,7 @@ export const cards: Array<Card> = [
     set: "Promo",
     disciplines: ["fortitude", "presence"],
     id: "xxx-martine-diaz",
-    image: "https://www.rivalsdb.app/card/xxx-martine-diaz.webp",
+    image: `${baseUrl}/card/xxx-martine-diaz.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -3428,7 +3436,7 @@ export const cards: Array<Card> = [
     set: "Promo",
     disciplines: ["celerity"],
     id: "xxx-freddy-usher",
-    image: "https://www.rivalsdb.app/card/xxx-freddy-usher.webp",
+    image: `${baseUrl}/card/xxx-freddy-usher.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -3444,7 +3452,7 @@ export const cards: Array<Card> = [
     set: "Promo",
     disciplines: ["dominate", "presence"],
     id: "xxx-victor-temple",
-    image: "https://www.rivalsdb.app/card/xxx-victor-temple.webp",
+    image: `${baseUrl}/card/xxx-victor-temple.webp`,
     flavor: "Undisputed Baron of the Valley",
     stack: "faction",
   } as Faction,
@@ -3460,7 +3468,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-smoke-em-out",
-    image: "https://www.rivalsdb.app/card/core-smoke-em-out.webp",
+    image: `${baseUrl}/card/core-smoke-em-out.webp`,
     stack: "library",
   } as Library,
   {
@@ -3476,7 +3484,7 @@ export const cards: Array<Card> = [
     set: "Blood & Alchemy",
     disciplines: ["auspex", "blood sorcery", "dominate"],
     id: "baa-sonja-valentine",
-    image: "https://www.rivalsdb.app/card/baa-sonja-valentine.webp",
+    image: `${baseUrl}/card/baa-sonja-valentine.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -3494,7 +3502,7 @@ export const cards: Array<Card> = [
     illustrator: "Marco Primo",
     set: "Core",
     id: "core-steal-the-spotlight",
-    image: "https://www.rivalsdb.app/card/core-steal-the-spotlight.webp",
+    image: `${baseUrl}/card/core-steal-the-spotlight.webp`,
     stack: "library",
   } as Library,
   {
@@ -3510,7 +3518,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["fortitude", "presence"],
     id: "core-stevie-osborn",
-    image: "https://www.rivalsdb.app/card/core-stevie-osborn.webp",
+    image: `${baseUrl}/card/core-stevie-osborn.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -3520,7 +3528,7 @@ export const cards: Array<Card> = [
     illustrator: "",
     set: "Blood & Alchemy",
     id: "baa-street-brew",
-    image: "https://www.rivalsdb.app/card/baa-street-brew.webp",
+    image: `${baseUrl}/card/baa-street-brew.webp`,
     stack: "agenda",
   } as Agenda,
   {
@@ -3536,7 +3544,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["auspex"],
     id: "core-street-preacher",
-    image: "https://www.rivalsdb.app/card/core-street-preacher.webp",
+    image: `${baseUrl}/card/core-street-preacher.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -3551,7 +3559,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Core",
     id: "core-strength-in-numbers",
-    image: "https://www.rivalsdb.app/card/core-strength-in-numbers.webp",
+    image: `${baseUrl}/card/core-strength-in-numbers.webp`,
     stack: "agenda",
   } as Agenda,
   {
@@ -3565,7 +3573,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-sucker-punch",
-    image: "https://www.rivalsdb.app/card/core-sucker-punch.webp",
+    image: `${baseUrl}/card/core-sucker-punch.webp`,
     stack: "library",
   } as Library,
   {
@@ -3577,7 +3585,7 @@ export const cards: Array<Card> = [
     illustrator: "Dawn Nique",
     set: "Blood & Alchemy",
     id: "baa-sunrise-surprise",
-    image: "https://www.rivalsdb.app/card/baa-sunrise-surprise.webp",
+    image: `${baseUrl}/card/baa-sunrise-surprise.webp`,
     stack: "library",
   } as Library,
   {
@@ -3593,7 +3601,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["celerity"],
     id: "core-sweetums",
-    image: "https://www.rivalsdb.app/card/core-sweetums.webp",
+    image: `${baseUrl}/card/core-sweetums.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -3611,7 +3619,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-terrorize",
-    image: "https://www.rivalsdb.app/card/core-terrorize.webp",
+    image: `${baseUrl}/card/core-terrorize.webp`,
     stack: "library",
   } as Library,
   {
@@ -3621,7 +3629,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Blood & Alchemy",
     id: "baa-the-chantry",
-    image: "https://www.rivalsdb.app/card/baa-the-chantry.webp",
+    image: `${baseUrl}/card/baa-the-chantry.webp`,
     stack: "haven",
   } as Haven,
   {
@@ -3637,7 +3645,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["celerity", "potence"],
     id: "core-the-cossack",
-    image: "https://www.rivalsdb.app/card/core-the-cossack.webp",
+    image: `${baseUrl}/card/core-the-cossack.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -3652,7 +3660,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Core",
     id: "core-the-dockyards",
-    image: "https://www.rivalsdb.app/card/core-the-dockyards.webp",
+    image: `${baseUrl}/card/core-the-dockyards.webp`,
     stack: "haven",
   } as Haven,
   {
@@ -3667,7 +3675,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-the-end-is-nigh",
-    image: "https://www.rivalsdb.app/card/core-the-end-is-nigh.webp",
+    image: `${baseUrl}/card/core-the-end-is-nigh.webp`,
     stack: "agenda",
   } as Agenda,
   {
@@ -3681,7 +3689,7 @@ export const cards: Array<Card> = [
     attackType: [],
     set: "Core",
     id: "core-the-last-word",
-    image: "https://www.rivalsdb.app/card/core-the-last-word.webp",
+    image: `${baseUrl}/card/core-the-last-word.webp`,
     stack: "library",
   } as Library,
   {
@@ -3691,7 +3699,7 @@ export const cards: Array<Card> = [
     illustrator: "Cold Castle Studios",
     set: "Core",
     id: "core-the-madhouse",
-    image: "https://www.rivalsdb.app/card/core-the-madhouse.webp",
+    image: `${baseUrl}/card/core-the-madhouse.webp`,
     stack: "haven",
   } as Haven,
   {
@@ -3708,7 +3716,7 @@ export const cards: Array<Card> = [
     illustrator: "Marco Primo",
     set: "Core",
     id: "core-the-mighty-fall",
-    image: "https://www.rivalsdb.app/card/core-the-mighty-fall.webp",
+    image: `${baseUrl}/card/core-the-mighty-fall.webp`,
     stack: "library",
   } as Library,
   {
@@ -3723,7 +3731,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-the-penthouse",
-    image: "https://www.rivalsdb.app/card/core-the-penthouse.webp",
+    image: `${baseUrl}/card/core-the-penthouse.webp`,
     stack: "haven",
   } as Haven,
   {
@@ -3733,7 +3741,7 @@ export const cards: Array<Card> = [
     illustrator: "Marco Primo",
     set: "Blood & Alchemy",
     id: "baa-the-pit",
-    image: "https://www.rivalsdb.app/card/baa-the-pit.webp",
+    image: `${baseUrl}/card/baa-the-pit.webp`,
     stack: "haven",
   } as Haven,
   {
@@ -3748,7 +3756,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-the-spoils",
-    image: "https://www.rivalsdb.app/card/core-the-spoils.webp",
+    image: `${baseUrl}/card/core-the-spoils.webp`,
     stack: "library",
   } as Library,
   {
@@ -3760,7 +3768,7 @@ export const cards: Array<Card> = [
     illustrator: "Harvey Bunda",
     set: "Blood & Alchemy",
     id: "baa-theft-of-vitae",
-    image: "https://www.rivalsdb.app/card/baa-theft-of-vitae.webp",
+    image: `${baseUrl}/card/baa-theft-of-vitae.webp`,
     stack: "library",
   } as Library,
   {
@@ -3771,7 +3779,7 @@ export const cards: Array<Card> = [
     set: "Blood & Alchemy",
     attackType: [],
     id: "baa-third-tradition-the-progeny",
-    image: "https://www.rivalsdb.app/card/baa-third-tradition-the-progeny.webp",
+    image: `${baseUrl}/card/baa-third-tradition-the-progeny.webp`,
     stack: "library",
   } as Library,
   {
@@ -3781,7 +3789,7 @@ export const cards: Array<Card> = [
     illustrator: "Marco Primo",
     set: "Blood & Alchemy",
     id: "baa-thrift-store",
-    image: "https://www.rivalsdb.app/card/baa-thrift-store.webp",
+    image: `${baseUrl}/card/baa-thrift-store.webp`,
     stack: "haven",
   } as Haven,
   {
@@ -3799,7 +3807,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Core",
     id: "core-throat-rip",
-    image: "https://www.rivalsdb.app/card/core-throat-rip.webp",
+    image: `${baseUrl}/card/core-throat-rip.webp`,
     stack: "library",
   } as Library,
   {
@@ -3814,7 +3822,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-turf-war",
-    image: "https://www.rivalsdb.app/card/core-turf-war.webp",
+    image: `${baseUrl}/card/core-turf-war.webp`,
     stack: "agenda",
   } as Agenda,
   {
@@ -3826,7 +3834,7 @@ export const cards: Array<Card> = [
     illustrator: "Timothy Terrenal",
     set: "Blood & Alchemy",
     id: "baa-truth-of-blood",
-    image: "https://www.rivalsdb.app/card/baa-truth-of-blood.webp",
+    image: `${baseUrl}/card/baa-truth-of-blood.webp`,
     stack: "library",
   } as Library,
   {
@@ -3842,7 +3850,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["presence"],
     id: "core-ty-smith",
-    image: "https://www.rivalsdb.app/card/core-ty-smith.webp",
+    image: `${baseUrl}/card/core-ty-smith.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -3860,7 +3868,7 @@ export const cards: Array<Card> = [
     illustrator: "The Creation Studio",
     set: "Core",
     id: "core-unhinged",
-    image: "https://www.rivalsdb.app/card/core-unhinged.webp",
+    image: `${baseUrl}/card/core-unhinged.webp`,
     stack: "library",
   } as Library,
   {
@@ -3870,7 +3878,7 @@ export const cards: Array<Card> = [
     illustrator: "Marco Primo",
     set: "Blood & Alchemy",
     id: "baa-university-library",
-    image: "https://www.rivalsdb.app/card/baa-university-library.webp",
+    image: `${baseUrl}/card/baa-university-library.webp`,
     stack: "haven",
   } as Haven,
   {
@@ -3888,7 +3896,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Core",
     id: "core-unswayable-mind",
-    image: "https://www.rivalsdb.app/card/core-unswayable-mind.webp",
+    image: `${baseUrl}/card/core-unswayable-mind.webp`,
     stack: "library",
   } as Library,
   {
@@ -3904,7 +3912,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Blood & Alchemy",
     id: "baa-valerie-nash",
-    image: "https://www.rivalsdb.app/card/baa-valerie-nash.webp",
+    image: `${baseUrl}/card/baa-valerie-nash.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -3920,7 +3928,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["auspex", "obfuscate"],
     id: "core-velvet",
-    image: "https://www.rivalsdb.app/card/core-velvet.webp",
+    image: `${baseUrl}/card/core-velvet.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -3936,7 +3944,7 @@ export const cards: Array<Card> = [
     illustrator: "Joyce Maureira",
     set: "Blood & Alchemy",
     id: "baa-wendy",
-    image: "https://www.rivalsdb.app/card/baa-wendy.webp",
+    image: `${baseUrl}/card/baa-wendy.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -3950,7 +3958,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Core",
     id: "core-whispering-campaign",
-    image: "https://www.rivalsdb.app/card/core-whispering-campaign.webp",
+    image: `${baseUrl}/card/core-whispering-campaign.webp`,
     stack: "library",
   } as Library,
   {
@@ -3966,7 +3974,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["fortitude", "fortitude"],
     id: "core-yusuf-kaya",
-    image: "https://www.rivalsdb.app/card/core-yusuf-kaya.webp",
+    image: `${baseUrl}/card/core-yusuf-kaya.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -3982,7 +3990,7 @@ export const cards: Array<Card> = [
     set: "Core",
     disciplines: ["dominate", "presence"],
     id: "core-zhang-wei",
-    image: "https://www.rivalsdb.app/card/core-zhang-wei.webp",
+    image: `${baseUrl}/card/core-zhang-wei.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -3993,7 +4001,7 @@ export const cards: Array<Card> = [
     illustrator: "Adelijah Ocampo",
     set: "Wolf & Rat",
     id: "war-alley-cat",
-    image: "https://www.rivalsdb.app/card/war-alley-cat.webp",
+    image: `${baseUrl}/card/war-alley-cat.webp`,
     stack: "library",
   } as Library,
   {
@@ -4005,7 +4013,7 @@ export const cards: Array<Card> = [
     bloodPotency: 5,
     set: "Wolf & Rat",
     id: "war-animal-dominion",
-    image: "https://www.rivalsdb.app/card/war-animal-dominion.webp",
+    image: `${baseUrl}/card/war-animal-dominion.webp`,
     stack: "library",
   } as Library,
   {
@@ -4015,7 +4023,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Wolf & Rat",
     id: "war-animal-kingdom",
-    image: "https://www.rivalsdb.app/card/war-animal-kingdom.webp",
+    image: `${baseUrl}/card/war-animal-kingdom.webp`,
     stack: "agenda",
   } as Agenda,
   {
@@ -4029,7 +4037,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Mara Miranda-Escota",
     id: "war-apex-predator",
-    image: "https://www.rivalsdb.app/card/war-apex-predator.webp",
+    image: `${baseUrl}/card/war-apex-predator.webp`,
     stack: "library",
   } as Library,
   {
@@ -4042,7 +4050,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Harvey Bunda",
     id: "war-bad-reflection",
-    image: "https://www.rivalsdb.app/card/war-bad-reflection.webp",
+    image: `${baseUrl}/card/war-bad-reflection.webp`,
     stack: "library",
   } as Library,
   {
@@ -4055,7 +4063,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Irene Francisco",
     id: "war-beasts-of-war",
-    image: "https://www.rivalsdb.app/card/war-beasts-of-war.webp",
+    image: `${baseUrl}/card/war-beasts-of-war.webp`,
     stack: "library",
   } as Library,
   {
@@ -4071,7 +4079,7 @@ export const cards: Array<Card> = [
     illustrator: "Drew Tucker",
     set: "Wolf & Rat",
     id: "war-bobby-handsome",
-    image: "https://www.rivalsdb.app/card/war-bobby-handsome.webp",
+    image: `${baseUrl}/card/war-bobby-handsome.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -4081,7 +4089,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Joyce Maureira",
     id: "war-bond-famulus",
-    image: "https://www.rivalsdb.app/card/war-bond-famulus.webp",
+    image: `${baseUrl}/card/war-bond-famulus.webp`,
     stack: "library",
   } as Library,
   {
@@ -4091,7 +4099,7 @@ export const cards: Array<Card> = [
     illustrator: "Harvey Bunda",
     set: "Wolf & Rat",
     id: "war-call-of-the-wild",
-    image: "https://www.rivalsdb.app/card/war-call-of-the-wild.webp",
+    image: `${baseUrl}/card/war-call-of-the-wild.webp`,
     stack: "agenda",
   } as Agenda,
   {
@@ -4107,7 +4115,7 @@ export const cards: Array<Card> = [
     illustrator: "Drew Tucker",
     set: "Wolf & Rat",
     id: "war-chooha",
-    image: "https://www.rivalsdb.app/card/war-chooha.webp",
+    image: `${baseUrl}/card/war-chooha.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -4117,7 +4125,7 @@ export const cards: Array<Card> = [
     illustrator: "Harvey Bunda",
     set: "Wolf & Rat",
     id: "war-city-park",
-    image: "https://www.rivalsdb.app/card/war-city-park.webp",
+    image: `${baseUrl}/card/war-city-park.webp`,
     stack: "haven",
   } as Haven,
   {
@@ -4133,7 +4141,7 @@ export const cards: Array<Card> = [
     illustrator: "Drew Tucker",
     set: "Wolf & Rat",
     id: "war-clandestine",
-    image: "https://www.rivalsdb.app/card/war-clandestine.webp",
+    image: `${baseUrl}/card/war-clandestine.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -4143,7 +4151,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Timothy Terrenal",
     id: "war-constant-surveillance",
-    image: "https://www.rivalsdb.app/card/war-constant-surveillance.webp",
+    image: `${baseUrl}/card/war-constant-surveillance.webp`,
     stack: "library",
   } as Library,
   {
@@ -4157,7 +4165,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Harvey Bunda",
     id: "war-cornered-rat",
-    image: "https://www.rivalsdb.app/card/war-cornered-rat.webp",
+    image: `${baseUrl}/card/war-cornered-rat.webp`,
     stack: "library",
   } as Library,
   {
@@ -4167,7 +4175,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Felipe Gaona",
     id: "war-cracking-the-case",
-    image: "https://www.rivalsdb.app/card/war-cracking-the-case.webp",
+    image: `${baseUrl}/card/war-cracking-the-case.webp`,
     stack: "library",
   } as Library,
   {
@@ -4183,7 +4191,7 @@ export const cards: Array<Card> = [
     illustrator: "Joyce Maureira",
     set: "Wolf & Rat",
     id: "war-crazy-cat-lady",
-    image: "https://www.rivalsdb.app/card/war-crazy-cat-lady.webp",
+    image: `${baseUrl}/card/war-crazy-cat-lady.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -4198,7 +4206,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Adelijah Ocampo",
     id: "war-disturbing-the-hive",
-    image: "https://www.rivalsdb.app/card/war-disturbing-the-hive.webp",
+    image: `${baseUrl}/card/war-disturbing-the-hive.webp`,
     stack: "library",
   } as Library,
   {
@@ -4214,7 +4222,7 @@ export const cards: Array<Card> = [
     illustrator: "Joyce Maureira",
     set: "Wolf & Rat",
     id: "war-drea-warden",
-    image: "https://www.rivalsdb.app/card/war-drea-warden.webp",
+    image: `${baseUrl}/card/war-drea-warden.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -4225,7 +4233,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Adelijah Ocampo",
     id: "war-earth-meld",
-    image: "https://www.rivalsdb.app/card/war-earth-meld.webp",
+    image: `${baseUrl}/card/war-earth-meld.webp`,
     stack: "library",
   } as Library,
   {
@@ -4239,7 +4247,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Adelijah Ocampo",
     id: "war-feeding-frenzy",
-    image: "https://www.rivalsdb.app/card/war-feeding-frenzy.webp",
+    image: `${baseUrl}/card/war-feeding-frenzy.webp`,
     stack: "library",
   } as Library,
   {
@@ -4249,7 +4257,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Harvey Bunda",
     id: "war-feeding-the-hungry",
-    image: "https://www.rivalsdb.app/card/war-feeding-the-hungry.webp",
+    image: `${baseUrl}/card/war-feeding-the-hungry.webp`,
     stack: "library",
   } as Library,
   {
@@ -4263,7 +4271,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Mara Miranda-Escota",
     id: "war-feral-claws",
-    image: "https://www.rivalsdb.app/card/war-feral-claws.webp",
+    image: `${baseUrl}/card/war-feral-claws.webp`,
     stack: "library",
   } as Library,
   {
@@ -4277,7 +4285,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Mara Miranda-Escota",
     id: "war-feral-fangs",
-    image: "https://www.rivalsdb.app/card/war-feral-fangs.webp",
+    image: `${baseUrl}/card/war-feral-fangs.webp`,
     stack: "library",
   } as Library,
   {
@@ -4288,7 +4296,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Irene Francisco",
     id: "war-feral-whispers",
-    image: "https://www.rivalsdb.app/card/war-feral-whispers.webp",
+    image: `${baseUrl}/card/war-feral-whispers.webp`,
     stack: "library",
   } as Library,
   {
@@ -4303,7 +4311,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Timothy Terrenal",
     id: "war-fight-or-flight",
-    image: "https://www.rivalsdb.app/card/war-fight-or-flight.webp",
+    image: `${baseUrl}/card/war-fight-or-flight.webp`,
     stack: "library",
   } as Library,
   {
@@ -4319,7 +4327,7 @@ export const cards: Array<Card> = [
     illustrator: "Ana Horbunova",
     set: "Wolf & Rat",
     id: "war-general-flint",
-    image: "https://www.rivalsdb.app/card/war-general-flint.webp",
+    image: `${baseUrl}/card/war-general-flint.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -4335,7 +4343,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Wolf & Rat",
     id: "war-ghost",
-    image: "https://www.rivalsdb.app/card/war-ghost.webp",
+    image: `${baseUrl}/card/war-ghost.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -4349,7 +4357,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Timothy Terrenal & Harvey Bunda",
     id: "war-hardened-flesh",
-    image: "https://www.rivalsdb.app/card/war-hardened-flesh.webp",
+    image: `${baseUrl}/card/war-hardened-flesh.webp`,
     stack: "library",
   } as Library,
   {
@@ -4365,7 +4373,7 @@ export const cards: Array<Card> = [
     illustrator: "Drew Tucker",
     set: "Wolf & Rat",
     id: "war-harry-o-brien",
-    image: "https://www.rivalsdb.app/card/war-harry-o-brien.webp",
+    image: `${baseUrl}/card/war-harry-o-brien.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -4375,7 +4383,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Felipe Gaona",
     id: "war-help-me-help-you",
-    image: "https://www.rivalsdb.app/card/war-help-me-help-you.webp",
+    image: `${baseUrl}/card/war-help-me-help-you.webp`,
     stack: "library",
   } as Library,
   {
@@ -4386,7 +4394,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Irene Francisco",
     id: "war-hiding-in-plain-sight",
-    image: "https://www.rivalsdb.app/card/war-hiding-in-plain-sight.webp",
+    image: `${baseUrl}/card/war-hiding-in-plain-sight.webp`,
     stack: "library",
   } as Library,
   {
@@ -4396,7 +4404,7 @@ export const cards: Array<Card> = [
     illustrator: "Mara Miranda-Escota",
     set: "Wolf & Rat",
     id: "war-hoard-the-herd",
-    image: "https://www.rivalsdb.app/card/war-hoard-the-herd.webp",
+    image: `${baseUrl}/card/war-hoard-the-herd.webp`,
     stack: "agenda",
   } as Agenda,
   {
@@ -4406,7 +4414,7 @@ export const cards: Array<Card> = [
     illustrator: "Harvey Bunda",
     set: "Wolf & Rat",
     id: "war-invisible-army",
-    image: "https://www.rivalsdb.app/card/war-invisible-army.webp",
+    image: `${baseUrl}/card/war-invisible-army.webp`,
     stack: "agenda",
   } as Agenda,
   {
@@ -4422,7 +4430,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Wolf & Rat",
     id: "war-kim-phan",
-    image: "https://www.rivalsdb.app/card/war-kim-phan.webp",
+    image: `${baseUrl}/card/war-kim-phan.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -4438,7 +4446,7 @@ export const cards: Array<Card> = [
     illustrator: "Joyce Maureira",
     set: "Wolf & Rat",
     id: "war-leah-swiftfoot",
-    image: "https://www.rivalsdb.app/card/war-leah-swiftfoot.webp",
+    image: `${baseUrl}/card/war-leah-swiftfoot.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -4454,7 +4462,7 @@ export const cards: Array<Card> = [
     illustrator: "Joyce Maureira",
     set: "Wolf & Rat",
     id: "war-lil-fang",
-    image: "https://www.rivalsdb.app/card/war-lil-fang.webp",
+    image: `${baseUrl}/card/war-lil-fang.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -4470,7 +4478,7 @@ export const cards: Array<Card> = [
     illustrator: "Joyce Maureira",
     set: "Wolf & Rat",
     id: "war-lori-swiftfoot",
-    image: "https://www.rivalsdb.app/card/war-lori-swiftfoot.webp",
+    image: `${baseUrl}/card/war-lori-swiftfoot.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -4481,7 +4489,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Mara Miranda-Escota",
     id: "war-mongrel",
-    image: "https://www.rivalsdb.app/card/war-mongrel.webp",
+    image: `${baseUrl}/card/war-mongrel.webp`,
     stack: "library",
   } as Library,
   {
@@ -4492,7 +4500,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Adelijah Ocampo",
     id: "war-murder-of-crows",
-    image: "https://www.rivalsdb.app/card/war-murder-of-crows.webp",
+    image: `${baseUrl}/card/war-murder-of-crows.webp`,
     stack: "library",
   } as Library,
   {
@@ -4508,7 +4516,7 @@ export const cards: Array<Card> = [
     illustrator: "Drew Tucker",
     set: "Wolf & Rat",
     id: "war-pong",
-    image: "https://www.rivalsdb.app/card/war-pong.webp",
+    image: `${baseUrl}/card/war-pong.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -4518,7 +4526,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Timothy Terrenal",
     id: "war-protect-the-flock",
-    image: "https://www.rivalsdb.app/card/war-protect-the-flock.webp",
+    image: `${baseUrl}/card/war-protect-the-flock.webp`,
     stack: "library",
   } as Library,
   {
@@ -4528,7 +4536,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Mara Miranda-Escota",
     id: "war-second-tradition-the-domain",
-    image: "https://www.rivalsdb.app/card/war-second-tradition-the-domain.webp",
+    image: `${baseUrl}/card/war-second-tradition-the-domain.webp`,
     stack: "library",
   } as Library,
   {
@@ -4539,7 +4547,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Timothy Terrenal",
     id: "war-secret-passage",
-    image: "https://www.rivalsdb.app/card/war-secret-passage.webp",
+    image: `${baseUrl}/card/war-secret-passage.webp`,
     stack: "library",
   } as Library,
   {
@@ -4552,7 +4560,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Mara Miranda-Escota",
     id: "war-seeing-is-believing",
-    image: "https://www.rivalsdb.app/card/war-seeing-is-believing.webp",
+    image: `${baseUrl}/card/war-seeing-is-believing.webp`,
     stack: "library",
   } as Library,
   {
@@ -4563,7 +4571,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Irene Francisco",
     id: "war-sewer-rat",
-    image: "https://www.rivalsdb.app/card/war-sewer-rat.webp",
+    image: `${baseUrl}/card/war-sewer-rat.webp`,
     stack: "library",
   } as Library,
   {
@@ -4575,7 +4583,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Felipe Gaona",
     id: "war-shape-of-the-beast",
-    image: "https://www.rivalsdb.app/card/war-shape-of-the-beast.webp",
+    image: `${baseUrl}/card/war-shape-of-the-beast.webp`,
     stack: "library",
   } as Library,
   {
@@ -4591,7 +4599,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Wolf & Rat",
     id: "war-sheilar-omar",
-    image: "https://www.rivalsdb.app/card/war-sheilar-omar.webp",
+    image: `${baseUrl}/card/war-sheilar-omar.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -4607,7 +4615,7 @@ export const cards: Array<Card> = [
     illustrator: "Joyce Maureira",
     set: "Wolf & Rat",
     id: "war-shep-mason",
-    image: "https://www.rivalsdb.app/card/war-shep-mason.webp",
+    image: `${baseUrl}/card/war-shep-mason.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -4619,7 +4627,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Mara Miranda-Escota",
     id: "war-spy-games",
-    image: "https://www.rivalsdb.app/card/war-spy-games.webp",
+    image: `${baseUrl}/card/war-spy-games.webp`,
     stack: "library",
   } as Library,
   {
@@ -4635,7 +4643,7 @@ export const cards: Array<Card> = [
     illustrator: "Joyce Maureira",
     set: "Wolf & Rat",
     id: "war-summer-moon",
-    image: "https://www.rivalsdb.app/card/war-summer-moon.webp",
+    image: `${baseUrl}/card/war-summer-moon.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -4651,7 +4659,7 @@ export const cards: Array<Card> = [
     illustrator: "Ana Horbunova",
     set: "Wolf & Rat",
     id: "war-tamaska",
-    image: "https://www.rivalsdb.app/card/war-tamaska.webp",
+    image: `${baseUrl}/card/war-tamaska.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -4661,7 +4669,7 @@ export const cards: Array<Card> = [
     illustrator: "Adelijah Ocampo",
     set: "Wolf & Rat",
     id: "war-the-outskirts",
-    image: "https://www.rivalsdb.app/card/war-the-outskirts.webp",
+    image: `${baseUrl}/card/war-the-outskirts.webp`,
     stack: "haven",
   } as Haven,
   {
@@ -4671,7 +4679,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Wolf & Rat",
     id: "war-the-sewers",
-    image: "https://www.rivalsdb.app/card/war-the-sewers.webp",
+    image: `${baseUrl}/card/war-the-sewers.webp`,
     stack: "haven",
   } as Haven,
   {
@@ -4681,7 +4689,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Irene Francisco",
     id: "war-the-shakedown",
-    image: "https://www.rivalsdb.app/card/war-the-shakedown.webp",
+    image: `${baseUrl}/card/war-the-shakedown.webp`,
     stack: "library",
   } as Library,
   {
@@ -4691,7 +4699,7 @@ export const cards: Array<Card> = [
     illustrator: "Felipe Gaona",
     set: "Wolf & Rat",
     id: "war-the-shelter",
-    image: "https://www.rivalsdb.app/card/war-the-shelter.webp",
+    image: `${baseUrl}/card/war-the-shelter.webp`,
     stack: "haven",
   } as Haven,
   {
@@ -4705,7 +4713,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Adelijah Ocampo",
     id: "war-the-stampede",
-    image: "https://www.rivalsdb.app/card/war-the-stampede.webp",
+    image: `${baseUrl}/card/war-the-stampede.webp`,
     stack: "library",
   } as Library,
   {
@@ -4716,7 +4724,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Adelijah Ocampo",
     id: "war-the-swarm",
-    image: "https://www.rivalsdb.app/card/war-the-swarm.webp",
+    image: `${baseUrl}/card/war-the-swarm.webp`,
     stack: "library",
   } as Library,
   {
@@ -4732,7 +4740,7 @@ export const cards: Array<Card> = [
     illustrator: "Joyce Maureira",
     set: "Wolf & Rat",
     id: "war-trinity-voss",
-    image: "https://www.rivalsdb.app/card/war-trinity-voss.webp",
+    image: `${baseUrl}/card/war-trinity-voss.webp`,
     stack: "faction",
   } as Faction,
   {
@@ -4746,7 +4754,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Drew Tucker",
     id: "war-veiled-threat",
-    image: "https://www.rivalsdb.app/card/war-veiled-threat.webp",
+    image: `${baseUrl}/card/war-veiled-threat.webp`,
     stack: "library",
   } as Library,
   {
@@ -4757,7 +4765,7 @@ export const cards: Array<Card> = [
     set: "Wolf & Rat",
     illustrator: "Irene Francisco",
     id: "war-we-are-legend",
-    image: "https://www.rivalsdb.app/card/war-we-are-legend.webp",
+    image: `${baseUrl}/card/war-we-are-legend.webp`,
     stack: "library",
   } as Library,
 ];

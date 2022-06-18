@@ -1,7 +1,7 @@
 module Data.Pack exposing (Pack, decoder, list, toString)
 
 import Enum exposing (Enum)
-import Json.Decode exposing (Decoder)
+import Json.Decode as Decode exposing (Decoder)
 
 
 type Pack
@@ -10,6 +10,7 @@ type Pack
     | BloodAndAlchemy
     | WolfAndRat
     | ShadowsAndShrouds
+    | HeartOfEurope
 
 
 enum : Enum Pack
@@ -20,12 +21,13 @@ enum =
         , ( "Wolf & Rat", WolfAndRat )
         , ( "Shadows & Shrouds", ShadowsAndShrouds )
         , ( "Promo", Promo )
+        , ( "Heart of Europe", HeartOfEurope )
         ]
 
 
 decoder : Decoder Pack
 decoder =
-    enum.decoder
+    Decode.maybe enum.decoder |> Decode.map (Maybe.withDefault default)
 
 
 toString : Pack -> String
@@ -36,3 +38,8 @@ toString =
 list : List ( String, Pack )
 list =
     enum.list
+
+
+default : Pack
+default =
+    Promo

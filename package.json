@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "build": "yarn build-server && yarn build-client && yarn build-migrations",
     "build-client": "cd client && yarn install && yarn build && cd ..",
