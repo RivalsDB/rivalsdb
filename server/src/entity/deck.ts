@@ -12,13 +12,13 @@ export type Content = {
   libraryDeck: Record<string, number>;
 };
 
-export type Deck = {
+type Deck = {
   id: string;
   decklist: Decklist;
   meta: Meta;
 };
 
-export type WithCreator<D> = D & {
+type WithCreator<D> = D & {
   creator: Pick<User, "id" | "displayName" | "patronage">;
 };
 

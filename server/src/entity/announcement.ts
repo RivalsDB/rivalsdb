@@ -1,6 +1,6 @@
 import { db, sql } from "../db.js";
 
-export type Announcement = {
+type Announcement = {
   announcementId: number;
   markdown: string;
   publishedAt: number; // ms epoch

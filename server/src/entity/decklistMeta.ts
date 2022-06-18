@@ -1,6 +1,6 @@
 import { db, sql } from "../db.js";
 
-export type DecklistMeta = {
+type DecklistMeta = {
   decklistId: string;
   description?: string;
 };
