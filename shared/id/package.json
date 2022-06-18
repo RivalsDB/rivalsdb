@@ -6,7 +6,7 @@
   "license": "MIT",
   "dependencies": {
     "nanoid": "^4.0.0",
-    "typescript": "^4.7.3"
+    "typescript": "^4.7.4"
   },
   "scripts": {
     "postinstall": "tsc"

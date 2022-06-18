@@ -93,7 +93,7 @@ export async function createServer(): Promise<Service> {
   return {
     async run() {
       try {
-        await fastify.listen(serverPort, "0.0.0.0");
+        await fastify.listen({ port: serverPort, host: "0.0.0.0" });
       } catch (err) {
         fastify.log.error(err);
       }
