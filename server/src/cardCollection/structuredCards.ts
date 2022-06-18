@@ -908,6 +908,7 @@ Gain 2 Influence during this action or event. If this is a Scheme and your side 
 
       [obfuscate] Target foe's character that attached a Retainer this turn loses 1 [blood] for each [prestige] on this card.
     `,
+    disciplines: ["obfuscate"],
     illustrator: "Adelijah Ocampo",
     set: "Heart of Europe",
   },
@@ -944,6 +945,7 @@ Play this into The Streets and place 1 [prestige] of your color from the general
 
 Ongoing - For a foe to attack a character with [presence], that foe must first give you 1 [prestige].
     `,
+    disciplines: ["presence"],
     illustrator: "Joshua Esmeralda",
     set: "Heart of Europe",
   },
@@ -957,6 +959,7 @@ Ongoing - For a foe to attack a character with [presence], that foe must first g
     text: md`
 [presence] This target's [social] attribute does not reduce the damage from this attack.
     `,
+    disciplines: ["presence"],
     illustrator: "Harvey Bunda",
     set: "Heart of Europe",
   },
@@ -973,6 +976,7 @@ Play this card face up.
     If your foe's Attack would cause you to lose or spend [prestige], gain 3 [prestige] first.
     [fortitude] If not, +1 [shield].
     `,
+    disciplines: ["fortitude"],
     illustrator: "Joyce Maureira",
     set: "Heart of Europe",
   },
@@ -1063,6 +1067,7 @@ Play this card face up. This attack cannot be Blocked.
 
     [auspex] **Reveal the top card of any player's Library:** +X [damage] equal to the [bloodPotencyRequirement] of that card.
     `,
+    disciplines: ["auspex"],
     illustrator: "Harvey Bunda",
     set: "Heart of Europe",
   },
@@ -1078,6 +1083,7 @@ Retarget this attack to any other character in the defending party.
 
     The new defender has +1 [shield] for each [celerity] they have.
     `,
+    disciplines: ["celerity"],
     illustrator: "Joshua Esmeralda",
     set: "Heart of Europe",
   },
@@ -1103,6 +1109,7 @@ Ongoing - At the start of your turn, add 1 [agenda] from the general supply to e
 
     [animalism] Put a Fear token on target foe's character that made an attack this turn.
     `,
+    disciplines: ["animalism"],
     illustrator: "Irene Francisco",
     set: "Heart of Europe",
   },
@@ -1155,6 +1162,7 @@ Ongoing - When a character exerts Influence against a Scheme you play, that char
 
     This character has +1 Influence for each [presence] they have. At the end of your turn, remove a 'No Influence' token from 1 character in your coterie that matches this character's clan.
     `,
+    disciplines: ["presence"],
     illustrator: "Adelijah Ocampo",
     set: "Heart of Europe",
   },
@@ -1179,6 +1187,7 @@ Gain 3 Influence during this action or event. If this is a Scheme and your side 
 
     [oblivion] Deal 1 [mental] [damage] to target character for each wraith in your coterie and each Curse attached to the target.
     `,
+    disciplines: ["oblivion"],
     illustrator: "Irene Francisco",
     set: "Heart of Europe",
   },
