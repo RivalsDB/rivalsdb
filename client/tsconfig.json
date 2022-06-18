@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
+    "isolatedModules": true,
+    "moduleResolution": "Node",
     "sourceMap": true,
-    "strict": true
+    "strict": true,
+    "target": "ES2016"
   }
 }
