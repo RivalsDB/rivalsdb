@@ -1,11 +1,13 @@
 import { FastifyPluginAsync } from "fastify";
 import { cards as unstructuredCards } from "../cardCollection/cards.js";
+import { agendas } from "../cardCollection/agendas.js";
+import { havens } from "../cardCollection/havens.js";
 import * as structured from "../cardCollection/structuredCards.js";
 import * as convert from "../cardCollection/conversion.js";
 
 const allUnstructured = unstructuredCards.concat(
-  Object.entries(structured.agendas).map(convert.toUnstructuredAgenda),
-  Object.entries(structured.havens).map(convert.toUnstructuredHaven),
+  Object.entries(agendas).map(convert.toUnstructuredAgenda),
+  Object.entries(havens).map(convert.toUnstructuredHaven),
   Object.entries(structured.libraries).map(convert.toUnstructuredLibrary),
   Object.entries(structured.factions).map(convert.toUnstructuredFaction)
 );

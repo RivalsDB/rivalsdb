@@ -1,5 +1,7 @@
 import { baseUrl } from "../env.js";
-import { Agenda, Haven, Faction, Library } from "./structuredCards.js";
+import { Agenda } from "./agendas.js";
+import { Haven } from "./havens.js";
+import { Faction, Library } from "./structuredCards.js";
 import {
   Agenda as UnAgenda,
   Haven as UnHaven,
