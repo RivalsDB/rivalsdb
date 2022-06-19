@@ -482,6 +482,19 @@ Characters in your Haven have +1 Secrecy.
     illustrator: "Marco Primo",
     set: "Heart of Europe",
   },
+  "xxx-tent-city": {
+    stack: "haven",
+    name: "Tent City",
+    text: md`
+      Characters in your Haven have +1 Secrecy.
+
+      **Leader Ability**
+
+      While your coterie has characters from 3+ different clans, characters in your coterie have +1 Secrecy.
+    `,
+    illustrator: "Felipe Gaona",
+    set: "Promo",
+  },
 };
 
 type Clan =
@@ -831,6 +844,37 @@ When this character Blocks an attack, replace 1 [blood] on the attacker with one
     illustrator: "Felipe Gaona",
     set: "Heart of Europe",
     disciplines: ["blood sorcery", "dominate"],
+  },
+
+  "xxx-victor-cane": {
+    stack: "faction",
+    clan: "tremere",
+    name: "Victor Cane",
+    text: md`
+When this character is defeated, add 1 of that lost [blood] to another character in your coterie.
+    `,
+    bloodPotency: 2,
+    physical: 0,
+    social: 1,
+    mental: 0,
+    illustrator: "Joyce Maureira",
+    set: "Promo",
+    disciplines: ["blood sorcery"],
+  },
+  "xxx-sid-baqri": {
+    stack: "faction",
+    clan: "thin-blood",
+    name: "Sid Baqri",
+    text: md`
+When this character is defeated by an attacker, put a '-1 [blood potency]' token on that character.
+    `,
+    bloodPotency: 2,
+    physical: 0,
+    social: 0,
+    mental: 1,
+    illustrator: "Felipe Gaona",
+    set: "Promo",
+    disciplines: ["thin-blood alchemy"],
   },
 };
 
