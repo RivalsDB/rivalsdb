@@ -1,4 +1,8 @@
 import { baseUrl } from "../env.js";
+import { agendas } from "./agendas.js";
+import { havens } from "./havens.js";
+import * as structured from "./structuredCards.js";
+import * as convert from "./conversion.js";
 
 type Card = Agenda | Haven | Faction | Library | City;
 
@@ -4299,3 +4303,10 @@ export const cards: Array<Card> = [
     stack: "library",
   } as Library,
 ];
+
+export const allUnstructured = cards.concat(
+  Object.entries(agendas).map(convert.toUnstructuredAgenda),
+  Object.entries(havens).map(convert.toUnstructuredHaven),
+  Object.entries(structured.libraries).map(convert.toUnstructuredLibrary),
+  Object.entries(structured.factions).map(convert.toUnstructuredFaction)
+);

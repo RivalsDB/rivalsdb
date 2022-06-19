@@ -1,7 +1,7 @@
 import { Client, Intents, DiscordAPIError } from "discord.js";
 import Fuse from "fuse.js";
 
-import { cards } from "../../cardCollection/cards.js";
+import { allUnstructured as cards } from "../../cardCollection/cards.js";
 import { discordBotToken } from "../../env.js";
 import { Service } from "../../typings/Service.js";
 import { captureBotError } from "../../monitoring.js";
