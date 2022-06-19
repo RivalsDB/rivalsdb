@@ -899,7 +899,6 @@ Gain 2 Influence during this action or event. If this is a Scheme and your side 
   "hoe-blood-poisoning": {
     stack: "library",
     name: "Blood Poisoning",
-    clan: "tremere",
     types: ["action", "trap"],
     text: md`
       **Play this card face down and place 1 [prestige] on it.**
@@ -1074,7 +1073,7 @@ Play this card face up. This attack cannot be Blocked.
   "hoe-rapid-reflexes": {
     stack: "library",
     name: "Rapid Reflexes",
-    bloodPotencyRequirement: 5,
+    bloodPotencyRequirement: 1,
     types: ["attack"],
     attack: "mental",
     shield: 0,
