@@ -621,8 +621,8 @@ Play this card face up. This attack cannot be Blocked.
     stack: "library",
     name: "Rapid Reflexes",
     bloodPotencyRequirement: 1,
-    types: ["attack"],
-    attack: "mental",
+    types: ["reaction"],
+    reactions: ["ranged", "physical"],
     shield: 0,
     text: md`
 Retarget this attack to any other character in the defending party.
@@ -689,13 +689,15 @@ Ongoing - When a character exerts Influence against a Scheme you play, that char
   "hoe-wake-with-evenings-freshness": {
     stack: "library",
     name: "Wake With Evening's Freshness",
-    types: ["2 actions", "ritual", "ongoing"],
+    types: ["2 actions", "ritual", "ongoing", "reaction"],
     text: md`
 [blood sorcery] **Place 1 to 3 [blood] of your color on this card.**
 
     Ongoing, **Relentless** - **Remove 1 [blood] from this:** Move a ready character in your coterie to The Streets to Block a non-[ranged] attack against any target.
     `,
     illustrator: "Mara Miranda Escota",
+    disciplines: ["blood sorcery"],
+    reactions: ["physical", "social", "mental"],
     set: "Heart of Europe",
   },
   "hoe-whip-of-the-primogen": {
