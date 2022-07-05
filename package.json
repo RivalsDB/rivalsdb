@@ -5,10 +5,14 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "yarn build-server && yarn build-client && yarn build-migrations",
     "build-client": "cd client && yarn install && yarn build && cd ..",
-    "build-server": "cd server && yarn install && yarn build && cd ..",
     "build-migrations": "cd server && yarn install && yarn db-apply-migrations && cd ..",
+    "build-server": "cd server && yarn install && yarn build && cd ..",
+    "build": "yarn build-server && yarn build-client && yarn build-migrations",
+    "heroku-postbuild": "ng build --prod",
+    "prune-client": "cd client && yarn install --production && cd ..",
+    "prune-server": "cd server && yarn install --production && cd ..",
+    "prune": "yarn prune-server && yarn prune-client",
     "start": "node server/dist/index.js"
   },
   "author": "Luiz Socrate <luiz@socrate.com.br>",
@@ -18,11 +22,12 @@
   },
   "homepage": "https://rivalsdb.app",
   "volta": {
-    "node": "18.3.0"
+    "node": "18.3.0",
+    "yarn": "1.22.19"
   },
   "engines": {
     "node": "18.3.0",
-    "yarn": "1.x"
+    "yarn": "1.22.19"
   },
   "cacheDirectories": [
     "client/node_modules",
