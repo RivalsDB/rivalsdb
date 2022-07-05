@@ -9,9 +9,8 @@
     "build-migrations": "cd server && yarn install && yarn db-apply-migrations && cd ..",
     "build-server": "cd server && yarn install && yarn build && cd ..",
     "build": "yarn build-server && yarn build-client && yarn build-migrations",
-    "heroku-cleanup": "yarn prune-deps",
+    "heroku-cleanup": "yarn prune-server && yarn prune-client",
     "prune-client": "cd client && yarn install --production && cd ..",
-    "prune-deps": "yarn prune-server && yarn prune-client",
     "prune-server": "cd server && yarn install --production && cd ..",
     "start": "node server/dist/index.js"
   },
@@ -22,11 +21,11 @@
   },
   "homepage": "https://rivalsdb.app",
   "volta": {
-    "node": "18.3.0",
+    "node": "18.4.0",
     "yarn": "1.22.19"
   },
   "engines": {
-    "node": "18.3.0",
+    "node": "18.4.0",
     "yarn": "1.22.19"
   },
   "cacheDirectories": [
