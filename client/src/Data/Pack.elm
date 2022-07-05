@@ -11,6 +11,7 @@ type Pack
     | WolfAndRat
     | ShadowsAndShrouds
     | HeartOfEurope
+    | Conclave22
 
 
 enum : Enum Pack
@@ -22,6 +23,7 @@ enum =
         , ( "Shadows & Shrouds", ShadowsAndShrouds )
         , ( "Promo", Promo )
         , ( "Heart of Europe", HeartOfEurope )
+        , ( "Conclave 22", Conclave22 )
         ]
 
 

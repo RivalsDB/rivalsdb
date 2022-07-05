@@ -1,8 +1,7 @@
-import { CardSet, CardId } from "./common.js";
+import { CardSet, CardId, Illustrator, md } from "./common.js";
 
 type CityCardType =
   | "title"
-  | "san francisco"
   | "event"
   | "ongoing"
   | "mortal"
@@ -13,7 +12,7 @@ type CityCardType =
 
 export type City = {
   stack: "city";
-  illustrator: string;
+  illustrator: Illustrator;
   name: string;
   set: CardSet;
   text: string;
@@ -25,13 +24,133 @@ export type City = {
 };
 
 export const city: Record<CardId, City> = {
+  "c22-call-the-roll": {
+    stack: "city",
+    set: "Conclave 22",
+    illustrator: "János Orbán",
+    name: "Call the Roll",
+    types: ["event", "ongoing"],
+    text: md`
+Ongoing - Characters in The Streets have +1 Influence.
+    `,
+    copies: 1,
+  },
+  "c22-city-wide-lockdown": {
+    stack: "city",
+    set: "Conclave 22",
+    illustrator: "Darko Stojanovic",
+    name: "City-Wide Lockdown",
+    types: ["event", "ongoing"],
+    text: md`
+Move all characters to their Havens.
+
+Ongoing - Your characters cannot move to The Streets during your turn except by,
+
+**Exert X Influence:** Move X characters in your coterie to The Streets.
+
+This influence can only come from characters.
+    `,
+    copies: 1,
+  },
+  "c22-crack-shot": {
+    stack: "city",
+    set: "Conclave 22",
+    illustrator: "Darko Stojanovic",
+    name: "Crack Shot",
+    types: ["event", "ongoing"],
+    text: md`
+Ongoing - _Vagrants_ cannot prevent Antagonist damage.
+    `,
+    copies: 1,
+  },
+  "c22-enter-elysium": {
+    stack: "city",
+    set: "Conclave 22",
+    illustrator: "János Orbán",
+    name: "Enter Elysium",
+    types: ["event", "ongoing"],
+    text: md`
+Ongoing - All characters have +1 Secrecy.
+    `,
+    copies: 1,
+  },
+  "c22-new-blood": {
+    stack: "city",
+    set: "Conclave 22",
+    illustrator: "Darko Stojanovic",
+    name: "New Blood",
+    types: ["event", "ongoing"],
+    text: md`
+Ongoing - The first time you recruit a character during your turn, gain 2 [prestige].
+    `,
+    copies: 1,
+  },
+  "c22-offer-of-help": {
+    stack: "city",
+    set: "Conclave 22",
+    illustrator: "Darko Stojanovic",
+    name: "Offer of Help",
+    types: ["event"],
+    text: md`
+Each player may put 1 [blood] or [prestige] from their general supply onto a card they control.
+    `,
+    copies: 1,
+  },
+  "c22-opening-ceremonies": {
+    stack: "city",
+    set: "Conclave 22",
+    illustrator: "Anastasiia Horbunova",
+    name: "Opening Ceremonies",
+    types: ["event", "ongoing"],
+    text: md`
+Ongoing - **Exhaust up to 3 characters in your coterie:** For each you do, gain 1 [prestige].
+    `,
+    copies: 1,
+  },
+  "c22-purge-the-old-guard": {
+    stack: "city",
+    set: "Conclave 22",
+    illustrator: "Darko Stojanovic",
+    name: "Purge the Old Guard",
+    types: ["event"],
+    text: md`
+Put 1 [agenda] on the character(s) with the highest [blood-potency] among the coteries.
+    `,
+    copies: 1,
+  },
+  "c22-show-of-force": {
+    stack: "city",
+    set: "Conclave 22",
+    illustrator: "János Orbán",
+    name: "Show of Force",
+    types: ["event", "ongoing"],
+    text: md`
+_Place no player token on this when revealed._
+
+Ongoing - The next time an Antagonist is defeated, burn them, then burn this card.
+    `,
+    copies: 1,
+  },
+  "c22-to-absent-friends": {
+    stack: "city",
+    set: "Conclave 22",
+    illustrator: "Anastasiia Horbunova",
+    name: "To Absent Friends",
+    types: ["event", "ongoing"],
+    text: md`
+Ongoing - Each character in your coterie has
+
+**Pay 1 [blood]:** Put that [blood] on target character in torpor.
+    `,
+    copies: 1,
+  },
   "core-prince-of-the-city": {
     stack: "city",
     set: "Core",
     illustrator: "The Creation Studio",
     name: "Prince of the City",
     text: "This character's Secrecy is always 0.\nThis character has +2 Influence.\nAt the start of your turn, gain 1 [prestige] and 1 [agenda].",
-    types: ["title", "san francisco"],
+    types: ["title"],
     copies: 1,
   },
   "core-meeting-at-alcatraz": {
@@ -226,6 +345,307 @@ export const city: Record<CardId, City> = {
     blood: 3,
     agenda: 1,
     types: ["citizen", "mortal", "retainer"],
+    copies: 1,
+  },
+  "hoe-a-house-divided": {
+    stack: "city",
+    set: "Heart of Europe",
+    illustrator: "Irene Francisco",
+    name: "A House Divided",
+    types: ["event", "ongoing"],
+    text: md`
+Ongoing - Each character in their Haven is a separate party.
+    `,
+    flavor: md`
+Sometimes the walls one puts up are constructured entirely of one's own hubris.
+    `,
+    copies: 1,
+  },
+  "hoe-austerity-measures": {
+    stack: "city",
+    set: "Heart of Europe",
+    illustrator: "Adelijah Ocampo",
+    name: "Austerity Measures",
+    types: ["event"],
+    text: md`
+Each player who controls 2+ attachments burns 1 of them. _(Titles, attached vampires, and Curses cannot be burned this way.)_
+    `,
+    copies: 1,
+  },
+  "hoe-bohemian-carnevale": {
+    stack: "city",
+    set: "Heart of Europe",
+    illustrator: "Adelijah Ocampo",
+    name: "Bohemian Carnevale",
+    types: ["event"],
+    text: md`
+In clockwise order, each player may
+
+**Pay 1 [blood] from 1 character in their coterie:** Choose 1 card in the City Deck burned pile and shuffle it into the City Deck.
+    `,
+    copies: 1,
+  },
+  "hoe-liberate": {
+    stack: "city",
+    set: "Heart of Europe",
+    illustrator: "Joshua Esmeralda",
+    name: "Liberate",
+    types: ["event", "ongoing"],
+    text: md`
+Ongoing - When your attacker defeats a character, you may attach 1 of the defeated character's Retainers to the attacker.
+    `,
+    copies: 1,
+  },
+  "hoe-midnight-curfew": {
+    stack: "city",
+    set: "Heart of Europe",
+    illustrator: "Adelijah Ocampo",
+    name: "Midnight Curfew",
+    types: ["event"],
+    text: md`
+Discard all unattached Citizens in The Streets, then shuffle the City Deck discard pile into the City Deck.
+    `,
+    flavor: md`
+Supposedly to curb drunken behavior, but to the Kindred it means a short window for dinner.
+    `,
+    copies: 1,
+  },
+  "hoe-racing-the-clock": {
+    stack: "city",
+    set: "Heart of Europe",
+    illustrator: "Mara Miranda Escota",
+    name: "Racing the Clock",
+    types: ["event", "ongoing"],
+    text: md`
+Ongoing - At the start of your turn, you may exhaust the highest [blood-potency] character in your coterie who is ready and put a Fear token on them. If you don't, lose 1 Action this turn.
+    `,
+    copies: 1,
+  },
+  "hoe-sword-of-god": {
+    stack: "city",
+    set: "Heart of Europe",
+    illustrator: "Irene Francisco",
+    name: "Sword of God",
+    types: ["event", "ongoing"],
+    text: md`
+Ongoing - All characters have 0 Secrecy.
+
+The first time you defeat a Team X Operative during your turn, gain 1 [prestige].
+    `,
+    copies: 1,
+  },
+  "hoe-temporary-truce": {
+    stack: "city",
+    set: "Heart of Europe",
+    illustrator: "Harvey Bunda",
+    name: "Temporary Truce",
+    types: ["event", "ongoing"],
+    text: md`
+Ongoing - Leaders may not perform Attack actions.
+    `,
+    flavor: md`
+Everyone is watching the clan Leaders, leaving their underlings free to make name for themselves.
+    `,
+    copies: 1,
+  },
+  "hoe-tipped-off": {
+    stack: "city",
+    set: "Heart of Europe",
+    illustrator: "Irene Francisco",
+    name: "Tipped Off",
+    types: ["event", "ongoing"],
+    text: md`
+_Place no player token on this when revealed._
+
+Ongoing, **Action:** Influence Conflict (Scheme) - Should I move 1 Second Inquisition from The Streets to next to the Haven of target player (choose now), then burn this card?
+    `,
+    copies: 1,
+  },
+  "hoe-walpurgis-night": {
+    stack: "city",
+    set: "Heart of Europe",
+    illustrator: "Joshua Esmeralda",
+    name: "Walpurgis Night",
+    types: ["event", "ongoing"],
+    text: md`
+Ongoing - During your turn, you may
+
+**Pay 1 [blood] from 1 character in your coterie:**
+
+Put a Fear token on target character.
+    `,
+    copies: 1,
+  },
+  "hoe-bartender": {
+    stack: "city",
+    set: "Heart of Europe",
+    illustrator: "Harvey Bunda",
+    name: "Bartender",
+    types: ["citizen", "mortal", "retainer"],
+    blood: 3,
+    agenda: 1,
+    text: md`
+When defeated, gain 1 [agenda] and choose one:
+
+Burn - Mend 3 [blood] or gain 1 [prestige].
+
+Attach - Gain [fortitude] and +1 [blood-potency].
+    `,
+    copies: 1,
+  },
+  "hoe-butcher": {
+    stack: "city",
+    set: "Heart of Europe",
+    illustrator: "Adelijah Ocampo",
+    name: "Butcher",
+    types: ["citizen", "mortal", "retainer"],
+    blood: 3,
+    agenda: 1,
+    text: md`
+When defeated, gain 1 [agenda] and choose one:
+
+Burn - Mend 3 [blood] or gain 1 [prestige].
+
+Attach - Gain [animalism] and +1 [blood-potency].
+    `,
+    copies: 1,
+  },
+  "hoe-graffiti-artist": {
+    stack: "city",
+    set: "Heart of Europe",
+    illustrator: "Harvey Bunda",
+    name: "Graffiti Artist",
+    types: ["citizen", "mortal", "retainer"],
+    blood: 3,
+    agenda: 1,
+    text: md`
+When defeated, gain 1 [agenda] and choose one:
+
+Burn - Mend 3 [blood] or gain 1 [prestige].
+
+Attach - +1 Secrecy.
+    `,
+    copies: 1,
+  },
+  "hoe-medium": {
+    stack: "city",
+    set: "Heart of Europe",
+    illustrator: "Harvey Bunda",
+    name: "Medium",
+    types: ["citizen", "mortal", "retainer"],
+    blood: 3,
+    agenda: 1,
+    text: md`
+When defeated, gain 1 [agenda] and choose one:
+
+Burn - Mend 3 [blood] or gain 1 [prestige].
+
+Attach - Draw 1 card. Gain [oblivion].
+    `,
+    copies: 1,
+  },
+  "hoe-nun": {
+    stack: "city",
+    set: "Heart of Europe",
+    illustrator: "Harvey Bunda",
+    name: "Nun",
+    types: ["citizen", "mortal", "retainer"],
+    blood: 3,
+    agenda: 1,
+    text: md`
+When defeated, gain 1 [agenda] and choose one:
+
+Burn - Mend 3 [blood] or gain 1 [prestige].
+
+Attach - +1 [shield] during attacks.
+    `,
+    copies: 1,
+  },
+  "hoe-streetwalker": {
+    stack: "city",
+    set: "Heart of Europe",
+    illustrator: "Mara Miranda Escota",
+    name: "Streetwalker",
+    types: ["citizen", "mortal", "retainer"],
+    blood: 3,
+    agenda: 1,
+    text: md`
+When defeated, gain 1 [agenda] and choose one:
+
+Burn - Mend 3 [blood] or gain 1 [prestige].
+
+Attach - Draw 1 card. Gain [obfuscate].
+    `,
+    copies: 1,
+  },
+  "hoe-taxi-driver": {
+    stack: "city",
+    set: "Heart of Europe",
+    illustrator: "Mara Miranda Escota",
+    name: "Taxi Driver",
+    types: ["citizen", "mortal", "retainer"],
+    blood: 3,
+    agenda: 1,
+    text: md`
+When defeated, gain 1 [agenda] and choose one:
+
+Burn - Mend 3 [blood] or gain 1 [prestige].
+
+Attach - +1 Intel.
+    `,
+    copies: 1,
+  },
+  "hoe-vagrant": {
+    stack: "city",
+    set: "Heart of Europe",
+    illustrator: "Joshua Esmeralda",
+    name: "Vagrant",
+    types: ["mortal", "retainer"],
+    blood: 2,
+    agenda: 0,
+    text: md`
+When defeated, choose one:
+
+Burn - Mend 2 [blood].
+
+Attach - **Exhaust _Vagrant_:** Prevent 1 [damage] to this character.
+    `,
+    copies: 5,
+  },
+  "hoe-team-x-operative": {
+    stack: "city",
+    set: "Heart of Europe",
+    illustrator: "Irene Francisco",
+    name: "Team X Operative",
+    types: ["mortal", "antagonist", "ongoing", "second inquisition"],
+    blood: 4,
+    agenda: 1,
+    text: md`
+In each location, stack all Team X Operatives.
+
+Resolve only the top card. Ongoing -
+
+1st and 3rd Operative - Deal 1 **Aggravated [damage]** to a character in your coterie.
+
+2nd Operative - Also discard 1 card.
+
+4th Operative - Also lose 1 [prestige].
+    `,
+    copies: 4,
+  },
+  "hoe-prince-of-the-city": {
+    stack: "city",
+    set: "Heart of Europe",
+    illustrator: "Mara Miranda Escota",
+    name: "Prince of the City",
+    types: ["title"],
+    text: md`
+When you attach this Title, gains 2 [agenda].
+
+This character's Secrecy is always 0.
+
+This character has +4 Influence.
+    `,
     copies: 1,
   },
 };

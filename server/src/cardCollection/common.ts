@@ -6,7 +6,8 @@ export type CardSet =
   | "Promo"
   | "Wolf & Rat"
   | "Shadows & Shrouds"
-  | "Heart of Europe";
+  | "Heart of Europe"
+  | "Conclave 22";
 
 export type Clan =
   | "brujah"
@@ -33,6 +34,19 @@ export type Discipline =
   | "presence"
   | "protean"
   | "thin-blood alchemy";
+
+export type Illustrator =
+  | "Adelijah Ocampo"
+  | "Amy Wilkins"
+  | "Anastasiia Horbunova"
+  | "Darko Stojanovic"
+  | "Harvey Bunda"
+  | "Irene Francisco"
+  | "János Orbán"
+  | "Joshua Esmeralda"
+  | "Mara Miranda Escota"
+  | "Marco Primo"
+  | "The Creation Studio";
 
 export const md = (strings: TemplateStringsArray): string =>
   strings
