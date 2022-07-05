@@ -1,12 +1,15 @@
 import { baseUrl } from "../env.js";
-import { Agenda } from "./agendas.js";
-import { Haven } from "./havens.js";
-import { Faction, Library } from "./structuredCards.js";
-import {
+import type { Agenda } from "./agendas.js";
+import type { Haven } from "./havens.js";
+import type { Library } from "./library.js";
+import type { Faction } from "./faction.js";
+import type { City } from "./city.js";
+import type {
   Agenda as UnAgenda,
   Haven as UnHaven,
   Faction as UnFaction,
   Library as UnLibrary,
+  City as UnCity,
 } from "./cards.js";
 
 const imageSrc = (id: string) => `${baseUrl}/card/${id}.webp`;
@@ -49,7 +52,9 @@ export const toUnstructuredFaction = ([id, c]: Pair<Faction>): UnFaction => ({
   attributeSocial: c.social,
   bloodPotency: c.bloodPotency,
   clan: c.clan,
-  disciplines: c.disciplines ?? [],
+  disciplines: Object.entries(c.disciplines).flatMap(([discipline, level]) =>
+    Array(level).fill(discipline)
+  ),
 });
 
 export const toUnstructuredLibrary = ([id, c]: Pair<Library>): UnLibrary => ({
@@ -68,4 +73,19 @@ export const toUnstructuredLibrary = ([id, c]: Pair<Library>): UnLibrary => ({
   reactionType: c.reactions,
   damage: c.damage,
   shield: c.shield,
+});
+
+export const toUnstructuredCity = ([id, c]: Pair<City>): UnCity => ({
+  stack: "city",
+  types: c.types,
+  id,
+  illustrator: c.illustrator,
+  image: imageSrc(id),
+  name: c.name,
+  set: c.set,
+  text: c.text,
+  copies: c.copies,
+  flavor: c.flavor,
+  blood: c.blood,
+  agenda: c.agenda,
 });

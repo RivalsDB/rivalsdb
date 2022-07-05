@@ -1,7 +1,7 @@
 import { FastifyPluginAsync } from "fastify";
 import { allUnstructured } from "../cardCollection/cards.js";
 
-const routes: FastifyPluginAsync = async (fastify) => {
+export const cardsRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.get("/cards", {
     schema: {
       response: {
@@ -38,5 +38,3 @@ const routes: FastifyPluginAsync = async (fastify) => {
     },
   });
 };
-
-export default routes;

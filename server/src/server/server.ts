@@ -6,7 +6,7 @@ import path from "path";
 import { serverPort } from "../env.js";
 import { closeDbPool } from "../db.js";
 import { captureApiErrors } from "../monitoring.js";
-import cardsRoutes from "./cards.js";
+import { cardsRoutes } from "./cards.js";
 import announcementsRoutes from "./announcements.js";
 import {
   v1Routes as decklistV1Routes,
