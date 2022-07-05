@@ -23,5 +23,9 @@
   "engines": {
     "node": "18.3.0",
     "yarn": "1.x"
-  }
+  },
+  "cacheDirectories": [
+    "client/node_modules",
+    "server/node_modules"
+  ]
 }
