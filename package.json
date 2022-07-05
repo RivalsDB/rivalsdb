@@ -9,10 +9,10 @@
     "build-migrations": "cd server && yarn install && yarn db-apply-migrations && cd ..",
     "build-server": "cd server && yarn install && yarn build && cd ..",
     "build": "yarn build-server && yarn build-client && yarn build-migrations",
-    "heroku-postbuild": "yarn build && yarn prune",
+    "heroku-cleanup": "yarn prune-deps",
     "prune-client": "cd client && yarn install --production && cd ..",
+    "prune-deps": "yarn prune-server && yarn prune-client",
     "prune-server": "cd server && yarn install --production && cd ..",
-    "prune": "yarn prune-server && yarn prune-client",
     "start": "node server/dist/index.js"
   },
   "author": "Luiz Socrate <luiz@socrate.com.br>",
