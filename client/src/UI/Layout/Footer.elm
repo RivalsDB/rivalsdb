@@ -1,7 +1,7 @@
 module UI.Layout.Footer exposing (view)
 
-import Html exposing (Html, div, footer, p, small, text)
-import Html.Attributes exposing (class)
+import Html exposing (Html, a, div, footer, p, small, text)
+import Html.Attributes exposing (class, href, target)
 import UI.PatreonButton
 
 
@@ -13,7 +13,10 @@ view =
             ]
         , small [ class "footer__legal" ]
             [ p [] [ text "This site is not owned, endorsed or supported by Renegade Game Studios" ]
-            , p [] [ text "The information presented above about Vampire the Masquerade Rivals, both literal and graphical, is © Renegade Game Studio. All Rights reserved." ]
-            , p [] [ text "© 2020 Renegade Game Studios, Paradox Interactive®, Vampire The Masquerade®, World of Darkness®, Copyright 2020 Paradox Interactive AB (publ)." ]
+            , p []
+                [ text "Portions of the materials are the copyrights and trademarks of Paradox Interactive AB, and are used with permission. All rights reserved. For more information please visit "
+                , a [ target "__blank", href "http://worldofdarkness.com/" ] [ text "worldofdarkness.com" ]
+                , text "."
+                ]
             ]
         ]
