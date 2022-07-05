@@ -4,12 +4,14 @@ import cp from "child_process";
 
 const [, , targetRel] = process.argv;
 
-const targetFolder = path.resolve(targetRel)
+const targetFolder = path.resolve(targetRel);
 
 const sourceImgs = await fs.readdir(targetFolder);
 
-cp.execSync(`mogrify -fuzz 10% -trim +repage ${path.join(targetFolder,'*.png')}`);
-cp.execSync(`mogrify -resize 500x698 ${path.join(targetFolder,'*.png')}`);
+cp.execSync(
+  `mogrify -fuzz 10% -trim +repage ${path.join(targetFolder, "*.png")}`
+);
+cp.execSync(`mogrify -resize 500x698 ${path.join(targetFolder, "*.png")}`);
 for (const srcFilename of sourceImgs) {
   const parts = path.parse(srcFilename);
   const destFilename = path.format({
