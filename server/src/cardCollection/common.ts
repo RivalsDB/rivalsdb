@@ -1,5 +1,37 @@
 export type CardId = string;
 
+export type CityCardType =
+  | "title"
+  | "event"
+  | "ongoing"
+  | "mortal"
+  | "antagonist"
+  | "retainer"
+  | "citizen"
+  | "second inquisition";
+
+export type LibraryCardType =
+  | "1 per player"
+  | "2 actions"
+  | "action"
+  | "animal"
+  | "alchemy"
+  | "attack"
+  | "conspiracy"
+  | "event"
+  | "influence modifier"
+  | "ongoing"
+  | "reaction"
+  | "ritual"
+  | "scheme"
+  | "special"
+  | "title"
+  | "trap"
+  | "unhosted action"
+  | "unique";
+
+export type AttackType = "mental" | "physical" | "ranged" | "social";
+
 export type CardSet =
   | "Core"
   | "Blood & Alchemy"

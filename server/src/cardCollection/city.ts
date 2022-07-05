@@ -1,14 +1,4 @@
-import { CardSet, CardId, Illustrator, md } from "./common.js";
-
-type CityCardType =
-  | "title"
-  | "event"
-  | "ongoing"
-  | "mortal"
-  | "antagonist"
-  | "retainer"
-  | "citizen"
-  | "second inquisition";
+import { CityCardType, CardSet, CardId, Illustrator, md } from "./common.js";
 
 export type City = {
   stack: "city";

@@ -1,26 +1,12 @@
-import { CardId, CardSet, md, Clan, Discipline } from "./common.js";
-
-type LibraryCardType =
-  | "1 per player"
-  | "2 actions"
-  | "action"
-  | "animal"
-  | "alchemy"
-  | "attack"
-  | "conspiracy"
-  | "event"
-  | "influence modifier"
-  | "ongoing"
-  | "reaction"
-  | "ritual"
-  | "scheme"
-  | "special"
-  | "title"
-  | "trap"
-  | "unhosted action"
-  | "unique";
-
-type AttackType = "mental" | "physical" | "ranged" | "social";
+import {
+  AttackType,
+  CardId,
+  CardSet,
+  Clan,
+  Discipline,
+  LibraryCardType,
+  md,
+} from "./common.js";
 
 export type Library = {
   stack: "library";

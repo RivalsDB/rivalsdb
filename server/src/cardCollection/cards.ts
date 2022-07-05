@@ -1,79 +1,19 @@
-import { baseUrl } from "../env.js";
 import * as convert from "./conversion.js";
 import { agendas } from "./agendas.js";
 import { havens } from "./havens.js";
 import { library } from "./library.js";
 import { factions } from "./faction.js";
 import { city } from "./city.js";
+import {
+  AttackType,
+  CardSet,
+  CityCardType,
+  Clan,
+  Discipline,
+  LibraryCardType,
+} from "./common.js";
 
 type Card = Agenda | Haven | Faction | Library | City;
-
-type CardSet =
-  | "Core"
-  | "Blood & Alchemy"
-  | "Promo"
-  | "Wolf & Rat"
-  | "Shadows & Shrouds"
-  | "Heart of Europe";
-
-type Clan =
-  | "brujah"
-  | "gangrel"
-  | "hecata"
-  | "lasombra"
-  | "malkavian"
-  | "nosferatu"
-  | "thin-blood"
-  | "toreador"
-  | "tremere"
-  | "ventrue";
-
-type Discipline =
-  | "animalism"
-  | "auspex"
-  | "blood sorcery"
-  | "celerity"
-  | "dominate"
-  | "fortitude"
-  | "obfuscate"
-  | "oblivion"
-  | "potence"
-  | "presence"
-  | "protean"
-  | "thin-blood alchemy";
-
-type AttackType = "mental" | "physical" | "ranged" | "social";
-
-type LibraryCardType =
-  | "1 per player"
-  | "2 actions"
-  | "action"
-  | "alchemy"
-  | "animal"
-  | "attack"
-  | "conspiracy"
-  | "event"
-  | "influence modifier"
-  | "trap"
-  | "ongoing"
-  | "reaction"
-  | "ritual"
-  | "unique"
-  | "scheme"
-  | "special"
-  | "title"
-  | "unhosted action";
-
-type CityCardType =
-  | "title"
-  | "san francisco"
-  | "event"
-  | "ongoing"
-  | "mortal"
-  | "antagonist"
-  | "retainer"
-  | "citizen"
-  | "second inquisition";
 
 export type Agenda = {
   id: string;
