@@ -1,0 +1,10 @@
+{
+  "name": "@rivalsdb/assets",
+  "version": "1.0.0",
+  "scripts": {
+    "svg-optimize": "svgo"
+  },
+  "devDependencies": {
+    "svgo": "^2.8.0"
+  }
+}

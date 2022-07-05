@@ -863,7 +863,7 @@ Superficial. +1 Damage for each different Discipline the attacker has. (This att
     damage: 0,
     shield: 0,
   },
-  "core-all-tied up": {
+  "core-all-tied-up": {
     stack: "library",
     name: "All Tied Up",
     text: md`
