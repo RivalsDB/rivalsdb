@@ -10,7 +10,6 @@ import Gen.Route as Route
 import Html exposing (Html, button, div, nav, text)
 import Html.Attributes exposing (class)
 import Html.Events exposing (onClick)
-import Markdown
 import Page
 import Port.Event
 import Request
@@ -21,6 +20,7 @@ import UI.HandTester as HandTest
 import UI.Icon as Icon
 import UI.Layout.TSplit
 import UI.Layout.Template
+import UI.Markdown as Markdown
 import UI.TopTabs
 import View exposing (View)
 
@@ -207,7 +207,7 @@ viewSidebar vmodel =
 
             Description ->
                 div [ class "deckview__description" ]
-                    [ Maybe.map (Markdown.toHtml []) vmodel.deck.meta.description
+                    [ Maybe.map Markdown.view vmodel.deck.meta.description
                         |> Maybe.withDefault (div [] [])
                     ]
         ]

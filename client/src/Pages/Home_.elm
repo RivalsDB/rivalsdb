@@ -8,11 +8,11 @@ import Effect exposing (Effect)
 import Gen.Params.Home_ exposing (Params)
 import Html exposing (Html, dd, div, dl, dt, text)
 import Html.Attributes exposing (class)
-import Markdown
 import Page
 import Request
 import Shared
 import UI.Layout.Template
+import UI.Markdown as Markdown
 import UI.Text
 import View exposing (View)
 
@@ -73,5 +73,5 @@ viewAnnouncement { publishedAt, markdown } =
     [ dt [ class "announcements__date" ]
         [ text <| yyyymmdd publishedAt ]
     , dd [ class "announcements__txt" ]
-        [ Markdown.toHtml [] markdown ]
+        [ Markdown.view markdown ]
     ]
