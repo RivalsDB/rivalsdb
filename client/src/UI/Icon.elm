@@ -27,6 +27,9 @@ type IconImage
     | BloodPotencReq
     | BloodPotency
     | City
+    | CityConclave
+    | CityHoE
+    | CityCore
     | Conspiracy
     | Damage
     | Delete
@@ -147,6 +150,15 @@ imageOpts image =
 
         City ->
             ( class "ui-icon_city", "City" )
+
+        CityConclave ->
+            ( class "ui-icon_city-conclave", "City - Conclave" )
+
+        CityCore ->
+            ( class "ui-icon_city-core", "City - San Francisco" )
+
+        CityHoE ->
+            ( class "ui-icon_city-hoe", "City - Prague" )
 
         Conspiracy ->
             ( class "ui-icon_conspiracy", "Conspiracy" )

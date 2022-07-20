@@ -40,7 +40,6 @@ const tempCardImagesFolder = path.join(
   "card-temp"
 );
 const logoFolder = path.join(dirname, "..", "..", "..", "..", "assets", "logo");
-const svgFolder = path.join(dirname, "..", "..", "..", "..", "assets", "svg");
 
 const clientDistFolder = path.join(
   dirname,
@@ -74,7 +73,7 @@ export async function createServer(): Promise<Service> {
   fastify.register(fastifyStatic, {
     root: cardImagesFolder,
     wildcard: false,
-    preCompressed: true,
+    preCompressed: false,
     prefix: "/card",
     decorateReply: false,
     maxAge: "14d",
@@ -83,7 +82,7 @@ export async function createServer(): Promise<Service> {
   fastify.register(fastifyStatic, {
     root: tempCardImagesFolder,
     wildcard: false,
-    preCompressed: true,
+    preCompressed: false,
     prefix: "/card",
     decorateReply: false,
     maxAge: "2d",
@@ -94,14 +93,6 @@ export async function createServer(): Promise<Service> {
     wildcard: false,
     preCompressed: true,
     prefix: "/logo",
-    maxAge: "14d",
-    decorateReply: false,
-  });
-  fastify.register(fastifyStatic, {
-    root: svgFolder,
-    wildcard: false,
-    preCompressed: true,
-    prefix: "/svg",
     maxAge: "14d",
     decorateReply: false,
   });

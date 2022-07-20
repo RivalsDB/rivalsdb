@@ -1,14 +1,18 @@
 module UI.FilterSelection exposing
-    ( Model
+    ( City
+    , Model
     , Msg
     , PrimaryTrait
     , SecondaryTrait
     , allStacks
     , attackTypes
+    , city
     , clans
     , disciplines
     , isAllowedStrict
     , isAllowedWide
+    , isCityEnabled
+    , pickCity
     , pickPrimaryTraits
     , pickSecondaryTraits
     , playerStacks
@@ -21,6 +25,7 @@ module UI.FilterSelection exposing
 import Cards exposing (Card)
 import Data.Clan as Clan
 import Data.Discipline as Discipline exposing (Discipline)
+import Data.Pack as Pack
 import Html exposing (Html, div, input, label)
 import Html.Attributes exposing (class, classList, type_)
 import Html.Events exposing (onCheck)
@@ -102,6 +107,52 @@ playerStacks =
     , { value = Cards.HavenStack, selected = False, icon = Icon.icon ( Icon.Haven, Icon.Standard ) }
     , { value = Cards.FactionStack, selected = False, icon = Icon.icon ( Icon.Faction, Icon.Standard ) }
     , { value = Cards.LibraryStack, selected = False, icon = Icon.icon ( Icon.Library, Icon.Standard ) }
+    ]
+
+
+isCityEnabled : Model Cards.CardStack never -> Bool
+isCityEnabled model =
+    case extractWhitelist model of
+        [] ->
+            True
+
+        stacks ->
+            List.member Cards.CityStack stacks
+
+
+type City
+    = Core
+    | HeartOfEurope
+    | Conclave22
+
+
+pickCity : Card -> List City
+pickCity c =
+    case c of
+        Cards.CityCard { traits, set } ->
+            if traits.event then
+                case set of
+                    Pack.Conclave22 ->
+                        [ Conclave22 ]
+
+                    Pack.HeartOfEurope ->
+                        [ HeartOfEurope ]
+
+                    _ ->
+                        [ Core ]
+
+            else
+                [ Core, HeartOfEurope, Conclave22 ]
+
+        _ ->
+            [ Core, HeartOfEurope, Conclave22 ]
+
+
+city : Model City never
+city =
+    [ { value = Core, selected = False, icon = Icon.icon ( Icon.CityCore, Icon.Standard ) }
+    , { value = HeartOfEurope, selected = False, icon = Icon.icon ( Icon.CityHoE, Icon.Standard ) }
+    , { value = Conclave22, selected = False, icon = Icon.icon ( Icon.CityConclave, Icon.Standard ) }
     ]
 
 

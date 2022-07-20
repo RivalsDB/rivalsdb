@@ -38,6 +38,7 @@ type alias Model =
     { matches : List Card
     , collection : Collection
     , stackFilters : Filter.Model Cards.CardStack Never
+    , cityFilters : Filter.Model Filter.City Never
     , primaryFilters : Filter.Model Filter.PrimaryTrait Never
     , secondaryFilters : Filter.Model Filter.SecondaryTrait Never
     , attackTypeFilters : Filter.Model Cards.AttackType Never
@@ -53,6 +54,7 @@ init shared =
     ( { collection = shared.collection
       , matches = matchesForQuery shared.collection shared.headerSearch
       , stackFilters = Filter.allStacks
+      , cityFilters = Filter.city
       , primaryFilters = Filter.primaryTraits
       , secondaryFilters = Filter.secondaryTraits
       , attackTypeFilters = Filter.attackTypes
@@ -91,6 +93,7 @@ fuzzySort query items =
 type Msg
     = FromShared Shared.Msg
     | FromStacksFilter (Filter.Msg Cards.CardStack)
+    | FromCityFilter (Filter.Msg Filter.City)
     | FromPrimaryFilter (Filter.Msg Filter.PrimaryTrait)
     | FromSecondaryFilter (Filter.Msg Filter.SecondaryTrait)
     | FromAttackTypesFilter (Filter.Msg Cards.AttackType)
@@ -124,6 +127,9 @@ update msg model =
 
         FromStacksFilter subMsg ->
             ( { model | stackFilters = Filter.update subMsg model.stackFilters }, Effect.none )
+
+        FromCityFilter subMsg ->
+            ( { model | cityFilters = Filter.update subMsg model.cityFilters }, Effect.none )
 
         FromPrimaryFilter subMsg ->
             ( { model | primaryFilters = Filter.update subMsg model.primaryFilters }, Effect.none )
@@ -165,25 +171,48 @@ view shared model =
         [ div [ class "searchpage__filters" ]
             [ UI.Text.header [ text "Filters" ]
             , div [ class "filter-group" ]
-                [ div [ class "filter-group__flags" ]
-                    [ Html.map FromStacksFilter <| Filter.view model.stackFilters
-                    ]
-                , div [ class "filter-group__flags" ]
-                    [ Html.map FromPrimaryFilter <| Filter.view model.primaryFilters
-                    ]
-                , div [ class "filter-group__flags" ]
-                    [ Html.map FromSecondaryFilter <| Filter.view model.secondaryFilters
-                    ]
-                , div [ class "filter-group__flags" ]
-                    [ Html.map FromAttackTypesFilter <| Filter.view model.attackTypeFilters
-                    ]
-                , div [ class "filter-group__flags" ]
-                    [ Html.map FromClansFilter <| Filter.view model.clansFilters
-                    ]
-                , div [ class "filter-group__flags" ]
-                    [ Html.map FromDisciplinesFilter <| Filter.view model.disciplineFilters
-                    ]
-                ]
+                ([ Just
+                    (div [ class "filter-group__flags" ]
+                        [ Html.map FromStacksFilter <| Filter.view model.stackFilters
+                        ]
+                    )
+                 , if Filter.isCityEnabled model.stackFilters then
+                    Just
+                        (div [ class "filter-group__flags" ]
+                            [ Html.map FromCityFilter <| Filter.view model.cityFilters
+                            ]
+                        )
+
+                   else
+                    Nothing
+                 , Just
+                    (div [ class "filter-group__flags" ]
+                        [ Html.map FromPrimaryFilter <| Filter.view model.primaryFilters
+                        ]
+                    )
+                 , Just
+                    (div [ class "filter-group__flags" ]
+                        [ Html.map FromSecondaryFilter <| Filter.view model.secondaryFilters
+                        ]
+                    )
+                 , Just
+                    (div [ class "filter-group__flags" ]
+                        [ Html.map FromAttackTypesFilter <| Filter.view model.attackTypeFilters
+                        ]
+                    )
+                 , Just
+                    (div [ class "filter-group__flags" ]
+                        [ Html.map FromClansFilter <| Filter.view model.clansFilters
+                        ]
+                    )
+                 , Just
+                    (div [ class "filter-group__flags" ]
+                        [ Html.map FromDisciplinesFilter <| Filter.view model.disciplineFilters
+                        ]
+                    )
+                 ]
+                    |> List.filterMap identity
+                )
             , div [ class "filter-group" ]
                 [ label []
                     [ text "Card pack: "
@@ -228,7 +257,8 @@ matchTextFilter model card =
 
 matchFilterSelections : Model -> Card -> Bool
 matchFilterSelections model card =
-    Filter.isAllowedWide Filter.pickSecondaryTraits model.secondaryFilters card
+    Filter.isAllowedWide Filter.pickCity model.cityFilters card
+        && Filter.isAllowedWide Filter.pickSecondaryTraits model.secondaryFilters card
         && Filter.isAllowedWide (Cards.stack >> List.singleton) model.stackFilters card
         && Filter.isAllowedWide Cards.discipline model.disciplineFilters card
         && Filter.isAllowedWide Filter.pickPrimaryTraits model.primaryFilters card
