@@ -129,20 +129,16 @@ type City
 pickCity : Card -> List City
 pickCity c =
     case c of
-        Cards.CityCard { traits, set } ->
-            if traits.event then
-                case set of
-                    Pack.Conclave22 ->
-                        [ Conclave22 ]
+        Cards.CityCard { set } ->
+            case set of
+                Pack.Conclave22 ->
+                    [ Conclave22 ]
 
-                    Pack.HeartOfEurope ->
-                        [ HeartOfEurope ]
+                Pack.HeartOfEurope ->
+                    [ HeartOfEurope ]
 
-                    _ ->
-                        [ Core ]
-
-            else
-                [ Core, HeartOfEurope, Conclave22 ]
+                _ ->
+                    [ Core ]
 
         _ ->
             [ Core, HeartOfEurope, Conclave22 ]
