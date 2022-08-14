@@ -21,11 +21,11 @@
   },
   "homepage": "https://rivalsdb.app",
   "volta": {
-    "node": "18.4.0",
+    "node": "18.7.0",
     "yarn": "1.22.19"
   },
   "engines": {
-    "node": "18.4.0",
+    "node": "18.x",
     "yarn": "1.22.19"
   },
   "cacheDirectories": [

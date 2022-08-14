@@ -9,10 +9,10 @@
     "watch": "concurrently --group \"npm:watch-*\""
   },
   "volta": {
-    "node": "18.4.0"
+    "node": "18.7.0"
   },
   "engines": {
-    "node": "18.4.0",
+    "node": "18.x",
     "yarn": "1.x"
   },
   "license": "MIT",
