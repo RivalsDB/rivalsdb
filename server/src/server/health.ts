@@ -7,11 +7,14 @@ export const healthRoutes: FastifyPluginAsync = async (fastify) => {
       response: {
         200: {
           type: "object",
-          properties: { ok: "boolean" },
+          properties: { ok: { type: "boolean" } },
         },
         503: {
           type: "object",
-          properties: { ok: "boolean", databaseError: "boolean" },
+          properties: {
+            ok: { type: "boolean" },
+            databaseError: { type: "boolean" },
+          },
         },
       },
     },
