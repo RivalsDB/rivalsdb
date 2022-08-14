@@ -6,3 +6,4 @@ node_modules
 dist
 *.br
 *.gz
+*.log
