@@ -12,7 +12,8 @@ import type {
   City as UnCity,
 } from "./cards.js";
 
-const imageSrc = (id: string) => `${baseUrl}/card/${id}.webp`;
+const imageSrc = (id: string) =>
+  new URL(`/card/${id}.webp`, baseUrl).toString();
 
 type Pair<T> = [string, T];
 

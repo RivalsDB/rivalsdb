@@ -8,6 +8,7 @@ import { closeDbPool } from "../db.js";
 import { captureApiErrors } from "../monitoring.js";
 import { cardsRoutes } from "./cards.js";
 import announcementsRoutes from "./announcements.js";
+import { healthRoutes } from "./health.js";
 import {
   v1Routes as decklistV1Routes,
   v2Routes as decklistV2Routes,
@@ -69,6 +70,7 @@ export async function createServer(): Promise<Service> {
   fastify.register(captureApiErrors);
   fastify.register(fastifyCors);
   fastify.register(fastifyCompress);
+  fastify.register(healthRoutes, { prefix: "/api" });
   fastify.register(api, { prefix: "/api" });
   fastify.register(fastifyStatic, {
     root: cardImagesFolder,

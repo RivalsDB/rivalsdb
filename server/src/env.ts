@@ -18,10 +18,10 @@ if (isNaN(parsedPort)) {
 }
 export const serverPort = parsedPort;
 
-if (typeof env.BASE_URL !== "string") {
-  throw Error("Missing environment variable BASE_URL");
+if (typeof env.RAILWAY_STATIC_URL !== "string") {
+  throw Error("Missing environment variable RAILWAY_STATIC_URL");
 }
-export const baseUrl = env.BASE_URL;
+export const baseUrl = new URL(`https://${env.RAILWAY_STATIC_URL}`);
 
 if (typeof env.RUN_BOT_SERVER !== "string") {
   throw Error("Missing environment variable RUN_BOT_SERVER");
@@ -32,8 +32,6 @@ if (typeof env.DATABASE_URL !== "string") {
   throw Error("Missing environment variable DATABASE_URL");
 }
 export const databaseUrl = env.DATABASE_URL;
-
-console.log({ uow: databaseUrl.slice(0, 10) });
 
 export const sentryDsn =
   typeof env.SENTRY_DSN === "string" ? env.SENTRY_DSN : undefined;
