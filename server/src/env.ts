@@ -33,6 +33,8 @@ if (typeof env.DATABASE_URL !== "string") {
 }
 export const databaseUrl = env.DATABASE_URL;
 
+console.log({ uow: databaseUrl.slice(0, 10) });
+
 export const sentryDsn =
   typeof env.SENTRY_DSN === "string" ? env.SENTRY_DSN : undefined;
 
