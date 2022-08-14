@@ -3,6 +3,7 @@
     "target": "http://localhost:3000/",
     "pathRewrite": {
       "^/api": "/api"
-    }
+    },
+    "changeOrigin": true
   }
 }
