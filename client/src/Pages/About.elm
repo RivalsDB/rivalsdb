@@ -47,6 +47,7 @@ items =
     , ( Icon.Reaction, "Shield by Viktor Vorobyev from the Noun Project" )
     , ( Icon.HandOfCards, "Hand Of Cards by Daniel Solis from NounProject.com" )
     , ( Icon.Animal, "Animal by Rfourtytwo from NounProject.com" )
+    , ( Icon.Trap, "Wolf Trap by Lorc from game-icons.net" )
     ]
 
 

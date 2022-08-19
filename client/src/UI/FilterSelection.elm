@@ -202,6 +202,7 @@ type SecondaryTrait
     | Scheme
     | Special
     | Title
+    | Trap
 
 
 pickSecondaryTraits : Card -> List SecondaryTrait
@@ -216,6 +217,7 @@ pickSecondaryTraits c =
             , ( traits.scheme, Scheme )
             , ( traits.special, Special )
             , ( traits.title, Title )
+            , ( traits.trap, Trap )
             ]
                 |> List.filterMap
                     (\( b, v ) ->
@@ -253,6 +255,7 @@ secondaryTraits =
     , { value = Ritual, selected = False, icon = Icon.icon ( Icon.Ritual, Icon.Standard ) }
     , { value = Animal, selected = False, icon = Icon.icon ( Icon.Animal, Icon.Standard ) }
     , { value = Special, selected = False, icon = Icon.icon ( Icon.Special, Icon.Standard ) }
+    , { value = Trap, selected = False, icon = Icon.icon ( Icon.Trap, Icon.Standard ) }
     ]
 
 

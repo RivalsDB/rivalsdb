@@ -55,8 +55,8 @@ type IconImage
     | Social
     | Special
     | Title
+    | Trap
     | UnhostedAction
-
 
 type IconStyle
     = Standard
@@ -234,6 +234,9 @@ imageOpts image =
 
         Title ->
             ( class "ui-icon_title", "Title" )
+
+        Trap ->
+            ( class "ui-icon_trap", "Trap" )
 
         UnhostedAction ->
             ( class "ui-icon_unhosted_action", "Unhosted Action" )

@@ -167,6 +167,7 @@ type alias LibraryTraits =
     , scheme : Bool
     , special : Bool
     , title : Bool
+    , trap: Bool
     , unhostedAction : Bool
     }
 
@@ -597,6 +598,7 @@ decodeLibraryTraits =
             , scheme = False
             , special = False
             , title = False
+            , trap = False
             , unhostedAction = False
             }
     in
@@ -639,6 +641,9 @@ decodeLibraryTraits =
 
                     "title" ->
                         { ts | title = True }
+
+                    "trap" ->
+                        { ts | trap = True }
 
                     "unhosted action" ->
                         { ts | unhostedAction = True }
