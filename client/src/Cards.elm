@@ -167,7 +167,7 @@ type alias LibraryTraits =
     , scheme : Bool
     , special : Bool
     , title : Bool
-    , trap: Bool
+    , trap : Bool
     , unhostedAction : Bool
     }
 

@@ -2,10 +2,8 @@ module UI.DeckbuildSelections exposing (ExternalMsg(..), Model, Msg(..), init, u
 
 import Browser exposing (UrlRequest(..))
 import Cards exposing (Card)
-import Data.Clan exposing (Clan)
 import Data.Collection exposing (Collection)
 import Data.Deck exposing (Decklist)
-import Data.Discipline exposing (Discipline)
 import Data.Pack as Pack exposing (Pack)
 import Dict
 import Effect exposing (Effect)
@@ -18,7 +16,7 @@ import Port.Event
 import UI.Attribute
 import UI.Card
 import UI.CardName
-import UI.FilterSelection as Filter
+import UI.FilterSelection as FS
 import UI.Icon as Icon
 import UI.Icon.V2
 import UI.MultiSelect as MultiSelect
@@ -32,17 +30,17 @@ type Tab
 
 
 type alias Model =
-    { attackTypeFilters : Filter.Model Cards.AttackType Never
-    , clansFilters : Filter.Model Clan Never
-    , disciplineFilters : Filter.Model Discipline Never
+    { attackTypeFilters : FS.AttackTypes
+    , clansFilters : FS.Clans
+    , disciplineFilters : FS.Disciplines
     , packFilters : MultiSelect.Model Pack
     , bloodPotencyFilters : MultiSelect.Model Int
-    , primaryFilters : Filter.Model Filter.PrimaryTrait Never
-    , secondaryFilters : Filter.Model Filter.SecondaryTrait Never
+    , primaryFilters : FS.PrimaryTraits
+    , secondaryFilters : FS.SecondaryTraits
     , showAllFilters : Bool
     , strictFilters : Bool
     , showCollectionImages : Bool
-    , stackFilters : Filter.Model Cards.CardStack Never
+    , stackFilters : FS.PlayerStacks
     , textFilter : Maybe String
     , topTabs : UI.TopTabs.Model Tab
     }
@@ -50,12 +48,12 @@ type alias Model =
 
 init : Model
 init =
-    { stackFilters = Filter.playerStacks
-    , primaryFilters = Filter.primaryTraits
-    , secondaryFilters = Filter.secondaryTraits
-    , attackTypeFilters = Filter.attackTypes
-    , clansFilters = Filter.clans
-    , disciplineFilters = Filter.disciplines
+    { stackFilters = FS.cleanPlayerStacks
+    , primaryFilters = FS.cleanPrimaryTraits
+    , secondaryFilters = FS.cleanSecondaryTraits
+    , attackTypeFilters = FS.cleanAttackTypes
+    , clansFilters = FS.cleanClans
+    , disciplineFilters = FS.cleanDisciplines
     , packFilters = MultiSelect.init Pack.list
     , bloodPotencyFilters = MultiSelect.init <| List.map (\n -> ( String.fromInt n, n )) [ 0, 1, 2, 3, 4, 5, 6 ]
     , textFilter = Nothing
@@ -82,12 +80,12 @@ type ExternalMsg
 
 type InternalMsg
     = ClearFilters
-    | FromAttackTypesFilter (Filter.Msg Cards.AttackType)
-    | FromClansFilter (Filter.Msg Clan)
-    | FromDisciplinesFilter (Filter.Msg Discipline)
-    | FromPrimaryFilter (Filter.Msg Filter.PrimaryTrait)
-    | FromSecondaryFilter (Filter.Msg Filter.SecondaryTrait)
-    | FromStacksFilter (Filter.Msg Cards.CardStack)
+    | FromAttackTypesFilter (FS.Msg FS.AttackTypes)
+    | FromClansFilter (FS.Msg FS.Clans)
+    | FromDisciplinesFilter (FS.Msg FS.Disciplines)
+    | FromPrimaryFilter (FS.Msg FS.PrimaryTraits)
+    | FromSecondaryFilter (FS.Msg FS.SecondaryTraits)
+    | FromStacksFilter (FS.Msg FS.PlayerStacks)
     | FromPackFilter (MultiSelect.Msg Pack)
     | FromBloodPotencyFilter (MultiSelect.Msg Int)
     | ToggleShowAllFilters
@@ -104,22 +102,22 @@ update msg model =
             ( model, Effect.none )
 
         Internal (FromStacksFilter subMsg) ->
-            ( { model | stackFilters = Filter.update subMsg model.stackFilters }, Effect.none )
+            ( { model | stackFilters = FS.update subMsg model.stackFilters }, Effect.none )
 
         Internal (FromPrimaryFilter subMsg) ->
-            ( { model | primaryFilters = Filter.update subMsg model.primaryFilters }, Effect.none )
+            ( { model | primaryFilters = FS.update subMsg model.primaryFilters }, Effect.none )
 
         Internal (FromSecondaryFilter subMsg) ->
-            ( { model | secondaryFilters = Filter.update subMsg model.secondaryFilters }, Effect.none )
+            ( { model | secondaryFilters = FS.update subMsg model.secondaryFilters }, Effect.none )
 
         Internal (FromAttackTypesFilter subMsg) ->
-            ( { model | attackTypeFilters = Filter.update subMsg model.attackTypeFilters }, Effect.none )
+            ( { model | attackTypeFilters = FS.update subMsg model.attackTypeFilters }, Effect.none )
 
         Internal (FromClansFilter subMsg) ->
-            ( { model | clansFilters = Filter.update subMsg model.clansFilters }, Effect.none )
+            ( { model | clansFilters = FS.update subMsg model.clansFilters }, Effect.none )
 
         Internal (FromDisciplinesFilter subMsg) ->
-            ( { model | disciplineFilters = Filter.update subMsg model.disciplineFilters }, Effect.none )
+            ( { model | disciplineFilters = FS.update subMsg model.disciplineFilters }, Effect.none )
 
         Internal (FromPackFilter subMsg) ->
             ( { model | packFilters = MultiSelect.update subMsg model.packFilters }, Effect.none )
@@ -129,12 +127,12 @@ update msg model =
 
         Internal ClearFilters ->
             ( { model
-                | stackFilters = Filter.playerStacks
-                , primaryFilters = Filter.primaryTraits
-                , secondaryFilters = Filter.secondaryTraits
-                , attackTypeFilters = Filter.attackTypes
-                , clansFilters = Filter.clans
-                , disciplineFilters = Filter.disciplines
+                | stackFilters = FS.cleanPlayerStacks
+                , primaryFilters = FS.cleanPrimaryTraits
+                , secondaryFilters = FS.cleanSecondaryTraits
+                , attackTypeFilters = FS.cleanAttackTypes
+                , clansFilters = FS.cleanClans
+                , disciplineFilters = FS.cleanDisciplines
                 , packFilters = MultiSelect.init Pack.list
                 , textFilter = Nothing
               }
@@ -273,17 +271,17 @@ viewFilters data =
 
 viewMainFilters : Model -> List (Html Msg)
 viewMainFilters data =
-    [ Html.map (Internal << FromStacksFilter) <| Filter.view data.stackFilters
-    , Html.map (Internal << FromPrimaryFilter) <| Filter.view data.primaryFilters
-    , Html.map (Internal << FromClansFilter) <| Filter.view data.clansFilters
+    [ Html.map (Internal << FromStacksFilter) <| Lazy.lazy FS.viewPlayerStacks data.stackFilters
+    , Html.map (Internal << FromPrimaryFilter) <| Lazy.lazy FS.viewPrimaryTraits data.primaryFilters
+    , Html.map (Internal << FromClansFilter) <| Lazy.lazy FS.viewClans data.clansFilters
     ]
 
 
 viewSecondaryFilters : Model -> List (Html Msg)
 viewSecondaryFilters data =
-    [ Html.map (Internal << FromSecondaryFilter) <| Filter.view data.secondaryFilters
-    , Html.map (Internal << FromAttackTypesFilter) <| Filter.view data.attackTypeFilters
-    , Html.map (Internal << FromDisciplinesFilter) <| Filter.view data.disciplineFilters
+    [ Html.map (Internal << FromSecondaryFilter) <| Lazy.lazy FS.viewSecondaryTraits data.secondaryFilters
+    , Html.map (Internal << FromAttackTypesFilter) <| Lazy.lazy FS.viewAttackTypes data.attackTypeFilters
+    , Html.map (Internal << FromDisciplinesFilter) <| Lazy.lazy FS.viewDisciplines data.disciplineFilters
     , div [ class "deckbuild-filters__multi" ]
         [ label [ class "deckbuild-filters__multi-label", for "bp-multi" ]
             [ text "Blood Potency"
@@ -451,20 +449,22 @@ filteredCards collection model =
 
 filterFlags : Model -> Card -> Bool
 filterFlags data card =
-    let
-        filter =
-            if data.strictFilters then
-                Filter.isAllowedStrict
+    (if data.strictFilters then
+        FS.clanIsAllowedStrict data.clansFilters card
+            && FS.secondaryTraitsIsAllowedStrict data.secondaryFilters card
+            && FS.playerStackIsAllowedStrict data.stackFilters card
+            && FS.disciplineIsAllowedStrict data.disciplineFilters card
+            && FS.primaryTraitsIsAllowedStrict data.primaryFilters card
+            && FS.attackTypeIsAllowedStrict data.attackTypeFilters card
 
-            else
-                Filter.isAllowedWide
-    in
-    filter Cards.clanRequirement data.clansFilters card
-        && filter Filter.pickSecondaryTraits data.secondaryFilters card
-        && filter (Cards.stack >> List.singleton) data.stackFilters card
-        && filter Cards.discipline data.disciplineFilters card
-        && filter Filter.pickPrimaryTraits data.primaryFilters card
-        && filter Cards.attackTypes data.attackTypeFilters card
+     else
+        FS.clanIsAllowedWide data.clansFilters card
+            && FS.secondaryTraitsIsAllowedWide data.secondaryFilters card
+            && FS.playerStackIsAllowedWide data.stackFilters card
+            && FS.disciplineIsAllowedWide data.disciplineFilters card
+            && FS.primaryTraitsIsAllowedWide data.primaryFilters card
+            && FS.attackTypeIsAllowedWide data.attackTypeFilters card
+    )
         && isPackAllowed data.packFilters card
         && isBloodPotencyAllowed data.bloodPotencyFilters card
 

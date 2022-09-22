@@ -11,9 +11,11 @@ type Clan
     | Lasombra
     | Malkavian
     | Nosferatu
+    | Ravnos
     | ThinBlood
     | Toreador
     | Tremere
+    | Tzimisce
     | Ventrue
 
 
@@ -26,9 +28,11 @@ enum =
         , ( "lasombra", Lasombra )
         , ( "malkavian", Malkavian )
         , ( "nosferatu", Nosferatu )
+        , ( "ravnos", Ravnos )
         , ( "thin-blood", ThinBlood )
         , ( "toreador", Toreador )
         , ( "tremere", Tremere )
+        , ( "tzimisce", Tzimisce )
         , ( "ventrue", Ventrue )
         ]
 
@@ -79,6 +83,9 @@ name c =
         Nosferatu ->
             "Nosferatu"
 
+        Ravnos ->
+            "Ravnos"
+
         ThinBlood ->
             "Thin-blood"
 
@@ -87,6 +94,9 @@ name c =
 
         Tremere ->
             "Tremere"
+
+        Tzimisce ->
+            "Tzimisce"
 
         Ventrue ->
             "Ventrue"
