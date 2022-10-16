@@ -39,7 +39,8 @@ export type CardSet =
   | "Wolf & Rat"
   | "Shadows & Shrouds"
   | "Heart of Europe"
-  | "Conclave 22";
+  | "Conclave 22"
+  | "Dragon & Rogue";
 
 export type Clan =
   | "brujah"
@@ -48,9 +49,11 @@ export type Clan =
   | "lasombra"
   | "malkavian"
   | "nosferatu"
+  | "ravnos"
   | "thin-blood"
   | "toreador"
   | "tremere"
+  | "tzimisce"
   | "ventrue";
 
 export type Discipline =
@@ -70,12 +73,16 @@ export type Discipline =
 export type Illustrator =
   | "Adelijah Ocampo"
   | "Amy Wilkins"
+  | "Ana Horbunova"
   | "Anastasiia Horbunova"
   | "Darko Stojanovic"
+  | "Drew Tucker"
+  | "Felipe Gaona"
   | "Harvey Bunda"
   | "Irene Francisco"
   | "János Orbán"
   | "Joshua Esmeralda"
+  | "Joyce Maureira"
   | "Mara Miranda Escota"
   | "Marco Primo"
   | "The Creation Studio";
