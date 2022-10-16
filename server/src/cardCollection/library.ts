@@ -4,6 +4,7 @@ import {
   CardSet,
   Clan,
   Discipline,
+  Illustrator,
   LibraryCardType,
   md,
 } from "./common.js";
@@ -20,7 +21,7 @@ export type Library = {
   reactions?: AttackType[];
   text: string;
   disciplines?: Discipline[];
-  illustrator: string;
+  illustrator: Illustrator;
   set: CardSet;
 };
 
@@ -140,7 +141,7 @@ Attach to target Leader with 2 or fewer attachments.
 
     When another character in this Leader's coterie makes an attack or uses an activated ability, this character loses 1 [blood].
     `,
-    illustrator: "Mara Miranda Escota",
+    illustrator: "Mara Miranda-Escota",
     set: "Heart of Europe",
   },
   "hoe-hidden-stash": {
@@ -300,7 +301,7 @@ Ongoing - When a character exerts Influence against a Scheme you play, that char
 
     Ongoing, **Relentless** - **Remove 1 [blood] from this:** Move a ready character in your coterie to The Streets to Block a non-[ranged] attack against any target.
     `,
-    illustrator: "Mara Miranda Escota",
+    illustrator: "Mara Miranda-Escota",
     disciplines: ["blood sorcery"],
     reactions: ["physical", "social", "mental"],
     set: "Heart of Europe",
@@ -408,7 +409,7 @@ Deal 1 [physical] [damage] to target character in The Streets for each [potence]
     text: md`
 [auspex] Look at target foe's hand. Choose 1 Library card there and place it on top of their Library. Then gain 1 Unhosted Action.
     `,
-    illustrator: "Mara Miranda Escota",
+    illustrator: "Mara Miranda-Escota",
     types: ["action"],
     set: "Shadows & Shrouds",
     disciplines: ["auspex"],
@@ -652,7 +653,7 @@ Attacker - This character deals +1 [damage] to City Deck Mortals.
     text: md`
 Influence Conflict - Should I deal 1 **Aggravated** [damage] to target character and 1 additional **Aggravated** [damage] for every 5 Influence in favor of this Scheme?
     `,
-    illustrator: "Mara Miranda Escota",
+    illustrator: "Mara Miranda-Escota",
     types: ["action", "scheme"],
     set: "Shadows & Shrouds",
   },
@@ -687,7 +688,7 @@ Influence Conflict - Should I deal 1 **Aggravated** [damage] to target character
     text: md`
 [auspex] Reveal the top card of target player's Library. Gain [prestige] equal to its [blood-potency-requirement]. If you gain no [prestige] this way, discard the revealed card and ready the acting character.
     `,
-    illustrator: "Mira Miranda Escota",
+    illustrator: "Mara Miranda-Escota",
     types: ["action"],
     set: "Shadows & Shrouds",
     disciplines: ["auspex"],
@@ -765,7 +766,7 @@ If this party has 2+ [oblivion], +1 [damage].
     text: md`
 [oblivion] Put a Fear token on the original target of this attack and the Blocker (if any).
     `,
-    illustrator: "???",
+    illustrator: "",
     types: ["attack"],
     set: "Shadows & Shrouds",
     bloodPotencyRequirement: 5,
@@ -841,7 +842,7 @@ If the target has 1+ Blood of your color, negate all Reactions.
     text: md`
 Superficial. +1 Damage for each different Discipline the attacker has. (This attack cannot reduce the target's Blood below 1.)
     `,
-    illustrator: "Mara Miranda",
+    illustrator: "Mara Miranda-Escota",
     types: ["attack"],
     set: "Blood & Alchemy",
     bloodPotencyRequirement: 6,
@@ -1012,7 +1013,7 @@ Attach to the acting character. This character has +2 Blood Potence. When this a
     text: md`
 Blood-thin Alchemy Put a '-1 Blood Potence' token on the target.
     `,
-    illustrator: "Mara Miranda",
+    illustrator: "Mara Miranda-Escota",
     types: ["attack"],
     set: "Blood & Alchemy",
     bloodPotencyRequirement: 3,
@@ -1088,7 +1089,7 @@ Discard 1 card: Attach Crossbow to the target if they have 2 or fewer attachment
     text: md`
 +1 Damage for each different Alchemy in this party.
     `,
-    illustrator: "Mara Miranda",
+    illustrator: "Mara Miranda-Escota",
     types: ["attack"],
     set: "Blood & Alchemy",
     bloodPotencyRequirement: 5,
@@ -1403,7 +1404,7 @@ Gain 2 Influence during this action or event. If this is a Scheme and it fails, 
     text: md`
 You may play this to aid any character in The Streets from any coterie. Target defending character in The Streets has +1 Resistene for ach Auspex your Leader has.
     `,
-    illustrator: "Mara Miranda",
+    illustrator: "Mara Miranda-Escota",
     types: ["reaction", "special"],
     set: "Blood & Alchemy",
     bloodPotencyRequirement: 1,
@@ -1499,7 +1500,7 @@ Additional +1 Defense against Mental attacks.
     text: md`
 +2 Damage to City Deck Mortals. If the attacker's Blood Potence is higher than the target's, exhaust the target and put a Fear token on them.
     `,
-    illustrator: "Mara Miranda",
+    illustrator: "Mara Miranda-Escota",
     types: ["attack"],
     set: "Blood & Alchemy",
     bloodPotencyRequirement: 4,
@@ -1674,7 +1675,7 @@ Play this card face down and place 1 Prestige on it. If this card has 3+ Prestig
     text: md`
 +1 Damage for every 2 characters in this party (including this character).
     `,
-    illustrator: "Mara Miranda",
+    illustrator: "Mara Miranda-Escota",
     types: ["attack"],
     set: "Blood & Alchemy",
     bloodPotencyRequirement: 0,
@@ -2011,7 +2012,7 @@ Blood Sorcery Burn target unattached City Deck Mortal in The Streets (this is no
     text: md`
 Pay 1 Prestige. Ongoing . At the start of your turn, each player with 4+ vampires in their coterie chooses to either lose 1 Prestige or discard 1 card.
     `,
-    illustrator: "Mara Miranda",
+    illustrator: "Mara Miranda-Escota",
     types: ["unhosted action", "ongoing"],
     set: "Blood & Alchemy",
   },
@@ -2318,7 +2319,7 @@ Reaction - +1 [shield]. Additional +1 [shield] for each [fortitude] this charact
     text: md`
 +1 [shield] for each [fortitude] this character has.
     `,
-    illustrator: "Timothy Terrenal & Harvey Bunda",
+    illustrator: "Timothy Terrenal and Harvey Bunda",
     types: ["reaction"],
     set: "Wolf & Rat",
     bloodPotencyRequirement: 2,

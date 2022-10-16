@@ -403,7 +403,7 @@ Supposedly to curb drunken behavior, but to the Kindred it means a short window 
   "hoe-racing-the-clock": {
     stack: "city",
     set: "Heart of Europe",
-    illustrator: "Mara Miranda Escota",
+    illustrator: "Mara Miranda-Escota",
     name: "Racing the Clock",
     types: ["event", "ongoing"],
     text: md`
@@ -554,7 +554,7 @@ Attach - +1 [shield] during attacks.
   "hoe-streetwalker": {
     stack: "city",
     set: "Heart of Europe",
-    illustrator: "Mara Miranda Escota",
+    illustrator: "Mara Miranda-Escota",
     name: "Streetwalker",
     types: ["citizen", "mortal", "retainer"],
     blood: 3,
@@ -571,7 +571,7 @@ Attach - Draw 1 card. Gain [obfuscate].
   "hoe-taxi-driver": {
     stack: "city",
     set: "Heart of Europe",
-    illustrator: "Mara Miranda Escota",
+    illustrator: "Mara Miranda-Escota",
     name: "Taxi Driver",
     types: ["citizen", "mortal", "retainer"],
     blood: 3,
@@ -626,7 +626,7 @@ Resolve only the top card. Ongoing -
   "hoe-prince-of-the-city": {
     stack: "city",
     set: "Heart of Europe",
-    illustrator: "Mara Miranda Escota",
+    illustrator: "Mara Miranda-Escota",
     name: "Prince of the City",
     types: ["title"],
     text: md`

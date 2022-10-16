@@ -1,10 +1,10 @@
-import { CardId, CardSet, md } from "./common.js";
+import { CardId, CardSet, Illustrator, md } from "./common.js";
 
 export type Haven = {
   stack: "haven";
   name: string;
   text: string;
-  illustrator: string;
+  illustrator: Illustrator;
   set: CardSet;
 };
 
@@ -311,5 +311,63 @@ Characters in your Haven have +1 Secrecy.
     `,
     illustrator: "Felipe Gaona",
     set: "Promo",
+  },
+  "dar-campsite": {
+    stack: "haven",
+    name: "Camp Site",
+    text: md`
+Characters in your Haven have +1 Secrecy.
+
+**Leader Ability**
+
+Your Leader has +1 Secrecy.
+
+**Exhaust a character in your coterie and pay 1 Action:** You may replace this Haven with one from your collection.
+    `,
+    illustrator: "Adelijah Ocampo",
+    set: "Dragon & Rogue",
+  },
+  "dar-converted-bus": {
+    stack: "haven",
+    name: "Converted Bus",
+    text: md`
+Your characters in The Streets have +1 Secrecy.
+
+**Leader Ability**
+
+When your Leader moves to The Streets, you may move 1 of their [blood] to another card you control (flipped to either side).
+    `,
+    illustrator: "Adelijah Ocampo",
+    set: "Dragon & Rogue",
+  },
+  "dar-country-estate": {
+    stack: "haven",
+    name: "Country Estate",
+    text: md`
+\***\*Start of Game:** Attach a Ghoul from your Library to this.\*\*
+
+Characters in your Haven have +1 Secrecy and Ghouls you control in The Streets have +1 [shield].
+
+**Leader Ability**
+
+When your Leader defeats a Citizen of _Vagrant_, you may play the Ghoul attached to this at no Action cost **OR** if you control a Ghoul, play a card at no Action cost.
+    `,
+    illustrator: "Irene Francisco",
+    set: "Dragon & Rogue",
+  },
+  "dar-social-housing": {
+    stack: "haven",
+    name: "Social Housing",
+    text: md`
+Characters in your Haven have +1 Secrecy.
+
+**Leader Ability**
+
+Your Leader has **+1 Attachment**.
+
+When your Leader defeats a City Deck Mortal, you may move a Retainer from a character you control to another character you control (does not trigger attach effects).
+    `,
+    illustrator: "Mara Miranda-Escota",
+    set: "Dragon & Rogue",
   },
 };

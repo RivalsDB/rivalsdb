@@ -1,4 +1,11 @@
-import { Clan, Discipline, CardSet, md, CardId } from "./common.js";
+import {
+  Clan,
+  Discipline,
+  CardSet,
+  md,
+  CardId,
+  Illustrator,
+} from "./common.js";
 
 export type Faction = {
   stack: "faction";
@@ -10,7 +17,7 @@ export type Faction = {
   mental: number;
   disciplines: Partial<Record<Discipline, 1 | 2 | 3>>;
   text: string;
-  illustrator: string;
+  illustrator: Illustrator;
   set: CardSet;
 };
 
@@ -352,6 +359,81 @@ When this character is defeated by an attacker, put a '-1 [blood potency]' token
     illustrator: "Felipe Gaona",
     set: "Promo",
     disciplines: { "thin-blood alchemy": 1 },
+  },
+  "xxx-carmina-magnus": {
+    stack: "faction",
+    clan: "ventrue",
+    name: "Carmina Magnus",
+    text: md`
+When a foe attacks a character in a Haven or with a Haven attached to them, you may have the defending player gain 1 [prestige] of their color from the general supply.
+    `,
+    bloodPotency: 4,
+    physical: 0,
+    social: 1,
+    mental: 1,
+    illustrator: "Darko Stojanovic",
+    set: "Promo",
+    disciplines: { dominate: 1, presence: 1 },
+  },
+  "xxx-giselle-della-scala": {
+    stack: "faction",
+    clan: "lasombra",
+    name: "Giselle della Scala",
+    text: md`
+Attacker - When this character defeats a character in The Streets, move all [agenda] on this character to your Agenda card.
+    `,
+    bloodPotency: 4,
+    physical: 0,
+    social: 1,
+    mental: 1,
+    illustrator: "Darko Stojanovic",
+    set: "Promo",
+    disciplines: { dominate: 1, oblivion: 1 },
+  },
+  "xxx-luviere-bataille": {
+    stack: "faction",
+    clan: "toreador",
+    name: "Luviere Bataille",
+    text: md`
+When you remove a [prestige] of your color from an Event, put it into your personal supply.
+    `,
+    bloodPotency: 3,
+    physical: 1,
+    social: 1,
+    mental: 0,
+    illustrator: "János Orbán",
+    set: "Promo",
+    disciplines: { presence: 1 },
+  },
+  "xxx-r-t-thassos": {
+    stack: "faction",
+    clan: "gangrel",
+    name: "R.T. Thassos",
+    text: md`
+The first time you attach an Animal to this character during each of your turns, target player discards 1 card.
+    `,
+    bloodPotency: 4,
+    physical: 0,
+    social: 0,
+    mental: 2,
+    illustrator: "Anastasiia Horbunova",
+    set: "Promo",
+    disciplines: { animalism: 1, protean: 1 },
+  },
+  "xxx-reina-de-la-vega": {
+    stack: "faction",
+    clan: "tremere",
+    name: "Reina de la Vega",
+    text: md`
+At the start of your turn, look at the top card of your Library or Faction Deck. Leave it or move it to the bottom of the deck.
+    `,
+    bloodPotency: 4,
+    physical: 1,
+    social: 0,
+    mental: 1,
+    illustrator: "János Orbán",
+    set: "Promo",
+    disciplines: { auspex: 1, "blood sorcery": 1 },
   },
   "sas-mei-yinying": {
     stack: "faction",
@@ -1812,5 +1894,292 @@ Party - The first attack made by a member of this party each turn against an Ant
     social: 2,
     mental: 0,
     disciplines: { animalism: 1, fortitude: 1 },
+  },
+
+  "dar-angela": {
+    stack: "faction",
+    name: "Angela",
+    text: md`
+**Possessive** _(When entering torpor, may retain 1 attached card.)_
+
+The first time you attach a card to any card (including Ghouls) each turn, draw 1 card.
+    `,
+    illustrator: "Anastasiia Horbunova",
+    set: "Dragon & Rogue",
+    clan: "tzimisce",
+    bloodPotency: 6,
+    physical: 2,
+    social: 0,
+    mental: 1,
+    disciplines: { animalism: 1, dominate: 1, protean: 1 },
+  },
+  "dar-chance": {
+    stack: "faction",
+    name: "Chance",
+    text: md`
+**Put a 'No Influence' token on a ready character in your coterie who has 1+ Influence and exhaust them:** Put 1 [prestige] from the general supply on a face-down card you control.
+    `,
+    illustrator: "Felipe Gaona",
+    set: "Dragon & Rogue",
+    clan: "ravnos",
+    bloodPotency: 3,
+    physical: 0,
+    social: 1,
+    mental: 1,
+    disciplines: { obfuscate: 1 },
+  },
+  "dar-haya": {
+    stack: "faction",
+    name: "Haya",
+    text: md`
+Party - Attackers in this party deal +1 [damage] to Mortals for each Ravnos character in this party.
+    `,
+    illustrator: "Adelijah Ocampo",
+    set: "Dragon & Rogue",
+    clan: "ravnos",
+    bloodPotency: 3,
+    physical: 1,
+    social: 1,
+    mental: 0,
+    disciplines: { presence: 1 },
+  },
+  "dar-jack": {
+    stack: "faction",
+    name: "Jack",
+    text: md`
+**Exhaust:** Reveal the top 2 cards of your Library, then discard 1 and draw the other. Use this ability only in The Streets.
+    `,
+    illustrator: "Joyce Maureira",
+    set: "Dragon & Rogue",
+    clan: "ravnos",
+    bloodPotency: 2,
+    physical: 1,
+    social: 0,
+    mental: 0,
+    disciplines: { animalism: 1 },
+  },
+  "dar-kwaku": {
+    stack: "faction",
+    name: "Kwaku",
+    text: md`
+While there are 2+ unattached Citizens and/or _Vagrants_ in The Streets, characters in this party have +1 Secrecy in The Streets.
+    `,
+    illustrator: "Felipe Gaona",
+    set: "Dragon & Rogue",
+    clan: "ravnos",
+    bloodPotency: 3,
+    physical: 0,
+    social: 2,
+    mental: 0,
+    disciplines: { obfuscate: 1 },
+  },
+  "dar-mahendra-chandra": {
+    stack: "faction",
+    name: "Mahendra Chandra",
+    text: md`
+**Guard**
+
+While this character is a Blocker, any [blood] they lose due to [damage] may be put on an Ongoing or face-down card you control (flipped to either side).
+    `,
+    illustrator: "Felipe Gaona",
+    set: "Dragon & Rogue",
+    clan: "ravnos",
+    bloodPotency: 4,
+    physical: 1,
+    social: 0,
+    mental: 1,
+    disciplines: { animalism: 1, presence: 1 },
+  },
+  "dar-matthias": {
+    stack: "faction",
+    name: "Matthias",
+    text: md`
+**Possessive** _(When entering torpor, may retain 1 attached card.)_
+
+This character has +1 **Attachment**.
+
+The first time you burn a card attached to this character during each of your turns, draw 1 card.
+    `,
+    illustrator: "Felipe Gaona",
+    set: "Dragon & Rogue",
+    clan: "tzimisce",
+    bloodPotency: 4,
+    physical: 1,
+    social: 0,
+    mental: 1,
+    disciplines: { animalism: 1, dominate: 1 },
+  },
+  "dar-maya": {
+    stack: "faction",
+    name: "Maya",
+    text: md`
+**Exhaust:** Attach 1 Haven from your collection to this character if they have none attached **OR** Swap 1 Haven attached to this character with another Haven you control.
+    `,
+    illustrator: "Joyce Maureira",
+    set: "Dragon & Rogue",
+    clan: "ravnos",
+    bloodPotency: 4,
+    physical: 0,
+    social: 1,
+    mental: 1,
+    disciplines: { obfuscate: 1, presence: 1 },
+  },
+  "dar-mircea": {
+    stack: "faction",
+    name: "Mircea",
+    text: md`
+The first time you recruit a character during each of your turns with [blood-potency] lower than your Leader, gain 1 Unhosted Action.
+    `,
+    illustrator: "Felipe Gaona",
+    set: "Dragon & Rogue",
+    clan: "ravnos",
+    bloodPotency: 2,
+    physical: 0,
+    social: 0,
+    mental: 1,
+    disciplines: { presence: 1 },
+  },
+  "dar-nikolae": {
+    stack: "faction",
+    name: "Nikolae",
+    text: md`
+**Possessive** _(When entering torpor, may retain 1 attached card.)_
+
+Attacker - If this attack defeats the target, steal 1 Retainer from any character in the defending party (does not trigger attach effects).
+    `,
+    illustrator: "Felipe Gaona",
+    set: "Dragon & Rogue",
+    clan: "tzimisce",
+    bloodPotency: 5,
+    physical: 1,
+    social: 1,
+    mental: 1,
+    disciplines: { dominate: 1, protean: 1 },
+  },
+  "dar-radu": {
+    stack: "faction",
+    name: "Radu",
+    text: md`
+**Possessive** _(When entering torpor, may retain 1 attached card.)_
+
+**Exhaust:** Reveal the top card of your Library, then draw it or attach it face down to a character you control who has no face-down cards attached.
+    `,
+    illustrator: "Joyce Maureira",
+    set: "Dragon & Rogue",
+    clan: "tzimisce",
+    bloodPotency: 4,
+    physical: 1,
+    social: 1,
+    mental: 0,
+    disciplines: { animalism: 1, protean: 1 },
+  },
+  "dar-shweta": {
+    stack: "faction",
+    name: "Shweta",
+    text: md`
+Solo Attacker - If this attack deals 1+ [damage] to a target in their haven, steal 1 [prestige] from that foe and you may place it on a non-Haven card you control.
+    `,
+    illustrator: "Felipe Gaona",
+    set: "Dragon & Rogue",
+    clan: "ravnos",
+    bloodPotency: 3,
+    physical: 2,
+    social: 0,
+    mental: 0,
+    disciplines: { animalism: 1 },
+  },
+  "dar-simona": {
+    stack: "faction",
+    name: "Simona",
+    text: md`
+**Possessive** _(When entering torpor, may retain 1 attached card.)_
+
+**Detach 1 face-down card from this character:** Mend 2 [blood] on this character or gain 1 [prestige].
+    `,
+    illustrator: "Joyce Maureira",
+    set: "Dragon & Rogue",
+    clan: "tzimisce",
+    bloodPotency: 5,
+    physical: 0,
+    social: 2,
+    mental: 1,
+    disciplines: { dominate: 1, protean: 1 },
+  },
+  "dar-stefan-cel-tradat": {
+    stack: "faction",
+    name: "Stefan Cel Tradat",
+    text: md`
+When this character exhausts, you may move 1 [blood] or [prestige] from a card you control to another card you control.
+    `,
+    illustrator: "Anastasiia Horbunova",
+    set: "Dragon & Rogue",
+    clan: "ravnos",
+    bloodPotency: 4,
+    physical: 0,
+    social: 0,
+    mental: 2,
+    disciplines: { animalism: 1, obfuscate: 1 },
+  },
+  "dar-the-ghoul-keeper": {
+    stack: "faction",
+    name: "The Ghoul Keeper",
+    text: md`
+When this character exhausts, you may mend 1 [blood] on target Ghoul you control **OR** put 1 Mortal from the City Deck burned pile into The Streets.
+    `,
+    illustrator: "Felipe Gaona",
+    set: "Dragon & Rogue",
+    clan: "tzimisce",
+    bloodPotency: 3,
+    physical: 1,
+    social: 0,
+    mental: 1,
+    disciplines: { protean: 1 },
+  },
+  "dar-valeria": {
+    stack: "faction",
+    name: "Valeria",
+    text: md`
+If this character is defeated, steal 1 [prestige] from the attacking player for each card attached to this character.
+    `,
+    illustrator: "Felipe Gaona",
+    set: "Dragon & Rogue",
+    clan: "tzimisce",
+    bloodPotency: 4,
+    physical: 0,
+    social: 2,
+    mental: 0,
+    disciplines: { dominate: 1, protean: 1 },
+  },
+  "dar-vladislav": {
+    stack: "faction",
+    name: "Vladislav",
+    text: md`
+**Possessive** _(When entering torpor, may retain 1 attached card.)_
+
+**Exhaust:** Move 1 non-Title attachment you control from one card to another card (does not trigger attach effects).
+    `,
+    illustrator: "Felipe Gaona",
+    set: "Dragon & Rogue",
+    clan: "tzimisce",
+    bloodPotency: 5,
+    physical: 2,
+    social: 1,
+    mental: 0,
+    disciplines: { animalism: 1, dominate: 1 },
+  },
+  "dar-zoya": {
+    stack: "faction",
+    name: "Zoya",
+    text: md`
+When this character Blocks an attack and is not defeated, you may attach 1 unattached City Deck Citizen or _Vagrant_ in The Streets to any character you control (this is not defeating them).
+    `,
+    illustrator: "Mara Miranda-Escota",
+    set: "Dragon & Rogue",
+    clan: "tzimisce",
+    bloodPotency: 3,
+    physical: 0,
+    social: 0,
+    mental: 2,
+    disciplines: { animalism: 1 },
   },
 };

@@ -1,10 +1,10 @@
-import { CardId, CardSet, md } from "./common.js";
+import { CardId, CardSet, Illustrator, md } from "./common.js";
 
 export type Agenda = {
   stack: "agenda";
   name: string;
   text: string;
-  illustrator: string;
+  illustrator: Illustrator;
   set: CardSet;
 };
 
@@ -49,7 +49,7 @@ At the start of your turn, if you have a character with Alchemy in your coterie,
 
 If you reach 13 [agenda], you win!.
     `,
-    illustrator: "",
+    illustrator: "Felipe Gaona",
     set: "Blood & Alchemy",
     stack: "agenda",
   },
@@ -181,7 +181,7 @@ At the start of your turn, if your [blood-potency] in The Streets is higher than
 
 If you reach 13 [agenda], you win!
     `,
-    illustrator: "Mara Miranda Escota",
+    illustrator: "Mara Miranda-Escota",
     set: "Shadows & Shrouds",
     stack: "agenda",
   },
@@ -249,6 +249,52 @@ If you reach 13 [agenda], you win!
     `,
     illustrator: "Harvey Bunda",
     set: "Wolf & Rat",
+    stack: "agenda",
+  },
+  "dar-army-of-the-dragon": {
+    name: "Army of the Dragon",
+    text: md`
+Each time you play a Ghoul, gain 1 [agenda].
+
+If you attach 2+ Retainers to that Ghould when played, gain 2 [agenda] instead.
+
+If you reach 13 [agenda], you win!
+    `,
+    illustrator: "Felipe Gaona",
+    set: "Dragon & Rogue",
+    stack: "agenda",
+  },
+  "dar-change-of-scenery": {
+    name: "Change of Scenery",
+    text: md`
+When you put a new active Haven into play, gain 1 [agenda].
+
+If you reach 13 [agenda], you win!
+    `,
+    illustrator: "Joyce Maureira",
+    set: "Dragon & Rogue",
+    stack: "agenda",
+  },
+  "dar-raising-the-stakes": {
+    name: "Raising the Stakes",
+    text: md`
+The first time you place 1+ [prestige] on a card you control that already has 2+ tokens on it during each of your turns, gain 1 [agenda]. When your resolve a face-down card with 4+ tokens on it, gain 2 [agenda].
+
+If you reach 13 [agenda], you win!
+    `,
+    illustrator: "Adelijah Ocampo",
+    set: "Dragon & Rogue",
+    stack: "agenda",
+  },
+  "dar-the-completionist": {
+    name: "The Completionist",
+    text: md`
+At the start of your turn, for each card you control that is not in your Haven and that has 3+ attachments, gain 1 [agenda].
+
+If you reach 13 [agenda], you win!
+    `,
+    illustrator: "Adelijah Ocampo",
+    set: "Dragon & Rogue",
     stack: "agenda",
   },
 };

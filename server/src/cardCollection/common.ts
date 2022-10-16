@@ -71,11 +71,14 @@ export type Discipline =
   | "thin-blood alchemy";
 
 export type Illustrator =
+  | ""
   | "Adelijah Ocampo"
   | "Amy Wilkins"
   | "Ana Horbunova"
   | "Anastasiia Horbunova"
+  | "Cold Castle Studios"
   | "Darko Stojanovic"
+  | "Dawn Nique"
   | "Drew Tucker"
   | "Felipe Gaona"
   | "Harvey Bunda"
@@ -83,9 +86,12 @@ export type Illustrator =
   | "János Orbán"
   | "Joshua Esmeralda"
   | "Joyce Maureira"
-  | "Mara Miranda Escota"
+  | "Krasen Maximov"
+  | "Mara Miranda-Escota"
   | "Marco Primo"
-  | "The Creation Studio";
+  | "The Creation Studio"
+  | "Timothy Terrenal and Harvey Bunda"
+  | "Timothy Terrenal";
 
 export const md = (strings: TemplateStringsArray): string =>
   strings
