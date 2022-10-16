@@ -6,7 +6,8 @@ const [, , targetRel] = process.argv;
 
 const targetFolder = path.resolve(targetRel);
 
-const sourceImgs = await fs.readdir(targetFolder);
+const files = await fs.readdir(targetFolder);
+const sourceImgs = files.filter((img) => path.extname(img) === ".png");
 
 cp.execSync(
   `mogrify -fuzz 10% -trim +repage ${path.join(targetFolder, "*.png")}`
