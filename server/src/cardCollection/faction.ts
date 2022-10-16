@@ -1973,9 +1973,9 @@ While there are 2+ unattached Citizens and/or _Vagrants_ in The Streets, charact
     mental: 0,
     disciplines: { obfuscate: 1 },
   },
-  "dar-mahendra-chandra": {
+  "dar-mahendra-chanda": {
     stack: "faction",
-    name: "Mahendra Chandra",
+    name: "Mahendra Chanda",
     text: md`
 **Guard**
 
