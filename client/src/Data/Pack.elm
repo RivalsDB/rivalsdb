@@ -25,7 +25,7 @@ enum =
         , ( "Promo", Promo )
         , ( "Heart of Europe", HeartOfEurope )
         , ( "Conclave 22", Conclave22 )
-        , ( "Dragon & Rogue", Conclave22 )
+        , ( "Dragon & Rogue", DragonAndRogue )
         ]
 
 
