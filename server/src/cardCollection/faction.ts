@@ -95,7 +95,7 @@ Solo Attacker - Play up to 2 Attack cards. Before revealing, if you played 2 car
     clan: "gangrel",
     name: "Ekene",
     text: md`
-Solo Attacker - This character does not declare their attack type until Step 8 of the attack sequence.
+Solo Attacker - This character declares their attack type when Attack cards are typically revealed during the attack sequence.
     `,
     bloodPotency: 3,
     physical: 1,
@@ -1316,7 +1316,7 @@ Guard This character may block ranged attacks.
     stack: "faction",
     name: "Smoke",
     text: md`
-At the end of your turn, ready 1 character in your coterie.
+At the end of your turn, ready 1 character in this party.
     `,
     illustrator: "Drew Tucker",
     set: "Promo",
@@ -1787,7 +1787,7 @@ At the end of your turn, if this character has 1+ Animal attached, ready them. I
     stack: "faction",
     name: "Tamaska",
     text: md`
-The first time you attach an Animal to this character during your turn, ready them and gain 1 Action.
+The first time you attach an Animal to this character during your turn, ready them and gain 1 Unhosted Action.
     `,
     illustrator: "Ana Horbunova",
     set: "Wolf & Rat",
@@ -1802,7 +1802,7 @@ The first time you attach an Animal to this character during your turn, ready th
     stack: "faction",
     name: "Trinity Voss",
     text: md`
-Party - Attackers in this party deal +2 [damage] to Antagonists.
+Party - The first attack made by a member of this party each turn against an Antagonist deals +2 [damage].
     `,
     illustrator: "Joyce Maureira",
     set: "Wolf & Rat",

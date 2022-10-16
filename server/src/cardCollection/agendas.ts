@@ -144,7 +144,7 @@ If you reach 13 agenda, you win!
   "hoe-disheveled-shelves": {
     name: "Disheveled Shelves",
     text: md`
-If your Rival's Library has no cards in it, you win the game.
+At the start of your turn, if your Rival's Library has no cards in it, you win the game.
 
 If you would cause a foe to discard cards, you may have that foe draw that many cards instead.
     `,

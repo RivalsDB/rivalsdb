@@ -2466,7 +2466,7 @@ Steal a Rival token from target foe. At the start of your next turn, return it.
     stack: "library",
     name: "The Shakedown",
     text: md`
-Look at target foe's hand, then name an Attack type. The target discards all Attack cards of that type. If the acting character has the Sheriff Title, gain 1 [prestige] for each card discarded this way.
+Name an attack type. Then look at target foe's hand and discard all Attack cards with that type. If the acting character has the _Sheriff_ Title, gain 1 [prestige] for each card discarded this way.
     `,
     illustrator: "Irene Francisco",
     types: ["action"],

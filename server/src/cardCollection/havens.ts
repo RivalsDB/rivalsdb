@@ -80,9 +80,9 @@ Characters in your Haven have +1 Secrecy.
     text: md`
 Characters in your Haven have +1 Secrecy.
 
-      **Leader Ability**
+**Leader Ability**
 
-      If ready, you may move your Leader to The Streets to Block any attack and gain 1 [prestige].
+If ready, you may move your Leader to The Streets (if they are not already there) to Block a foe's attack (including [ranged]). If the attack targeted a character, gain 1 [prestige].
     `,
     illustrator: "Felipe Gaona",
     set: "Core",
