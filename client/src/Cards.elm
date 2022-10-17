@@ -169,6 +169,7 @@ type alias LibraryTraits =
     , title : Bool
     , trap : Bool
     , unhostedAction : Bool
+    , ghoul : Bool
     }
 
 
@@ -600,6 +601,7 @@ decodeLibraryTraits =
             , title = False
             , trap = False
             , unhostedAction = False
+            , ghoul = False
             }
     in
     Decode.map
@@ -647,6 +649,9 @@ decodeLibraryTraits =
 
                     "unhosted action" ->
                         { ts | unhostedAction = True }
+
+                    "ghoul" ->
+                        { ts | ghoul = True }
 
                     _ ->
                         ts

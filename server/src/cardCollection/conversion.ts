@@ -70,7 +70,11 @@ export const toUnstructuredLibrary = ([id, c]: Pair<Library>): UnLibrary => ({
   bloodPotency: c.bloodPotencyRequirement,
   clan: c.clan,
   disciplines: c.disciplines,
-  attackType: c.attack ? [c.attack] : undefined,
+  attackType: Array.isArray(c.attack)
+    ? c.attack
+    : c.attack
+    ? [c.attack]
+    : undefined,
   reactionType: c.reactions,
   damage: c.damage,
   shield: c.shield,

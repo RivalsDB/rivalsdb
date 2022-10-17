@@ -17,7 +17,7 @@ export type Library = {
   bloodPotencyRequirement?: number;
   damage?: number;
   shield?: number;
-  attack?: AttackType;
+  attack?: AttackType | AttackType[];
   reactions?: AttackType[];
   text: string;
   disciplines?: Discipline[];
@@ -2526,5 +2526,435 @@ Gain 1 [prestige]. Then draw 2 cards and discard 1 of them.
     types: ["action"],
     set: "Wolf & Rat",
     clan: "gangrel",
+  },
+
+  "dar-backpacker": {
+    stack: "library",
+    name: "Backpacker",
+    text: md`
+Attach your active Haven to a character in your coterie who doesn't have one attached and put another Haven from your collection into play as your active Haven.
+    `,
+    illustrator: "Irene Francisco",
+    types: ["action"],
+    set: "Dragon & Rogue",
+  },
+  "dar-bat-out-of-hell": {
+    stack: "library",
+    name: "Bat Out of Hell",
+    text: md`
+**[animalism] Pay 1 [blood] to attach.**
+
+**Exhaust this character:** Draw 2 cards, then discard 1 of them.
+
+**Detach:** Target player discards 3 cards, then they may draw 2 cards.
+    `,
+    disciplines: ["animalism"],
+    illustrator: "Irene Francisco",
+    types: ["action", "animal"],
+    set: "Dragon & Rogue",
+  },
+  "dar-change-of-plans": {
+    stack: "library",
+    name: "Change of Plans",
+    text: md`
+**Play this card face down and place 1 [prestige] on it.**
+
+Resolve during your turn if an Ongoing Event is in play. For each [prestige] on this, you may discard 1 unattached City Deck card from The Streets, then put the top card of the City Deck into The Streets.
+    `,
+    illustrator: "Irene Francisco",
+    types: ["action", "trap"],
+    set: "Dragon & Rogue",
+  },
+  "dar-cryptolect": {
+    stack: "library",
+    name: "Cryptolect",
+    clan: "ravnos",
+    text: md`
+Ongoing - You pay 1 less [prestige] to recruit vampires with 2+ [blood-potency] (add the last [blood]) from the general supply). When you recruit a Ravnos vampire, draw 1 card.
+    `,
+    illustrator: "Felipe Gaona",
+    types: ["action", "ongoing"],
+    set: "Dragon & Rogue",
+  },
+  "dar-domino-effect": {
+    stack: "library",
+    name: "Domino Effect",
+    text: md`
+Ongoing, **Relentless - Exhaust:** The next time you resolve a face-down card with 1+ tokens on it this turn, place 1 of those tokens on another card you control.
+    `,
+    illustrator: "Adelijah Ocampo",
+    types: ["action", "ongoing"],
+    set: "Dragon & Rogue",
+  },
+  "dar-doomed-to-roam": {
+    stack: "library",
+    name: "Doomed to Roam",
+    text: md`
+Attach a haven from your collection to a non-Leader character in your coterie.
+
+Ongoing - **Discard 1 card:** Swap your active Haven with another Haven you control. Then you may return any of your characters in The Streets to your Haven.
+    `,
+    illustrator: "Joyce Maureira",
+    types: ["unhosted action", "ongoing"],
+    set: "Dragon & Rogue",
+  },
+  "dar-emperors-new-clothes": {
+    stack: "library",
+    name: "Emperor's New Clothes",
+    text: md`
+**Play this card face down and place 1 [prestige] on it.**
+
+Resolve at any time.
+
+Target player who attached a card this turn burns 1 non-Title card (without effect) attached to a card they control for every 2 tokens on this card.
+    `,
+    illustrator: "Adelijah Ocampo",
+    types: ["action", "trap"],
+    set: "Dragon & Rogue",
+  },
+  "dar-escape-artist": {
+    stack: "library",
+    name: "Escape Artist",
+    bloodPotencyRequirement: 2,
+    clan: "ravnos",
+    shield: 1,
+    text: md`
++2 [shield] if you control 2+ unattached face-down and/or Ongoing cards.
+    `,
+    illustrator: "Felipe Gaona",
+    types: ["reaction"],
+    reactions: ["ranged", "physical"],
+    set: "Dragon & Rogue",
+  },
+  "dar-fata-morgana": {
+    stack: "library",
+    name: "Fata Morgana",
+    clan: "ravnos",
+    text: md`
+**Play this card face down and place 1 [prestige] on it.**
+
+Resolve any time during an attack.
+
+For each [prestige] on this card, you may redirect 1 [damage] from this attack to target character in The Streets.
+    `,
+    illustrator: "Irene Francisco",
+    types: ["action", "trap"],
+    set: "Dragon & Rogue",
+  },
+  "dar-fear-tactics": {
+    stack: "library",
+    name: "Fear Tactics",
+    text: md`
+[obfuscate] Steal 1 [prestige] from each foe who has a Fear token on a character in their coterie.
+
+Place the stolen [prestige] on cards you control or add them to your personal supply.
+    `,
+    disciplines: ["obfuscate"],
+    illustrator: "Joyce Maureira",
+    types: ["action", "trap"],
+    set: "Dragon & Rogue",
+  },
+  "dar-fifth-tradition-hospitality": {
+    stack: "library",
+    name: "Fifth Tradition: Hospitality",
+    text: md`
+Each player moves their Leader to The Streets. If you control the _Prince of the City_, each foe gives you 1 [prestige]. If the _Prince of the City_ is in the City Deck, locate it and put it into The Streets, then shuffle the City Deck.
+    `,
+    illustrator: "Mara Miranda-Escota",
+    types: ["action"],
+    set: "Dragon & Rogue",
+  },
+  "dar-fleshcrafting": {
+    stack: "library",
+    name: "Fleshcrafting",
+    clan: "tzimisce",
+    text: md`
+[protean] Attach 1 unattached Citizen or _Vagrant_ in The Streets or City Deck burned pile to a character you control (this is not defeating them).
+    `,
+    disciplines: ["protean"],
+    illustrator: "Irene Francisco",
+    types: ["action"],
+    set: "Dragon & Rogue",
+  },
+  "dar-freelancer": {
+    stack: "library",
+    name: "Freelancer",
+    text: md`
+Add 3 [prestige] from the general supply to this card.
+
+Ongoing - **Remove 1 [prestige] from this:**
+The next time a character in your coterie plays an Action card this turn, ready them.
+    `,
+    illustrator: "Felipe Gaona",
+    types: ["unhosted action", "ongoing"],
+    set: "Dragon & Rogue",
+  },
+  "dar-grey-wolf": {
+    stack: "library",
+    name: "Grey Wolf",
+    text: md`
+**[animalis] Pay 1 [blood] to attach.**
+
+When this character is attacked, the attacker loses 1 [blood].
+
+**Burn this card:** Attach 1 unattached Citizen or _Vagrant_ in The Streets to any character.
+    `,
+    disciplines: ["animalism"],
+    illustrator: "Adelijah Ocampo",
+    types: ["action", "animal"],
+    set: "Dragon & Rogue",
+  },
+  "dar-home-improvement": {
+    stack: "library",
+    name: "Home Improvement",
+    text: md`
+Attach this card to your Haven.
+
+Ongoing - Your Leader has abilities based on # of attached _Home Improvements_. 1: At the start of your turn, mend 1 [blood] on your Leader. 2: Also, at the start of your turn, draw 1 card. 3: Also, +2 [shield].
+    `,
+    illustrator: "Felipe Gaona",
+    types: ["action", "ongoing"],
+    set: "Dragon & Rogue",
+  },
+  "dar-mask-of-a-thousand-faces": {
+    stack: "library",
+    name: "Mask of a Thousand Faces",
+    text: md`
+[obfuscate] Add 3 [prestige] from the general supply to this card.
+
+Ongoing - **Relentless - Remove 1 [prestige] from this:** Swap 1 non-Leader character in your coterie with 1 in your hand, retaining state, tokens, and attachments. Pay any higher [blood-potency] difference in [prestige].
+    `,
+    disciplines: ["obfuscate"],
+    illustrator: "Irene Francisco",
+    types: ["unhosted action", "ongoing"],
+    set: "Dragon & Rogue",
+  },
+  "dar-perimeter-defense": {
+    stack: "library",
+    name: "Perimeter Defense",
+    text: md`
+**Play this card face down and place 1 [prestige] on it.**
+
+Resolve at any time.
+
+When a character in your Haven is attacked, they have +1 [shield] for each token on this. The attacker also loses 1 [blood] for each card attached to your Haven.
+    `,
+    illustrator: "Joyce Maureira",
+    types: ["action", "trap"],
+    set: "Dragon & Rogue",
+  },
+  "dar-poachers-choice": {
+    stack: "library",
+    name: "Poacher's Choice",
+    bloodPotencyRequirement: 3,
+    damage: 2,
+    text: md`
+If this attack defeats a character in The Streets, steal 1 Retainer attached to that character (does not trigger attach effects).
+
+[dominate] The defender's attached cards are blank during this attack.
+    `,
+    disciplines: ["dominate"],
+    illustrator: "Mara Miranda-Escota",
+    types: ["attack"],
+    attack: "social",
+    set: "Dragon & Rogue",
+  },
+  "dar-secret-compartment": {
+    stack: "library",
+    name: "Secret Compartment",
+    text: md`
+Ongoing - When you discard a card from your hand, you may attach it to this card face down (max. 3). When you would draw 1 card, you may put 1 card attached to this into your hand instead.
+    `,
+    illustrator: "Joyce Maureira",
+    types: ["unhosted action", "ongoing"],
+    set: "Dragon & Rogue",
+  },
+  "dar-siege-engine": {
+    stack: "library",
+    name: "Siege Engine",
+    bloodPotencyRequirement: 0,
+    damage: 1,
+    text: md`
++1 [damage] for each Ghoul you control. For each Ghoul with 3+ attachments, +2 [damage] instead.
+
+**Burn 1 Retainer attached to the attacker:** Burn target Ongoing card the defending player controls.
+    `,
+    illustrator: "Felipe Gaona",
+    types: ["attack"],
+    attack: "physical",
+    set: "Dragon & Rogue",
+  },
+  "dar-sleight-of-hand": {
+    stack: "library",
+    name: "Sleight of Hand",
+    bloodPotencyRequirement: 3,
+    damage: 1,
+    clan: "ravnos",
+    text: md`
+If the defender played a Reaction, that player discards 1 card.
+
+If this party has [presence] and [obfuscate], also steal 1 [prestige] from the defending player.
+    `,
+    disciplines: ["presence", "obfuscate"],
+    illustrator: "Irene Francisco",
+    types: ["attack"],
+    attack: "mental",
+    set: "Dragon & Rogue",
+  },
+  "dar-slumlord": {
+    stack: "library",
+    name: "Slumlord",
+    clan: "tzimisce",
+    text: md`
+Gain 1 [prestige] for each Citizen attached to a card you control.
+    `,
+    illustrator: "Mara Miranda-Escota",
+    types: ["action"],
+    set: "Dragon & Rogue",
+  },
+  "dar-smoke-and-mirrors": {
+    stack: "library",
+    name: "Smoke and Mirrors",
+    bloodPotencyRequirement: 3,
+    shield: 1,
+    text: md`
+Put a Fear token on target character in the attacking Party.
+
+[obfuscate] The attacker's [damage] becomes **Superficial**. (This attack cannot reduce the target's [blood] below 1.)
+    `,
+    disciplines: ["obfuscate"],
+    illustrator: "Felipe Gaona",
+    types: ["reaction"],
+    reactions: ["physical", "mental"],
+    set: "Dragon & Rogue",
+  },
+  "dar-switcharoo": {
+    stack: "library",
+    name: "Switcharoo",
+    bloodPotencyRequirement: 2,
+    damage: 1,
+    text: md`
+When revealed, you may discard this card.
+
+If you do, declare a different Attack type, then you may play another Attack card face up.
+    `,
+    illustrator: "Felipe Gaona",
+    types: ["attack"],
+    attack: ["physical", "social", "mental"],
+    set: "Dragon & Rogue",
+  },
+  "dar-szlachta": {
+    stack: "library",
+    name: "Szlachta",
+    bloodPotencyRequirement: 0,
+    text: md`
+**[protean] Attach 1 Retainer you control (max. 1) and put 2 [blood] on this Ghoul.**
+
+**Guard**
+
+When defeated or burned, you may move the Retainer attached to this to a _Vozhd_ you control.
+    `,
+    disciplines: ["protean"],
+    illustrator: "Felipe Gaona",
+    types: ["action", "ghoul"],
+    set: "Dragon & Rogue",
+  },
+  "dar-the-hat-trick": {
+    stack: "library",
+    name: "The Hat Trick",
+    bloodPotencyRequirement: 2,
+    damage: 1,
+    text: md`
+[presence] If you defeat a Mortal in The Streets, you may place 1 [prestige] of your color from the general supply on a card you control.
+
+If this party has [animalism] and [obfuscate], gain 1 Unhosted Action if played during your turn.
+    `,
+    disciplines: ["presence", "animalism", "obfuscate"],
+    illustrator: "Adelijah Ocampo",
+    types: ["attack"],
+    attack: "social",
+    set: "Dragon & Rogue",
+  },
+  "dar-the-more-the-scarier": {
+    stack: "library",
+    name: "The More The Scarier",
+    clan: "tzimisce",
+    text: md`
+Ongoing - Characters in your coterie have +1 **Attachment**.
+    `,
+    illustrator: "Mara Miranda-Escota",
+    types: ["unhosted action", "ongoing"],
+    set: "Dragon & Rogue",
+  },
+  "dar-throwing-knives": {
+    stack: "library",
+    name: "Throwing Knives",
+    clan: "ravnos",
+    bloodPotencyRequirement: 2,
+    damage: 3,
+    text: md`
+You may distribute the [damage] to any characters in the defending party (max 2 [damage] to any character who was not the target).
+    `,
+    illustrator: "Felipe Gaona",
+    types: ["attack"],
+    attack: "ranged",
+    set: "Dragon & Rogue",
+  },
+  "dar-urban-fox": {
+    stack: "library",
+    name: "Urban Fox",
+    text: md`
+**[animalism] Pay 1 [blood] to attach.**
+
+Ignore 1 Antagonist during your End Phase.
+
+**Burn this card:** Discard target Ongoing card a foe controls with 0-2 tokens on it.
+    `,
+    disciplines: ["animalism"],
+    illustrator: "Mara Miranda-Escota",
+    types: ["action", "animal"],
+    set: "Dragon & Rogue",
+  },
+  "dar-vicissitude": {
+    stack: "library",
+    name: "Vicissitude",
+    clan: "tzimisce",
+    text: md`
+Ongoing - **Start of Turn:** You may attach 1 card in your hand face down to a character in your coterie.
+
+**Exhaust:** Target attacker deals +1 [damage] if they have 1+ face-down attachments. If 3+, +2 [damage] instead.
+    `,
+    illustrator: "Joyce Maureira",
+    types: ["action", "ongoing"],
+    set: "Dragon & Rogue",
+  },
+  "dar-vozhd": {
+    stack: "library",
+    name: "Vozhd",
+    bloodPotencyRequirement: 0,
+    text: md`
+**[protean] Attach 1+ Retainers you control to this (no max.).**
+
+When a Retainer is attached to this Ghoul, it gains 2 [blood] and 2 [physical] (place [blood] from the general supply on this).
+    `,
+    disciplines: ["protean"],
+    illustrator: "Irene Francisco",
+    types: ["action", "ghoul"],
+    set: "Dragon & Rogue",
+  },
+  "dar-wolf-spider": {
+    stack: "library",
+    name: "Wolf Spider",
+    text: md`
+**[animalism] to attach.**
+
+Attackers must play their Attack cards face up when attacking this character.
+
+**Detach:** Put a Fear token on target character in their Haven.
+    `,
+    disciplines: ["animalism"],
+    illustrator: "Adelijah Ocampo",
+    types: ["action", "animal"],
+    set: "Dragon & Rogue",
   },
 };
