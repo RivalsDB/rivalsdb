@@ -2957,4 +2957,36 @@ Attackers must play their Attack cards face up when attacking this character.
     types: ["action", "animal"],
     set: "Dragon & Rogue",
   },
+  "dar-back-with-a-vengeance": {
+    stack: "library",
+    name: "Back with a Vengeance",
+    bloodPotencyRequirement: 3,
+    damage: 0,
+    text: md`
+Attacker - +1 [damage] for each attachment this character has.
+
+Reaction - Deal [physical] [damage] to the attacker (not [mental]).
+
+[protean] This Reaction [damage] becomes **Aggravated**.
+    `,
+    disciplines: ["protean"],
+    illustrator: "Adelijah Ocampo",
+    types: ["attack", "reaction"],
+    attack: "physical",
+    reactions: ["physical", "mental"],
+    set: "Dragon & Rogue",
+  },
+  "dar-the-long-con": {
+    stack: "library",
+    name: "The Long Con",
+    text: md`
+**Play this card face down and place 1 [prestige] on it.**
+
+[presence] Resolve any time a fow puts a token on a card during their Action Phase. For each [prestige] on this card, steal 1 [prestige] or [blood] from a card you have not stolen from this turn. Place each token on a card you control.
+    `,
+    disciplines: ["presence"],
+    illustrator: "Mara Miranda-Escota",
+    types: ["action", "trap"],
+    set: "Dragon & Rogue",
+  },
 };
