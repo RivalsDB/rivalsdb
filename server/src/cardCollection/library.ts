@@ -295,7 +295,7 @@ Ongoing - When a character exerts Influence against a Scheme you play, that char
   "hoe-wake-with-evenings-freshness": {
     stack: "library",
     name: "Wake With Evening's Freshness",
-    types: ["2 actions", "ritual", "ongoing", "reaction"],
+    types: ["2 actions", "ritual", "ongoing", "action"],
     text: md`
 [blood sorcery] **Place 1 to 3 [blood] of your color on this card.**
 
