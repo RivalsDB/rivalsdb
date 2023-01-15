@@ -297,4 +297,15 @@ If you reach 13 [agenda], you win!
     set: "Dragon & Rogue",
     stack: "agenda",
   },
+  "xxx-kiss-the-ring": {
+    name: "Kiss The Ring",
+    text: md`
+The first time a Titled character in your coterie attacks a character during each of your turns, you may Exert 2 Influence: Gain 1 [agenda] or Exert 5 Influence: Gain 2 [agenda] instead.
+
+If you reach 13 [agenda], you win!
+    `,
+    illustrator: "Joyce Maureira",
+    set: "Promo",
+    stack: "agenda",
+  },
 };
