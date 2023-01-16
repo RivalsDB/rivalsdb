@@ -370,4 +370,34 @@ When your Leader defeats a City Deck Mortal, you may move a Retainer from a char
     illustrator: "Mara Miranda-Escota",
     set: "Dragon & Rogue",
   },
+  "xxx-the-underpass": {
+    stack: "haven",
+    name: "The Underpass",
+    text: md`
+Characters in your Haven have +1 Secrecy.
+
+**Leader Ability**
+
+Your Leader has **+1 Attachment**.
+
+Pay 1 [prestige]: Mend 1 [blood] on a character in your coterie or torpor for each Animal and/or Vagrant you have attached to your Leader.
+    `,
+    illustrator: "Felipe Gaona",
+    set: "Promo",
+  },
+  "xxx-the-presidio": {
+    stack: "haven",
+    name: "The Presidio",
+    text: md`
+Characters in your Haven have +1 Secrecy.
+
+**Leader Ability**
+
+Your Leader has **+1 Attachment**.
+
+Your Leader has +1 [shield] vs Aggravated [damage]
+    `,
+    illustrator: "Marco Primo",
+    set: "Promo",
+  },
 };

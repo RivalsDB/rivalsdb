@@ -2182,4 +2182,21 @@ When this character Blocks an attack and is not defeated, you may attach 1 unatt
     mental: 2,
     disciplines: { animalism: 1 },
   },
+  "xxx-timothy-winters": {
+    stack: "faction",
+    name: "Timothy Winters",
+    text: md`
+This character has +2 Influence during Schemes.
+
+When this character exhausts, you and target foe each draw 1 card.
+    `,
+    illustrator: "Joyce Maureira",
+    set: "Promo",
+    clan: "lasombra",
+    bloodPotency: 5,
+    physical: 1,
+    social: 0,
+    mental: 2,
+    disciplines: { dominate: 1, oblivion: 1 },
+  },
 };
