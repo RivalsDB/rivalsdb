@@ -2183,6 +2183,7 @@ Reaction - Deal 1 [physical] [damage] to the attacker for every 2 [damage] they 
     types: ["attack", "reaction"],
     set: "Wolf & Rat",
     clan: "nosferatu",
+    bloodPotencyRequirement: 3,
     attack: "physical",
     reactions: ["physical", "mental"],
     damage: 0,
