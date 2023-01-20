@@ -30,7 +30,7 @@ Characters in your Haven have +1 Secrecy.
 
       **Leader Ability**
 
-      The first time you recruit a character during each of your turns, gain 1 Action.
+      The first time you recruit a character during each of your turns, gain 1 Unhosted Action.
     `,
     illustrator: "Marco Primo",
     set: "Blood & Alchemy",
