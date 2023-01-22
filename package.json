@@ -1,39 +1,58 @@
 {
-  "name": "rivalsdb",
+  "name": "@rivalsdb/server",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build-client": "cd client && yarn install && yarn build && cd ..",
-    "build-migrations": "cd server && yarn install && yarn db-apply-migrations && cd ..",
-    "build-server": "cd server && yarn install && yarn build && cd ..",
-    "build": "yarn build-server && yarn build-client && yarn build-migrations",
-    "heroku-cleanup": "yarn prune-server && yarn prune-client",
-    "prune-client": "cd client && yarn install --production && cd ..",
-    "prune-server": "cd server && yarn install --production && cd ..",
-    "start": "node server/dist/index.js"
+    "build": "tsc",
+    "db-apply-migrations": "pg-migrations apply --directory migrations",
+    "migrations:create": "touch migrations/$(date +%s)-migration-name.sql",
+    "watch": "sh bin/watch.sh"
   },
   "author": "Luiz Socrate <luiz@socrate.com.br>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/lsocrate/rivalsdb/issues"
+  "dependencies": {
+    "@databases/pg": "^5.4.1",
+    "@databases/pg-migrations": "^5.0.0",
+    "@discordjs/builders": "^0.15.0",
+    "@discordjs/rest": "^0.5.0",
+    "@fastify/compress": "^6.1.1",
+    "@fastify/cors": "^8.1.0",
+    "@fastify/static": "^6.5.0",
+    "@js-joda/core": "^5.2.0",
+    "@rivalsdb/id": "../shared/id/",
+    "@sentry/node": "^7.1.1",
+    "@sentry/tracing": "^7.1.1",
+    "discord-api-types": "^0.36.1",
+    "discord.js": "^13.6.0",
+    "fastify": "^4.9.2",
+    "fastify-auth0-verify": "^0.8.3",
+    "fastify-plugin": "^4.3.0",
+    "fuse.js": "^6.5.3"
   },
-  "homepage": "https://rivalsdb.app",
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "ava": "^4.0.1",
+    "concurrently": "^7.0.0",
+    "dotenv": "^16.0.0",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.6.2",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.3"
+  },
   "volta": {
-    "node": "18.7.0",
-    "yarn": "1.22.19"
+    "node": "18.7.0"
   },
   "engines": {
     "node": "18.x",
-    "yarn": "1.22.19"
+    "yarn": "1.x"
   },
-  "cacheDirectories": [
-    "client/node_modules",
-    "server/node_modules"
-  ],
-  "dependencies": {
-    "fastify": "^4.11.0",
-    "path": "^0.12.7"
+  "ava": {
+    "extensions": {
+      "ts": "module"
+    },
+    "nodeArguments": [
+      "--loader=ts-node/esm"
+    ]
   }
 }
