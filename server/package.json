@@ -20,7 +20,7 @@
     "@fastify/cors": "^8.1.0",
     "@fastify/static": "^6.5.0",
     "@js-joda/core": "^5.2.0",
-    "@rivalsdb/id": "../shared/id/",
+    "@rivalsdb/id": "1.0.0",
     "@sentry/node": "^7.1.1",
     "@sentry/tracing": "^7.1.1",
     "discord-api-types": "^0.36.1",

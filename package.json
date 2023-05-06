@@ -5,14 +5,14 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build-client": "cd client && yarn install && yarn build && cd ..",
-    "build-migrations": "cd server && yarn install && yarn db-apply-migrations && cd ..",
-    "build-server": "cd server && yarn install && yarn build && cd ..",
+    "build-client": "yarn --cwd client install && yarn --cwd client build",
+    "build-migrations": "yarn --cwd server && yarn --cwd server install && yarn --cwd server db-apply-migrations",
+    "build-server": "yarn --cwd server install && yarn --cwd server build",
     "build": "yarn build-server && yarn build-client && yarn build-migrations",
     "heroku-cleanup": "yarn prune-server && yarn prune-client",
-    "prune-client": "cd client && yarn install --production && cd ..",
-    "prune-server": "cd server && yarn install --production && cd ..",
-    "start": "node server/dist/index.js"
+    "prune-client": "yarn --cwd client install --production",
+    "prune-server": "yarn --cwd server install --production",
+    "start": "yarn --cwd server node dist/index.js"
   },
   "author": "Luiz Socrate <luiz@socrate.com.br>",
   "license": "MIT",
@@ -28,8 +28,11 @@
     "node": "18.x",
     "yarn": "1.22.19"
   },
-  "cacheDirectories": [
-    "client/node_modules",
-    "server/node_modules"
+  "private": true,
+  "workspaces": [
+    "assets",
+    "client",
+    "server",
+    "packages/*"
   ]
 }

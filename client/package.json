@@ -1,5 +1,6 @@
 {
   "name": "@rivalsdb/client",
+  "version": "1.0.0",
   "scripts": {
     "build-parcel": "parcel build src/index.html",
     "build-spa": "elm-spa gen",
@@ -18,22 +19,22 @@
   "license": "MIT",
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.22.2",
-    "@rivalsdb/id": "../shared/id",
+    "@rivalsdb/id": "1.0.0",
     "plausible-tracker": "^0.3.8"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "devDependencies": {
-    "@parcel/compressor-brotli": "^2.7.0",
-    "@parcel/compressor-gzip": "^2.7.0",
-    "@parcel/optimizer-data-url": "^2.7.0",
-    "@parcel/transformer-elm": "^2.7.0",
-    "@parcel/transformer-inline-string": "^2.7.0",
-    "@parcel/transformer-sass": "^2.7.0",
-    "buffer": "^6.0.3",
+    "@parcel/compressor-brotli": "2.7.0",
+    "@parcel/compressor-gzip": "2.7.0",
+    "@parcel/optimizer-data-url": "2.7.0",
+    "@parcel/transformer-elm": "2.7.0",
+    "@parcel/transformer-inline-string": "2.7.0",
+    "@parcel/transformer-sass": "2.7.0",
+    "buffer": "^5.5.0",
     "concurrently": "^7.3.0",
     "elm": "^0.19.1-5",
     "elm-spa": "^6.0.4",
-    "parcel": "^2.7.0",
+    "parcel": "2.7.0",
     "prettier": "^2.6.2"
   }
 }
