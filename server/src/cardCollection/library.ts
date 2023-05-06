@@ -2651,7 +2651,7 @@ Place the stolen [prestige] on cards you control or add them to your personal su
     `,
     disciplines: ["obfuscate"],
     illustrator: "Joyce Maureira",
-    types: ["action", "trap"],
+    types: ["action"],
     set: "Dragon & Rogue",
   },
   "dar-fifth-tradition-hospitality": {
