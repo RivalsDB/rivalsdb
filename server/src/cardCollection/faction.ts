@@ -2182,4 +2182,79 @@ When this character Blocks an attack and is not defeated, you may attach 1 unatt
     mental: 2,
     disciplines: { animalism: 1 },
   },
+  "xxx-carmina-magnus": {
+    stack: "faction",
+    name: "Carmina Magnus",
+    text: md`
+When a foe attacks a character in a Haven or with a Haven attached to them, you may have the defending player gain 1 [prestige] of their color from the general supply.
+    `,
+    illustrator: "Mara Miranda-Escota",
+    set: "Promo",
+    clan: "ventrue",
+    bloodPotency: 4,
+    physical: 0,
+    social: 1,
+    mental: 1,
+    disciplines: { dominate: 1, presence: 1 },
+  },
+  "xxx-r-t-thassos": {
+    stack: "faction",
+    name: "R. T. Thassos",
+    text: md`
+The first time you attach an Animal to this character during each of your turns, target player discards 1 card.
+    `,
+    illustrator: "Anastasiia Horbunova",
+    set: "Promo",
+    clan: "gangrel",
+    bloodPotency: 4,
+    physical: 0,
+    social: 0,
+    mental: 2,
+    disciplines: { animalism: 1, protean: 1 },
+  },
+  "xxx-giselle-della-scalla": {
+    stack: "faction",
+    name: "Giselle della Scalla",
+    text: md`
+Attacker - When this character defeats a character in The Streets, move all [agenda] on this character to your Agenda card. 
+    `,
+    illustrator: "Darko Stojanovic",
+    set: "Promo",
+    clan: "lasombra",
+    bloodPotency: 4,
+    physical: 0,
+    social: 1,
+    mental: 1,
+    disciplines: { dominate: 1, oblivion: 1 },
+  },
+  "xxx-luviere-bataille": {
+    stack: "faction",
+    name: "Luviere Bataille",
+    text: md`
+When you remove a [prestige] of your color from an Event, put it into your personal supply.
+    `,
+    illustrator: "Janos Orban",
+    set: "Promo",
+    clan: "toreador",
+    bloodPotency: 4,
+    physical: 1,
+    social: 1,
+    mental: 0,
+    disciplines: { presence: 1 },
+  },
+  "xxx-reina-de-la-vega": {
+    stack: "faction",
+    name: "Reina De La Vega",
+    text: md`
+At the start of your turn, look at the top card of your Library or Faction Deck. Leave it or move it to the bottom of the deck.
+    `,
+    illustrator: "Janos Orban",
+    set: "Promo",
+    clan: "tremere",
+    bloodPotency: 4,
+    physical: 1,
+    social: 0,
+    mental: 1,
+    disciplines: { auspex: 1, "blood sorcery":1 },
+  },
 };
