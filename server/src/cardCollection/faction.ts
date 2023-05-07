@@ -2648,7 +2648,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     `,
     illustrator: "Joyce Maureira",
     set: "Promo",
-    clan: "tzimisce",
+    clan: "lasombra",
     bloodPotency: 5,
     physical: 1,
     social: 0,
