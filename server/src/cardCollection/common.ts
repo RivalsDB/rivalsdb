@@ -41,9 +41,11 @@ export type CardSet =
   | "Shadows & Shrouds"
   | "Heart of Europe"
   | "Conclave 22"
-  | "Dragon & Rogue";
+  | "Dragon & Rogue"
+  | "Justice & Mercy";
 
 export type Clan =
+  | "banu haqim"
   | "brujah"
   | "gangrel"
   | "hecata"
@@ -51,6 +53,7 @@ export type Clan =
   | "malkavian"
   | "nosferatu"
   | "ravnos"
+  | "salubri"
   | "thin-blood"
   | "toreador"
   | "tremere"

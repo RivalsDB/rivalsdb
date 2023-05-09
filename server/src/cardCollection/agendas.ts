@@ -67,7 +67,7 @@ If you reach 13 [agenda], you win!
   "core-drain-them-slowly": {
     name: "Drain Them Slowly",
     text: md`
-When a character you attack takes 1+ non-Aggravated damage but is not defeated, gain 1 [agenda].
+When a character you attack takes 1+ non-**Aggravated** damage but is not defeated, gain 1 [agenda].
 
 If you reach 13 [agenda], you win!
     `,
@@ -295,6 +295,54 @@ If you reach 13 [agenda], you win!
     `,
     illustrator: "Adelijah Ocampo",
     set: "Dragon & Rogue",
+    stack: "agenda",
+  },
+  "jam-army-of-one": {
+    name: "Army of One",
+    text: md`
+At the start of your turn, if you control only 1 character, gain 1 [agenda].
+
+If you reach 13 [agenda], you win!
+    `,
+    illustrator: "Marco Primo",
+    set: "Justice & Mercy",
+    stack: "agenda",
+  },
+  "jam-ritual-master": {
+    name: "Ritual Master",
+    text: md`
+At the start of your turn, if there is 3+ [blood] on Ongoing cards you control, draw 1 card and gain 1 [agenda].
+
+When a Ritual you control leaves play, gain 1 [agenda]
+
+If you reach 13 [agenda], you win!
+    `,
+    illustrator: "Marco Primo",
+    set: "Justice & Mercy",
+    stack: "agenda",
+  },
+  "jam-traditionalist": {
+    name: "Traditionalist",
+    text: md`
+At the start of your turn, if you control 3+ different Traditions, gain 1 [agenda].
+
+When you play a Tradition, gain 1 [agenda].
+
+If you reach 13 [agenda], you win!
+    `,
+    illustrator: "Joyce Maureira",
+    set: "Justice & Mercy",
+    stack: "agenda",
+  },
+  "jam-good-samaritan": {
+    name: "Good Samaritan",
+    text: md`
+During each player's Action Phase, the first time an effect you control removes an Affliction from 1+ characters or mends 1+ characters, gain 1 [agenda]
+
+If you reach 13 [agenda], you win!
+    `,
+    illustrator: "Adelijah Ocampo",
+    set: "Justice & Mercy",
     stack: "agenda",
   },
 };

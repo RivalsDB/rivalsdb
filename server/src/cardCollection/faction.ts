@@ -37,6 +37,7 @@ Attacker - **Discard 2 cards:** This attack deals +4 **Superficial** [Damage] to
     set: "Heart of Europe",
     disciplines: { auspex: 1, "blood sorcery": 1 },
   },
+  
   "hoe-anjali-the-samedi": {
     stack: "faction",
     clan: "hecata",
@@ -52,6 +53,7 @@ Torpor - Attach the top card of target player's Library face down to a character
     set: "Heart of Europe",
     disciplines: { auspex: 1 },
   },
+
   "hoe-borek-wagner": {
     stack: "faction",
     clan: "ventrue",
@@ -67,6 +69,7 @@ At the start of your first turn of the game, reveal 2 different Havens from your
     set: "Heart of Europe",
     disciplines: { dominate: 1, fortitude: 1, presence: 1 },
   },
+
   "hoe-camila": {
     stack: "faction",
     clan: "lasombra",
@@ -82,6 +85,7 @@ Attacker - Put a "No Influence" token on the target.
     set: "Heart of Europe",
     disciplines: { oblivion: 1 },
   },
+
   "hoe-dien": {
     stack: "faction",
     clan: "gangrel",
@@ -97,6 +101,7 @@ Solo Attacker - Play up to 2 Attack cards. Before revealing, if you played 2 car
     set: "Heart of Europe",
     disciplines: { animalism: 1, fortitude: 1, protean: 1 },
   },
+
   "hoe-ekene": {
     stack: "faction",
     clan: "gangrel",
@@ -112,6 +117,7 @@ Solo Attacker - This character declares their attack type when Attack cards are 
     set: "Heart of Europe",
     disciplines: { protean: 1 },
   },
+
   "hoe-em": {
     stack: "faction",
     clan: "ventrue",
@@ -127,6 +133,7 @@ At the start of your turn, if you control +2 Havens, gain 1 [prestige]. If you c
     set: "Heart of Europe",
     disciplines: { fortitude: 1, presence: 1 },
   },
+
   "hoe-emil-hruza": {
     stack: "faction",
     clan: "toreador",
@@ -142,6 +149,7 @@ You may ignore City Deck Events. When this character defeats a Mortal or charact
     set: "Heart of Europe",
     disciplines: { celerity: 1, dominate: 1, presence: 1 },
   },
+
   "hoe-jan-zoubek": {
     stack: "faction",
     clan: "thin-blood",
@@ -157,6 +165,7 @@ The first time a 1 [blood potency] or 2 [blood potency] character in your coteri
     set: "Heart of Europe",
     disciplines: { "thin-blood alchemy": 1 },
   },
+
   "hoe-kiril": {
     stack: "faction",
     clan: "brujah",
@@ -172,6 +181,7 @@ Attacker - This character has +3 Influence this turn.
     set: "Heart of Europe",
     disciplines: { celerity: 1, potence: 1, presence: 1 },
   },
+
   "hoe-maia": {
     stack: "faction",
     clan: "toreador",
@@ -187,6 +197,7 @@ Attacker - This attack deals +1 [damage] to the target for each Event in play.
     set: "Heart of Europe",
     disciplines: { auspex: 1, presence: 1 },
   },
+
   "hoe-monika": {
     stack: "faction",
     clan: "thin-blood",
@@ -202,6 +213,7 @@ Attacker - This attack deals +1 [damage] to the target for each Event in play.
     set: "Heart of Europe",
     disciplines: { "thin-blood alchemy": 1 },
   },
+
   "hoe-omnis": {
     stack: "faction",
     clan: "nosferatu",
@@ -217,6 +229,7 @@ When you resolve a Trap with 2+ [prestige] on it, return that card to your hand.
     set: "Heart of Europe",
     disciplines: { obfuscate: 1, potence: 1 },
   },
+
   "hoe-perseus": {
     stack: "faction",
     clan: "malkavian",
@@ -232,6 +245,7 @@ Attacker - If this attack deals 1+ [damage] to the target, the target's controll
     set: "Heart of Europe",
     disciplines: { auspex: 1, obfuscate: 1 },
   },
+
   "hoe-rene-koba": {
     stack: "faction",
     clan: "malkavian",
@@ -247,6 +261,7 @@ When you play a card face down outside of an attack, mend 1 [blood] on a charact
     set: "Heart of Europe",
     disciplines: { auspex: 1 },
   },
+
   "hoe-roman-monstrum": {
     stack: "faction",
     clan: "hecata",
@@ -264,6 +279,7 @@ When you play a card face down outside of an attack, mend 1 [blood] on a charact
     set: "Heart of Europe",
     disciplines: { auspex: 1, oblivion: 1 },
   },
+
   "hoe-sarka": {
     stack: "faction",
     clan: "brujah",
@@ -281,6 +297,7 @@ Party - When a character in this party Blocks an attack, they steal 1 [blood] fr
     set: "Heart of Europe",
     disciplines: { celerity: 2 },
   },
+
   "hoe-sebastian": {
     stack: "faction",
     clan: "lasombra",
@@ -296,6 +313,7 @@ Attaching a Title from your hand to this character costs 0 Influence, then ready
     set: "Heart of Europe",
     disciplines: { oblivion: 2, presence: 1 },
   },
+
   "hoe-thora": {
     stack: "faction",
     clan: "nosferatu",
@@ -311,6 +329,7 @@ Attaching a Title from your hand to this character costs 0 Influence, then ready
     set: "Heart of Europe",
     disciplines: { animalism: 1, obfuscate: 1 },
   },
+
   "hoe-zuzana": {
     stack: "faction",
     clan: "tremere",
@@ -345,6 +364,7 @@ When this character is defeated, add 1 of that lost [blood] to another character
     set: "Promo",
     disciplines: { "blood sorcery": 1 },
   },
+
   "xxx-sid-baqri": {
     stack: "faction",
     clan: "thin-blood",
@@ -360,6 +380,7 @@ When this character is defeated by an attacker, put a '-1 [blood potency]' token
     set: "Promo",
     disciplines: { "thin-blood alchemy": 1 },
   },
+
   "xxx-carmina-magnus": {
     stack: "faction",
     clan: "ventrue",
@@ -375,6 +396,7 @@ When a foe attacks a character in a Haven or with a Haven attached to them, you 
     set: "Promo",
     disciplines: { dominate: 1, presence: 1 },
   },
+
   "xxx-giselle-della-scala": {
     stack: "faction",
     clan: "lasombra",
@@ -390,6 +412,7 @@ Attacker - When this character defeats a character in The Streets, move all [age
     set: "Promo",
     disciplines: { dominate: 1, oblivion: 1 },
   },
+
   "xxx-luviere-bataille": {
     stack: "faction",
     clan: "toreador",
@@ -405,6 +428,7 @@ When you remove a [prestige] of your color from an Event, put it into your perso
     set: "Promo",
     disciplines: { presence: 1 },
   },
+
   "xxx-r-t-thassos": {
     stack: "faction",
     clan: "gangrel",
@@ -420,6 +444,7 @@ The first time you attach an Animal to this character during each of your turns,
     set: "Promo",
     disciplines: { animalism: 1, protean: 1 },
   },
+
   "xxx-reina-de-la-vega": {
     stack: "faction",
     clan: "tremere",
@@ -435,6 +460,7 @@ At the start of your turn, look at the top card of your Library or Faction Deck.
     set: "Promo",
     disciplines: { auspex: 1, "blood sorcery": 1 },
   },
+  
   "sas-mei-yinying": {
     stack: "faction",
     name: "Mei Yinying",
@@ -452,6 +478,7 @@ Party - This attack deals +1 [damage] to the target if there are 3+ Mortals in t
     mental: 0,
     disciplines: { dominate: 1, oblivion: 1 },
   },
+  
   "sas-scott": {
     stack: "faction",
     name: "Scott",
@@ -467,6 +494,7 @@ When you create a wraith, choose your wraith token instead of drawing it at rand
     mental: 0,
     disciplines: { auspex: 1, oblivion: 1 },
   },
+
   "sas-adrian-beltza": {
     stack: "faction",
     name: "Adrian Beltza",
@@ -484,6 +512,7 @@ Attacker - **Pay 1 [agenda]:** This attack deals +2 [damage] to the target if yo
     mental: 1,
     disciplines: { oblivion: 1, potence: 1 },
   },
+
   "sas-annika": {
     stack: "faction",
     name: "Annika",
@@ -499,6 +528,7 @@ As you play a Ritual, you may move 1 [blood] from any number of your characters 
     mental: 0,
     disciplines: { auspex: 1, fortitude: 1, oblivion: 1 },
   },
+
   "sas-astrid-malhela": {
     stack: "faction",
     name: "Astrid Malhela",
@@ -514,6 +544,7 @@ Party - **Pay 1 [agenda]:** This attack has +3 Intel. If the attack defeats the 
     mental: 1,
     disciplines: { potence: 1 },
   },
+
   "sas-bianca-giovanni": {
     stack: "faction",
     name: "Bianca Giovanni",
@@ -529,6 +560,7 @@ Torpor - If you control 2+ Rituals, gain 1 [agenda].
     mental: 1,
     disciplines: { oblivion: 1 },
   },
+
   "sas-enzo-cappa": {
     stack: "faction",
     name: "Enzo Cappa",
@@ -546,6 +578,7 @@ Party - This attack deals +1 [damage] if the attacker has a Wraith attached.
     mental: 1,
     disciplines: { oblivion: 2 },
   },
+
   "sas-gia-de-emparan": {
     stack: "faction",
     name: "Gia de Emparan",
@@ -561,6 +594,7 @@ Party - When this party defeats a character, move 1 [agenda] from any character 
     mental: 1,
     disciplines: { dominate: 2, potence: 1 },
   },
+
   "sas-juan-carlos-diaz": {
     stack: "faction",
     name: "Juan Carlos Diaz",
@@ -578,6 +612,7 @@ Attacker - This attack deals +1 [damage] to the target if this character played 
     mental: 2,
     disciplines: { oblivion: 2 },
   },
+
   "sas-kristin": {
     stack: "faction",
     name: "Kristin",
@@ -593,6 +628,7 @@ Attacker - This attack deals +1 [damage] to the target if this character played 
     mental: 0,
     disciplines: { fortitude: 1 },
   },
+
   "sas-kwame": {
     stack: "faction",
     name: "Kwame",
@@ -608,6 +644,7 @@ Torpor - If you control 2+ wraiths, draw 1 card.
     mental: 1,
     disciplines: { auspex: 1, oblivion: 1 },
   },
+
   "sas-markus-kumnyama": {
     stack: "faction",
     name: "Markus Kumnyama",
@@ -625,6 +662,7 @@ As this character performs an Action, place 1 [agenda] from the general supply o
     mental: 1,
     disciplines: { dominate: 1, oblivion: 1, potence: 1 },
   },
+
   "sas-nathaniel": {
     stack: "faction",
     name: "Nathaniel",
@@ -640,6 +678,7 @@ Torpor - If you control 1+ Rituals, gain 1 [prestige].
     mental: 1,
     disciplines: { auspex: 1 },
   },
+
   "sas-piero-calderon": {
     stack: "faction",
     name: "Piero Calderón",
@@ -657,6 +696,7 @@ Attacker - If this character has a Title, this attack cannot be blocked.
     mental: 1,
     disciplines: { oblivion: 1, potence: 2 },
   },
+
   "sas-rachany-sok": {
     stack: "faction",
     name: "Rachany Sok",
@@ -676,6 +716,7 @@ This character may Block [ranged] attacks.
     mental: 0,
     disciplines: { dominate: 1, oblivion: 1 },
   },
+
   "sas-raven-smith": {
     stack: "faction",
     name: "Raven Smith",
@@ -691,6 +732,7 @@ This character may Block [ranged] attacks.
     mental: 1,
     disciplines: { dominate: 1, oblivion: 1 },
   },
+
   "sas-sophia-giovanni": {
     stack: "faction",
     name: "Sophia Giovanni",
@@ -706,6 +748,7 @@ Torpor - For each wraith you control, put 1 [blood] of your color from the gener
     mental: 2,
     disciplines: { fortitude: 1, oblivion: 1 },
   },
+
   "xxx-annabelle": {
     stack: "faction",
     name: "Annabelle",
@@ -721,6 +764,7 @@ Party - Characters in this party deal +1 Superficial [damage] to the opposing ch
     mental: 0,
     disciplines: { presence: 1, potence: 1 },
   },
+  
   "xxx-natasha-blank": {
     stack: "faction",
     name: "Natasha Blank",
@@ -736,6 +780,7 @@ Attacker - **Pay 1 [prestige]:** This attack deals +1 [damage] to the target. At
     mental: 1,
     disciplines: { obfuscate: 1 },
   },
+
   "sas-zahara": {
     stack: "faction",
     name: "Zahara",
@@ -751,6 +796,7 @@ When this character is defeated, you may create a wraith and attach it to a char
     mental: 0,
     disciplines: { oblivion: 1 },
   },
+
   "baa-alejandro-lopez": {
     stack: "faction",
     name: "Alejandro Lopez",
@@ -766,6 +812,7 @@ When this character mends during any player's Action Phase, draw 1 card.
     mental: 1,
     disciplines: { auspex: 1, "blood sorcery": 2 },
   },
+  
   "baa-april-smith": {
     stack: "faction",
     name: "April Smith",
@@ -781,6 +828,7 @@ Party - Attackers with Thin-blood alchemy in this party gain +1 Blood Potence an
     mental: 1,
     disciplines: {},
   },
+
   "baa-aurora-nix": {
     stack: "faction",
     name: "Aurora Nix",
@@ -796,6 +844,7 @@ Attacker - If this attack deals 1+ Damage to the target, put a Fear token on the
     mental: 1,
     disciplines: { auspex: 2 },
   },
+
   "core-bad-penny": {
     stack: "faction",
     name: "Bad Penny",
@@ -811,6 +860,7 @@ Torpor - At the end of your turn, add 1 Blood from the general supply to this ch
     mental: 2,
     disciplines: { obfuscate: 2 },
   },
+
   "core-bella-forte": {
     stack: "faction",
     name: "Bella Forte",
@@ -826,6 +876,7 @@ Attacker - Discard the top card of your Library: If it is not an Attack card, th
     mental: 1,
     disciplines: { auspex: 1, celerity: 1 },
   },
+
   "core-beretta": {
     stack: "faction",
     name: "Beretta",
@@ -841,6 +892,7 @@ Attacker - Pay 1 Blood: This Ranged attack deals +1 Damage to the target.
     mental: 2,
     disciplines: { celerity: 1, potence: 1 },
   },
+
   "core-bong-cha-park": {
     stack: "faction",
     name: "Bong-Cha Park",
@@ -854,6 +906,7 @@ Attacker - Pay 1 Blood: This Ranged attack deals +1 Damage to the target.
     mental: 0,
     disciplines: { presence: 1 },
   },
+
   "core-brother": {
     stack: "faction",
     name: "Brother",
@@ -869,6 +922,7 @@ Party - Exhaust: This attack deals +1 Damage to the target.
     mental: 1,
     disciplines: { potence: 1, presence: 1 },
   },
+
   "core-bruno-wagner": {
     stack: "faction",
     name: "Bruno Wagner",
@@ -884,6 +938,7 @@ Draw 1 card when you play an Ongoing card.
     mental: 1,
     disciplines: { dominate: 1, presence: 1 },
   },
+
   "core-bunny-benitez": {
     stack: "faction",
     name: "Bunny Benitez",
@@ -899,6 +954,7 @@ When a Scheme you play succedds, gain 1 prestige. Exhaust: This character has +2
     mental: 1,
     disciplines: { celerity: 1, presence: 1 },
   },
+
   "baa-caleb-walker": {
     stack: "faction",
     name: "Caleb Walker",
@@ -914,6 +970,7 @@ Party - Attackers with Thin-blood alchemy in this party gain +1 Blood Potence an
     mental: 0,
     disciplines: {},
   },
+
   "baa-candi-liu": {
     stack: "faction",
     name: "Candi Liu",
@@ -929,6 +986,7 @@ Attacker - If this attack deals +1 Damage to the target, put a '-1 Blood Potence
     mental: 0,
     disciplines: { "thin-blood alchemy": 1 },
   },
+
   "baa-claudia-sterling": {
     stack: "faction",
     name: "Claudia Sterling",
@@ -944,6 +1002,7 @@ Whis this character taks Damage from an attacker, place 1 of tha lost Blood onto
     mental: 0,
     disciplines: { "blood sorcery": 1 },
   },
+
   "baa-darius-wolfe": {
     stack: "faction",
     name: "Darius Wolfe",
@@ -959,6 +1018,7 @@ Guard This character may block Ranged Attacker. When this character Blocks an at
     mental: 0,
     disciplines: { auspex: 1, dominate: 1 },
   },
+
   "core-doc": {
     stack: "faction",
     name: "Doc",
@@ -974,6 +1034,7 @@ Pay 1 Prestige: Mend 1 Blood on each character in this party.
     mental: 2,
     disciplines: { auspex: 1, obfuscate: 1 },
   },
+
   "baa-faith-gray": {
     stack: "faction",
     name: "Faith Gray",
@@ -989,6 +1050,7 @@ When you play a Ritual, draw 1 card.
     mental: 1,
     disciplines: { auspex: 1, "blood sorcery": 1 },
   },
+
   "core-flick": {
     stack: "faction",
     name: "Flick",
@@ -1004,6 +1066,7 @@ Relentless - Pay 1 Blood: This character has +3 Influence during this action or 
     mental: 1,
     disciplines: { presence: 1 },
   },
+
   "baa-frog": {
     stack: "faction",
     name: "Frog",
@@ -1019,6 +1082,7 @@ When a character in this party attaches an Alchemy, ready them. Detach an Alchem
     mental: 0,
     disciplines: { "thin-blood alchemy": 1 },
   },
+
   "baa-grigori": {
     stack: "faction",
     name: "Grigori",
@@ -1034,6 +1098,7 @@ Exhaust: Replace 1 Blood on target character with one of your color from the gen
     mental: 2,
     disciplines: { "blood sorcery": 1, dominate: 1 },
   },
+
   "core-guvnah": {
     stack: "faction",
     name: "Guv'nah",
@@ -1049,6 +1114,7 @@ Draw 1 card when you play a card face down outside of an attack.
     mental: 1,
     disciplines: { auspex: 1, dominate: 1 },
   },
+
   "baa-hua-jiang": {
     stack: "faction",
     name: "Hua Jiang",
@@ -1064,6 +1130,7 @@ Party - Attackers with Thin-blood alchemy in this party gain +1 Blood Potence an
     mental: 1,
     disciplines: {},
   },
+
   "core-humberto-garcia": {
     stack: "faction",
     name: "Humberto Garcia",
@@ -1079,6 +1146,7 @@ Guard This character may block ranged attacks.
     mental: 1,
     disciplines: { dominate: 1 },
   },
+
   "core-hydra": {
     stack: "faction",
     name: "Hydra",
@@ -1094,6 +1162,7 @@ Attacker - Pay 1 Blood: Draw 1 card.
     mental: 0,
     disciplines: { celerity: 1, potence: 1, presence: 1 },
   },
+
   "core-inmate-745943": {
     stack: "faction",
     name: "Inmate #745943",
@@ -1109,6 +1178,7 @@ Attacker - Pay 1 Prestige: This attack deals +2 Damage to the target.
     mental: 0,
     disciplines: { dominate: 1, obfuscate: 1 },
   },
+
   "core-iris-lokken": {
     stack: "faction",
     name: "Iris Lokken",
@@ -1124,6 +1194,7 @@ When this character plays a Scheme, reveal the top card of your Library and gain
     mental: 2,
     disciplines: { auspex: 1, presence: 1 },
   },
+
   "baa-jacob-frost": {
     stack: "faction",
     name: "Jacob Frost",
@@ -1139,6 +1210,7 @@ Attacker - This attack deals +1 Damage to the target for every 2 characters in t
     mental: 1,
     disciplines: { "thin-blood alchemy": 1 },
   },
+
   "core-jesus": {
     stack: "faction",
     name: "Jesús",
@@ -1154,6 +1226,7 @@ Relentless - When this character is defeated, you may Pay 1 Prestige: Gain 1 Age
     mental: 1,
     disciplines: { obfuscate: 1 },
   },
+  
   "core-john-kartunen": {
     stack: "faction",
     name: "John Kartunen",
@@ -1169,6 +1242,7 @@ Guard This character may block ranged attacks.
     mental: 1,
     disciplines: { auspex: 1 },
   },
+
   "core-johnny": {
     stack: "faction",
     name: "Johnny",
@@ -1184,6 +1258,7 @@ Party - When this party defeats and burns a City Deck Mortal, each character in 
     mental: 0,
     disciplines: { presence: 2 },
   },
+
   "baa-joseph-drake": {
     stack: "faction",
     name: "Joseph Drake",
@@ -1199,6 +1274,7 @@ For each Alchemy attached to this character, +1 Resistence during attacks.
     mental: 0,
     disciplines: { "thin-blood alchemy": 1 },
   },
+
   "core-june-bryant": {
     stack: "faction",
     name: "June Bryant",
@@ -1214,6 +1290,7 @@ At the start of your turn if you control the Prince of the City, draw 2 cards.
     mental: 1,
     disciplines: { presence: 1 },
   },
+
   "core-karma": {
     stack: "faction",
     name: "Karma",
@@ -1229,6 +1306,7 @@ Guard This character may block ranged attacks.
     mental: 2,
     disciplines: { auspex: 1 },
   },
+
   "core-lixue-chen": {
     stack: "faction",
     name: "Lixue Chen",
@@ -1244,6 +1322,7 @@ Party - While this character has a Retainer, their party's first Social attack d
     mental: 0,
     disciplines: { auspex: 1, celerity: 1, presence: 1 },
   },
+
   "core-liza-holt": {
     stack: "faction",
     name: "Liza Holt",
@@ -1259,6 +1338,7 @@ Party- When this party defeats a character, you may attach 1 of the defeated cha
     mental: 0,
     disciplines: { celerity: 1, presence: 1 },
   },
+
   "core-lolita": {
     stack: "faction",
     name: "Lolita",
@@ -1274,6 +1354,7 @@ Guard This character may block ranged attacks.
     mental: 0,
     disciplines: { dominate: 1 },
   },
+
   "baa-lorenzo-murik": {
     stack: "faction",
     name: "Lorenzo Murik",
@@ -1289,6 +1370,7 @@ Exhaust: Mend 1 Blood on a character in your coterie.
     mental: 2,
     disciplines: { "blood sorcery": 1 },
   },
+
   "core-montgomery-white": {
     stack: "faction",
     name: "Montgomery White",
@@ -1304,6 +1386,7 @@ Party -This party has +1 Shield during ranged attacks.
     mental: 0,
     disciplines: { fortitude: 2 },
   },
+
   "core-muhammad-zadeh": {
     stack: "faction",
     name: "Muhammad Zadeh",
@@ -1319,6 +1402,7 @@ This character has +1 Influence for each attached Retainer
     mental: 1,
     disciplines: { auspex: 1, presence: 1 },
   },
+
   "core-nancy-witt": {
     stack: "faction",
     name: "Nancy Witt",
@@ -1334,6 +1418,7 @@ Guard This character may block ranged attacks.
     mental: 0,
     disciplines: { presence: 1 },
   },
+
   "baa-phuoc-dihn": {
     stack: "faction",
     name: "Phuoc Dihn",
@@ -1349,6 +1434,7 @@ Pay 1 blood: Put that Blood onto a Ritual you control.
     mental: 0,
     disciplines: { "blood sorcery": 1, dominate: 1 },
   },
+
   "core-randolph-marz": {
     stack: "faction",
     name: "Randolph Marz",
@@ -1364,6 +1450,7 @@ Party - Discard a Title: This attack deals +1 damage to the target. Additional +
     mental: 1,
     disciplines: { dominate: 1, fortitude: 1, presence: 1 },
   },
+
   "core-shades": {
     stack: "faction",
     name: "Shades",
@@ -1379,6 +1466,7 @@ Party - For every 5 Agenda a foe has, this party has +1 Intel vs that foe.
     mental: 0,
     disciplines: { celerity: 1, presence: 1 },
   },
+
   "core-skunk": {
     stack: "faction",
     name: "Skunk",
@@ -1394,6 +1482,7 @@ Guard This character may block ranged attacks.
     mental: 1,
     disciplines: { potence: 1 },
   },
+
   "xxx-smoke": {
     stack: "faction",
     name: "Smoke",
@@ -1409,6 +1498,7 @@ At the end of your turn, ready 1 character in this party.
     mental: 0,
     disciplines: { celerity: 1 },
   },
+
   "xxx-martine-diaz": {
     stack: "faction",
     name: "Martine Diaz",
@@ -1424,6 +1514,7 @@ Exhaust: Draw 1 card, then discard 1 card.
     mental: 1,
     disciplines: { fortitude: 1, presence: 1 },
   },
+
   "xxx-freddy-usher": {
     stack: "faction",
     name: "Freddy Usher",
@@ -1439,6 +1530,7 @@ When this character plays a Reaction, draw 1 card.
     mental: 1,
     disciplines: { celerity: 1 },
   },
+
   "xxx-victor-temple": {
     stack: "faction",
     name: "Victor Temple",
@@ -1454,6 +1546,7 @@ This character has +1 Influence. Pay 1 [blood]: Put a 'No Influence' token on ta
     mental: 2,
     disciplines: { dominate: 1, presence: 1 },
   },
+
   "baa-sonja-valentine": {
     stack: "faction",
     name: "Sonja Valentine",
@@ -1469,6 +1562,7 @@ At the start of your turn, replace 1 Blood on target character in The Streets wi
     mental: 2,
     disciplines: { auspex: 1, "blood sorcery": 1, dominate: 1 },
   },
+
   "core-stevie-osborn": {
     stack: "faction",
     name: "Stevie Osborn",
@@ -1484,6 +1578,7 @@ Gain 1 prestige when any character in your coterie attaches a title.
     mental: 1,
     disciplines: { fortitude: 1, presence: 1 },
   },
+
   "core-street-preacher": {
     stack: "faction",
     name: "Street Preacher",
@@ -1499,6 +1594,7 @@ Relentless - If ready, Pay 1 Prestige: Move to The Streets and Block an attack a
     mental: 1,
     disciplines: { auspex: 1 },
   },
+
   "core-sweetums": {
     stack: "faction",
     name: "Sweetums",
@@ -1529,6 +1625,7 @@ Pay 1 Blood: This character's next attack this turn cannot be Blocked.
     mental: 1,
     disciplines: { celerity: 1, potence: 1 },
   },
+
   "core-ty-smith": {
     stack: "faction",
     name: "Ty Smith",
@@ -1544,6 +1641,7 @@ Guard This character may block ranged attacks.
     mental: 0,
     disciplines: { presence: 1 },
   },
+
   "baa-valerie-nash": {
     stack: "faction",
     name: "Valerie Nash",
@@ -1559,6 +1657,7 @@ Party - Attackers with Thin-blood alchemy in this party gain +1 Blood Potence an
     mental: 0,
     disciplines: {},
   },
+
   "core-velvet": {
     stack: "faction",
     name: "Velvet",
@@ -1574,6 +1673,7 @@ Gain 1 prestige when you resolve a face-down card outside of an attack.
     mental: 1,
     disciplines: { auspex: 1, obfuscate: 1 },
   },
+
   "baa-wendy": {
     stack: "faction",
     name: "Wendy",
@@ -1589,6 +1689,7 @@ Party - Attackers with Thin-blood alchemy in this party gain +1 Blood Potence an
     mental: 0,
     disciplines: {},
   },
+
   "core-yusuf-kaya": {
     stack: "faction",
     name: "Yusuf Kaya",
@@ -1604,6 +1705,7 @@ Exhaust: Mend 1 blood on each Titled character in your coterie and in torpor.
     mental: 0,
     disciplines: { fortitude: 2 },
   },
+
   "core-zhang-wei": {
     stack: "faction",
     name: "Zhang Wei",
@@ -1619,6 +1721,7 @@ Party - While this character has a title, when this party defeats a character, t
     mental: 2,
     disciplines: { dominate: 1, presence: 1 },
   },
+
   "war-bobby-handsome": {
     stack: "faction",
     name: "Bobby Handsome",
@@ -1636,6 +1739,7 @@ This character may Block [ranged] attacks.
     mental: 0,
     disciplines: { obfuscate: 1 },
   },
+
   "war-chooha": {
     stack: "faction",
     name: "Chooha",
@@ -1651,6 +1755,7 @@ Party - Exhaust: The next attack made by a member of this party this turn has +1
     mental: 1,
     disciplines: { animalism: 1 },
   },
+
   "war-clandestine": {
     stack: "faction",
     name: "Clandestine",
@@ -1666,6 +1771,7 @@ Attacker - This attack deals +1 [social] [damage] to City Deck Mortals.
     mental: 1,
     disciplines: { obfuscate: 2 },
   },
+
   "war-crazy-cat-lady": {
     stack: "faction",
     name: "Crazy Cat Lady",
@@ -1681,6 +1787,7 @@ Exhaust: Attach up to 2 Alley Cats from your hand or discard pile to this charac
     mental: 1,
     disciplines: { animalism: 1, potence: 1 },
   },
+
   "war-drea-warden": {
     stack: "faction",
     name: "Drea Warden",
@@ -1696,6 +1803,7 @@ Exhaust, Pay 1 [blood]: Attach an Animal from your hand to any character in your
     mental: 1,
     disciplines: { animalism: 1, protean: 1 },
   },
+
   "war-general-flint": {
     stack: "faction",
     name: "General Flint",
@@ -1711,6 +1819,7 @@ Attacker - If this character has 1+ Retainers, the target has -1 [shield]. If th
     mental: 1,
     disciplines: { animalism: 1, potence: 2 },
   },
+
   "war-ghost": {
     stack: "faction",
     name: "Ghost",
@@ -1726,6 +1835,7 @@ Party - Characters with [protean] in this party have +1 Secrecy in The Streets.
     mental: 0,
     disciplines: { protean: 2 },
   },
+
   "war-harry-o-brien": {
     stack: "faction",
     name: "Harry O'Brien",
@@ -1741,6 +1851,7 @@ Exhaust: Mend 1 [blood] on target character in this party for each Animal the ta
     mental: 2,
     disciplines: { fortitude: 1 },
   },
+
   "war-kim-phan": {
     stack: "faction",
     name: "Kim Phan",
@@ -1758,6 +1869,7 @@ Pay 1 [prestige]: Discard the card instead.
     mental: 1,
     disciplines: { obfuscate: 1, potence: 1 },
   },
+
   "war-leah-swiftfoot": {
     stack: "faction",
     name: "Leah Swiftfoot",
@@ -1773,6 +1885,7 @@ Attacker - If alone in a party, attacks made by this character cannot be Blocked
     mental: 1,
     disciplines: { animalism: 1, protean: 1 },
   },
+
   "war-lil-fang": {
     stack: "faction",
     name: "Lil' Fang",
@@ -1788,6 +1901,7 @@ Exhaust: Put 1 Animal from your discard pile into your hand.
     mental: 0,
     disciplines: { animalism: 1, protean: 1 },
   },
+
   "war-lori-swiftfoot": {
     stack: "faction",
     name: "Lori Swiftfoot",
@@ -1805,6 +1919,7 @@ This character may Block [ranged] attacks.
     mental: 0,
     disciplines: { fortitude: 1 },
   },
+
   "war-pong": {
     stack: "faction",
     name: "Pong",
@@ -1820,6 +1935,7 @@ The first time you detach an Animal from a character in your coterie during each
     mental: 2,
     disciplines: { animalism: 1, obfuscate: 1 },
   },
+
   "war-sheilar-omar": {
     stack: "faction",
     name: "Sheilar Omar",
@@ -1835,6 +1951,7 @@ Party - When a character in this party would attach a Retainer, you may attach i
     mental: 1,
     disciplines: { animalism: 1, obfuscate: 1 },
   },
+
   "war-shep-mason": {
     stack: "faction",
     name: "Shep Mason",
@@ -1850,6 +1967,7 @@ You may attach the Sheriff Title to this character at no Influence cost.
     mental: 0,
     disciplines: { potence: 2 },
   },
+
   "war-summer-moon": {
     stack: "faction",
     name: "Summer Moon",
@@ -1865,6 +1983,7 @@ At the end of your turn, if this character has 1+ Animal attached, ready them. I
     mental: 0,
     disciplines: { animalism: 1, fortitude: 1 },
   },
+
   "war-tamaska": {
     stack: "faction",
     name: "Tamaska",
@@ -1880,6 +1999,7 @@ The first time you attach an Animal to this character during your turn, ready th
     mental: 1,
     disciplines: { animalism: 1, fortitude: 1, protean: 1 },
   },
+
   "war-trinity-voss": {
     stack: "faction",
     name: "Trinity Voss",
@@ -1913,6 +2033,7 @@ The first time you attach a card to any card (including Ghouls) each turn, draw 
     mental: 1,
     disciplines: { animalism: 1, dominate: 1, protean: 1 },
   },
+
   "dar-chance": {
     stack: "faction",
     name: "Chance",
@@ -1928,6 +2049,7 @@ The first time you attach a card to any card (including Ghouls) each turn, draw 
     mental: 1,
     disciplines: { obfuscate: 1 },
   },
+
   "dar-haya": {
     stack: "faction",
     name: "Haya",
@@ -1943,6 +2065,7 @@ Party - Attackers in this party deal +1 [damage] to Mortals for each Ravnos char
     mental: 0,
     disciplines: { presence: 1 },
   },
+
   "dar-jack": {
     stack: "faction",
     name: "Jack",
@@ -1958,6 +2081,7 @@ Party - Attackers in this party deal +1 [damage] to Mortals for each Ravnos char
     mental: 0,
     disciplines: { animalism: 1 },
   },
+
   "dar-kwaku": {
     stack: "faction",
     name: "Kwaku",
@@ -1973,6 +2097,7 @@ While there are 2+ unattached Citizens and/or _Vagrants_ in The Streets, charact
     mental: 0,
     disciplines: { obfuscate: 1 },
   },
+
   "dar-mahendra-chanda": {
     stack: "faction",
     name: "Mahendra Chanda",
@@ -1990,6 +2115,7 @@ While this character is a Blocker, any [blood] they lose due to [damage] may be 
     mental: 1,
     disciplines: { animalism: 1, presence: 1 },
   },
+
   "dar-matthias": {
     stack: "faction",
     name: "Matthias",
@@ -2009,6 +2135,7 @@ The first time you burn a card attached to this character during each of your tu
     mental: 1,
     disciplines: { animalism: 1, dominate: 1 },
   },
+
   "dar-maya": {
     stack: "faction",
     name: "Maya",
@@ -2024,6 +2151,7 @@ The first time you burn a card attached to this character during each of your tu
     mental: 1,
     disciplines: { obfuscate: 1, presence: 1 },
   },
+
   "dar-mircea": {
     stack: "faction",
     name: "Mircea",
@@ -2039,6 +2167,7 @@ The first time you recruit a character during each of your turns with [blood-pot
     mental: 1,
     disciplines: { presence: 1 },
   },
+
   "dar-nikolae": {
     stack: "faction",
     name: "Nikolae",
@@ -2056,6 +2185,7 @@ Attacker - If this attack defeats the target, steal 1 Retainer from any characte
     mental: 1,
     disciplines: { dominate: 1, protean: 1 },
   },
+
   "dar-radu": {
     stack: "faction",
     name: "Radu",
@@ -2073,6 +2203,7 @@ Attacker - If this attack defeats the target, steal 1 Retainer from any characte
     mental: 0,
     disciplines: { animalism: 1, protean: 1 },
   },
+
   "dar-shweta": {
     stack: "faction",
     name: "Shweta",
@@ -2088,6 +2219,7 @@ Solo Attacker - If this attack deals 1+ [damage] to a target in their haven, ste
     mental: 0,
     disciplines: { animalism: 1 },
   },
+
   "dar-simona": {
     stack: "faction",
     name: "Simona",
@@ -2105,6 +2237,7 @@ Solo Attacker - If this attack deals 1+ [damage] to a target in their haven, ste
     mental: 1,
     disciplines: { dominate: 1, protean: 1 },
   },
+
   "dar-stefan-cel-tradat": {
     stack: "faction",
     name: "Stefan Cel Tradat",
@@ -2120,6 +2253,7 @@ When this character exhausts, you may move 1 [blood] or [prestige] from a card y
     mental: 2,
     disciplines: { animalism: 1, obfuscate: 1 },
   },
+
   "dar-the-ghoul-keeper": {
     stack: "faction",
     name: "The Ghoul Keeper",
@@ -2135,6 +2269,7 @@ When this character exhausts, you may mend 1 [blood] on target Ghoul you control
     mental: 1,
     disciplines: { protean: 1 },
   },
+
   "dar-valeria": {
     stack: "faction",
     name: "Valeria",
@@ -2150,6 +2285,7 @@ If this character is defeated, steal 1 [prestige] from the attacking player for 
     mental: 0,
     disciplines: { dominate: 1, protean: 1 },
   },
+
   "dar-vladislav": {
     stack: "faction",
     name: "Vladislav",
@@ -2167,6 +2303,7 @@ If this character is defeated, steal 1 [prestige] from the attacking player for 
     mental: 0,
     disciplines: { animalism: 1, dominate: 1 },
   },
+
   "dar-zoya": {
     stack: "faction",
     name: "Zoya",
@@ -2181,5 +2318,321 @@ When this character Blocks an attack and is not defeated, you may attach 1 unatt
     social: 0,
     mental: 2,
     disciplines: { animalism: 1 },
+  },
+
+  "jam-javier": {
+    stack: "faction",
+    name: "Javier",
+    text: md`
+When you play a Ritual, mend 1 [blood] on a character in your coterie.
+    `,
+    illustrator: "Joyce Maureira",
+    set: "Justice & Mercy",
+    clan: "banu haqim",
+    bloodPotency: 3,
+    physical: 0,
+    social: 0,
+    mental: 2,
+    disciplines: { "blood sorcery": 1 },
+  },
+
+  "jam-minnie": {
+    stack: "faction",
+    name: "Minnie",
+    text: md`
+When your Rival discards to mend during their End Phase (including in torpor), replace that [blood] with [blood] of your color from the general supply.
+    `,
+    illustrator: "Joyce Maureira",
+    set: "Justice & Mercy",
+    clan: "banu haqim",
+    bloodPotency: 4,
+    physical: 0,
+    social: 2,
+    mental: 0,
+    disciplines: { "blood sorcery": 1, obfuscate: 1 },
+  },
+
+  "jam-todd": {
+    stack: "faction",
+    name: "Todd",
+    text: md`
+**Diablerist**
+
+When any character suffers diablerie, you may put 1 [blood] from the general supply on each Ongoing card you control with 1+ [blood] on it.
+    `,
+    illustrator: "Joyce Maureira",
+    set: "Justice & Mercy",
+    clan: "banu haqim",
+    bloodPotency: 4,
+    physical: 2,
+    social: 0,
+    mental: 0,
+    disciplines: { "blood sorcery": 1, celerity: 1 },
+  },
+
+  "jam-sama-radi": {
+    stack: "faction",
+    name: "Sama Radi",
+    text: md`
+**Diablerist**
+
+Attacker - If the target has an Affliction, this attack cannot be Blocked.
+    `,
+    illustrator: "Marco Primo",
+    set: "Justice & Mercy",
+    clan: "banu haqim",
+    bloodPotency: 5,
+    physical: 1,
+    social: 0,
+    mental: 2,
+    disciplines: { "blood sorcery": 1, obfuscate: 1 },
+  },
+
+  "jam-pavel-horak": {
+    stack: "faction",
+    name: "Pavel Horak",
+    text: md`
+**Diablerist**
+
+Attacker - This attack deals +1 [damage] to the target for each [blood] of your color on the target and the [damage] becomes non-**Aggravated**.
+    `,
+    illustrator: "Felipe Gaona",
+    set: "Justice & Mercy",
+    clan: "banu haqim",
+    bloodPotency: 5,
+    physical: 1,
+    social: 1,
+    mental: 1,
+    disciplines: { "blood sorcery": 1, celerity: 1 },
+  },
+
+  "jam-alhaml-alqurbaniu": {
+    stack: "faction",
+    name: "Alhaml Alqurbaniu",
+    text: md`
+When antoher character in your coterie would be defeated, burn this character instead. Then put 1 [blood] onto your other character from the general supply and they are not defeated.
+    `,
+    illustrator: "Joyce Maureira",
+    set: "Justice & Mercy",
+    clan: "banu haqim",
+    bloodPotency: 3,
+    physical: 1,
+    social: 1,
+    mental: 0,
+    disciplines: { obfuscate: 1 },
+  },
+
+  "jam-alraaz-tahir": {
+    stack: "faction",
+    name: "Alraaz Tahir",
+    text: md`
+**Diablerist**
+
+Party - When an attacker in this party does not defeat their target, replace 1 [blood] on the target with one of your color from the general supply.
+    `,
+    illustrator: "Amy Wilkins",
+    set: "Justice & Mercy",
+    clan: "banu haqim",
+    bloodPotency: 6,
+    physical: 2,
+    social: 0,
+    mental: 1,
+    disciplines: { "blood sorcery": 1, celerity: 1, obfuscate: 1 },
+  },
+
+  "jam-Naomi": {
+    stack: "faction",
+    name: "Naomi",
+    text: md`
+**Diablerist**
+
+Attacker - This attack deals +1 [damage] to target for each different Ongoing Tradition you control.
+    `,
+    illustrator: "Joyce Maureira",
+    set: "Justice & Mercy",
+    clan: "banu haqim",
+    bloodPotency: 5,
+    physical: 2,
+    social: 1,
+    mental: 0,
+    disciplines: { "blood sorcery": 2 },
+  },
+
+  "jam-szymon-nowak": {
+    stack: "faction",
+    name: "Szymon Nowak",
+    text: md`
+When you play a Tradition, draw 1 card.
+    `,
+    illustrator: "Joyce Maureira",
+    set: "Justice & Mercy",
+    clan: "banu haqim",
+    bloodPotency: 4,
+    physical: 1,
+    social: 1,
+    mental: 0,
+    disciplines: { "blood sorcery": 1, celerity: 1 },
+  },
+
+  "jam-chiara": {
+    stack: "faction",
+    name: "Chiara",
+    text: md`
+**Solitary**
+
+When this character plays or places an Action card, draw 1 card.
+    `,
+    illustrator: "Amy Wilkins",
+    set: "Justice & Mercy",
+    clan: "salubri",
+    bloodPotency: 7,
+    physical: 1,
+    social: 1,
+    mental: 2,
+    disciplines: { auspex: 1, dominate: 1, fortitude: 1 },
+  },
+
+  "jam-mareike": {
+    stack: "faction",
+    name: "Mareike",
+    text: md`
+**Solitary**
+
+When this character plays a Reaction, gain 1 [prestige]
+    `,
+    illustrator: "Felipe Gaona",
+    set: "Justice & Mercy",
+    clan: "salubri",
+    bloodPotency: 4,
+    physical: 0,
+    social: 0,
+    mental: 2,
+    disciplines: { auspex: 1, fortitude:1 },
+  },
+
+  "jam-noelle": {
+    stack: "faction",
+    name: "Noelle",
+    text: md`
+**Solitary**
+
+When this chracter is recruited, they gain any number of attachments from a character who left your coterie this turn.
+    `,
+    illustrator: "Joyce Maureira",
+    set: "Justice & Mercy",
+    clan: "salubri",
+    bloodPotency: 4,
+    physical: 1,
+    social: 1,
+    mental: 0,
+    disciplines: { auspex: 1, dominate: 1 },
+  },
+
+  "jam-alzbeta": {
+    stack: "faction",
+    name: "Alzbeta",
+    text: md`
+**Solitary**
+
+At the start of your turn, if this is the only character you control and they are at maximum [blood], gain 1 [prestige].
+
+When this character plays a Reaction, the affected character has +1 [shield].
+    `,
+    illustrator: "Joyce Maureira",
+    set: "Justice & Mercy",
+    clan: "salubri",
+    bloodPotency: 6,
+    physical: 1,
+    social: 1,
+    mental: 1,
+    disciplines: { auspex: 2, fortitude: 1 },
+  },
+
+  "jam-baptiste": {
+    stack: "faction",
+    name: "Baptiste",
+    text: md`
+**Solitary**
+
+Exhaust: Mend 2 [blood] on target character (including in torpor). If you don't control the target draw 1 card.
+    `,
+    illustrator: "Joyce Maureira",
+    set: "Justice & Mercy",
+    clan: "banu haqim",
+    bloodPotency: 5,
+    physical: 0,
+    social: 2,
+    mental: 1,
+    disciplines: { fortitude: 2 },
+  },
+
+  "jam-anita": {
+    stack: "faction",
+    name: "Anita",
+    text: md`
+**Solitary**
+
+When this character exhausts during your turn, you may mend 1 [blood] on target character (including in torpor).
+    `,
+    illustrator: "Joyce Maureira",
+    set: "Justice & Mercy",
+    clan: "banu haqim",
+    bloodPotency: 6,
+    physical: 2,
+    social: 1,
+    mental: 0,
+    disciplines: { dominate: 1, fortitude: 2 },
+  },
+
+  "jam-illona": {
+    stack: "faction",
+    name: "Illona",
+    text: md`
+**Solitary**
+
+Shuffle 1 Reaction from your discard pile into your Library: This character has +1 [shield] this turn.
+    `,
+    illustrator: "Irene Francisco",
+    set: "Justice & Mercy",
+    clan: "banu haqim",
+    bloodPotency: 5,
+    physical: 1,
+    social: 1,
+    mental: 1,
+    disciplines: { auspex: 1, fortitude: 1 },
+  },
+
+  "jam-kashi": {
+    stack: "faction",
+    name: "Kashi",
+    text: md`
+When this character exhausts, you may remove 1 Affliction from target character.
+    `,
+    illustrator: "Joyce Maureira",
+    set: "Justice & Mercy",
+    clan: "banu haqim",
+    bloodPotency: 5,
+    physical: 2,
+    social: 0,
+    mental: 1,
+    disciplines: { dominate: 2 },
+  },
+
+  "jam-amara": {
+    stack: "faction",
+    name: "Amara",
+    text: md`
+**Solitary**
+
+When you mend a **Wounded** character, you may discard a non-title, non-Wraith card attached to that character.
+    `,
+    illustrator: "Felipe Gaona",
+    set: "Justice & Mercy",
+    clan: "banu haqim",
+    bloodPotency: 4,
+    physical: 0,
+    social: 1,
+    mental: 1,
+    disciplines: { auspex: 1, fortitude: 1 },
   },
 };

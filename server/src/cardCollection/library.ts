@@ -36,34 +36,37 @@ Gain 2 Influence during this action or event. If this is a Scheme and your side 
     illustrator: "Joshua Esmeralda",
     set: "Heart of Europe",
   },
+
   "hoe-bank-error-in-your-favor": {
     stack: "library",
     name: "Bank Error In Your Favor",
     clan: "malkavian",
     types: ["action", "conspiracy"],
     text: md`
-      **Play this card face down and place 1 [prestige] on it.**
+**Play this card face down and place 1 [prestige] on it.**
 
-           If this card has 2+ [prestige] on it, you may resolve it during your turn. Target foe who did not contribute draws 3 cards.
+If this card has 2+ [prestige] on it, you may resolve it during your turn. Target foe who did not contribute draws 3 cards.
     `,
     illustrator: "Marco Primo",
     set: "Heart of Europe",
   },
+
   "hoe-blood-poisoning": {
     stack: "library",
     name: "Blood Poisoning",
     types: ["action", "trap"],
     text: md`
-      **Play this card face down and place 1 [prestige] on it.**
+**Play this card face down and place 1 [prestige] on it.**
 
-      Resolve at any time.
+Resolve at any time.
 
-      [obfuscate] Target foe's character that attached a Retainer this turn loses 1 [blood] for each [prestige] on this card.
+[obfuscate] Target foe's character that attached a Retainer this turn loses 1 [blood] for each [prestige] on this card.
     `,
     disciplines: ["obfuscate"],
     illustrator: "Adelijah Ocampo",
     set: "Heart of Europe",
   },
+
   "hoe-blood-transfusion": {
     stack: "library",
     name: "Blood Transfusion",
@@ -75,18 +78,20 @@ Ongoing - When a character in your coterie attacks a character and does not defe
     illustrator: "Harvey Bunda",
     set: "Heart of Europe",
   },
+
   "hoe-bread-and-circuses": {
     stack: "library",
     name: "Bread and Circuses",
     types: ["action", "scheme"],
     text: md`
-      Influence Conflict - Should I give each player a Reward?
+Influence Conflict - Should I give each player a Reward?
 
-           If this succeeds, choose 1 **different** Reward for each player - Draw 1 card, gain 1 [prestige], gain 1 [agenda], or they mend 2 [blood] on 1 character they control.
+If this succeeds, choose 1 **different** Reward for each player - Draw 1 card, gain 1 [prestige], gain 1 [agenda], or they mend 2 [blood] on 1 character they control.
     `,
     illustrator: "Marco Primo",
     set: "Heart of Europe",
   },
+
   "hoe-cover-charge": {
     stack: "library",
     name: "Cover Charge",
@@ -101,6 +106,7 @@ Ongoing - For a foe to attack a character with [presence], that foe must first g
     illustrator: "Joshua Esmeralda",
     set: "Heart of Europe",
   },
+
   "hoe-entrancement": {
     stack: "library",
     name: "Entrancement",
@@ -115,6 +121,7 @@ Ongoing - For a foe to attack a character with [presence], that foe must first g
     illustrator: "Harvey Bunda",
     set: "Heart of Europe",
   },
+
   "hoe-fortify-the-inner-facade": {
     stack: "library",
     name: "Fortify the Inner Facade",
@@ -125,13 +132,15 @@ Ongoing - For a foe to attack a character with [presence], that foe must first g
     text: md`
 Play this card face up.
 
-    If your foe's Attack would cause you to lose or spend [prestige], gain 3 [prestige] first.
-    [fortitude] If not, +1 [shield].
+If your foe's Attack would cause you to lose or spend [prestige], gain 3 [prestige] first.
+
+[fortitude] If not, +1 [shield].
     `,
     disciplines: ["fortitude"],
     illustrator: "Joyce Maureira",
     set: "Heart of Europe",
   },
+
   "hoe-fourth-tradition-the-accounting": {
     stack: "library",
     name: "Fourth Tradition: The Accounting",
@@ -139,11 +148,12 @@ Play this card face up.
     text: md`
 Attach to target Leader with 2 or fewer attachments.
 
-    When another character in this Leader's coterie makes an attack or uses an activated ability, this character loses 1 [blood].
+When another character in this Leader's coterie makes an attack or uses an activated ability, this character loses 1 [blood].
     `,
     illustrator: "Mara Miranda-Escota",
     set: "Heart of Europe",
   },
+
   "hoe-hidden-stash": {
     stack: "library",
     name: "Hidden Stash",
@@ -152,11 +162,12 @@ Attach to target Leader with 2 or fewer attachments.
     text: md`
 Add 4 [prestige] from the general supply to this card.
 
-    Ongoing - You may spend [prestige] on this to pay for activated abilities on characters in your coterie.
+Ongoing - You may spend [prestige] on this to pay for activated abilities on characters in your coterie.
     `,
     illustrator: "Harvey Bunda",
     set: "Heart of Europe",
   },
+
   "hoe-lone-wolf": {
     stack: "library",
     name: "Lone Wolf",
@@ -165,11 +176,12 @@ Add 4 [prestige] from the general supply to this card.
     text: md`
 Ongoing - During other players' turns, your characters who are alone in a party have +1 [shield].
 
-    Your characters have: Solo Attacker - The target has -1 [shield] during this attack.
+Your characters have: Solo Attacker - The target has -1 [shield] during this attack.
     `,
     illustrator: "Irene Francisco",
     set: "Heart of Europe",
   },
+
   "hoe-off-limits": {
     stack: "library",
     name: "Off Limits",
@@ -178,14 +190,15 @@ Ongoing - During other players' turns, your characters who are alone in a party 
     text: md`
 **Play this card face down and place 1 [prestige] on it.**
 
-    Resolve at any time.
+Resolve at any time.
 
-    Target defender in The Streets has +2 [shield] during this attack for each [prestige] on this.
+Target defender in The Streets has +2 [shield] during this attack for each [prestige] on this.
     `,
     illustrator: "Joshua Esmeralda",
     set: "Heart of Europe",
   },
-  "hoe-property-developer": {
+
+"hoe-property-developer": {
     stack: "library",
     name: "Property Developer",
     clan: "ventrue",
@@ -193,11 +206,12 @@ Ongoing - During other players' turns, your characters who are alone in a party 
     text: md`
 **Pay 1 [prestige].**
 
-    Attach 1 Haven from your collection to your Leader. They have the Leader Abilities of that Haven.
+Attach 1 Haven from your collection to your Leader. They have the Leader Abilities of that Haven.
     `,
     illustrator: "Marco Primo",
     set: "Heart of Europe",
   },
+
   "hoe-prosperity": {
     stack: "library",
     name: "Prosperity",
@@ -208,6 +222,7 @@ Influence Conflict - Should each player draw 4 cards?
     illustrator: "Marco Primo",
     set: "Heart of Europe",
   },
+
   "hoe-psychic-assault": {
     stack: "library",
     name: "Psychic Assault",
@@ -217,12 +232,13 @@ Influence Conflict - Should each player draw 4 cards?
     text: md`
 Play this card face up. This attack cannot be Blocked.
 
-    [auspex] **Reveal the top card of any player's Library:** +X [damage] equal to the [bloodPotencyRequirement] of that card.
+[auspex] **Reveal the top card of any player's Library:** +X [damage] equal to the [bloodPotencyRequirement] of that card.
     `,
     disciplines: ["auspex"],
     illustrator: "Harvey Bunda",
     set: "Heart of Europe",
   },
+
   "hoe-rapid-reflexes": {
     stack: "library",
     name: "Rapid Reflexes",
@@ -233,12 +249,13 @@ Play this card face up. This attack cannot be Blocked.
     text: md`
 Retarget this attack to any other character in the defending party.
 
-    The new defender has +1 [shield] for each [celerity] they have.
+The new defender has +1 [shield] for each [celerity] they have.
     `,
     disciplines: ["celerity"],
     illustrator: "Joshua Esmeralda",
     set: "Heart of Europe",
   },
+
   "hoe-royal-bling": {
     stack: "library",
     name: "Royal Bling",
@@ -250,6 +267,7 @@ Ongoing - At the start of your turn, add 1 [agenda] from the general supply to e
     illustrator: "Irene Francisco",
     set: "Heart of Europe",
   },
+
   "hoe-spiders": {
     stack: "library",
     name: "Spiders",
@@ -257,14 +275,15 @@ Ongoing - At the start of your turn, add 1 [agenda] from the general supply to e
     text: md`
 **Play this card face down and place 1 [prestige] on it.**
 
-    Resolve at any time.
+Resolve at any time.
 
-    [animalism] Put a Fear token on target foe's character that made an attack this turn.
+[animalism] Put a Fear token on target foe's character that made an attack this turn.
     `,
     disciplines: ["animalism"],
     illustrator: "Irene Francisco",
     set: "Heart of Europe",
   },
+
   "hoe-title-fight": {
     stack: "library",
     name: "Title Fight",
@@ -274,11 +293,12 @@ Ongoing - At the start of your turn, add 1 [agenda] from the general supply to e
     text: md`
 **Superficial**
 
-    +[damage] equal to the [bloodPotencyRequirement] of a Title attached to the attacker (Prince counts as 7). (This attack cannot reduce the target's [blood] below 1.)
++[damage] equal to the [bloodPotencyRequirement] of a Title attached to the attacker (Prince counts as 7). (This attack cannot reduce the target's [blood] below 1.)
     `,
     illustrator: "Adelijah Ocampo",
     set: "Heart of Europe",
   },
+
   "hoe-voter-suppression": {
     stack: "library",
     name: "Voter Suppression",
@@ -287,11 +307,12 @@ Ongoing - At the start of your turn, add 1 [agenda] from the general supply to e
     text: md`
 Ongoing - When a character exerts Influence against a Scheme you play, that character loses 1 [blood].
 
-    **Exhaust:** Target character in your coterie has +1 Influence during this action or event.
+**Exhaust:** Target character in your coterie has +1 Influence during this action or event.
     `,
     illustrator: "Adelijah Ocampo",
     set: "Heart of Europe",
   },
+
   "hoe-wake-with-evenings-freshness": {
     stack: "library",
     name: "Wake With Evening's Freshness",
@@ -299,13 +320,14 @@ Ongoing - When a character exerts Influence against a Scheme you play, that char
     text: md`
 [blood sorcery] **Place 1 to 3 [blood] of your color on this card.**
 
-    Ongoing, **Relentless** - **Remove 1 [blood] from this:** Move a ready character in your coterie to The Streets to Block a non-[ranged] attack against any target.
+Ongoing, **Relentless, Remove 1 [blood] from this:** Move a ready character in your coterie to The Streets to Block a non-[ranged] attack against any target.
     `,
     illustrator: "Mara Miranda-Escota",
     disciplines: ["blood sorcery"],
     reactions: ["physical", "social", "mental"],
     set: "Heart of Europe",
   },
+
   "hoe-whip-of-the-primogen": {
     stack: "library",
     name: "Whip of the Primogen",
@@ -314,12 +336,13 @@ Ongoing - When a character exerts Influence against a Scheme you play, that char
     text: md`
 **Exert 2 Influence to attach.**
 
-    This character has +1 Influence for each [presence] they have. At the end of your turn, remove a 'No Influence' token from 1 character in your coterie that matches this character's clan.
+This character has +1 Influence for each [presence] they have. At the end of your turn, remove a 'No Influence' token from 1 character in your coterie that matches this character's clan.
     `,
     disciplines: ["presence"],
     illustrator: "Adelijah Ocampo",
     set: "Heart of Europe",
   },
+
   "hoe-wild-ranting": {
     stack: "library",
     name: "Wild Ranting",
@@ -330,6 +353,7 @@ Gain 3 Influence during this action or event. If this is a Scheme and your side 
     illustrator: "Marco Primo",
     set: "Heart of Europe",
   },
+
   "hoe-withering-spirit": {
     stack: "library",
     name: "Withering Spirit",
@@ -339,12 +363,13 @@ Gain 3 Influence during this action or event. If this is a Scheme and your side 
     text: md`
 **Burn 1 wraith you control:** The [damage] from this card becomes **Aggravated**.
 
-    [oblivion] Deal 1 [mental] [damage] to target character for each wraith in your coterie and each Curse attached to the target.
+[oblivion] Deal 1 [mental] [damage] to target character for each wraith in your coterie and each Curse attached to the target.
     `,
     disciplines: ["oblivion"],
     illustrator: "Irene Francisco",
     set: "Heart of Europe",
   },
+
   "sas-bind-the-spirit": {
     stack: "library",
     name: "Bind the Spirit",
@@ -358,6 +383,7 @@ Ongoing - **Relentless, Remove 1 [blood] from this:** Attach a wraith in your co
     set: "Shadows & Shrouds",
     disciplines: ["oblivion"],
   },
+
   "sas-court-of-blood": {
     stack: "library",
     name: "Court of Blood",
@@ -374,6 +400,7 @@ Party - **Detach** The attack diablerizes a vampire defeated by this attack.
     clan: "lasombra",
     bloodPotencyRequirement: 3,
   },
+
   "sas-mental-block": {
     stack: "library",
     name: "Mental Block",
@@ -387,6 +414,7 @@ Ongoing - Your foes may not play cards with the same name as a card attached to 
     set: "Shadows & Shrouds",
     disciplines: ["auspex"],
   },
+
   "sas-arms-of-ahriman": {
     stack: "library",
     name: "Arms of Ahriman",
@@ -403,6 +431,7 @@ Deal 1 [physical] [damage] to target character in The Streets for each [potence]
     bloodPotencyRequirement: 2,
     disciplines: ["potence", "oblivion"],
   },
+
   "sas-clairvoyance": {
     stack: "library",
     name: "Clairvoyance",
@@ -414,6 +443,7 @@ Deal 1 [physical] [damage] to target character in The Streets for each [potence]
     set: "Shadows & Shrouds",
     disciplines: ["auspex"],
   },
+
   "sas-cloud-memory": {
     stack: "library",
     name: "Cloud Memory",
@@ -428,6 +458,7 @@ Deal 1 [physical] [damage] to target character in The Streets for each [potence]
     damage: 1,
     disciplines: ["dominate"],
   },
+
   "sas-diminish": {
     stack: "library",
     name: "Diminish",
@@ -441,6 +472,7 @@ Ongoing - **Remove 1 [blood] from this:** Put a '-1 [blood-potency]' token on ta
     set: "Shadows & Shrouds",
     disciplines: ["oblivion"],
   },
+
   "sas-early-grave": {
     stack: "library",
     name: "Early Grave",
@@ -451,6 +483,7 @@ Recruit a Hecata character from your hand into torpor at no cost.
     types: ["action"],
     set: "Shadows & Shrouds",
   },
+
   "sas-fight-makes-right": {
     stack: "library",
     name: "Fight Makes Right",
@@ -461,6 +494,7 @@ Ongoing - Each character in your coterie has +1 Influence for each [agenda] on t
     types: ["unhosted action", "ongoing"],
     set: "Shadows & Shrouds",
   },
+
   "sas-flesh-of-marble": {
     stack: "library",
     name: "Flesh of Marble",
@@ -478,6 +512,7 @@ Play only if a character in your coterie would take **Aggravated** damage.
     shield: 1,
     disciplines: ["fortitude"],
   },
+
   "sas-grave-robbing": {
     stack: "library",
     name: "Grave Robbing",
@@ -489,6 +524,7 @@ Draw 1 card and choose 1 player. For each character that player has in torpor, e
     set: "Shadows & Shrouds",
     clan: "hecata",
   },
+
   "sas-graveyard-smash": {
     stack: "library",
     name: "Graveyard Smash",
@@ -504,6 +540,7 @@ Draw 1 card and choose 1 player. For each character that player has in torpor, e
     attack: "physical",
     damage: 0,
   },
+
   "sas-high-stakes": {
     stack: "library",
     name: "High Stakes",
@@ -517,6 +554,7 @@ Draw 1 card and choose 1 player. For each character that player has in torpor, e
     attack: "social",
     damage: 1,
   },
+
   "sas-its-your-funeral": {
     stack: "library",
     name: "It's Your Funeral",
@@ -530,6 +568,7 @@ Draw 1 card and choose 1 player. For each character that player has in torpor, e
     attack: "social",
     damage: 1,
   },
+
   "sas-interrogation": {
     stack: "library",
     name: "Interrogation",
@@ -543,6 +582,7 @@ If this attack deals 1+ [damage] to the target, look at that foe's hand.
     attack: "social",
     damage: 2,
   },
+
   "sas-legate": {
     stack: "library",
     name: "Legate",
@@ -559,6 +599,7 @@ This character has +1 [blood-potency].
     clan: "lasombra",
     bloodPotencyRequirement: 4,
   },
+
   "sas-living-shadow": {
     stack: "library",
     name: "Living Shadow",
@@ -577,6 +618,7 @@ _(You may retarget this attack to any legal target in the opposing party)_
     damage: 0,
     disciplines: ["oblivion"],
   },
+
   "sas-money-shot": {
     stack: "library",
     name: "Money Shot",
@@ -591,6 +633,7 @@ _(You may retarget this attack to any legal target in the opposing party)_
     damage: 1,
     disciplines: ["potence"],
   },
+
   "sas-necromancy": {
     stack: "library",
     name: "Necromancy",
@@ -602,6 +645,7 @@ Discard cards from the City Deck until you discard a Mortal, then burn that Mort
     set: "Shadows & Shrouds",
     clan: "hecata",
   },
+
   "sas-prowess-from-pain": {
     stack: "library",
     name: "Prowess From Pain",
@@ -616,6 +660,7 @@ Discard cards from the City Deck until you discard a Mortal, then burn that Mort
     damage: 1,
     disciplines: ["fortitude"],
   },
+
   "sas-shadow-boxing": {
     stack: "library",
     name: "Shadow Boxing",
@@ -632,6 +677,7 @@ If the attacker has **Reach**, additional +1 [damage].
     damage: 0,
     disciplines: ["oblivion"],
   },
+
   "sas-shadow-cloak": {
     stack: "library",
     name: "Shadow Cloak",
@@ -647,6 +693,7 @@ Attacker - This character deals +1 [damage] to City Deck Mortals.
     set: "Shadows & Shrouds",
     disciplines: ["oblivion"],
   },
+
   "sas-sixth-tradition-destruction": {
     stack: "library",
     name: "Sixth Tradition: Destruction",
@@ -657,6 +704,7 @@ Influence Conflict - Should I deal 1 **Aggravated** [damage] to target character
     types: ["action", "scheme"],
     set: "Shadows & Shrouds",
   },
+
   "sas-soul-crushing": {
     stack: "library",
     name: "Soul Crushing",
@@ -671,6 +719,7 @@ Influence Conflict - Should I deal 1 **Aggravated** [damage] to target character
     damage: 0,
     disciplines: ["oblivion"],
   },
+
   "sas-spectral-possession": {
     stack: "library",
     name: "Spectral Possession",
@@ -682,6 +731,7 @@ Influence Conflict - Should I deal 1 **Aggravated** [damage] to target character
     set: "Shadows & Shrouds",
     clan: "hecata",
   },
+
   "sas-spirits-touch": {
     stack: "library",
     name: "Spirit's Touch",
@@ -693,6 +743,7 @@ Influence Conflict - Should I deal 1 **Aggravated** [damage] to target character
     set: "Shadows & Shrouds",
     disciplines: ["auspex"],
   },
+
   "sas-summon-spirit": {
     stack: "library",
     name: "Summon Spirit",
@@ -706,6 +757,7 @@ Ongoing - **Remove 2 [blood] from this:** Create a wraith and attach it to a cha
     set: "Shadows & Shrouds",
     disciplines: ["oblivion"],
   },
+
   "sas-tenebrous-avatar": {
     stack: "library",
     name: "Tenebrous Avatar",
@@ -720,6 +772,7 @@ Ongoing - **Remove 2 [blood] from this:** Create a wraith and attach it to a cha
     shield: 1,
     disciplines: ["oblivion"],
   },
+
   "sas-the-gift-of-false-life": {
     stack: "library",
     name: "The Gift of False Life",
@@ -733,6 +786,7 @@ Ongoing - **Remove 1 [blood] from this:** Place that [blood] on any character in
     set: "Shadows & Shrouds",
     disciplines: ["oblivion"],
   },
+
   "sas-the-scent-of-death": {
     stack: "library",
     name: "The Scent of Death",
@@ -746,6 +800,7 @@ Ongoing - **Remove 1 [blood] from this:** Target **Wounded** character loses 1 [
     set: "Shadows & Shrouds",
     disciplines: ["oblivion"],
   },
+  
   "sas-throwing-shade": {
     stack: "library",
     name: "Throwing Shade",
@@ -760,6 +815,7 @@ If this party has 2+ [oblivion], +1 [damage].
     damage: 2,
     disciplines: ["oblivion"],
   },
+
   "sas-utter-darkness": {
     stack: "library",
     name: "Utter Darkness",
@@ -774,6 +830,7 @@ If this party has 2+ [oblivion], +1 [damage].
     damage: 1,
     disciplines: ["oblivion"],
   },
+
   "sas-whats-yours-is-mine": {
     stack: "library",
     name: "What's Yours is Mine",
@@ -785,6 +842,7 @@ Influence Conflict - Should I steal 1 [agenda] from target foe with the most [ag
     set: "Shadows & Shrouds",
     clan: "lasombra",
   },
+
   "sas-winning": {
     stack: "library",
     name: "Winning",
@@ -795,6 +853,7 @@ Put 1 [agenda] from the general supply on each character in your coterie.
     types: ["action"],
     set: "Shadows & Shrouds",
   },
+
   "core-38-special": {
     stack: "library",
     name: ".38 Special",
@@ -808,6 +867,7 @@ Put 1 [agenda] from the general supply on each character in your coterie.
     attack: "ranged",
     damage: 2,
   },
+
   "core-a-biting-comment": {
     stack: "library",
     name: "A Biting Comment",
@@ -822,6 +882,7 @@ Chose one: +2 Damage OR steal 1 Prestige from your foe.
     damage: 0,
     shield: 0,
   },
+
   "baa-absolution": {
     stack: "library",
     name: "Absolution",
@@ -836,6 +897,7 @@ If the target has 1+ Blood of your color, negate all Reactions.
     damage: 2,
     shield: 0,
   },
+
   "baa-all-the-angles": {
     stack: "library",
     name: "All the Angles",
@@ -850,6 +912,7 @@ Superficial. +1 Damage for each different Discipline the attacker has. (This att
     damage: 0,
     shield: 0,
   },
+
   "core-all-tied-up": {
     stack: "library",
     name: "All Tied Up",
@@ -861,6 +924,7 @@ Play this card face down and place 1 prestige on it. If this card has 2+ prestig
     set: "Core",
     clan: "malkavian",
   },
+
   "core-assert-authority": {
     stack: "library",
     name: "Assert Authority",
@@ -872,6 +936,7 @@ Ongoing - Your Leader has +1 Influence for each foe in the game.
     set: "Core",
     clan: "ventrue",
   },
+
   "baa-athanor-corporis": {
     stack: "library",
     name: "Athanor Corporis",
@@ -883,11 +948,12 @@ Attach to the acting character. If they are a Thin-blood, gain 1 Action. This ch
     set: "Blood & Alchemy",
     clan: "thin-blood",
   },
+
   "baa-baals-caress": {
     stack: "library",
     name: "Baal's Caress",
     text: md`
-Play this card face up. Blood Sorcery Pay 1 blood: +1 Aggravated Damage. You may activate this ability one for each Blood Sorcery this character has.
+Play this card face up. Blood Sorcery Pay 1 blood: +1 **Aggravated** Damage. You may activate this ability one for each Blood Sorcery this character has.
     `,
     illustrator: "Harvey Bunda",
     types: ["attack"],
@@ -898,6 +964,7 @@ Play this card face up. Blood Sorcery Pay 1 blood: +1 Aggravated Damage. You may
     shield: 0,
     disciplines: ["blood sorcery"],
   },
+
   "baa-back-to-formula": {
     stack: "library",
     name: "Back to Formula",
@@ -909,6 +976,7 @@ Thin-blood Alchemy Revel the top 4 cards of your Library. Draw each revealed Alc
     set: "Blood & Alchemy",
     disciplines: ["thin-blood alchemy"],
   },
+
   "core-backhanded-compliment": {
     stack: "library",
     name: "Backhanded Compliment",
@@ -924,6 +992,7 @@ If the target is not defeated, your foe must mend them by spending Prestige equa
     damage: 1,
     shield: 0,
   },
+
   "baa-backup": {
     stack: "library",
     name: "Backup",
@@ -938,6 +1007,7 @@ If the target is not defeated, your foe must mend them by spending Prestige equa
     damage: 0,
     shield: 0,
   },
+
   "core-balance-of-power": {
     stack: "library",
     name: "Balance of Power",
@@ -949,6 +1019,7 @@ Choose at least hald of the players (including yourseld). Influence Conflict - S
     set: "Core",
     clan: "toreador",
   },
+
   "core-baseball-bat": {
     stack: "library",
     name: "Baseball Bat",
@@ -963,6 +1034,7 @@ Choose at least hald of the players (including yourseld). Influence Conflict - S
     damage: 1,
     shield: 0,
   },
+
   "core-beauty-is-a-beast": {
     stack: "library",
     name: "Beauty is a Beast",
@@ -974,6 +1046,7 @@ Ongoing - During a Social attack against a City Deck Mortal, Exhaust: The attack
     set: "Core",
     clan: "toreador",
   },
+
   "core-blood-for-blood": {
     stack: "library",
     name: "Blood for Blood",
@@ -985,17 +1058,19 @@ Ongoing - When a character in your coterie makes a physic attack, they have the 
     set: "Core",
     clan: "brujah",
   },
+
   "baa-blood-makes-noise": {
     stack: "library",
     name: "Blood Makes Noise",
     text: md`
-Blood Sorcery Place 1 to 3 Blood of your color on this card. Ongoing, Relentless - Remove 1 Blood from this: Gain 1 Prestige or 4 Influence. WHen empty, burn this.
+Blood Sorcery Place 1 to 3 Blood of your color on this card. Ongoing, Relentless - **Remove 1 Blood from this:** Gain 1 Prestige or 4 Influence. WHen empty, burn this.
     `,
     illustrator: "Timothy Terrenal",
     types: ["action", "ritual", "ongoing"],
     set: "Blood & Alchemy",
     disciplines: ["blood sorcery"],
   },
+
   "baa-blood-of-potency": {
     stack: "library",
     name: "Blood of Potency",
@@ -1007,6 +1082,7 @@ Attach to the acting character. This character has +2 Blood Potence. When this a
     set: "Blood & Alchemy",
     disciplines: ["blood sorcery"],
   },
+
   "baa-break-down": {
     stack: "library",
     name: "Break Down",
@@ -1022,6 +1098,7 @@ Blood-thin Alchemy Put a '-1 Blood Potence' token on the target.
     shield: 0,
     disciplines: ["thin-blood alchemy"],
   },
+
   "core-burning-down-the-house": {
     stack: "library",
     name: "Burning Down the House",
@@ -1032,6 +1109,7 @@ Play this card face down and place 1 prestige on it. If this card has 3+ prestig
     types: ["action", "conspiracy"],
     set: "Core",
   },
+
   "baa-calcinatio": {
     stack: "library",
     name: "Calcinatio",
@@ -1043,6 +1121,7 @@ Attach to the acting character. If they are a Thin-blood, gain 1 Action. This ch
     set: "Blood & Alchemy",
     clan: "thin-blood",
   },
+
   "core-cloak-of-shadows": {
     stack: "library",
     name: "Cloak of Shadows",
@@ -1058,17 +1137,19 @@ Each character in this party has +1 Defense for each Obfuscate in this party.
     shield: 0,
     disciplines: ["obfuscate"],
   },
+
   "core-coup-de-grace": {
     stack: "library",
     name: "Coup de Grâce",
     text: md`
-Use only in The Streets. Potence pay 2 blood: Defeat target wounded character not in their Haven.
+Use only in The Streets. Potence pay 2 blood: Defeat target **Wounded** character not in their Haven.
     `,
     illustrator: "The Creation Studio",
     types: ["action"],
     set: "Core",
     disciplines: ["potence"],
   },
+
   "baa-crossbow": {
     stack: "library",
     name: "Crossbow",
@@ -1083,6 +1164,7 @@ Discard 1 card: Attach Crossbow to the target if they have 2 or fewer attachment
     damage: 1,
     shield: 0,
   },
+
   "baa-dangerous-mixture": {
     stack: "library",
     name: "Dangerous Mixture",
@@ -1097,17 +1179,19 @@ Discard 1 card: Attach Crossbow to the target if they have 2 or fewer attachment
     damage: 1,
     shield: 0,
   },
+
   "baa-defense-of-the-sacred-haven": {
     stack: "library",
     name: "Defense of the Sacred Haven",
     text: md`
-Blood Sorcery Place 1 to 3 Blood of your color on this card. Ongoing - Characters in your Haven have +1 Secrecy. At the start of your turn, remove 1 Blood from this. When empty, burn this.
+[blood sorcery] **Place 1 to 3 Blood of your color on this card.** Ongoing - Characters in your Haven have +1 Secrecy. At the start of your turn, remove 1 Blood from this. When empty, burn this.
     `,
     illustrator: "Irene Francisco",
     types: ["action", "ritual", "ongoing"],
     set: "Blood & Alchemy",
     disciplines: ["blood sorcery"],
   },
+
   "core-demand-obedience": {
     stack: "library",
     name: "Demand Obedience",
@@ -1123,6 +1207,7 @@ If this party has 2+ Dominate, your foe loses 2 Prestige.
     shield: 0,
     disciplines: ["dominate"],
   },
+
   "core-destroy-the-plans": {
     stack: "library",
     name: "Destroy the Plans",
@@ -1133,6 +1218,7 @@ Play this card face down and place 1 prestige on it. If this card has 3+ prestig
     types: ["action", "conspiracy"],
     set: "Core",
   },
+
   "core-dignity-of-the-office": {
     stack: "library",
     name: "Dignity of the Office",
@@ -1148,6 +1234,7 @@ Play this card face down and place 1 prestige on it. If this card has 3+ prestig
     damage: 0,
     shield: 0,
   },
+
   "core-distraction": {
     stack: "library",
     name: "Distraction",
@@ -1159,6 +1246,7 @@ Ongoing - Discard this card: Redirect up to 2 Second Inquisition damage you woul
     set: "Core",
     clan: "malkavian",
   },
+
   "core-drive-by": {
     stack: "library",
     name: "Drive-By",
@@ -1175,6 +1263,7 @@ Deal 2 Damage to an additional member of the opposing party for each character w
     shield: 0,
     disciplines: ["celerity"],
   },
+
   "core-dumpster-dive": {
     stack: "library",
     name: "Dumpster Dive",
@@ -1187,16 +1276,18 @@ Put a card from your discard pile into your hand. If your coterie has 2+ Auspex,
     clan: "malkavian",
     disciplines: ["auspex"],
   },
+
   "core-emergency-bloodbag": {
     stack: "library",
     name: "Emergency Bloodbag",
     text: md`
-Add 3 blood from the general supply to this card. Ongoing - At the start of your turn, you may place a token from this card onto a Wounded character in your coterie or in torpor. When empty, burn this card.
+Add 3 blood from the general supply to this card. Ongoing - At the start of your turn, you may place a token from this card onto a **Wounded** character in your coterie or in torpor. When empty, burn this card.
     `,
     illustrator: "Drew Tucker",
     types: ["unhosted action", "ongoing"],
     set: "Core",
   },
+
   "baa-enervate": {
     stack: "library",
     name: "Enervate",
@@ -1208,6 +1299,7 @@ Use only in the Streets. Steal 1 Prestige from target foe and put it on the acti
     set: "Blood & Alchemy",
     clan: "tremere",
   },
+
   "baa-envelop": {
     stack: "library",
     name: "Envelop",
@@ -1218,6 +1310,7 @@ Detach an Alchemy from the acting character: Put a '-1 Blood Potence' token on e
     types: ["action"],
     set: "Blood & Alchemy",
   },
+
   "core-everything-is-connected": {
     stack: "library",
     name: "Everything is Connected",
@@ -1229,6 +1322,7 @@ If you have Auspex in your coterie, add 1 Prestige from the general supply to ea
     set: "Core",
     disciplines: ["auspex"],
   },
+
   "baa-extinguish-vitae": {
     stack: "library",
     name: "Extinguish Vitae",
@@ -1240,6 +1334,7 @@ Blood Sorcery Remove all Blood of your color from target character.
     set: "Blood & Alchemy",
     disciplines: ["blood sorcery"],
   },
+
   "core-fame-and-fortune": {
     stack: "library",
     name: "Fame & Fortune",
@@ -1251,6 +1346,7 @@ Influence Conflict - Should I gain 2 Prestige and 1 Agenda?
     set: "Core",
     clan: "toreador",
   },
+
   "baa-far-reach": {
     stack: "library",
     name: "Far Reach",
@@ -1261,6 +1357,7 @@ Move target character into The Streets as a separate party. Detach an Alchemy fr
     types: ["action"],
     set: "Blood & Alchemy",
   },
+
   "core-faulty-logic": {
     stack: "library",
     name: "Faulty Logic",
@@ -1276,6 +1373,7 @@ Your foe contributes 1 Prestige to a face-down card of your choosing. If you res
     damage: 1,
     shield: 0,
   },
+
   "baa-first-ones-free": {
     stack: "library",
     name: "First One's Free",
@@ -1290,6 +1388,7 @@ Detach an Alchemy from a characer in this party: Steal a Retainer from a member 
     damage: 1,
     shield: 0,
   },
+
   "core-first-tradition-the-masquerade": {
     stack: "library",
     name: "First Tradition: The Masquerade",
@@ -1300,6 +1399,7 @@ Pay 2 prestige. Ongoing - Your vampires outside your Haven have +1 Secrecy. If y
     types: ["unhosted action", "ongoing"],
     set: "Core",
   },
+
   "baa-fixatio": {
     stack: "library",
     name: "Fixatio",
@@ -1311,6 +1411,7 @@ Attach to the acting character. If they are a Thin-blood, gain 1 Action. This ch
     set: "Blood & Alchemy",
     clan: "thin-blood",
   },
+
   "core-fleetness": {
     stack: "library",
     name: "Fleetness",
@@ -1325,6 +1426,7 @@ Attach to the acting character. If they are a Thin-blood, gain 1 Action. This ch
     shield: 0,
     disciplines: ["celerity"],
   },
+
   "core-fragmented-mind": {
     stack: "library",
     name: "Fragmented Mind",
@@ -1340,6 +1442,7 @@ Your foe discard 1 card for each character with Dominate in this party.
     shield: 0,
     disciplines: ["dominate"],
   },
+
   "core-free-money": {
     stack: "library",
     name: "Free Money",
@@ -1350,6 +1453,7 @@ Influence Conflict - Should each plater gain 3 Prestige?
     types: ["action", "scheme"],
     set: "Core",
   },
+
   "core-gang-up": {
     stack: "library",
     name: "Gang Up",
@@ -1364,6 +1468,7 @@ Influence Conflict - Should each plater gain 3 Prestige?
     damage: 0,
     shield: 0,
   },
+
   "core-greed": {
     stack: "library",
     name: "Greed",
@@ -1375,6 +1480,7 @@ Influence Conflict - Should I gain 2 Agenda?
     set: "Core",
     clan: "ventrue",
   },
+
   "baa-haze": {
     stack: "library",
     name: "Haze",
@@ -1388,6 +1494,7 @@ Requires Alchemy in the party to play. Play this card face up. Negate a Ranged A
     damage: 0,
     shield: 0,
   },
+
   "core-hedge-your-bets": {
     stack: "library",
     name: "Hedge Your Bets",
@@ -1398,6 +1505,7 @@ Gain 2 Influence during this action or event. If this is a Scheme and it fails, 
     types: ["influence modifier"],
     set: "Core",
   },
+
   "baa-heightened-senses": {
     stack: "library",
     name: "Heightened Senses",
@@ -1413,6 +1521,7 @@ You may play this to aid any character in The Streets from any coterie. Target d
     shield: 0,
     disciplines: ["auspex"],
   },
+
   "core-herald": {
     stack: "library",
     name: "Herald",
@@ -1424,6 +1533,7 @@ Exert 2 Influence: Attach to the acting character. You pay 1 less Prestige to re
     set: "Core",
     bloodPotencyRequirement: 2,
   },
+
   "core-holdout-dagger": {
     stack: "library",
     name: "Holdout Dagger",
@@ -1439,6 +1549,7 @@ Exert 2 Influence: Attach to the acting character. You pay 1 less Prestige to re
     shield: 0,
     disciplines: ["obfuscate"],
   },
+
   "core-humiliate": {
     stack: "library",
     name: "Humiliate",
@@ -1454,6 +1565,7 @@ If this party has 2+ Presence, +1 Damage
     shield: 0,
     disciplines: ["presence"],
   },
+
   "core-incite-rebellion": {
     stack: "library",
     name: "Incite Rebellion",
@@ -1468,6 +1580,7 @@ Pay 1 blood: Burn 1 Retainer in the opposing party. Gain no rewards for this.
     damage: 1,
     shield: 0,
   },
+
   "core-influencer": {
     stack: "library",
     name: "Influencer",
@@ -1479,6 +1592,7 @@ Pay 1 prestige. Ongoing - Each character with Presence in your coterie has +1 In
     set: "Core",
     disciplines: ["presence"],
   },
+
   "core-insanity-defense": {
     stack: "library",
     name: "Insanity Defense",
@@ -1494,6 +1608,7 @@ Additional +1 Defense against Mental attacks.
     damage: 0,
     shield: 2,
   },
+
   "baa-intimidation": {
     stack: "library",
     name: "Intimidation",
@@ -1508,6 +1623,7 @@ Additional +1 Defense against Mental attacks.
     damage: 1,
     shield: 0,
   },
+
   "core-irresistible-voice": {
     stack: "library",
     name: "Irresistible Voice",
@@ -1523,6 +1639,7 @@ Presence pay 2 blood: Steal 1 Retainer from the target. If this party has Domina
     shield: 0,
     disciplines: ["dominate", "presence"],
   },
+
   "core-keeper-of-elysium": {
     stack: "library",
     name: "Keeper of Elysium",
@@ -1534,6 +1651,7 @@ Exert 4 Influence: Attach to the acting character. Characters in your Haven have
     set: "Core",
     bloodPotencyRequirement: 4,
   },
+
   "core-kneecapped": {
     stack: "library",
     name: "Kneecapped",
@@ -1548,6 +1666,7 @@ Discard 1 card: +3 Damage to Second Inquisition.
     damage: 1,
     shield: 0,
   },
+
   "core-know-your-place": {
     stack: "library",
     name: "Know Your Place",
@@ -1562,6 +1681,7 @@ Discard 1 card: +3 Damage to Second Inquisition.
     damage: 1,
     shield: 0,
   },
+
   "core-late-night-snack": {
     stack: "library",
     name: "Late-Night Snack",
@@ -1573,6 +1693,7 @@ For each Fortitude in your coterie, mend 1 blood on a character in your coterie 
     set: "Core",
     disciplines: ["fortitude"],
   },
+
   "core-lightning-strike": {
     stack: "library",
     name: "Lightning Strike",
@@ -1588,6 +1709,7 @@ If this party has 2+ Celerity, this attack ignores all Resistance.
     shield: 0,
     disciplines: ["celerity"],
   },
+
   "core-long-term-investment": {
     stack: "library",
     name: "Long-Term Investment",
@@ -1599,6 +1721,7 @@ Pay 1 to 3 Prestige: Add double that amount of Prestige from the general supply 
     set: "Core",
     clan: "ventrue",
   },
+
   "core-lost-glory": {
     stack: "library",
     name: "Lost Glory",
@@ -1609,6 +1732,7 @@ Play this card face down and place 1 prestige on it. If this card has 4+ prestig
     types: ["action", "conspiracy"],
     set: "Core",
   },
+
   "core-marked-man": {
     stack: "library",
     name: "Marked Man",
@@ -1620,6 +1744,7 @@ Put 1 Agenda from the general supply onto any character. If a player defeats the
     set: "Core",
     clan: "ventrue",
   },
+
   "core-mercy": {
     stack: "library",
     name: "Mercy",
@@ -1630,6 +1755,7 @@ Influence Conflict - Should each player mend 4 blood on a character in their cot
     types: ["action", "scheme"],
     set: "Core",
   },
+
   "baa-mesmerize": {
     stack: "library",
     name: "Mesmerize",
@@ -1645,11 +1771,12 @@ Dominate Put a Fear token on the target.
     shield: 0,
     disciplines: ["dominate"],
   },
+
   "core-molotov-cocktail": {
     stack: "library",
     name: "Molotov Cocktail",
     text: md`
-Aggravated - Discard 1 card: Deal 1 Aggravated Damage to each of the other characters in the opposing party.
+**Aggravated** - Discard 1 card: Deal 1 **Aggravated** Damage to each of the other characters in the opposing party.
     `,
     illustrator: "The Creation Studio",
     types: ["attack"],
@@ -1659,6 +1786,7 @@ Aggravated - Discard 1 card: Deal 1 Aggravated Damage to each of the other chara
     damage: 1,
     shield: 0,
   },
+
   "baa-out-of-time": {
     stack: "library",
     name: "Out of Time",
@@ -1669,6 +1797,7 @@ Play this card face down and place 1 Prestige on it. If this card has 3+ Prestig
     types: ["action", "conspiracy"],
     set: "Blood & Alchemy",
   },
+
   "baa-peer-pressure": {
     stack: "library",
     name: "Peer Pressure",
@@ -1683,6 +1812,7 @@ Play this card face down and place 1 Prestige on it. If this card has 3+ Prestig
     damage: 0,
     shield: 0,
   },
+
   "core-power-play": {
     stack: "library",
     name: "Power Play",
@@ -1697,6 +1827,7 @@ Play this card face down and place 1 Prestige on it. If this card has 3+ Prestig
     damage: 1,
     shield: 0,
   },
+
   "core-pr-firm": {
     stack: "library",
     name: "PR Firm",
@@ -1708,6 +1839,7 @@ Ongoing - When a Scheme you play suceeds, you may Pay 1 prestige: Gain 1 agenda.
     set: "Core",
     clan: "toreador",
   },
+
   "baa-premonition": {
     stack: "library",
     name: "Premonition",
@@ -1719,6 +1851,7 @@ Attach to a character in your coterie and gain 1 Action. Auspex party - Characte
     set: "Blood & Alchemy",
     disciplines: ["auspex"],
   },
+
   "core-primogen": {
     stack: "library",
     name: "Primogen",
@@ -1730,6 +1863,7 @@ Exert 3 Influence: Attach to the acting character. This character has +1 Influen
     set: "Core",
     bloodPotencyRequirement: 3,
   },
+
   "baa-rain-of-blood": {
     stack: "library",
     name: "Rain of Blood",
@@ -1740,6 +1874,7 @@ Influence Conflict - Should each plater mend 1 Blood on each character in their 
     types: ["unhosted action", "scheme"],
     set: "Blood & Alchemy",
   },
+
   "core-rain-on-your-parade": {
     stack: "library",
     name: "Rain on Your Parade",
@@ -1754,6 +1889,7 @@ If your foe has 9+ Agenda, they lose 1 Agenda.
     damage: 1,
     shield: 0,
   },
+
   "core-royal-review": {
     stack: "library",
     name: "Royal Review",
@@ -1765,6 +1901,7 @@ Gain 1 Prestige for each Title in your coterie.
     set: "Core",
     clan: "ventrue",
   },
+
   "core-scoped-30-06": {
     stack: "library",
     name: "Scoped .30-06",
@@ -1779,6 +1916,7 @@ Play this card face up to add +1 Intel to this attack.
     damage: 2,
     shield: 0,
   },
+
   "baa-scorpions-touch": {
     stack: "library",
     name: "Scorpion's Touch",
@@ -1794,6 +1932,7 @@ For each Blood Sorcery the attacker has, replace 1 Blood on the target with Bloo
     shield: 0,
     disciplines: ["blood sorcery"],
   },
+
   "core-scry-the-soul": {
     stack: "library",
     name: "Scry the Soul",
@@ -1809,6 +1948,7 @@ If this party has 2+ Auspex, negate the target's Reaction (if any).
     shield: 0,
     disciplines: ["auspex"],
   },
+
   "core-search-engine": {
     stack: "library",
     name: "Search Engine",
@@ -1820,6 +1960,7 @@ Ongoing - Exhaust: If you have Auspex in your coterie, look at the top card of y
     set: "Core",
     disciplines: ["auspex"],
   },
+
   "core-seduction": {
     stack: "library",
     name: "Seduction",
@@ -1835,11 +1976,12 @@ Chose one: Steal 1 blood from the target OR this attack deals +1 Damage to a Cit
     shield: 0,
     disciplines: ["presence"],
   },
+
   "baa-seek-knowledge": {
     stack: "library",
     name: "Seek Knowledge",
     text: md`
-Blood Sorcery Place 1 to 3 Blood of your color on this card. Ongoing - Remove 1 Blood from this: Draw 2 cards, then discard 1 card. When empty, burn this.
+[blood sorcery] **Place 1 to 3 Blood of your color on this card.** Ongoing - **Remove 1 Blood from this:** Draw 2 cards, then discard 1 card. When empty, burn this.
     `,
     illustrator: "Timothy Terrenal",
     types: ["action", "ritual", "ongoing"],
@@ -1847,6 +1989,7 @@ Blood Sorcery Place 1 to 3 Blood of your color on this card. Ongoing - Remove 1 
     clan: "tremere",
     disciplines: ["blood sorcery"],
   },
+
   "core-seneschal": {
     stack: "library",
     name: "Seneschal",
@@ -1858,6 +2001,7 @@ Exert 5 Influence: Attach to the acting character. Action: Target foe loses 1 Pr
     set: "Core",
     bloodPotencyRequirement: 5,
   },
+
   "core-sheriff": {
     stack: "library",
     name: "Sheriff",
@@ -1869,6 +2013,7 @@ Exert 4 Influence: Attach to the acting character. Exhaust this character: Burn 
     set: "Core",
     bloodPotencyRequirement: 4,
   },
+
   "core-slap-in-the-face": {
     stack: "library",
     name: "Slap in the Face",
@@ -1883,28 +2028,31 @@ Deal physic to the attacker (add this character's physic to the damage).
     damage: 1,
     shield: 0,
   },
+
   "baa-sleep-of-the-damned": {
     stack: "library",
     name: "Sleep of the Damned",
     text: md`
-Blood Sorcery Place 1 to 3 Blood of your color on this card. Ongoing - Foe's charcters in torpor have +2 Blood Potence. At the start of your turn, if 1+ foes have a charcter in torpor, remove 1 Blood from this. When empty, burn this.
+[blood sorcery] **Place 1 to 3 Blood of your color on this card.** Ongoing - Foe's charcters in torpor have +2 Blood Potence. At the start of your turn, if 1+ foes have a charcter in torpor, remove 1 Blood from this. When empty, burn this.
     `,
     illustrator: "Irene Francisco",
     types: ["action", "ritual", "ongoing"],
     set: "Blood & Alchemy",
     disciplines: ["blood sorcery"],
   },
+
   "core-smoke-em-out": {
     stack: "library",
     name: "Smoke 'Em Out",
     text: md`
-Use only in The Streets. Move all characters from target Haven to The Streets. Deal 1 Aggravated Damage to each exhausted character moved this way.
+Use only in The Streets. Move all characters from target Haven to The Streets. Deal 1 **Aggravated** Damage to each exhausted character moved this way.
     `,
     illustrator: "The Creation Studio",
     types: ["action"],
     set: "Core",
     clan: "brujah",
   },
+
   "core-steal-the-spotlight": {
     stack: "library",
     name: "Steal the Spotlight",
@@ -1920,6 +2068,7 @@ If this character is a Blocker, the attacker loses 2 Blood.
     damage: 0,
     shield: 2,
   },
+
   "core-sucker-punch": {
     stack: "library",
     name: "Sucker Punch",
@@ -1934,17 +2083,19 @@ Targeted (You may retarget this attack to any legal target in the opposing party
     attack: "physical",
     damage: 1,
   },
+
   "baa-sunrise-surprise": {
     stack: "library",
     name: "Sunrise Surprise",
     text: md`
-Cannot be played during the 1st or 2nd Action of your turn. Play only in The Streets. Deal 2 Aggravated Damage to the acting character and target character in The Streets.
+Cannot be played during the 1st or 2nd Action of your turn. Play only in The Streets. Deal 2 **Aggravated** Damage to the acting character and target character in The Streets.
     `,
     illustrator: "Dawn Nique",
     types: ["action"],
     set: "Blood & Alchemy",
     clan: "thin-blood",
   },
+
   "core-terrorize": {
     stack: "library",
     name: "Terrorize",
@@ -1960,6 +2111,7 @@ Exhaust all characters in the opposing party.
     damage: 2,
     shield: 0,
   },
+
   "core-the-last-word": {
     stack: "library",
     name: "The Last Word",
@@ -1970,6 +2122,7 @@ Gain 5 Influence during this action or event. If this is a Scheme and your side 
     types: ["influence modifier"],
     set: "Core",
   },
+
   "core-the-mighty-fall": {
     stack: "library",
     name: "The Mighty Fall",
@@ -1984,6 +2137,7 @@ Gain 5 Influence during this action or event. If this is a Scheme and your side 
     damage: 1,
     shield: 0,
   },
+
   "core-the-spoils": {
     stack: "library",
     name: "The Spoils",
@@ -1995,6 +2149,7 @@ Ongoing - When an attacker in your coterie defeats another character, each chara
     set: "Core",
     clan: "brujah",
   },
+
   "baa-theft-of-vitae": {
     stack: "library",
     name: "Theft of Vitae",
@@ -2006,6 +2161,7 @@ Blood Sorcery Burn target unattached City Deck Mortal in The Streets (this is no
     set: "Blood & Alchemy",
     disciplines: ["blood sorcery"],
   },
+
   "baa-third-tradition-the-progeny": {
     stack: "library",
     name: "Third Tradition: The Progeny",
@@ -2016,6 +2172,7 @@ Pay 1 Prestige. Ongoing . At the start of your turn, each player with 4+ vampire
     types: ["unhosted action", "ongoing"],
     set: "Blood & Alchemy",
   },
+
   "core-throat-rip": {
     stack: "library",
     name: "Throat Rip",
@@ -2031,17 +2188,19 @@ Pay 1 Prestige. Ongoing . At the start of your turn, each player with 4+ vampire
     shield: 0,
     disciplines: ["potence"],
   },
+
   "baa-truth-of-blood": {
     stack: "library",
     name: "Truth of Blood",
     text: md`
-Blood Sorcery Place 1 to 3 Blood of your color on this card. Ongoing - Pay 1 Prestige, Remove 1 Blood from this: Target foe loses 1 Agenda. When empty, burn this.
+[blood sorcery] **Place 1 to 3 Blood of your color on this card.** Ongoing - Pay 1 Prestige, **Remove 1 Blood from this:** Target foe loses 1 Agenda. When empty, burn this.
     `,
     illustrator: "Timothy Terrenal",
     types: ["action", "ritual", "ongoing"],
     set: "Blood & Alchemy",
     disciplines: ["blood sorcery"],
   },
+
   "core-unhinged": {
     stack: "library",
     name: "Unhinged",
@@ -2057,6 +2216,7 @@ Discard up to 2 cards: For each discard, deal +1 Damage to the target.
     damage: 1,
     shield: 0,
   },
+
   "core-unswayable-mind": {
     stack: "library",
     name: "Unswayable Mind",
@@ -2072,6 +2232,7 @@ If this party has 2+ Fortitude, negate the game text effects of the attacker's A
     shield: 1,
     disciplines: ["fortitude"],
   },
+
   "core-whispering-campaign": {
     stack: "library",
     name: "Whispering Campaign",
@@ -2082,6 +2243,7 @@ Play this card face down and place 1 prestige on it. If this card has 4+ prestig
     types: ["action", "conspiracy"],
     set: "Core",
   },
+
   "war-alley-cat": {
     stack: "library",
     name: "Alley Cat",
@@ -2095,6 +2257,7 @@ Detach: Burn target Animal or Retainer attached to a character in The Streets. T
     set: "Wolf & Rat",
     disciplines: ["animalism"],
   },
+
   "war-animal-dominion": {
     stack: "library",
     name: "Animal Dominion",
@@ -2107,6 +2270,7 @@ Detach: Burn target Animal or Retainer attached to a character in The Streets. T
     bloodPotencyRequirement: 5,
     disciplines: ["animalism"],
   },
+
   "war-apex-predator": {
     stack: "library",
     name: "Apex Predator",
@@ -2121,6 +2285,7 @@ Put a Fear token on the target. If the attacker is your Leader, exhaust the targ
     attack: "social",
     damage: 2,
   },
+
   "war-bad-reflection": {
     stack: "library",
     name: "Bad Reflection",
@@ -2134,6 +2299,7 @@ Deal [mental] [damage] to the attacker equal to the [damage] they are dealing to
     bloodPotencyRequirement: 4,
     attack: "physical",
   },
+
   "war-beasts-of-war": {
     stack: "library",
     name: "Beasts of War",
@@ -2149,6 +2315,7 @@ Superficial
     attack: "physical",
     damage: 1,
   },
+
   "war-bond-famulus": {
     stack: "library",
     name: "Bond Famulus",
@@ -2159,6 +2326,7 @@ Exhaust: The next Animal you play this turn costs 1 less [blood] to attach. If a
     types: ["unhosted action", "ongoing"],
     set: "Wolf & Rat",
   },
+
   "war-constant-surveillance": {
     stack: "library",
     name: "Constant Surveillance",
@@ -2171,6 +2339,7 @@ Ongoing - Covered cards have no text. At the start of your next turn, burn this 
     types: ["action", "ongoing"],
     set: "Wolf & Rat",
   },
+
   "war-cornered-rat": {
     stack: "library",
     name: "Cornered Rat",
@@ -2188,6 +2357,7 @@ Reaction - Deal 1 [physical] [damage] to the attacker for every 2 [damage] they 
     reactions: ["physical", "mental"],
     damage: 0,
   },
+
   "war-cracking-the-case": {
     stack: "library",
     name: "Cracking the Case",
@@ -2200,6 +2370,7 @@ Remove X [prestige] from this card: Target attacker has +X Intel for this attack
     types: ["unhosted action", "ongoing"],
     set: "Wolf & Rat",
   },
+
   "war-disturbing-the-hive": {
     stack: "library",
     name: "Disturbing the Hive",
@@ -2215,6 +2386,7 @@ Remove X [prestige] from this card: Target attacker has +X Intel for this attack
     damage: 1,
     disciplines: ["obfuscate"],
   },
+
   "war-earth-meld": {
     stack: "library",
     name: "Earth Meld",
@@ -2228,11 +2400,12 @@ This character has +2 Secrecy. At the start of your next turn, discard this card
     set: "Wolf & Rat",
     disciplines: ["protean"],
   },
+
   "war-feeding-frenzy": {
     stack: "library",
     name: "Feeding Frenzy",
     text: md`
-+1 [damage] if the attacker is Wounded.
++1 [damage] if the attacker is **Wounded**.
 
 [fortitude] If this attack defeats the target, the attacker mends 2 [blood].
     `,
@@ -2244,6 +2417,7 @@ This character has +2 Secrecy. At the start of your next turn, discard this card
     damage: 1,
     disciplines: ["fortitude"],
   },
+
   "war-feeding-the-hungry": {
     stack: "library",
     name: "Feeding the Hungry",
@@ -2254,11 +2428,12 @@ Put 1 Vagrant from the burned pile into The Streets.
     types: ["action"],
     set: "Wolf & Rat",
   },
+
   "war-feral-claws": {
     stack: "library",
     name: "Feral Claws",
     text: md`
-[protean] Aggravated
+[protean] **Aggravated**
     `,
     illustrator: "Mara Miranda-Escota",
     types: ["attack"],
@@ -2268,6 +2443,7 @@ Put 1 Vagrant from the burned pile into The Streets.
     damage: 0,
     disciplines: ["protean"],
   },
+
   "war-feral-fangs": {
     stack: "library",
     name: "Feral Fangs",
@@ -2284,6 +2460,7 @@ Play this card face up.
     damage: 2,
     disciplines: ["protean"],
   },
+
   "war-feral-whispers": {
     stack: "library",
     name: "Feral Whispers",
@@ -2297,6 +2474,7 @@ Add 3 [blood] from the general supply to this.
     set: "Wolf & Rat",
     disciplines: ["animalism"],
   },
+
   "war-fight-or-flight": {
     stack: "library",
     name: "Fight or Flight",
@@ -2314,6 +2492,7 @@ Reaction - +1 [shield]. Additional +1 [shield] for each [fortitude] this charact
     damage: 1,
     disciplines: ["fortitude"],
   },
+
   "war-hardened-flesh": {
     stack: "library",
     name: "Hardened Flesh",
@@ -2328,6 +2507,7 @@ Reaction - +1 [shield]. Additional +1 [shield] for each [fortitude] this charact
     shield: 1,
     disciplines: ["fortitude"],
   },
+
   "war-help-me-help-you": {
     stack: "library",
     name: "Help Me Help You",
@@ -2338,6 +2518,7 @@ When a character in your coiteries attaches a Retainer, mend 1 [blood] on any ch
     types: ["unhosted action", "ongoing"],
     set: "Wolf & Rat",
   },
+
   "war-hiding-in-plain-sight": {
     stack: "library",
     name: "Hiding in Plain Sight",
@@ -2349,6 +2530,7 @@ Discard 1 card: Antagonist [damage] cannot be assigned to your characters in The
     set: "Wolf & Rat",
     disciplines: ["obfuscate", "protean"],
   },
+
   "war-mongrel": {
     stack: "library",
     name: "Mongrel",
@@ -2364,6 +2546,7 @@ Detach: Prevent 2 [physical] [damage] to this character.
     set: "Wolf & Rat",
     disciplines: ["animalism"],
   },
+
   "war-murder-of-crows": {
     stack: "library",
     name: "Murder of Crows",
@@ -2379,6 +2562,7 @@ Detach: Target character in The Streets loses 1 [blood]. If this defeats the tar
     set: "Wolf & Rat",
     disciplines: ["animalism"],
   },
+
   "war-protect-the-flock": {
     stack: "library",
     name: "Protect the Flock",
@@ -2389,6 +2573,7 @@ Ongoing - Exhaust: Put 1 [blood] of your color from the general supply on target
     types: ["unhosted action", "ongoing"],
     set: "Wolf & Rat",
   },
+
   "war-second-tradition-the-domain": {
     stack: "library",
     name: "Second Tradition: The Domain",
@@ -2399,6 +2584,7 @@ Ongoing - Exhaust: Attach a City Deck Citizen or Vagrant in The Streets to this 
     types: ["action", "ongoing"],
     set: "Wolf & Rat",
   },
+
   "war-secret-passage": {
     stack: "library",
     name: "Secret Passage",
@@ -2410,6 +2596,7 @@ Ongoing - Exhaust: Return 1 character in your coterie to your Haven, maintainin 
     set: "Wolf & Rat",
     clan: "nosferatu",
   },
+
   "war-seeing-is-believing": {
     stack: "library",
     name: "Seeing is Believing",
@@ -2423,13 +2610,14 @@ Ongoing - Exhaust: Return 1 character in your coterie to your Haven, maintainin 
     attack: "mental",
     disciplines: ["obfuscate"],
   },
+
   "war-sewer-rat": {
     stack: "library",
     name: "Sewer Rat",
     text: md`
 [animalism] Attach to the acting character.
 
-Exhaust Sewer Rat: Mend 1 [blood] on a Wounded character in this party.
+Exhaust Sewer Rat: Mend 1 [blood] on a **Wounded** character in this party.
 
 Detach: Steal 1 [blood] from target character in torpor and add it to any character.
     `,
@@ -2438,6 +2626,7 @@ Detach: Steal 1 [blood] from target character in torpor and add it to any charac
     set: "Wolf & Rat",
     disciplines: ["animalism"],
   },
+
   "war-shape-of-the-beast": {
     stack: "library",
     name: "Shape of the Beast",
@@ -2452,6 +2641,7 @@ Pay 1 [blood] from the exhausting character: Gain 1 Action instead.
     clan: "gangrel",
     disciplines: ["protean"],
   },
+
   "war-spy-games": {
     stack: "library",
     name: "Spy Games",
@@ -2464,6 +2654,7 @@ Steal a Rival token from target foe. At the start of your next turn, return it.
     clan: "nosferatu",
     bloodPotencyRequirement: 5,
   },
+
   "war-the-shakedown": {
     stack: "library",
     name: "The Shakedown",
@@ -2474,6 +2665,7 @@ Name an attack type. Then look at target foe's hand and discard all Attack cards
     types: ["action"],
     set: "Wolf & Rat",
   },
+
   "war-the-stampede": {
     stack: "library",
     name: "The Stampede",
@@ -2488,21 +2680,23 @@ The target has -1 [shield] for each character in this party. [potence] +1 [damag
     damage: 1,
     disciplines: ["potence"],
   },
+
   "war-the-swarm": {
     stack: "library",
     name: "The Swarm",
     text: md`
 [animalism] Attach to the acting character.
 
-Party - This party has +1 [shield] during non-Aggravated [ranged] and [physical] attacks.
+Party - This party has +1 [shield] during non-**Aggravated** [ranged] and [physical] attacks.
 
-Detach: Prevent 1 Aggravated [damage] to this character.
+Detach: Prevent 1 **Aggravated** [damage] to this character.
     `,
     illustrator: "Adelijah Ocampo",
     types: ["action", "animal"],
     set: "Wolf & Rat",
     disciplines: ["animalism"],
   },
+
   "war-veiled-threat": {
     stack: "library",
     name: "Veiled Threat",
@@ -2517,6 +2711,7 @@ Detach: Prevent 1 Aggravated [damage] to this character.
     damage: 1,
     disciplines: ["obfuscate"],
   },
+
   "war-we-are-legend": {
     stack: "library",
     name: "We Are Legend",
@@ -2539,6 +2734,7 @@ Attach your active Haven to a character in your coterie who doesn't have one att
     types: ["action"],
     set: "Dragon & Rogue",
   },
+
   "dar-bat-out-of-hell": {
     stack: "library",
     name: "Bat Out of Hell",
@@ -2554,6 +2750,7 @@ Attach your active Haven to a character in your coterie who doesn't have one att
     types: ["action", "animal"],
     set: "Dragon & Rogue",
   },
+
   "dar-change-of-plans": {
     stack: "library",
     name: "Change of Plans",
@@ -2566,6 +2763,7 @@ Resolve during your turn if an Ongoing Event is in play. For each [prestige] on 
     types: ["action", "trap"],
     set: "Dragon & Rogue",
   },
+
   "dar-cryptolect": {
     stack: "library",
     name: "Cryptolect",
@@ -2577,6 +2775,7 @@ Ongoing - You pay 1 less [prestige] to recruit vampires with 2+ [blood-potency] 
     types: ["action", "ongoing"],
     set: "Dragon & Rogue",
   },
+
   "dar-domino-effect": {
     stack: "library",
     name: "Domino Effect",
@@ -2587,6 +2786,7 @@ Ongoing, **Relentless - Exhaust:** The next time you resolve a face-down card wi
     types: ["action", "ongoing"],
     set: "Dragon & Rogue",
   },
+
   "dar-doomed-to-roam": {
     stack: "library",
     name: "Doomed to Roam",
@@ -2599,6 +2799,7 @@ Ongoing - **Discard 1 card:** Swap your active Haven with another Haven you cont
     types: ["unhosted action", "ongoing"],
     set: "Dragon & Rogue",
   },
+
   "dar-emperors-new-clothes": {
     stack: "library",
     name: "Emperor's New Clothes",
@@ -2613,6 +2814,7 @@ Target player who attached a card this turn burns 1 non-Title card (without effe
     types: ["action", "trap"],
     set: "Dragon & Rogue",
   },
+
   "dar-escape-artist": {
     stack: "library",
     name: "Escape Artist",
@@ -2627,6 +2829,7 @@ Target player who attached a card this turn burns 1 non-Title card (without effe
     reactions: ["ranged", "physical"],
     set: "Dragon & Rogue",
   },
+
   "dar-fata-morgana": {
     stack: "library",
     name: "Fata Morgana",
@@ -2642,6 +2845,7 @@ For each [prestige] on this card, you may redirect 1 [damage] from this attack t
     types: ["action", "trap"],
     set: "Dragon & Rogue",
   },
+
   "dar-fear-tactics": {
     stack: "library",
     name: "Fear Tactics",
@@ -2655,6 +2859,7 @@ Place the stolen [prestige] on cards you control or add them to your personal su
     types: ["action"],
     set: "Dragon & Rogue",
   },
+
   "dar-fifth-tradition-hospitality": {
     stack: "library",
     name: "Fifth Tradition: Hospitality",
@@ -2665,6 +2870,7 @@ Each player moves their Leader to The Streets. If you control the _Prince of the
     types: ["action"],
     set: "Dragon & Rogue",
   },
+
   "dar-fleshcrafting": {
     stack: "library",
     name: "Fleshcrafting",
@@ -2677,6 +2883,7 @@ Each player moves their Leader to The Streets. If you control the _Prince of the
     types: ["action"],
     set: "Dragon & Rogue",
   },
+
   "dar-freelancer": {
     stack: "library",
     name: "Freelancer",
@@ -2690,6 +2897,7 @@ The next time a character in your coterie plays an Action card this turn, ready 
     types: ["unhosted action", "ongoing"],
     set: "Dragon & Rogue",
   },
+
   "dar-grey-wolf": {
     stack: "library",
     name: "Grey Wolf",
@@ -2705,6 +2913,7 @@ When this character is attacked, the attacker loses 1 [blood].
     types: ["action", "animal"],
     set: "Dragon & Rogue",
   },
+
   "dar-home-improvement": {
     stack: "library",
     name: "Home Improvement",
@@ -2717,6 +2926,7 @@ Ongoing - Your Leader has abilities based on # of attached _Home Improvements_. 
     types: ["action", "ongoing"],
     set: "Dragon & Rogue",
   },
+
   "dar-mask-of-a-thousand-faces": {
     stack: "library",
     name: "Mask of a Thousand Faces",
@@ -2730,6 +2940,7 @@ Ongoing - **Relentless - Remove 1 [prestige] from this:** Swap 1 non-Leader char
     types: ["unhosted action", "ongoing"],
     set: "Dragon & Rogue",
   },
+
   "dar-perimeter-defense": {
     stack: "library",
     name: "Perimeter Defense",
@@ -2744,6 +2955,7 @@ When a character in your Haven is attacked, they have +1 [shield] for each token
     types: ["action", "trap"],
     set: "Dragon & Rogue",
   },
+
   "dar-poachers-choice": {
     stack: "library",
     name: "Poacher's Choice",
@@ -2760,6 +2972,7 @@ If this attack defeats a character in The Streets, steal 1 Retainer attached to 
     attack: "social",
     set: "Dragon & Rogue",
   },
+
   "dar-secret-compartment": {
     stack: "library",
     name: "Secret Compartment",
@@ -2770,6 +2983,7 @@ Ongoing - When you discard a card from your hand, you may attach it to this card
     types: ["unhosted action", "ongoing"],
     set: "Dragon & Rogue",
   },
+
   "dar-siege-engine": {
     stack: "library",
     name: "Siege Engine",
@@ -2785,6 +2999,7 @@ Ongoing - When you discard a card from your hand, you may attach it to this card
     attack: "physical",
     set: "Dragon & Rogue",
   },
+
   "dar-sleight-of-hand": {
     stack: "library",
     name: "Sleight of Hand",
@@ -2802,6 +3017,7 @@ If this party has [presence] and [obfuscate], also steal 1 [prestige] from the d
     attack: "mental",
     set: "Dragon & Rogue",
   },
+
   "dar-slumlord": {
     stack: "library",
     name: "Slumlord",
@@ -2813,6 +3029,7 @@ Gain 1 [prestige] for each Citizen attached to a card you control.
     types: ["action"],
     set: "Dragon & Rogue",
   },
+
   "dar-smoke-and-mirrors": {
     stack: "library",
     name: "Smoke and Mirrors",
@@ -2829,6 +3046,7 @@ Put a Fear token on target character in the attacking Party.
     reactions: ["physical", "mental"],
     set: "Dragon & Rogue",
   },
+
   "dar-switcharoo": {
     stack: "library",
     name: "Switcharoo",
@@ -2844,6 +3062,7 @@ If you do, declare a different Attack type, then you may play another Attack car
     attack: ["physical", "social", "mental"],
     set: "Dragon & Rogue",
   },
+
   "dar-szlachta": {
     stack: "library",
     name: "Szlachta",
@@ -2860,6 +3079,7 @@ When defeated or burned, you may move the Retainer attached to this to a _Vozhd_
     types: ["action", "ghoul"],
     set: "Dragon & Rogue",
   },
+
   "dar-the-hat-trick": {
     stack: "library",
     name: "The Hat Trick",
@@ -2876,6 +3096,7 @@ If this party has [animalism] and [obfuscate], gain 1 Unhosted Action if played 
     attack: "social",
     set: "Dragon & Rogue",
   },
+
   "dar-the-more-the-scarier": {
     stack: "library",
     name: "The More The Scarier",
@@ -2887,6 +3108,7 @@ Ongoing - Characters in your coterie have +1 **Attachment**.
     types: ["unhosted action", "ongoing"],
     set: "Dragon & Rogue",
   },
+
   "dar-throwing-knives": {
     stack: "library",
     name: "Throwing Knives",
@@ -2901,6 +3123,7 @@ You may distribute the [damage] to any characters in the defending party (max 2 
     attack: "ranged",
     set: "Dragon & Rogue",
   },
+
   "dar-urban-fox": {
     stack: "library",
     name: "Urban Fox",
@@ -2916,6 +3139,7 @@ Ignore 1 Antagonist during your End Phase.
     types: ["action", "animal"],
     set: "Dragon & Rogue",
   },
+
   "dar-vicissitude": {
     stack: "library",
     name: "Vicissitude",
@@ -2929,6 +3153,7 @@ Ongoing - **Start of Turn:** You may attach 1 card in your hand face down to a c
     types: ["action", "ongoing"],
     set: "Dragon & Rogue",
   },
+
   "dar-vozhd": {
     stack: "library",
     name: "Vozhd",
@@ -2943,6 +3168,7 @@ When a Retainer is attached to this Ghoul, it gains 2 [blood] and 2 [physical] (
     types: ["action", "ghoul"],
     set: "Dragon & Rogue",
   },
+
   "dar-wolf-spider": {
     stack: "library",
     name: "Wolf Spider",
@@ -2958,6 +3184,7 @@ Attackers must play their Attack cards face up when attacking this character.
     types: ["action", "animal"],
     set: "Dragon & Rogue",
   },
+
   "dar-back-with-a-vengeance": {
     stack: "library",
     name: "Back with a Vengeance",
@@ -2977,6 +3204,7 @@ Reaction - Deal [physical] [damage] to the attacker (not [mental]).
     reactions: ["physical", "mental"],
     set: "Dragon & Rogue",
   },
+
   "dar-the-long-con": {
     stack: "library",
     name: "The Long Con",
@@ -2989,5 +3217,683 @@ Reaction - Deal [physical] [damage] to the attacker (not [mental]).
     illustrator: "Mara Miranda-Escota",
     types: ["action", "trap"],
     set: "Dragon & Rogue",
+  },
+
+  "jam-look-me-in-the-eyes": {
+    stack: "library",
+    name: "Look Me in the Eyes",
+    types: ["reaction"],
+    //clan:,
+    bloodPotencyRequirement: 3,
+    //damage:,
+    shield: 1,
+    //attack:[],
+    reactions: ["physical"],
+    text: md`
+Put a Fear token on the attacker.
+
+**Solitary** - Draw 1 card.
+
+[auspex] You may play an additional Reaction.
+
+    `,
+    disciplines:["auspex"],
+    illustrator: "Felipe Gaona",
+    set: "Justice & Mercy",
+  },
+
+  "jam-third-eyes-a-charm": {
+    stack: "library",
+    name: "Third Eye's a Charm",
+    types: ["reaction"],
+    clan: "salubri",
+    bloodPotencyRequirement: 4,
+    //damage:,
+    shield: 1,
+    //attack:[],
+    reactions: ["physical", "mental", "social", "ranged"],
+    text: md`
+If this attack defats the defender, gain 3 [prestige].
+
+If this attack does not defeat the defender, deal 3 [mental][damage] to the attacker.
+    `,
+    //Discipline:[],
+    illustrator: "Irene Francisco",
+    set: "Justice & Mercy",
+  },
+
+  "jam-acuity": {
+    stack: "library",
+    name: "Acuity",
+    types: ["reaction"],
+    //clan:,
+    bloodPotencyRequirement: 1,
+    //damage:,
+    shield: 1,
+    //attack:[],
+    reactions: ["ranged", "mental"],
+    text: md`
+Put a '-1 [blood potency]' token on the attacker.
+
+**Solitary** - Draw 1 card.
+
+[dominate] You may play an additional Reaction.
+
+    `,
+    disciplines:["dominate"],
+    illustrator: "Felipe Gaona",
+    set: "Justice & Mercy",
+  },
+
+  "jam-warding-circle": {
+    stack: "library",
+    name: "Warding Circle",
+    types: ["reaction"],
+    //clan:,
+    bloodPotencyRequirement: 2,
+    //damage:,
+    shield: 0,
+    //attack:[],
+    reactions: ["ranged", "mental", "physical"],
+    text: md`
+Each character in this party ha +2 [shield] for each Ritual you control.
+    `,
+    //disciplines:[],
+    illustrator: "Marco Primo",
+    set: "Justice & Mercy",
+  },
+
+  "jam-a-kiss-before-dying": {
+    stack: "library",
+    name: "A Kiss Before Dying",
+    types: ["reaction"],
+    //clan:,
+    bloodPotencyRequirement: 2,
+    //damage:,
+    shield: 1,
+    //attack:[],
+    reactions: ["social"],
+    text: md`
+Deal 1 **Aggravated** [damage] to the attacker.
+
+**Solitary** - Draw 1 card.
+
+[fortitude] You may play an additional Reaction.
+    `,
+    disciplines:["fortitude"],
+    illustrator: "Felipe Gaona",
+    set: "Justice & Mercy",
+  },
+
+  "jam-on-the-lam": {
+    stack: "library",
+    name: "On the Lam",
+    types: ["reaction"],
+    //clan:,
+    bloodPotencyRequirement: 4,
+    //damage:,
+    shield: 1,
+    //attack:[],
+    reactions: ["physical", "social" ],
+    text: md`
++2 [shield] for each Prey attached to the defender.
+
+[obfuscate] If the defender would be burned by this attack, put them into torpor instead.
+    `,
+    disciplines:["obfuscate"],
+    illustrator: "Felipe Gaona",
+    set: "Justice & Mercy",
+  },
+
+  "jam-just-a-taste": {
+    stack: "library",
+    name: "Just a Taste",
+    types: ["reaction", "special"],
+    //clan:,
+    bloodPotencyRequirement: 4,
+    //damage:,
+    shield: 0,
+    //attack:[],
+    //reactions: [],
+    text: md`
+May only be played by a character with **Solitary**.
+
+You may play this to aid any character.
+
+Target defender in The Streets mends 2 [blood].
+    `,
+    //disciplines:[],
+    illustrator: "Marco Primo",
+    set: "Justice & Mercy",
+  },
+
+  "jam-rules-lawyer": {
+    stack: "library",
+    name: "Rules Lawyer",
+    types: ["reaction"],
+    //clan:,
+    bloodPotencyRequirement: 3,
+    //damage:,
+    shield: 1,
+    //attack:[],
+    reactions: ["social", "mental"],
+    text: md`
++1 [shield] for each Ongoing Tradition you control.
+    `,
+    //disciplines:[],
+    illustrator: "János Orbán",
+    set: "Justice & Mercy",
+  },
+
+  "jam-of-two-minds": {
+    stack: "library",
+    name: "Of Two Minds",
+    types: ["attack"],
+    //clan:,
+    bloodPotencyRequirement: 5,
+    damage: 1,
+    //shield:,
+    attack:["mental"],
+    //reactions: [],
+    text: md`
+[auspex] If this attack does not defeat the target, ready the attacker.
+
+**Solitary** - Gain 1 Action if played during your turn.
+    `,
+    disciplines:["auspex"],
+    illustrator: "Felipe Gaona",
+    set: "Justice & Mercy",
+  },
+
+  "jam-ritualistic-combat": {
+    stack: "library",
+    name: "Ritualistic Combat",
+    types: ["attack"],
+    //clan:,
+    bloodPotencyRequirement: 3,
+    damage: 1,
+    //shield:,
+    attack:["mental"],
+    //reactions: [],
+    text: md`
++2 [damage] to Antagonists.
+
+[blood sorcery] If the target is defeated, the attacker mends 1 [blood] for each Ritual you control.
+    `,
+    disciplines:["blood sorcery"],
+    illustrator: "Darko Stojanovic",
+    set: "Justice & Mercy",
+  },
+
+  "jam-divisive": {
+    stack: "library",
+    name: "Divisive",
+    types: ["attack"],
+    //clan:,
+    bloodPotencyRequirement: 4,
+    damage: 1,
+    //shield:,
+    attack:["mental"],
+    //reactions: [],
+    text: md`
++2 [damage] to City Deck Mortals.
+
+[dominate] +1 [damage] for each Retainer attacked to the target.
+    `,
+    disciplines:["dominate"],
+    illustrator: "Adelijah Ocampo",
+    set: "Justice & Mercy",
+  },
+
+  "jam-bleeding-edge": {
+    stack: "library",
+    name: "Bleeding Edge",
+    types: ["attack"],
+    //clan:,
+    bloodPotencyRequirement: 4,
+    damage: 1,
+    //shield:,
+    attack:["physical"],
+    //reactions: [],
+    text: md`
+**Pay 2** [blood]: +2 [damage]
+
+[fortitude][fortitude] **Pay 1** [blood] instead.
+`,
+    disciplines:["fortitude"],
+    illustrator: "Felipe Gaona",
+    set: "Justice & Mercy",
+  },
+
+  "jam-cursed-blade": {
+    stack: "library",
+    name: "Cursed Blade",
+    types: ["attack"],
+    clan:"banu haqim",
+    bloodPotencyRequirement: 3,
+    damage: 1,
+    //shield:,
+    attack:["physical"],
+    //reactions: [],
+    text: md`
+After this attack, you may attach Cursed Blade to the target.
+
+At the end of this character's turn, this character loses 1 [blood].
+`,
+    //disciplines:["fortitude"],
+    illustrator: "Marco Primo",
+    set: "Justice & Mercy",
+  },
+
+  "jam-split-second": {
+    stack: "library",
+    name: "Split Second",
+    types: ["attack"],
+    //clan:,
+    bloodPotencyRequirement: 4,
+    damage: 1,
+    //shield:,
+    attack:["physical"],
+    //reactions: [],
+    text: md`
+[celerity] The target's [physical] attribute does not reduce the [damage] from this attack.
+`,
+    disciplines:["celerity"],
+    illustrator: "Darko Stojanovic",
+    set: "Justice & Mercy",
+  },
+
+  "jam-blood-fueled-rage": {
+    stack: "library",
+    name: "Blood-Fueled Rage",
+    types: ["attack"],
+    //clan:,
+    bloodPotencyRequirement: 5,
+    damage: 0,
+    //shield:,
+    attack:["physical"],
+    //reactions: [],
+    text: md`
+**Remove up to 1 [blood] from each Ongoing card you control:** +2 [damage] for each [blood] removed this way.
+`,
+    //disciplines:["fortitude"],
+    illustrator: "Darko Stojanovic",
+    set: "Justice & Mercy",
+  },
+
+  "jam-dont-be-so-defensive": {
+    stack: "library",
+    name: "Don't Be So  Defensive",
+    types: ["attack"],
+    //clan:,
+    bloodPotencyRequirement: 4,
+    damage: 1,
+    //shield:,
+    attack:["social"],
+    //reactions: [],
+    text: md`
++1 [damage] for every 2 Reactions in the defending player's discard pile.
+`,
+    //disciplines:["fortitude"],
+    illustrator: "Marco Primo",
+    set: "Justice & Mercy",
+  },
+
+  "jam-the-grudge": {
+    stack: "library",
+    name: "The Grudge",
+    types: ["attack"],
+    //clan:,
+    bloodPotencyRequirement: 3,
+    damage: 1,
+    //shield:,
+    attack:["social"],
+    //reactions: [],
+    text: md`
++1 [damage] for each of your characters who is in torpor or has been burned this game.
+
+If you have suffered diablerie, all of this attack's [damage] becomes **Aggravated**.
+`,
+    //disciplines:["fortitude"],
+    illustrator: "Felipe Gaona",
+    set: "Justice & Mercy",
+  },
+
+  "jam-accept-your-fate": {
+    stack: "library",
+    name: "Accept Your Fate",
+    types: ["2 actions", "ritual", "ongoing", "action"],
+    //clan:,
+    //bloodPotencyRequirement: 3,
+    //damage: 1,
+    //shield:,
+    //attack:["social"],
+    //reactions: [],
+    text: md`
+[blood sorcery] **Place 1 to 3 [blood] of your color on this card.**
+
+Ongoing - When a character plays a Reaction during your turn, they lose 1 [blood], then remove 1 [blood] from this.
+`,
+    disciplines:["blood sorcery"],
+    illustrator: "Adelijah Ocampo",
+    set: "Justice & Mercy",
+  },
+
+  "jam-ishtars-touch": {
+    stack: "library",
+    name: "Ishtar's Touch",
+    types: ["2 actions", "ritual", "ongoing", "action"],
+    //clan:,
+    //bloodPotencyRequirement: ,
+    //damage: ,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+[blood sorcery] **Place 1 to 3 [blood] of your color on this card.**
+
+Ongoing - **Remove 1 [blood] from this:** Put a '- discipline' token on target character.
+`,
+    disciplines:["blood sorcery"],
+    illustrator: "Joyce Maureira",
+    set: "Justice & Mercy",
+  },
+
+  "jam-one-with-the-blade": {
+    stack: "library",
+    name: "One With the Blade",
+    types: ["2 actions", "ritual", "ongoing", "action"],
+    clan:"banu haqim",
+    //bloodPotencyRequirement: ,
+    //damage: ,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+[blood sorcery] **Place 1 to 3 [blood] of your color on this card.**
+
+Ongoing - **Remove 1 [blood] from this:** Your attacker deals +1 [damage] to the target for each [blood] of your color on the target.
+`,
+    disciplines:["blood sorcery"],
+    illustrator: "Irene Francisco",
+    set: "Justice & Mercy",
+  },
+
+  "jam-secrets-of-the-blood": {
+    stack: "library",
+    name: "Secrets of the Blood",
+    types: ["2 actions", "ritual", "ongoing", "action"],
+    //clan:,
+    //bloodPotencyRequirement: ,
+    //damage: ,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+[blood sorcery] **Place 1 to 3 [blood] of your color on this card.** Ongoing - Your characters have +1 Intel.
+
+Remove 2 [blood] from this: Steal 1 [agenda] from target foe with 9+ [agenda].
+`,
+    disciplines:["blood sorcery"],
+    illustrator: "Marco Primo",
+    set: "Justice & Mercy",
+  },
+
+  "jam-call-to-purpose": {
+    stack: "library",
+    name: "Call to Purpose",
+    types: ["ongoing", "unhosted action"],
+    clan: "banu haqim",
+    //bloodPotencyRequirement: ,
+    //damage: ,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Ongoing - When you play a Ritual using only [blood] from character you do not control, ready 1 character in your coterie OR gain 1 Action.
+`,
+    //disciplines:["blood sorcery"],
+    illustrator: "Mara Miranda-Escota",
+    set: "Justice & Mercy",
+  },
+
+  "jam-study-their-ways": {
+    stack: "library",
+    name: "Study Their Ways",
+    types: ["ongoing", "action"],
+    //clan: "banu haqim",
+    //bloodPotencyRequirement: ,
+    //damage: ,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Put a '+ discipline' token on this card and gain 1 Action.
+
+Ongoing - If you control only 1 character, they gain this discipline (leave it on this card).
+`,
+    //disciplines:["blood sorcery"],
+    illustrator: "Adelijah Ocampo",
+    set: "Justice & Mercy",
+  },
+
+  "jam-obeah": {
+    stack: "library",
+    name: "Obeah",
+    types: ["ongoing", "action"],
+    //clan: "banu haqim",
+    //bloodPotencyRequirement: ,
+    //damage: ,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Ongoing, **Relentless - Exhaust:** Target a character. If you have [auspex] in your coterie, you may remove 1 Affliction from the target.
+
+If you have [fortitude] in your coterie, you may mend 1 [blood] on the target if they are **Wounded**.
+`,
+    //disciplines:["blood sorcery"],
+    illustrator: "Adelijah Ocampo",
+    set: "Justice & Mercy",
+  },
+
+  "jam-soul-thieving": {
+    stack: "library",
+    name: "Soul Thieving",
+    types: ["action"],
+    clan: "salubri",
+    //bloodPotencyRequirement: ,
+    //damage: ,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+[auspex] Attach to target character.
+
+When this character is defeated by the controller of this card, they may steal another card attached to this character and attach it to a character in their coterie.
+`,
+    disciplines:["auspex"],
+    illustrator: "Irene Francisco",
+    set: "Justice & Mercy",
+  },
+
+  "jam-blood-doll": {
+    stack: "library",
+    name: "Blood Doll",
+    types: ["action"],
+    //clan: "salubri",
+    //bloodPotencyRequirement: ,
+    //damage: ,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Attach to the acting character.
+
+At the start of your turn, mend 1 [blood] on this character.
+`,
+    //disciplines:["blood sorcery"],
+    illustrator: "Darko Stojanovic",
+    set: "Justice & Mercy",
+  },
+
+  "jam-kevlar-vest": {
+    stack: "library",
+    name: "Kevlar Vest",
+    types: ["action"],
+    //clan: "salubri",
+    //bloodPotencyRequirement: ,
+    //damage: ,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Attach to the acting character (max 1).
+
+This character has +1 [shield] vs **Aggravated** [damage].
+
+Detach: Prevent 1 [damage] to this character.
+`,
+    //disciplines:["blood sorcery"],
+    illustrator: "Irene Francisco",
+    set: "Justice & Mercy",
+  },
+
+  "jam-search-for-golconda": {
+    stack: "library",
+    name: "Search for Golconda",
+    types: ["action"],
+    clan: "salubri",
+    //bloodPotencyRequirement: ,
+    //damage: ,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Attach to the acting character (max 1).
+
+If this is the only character you control, you may **Exhaust this character, Pay 2** [prestige]: Gain 1 [agenda].
+`,
+    //disciplines:["blood sorcery"],
+    illustrator: "Mara Miranda-Escota",
+    set: "Justice & Mercy",
+  },
+
+  "jam-thought-police": {
+    stack: "library",
+    name: "Thought Police",
+    types: ["action"],
+    clan: "banu haqim",
+    //bloodPotencyRequirement: ,
+    //damage: ,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Name an Attack type, then look at target player's hand and discard all Reaction cards with that type.
+`,
+    //disciplines:["blood sorcery"],
+    illustrator: "Mara Miranda-Escota",
+    set: "Justice & Mercy",
+  },
+
+  "jam-unburdening-the-bestial-soul": {
+    stack: "library",
+    name: "Unburdening the Bestial Soul",
+    types: ["action"],
+    clan: "salubri",
+    //bloodPotencyRequirement: ,
+    //damage: ,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Attach to target character.
+
+This character may not perform diablerie and deals -1 [damage] to Mortals. Agg**Aggravated**ravated [damage] this character would deal becomes non-**Aggravated**.
+`,
+    //disciplines:["blood sorcery"],
+    illustrator: "Joyce Maureira",
+    set: "Justice & Mercy",
+  },
+
+  "jam-righteousness": {
+    stack: "library",
+    name: "Righteousness",
+    types: ["action"],
+    //clan: "salubri",
+    //bloodPotencyRequirement: ,
+    //damage: ,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Mend 2 [blood] on target character you control for each Ongoing Tradition in play.
+`,
+    //disciplines:["blood sorcery"],
+    illustrator: "János Orbán",
+    set: "Justice & Mercy",
+  },
+
+  "jam-final-judgement": {
+    stack: "library",
+    name: "Final Judgement",
+    types: ["action"],
+    //clan: "salubri",
+    //bloodPotencyRequirement: ,
+    //damage: ,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Deal 1 [social][damage] to target character for each Ongoing Tradition you control.
+
+**Discard X Traditions:** +X [damage]
+`,
+    //disciplines:["blood sorcery"],
+    illustrator: "János Orbán",
+    set: "Justice & Mercy",
+  },
+
+  "jam-blink": {
+    stack: "library",
+    name: "Blink",
+    types: ["unhosted action"],
+    //clan: "salubri",
+    //bloodPotencyRequirement: ,
+    //damage: ,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Attach to a character in your coterie.
+
+Attacker - This character has +3 [shield] while attacking.
+
+[celerity] At the end of this attack, you may move this character to your Haven.
+`,
+    disciplines:["celerity"],
+    illustrator: "Darko Stojanovic",
+    set: "Justice & Mercy",
+  },
+
+  "jam-cats-grace": {
+    stack: "library",
+    name: "Cat's Grace",
+    types: ["unhosted action"],
+    //clan: "salubri",
+    //bloodPotencyRequirement: ,
+    //damage: ,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Attach to a character in your coterie and draw 1 card.
+
+[celerity] At the end of your turn, ready this character.
+`,
+    //disciplines:["blood sorcery"],
+    illustrator: "Darko Stojanovic",
+    set: "Justice & Mercy",
   },
 };
