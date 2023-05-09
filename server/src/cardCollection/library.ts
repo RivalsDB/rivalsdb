@@ -18,7 +18,7 @@ export type Library = {
   damage?: number;
   shield?: number;
   attack?: AttackType | AttackType[];
-  reactions?: AttackType[];
+  reactions?: AttackType | AttackType[];
   text: string;
   disciplines?: Discipline[];
   illustrator: Illustrator;
@@ -128,6 +128,7 @@ Ongoing - For a foe to attack a character with [presence], that foe must first g
     bloodPotencyRequirement: 3,
     shield: 1,
     types: ["reaction"],
+    attack: ["social", "mental"],
     reactions: ["social", "mental"],
     text: md`
 Play this card face up.
@@ -244,6 +245,7 @@ Play this card face up. This attack cannot be Blocked.
     name: "Rapid Reflexes",
     bloodPotencyRequirement: 1,
     types: ["reaction"],
+    attack:["ranged", "physical"],
     reactions: ["ranged", "physical"],
     shield: 0,
     text: md`
@@ -768,6 +770,7 @@ Ongoing - **Remove 2 [blood] from this:** Create a wraith and attach it to a cha
     types: ["reaction"],
     set: "Shadows & Shrouds",
     bloodPotencyRequirement: 5,
+    attack: ["ranged", "physical", "social", "mental"],
     reactions: ["ranged", "physical", "social", "mental"],
     shield: 1,
     disciplines: ["oblivion"],
@@ -1003,8 +1006,9 @@ If the target is not defeated, your foe must mend them by spending Prestige equa
     types: ["reaction"],
     set: "Blood & Alchemy",
     bloodPotencyRequirement: 1,
-    attack: "physical",
-    damage: 0,
+    attack: ["physical", "mental"],
+    reactions: ["physical", "mental"],
+    //damage: 0,
     shield: 0,
   },
 
@@ -1126,14 +1130,15 @@ Attach to the acting character. If they are a Thin-blood, gain 1 Action. This ch
     stack: "library",
     name: "Cloak of Shadows",
     text: md`
-Each character in this party has +1 Defense for each Obfuscate in this party.
+Each character in this party has +1 [shield] for each [obfuscate] in this party.
     `,
     illustrator: "The Creation Studio",
     types: ["reaction"],
     set: "Core",
     bloodPotencyRequirement: 1,
-    attack: "ranged",
-    damage: 0,
+    attack: ["ranged", "physical"],
+    reactions:["ranged", "physical"],
+    //damage: 0,
     shield: 0,
     disciplines: ["obfuscate"],
   },
@@ -1223,14 +1228,16 @@ Play this card face down and place 1 prestige on it. If this card has 3+ prestig
     stack: "library",
     name: "Dignity of the Office",
     text: md`
-+2 Defense for each character with a Title in your coterie.
++2 [shield] for each character with a Title in your coterie.
     `,
     illustrator: "The Creation Studio",
     types: ["reaction"],
+    attack:["physical", "social"],
+    reactions: ["physical", "social"],
     set: "Core",
     clan: "ventrue",
     bloodPotencyRequirement: 3,
-    attack: "physical",
+    //attack: "physical",
     damage: 0,
     shield: 0,
   },
@@ -1416,13 +1423,14 @@ Attach to the acting character. If they are a Thin-blood, gain 1 Action. This ch
     stack: "library",
     name: "Fleetness",
     text: md`
-.+2 Shield for each Celerity this character has.
++2 [shield] for each [celerity] this character has.
     `,
     illustrator: "Felipe Gaona",
     types: ["reaction"],
     set: "Core",
     bloodPotencyRequirement: 2,
-    attack: "ranged",
+    reactions:["ranged", "physical"],
+    attack: ["ranged", "physical"],
     shield: 0,
     disciplines: ["celerity"],
   },
@@ -1510,14 +1518,15 @@ Gain 2 Influence during this action or event. If this is a Scheme and it fails, 
     stack: "library",
     name: "Heightened Senses",
     text: md`
-You may play this to aid any character in The Streets from any coterie. Target defending character in The Streets has +1 Resistene for ach Auspex your Leader has.
+You may play this to aid any character in The Streets from any coterie. Target defending character in The Streets has +1 [shield] for each [auspex] your Leader has.
     `,
     illustrator: "Mara Miranda-Escota",
     types: ["reaction", "special"],
     set: "Blood & Alchemy",
     bloodPotencyRequirement: 1,
-    attack: "ranged",
-    damage: 0,
+    attack: ["ranged", "physical", "social"],
+    reactions: ["ranged", "physical", "social"],
+    //damage: 0,
     shield: 0,
     disciplines: ["auspex"],
   },
@@ -1597,15 +1606,16 @@ Pay 1 prestige. Ongoing - Each character with Presence in your coterie has +1 In
     stack: "library",
     name: "Insanity Defense",
     text: md`
-Additional +1 Defense against Mental attacks.
+Additional +1 [shield] against [mental] attacks.
     `,
     illustrator: "The Creation Studio",
     types: ["reaction"],
     set: "Core",
     clan: "malkavian",
     bloodPotencyRequirement: 0,
-    attack: "physical",
-    damage: 0,
+    attack: ["physical", "mental", "social"],
+    reactions:["physical", "mental", "social"],
+    //damage: 0,
     shield: 2,
   },
 
@@ -2024,7 +2034,8 @@ Deal physic to the attacker (add this character's physic to the damage).
     types: ["reaction"],
     set: "Core",
     bloodPotencyRequirement: 1,
-    attack: "social",
+    attack:["social", "mental"],
+    reactions:["social", "mental"],
     damage: 1,
     shield: 0,
   },
@@ -2221,14 +2232,15 @@ Discard up to 2 cards: For each discard, deal +1 Damage to the target.
     stack: "library",
     name: "Unswayable Mind",
     text: md`
-If this party has 2+ Fortitude, negate the game text effects of the attacker's Attack card (but no the inherent damage or keywords).
+If this party has 2+ [fortitude], negate the game text effects of the attacker's Attack card (but not the inherent damage or keywords).
     `,
     illustrator: "Felipe Gaona",
     types: ["reaction"],
     set: "Core",
     bloodPotencyRequirement: 1,
-    attack: "social",
-    damage: 0,
+    attack: ["social", "mental"],
+    reactions:["social", "mental"],
+    //damage: 0,
     shield: 1,
     disciplines: ["fortitude"],
   },
@@ -2297,7 +2309,8 @@ Deal [mental] [damage] to the attacker equal to the [damage] they are dealing to
     set: "Wolf & Rat",
     clan: "nosferatu",
     bloodPotencyRequirement: 4,
-    attack: "physical",
+    reactions: ["physical", "mental"],
+    attack: ["physical", "mental"],
   },
 
   "war-beasts-of-war": {
@@ -2353,7 +2366,7 @@ Reaction - Deal 1 [physical] [damage] to the attacker for every 2 [damage] they 
     set: "Wolf & Rat",
     clan: "nosferatu",
     bloodPotencyRequirement: 3,
-    attack: "physical",
+    attack: ["physical","mental"],
     reactions: ["physical", "mental"],
     damage: 0,
   },
@@ -2503,6 +2516,7 @@ Reaction - +1 [shield]. Additional +1 [shield] for each [fortitude] this charact
     types: ["reaction"],
     set: "Wolf & Rat",
     bloodPotencyRequirement: 2,
+    attack: ["ranged", "physical"],
     reactions: ["ranged", "physical"],
     shield: 1,
     disciplines: ["fortitude"],
@@ -2826,6 +2840,7 @@ Target player who attached a card this turn burns 1 non-Title card (without effe
     `,
     illustrator: "Felipe Gaona",
     types: ["reaction"],
+    attack: ["ranged", "physical"],
     reactions: ["ranged", "physical"],
     set: "Dragon & Rogue",
   },
@@ -3043,6 +3058,7 @@ Put a Fear token on target character in the attacking Party.
     disciplines: ["obfuscate"],
     illustrator: "Felipe Gaona",
     types: ["reaction"],
+    attack:["physical", "mental"],
     reactions: ["physical", "mental"],
     set: "Dragon & Rogue",
   },
@@ -3200,7 +3216,7 @@ Reaction - Deal [physical] [damage] to the attacker (not [mental]).
     disciplines: ["protean"],
     illustrator: "Adelijah Ocampo",
     types: ["attack", "reaction"],
-    attack: "physical",
+    attack: ["physical", "mental"],
     reactions: ["physical", "mental"],
     set: "Dragon & Rogue",
   },
