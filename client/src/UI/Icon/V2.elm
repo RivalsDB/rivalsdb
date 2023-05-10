@@ -237,6 +237,9 @@ thinBloodAlchemy style =
 clan : Style -> Clan -> Html msg
 clan style clan_ =
     case clan_ of
+        Clan.BanuHaqim ->
+            banuhaqim style
+
         Clan.Brujah ->
             brujah style
 
@@ -257,6 +260,9 @@ clan style clan_ =
 
         Clan.Ravnos ->
             ravnos style
+        
+        Clan.Salubri ->
+            salubri style
 
         Clan.ThinBlood ->
             thinBlood style
