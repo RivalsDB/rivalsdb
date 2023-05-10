@@ -241,6 +241,7 @@ type alias SecondaryTraits =
     , special : Bool
     , title : Bool
     , trap : Bool
+    , ghoul : Bool
     }
 
 
@@ -255,6 +256,7 @@ cleanSecondaryTraits =
     , special = False
     , title = False
     , trap = False
+    , ghoul = False
     }
 
 
@@ -270,6 +272,7 @@ viewSecondaryTraits flags =
         , viewFlag (Icon.icon ( Icon.Special, Icon.Standard )) (\old -> { old | special = not old.special }) flags.special
         , viewFlag (Icon.icon ( Icon.Title, Icon.Standard )) (\old -> { old | title = not old.title }) flags.title
         , viewFlag (Icon.icon ( Icon.Trap, Icon.Standard )) (\old -> { old | trap = not old.trap }) flags.trap
+        , viewFlag (Icon.icon ( Icon.Ghoul, Icon.Standard )) (\old -> { old | ghoul = not old.ghoul }) flags.ghoul
         ]
 
 
@@ -290,6 +293,7 @@ secondaryTraitsIsAllowedWide flags card =
                     || (traits.special && flags.special)
                     || (traits.title && flags.title)
                     || (traits.trap && flags.trap)
+                    || (traits.ghoul && flags.ghoul)
 
             _ ->
                 False
@@ -312,6 +316,7 @@ secondaryTraitsIsAllowedStrict flags card =
                     && (traits.special == flags.special)
                     && (traits.title == flags.title)
                     && (traits.trap == flags.trap)
+                    && (traits.ghoul == flags.ghoul)
 
             _ ->
                 False
