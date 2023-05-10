@@ -2440,7 +2440,7 @@ Party - When an attacker in this party does not defeat their target, replace 1 [
     disciplines: { "blood sorcery": 1, celerity: 1, obfuscate: 1 },
   },
 
-  "jam-Naomi": {
+  "jam-naomi": {
     stack: "faction",
     name: "Naomi",
     text: md`
