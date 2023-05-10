@@ -26,8 +26,8 @@ type Clan
 enum : Enum Clan
 enum =
     Enum.create
-        
-        [ ( "banu haqim", BanuHaqim ) 
+
+        [ ( "banu haqim", BanuHaqim )
         , ( "brujah", Brujah )
         , ( "gangrel", Gangrel )
         , ( "hecata", Hecata )

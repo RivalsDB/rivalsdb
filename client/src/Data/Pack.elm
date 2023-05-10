@@ -13,6 +13,7 @@ type Pack
     | HeartOfEurope
     | Conclave22
     | DragonAndRogue
+    | JusticeAndMercy
 
 
 enum : Enum Pack
@@ -26,6 +27,7 @@ enum =
         , ( "Heart of Europe", HeartOfEurope )
         , ( "Conclave 22", Conclave22 )
         , ( "Dragon & Rogue", DragonAndRogue )
+        , ( "Justice & Mercy", JusticeAndMercy )
         ]
 
 
