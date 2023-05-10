@@ -395,7 +395,7 @@ attackTypeIsAllowedStrict flags card =
 
 
 type alias Clans =
-    { banuhaqim : Bool
+    { banuHaqim : Bool
     , brujah : Bool
     , gangrel : Bool
     , hecata : Bool
@@ -414,7 +414,7 @@ type alias Clans =
 
 cleanClans : Clans
 cleanClans =
-    { banuhaqim = False
+    { banuHaqim = False
     , brujah = False
     , gangrel = False
     , hecata = False
@@ -434,7 +434,7 @@ cleanClans =
 viewClans : Clans -> Html (Msg Clans)
 viewClans flags =
     div [ class "filterpicker" ]
-        [ viewFlag (IconV2.clan IconV2.Standard Cl.BanuHaqim) (\old -> { old | banuhaqim = not old.banuhaqim }) flags.banuhaqim
+        [ viewFlag (IconV2.clan IconV2.Standard Cl.BanuHaqim) (\old -> { old | banuHaqim = not old.banuHaqim }) flags.banuHaqim
         , viewFlag (IconV2.clan IconV2.Standard Cl.Brujah) (\old -> { old | brujah = not old.brujah }) flags.brujah
         , viewFlag (IconV2.clan IconV2.Standard Cl.Gangrel) (\old -> { old | gangrel = not old.gangrel }) flags.gangrel
         , viewFlag (IconV2.clan IconV2.Standard Cl.Hecata) (\old -> { old | hecata = not old.hecata }) flags.hecata
@@ -455,8 +455,8 @@ clanIsAllowed : Clans -> C.Card -> Bool
 clanIsAllowed flags card =
     let
         matchClan clan =
-            (clan == Cl.BanuHaqim && flags.banuhaqim)
-                || (clan == Cl.Brujah && flags.brujah) 
+            (clan == Cl.BanuHaqim && flags.banuHaqim)
+                || (clan == Cl.Brujah && flags.brujah)
                 || (clan == Cl.Gangrel && flags.gangrel)
                 || (clan == Cl.Hecata && flags.hecata)
                 || (clan == Cl.Lasombra && flags.lasombra)
