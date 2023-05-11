@@ -2576,7 +2576,7 @@ When this character exhausts during your turn, you may mend 1 [blood] on target 
     `,
     illustrator: "Joyce Maureira",
     set: "Justice & Mercy",
-    clan: "banu haqim",
+    clan: "salubri",
     bloodPotency: 6,
     physical: 2,
     social: 1,
