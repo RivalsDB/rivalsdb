@@ -313,7 +313,7 @@ If you reach 13 [agenda], you win!
     text: md`
 At the start of your turn, if there is 3+ [blood] on Ongoing cards you control, draw 1 card and gain 1 [agenda].
 
-When a Ritual you control leaves play, gain 1 [agenda]
+When a Ritual you control leaves play, gain 1 [agenda].
 
 If you reach 13 [agenda], you win!
     `,
@@ -337,7 +337,7 @@ If you reach 13 [agenda], you win!
   "jam-good-samaritan": {
     name: "Good Samaritan",
     text: md`
-During each player's Action Phase, the first time an effect you control removes an Affliction from 1+ characters or mends 1+ characters, gain 1 [agenda]
+During each player's Action Phase, the first time an effect you control removes an Affliction from 1+ characters or mends 1+ characters, gain 1 [agenda].
 
 If you reach 13 [agenda], you win!
     `,

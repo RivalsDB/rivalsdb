@@ -37,7 +37,7 @@ Attacker - **Discard 2 cards:** This attack deals +4 **Superficial** [Damage] to
     set: "Heart of Europe",
     disciplines: { auspex: 1, "blood sorcery": 1 },
   },
-  
+
   "hoe-anjali-the-samedi": {
     stack: "faction",
     clan: "hecata",
@@ -460,7 +460,7 @@ At the start of your turn, look at the top card of your Library or Faction Deck.
     set: "Promo",
     disciplines: { auspex: 1, "blood sorcery": 1 },
   },
-  
+
   "sas-mei-yinying": {
     stack: "faction",
     name: "Mei Yinying",
@@ -478,7 +478,7 @@ Party - This attack deals +1 [damage] to the target if there are 3+ Mortals in t
     mental: 0,
     disciplines: { dominate: 1, oblivion: 1 },
   },
-  
+
   "sas-scott": {
     stack: "faction",
     name: "Scott",
@@ -764,7 +764,7 @@ Party - Characters in this party deal +1 Superficial [damage] to the opposing ch
     mental: 0,
     disciplines: { presence: 1, potence: 1 },
   },
-  
+
   "xxx-natasha-blank": {
     stack: "faction",
     name: "Natasha Blank",
@@ -812,7 +812,7 @@ When this character mends during any player's Action Phase, draw 1 card.
     mental: 1,
     disciplines: { auspex: 1, "blood sorcery": 2 },
   },
-  
+
   "baa-april-smith": {
     stack: "faction",
     name: "April Smith",
@@ -1226,7 +1226,7 @@ Relentless - When this character is defeated, you may Pay 1 Prestige: Gain 1 Age
     mental: 1,
     disciplines: { obfuscate: 1 },
   },
-  
+
   "core-john-kartunen": {
     stack: "faction",
     name: "John Kartunen",
@@ -2358,7 +2358,7 @@ When your Rival discards to mend during their End Phase (including in torpor), r
     text: md`
 **Diablerist**
 
-When any character suffers diablerie, you may put 1 [blood] from the general supply on each Ongoing card you control with 1+ [blood] on it.
+When any character suffers diablerie, you may put 1 [blood] from the general supply on each Ongoing card you control with 1+ [blood] already on it.
     `,
     illustrator: "Joyce Maureira",
     set: "Justice & Mercy",
@@ -2410,7 +2410,7 @@ Attacker - This attack deals +1 [damage] to the target for each [blood] of your 
     stack: "faction",
     name: "Alhaml Alqurbaniu",
     text: md`
-When antoher character in your coterie would be defeated, burn this character instead. Then put 1 [blood] onto your other character from the general supply and they are not defeated.
+When another character in your coterie would be defeated, burn this character instead. Then put 1 [blood] onto your other character from the general supply and they are not defeated.
     `,
     illustrator: "Joyce Maureira",
     set: "Justice & Mercy",
@@ -2498,7 +2498,7 @@ When this character plays or places an Action card, draw 1 card.
     text: md`
 **Solitary**
 
-When this character plays a Reaction, gain 1 [prestige]
+When this character plays a Reaction, gain 1 [prestige].
     `,
     illustrator: "Felipe Gaona",
     set: "Justice & Mercy",
@@ -2516,7 +2516,7 @@ When this character plays a Reaction, gain 1 [prestige]
     text: md`
 **Solitary**
 
-When this chracter is recruited, they gain any number of attachments from a character who left your coterie this turn.
+When this character is recruited, they gain any number of attachments from a character who left your coterie this turn.
     `,
     illustrator: "Joyce Maureira",
     set: "Justice & Mercy",
@@ -2554,11 +2554,11 @@ When this character plays a Reaction, the affected character has +1 [shield].
     text: md`
 **Solitary**
 
-Exhaust: Mend 2 [blood] on target character (including in torpor). If you don't control the target draw 1 card.
+**Exhaust**: Mend 2 [blood] on target character (including in torpor). If you don't control the target, draw 1 card.
     `,
     illustrator: "Joyce Maureira",
     set: "Justice & Mercy",
-    clan: "banu haqim",
+    clan: "salubri",
     bloodPotency: 5,
     physical: 0,
     social: 2,
@@ -2576,7 +2576,7 @@ When this character exhausts during your turn, you may mend 1 [blood] on target 
     `,
     illustrator: "Joyce Maureira",
     set: "Justice & Mercy",
-    clan: "banu haqim",
+    clan: "salubri",
     bloodPotency: 6,
     physical: 2,
     social: 1,
@@ -2590,11 +2590,13 @@ When this character exhausts during your turn, you may mend 1 [blood] on target 
     text: md`
 **Solitary**
 
-Shuffle 1 Reaction from your discard pile into your Library: This character has +1 [shield] this turn.
+**Shuffle 1 Reaction from your discard pile into your Library:**
+
+This character has +1 [shield] this turn.
     `,
     illustrator: "Irene Francisco",
     set: "Justice & Mercy",
-    clan: "banu haqim",
+    clan: "salubri",
     bloodPotency: 5,
     physical: 1,
     social: 1,
@@ -2606,11 +2608,13 @@ Shuffle 1 Reaction from your discard pile into your Library: This character has 
     stack: "faction",
     name: "Kashi",
     text: md`
+**Solitary**
+
 When this character exhausts, you may remove 1 Affliction from target character.
     `,
     illustrator: "Joyce Maureira",
     set: "Justice & Mercy",
-    clan: "banu haqim",
+    clan: "salubri",
     bloodPotency: 5,
     physical: 2,
     social: 0,
@@ -2624,11 +2628,11 @@ When this character exhausts, you may remove 1 Affliction from target character.
     text: md`
 **Solitary**
 
-When you mend a **Wounded** character, you may discard a non-title, non-Wraith card attached to that character.
+When you mend a **Wounded** character, you may discard a non-Title, non-Wraith card attached to that character.
     `,
     illustrator: "Felipe Gaona",
     set: "Justice & Mercy",
-    clan: "banu haqim",
+    clan: "salubri",
     bloodPotency: 4,
     physical: 0,
     social: 1,
