@@ -395,13 +395,15 @@ attackTypeIsAllowedStrict flags card =
 
 
 type alias Clans =
-    { brujah : Bool
+    { banuHaqim : Bool
+    , brujah : Bool
     , gangrel : Bool
     , hecata : Bool
     , lasombra : Bool
     , malkavian : Bool
     , nosferatu : Bool
     , ravnos : Bool
+    , salubri : Bool
     , thinBlood : Bool
     , toreador : Bool
     , tremere : Bool
@@ -412,13 +414,15 @@ type alias Clans =
 
 cleanClans : Clans
 cleanClans =
-    { brujah = False
+    { banuHaqim = False
+    , brujah = False
     , gangrel = False
     , hecata = False
     , lasombra = False
     , malkavian = False
     , nosferatu = False
     , ravnos = False
+    , salubri = False
     , thinBlood = False
     , toreador = False
     , tremere = False
@@ -430,13 +434,15 @@ cleanClans =
 viewClans : Clans -> Html (Msg Clans)
 viewClans flags =
     div [ class "filterpicker" ]
-        [ viewFlag (IconV2.clan IconV2.Standard Cl.Brujah) (\old -> { old | brujah = not old.brujah }) flags.brujah
+        [ viewFlag (IconV2.clan IconV2.Standard Cl.BanuHaqim) (\old -> { old | banuHaqim = not old.banuHaqim }) flags.banuHaqim
+        , viewFlag (IconV2.clan IconV2.Standard Cl.Brujah) (\old -> { old | brujah = not old.brujah }) flags.brujah
         , viewFlag (IconV2.clan IconV2.Standard Cl.Gangrel) (\old -> { old | gangrel = not old.gangrel }) flags.gangrel
         , viewFlag (IconV2.clan IconV2.Standard Cl.Hecata) (\old -> { old | hecata = not old.hecata }) flags.hecata
         , viewFlag (IconV2.clan IconV2.Standard Cl.Lasombra) (\old -> { old | lasombra = not old.lasombra }) flags.lasombra
         , viewFlag (IconV2.clan IconV2.Standard Cl.Malkavian) (\old -> { old | malkavian = not old.malkavian }) flags.malkavian
         , viewFlag (IconV2.clan IconV2.Standard Cl.Nosferatu) (\old -> { old | nosferatu = not old.nosferatu }) flags.nosferatu
         , viewFlag (IconV2.clan IconV2.Standard Cl.Ravnos) (\old -> { old | ravnos = not old.ravnos }) flags.ravnos
+        , viewFlag (IconV2.clan IconV2.Standard Cl.Salubri) (\old -> { old | salubri = not old.salubri }) flags.salubri
         , viewFlag (IconV2.clan IconV2.Standard Cl.ThinBlood) (\old -> { old | thinBlood = not old.thinBlood }) flags.thinBlood
         , viewFlag (IconV2.clan IconV2.Standard Cl.Toreador) (\old -> { old | toreador = not old.toreador }) flags.toreador
         , viewFlag (IconV2.clan IconV2.Standard Cl.Tremere) (\old -> { old | tremere = not old.tremere }) flags.tremere
@@ -449,13 +455,15 @@ clanIsAllowed : Clans -> C.Card -> Bool
 clanIsAllowed flags card =
     let
         matchClan clan =
-            (clan == Cl.Brujah && flags.brujah)
+            (clan == Cl.BanuHaqim && flags.banuHaqim)
+                || (clan == Cl.Brujah && flags.brujah)
                 || (clan == Cl.Gangrel && flags.gangrel)
                 || (clan == Cl.Hecata && flags.hecata)
                 || (clan == Cl.Lasombra && flags.lasombra)
                 || (clan == Cl.Malkavian && flags.malkavian)
                 || (clan == Cl.Nosferatu && flags.nosferatu)
                 || (clan == Cl.Ravnos && flags.ravnos)
+                || (clan == Cl.Salubri && flags.salubri)
                 || (clan == Cl.ThinBlood && flags.thinBlood)
                 || (clan == Cl.Toreador && flags.toreador)
                 || (clan == Cl.Tremere && flags.tremere)
