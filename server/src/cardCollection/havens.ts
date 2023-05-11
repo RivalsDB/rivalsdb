@@ -350,7 +350,7 @@ Your Leader has +1 Secrecy.
     illustrator: "Adelijah Ocampo",
     set: "Dragon & Rogue",
   },
-  
+
   "dar-converted-bus": {
     stack: "haven",
     name: "Converted Bus",
@@ -417,7 +417,7 @@ Characters in your Haven have +1 Secrecy.
 
 **Leader Ability**
 
-When your Leader deals damange to a character, put that lost [blood] onto Rituals you control.
+When your Leader deals damage to a character, put that lost [blood] onto Rituals you control.
     `,
     illustrator: "Marco Primo",
     set: "Justice & Mercy",
