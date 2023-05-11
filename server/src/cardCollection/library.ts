@@ -800,7 +800,7 @@ Ongoing - **Remove 1 [blood] from this:** Target **Wounded** character loses 1 [
     set: "Shadows & Shrouds",
     disciplines: ["oblivion"],
   },
-  
+
   "sas-throwing-shade": {
     stack: "library",
     name: "Throwing Shade",
@@ -3253,7 +3253,7 @@ Put a Fear token on the attacker.
     //attack:[],
     reactions: ["physical", "mental", "social", "ranged"],
     text: md`
-If this attack defats the defender, gain 3 [prestige].
+If this attack defeats the defender, gain 3 [prestige].
 
 If this attack does not defeat the defender, deal 3 [mental][damage] to the attacker.
     `,
@@ -3296,7 +3296,7 @@ Put a '-1 [blood potency]' token on the attacker.
     //attack:[],
     reactions: ["ranged", "mental", "physical"],
     text: md`
-Each character in this party ha +2 [shield] for each Ritual you control.
+Each character in this party has +2 [shield] for each Ritual you control.
     `,
     //disciplines:[],
     illustrator: "Marco Primo",
@@ -3456,7 +3456,7 @@ Target defender in The Streets mends 2 [blood].
     attack:["physical"],
     //reactions: [],
     text: md`
-**Pay 2** [blood]: +2 [damage]
+**Pay 2** [blood]: +2 [damage].
 
 [fortitude][fortitude] **Pay 1** [blood] instead.
 `,
@@ -3476,7 +3476,7 @@ Target defender in The Streets mends 2 [blood].
     attack:["physical"],
     //reactions: [],
     text: md`
-After this attack, you may attach Cursed Blade to the target.
+After this attack, you may attach _Cursed Blade_ to the target.
 
 At the end of this character's turn, this character loses 1 [blood].
 `,
@@ -3632,7 +3632,7 @@ Ongoing - **Remove 1 [blood] from this:** Your attacker deals +1 [damage] to the
     text: md`
 [blood sorcery] **Place 1 to 3 [blood] of your color on this card.** Ongoing - Your characters have +1 Intel.
 
-Remove 2 [blood] from this: Steal 1 [agenda] from target foe with 9+ [agenda].
+**Remove 2 [blood] from this:** Steal 1 [agenda] from target foe with 9+ [agenda].
 `,
     disciplines:["blood sorcery"],
     illustrator: "Marco Primo",
@@ -3650,7 +3650,7 @@ Remove 2 [blood] from this: Steal 1 [agenda] from target foe with 9+ [agenda].
     //attack:[],
     //reactions: [],
     text: md`
-Ongoing - When you play a Ritual using only [blood] from character you do not control, ready 1 character in your coterie OR gain 1 Action.
+Ongoing - When you play a Ritual using only [blood] from character you do not control, ready 1 character in your coterie **OR** gain 1 Action.
 `,
     //disciplines:["blood sorcery"],
     illustrator: "Mara Miranda-Escota",
@@ -3752,7 +3752,7 @@ Attach to the acting character (max 1).
 
 This character has +1 [shield] vs **Aggravated** [damage].
 
-Detach: Prevent 1 [damage] to this character.
+**Detach:** Prevent 1 [damage] to this character.
 `,
     //disciplines:["blood sorcery"],
     illustrator: "Irene Francisco",
@@ -3810,7 +3810,7 @@ Name an Attack type, then look at target player's hand and discard all Reaction 
     text: md`
 Attach to target character.
 
-This character may not perform diablerie and deals -1 [damage] to Mortals. Agg**Aggravated**ravated [damage] this character would deal becomes non-**Aggravated**.
+This character may not perform diablerie and deals -1 [damage] to Mortals. **Aggravated** [damage] this character would deal becomes non-**Aggravated**.
 `,
     //disciplines:["blood sorcery"],
     illustrator: "Joyce Maureira",
@@ -3892,7 +3892,7 @@ Attach to a character in your coterie and draw 1 card.
 
 [celerity] At the end of your turn, ready this character.
 `,
-    //disciplines:["blood sorcery"],
+    disciplines:["celerity"],
     illustrator: "Darko Stojanovic",
     set: "Justice & Mercy",
   },
