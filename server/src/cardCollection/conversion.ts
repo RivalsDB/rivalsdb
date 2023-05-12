@@ -75,7 +75,11 @@ export const toUnstructuredLibrary = ([id, c]: Pair<Library>): UnLibrary => ({
     : c.attack
     ? [c.attack]
     : undefined,
-  reactionType: c.reactions,
+  reactionType: Array.isArray(c.reactions)
+    ? c.reactions
+    : c.reactions
+      ? [c.reactions]
+      : undefined,
   damage: c.damage,
   shield: c.shield,
 });
