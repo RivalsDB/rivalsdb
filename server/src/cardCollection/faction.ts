@@ -2319,7 +2319,6 @@ When this character Blocks an attack and is not defeated, you may attach 1 unatt
     mental: 2,
     disciplines: { animalism: 1 },
   },
-
   "jam-javier": {
     stack: "faction",
     name: "Javier",
@@ -2638,5 +2637,22 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     social: 1,
     mental: 1,
     disciplines: { auspex: 1, fortitude: 1 },
+  },
+  "xxx-timothy-winters": {
+    stack: "faction",
+    name: "Timothy Winters",
+    text: md`
+  This character has +2 Influence during Schemes.
+
+  When this character exhausts, you and target foe each draw 1 card.
+    `,
+    illustrator: "Joyce Maureira",
+    set: "Promo",
+    clan: "lasombra",
+    bloodPotency: 5,
+    physical: 1,
+    social: 0,
+    mental: 2,
+    disciplines: { dominate: 1, oblivion: 1 },
   },
 };
