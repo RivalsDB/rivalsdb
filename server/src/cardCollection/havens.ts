@@ -456,7 +456,7 @@ Characters in your Haven have +1 Secrecy.
 
 **Leader Ability**
 
-Pay 1 [prestige]: Mend 1 [blood] on a character in your coterie or torpor for each Animal and/or Vagrant you have attached to your Leader.
+**Pay 1 [prestige]:** Mend 1 [blood] on a character in your coterie or torpor for each Animal and/or _Vagrant_ you have attached to your Leader.
     `,
     illustrator: "Felipe Gaona",
     set: "Promo",
@@ -469,7 +469,7 @@ Characters in your Haven have +1 Secrecy.
 
 **Leader Ability**
 
-Your Leader has **+1 [shield]** vs Aggravated [damage]
+Your Leader has +1 [shield] vs **Aggravated** [damage].
     `,
     illustrator: "Marco Primo",
     set: "Promo",
