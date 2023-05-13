@@ -424,7 +424,7 @@ When your Leader deals damage to a character, put that lost [blood] onto Rituals
 
   "jam-the-castle": {
     stack: "haven",
-    name: "Social Housing",
+    name: "The Castle",
     text: md`
 Characters in your Haven have +1 Secrecy.
 
@@ -433,6 +433,7 @@ Characters in your Haven have +1 Secrecy.
     illustrator: "Marco Primo",
     set: "Justice & Mercy",
   },
+
   "jam-the-high-horse": {
     stack: "haven",
     name: "The High Horse",
@@ -448,6 +449,7 @@ Reduce the [prestige] cost of Traditions you play by 1.
     illustrator: "Marco Primo",
     set: "Justice & Mercy",
   },
+  
   "xxx-the-underpass": {
     stack: "haven",
     name: "The Underpass",
