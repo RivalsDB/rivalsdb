@@ -326,7 +326,7 @@ Ongoing, **Relentless, Remove 1 [blood] from this:** Move a ready character in y
     `,
     illustrator: "Mara Miranda-Escota",
     disciplines: ["blood sorcery"],
-    reactions: ["physical", "social", "mental"],
+    //reactions: ["physical", "social", "mental"],
     set: "Heart of Europe",
   },
 
@@ -1137,7 +1137,7 @@ Each character in this party has +1 [shield] for each [obfuscate] in this party.
     set: "Core",
     bloodPotencyRequirement: 1,
     attack: ["ranged", "physical"],
-    reactions:["ranged", "physical"],
+    reactions: ["ranged", "physical"],
     //damage: 0,
     shield: 0,
     disciplines: ["obfuscate"],
@@ -1429,8 +1429,8 @@ Attach to the acting character. If they are a Thin-blood, gain 1 Action. This ch
     types: ["reaction"],
     set: "Core",
     bloodPotencyRequirement: 2,
-    reactions:["ranged", "physical"],
     attack: ["ranged", "physical"],
+    reactions: ["ranged", "physical"],
     shield: 0,
     disciplines: ["celerity"],
   },
@@ -2028,7 +2028,7 @@ Exert 4 Influence: Attach to the acting character. Exhaust this character: Burn 
     stack: "library",
     name: "Slap in the Face",
     text: md`
-Deal physic to the attacker (add this character's physic to the damage).
+Deal [physical] to the attacker (add this character's [physical] to the damage).
     `,
     illustrator: "The Creation Studio",
     types: ["reaction"],
@@ -2309,8 +2309,8 @@ Deal [mental] [damage] to the attacker equal to the [damage] they are dealing to
     set: "Wolf & Rat",
     clan: "nosferatu",
     bloodPotencyRequirement: 4,
-    reactions: ["physical", "mental"],
     attack: ["physical", "mental"],
+    reactions: ["physical", "mental"],
   },
 
   "war-beasts-of-war": {
@@ -3243,7 +3243,7 @@ Reaction - Deal [physical] [damage] to the attacker (not [mental]).
     bloodPotencyRequirement: 3,
     //damage:,
     shield: 1,
-    //attack:[],
+    attack:["physical"],
     reactions: ["physical"],
     text: md`
 Put a Fear token on the attacker.
@@ -3266,7 +3266,7 @@ Put a Fear token on the attacker.
     bloodPotencyRequirement: 4,
     //damage:,
     shield: 1,
-    //attack:[],
+    attack:["physical", "mental", "social", "ranged"],
     reactions: ["physical", "mental", "social", "ranged"],
     text: md`
 If this attack defeats the defender, gain 3 [prestige].
@@ -3286,7 +3286,7 @@ If this attack does not defeat the defender, deal 3 [mental][damage] to the atta
     bloodPotencyRequirement: 1,
     //damage:,
     shield: 1,
-    //attack:[],
+    attack:["ranged", "mental"],
     reactions: ["ranged", "mental"],
     text: md`
 Put a '-1 [blood potency]' token on the attacker.
@@ -3309,7 +3309,7 @@ Put a '-1 [blood potency]' token on the attacker.
     bloodPotencyRequirement: 2,
     //damage:,
     shield: 0,
-    //attack:[],
+    attack:["ranged", "mental", "physical"],
     reactions: ["ranged", "mental", "physical"],
     text: md`
 Each character in this party has +2 [shield] for each Ritual you control.
@@ -3327,7 +3327,7 @@ Each character in this party has +2 [shield] for each Ritual you control.
     bloodPotencyRequirement: 2,
     //damage:,
     shield: 1,
-    //attack:[],
+    attack:["social"],
     reactions: ["social"],
     text: md`
 Deal 1 **Aggravated** [damage] to the attacker.
@@ -3349,8 +3349,8 @@ Deal 1 **Aggravated** [damage] to the attacker.
     bloodPotencyRequirement: 4,
     //damage:,
     shield: 1,
-    //attack:[],
-    reactions: ["physical", "social" ],
+    attack:["physical", "social"],
+    reactions: ["physical", "social"],
     text: md`
 +2 [shield] for each Prey attached to the defender.
 
@@ -3391,7 +3391,7 @@ Target defender in The Streets mends 2 [blood].
     bloodPotencyRequirement: 3,
     //damage:,
     shield: 1,
-    //attack:[],
+    attack:["social", "mental"],
     reactions: ["social", "mental"],
     text: md`
 +1 [shield] for each Ongoing Tradition you control.
@@ -3410,7 +3410,7 @@ Target defender in The Streets mends 2 [blood].
     damage: 1,
     //shield:,
     attack:["mental"],
-    //reactions: [],
+    //reactions: ["mental"],
     text: md`
 [auspex] If this attack does not defeat the target, ready the attacker.
 
