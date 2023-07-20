@@ -2807,7 +2807,7 @@ Ongoing, **Relentless - Exhaust:** The next time you resolve a face-down card wi
     text: md`
 Attach a haven from your collection to a non-Leader character in your coterie.
 
-Ongoing - **Discard 1 card:** Swap your active Haven with another Haven you control. Then you may return any of your characters in The Streets to your Haven.
+Ongoing - **Discard 1 card:** Remove your active Haven from the game and replace it with another Haven you control. Then you may return any of your characters in The Streets to your Haven.
     `,
     illustrator: "Joyce Maureira",
     types: ["unhosted action", "ongoing"],
