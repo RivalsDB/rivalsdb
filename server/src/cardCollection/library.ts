@@ -3697,6 +3697,7 @@ Ongoing - If you control only 1 character, they gain this discipline (leave it o
     stack: "library",
     name: "Obeah",
     types: ["ongoing", "action"],
+    disciplines: ["auspex", "fortitude"],
     //clan: "banu haqim",
     //bloodPotencyRequirement: ,
     //damage: ,
