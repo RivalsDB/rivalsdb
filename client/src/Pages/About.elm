@@ -48,6 +48,7 @@ items =
     , ( Icon.HandOfCards, "Hand Of Cards by Daniel Solis from NounProject.com" )
     , ( Icon.Animal, "Animal by Rfourtytwo from NounProject.com" )
     , ( Icon.Trap, "Wolf Trap by Lorc from game-icons.net" )
+    , ( Icon.Ghoul, "Zombie by Hada Arkanda from game-icons.net" )
     ]
 
 

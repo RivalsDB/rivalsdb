@@ -57,6 +57,7 @@ type IconImage
     | Title
     | Trap
     | UnhostedAction
+    | Ghoul
 
 type IconStyle
     = Standard
@@ -237,6 +238,9 @@ imageOpts image =
 
         Trap ->
             ( class "ui-icon_trap", "Trap" )
+
+        Ghoul ->
+            ( class "ui-icon_ghoul", "Ghoul" )    
 
         UnhostedAction ->
             ( class "ui-icon_unhosted_action", "Unhosted Action" )
