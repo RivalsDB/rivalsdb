@@ -2854,7 +2854,7 @@ Target player who attached a card this turn burns 1 non-Title card (without effe
 
 Resolve any time during an attack.
 
-For each [prestige] on this card, you may redirect 1 [damage] from this attack to target character in The Streets.
+For every 2 [prestige] on this card, you may redirect 1 [damage] from this attack to target character in The Streets.
     `,
     illustrator: "Irene Francisco",
     types: ["action", "trap"],

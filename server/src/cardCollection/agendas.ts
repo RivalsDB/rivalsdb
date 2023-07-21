@@ -278,7 +278,7 @@ If you reach 13 [agenda], you win!
   "dar-raising-the-stakes": {
     name: "Raising the Stakes",
     text: md`
-The first time you place 1+ [prestige] on a card you control that already has 2+ tokens on it during each of your turns, gain 1 [agenda]. When your resolve a face-down card with 4+ tokens on it during each player's turn, gain 2 [agenda].
+The first time you place 1+ [prestige] on a card you control that already has 2+ tokens on it during each of your turns, gain 1 [agenda]. The first time you resolve a face-down card with 4+ tokens on it during each player's turn, gain 2 [agenda].
     `,
     illustrator: "Adelijah Ocampo",
     set: "Dragon & Rogue",
