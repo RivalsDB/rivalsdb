@@ -402,7 +402,7 @@ When a foe attacks a character in a Haven or with a Haven attached to them, you 
     clan: "lasombra",
     name: "Giselle della Scala",
     text: md`
-Attacker - When this character defeats a character in The Streets, move all [agenda] on this character to your Agenda card.
+Attacker - When this character defeats a foe's character in The Streets, move all [agenda] on this character to your Agenda card.
     `,
     bloodPotency: 4,
     physical: 0,

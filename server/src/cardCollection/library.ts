@@ -2807,7 +2807,7 @@ Ongoing, **Relentless - Exhaust:** The next time you resolve a face-down card wi
     text: md`
 Attach a haven from your collection to a non-Leader character in your coterie.
 
-Ongoing - **Discard 1 card:** Swap your active Haven with another Haven you control. Then you may return any of your characters in The Streets to your Haven.
+Ongoing - **Discard 1 card:** Remove your active Haven from the game and replace it with another Haven you control. Then you may return any of your characters in The Streets to your Haven.
     `,
     illustrator: "Joyce Maureira",
     types: ["unhosted action", "ongoing"],
@@ -2854,7 +2854,7 @@ Target player who attached a card this turn burns 1 non-Title card (without effe
 
 Resolve any time during an attack.
 
-For each [prestige] on this card, you may redirect 1 [damage] from this attack to target character in The Streets.
+For every 2 [prestige] on this card, you may redirect 1 [damage] from this attack to target character in The Streets.
     `,
     illustrator: "Irene Francisco",
     types: ["action", "trap"],

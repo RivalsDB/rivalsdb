@@ -59,7 +59,7 @@ Characters in your Haven have +1 Secrecy.
 
 **Leader Ability**
 
-Relentless, pay 1 Blood: Draw 1 card.
+**Pay 1 or 2 [blood]:** Draw that many cards from your Library.
     `,
     illustrator: "Marco Primo",
     set: "Blood & Alchemy",
