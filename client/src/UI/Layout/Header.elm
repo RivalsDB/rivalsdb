@@ -55,18 +55,6 @@ view msg shared =
                                 ]
                                 [ text "Sign In" ]
                         ]
-                   , li [ class "nav__item", class "nav__item--ext" ]
-                        [ form [ onSubmit (msg Shared.HeaderSearchQuerySubmitted) ]
-                            [ input
-                                [ onInput (Shared.HeaderSearchQueryChanged >> msg)
-                                , placeholder "Card search"
-                                , type_ "search"
-                                , spellcheck False
-                                , value shared.headerSearchInput
-                                ]
-                                []
-                            ]
-                        ]
                    , li [ class "nav__item", class "nav__burger" ]
                         [ button [ class "burger", onClick (msg Shared.ToggleBurgerMenu) ]
                             [ div [ class "burger__icon" ]
