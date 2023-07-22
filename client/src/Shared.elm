@@ -30,8 +30,6 @@ type alias Model =
     { collection : Collection
     , user : Maybe User
     , burgerMenu : Bool
-    , headerSearchInput : String
-    , headerSearch : Maybe String
     , toast : Toast.Model
     , key : Key
     , cachedDecks : List Deck
@@ -47,8 +45,6 @@ type Msg
     | InitiateSignin
     | HeaderClickedSignIn
     | HeaderClickedSignOut
-    | HeaderSearchQueryChanged String
-    | HeaderSearchQuerySubmitted
     | ToggleBurgerMenu
     | Redirect Route
     | GoTo Route
@@ -72,8 +68,6 @@ init req flags =
     ( { collection = collection
       , user = user
       , burgerMenu = False
-      , headerSearchInput = ""
-      , headerSearch = Nothing
       , toast = Toast.init
       , key = req.key
       , cachedDecks = []
@@ -113,33 +107,6 @@ update _ msg model =
                 , Port.Event.track Port.Event.SignedOut
                 ]
             )
-
-        HeaderSearchQueryChanged query ->
-            ( { model
-                | headerSearchInput = query
-                , headerSearch =
-                    case String.trim query of
-                        "" ->
-                            Nothing
-
-                        trimmed ->
-                            Just trimmed
-              }
-            , Cmd.none
-            )
-
-        HeaderSearchQuerySubmitted ->
-            case model.headerSearch of
-                Nothing ->
-                    ( model, Cmd.none )
-
-                Just search ->
-                    ( { model | headerSearchInput = "" }
-                    , Cmd.batch
-                        [ Navigation.pushUrl model.key <| Route.toHref Route.Search ++ "?search=" ++ search
-                        , Port.Event.track (Port.Event.HeaderSearchUsed search)
-                        ]
-                    )
 
         Redirect route ->
             ( model, Route.toHref route |> Navigation.replaceUrl model.key )

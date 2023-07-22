@@ -34,8 +34,7 @@ page shared _ =
 
 
 type alias Model =
-    { matches : List Card
-    , collection : Collection
+    { collection : Collection
     , stackFilters : FS.AllStacks
     , cityFilters : FS.Cities
     , primaryFilters : FS.PrimaryTraits
@@ -51,7 +50,6 @@ type alias Model =
 init : Shared.Model -> ( Model, Effect Msg )
 init shared =
     ( { collection = shared.collection
-      , matches = matchesForQuery shared.collection shared.headerSearch
       , stackFilters = FS.cleanAllStacks
       , cityFilters = FS.cleanCities
       , primaryFilters = FS.cleanPrimaryTraits
@@ -64,17 +62,6 @@ init shared =
       }
     , Effect.none
     )
-
-
-matchesForQuery : Collection -> Maybe String -> List Card
-matchesForQuery collection query =
-    case query of
-        Nothing ->
-            Dict.values collection
-
-        Just q ->
-            Dict.keys collection |> fuzzySort q |> List.take 3 |> List.filterMap (\k -> Dict.get k collection)
-
 
 fuzzySort : String -> List String -> List String
 fuzzySort query items =
@@ -157,7 +144,7 @@ view : Shared.Model -> Model -> View Msg
 view shared model =
     let
         sortedCards =
-            model.matches
+            Dict.values shared.collection
                 |> List.filter
                     (\card ->
                         matchTextFilter model card

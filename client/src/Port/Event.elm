@@ -8,7 +8,6 @@ port trackEvent : Value -> Cmd msg
 
 type Event
     = SignedOut
-    | HeaderSearchUsed String
     | DeckIndexFilter ( String, String )
     | BuilderClearFilters
     | BuilderShowAllFilters
@@ -55,12 +54,6 @@ encode event =
             object
                 [ ( "name", string "Hand Simulator used" )
                 , ( "extra", object [ ( "page", string page ) ] )
-                ]
-
-        HeaderSearchUsed query ->
-            object
-                [ ( "name", string "Used header search" )
-                , ( "extra", object [ ( "query", string query ) ] )
                 ]
 
         DeckIndexFilter ( by, value ) ->
