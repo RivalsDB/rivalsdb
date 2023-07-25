@@ -13,6 +13,7 @@ module Cards exposing
     , Id
     , Library
     , Shield
+    , Monster
     , attackTypes
     , bloodPotency
     , cardsDecoder
@@ -122,6 +123,17 @@ type alias CityTraits =
     , title : Bool
     }
 
+type alias Monster =
+    { id : Id
+    , name : Name
+    , text : Text
+    , image : Image
+    , set : Pack
+    , bloodPotency : BloodPotency
+    , physical : Attribute
+    , social : Attribute
+    , mental : Attribute
+    }
 
 type alias Faction =
     { id : Id
@@ -170,6 +182,7 @@ type alias LibraryTraits =
     , trap : Bool
     , unhostedAction : Bool
     , ghoul : Bool
+    , relic : Bool
     }
 
 
@@ -179,6 +192,7 @@ type Card
     | FactionCard Faction
     | LibraryCard Library
     | CityCard City
+    | MonsterCard Monster
 
 
 type CardStack
@@ -187,6 +201,7 @@ type CardStack
     | FactionStack
     | LibraryStack
     | CityStack
+    | MonsterStack
 
 
 
@@ -213,6 +228,9 @@ id card =
         CityCard c ->
             c.id
 
+        MonsterCard c ->
+            c.id
+
 
 name : Card -> String
 name card =
@@ -230,6 +248,9 @@ name card =
             c.name
 
         CityCard c ->
+            c.name
+        
+        MonsterCard c ->
             c.name
 
 
@@ -251,6 +272,9 @@ image card =
         CityCard c ->
             c.image
 
+        MonsterCard c ->
+            c.image
+
 
 set : Card -> Pack
 set card =
@@ -268,6 +292,9 @@ set card =
             c.set
 
         CityCard c ->
+            c.set
+
+        MonsterCard c ->
             c.set
 
 
@@ -332,6 +359,9 @@ bloodPotency card =
         LibraryCard c ->
             Maybe.withDefault 0 c.bloodPotency
 
+        MonsterCard c ->
+            c.bloodPotency
+
         _ ->
             0
 
@@ -354,6 +384,9 @@ stack card =
         CityCard _ ->
             CityStack
 
+        MonsterCard _ ->
+            MonsterStack
+
 
 stackComparable : Card -> Int
 stackComparable card =
@@ -373,6 +406,9 @@ stackComparable card =
         LibraryCard _ ->
             4
 
+        MonsterCard _ ->
+            5
+
 
 text : Card -> String
 text card =
@@ -390,6 +426,9 @@ text card =
             c.text
 
         CityCard c ->
+            c.text
+
+        MonsterCard c ->
             c.text
 
 
@@ -441,6 +480,9 @@ decoderForCardType st =
 
         "library" ->
             libraryDecoder
+
+        "monster" ->
+            monsterDecoder
 
         _ ->
             Decode.fail "Unrecognized card stack"
@@ -513,6 +555,17 @@ cityDecoder =
         |> required "set" Pack.decoder
         |> required "types" decodeCityTraits
         |> map (\library -> ( library.id, CityCard library ))
+
+monsterDecoder : Decoder ( Id, Card )
+monsterDecoder =
+    Decode.succeed Monster
+        |> decodeId
+        |> decodeName
+        |> decodeText
+        |> decodeImage
+        |> required "set" Pack.decoder
+        |> required "types" decodeMonsterTraits
+        |> map (\monster -> ( monster.id, MonsterCard library ))
 
 
 
@@ -602,6 +655,7 @@ decodeLibraryTraits =
             , trap = False
             , unhostedAction = False
             , ghoul = False
+            , relic = False
             }
     in
     Decode.map
@@ -652,6 +706,9 @@ decodeLibraryTraits =
 
                     "ghoul" ->
                         { ts | ghoul = True }
+
+                    "relic" ->
+                        { ts | relic = True }
 
                     _ ->
                         ts

@@ -29,6 +29,9 @@ discipline style discipline_ =
         Discipline.Auspex ->
             auspex style
 
+        Discipline.BeastWhisperer ->
+            beastWhisperer style
+
         Discipline.BloodSorcery ->
             thaumaturgy style
 
@@ -40,6 +43,12 @@ discipline style discipline_ =
 
         Discipline.Fortitude ->
             fortitude style
+
+        Discipline.Global ->
+            global style
+        
+        Discipline.Library ->
+            library style
 
         Discipline.Obfuscate ->
             obfuscate style
@@ -55,6 +64,15 @@ discipline style discipline_ =
 
         Discipline.Protean ->
             protean style
+        
+        Discipline.RepelTheUnnatural ->
+            repelTheUnnatural style
+
+        Discipline.SenseTheUnnatural ->
+            senseTheUnnatural style
+
+        Discipline.ThwartTheUnnatural ->
+            thwartTheUnnatural style
 
         Discipline.ThinBloodAlchemy ->
             thinBloodAlchemy style
@@ -110,6 +128,12 @@ auspex style =
         , path [ backgroundFill style, d "m48.6 54.39c0-6.058 5.027-10.97 11.26-10.97 6.17 0 11.26 4.915 11.26 10.97 0 6.001-5.087 10.92-11.26 10.92-6.23 0-11.26-4.915-11.26-10.92" ] []
         ]
 
+beastWhisperer : Style -> Html msg
+beastWhisperer style =
+    root "Beast Whisperer"
+        [ 
+
+        ]
 
 celerity : Style -> Html msg
 celerity style =
@@ -143,6 +167,19 @@ fortitude style =
             []
         ]
 
+global : Style -> Html msg
+global style =
+    root "Global"
+        [ 
+            
+        ]
+
+library : Style -> Html msg
+library style =
+    root "Library"
+        [ 
+            
+        ]
 
 oblivion : Style -> Html msg
 oblivion style =
@@ -198,6 +235,26 @@ protean style =
             []
         ]
 
+repelTheUnnatural : Style -> Html msg
+repelTheUnnatural style =
+    root "Repel the Unnatural"
+        [ 
+            
+        ]
+
+senseTheUnnatural : Style -> Html msg
+senseTheUnnatural style =
+    root "Sense the Unnatural"
+        [ 
+            
+        ]
+
+thwartTheUnnatural : Style -> Html msg
+thwartTheUnnatural style =
+    root "Thwart the Unnatural"
+        [ 
+            
+        ]
 
 thaumaturgy : Style -> Html msg
 thaumaturgy style =
@@ -243,17 +300,29 @@ clan style clan_ =
         Clan.Brujah ->
             brujah style
 
+        Clan.Caitiff ->
+            caitiff style
+
+        Clan.Faithful ->
+            faithful style
+
         Clan.Gangrel ->
             gangrel style
 
         Clan.Hecata ->
             hecata style
 
+        Clan.Inquisitive ->
+            inquisitive style
+
         Clan.Lasombra ->
             lasombra style
 
         Clan.Malkavian ->
             malkavian style
+
+        Clan.Ministry ->
+            ministry style
 
         Clan.Nosferatu ->
             nosferatu style
@@ -309,6 +378,19 @@ brujah style =
             []
         ]
 
+{--
+caitiff : Style -> Html msg
+caitiff style =
+    root "Caitiff"
+        [ 
+        ]
+
+faithful : Style -> Html msg
+faithful style =
+    root "Faithful"
+        [ 
+        ]        
+--}
 
 gangrel : Style -> Html msg
 gangrel style =
@@ -333,6 +415,13 @@ hecata style =
             ]
         ]
 
+{--
+inquisitive : Style -> Html msg
+inquisitive style =
+    root "Inquisitive"
+        [ 
+        ]
+--}
 
 lasombra : Style -> Html msg
 lasombra style =
@@ -372,7 +461,13 @@ malkavian style =
             ]
             []
         ]
-
+{--
+ministry : Style -> Html msg
+ministry style =
+    root "Ministry"
+        [ 
+        ]
+--}
 
 nosferatu : Style -> Html msg
 nosferatu style =

@@ -638,4 +638,312 @@ This character has +4 Influence.
     `,
     copies: 1,
   },
+
+  "hah-politician": {
+    stack: "city",
+    set: "Hunters & Hunted",
+    illustrator: "Cold Castle Studios",
+    name: "Politician",
+    types: ["mortal", "retainer"],
+    text: md`
+When defeated choose one:
+
+Burn - Mend 3 [blood] or gain 1 [prestige].
+
+Attach - +2 Influence.
+    `,
+    copies: 1,
+  },
+
+  "hah-practitioner of the dark arts": {
+    stack: "city",
+    set: "Hunters & Hunted",
+    illustrator: "Darko Stojanovic",
+    name: "Practitioner of the Dark Arts",
+    types: ["mortal", "retainer"],
+    text: md`
+When defeated choose one:
+
+Burn - Mend 3 [blood] or gain 1 [prestige].
+
+Attach - Draw 1 card. Gain [oblivion].
+    `,
+    copies: 1,
+  },
+
+  "hah-prince of the city": {
+    stack: "city",
+    set: "Hunters & Hunted",
+    illustrator: "Cold Castle Studios",
+    name: "Prince of the City",
+    types: ["title"],
+    text: md`
+When you attach this Title, gain 1 [agenda].
+
+This character has +2 Influence.
+
+At the end of each player's turn, if this card is in The Streets, the active player deals 1 **Aggravated [damage] to a character in their coterie (unless they control this card).
+    `,
+    copies: 1,
+  },
+
+  "hah-seeking-followers": {
+    stack: "city",
+    set: "Hunters & Hunted",
+    illustrator: "Cold Castle Studios",
+    name: "Politician",
+    types: ["event", "ongoing"],
+    text: md`
+Ongoing - At the end of your turn, lose 1 [prestige] unless you control 1+ Retainers.
+    `,
+    copies: 1,
+  },
+
+  "hah-snake-handler": {
+    stack: "city",
+    set: "Hunters & Hunted",
+    illustrator: "Joyce Maureira",
+    name: "Snake Handler",
+    types: ["mortal", "retainer"],
+    text: md`
+When defeated choose one:
+
+Burn - Mend 3 [blood] or gain 1 [prestige].
+
+Attach - Gain [protean] and +1 [blood-potency]
+    `,
+    copies: 1,
+  },
+
+  "hah-uprising": {
+    stack: "city",
+    set: "Hunters & Hunted",
+    illustrator: "Cold Castle Studios",
+    name: "Uprising",
+    types: ["event", "ongoing"],
+    text: md`
+Ongoing - After the first attack of your turn, if the target was a character with 5+ [blood-potency] and you did not defeat them, gain 1 Action.
+    `,
+    copies: 1,
+  },
+
+  "hah-vagrant": {
+    stack: "city",
+    set: "Hunters & Hunted",
+    illustrator: "Cold Castle Studios",
+    name: "Vagrant",
+    types: ["mortal", "retainer"],
+    text: md`
+When defeated choose one:
+
+Burn - Mend 2 [blood].
+
+Attach - *Exhaust Vagrant:* Prevent 1 [damage] to this character.
+    `,
+    copies: 5,
+  },
+
+  "hah-blood-cult-priest": {
+    stack: "city",
+    set: "Hunters & Hunted",
+    illustrator: "Felipe Gaona",
+    name: "Blood Cult Priest",
+    types: ["mortal", "retainer"],
+    text: md`
+When defeated choose one:
+
+Burn - Mend 3 [blood] or gain 1 [prestige].
+
+Attach - Draw 1 card. Gain [blood-potency].
+    `,
+    copies: 1,
+  },
+
+  "hah-bope-rj-caveira": {
+    stack: "city",
+    set: "Hunters & Hunted",
+    illustrator: "Felipe Gaona",
+    name: "BOPE-RJ: Caveira",
+    types: ["mortal", "antagonist", "ongoing"],
+    text: md`
+Ongoing - During your Antagonist Step, if you control no characters in The Streets, move 1 character in your Haven to The Streets.
+    `,
+    copies: 1,
+  },
+
+  "hah-bope-rj-marksman": {
+    stack: "city",
+    set: "Hunters & Hunted",
+    illustrator: "Felipe Gaona",
+    name: "BOPE-RJ: Marksman",
+    types: ["mortal", "antagonist", "ongoing"],
+    text: md`
+Ongoing - When you move a party of your characters to The Streets duing you turn, deal 1 **Aggravated** [damage] to a vampire in that party.
+    `,
+    copies: 2,
+  },
+
+  "hah-bope-rj-psyops": {
+    stack: "city",
+    set: "Hunters & Hunted",
+    illustrator: "Felipe Gaona",
+    name: "BOPE-RJ: Psyops",
+    types: ["mortal", "antagonist", "ongoing"],
+    text: md`
+Ongoing - When you move a party of your characters to The Streets during your turn, discard 1 card.
+    `,
+    copies: 1,
+  },
+
+  "hah-carnival": {
+    stack: "city",
+    set: "Hunters & Hunted",
+    illustrator: "Cold Castle Studios",
+    name: "Carnival",
+    types: ["event"],
+    text: md`
+Shuffle all Events in the burned pile inot the City Deck, then add 1 card per player to The Streets.
+    `,
+    copies: 1,
+  },
+
+  "hah-copacabana-reveillon": {
+    stack: "city",
+    set: "Hunters & Hunted",
+    illustrator: "Cold Castle Studios",
+    name: "Copacabana Réveillon",
+    types: ["event", "ongoing"],
+    text: md`
+Ongoing - All characters have -1 Secrecy.
+    `,
+    copies: 1,
+  },
+
+  "hah-corruption": {
+    stack: "city",
+    set: "Hunters & Hunted",
+    illustrator: "Cold Castle Studios",
+    name: "Corruption",
+    types: ["event", "ongoing"],
+    text: md`
+_Place no player token on this when revealed. When it gains a token, it will be removed at the start of a player's turn if there is Prestige of their color on it._
+
+Ongoing - When you gain 1+ [prestige], place 1 of those tokens on this card.
+    `,
+    copies: 1,
+  },
+
+  "hah-crackdown": {
+    stack: "city",
+    set: "Hunters & Hunted",
+    illustrator: "Cold Castle Studios",
+    name: "Crackdown",
+    types: ["event", "ongoing"],
+    text: md`
+Ongoing - At the end of your Beginning Phase, flip your active Haven face down, then flip it face up at the start of your next turn.
+    `,
+    copies: 1,
+  },
+
+  "hah-cristo-redentor": {
+    stack: "city",
+    set: "Hunters & Hunted",
+    illustrator: "Cold Castle Studios",
+    name: "Cristo Redentor",
+    types: ["event", "ongoing"],
+    text: md`
+Ongoing - To perform an Attack Action, the acting player must pat 1 [prestige].
+    `,
+    copies: 1,
+  },
+
+  "hah-dia-da-independencia": {
+    stack: "city",
+    set: "Hunters & Hunted",
+    illustrator: "Cold Castle Studios",
+    name: "Dia da Independência",
+    types: ["event", "ongoing"],
+    text: md`
+Ongoing - When a character is defeated, return 1 of their Retainers at random to The Streets.
+    `,
+    copies: 1,
+  },
+
+  "hah-lookout": {
+    stack: "city",
+    set: "Hunters & Hunted",
+    illustrator: "Cold Castle Studios",
+    name: "Lookout",
+    types: ["mortal", "retainer"],
+    text: md`
+    When defeated choose one:
+
+    Burn - Mend 3 [blood] or gain 1 [prestige].
+    
+    Attach - Party - Ignore 1 Antagonist when this party moves to The Streets.
+    `,
+    copies: 1,
+  },
+
+  "hah-maid": {
+    stack: "city",
+    set: "Hunters & Hunted",
+    illustrator: "Cold Castle Studios",
+    name: "Maid",
+    types: ["mortal", "retainer"],
+    text: md`
+    When defeated choose one:
+
+    Burn - Mend 3 [blood] or gain 1 [prestige].
+    
+    Attach - Party - At the end of your turn, you may move this character into any party within your coterie (ignoring Antagonists).
+    `,
+    copies: 1,
+  },
+  
+  "hah-meeting-at-pao-de-acucar": {
+    stack: "city",
+    set: "Hunters & Hunted",
+    illustrator: "Cold Castle Studios",
+    name: "Meeting at Pão de Açúcar",
+    types: ["event", "ongoing"],
+    text: md`
+_Place no player token on this when revealed._
+
+Ongoing, **Action:** Scheme Influence Conflict - Should target player (chose now) lose 2 [agenda] and gain 2 [prestige], then burn this card? Only Leaders may exert Influence (no Influence Modifiers or [prestige])
+    `,
+    copies: 1,    
+  },
+
+  "hah-mugger": {
+    stack: "city",
+    set: "Hunters & Hunted",
+    illustrator: "Felipe Gaona",
+    name: "Mugger",
+    types: ["mortal", "retainer"],
+    text: md`
+    When defeated choose one:
+
+    Burn - Mend 3 [blood] or gain 1 [prestige].
+    
+    Attach - Gain [potence] and +1 [blood-potency]
+    `,
+    copies: 1,
+  },
+
+  "hah-open-season": {
+    stack: "city",
+    set: "Hunters & Hunted",
+    illustrator: "Cold Castle Studios",
+    name: "Open Season",
+    types: ["event", "ongoing"],
+    text: md`
+Flip the top card of the unused Monster stack face up.
+
+Ongoing - During your Antagonist Step, this Monster attacks the lowest [blood-potency] character in your coterie.
+
+**Round 1 Exception:** Place a new City Deck card, then shuffle this card back into the City Deck.
+    `,
+    copies: 1,    
+  },
 };

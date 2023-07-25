@@ -6,6 +6,7 @@ import {
   Discipline,
   Illustrator,
   LibraryCardType,
+  GameMode,
   md,
 } from "./common.js";
 
@@ -22,7 +23,8 @@ export type Library = {
   text: string;
   disciplines?: Discipline[];
   illustrator: Illustrator;
-  set: CardSet;
+  set: CardSet | CardSet[];
+  gameMode?: GameMode[];
 };
 
 export const library: Record<CardId, Library> = {
@@ -35,6 +37,7 @@ Gain 2 Influence during this action or event. If this is a Scheme and your side 
     `,
     illustrator: "Joshua Esmeralda",
     set: "Heart of Europe",
+    gameMode: ["vampire"],
   },
 
   "hoe-bank-error-in-your-favor": {
@@ -49,6 +52,7 @@ If this card has 2+ [prestige] on it, you may resolve it during your turn. Targe
     `,
     illustrator: "Marco Primo",
     set: "Heart of Europe",
+    gameMode: ["vampire"],
   },
 
   "hoe-blood-poisoning": {
@@ -65,6 +69,7 @@ Resolve at any time.
     disciplines: ["obfuscate"],
     illustrator: "Adelijah Ocampo",
     set: "Heart of Europe",
+    gameMode: ["vampire"],
   },
 
   "hoe-blood-transfusion": {
@@ -77,6 +82,7 @@ Ongoing - When a character in your coterie attacks a character and does not defe
     `,
     illustrator: "Harvey Bunda",
     set: "Heart of Europe",
+    gameMode: ["vampire"],
   },
 
   "hoe-bread-and-circuses": {
@@ -105,6 +111,7 @@ Ongoing - For a foe to attack a character with [presence], that foe must first g
     disciplines: ["presence"],
     illustrator: "Joshua Esmeralda",
     set: "Heart of Europe",
+    gameMode: ["vampire"],
   },
 
   "hoe-entrancement": {
@@ -120,6 +127,7 @@ Ongoing - For a foe to attack a character with [presence], that foe must first g
     disciplines: ["presence"],
     illustrator: "Harvey Bunda",
     set: "Heart of Europe",
+    gameMode: ["vampire"],
   },
 
   "hoe-fortify-the-inner-facade": {
@@ -140,6 +148,7 @@ If your foe's Attack would cause you to lose or spend [prestige], gain 3 [presti
     disciplines: ["fortitude"],
     illustrator: "Joyce Maureira",
     set: "Heart of Europe",
+    gameMode: ["vampire"],
   },
 
   "hoe-fourth-tradition-the-accounting": {
@@ -153,6 +162,7 @@ When another character in this Leader's coterie makes an attack or uses an activ
     `,
     illustrator: "Mara Miranda-Escota",
     set: "Heart of Europe",
+    gameMode: ["vampire"],
   },
 
   "hoe-hidden-stash": {
@@ -167,6 +177,7 @@ Ongoing - You may spend [prestige] on this to pay for activated abilities on cha
     `,
     illustrator: "Harvey Bunda",
     set: "Heart of Europe",
+    gameMode: ["vampire"],
   },
 
   "hoe-lone-wolf": {
@@ -181,6 +192,7 @@ Your characters have: Solo Attacker - The target has -1 [shield] during this att
     `,
     illustrator: "Irene Francisco",
     set: "Heart of Europe",
+    gameMode: ["vampire"],
   },
 
   "hoe-off-limits": {
@@ -197,6 +209,7 @@ Target defender in The Streets has +2 [shield] during this attack for each [pres
     `,
     illustrator: "Joshua Esmeralda",
     set: "Heart of Europe",
+    gameMode: ["vampire"],
   },
 
 "hoe-property-developer": {
@@ -211,6 +224,7 @@ Attach 1 Haven from your collection to your Leader. They have the Leader Abiliti
     `,
     illustrator: "Marco Primo",
     set: "Heart of Europe",
+    gameMode: ["vampire"],
   },
 
   "hoe-prosperity": {
@@ -222,6 +236,7 @@ Influence Conflict - Should each player draw 4 cards?
     `,
     illustrator: "Marco Primo",
     set: "Heart of Europe",
+    gameMode: ["vampire"],
   },
 
   "hoe-psychic-assault": {
@@ -238,6 +253,7 @@ Play this card face up. This attack cannot be Blocked.
     disciplines: ["auspex"],
     illustrator: "Harvey Bunda",
     set: "Heart of Europe",
+    gameMode: ["vampire"],
   },
 
   "hoe-rapid-reflexes": {
@@ -256,6 +272,7 @@ The new defender has +1 [shield] for each [celerity] they have.
     disciplines: ["celerity"],
     illustrator: "Joshua Esmeralda",
     set: "Heart of Europe",
+    gameMode: ["vampire"],
   },
 
   "hoe-royal-bling": {
@@ -268,6 +285,7 @@ Ongoing - At the start of your turn, add 1 [agenda] from the general supply to e
     `,
     illustrator: "Irene Francisco",
     set: "Heart of Europe",
+    gameMode: ["vampire"],
   },
 
   "hoe-spiders": {
@@ -284,6 +302,7 @@ Resolve at any time.
     disciplines: ["animalism"],
     illustrator: "Irene Francisco",
     set: "Heart of Europe",
+    gameMode: ["vampire"],
   },
 
   "hoe-title-fight": {
@@ -299,6 +318,7 @@ Resolve at any time.
     `,
     illustrator: "Adelijah Ocampo",
     set: "Heart of Europe",
+    gameMode: ["vampire"],
   },
 
   "hoe-voter-suppression": {
@@ -313,6 +333,7 @@ Ongoing - When a character exerts Influence against a Scheme you play, that char
     `,
     illustrator: "Adelijah Ocampo",
     set: "Heart of Europe",
+    gameMode: ["vampire"],
   },
 
   "hoe-wake-with-evenings-freshness": {
@@ -328,6 +349,7 @@ Ongoing, **Relentless, Remove 1 [blood] from this:** Move a ready character in y
     disciplines: ["blood sorcery"],
     //reactions: ["physical", "social", "mental"],
     set: "Heart of Europe",
+    gameMode: ["vampire"],
   },
 
   "hoe-whip-of-the-primogen": {
@@ -343,6 +365,7 @@ This character has +1 Influence for each [presence] they have. At the end of you
     disciplines: ["presence"],
     illustrator: "Adelijah Ocampo",
     set: "Heart of Europe",
+    gameMode: ["vampire"],
   },
 
   "hoe-wild-ranting": {
@@ -354,6 +377,7 @@ Gain 3 Influence during this action or event. If this is a Scheme and your side 
     `,
     illustrator: "Marco Primo",
     set: "Heart of Europe",
+    gameMode: ["vampire"],
   },
 
   "hoe-withering-spirit": {
@@ -370,6 +394,7 @@ Gain 3 Influence during this action or event. If this is a Scheme and your side 
     disciplines: ["oblivion"],
     illustrator: "Irene Francisco",
     set: "Heart of Europe",
+    gameMode: ["vampire"],
   },
 
   "sas-bind-the-spirit": {
@@ -384,6 +409,7 @@ Ongoing - **Relentless, Remove 1 [blood] from this:** Attach a wraith in your co
     types: ["action", "ritual", "ongoing"],
     set: "Shadows & Shrouds",
     disciplines: ["oblivion"],
+    gameMode: ["vampire"],
   },
 
   "sas-court-of-blood": {
@@ -401,6 +427,7 @@ Party - **Detach** The attack diablerizes a vampire defeated by this attack.
     set: "Shadows & Shrouds",
     clan: "lasombra",
     bloodPotencyRequirement: 3,
+    gameMode: ["vampire"],
   },
 
   "sas-mental-block": {
@@ -415,6 +442,7 @@ Ongoing - Your foes may not play cards with the same name as a card attached to 
     types: ["unhosted action", "ongoing"],
     set: "Shadows & Shrouds",
     disciplines: ["auspex"],
+    gameMode: ["vampire"],
   },
 
   "sas-arms-of-ahriman": {
@@ -432,6 +460,7 @@ Deal 1 [physical] [damage] to target character in The Streets for each [potence]
     set: "Shadows & Shrouds",
     bloodPotencyRequirement: 2,
     disciplines: ["potence", "oblivion"],
+    gameMode: ["vampire"],
   },
 
   "sas-clairvoyance": {
@@ -444,6 +473,7 @@ Deal 1 [physical] [damage] to target character in The Streets for each [potence]
     types: ["action"],
     set: "Shadows & Shrouds",
     disciplines: ["auspex"],
+    gameMode: ["vampire"],
   },
 
   "sas-cloud-memory": {
@@ -459,6 +489,7 @@ Deal 1 [physical] [damage] to target character in The Streets for each [potence]
     attack: "mental",
     damage: 1,
     disciplines: ["dominate"],
+    gameMode: ["vampire"],
   },
 
   "sas-diminish": {
@@ -473,6 +504,7 @@ Ongoing - **Remove 1 [blood] from this:** Put a '-1 [blood-potency]' token on ta
     types: ["action", "ritual", "ongoing"],
     set: "Shadows & Shrouds",
     disciplines: ["oblivion"],
+    gameMode: ["vampire"],
   },
 
   "sas-early-grave": {
@@ -484,6 +516,7 @@ Recruit a Hecata character from your hand into torpor at no cost.
     illustrator: "Marco Primo",
     types: ["action"],
     set: "Shadows & Shrouds",
+    gameMode: ["vampire"],
   },
 
   "sas-fight-makes-right": {
@@ -495,6 +528,7 @@ Ongoing - Each character in your coterie has +1 Influence for each [agenda] on t
     illustrator: "Adelijah Ocampo",
     types: ["unhosted action", "ongoing"],
     set: "Shadows & Shrouds",
+    gameMode: ["vampire"],
   },
 
   "sas-flesh-of-marble": {
@@ -513,6 +547,7 @@ Play only if a character in your coterie would take **Aggravated** damage.
     bloodPotencyRequirement: 2,
     shield: 1,
     disciplines: ["fortitude"],
+    gameMode: ["vampire"],
   },
 
   "sas-grave-robbing": {
@@ -525,6 +560,7 @@ Draw 1 card and choose 1 player. For each character that player has in torpor, e
     types: ["action"],
     set: "Shadows & Shrouds",
     clan: "hecata",
+    gameMode: ["vampire"],
   },
 
   "sas-graveyard-smash": {
@@ -541,6 +577,7 @@ Draw 1 card and choose 1 player. For each character that player has in torpor, e
     bloodPotencyRequirement: 3,
     attack: "physical",
     damage: 0,
+    gameMode: ["vampire"],
   },
 
   "sas-high-stakes": {
@@ -555,6 +592,7 @@ Draw 1 card and choose 1 player. For each character that player has in torpor, e
     bloodPotencyRequirement: 4,
     attack: "social",
     damage: 1,
+    gameMode: ["vampire"],
   },
 
   "sas-its-your-funeral": {
@@ -569,6 +607,7 @@ Draw 1 card and choose 1 player. For each character that player has in torpor, e
     bloodPotencyRequirement: 4,
     attack: "social",
     damage: 1,
+    gameMode: ["vampire"],
   },
 
   "sas-interrogation": {
@@ -583,6 +622,7 @@ If this attack deals 1+ [damage] to the target, look at that foe's hand.
     bloodPotencyRequirement: 3,
     attack: "social",
     damage: 2,
+    gameMode: ["vampire"],
   },
 
   "sas-legate": {
@@ -600,6 +640,7 @@ This character has +1 [blood-potency].
     set: "Shadows & Shrouds",
     clan: "lasombra",
     bloodPotencyRequirement: 4,
+    gameMode: ["vampire"],
   },
 
   "sas-living-shadow": {
@@ -619,6 +660,7 @@ _(You may retarget this attack to any legal target in the opposing party)_
     attack: "mental",
     damage: 0,
     disciplines: ["oblivion"],
+    gameMode: ["vampire"],
   },
 
   "sas-money-shot": {
@@ -634,6 +676,7 @@ _(You may retarget this attack to any legal target in the opposing party)_
     attack: "physical",
     damage: 1,
     disciplines: ["potence"],
+    gameMode: ["vampire"],
   },
 
   "sas-necromancy": {
@@ -646,6 +689,7 @@ Discard cards from the City Deck until you discard a Mortal, then burn that Mort
     types: ["action"],
     set: "Shadows & Shrouds",
     clan: "hecata",
+    gameMode: ["vampire"],
   },
 
   "sas-prowess-from-pain": {
@@ -661,6 +705,7 @@ Discard cards from the City Deck until you discard a Mortal, then burn that Mort
     attack: "physical",
     damage: 1,
     disciplines: ["fortitude"],
+    gameMode: ["vampire"],
   },
 
   "sas-shadow-boxing": {
@@ -678,6 +723,7 @@ If the attacker has **Reach**, additional +1 [damage].
     attack: "physical",
     damage: 0,
     disciplines: ["oblivion"],
+    gameMode: ["vampire"],
   },
 
   "sas-shadow-cloak": {
@@ -694,6 +740,7 @@ Attacker - This character deals +1 [damage] to City Deck Mortals.
     types: ["action"],
     set: "Shadows & Shrouds",
     disciplines: ["oblivion"],
+    gameMode: ["vampire"],
   },
 
   "sas-sixth-tradition-destruction": {
@@ -705,6 +752,7 @@ Influence Conflict - Should I deal 1 **Aggravated** [damage] to target character
     illustrator: "Mara Miranda-Escota",
     types: ["action", "scheme"],
     set: "Shadows & Shrouds",
+    gameMode: ["vampire"],
   },
 
   "sas-soul-crushing": {
@@ -720,6 +768,7 @@ Influence Conflict - Should I deal 1 **Aggravated** [damage] to target character
     attack: "social",
     damage: 0,
     disciplines: ["oblivion"],
+    gameMode: ["vampire"],
   },
 
   "sas-spectral-possession": {
@@ -732,6 +781,7 @@ Influence Conflict - Should I deal 1 **Aggravated** [damage] to target character
     types: ["action"],
     set: "Shadows & Shrouds",
     clan: "hecata",
+    gameMode: ["vampire"],
   },
 
   "sas-spirits-touch": {
@@ -744,6 +794,7 @@ Influence Conflict - Should I deal 1 **Aggravated** [damage] to target character
     types: ["action"],
     set: "Shadows & Shrouds",
     disciplines: ["auspex"],
+    gameMode: ["vampire"],
   },
 
   "sas-summon-spirit": {
@@ -758,6 +809,7 @@ Ongoing - **Remove 2 [blood] from this:** Create a wraith and attach it to a cha
     types: ["action", "ritual", "ongoing"],
     set: "Shadows & Shrouds",
     disciplines: ["oblivion"],
+    gameMode: ["vampire"],
   },
 
   "sas-tenebrous-avatar": {
@@ -774,6 +826,7 @@ Ongoing - **Remove 2 [blood] from this:** Create a wraith and attach it to a cha
     reactions: ["ranged", "physical", "social", "mental"],
     shield: 1,
     disciplines: ["oblivion"],
+    gameMode: ["vampire"],
   },
 
   "sas-the-gift-of-false-life": {
@@ -788,6 +841,7 @@ Ongoing - **Remove 1 [blood] from this:** Place that [blood] on any character in
     types: ["action", "ritual", "ongoing"],
     set: "Shadows & Shrouds",
     disciplines: ["oblivion"],
+    gameMode: ["vampire"],
   },
 
   "sas-the-scent-of-death": {
@@ -802,6 +856,7 @@ Ongoing - **Remove 1 [blood] from this:** Target **Wounded** character loses 1 [
     types: ["action", "ritual", "ongoing"],
     set: "Shadows & Shrouds",
     disciplines: ["oblivion"],
+    gameMode: ["vampire"],
   },
 
   "sas-throwing-shade": {
@@ -817,6 +872,7 @@ If this party has 2+ [oblivion], +1 [damage].
     attack: "ranged",
     damage: 2,
     disciplines: ["oblivion"],
+    gameMode: ["vampire"],
   },
 
   "sas-utter-darkness": {
@@ -832,6 +888,7 @@ If this party has 2+ [oblivion], +1 [damage].
     attack: "mental",
     damage: 1,
     disciplines: ["oblivion"],
+    gameMode: ["vampire"],
   },
 
   "sas-whats-yours-is-mine": {
@@ -844,6 +901,7 @@ Influence Conflict - Should I steal 1 [agenda] from target foe with the most [ag
     types: ["action", "scheme"],
     set: "Shadows & Shrouds",
     clan: "lasombra",
+    gameMode: ["vampire"],
   },
 
   "sas-winning": {
@@ -855,6 +913,7 @@ Put 1 [agenda] from the general supply on each character in your coterie.
     illustrator: "Marco Primo",
     types: ["action"],
     set: "Shadows & Shrouds",
+    gameMode: ["vampire"],
   },
 
   "core-38-special": {
@@ -869,6 +928,7 @@ Put 1 [agenda] from the general supply on each character in your coterie.
     bloodPotencyRequirement: 1,
     attack: "ranged",
     damage: 2,
+    gameMode: ["vampire"],
   },
 
   "core-a-biting-comment": {
@@ -884,6 +944,7 @@ Chose one: +2 Damage OR steal 1 Prestige from your foe.
     attack: "social",
     damage: 0,
     shield: 0,
+    gameMode: ["vampire"],
   },
 
   "baa-absolution": {
@@ -899,6 +960,7 @@ If the target has 1+ Blood of your color, negate all Reactions.
     attack: "mental",
     damage: 2,
     shield: 0,
+    gameMode: ["vampire"],
   },
 
   "baa-all-the-angles": {
@@ -914,6 +976,7 @@ Superficial. +1 Damage for each different Discipline the attacker has. (This att
     attack: "mental",
     damage: 0,
     shield: 0,
+    gameMode: ["vampire"],
   },
 
   "core-all-tied-up": {
@@ -926,6 +989,7 @@ Play this card face down and place 1 prestige on it. If this card has 2+ prestig
     types: ["action", "conspiracy"],
     set: "Core",
     clan: "malkavian",
+    gameMode: ["vampire"],
   },
 
   "core-assert-authority": {
@@ -938,6 +1002,7 @@ Ongoing - Your Leader has +1 Influence for each foe in the game.
     types: ["unhosted action", "ongoing"],
     set: "Core",
     clan: "ventrue",
+    gameMode: ["vampire"],
   },
 
   "baa-athanor-corporis": {
@@ -950,6 +1015,7 @@ Attach to the acting character. If they are a Thin-blood, gain 1 Action. This ch
     types: ["action", "alchemy"],
     set: "Blood & Alchemy",
     clan: "thin-blood",
+    gameMode: ["vampire"],
   },
 
   "baa-baals-caress": {
@@ -966,6 +1032,7 @@ Play this card face up. Blood Sorcery Pay 1 blood: +1 **Aggravated** Damage. You
     damage: 0,
     shield: 0,
     disciplines: ["blood sorcery"],
+    gameMode: ["vampire"],
   },
 
   "baa-back-to-formula": {
@@ -978,6 +1045,7 @@ Thin-blood Alchemy Revel the top 4 cards of your Library. Draw each revealed Alc
     types: ["action"],
     set: "Blood & Alchemy",
     disciplines: ["thin-blood alchemy"],
+    gameMode: ["vampire"],
   },
 
   "core-backhanded-compliment": {
@@ -994,6 +1062,7 @@ If the target is not defeated, your foe must mend them by spending Prestige equa
     attack: "social",
     damage: 1,
     shield: 0,
+    gameMode: ["vampire"],
   },
 
   "baa-backup": {
@@ -1010,6 +1079,7 @@ If the target is not defeated, your foe must mend them by spending Prestige equa
     reactions: ["physical", "mental"],
     //damage: 0,
     shield: 0,
+    gameMode: ["vampire"],
   },
 
   "core-balance-of-power": {
@@ -1022,6 +1092,7 @@ Choose at least hald of the players (including yourseld). Influence Conflict - S
     types: ["action", "scheme"],
     set: "Core",
     clan: "toreador",
+    gameMode: ["vampire"],
   },
 
   "core-baseball-bat": {
@@ -1037,6 +1108,7 @@ Choose at least hald of the players (including yourseld). Influence Conflict - S
     attack: "physical",
     damage: 1,
     shield: 0,
+    gameMode: ["vampire"],
   },
 
   "core-beauty-is-a-beast": {
@@ -1049,6 +1121,7 @@ Ongoing - During a Social attack against a City Deck Mortal, Exhaust: The attack
     types: ["unhosted action", "ongoing"],
     set: "Core",
     clan: "toreador",
+    gameMode: ["vampire"],
   },
 
   "core-blood-for-blood": {
@@ -1061,6 +1134,7 @@ Ongoing - When a character in your coterie makes a physic attack, they have the 
     types: ["action", "ongoing"],
     set: "Core",
     clan: "brujah",
+    gameMode: ["vampire"],
   },
 
   "baa-blood-makes-noise": {
@@ -1073,6 +1147,7 @@ Blood Sorcery Place 1 to 3 Blood of your color on this card. Ongoing, Relentless
     types: ["action", "ritual", "ongoing"],
     set: "Blood & Alchemy",
     disciplines: ["blood sorcery"],
+    gameMode: ["vampire"],
   },
 
   "baa-blood-of-potency": {
@@ -1085,6 +1160,7 @@ Attach to the acting character. This character has +2 Blood Potence. When this a
     types: ["action"],
     set: "Blood & Alchemy",
     disciplines: ["blood sorcery"],
+    gameMode: ["vampire"],
   },
 
   "baa-break-down": {
@@ -1101,6 +1177,7 @@ Blood-thin Alchemy Put a '-1 Blood Potence' token on the target.
     damage: 1,
     shield: 0,
     disciplines: ["thin-blood alchemy"],
+    gameMode: ["vampire"],
   },
 
   "core-burning-down-the-house": {
@@ -1112,6 +1189,7 @@ Play this card face down and place 1 prestige on it. If this card has 3+ prestig
     illustrator: "The Creation Studio",
     types: ["action", "conspiracy"],
     set: "Core",
+    gameMode: ["vampire"],
   },
 
   "baa-calcinatio": {
@@ -1124,6 +1202,7 @@ Attach to the acting character. If they are a Thin-blood, gain 1 Action. This ch
     types: ["action", "alchemy"],
     set: "Blood & Alchemy",
     clan: "thin-blood",
+    gameMode: ["vampire"],
   },
 
   "core-cloak-of-shadows": {
@@ -1141,6 +1220,7 @@ Each character in this party has +1 [shield] for each [obfuscate] in this party.
     //damage: 0,
     shield: 0,
     disciplines: ["obfuscate"],
+    gameMode: ["vampire"],
   },
 
   "core-coup-de-grace": {
@@ -1153,6 +1233,7 @@ Use only in The Streets. Potence pay 2 blood: Defeat target **Wounded** characte
     types: ["action"],
     set: "Core",
     disciplines: ["potence"],
+    gameMode: ["vampire"],
   },
 
   "baa-crossbow": {
@@ -1168,6 +1249,7 @@ Discard 1 card: Attach Crossbow to the target if they have 2 or fewer attachment
     attack: "ranged",
     damage: 1,
     shield: 0,
+    gameMode: ["vampire"],
   },
 
   "baa-dangerous-mixture": {
@@ -1183,6 +1265,7 @@ Discard 1 card: Attach Crossbow to the target if they have 2 or fewer attachment
     attack: "physical",
     damage: 1,
     shield: 0,
+    gameMode: ["vampire"],
   },
 
   "baa-defense-of-the-sacred-haven": {
@@ -1195,6 +1278,7 @@ Discard 1 card: Attach Crossbow to the target if they have 2 or fewer attachment
     types: ["action", "ritual", "ongoing"],
     set: "Blood & Alchemy",
     disciplines: ["blood sorcery"],
+    gameMode: ["vampire"],
   },
 
   "core-demand-obedience": {
@@ -1211,6 +1295,7 @@ If this party has 2+ Dominate, your foe loses 2 Prestige.
     damage: 1,
     shield: 0,
     disciplines: ["dominate"],
+    gameMode: ["vampire"],
   },
 
   "core-destroy-the-plans": {
@@ -1222,6 +1307,7 @@ Play this card face down and place 1 prestige on it. If this card has 3+ prestig
     illustrator: "The Creation Studio",
     types: ["action", "conspiracy"],
     set: "Core",
+    gameMode: ["vampire"],
   },
 
   "core-dignity-of-the-office": {
@@ -1240,6 +1326,7 @@ Play this card face down and place 1 prestige on it. If this card has 3+ prestig
     //attack: "physical",
     damage: 0,
     shield: 0,
+    gameMode: ["vampire"],
   },
 
   "core-distraction": {
@@ -1252,6 +1339,7 @@ Ongoing - Discard this card: Redirect up to 2 Second Inquisition damage you woul
     types: ["action", "ongoing"],
     set: "Core",
     clan: "malkavian",
+    gameMode: ["vampire"],
   },
 
   "core-drive-by": {
@@ -1269,6 +1357,7 @@ Deal 2 Damage to an additional member of the opposing party for each character w
     damage: 2,
     shield: 0,
     disciplines: ["celerity"],
+    gameMode: ["vampire"],
   },
 
   "core-dumpster-dive": {
@@ -1282,6 +1371,7 @@ Put a card from your discard pile into your hand. If your coterie has 2+ Auspex,
     set: "Core",
     clan: "malkavian",
     disciplines: ["auspex"],
+    gameMode: ["vampire"],
   },
 
   "core-emergency-bloodbag": {
@@ -1293,6 +1383,7 @@ Add 3 blood from the general supply to this card. Ongoing - At the start of your
     illustrator: "Drew Tucker",
     types: ["unhosted action", "ongoing"],
     set: "Core",
+    gameMode: ["vampire"],
   },
 
   "baa-enervate": {
@@ -1305,6 +1396,7 @@ Use only in the Streets. Steal 1 Prestige from target foe and put it on the acti
     types: ["action"],
     set: "Blood & Alchemy",
     clan: "tremere",
+    gameMode: ["vampire"],
   },
 
   "baa-envelop": {
@@ -1316,6 +1408,7 @@ Detach an Alchemy from the acting character: Put a '-1 Blood Potence' token on e
     illustrator: "Irene Francisco",
     types: ["action"],
     set: "Blood & Alchemy",
+    gameMode: ["vampire"],
   },
 
   "core-everything-is-connected": {
@@ -1328,6 +1421,7 @@ If you have Auspex in your coterie, add 1 Prestige from the general supply to ea
     types: ["action"],
     set: "Core",
     disciplines: ["auspex"],
+    gameMode: ["vampire"],
   },
 
   "baa-extinguish-vitae": {
@@ -1340,6 +1434,7 @@ Blood Sorcery Remove all Blood of your color from target character.
     types: ["action"],
     set: "Blood & Alchemy",
     disciplines: ["blood sorcery"],
+    gameMode: ["vampire"],
   },
 
   "core-fame-and-fortune": {
@@ -1352,6 +1447,7 @@ Influence Conflict - Should I gain 2 Prestige and 1 Agenda?
     types: ["action", "scheme"],
     set: "Core",
     clan: "toreador",
+    gameMode: ["vampire"],
   },
 
   "baa-far-reach": {
@@ -1363,6 +1459,7 @@ Move target character into The Streets as a separate party. Detach an Alchemy fr
     illustrator: "Timothy Terrenal",
     types: ["action"],
     set: "Blood & Alchemy",
+    gameMode: ["vampire"],
   },
 
   "core-faulty-logic": {
@@ -1379,6 +1476,7 @@ Your foe contributes 1 Prestige to a face-down card of your choosing. If you res
     attack: "social",
     damage: 1,
     shield: 0,
+    gameMode: ["vampire"],
   },
 
   "baa-first-ones-free": {
@@ -1394,6 +1492,7 @@ Detach an Alchemy from a characer in this party: Steal a Retainer from a member 
     attack: "social",
     damage: 1,
     shield: 0,
+    gameMode: ["vampire"],
   },
 
   "core-first-tradition-the-masquerade": {
@@ -1405,6 +1504,7 @@ Pay 2 prestige. Ongoing - Your vampires outside your Haven have +1 Secrecy. If y
     illustrator: "Felipe Gaona",
     types: ["unhosted action", "ongoing"],
     set: "Core",
+    gameMode: ["vampire"],
   },
 
   "baa-fixatio": {
@@ -1417,6 +1517,7 @@ Attach to the acting character. If they are a Thin-blood, gain 1 Action. This ch
     types: ["action", "alchemy"],
     set: "Blood & Alchemy",
     clan: "thin-blood",
+    gameMode: ["vampire"],
   },
 
   "core-fleetness": {
@@ -1433,6 +1534,7 @@ Attach to the acting character. If they are a Thin-blood, gain 1 Action. This ch
     reactions: ["ranged", "physical"],
     shield: 0,
     disciplines: ["celerity"],
+    gameMode: ["vampire"],
   },
 
   "core-fragmented-mind": {
@@ -1449,6 +1551,7 @@ Your foe discard 1 card for each character with Dominate in this party.
     damage: 0,
     shield: 0,
     disciplines: ["dominate"],
+    gameMode: ["vampire"],
   },
 
   "core-free-money": {
@@ -1460,6 +1563,7 @@ Influence Conflict - Should each plater gain 3 Prestige?
     illustrator: "Krasen Maximov",
     types: ["action", "scheme"],
     set: "Core",
+    gameMode: ["vampire"],
   },
 
   "core-gang-up": {
@@ -1475,6 +1579,7 @@ Influence Conflict - Should each plater gain 3 Prestige?
     attack: "physical",
     damage: 0,
     shield: 0,
+    gameMode: ["vampire"],
   },
 
   "core-greed": {
@@ -1487,6 +1592,7 @@ Influence Conflict - Should I gain 2 Agenda?
     types: ["action", "scheme"],
     set: "Core",
     clan: "ventrue",
+    gameMode: ["vampire"],
   },
 
   "baa-haze": {
@@ -1501,6 +1607,7 @@ Requires Alchemy in the party to play. Play this card face up. Negate a Ranged A
     bloodPotencyRequirement: 1,
     damage: 0,
     shield: 0,
+    gameMode: ["vampire"],
   },
 
   "core-hedge-your-bets": {
@@ -1512,6 +1619,7 @@ Gain 2 Influence during this action or event. If this is a Scheme and it fails, 
     illustrator: "The Creation Studio",
     types: ["influence modifier"],
     set: "Core",
+    gameMode: ["vampire"],
   },
 
   "baa-heightened-senses": {
@@ -1529,6 +1637,7 @@ You may play this to aid any character in The Streets from any coterie. Target d
     //damage: 0,
     shield: 0,
     disciplines: ["auspex"],
+    gameMode: ["vampire"],
   },
 
   "core-herald": {
@@ -1541,6 +1650,7 @@ Exert 2 Influence: Attach to the acting character. You pay 1 less Prestige to re
     types: ["action", "title"],
     set: "Core",
     bloodPotencyRequirement: 2,
+    gameMode: ["vampire"],
   },
 
   "core-holdout-dagger": {
@@ -1557,6 +1667,7 @@ Exert 2 Influence: Attach to the acting character. You pay 1 less Prestige to re
     damage: 0,
     shield: 0,
     disciplines: ["obfuscate"],
+    gameMode: ["vampire"],
   },
 
   "core-humiliate": {
@@ -1573,6 +1684,7 @@ If this party has 2+ Presence, +1 Damage
     damage: 1,
     shield: 0,
     disciplines: ["presence"],
+    gameMode: ["vampire"],
   },
 
   "core-incite-rebellion": {
@@ -1588,6 +1700,7 @@ Pay 1 blood: Burn 1 Retainer in the opposing party. Gain no rewards for this.
     attack: "social",
     damage: 1,
     shield: 0,
+    gameMode: ["vampire"],
   },
 
   "core-influencer": {
@@ -1600,6 +1713,7 @@ Pay 1 prestige. Ongoing - Each character with Presence in your coterie has +1 In
     types: ["unhosted action", "ongoing"],
     set: "Core",
     disciplines: ["presence"],
+    gameMode: ["vampire"],
   },
 
   "core-insanity-defense": {
@@ -1617,6 +1731,7 @@ Additional +1 [shield] against [mental] attacks.
     reactions:["physical", "mental", "social"],
     //damage: 0,
     shield: 2,
+    gameMode: ["vampire"],
   },
 
   "baa-intimidation": {
@@ -1632,6 +1747,7 @@ Additional +1 [shield] against [mental] attacks.
     attack: "social",
     damage: 1,
     shield: 0,
+    gameMode: ["vampire"],
   },
 
   "core-irresistible-voice": {
@@ -1648,6 +1764,7 @@ Presence pay 2 blood: Steal 1 Retainer from the target. If this party has Domina
     damage: 2,
     shield: 0,
     disciplines: ["dominate", "presence"],
+    gameMode: ["vampire"],
   },
 
   "core-keeper-of-elysium": {
@@ -1660,6 +1777,7 @@ Exert 4 Influence: Attach to the acting character. Characters in your Haven have
     types: ["action", "title"],
     set: "Core",
     bloodPotencyRequirement: 4,
+    gameMode: ["vampire"],
   },
 
   "core-kneecapped": {
@@ -1675,6 +1793,7 @@ Discard 1 card: +3 Damage to Second Inquisition.
     attack: "physical",
     damage: 1,
     shield: 0,
+    gameMode: ["vampire"],
   },
 
   "core-know-your-place": {
@@ -1690,6 +1809,7 @@ Discard 1 card: +3 Damage to Second Inquisition.
     attack: "social",
     damage: 1,
     shield: 0,
+    gameMode: ["vampire"],
   },
 
   "core-late-night-snack": {
@@ -1702,6 +1822,7 @@ For each Fortitude in your coterie, mend 1 blood on a character in your coterie 
     types: ["action"],
     set: "Core",
     disciplines: ["fortitude"],
+    gameMode: ["vampire"],
   },
 
   "core-lightning-strike": {
@@ -1718,6 +1839,7 @@ If this party has 2+ Celerity, this attack ignores all Resistance.
     damage: 2,
     shield: 0,
     disciplines: ["celerity"],
+    gameMode: ["vampire"],
   },
 
   "core-long-term-investment": {
@@ -1730,6 +1852,7 @@ Pay 1 to 3 Prestige: Add double that amount of Prestige from the general supply 
     types: ["action", "ongoing"],
     set: "Core",
     clan: "ventrue",
+    gameMode: ["vampire"],
   },
 
   "core-lost-glory": {
@@ -1741,6 +1864,7 @@ Play this card face down and place 1 prestige on it. If this card has 4+ prestig
     illustrator: "The Creation Studio",
     types: ["action", "conspiracy"],
     set: "Core",
+    gameMode: ["vampire"],
   },
 
   "core-marked-man": {
@@ -1753,6 +1877,7 @@ Put 1 Agenda from the general supply onto any character. If a player defeats the
     types: ["unhosted action"],
     set: "Core",
     clan: "ventrue",
+    gameMode: ["vampire"],
   },
 
   "core-mercy": {
@@ -1764,6 +1889,7 @@ Influence Conflict - Should each player mend 4 blood on a character in their cot
     illustrator: "The Creation Studio",
     types: ["action", "scheme"],
     set: "Core",
+    gameMode: ["vampire"],
   },
 
   "baa-mesmerize": {
@@ -1780,6 +1906,7 @@ Dominate Put a Fear token on the target.
     damage: 1,
     shield: 0,
     disciplines: ["dominate"],
+    gameMode: ["vampire"],
   },
 
   "core-molotov-cocktail": {
@@ -1795,6 +1922,7 @@ Dominate Put a Fear token on the target.
     attack: "ranged",
     damage: 1,
     shield: 0,
+    gameMode: ["vampire"],
   },
 
   "baa-out-of-time": {
@@ -1806,6 +1934,7 @@ Play this card face down and place 1 Prestige on it. If this card has 3+ Prestig
     illustrator: "Adelijah Ocampo",
     types: ["action", "conspiracy"],
     set: "Blood & Alchemy",
+    gameMode: ["vampire"],
   },
 
   "baa-peer-pressure": {
@@ -1821,6 +1950,7 @@ Play this card face down and place 1 Prestige on it. If this card has 3+ Prestig
     attack: "social",
     damage: 0,
     shield: 0,
+    gameMode: ["vampire"],
   },
 
   "core-power-play": {
@@ -1836,6 +1966,7 @@ Play this card face down and place 1 Prestige on it. If this card has 3+ Prestig
     attack: "mental",
     damage: 1,
     shield: 0,
+    gameMode: ["vampire"],
   },
 
   "core-pr-firm": {
@@ -1848,6 +1979,7 @@ Ongoing - When a Scheme you play suceeds, you may Pay 1 prestige: Gain 1 agenda.
     types: ["unhosted action", "ongoing"],
     set: "Core",
     clan: "toreador",
+    gameMode: ["vampire"],
   },
 
   "baa-premonition": {
@@ -1860,6 +1992,7 @@ Attach to a character in your coterie and gain 1 Action. Auspex party - Characte
     types: ["unhosted action"],
     set: "Blood & Alchemy",
     disciplines: ["auspex"],
+    gameMode: ["vampire"],
   },
 
   "core-primogen": {
@@ -1872,6 +2005,7 @@ Exert 3 Influence: Attach to the acting character. This character has +1 Influen
     types: ["action", "title"],
     set: "Core",
     bloodPotencyRequirement: 3,
+    gameMode: ["vampire"],
   },
 
   "baa-rain-of-blood": {
@@ -1883,6 +2017,7 @@ Influence Conflict - Should each plater mend 1 Blood on each character in their 
     illustrator: "Adelijah Ocampo",
     types: ["unhosted action", "scheme"],
     set: "Blood & Alchemy",
+    gameMode: ["vampire"],
   },
 
   "core-rain-on-your-parade": {
@@ -1898,6 +2033,7 @@ If your foe has 9+ Agenda, they lose 1 Agenda.
     attack: "social",
     damage: 1,
     shield: 0,
+    gameMode: ["vampire"],
   },
 
   "core-royal-review": {
@@ -1910,9 +2046,10 @@ Gain 1 Prestige for each Title in your coterie.
     types: ["action"],
     set: "Core",
     clan: "ventrue",
+    gameMode: ["vampire"],
   },
 
-  "core-scoped-30-06": {
+  "hah-scoped-30-06": {
     stack: "library",
     name: "Scoped .30-06",
     text: md`
@@ -1920,11 +2057,12 @@ Play this card face up to add +1 Intel to this attack.
     `,
     illustrator: "The Creation Studio",
     types: ["attack"],
-    set: "Core",
+    set: ["Core", "Hunters & Hunted"],
     bloodPotencyRequirement: 3,
     attack: "ranged",
     damage: 2,
     shield: 0,
+    gameMode: ["hunter and vampire"],
   },
 
   "baa-scorpions-touch": {
@@ -1941,6 +2079,7 @@ For each Blood Sorcery the attacker has, replace 1 Blood on the target with Bloo
     damage: 1,
     shield: 0,
     disciplines: ["blood sorcery"],
+    gameMode: ["vampire"],
   },
 
   "core-scry-the-soul": {
@@ -1957,6 +2096,7 @@ If this party has 2+ Auspex, negate the target's Reaction (if any).
     damage: 1,
     shield: 0,
     disciplines: ["auspex"],
+    gameMode: ["vampire"],
   },
 
   "core-search-engine": {
@@ -1969,6 +2109,7 @@ Ongoing - Exhaust: If you have Auspex in your coterie, look at the top card of y
     types: ["unhosted action", "ongoing"],
     set: "Core",
     disciplines: ["auspex"],
+    gameMode: ["vampire"],
   },
 
   "core-seduction": {
@@ -1985,6 +2126,7 @@ Chose one: Steal 1 blood from the target OR this attack deals +1 Damage to a Cit
     damage: 0,
     shield: 0,
     disciplines: ["presence"],
+    gameMode: ["vampire"],
   },
 
   "baa-seek-knowledge": {
@@ -1998,6 +2140,7 @@ Chose one: Steal 1 blood from the target OR this attack deals +1 Damage to a Cit
     set: "Blood & Alchemy",
     clan: "tremere",
     disciplines: ["blood sorcery"],
+    gameMode: ["vampire"],
   },
 
   "core-seneschal": {
@@ -2010,6 +2153,7 @@ Exert 5 Influence: Attach to the acting character. Action: Target foe loses 1 Pr
     types: ["action", "title"],
     set: "Core",
     bloodPotencyRequirement: 5,
+    gameMode: ["vampire"],
   },
 
   "core-sheriff": {
@@ -2022,6 +2166,7 @@ Exert 4 Influence: Attach to the acting character. Exhaust this character: Burn 
     types: ["action", "title"],
     set: "Core",
     bloodPotencyRequirement: 4,
+    gameMode: ["vampire"],
   },
 
   "core-slap-in-the-face": {
@@ -2038,6 +2183,7 @@ Deal [physical] to the attacker (add this character's [physical] to the damage).
     reactions:["social", "mental"],
     damage: 1,
     shield: 0,
+    gameMode: ["vampire"],
   },
 
   "baa-sleep-of-the-damned": {
@@ -2050,6 +2196,7 @@ Deal [physical] to the attacker (add this character's [physical] to the damage).
     types: ["action", "ritual", "ongoing"],
     set: "Blood & Alchemy",
     disciplines: ["blood sorcery"],
+    gameMode: ["vampire"],
   },
 
   "core-smoke-em-out": {
@@ -2062,6 +2209,7 @@ Use only in The Streets. Move all characters from target Haven to The Streets. D
     types: ["action"],
     set: "Core",
     clan: "brujah",
+    gameMode: ["vampire"],
   },
 
   "core-steal-the-spotlight": {
@@ -2078,6 +2226,7 @@ If this character is a Blocker, the attacker loses 2 Blood.
     attack: "physical",
     damage: 0,
     shield: 2,
+    gameMode: ["vampire"],
   },
 
   "core-sucker-punch": {
@@ -2093,6 +2242,7 @@ Targeted (You may retarget this attack to any legal target in the opposing party
     bloodPotencyRequirement: 2,
     attack: "physical",
     damage: 1,
+    gameMode: ["vampire"],
   },
 
   "baa-sunrise-surprise": {
@@ -2105,6 +2255,7 @@ Cannot be played during the 1st or 2nd Action of your turn. Play only in The Str
     types: ["action"],
     set: "Blood & Alchemy",
     clan: "thin-blood",
+    gameMode: ["vampire"],
   },
 
   "core-terrorize": {
@@ -2121,6 +2272,7 @@ Exhaust all characters in the opposing party.
     attack: "mental",
     damage: 2,
     shield: 0,
+    gameMode: ["vampire"],
   },
 
   "core-the-last-word": {
@@ -2132,6 +2284,7 @@ Gain 5 Influence during this action or event. If this is a Scheme and your side 
     illustrator: "The Creation Studio",
     types: ["influence modifier"],
     set: "Core",
+    gameMode: ["vampire"],
   },
 
   "core-the-mighty-fall": {
@@ -2147,6 +2300,7 @@ Gain 5 Influence during this action or event. If this is a Scheme and your side 
     attack: "mental",
     damage: 1,
     shield: 0,
+    gameMode: ["vampire"],
   },
 
   "core-the-spoils": {
@@ -2159,6 +2313,7 @@ Ongoing - When an attacker in your coterie defeats another character, each chara
     types: ["unhosted action", "ongoing"],
     set: "Core",
     clan: "brujah",
+    gameMode: ["vampire"],
   },
 
   "baa-theft-of-vitae": {
@@ -2171,6 +2326,7 @@ Blood Sorcery Burn target unattached City Deck Mortal in The Streets (this is no
     types: ["action"],
     set: "Blood & Alchemy",
     disciplines: ["blood sorcery"],
+    gameMode: ["vampire"],
   },
 
   "baa-third-tradition-the-progeny": {
@@ -2182,6 +2338,7 @@ Pay 1 Prestige. Ongoing . At the start of your turn, each player with 4+ vampire
     illustrator: "Mara Miranda-Escota",
     types: ["unhosted action", "ongoing"],
     set: "Blood & Alchemy",
+    gameMode: ["vampire"],
   },
 
   "core-throat-rip": {
@@ -2198,6 +2355,7 @@ Pay 1 Prestige. Ongoing . At the start of your turn, each player with 4+ vampire
     damage: 1,
     shield: 0,
     disciplines: ["potence"],
+    gameMode: ["vampire"],
   },
 
   "baa-truth-of-blood": {
@@ -2210,6 +2368,7 @@ Pay 1 Prestige. Ongoing . At the start of your turn, each player with 4+ vampire
     types: ["action", "ritual", "ongoing"],
     set: "Blood & Alchemy",
     disciplines: ["blood sorcery"],
+    gameMode: ["vampire"],
   },
 
   "core-unhinged": {
@@ -2226,6 +2385,7 @@ Discard up to 2 cards: For each discard, deal +1 Damage to the target.
     attack: "mental",
     damage: 1,
     shield: 0,
+    gameMode: ["vampire"],
   },
 
   "core-unswayable-mind": {
@@ -2243,6 +2403,7 @@ If this party has 2+ [fortitude], negate the game text effects of the attacker's
     //damage: 0,
     shield: 1,
     disciplines: ["fortitude"],
+    gameMode: ["vampire"],
   },
 
   "core-whispering-campaign": {
@@ -2254,6 +2415,7 @@ Play this card face down and place 1 prestige on it. If this card has 4+ prestig
     illustrator: "Felipe Gaona",
     types: ["action", "conspiracy"],
     set: "Core",
+    gameMode: ["vampire"],
   },
 
   "war-alley-cat": {
@@ -2268,6 +2430,7 @@ Detach: Burn target Animal or Retainer attached to a character in The Streets. T
     types: ["action", "animal"],
     set: "Wolf & Rat",
     disciplines: ["animalism"],
+    gameMode: ["vampire"],
   },
 
   "war-animal-dominion": {
@@ -2281,6 +2444,7 @@ Detach: Burn target Animal or Retainer attached to a character in The Streets. T
     set: "Wolf & Rat",
     bloodPotencyRequirement: 5,
     disciplines: ["animalism"],
+    gameMode: ["vampire"],
   },
 
   "war-apex-predator": {
@@ -2296,6 +2460,7 @@ Put a Fear token on the target. If the attacker is your Leader, exhaust the targ
     bloodPotencyRequirement: 4,
     attack: "social",
     damage: 2,
+    gameMode: ["vampire"],
   },
 
   "war-bad-reflection": {
@@ -2311,6 +2476,7 @@ Deal [mental] [damage] to the attacker equal to the [damage] they are dealing to
     bloodPotencyRequirement: 4,
     attack: ["physical", "mental"],
     reactions: ["physical", "mental"],
+    gameMode: ["vampire"],
   },
 
   "war-beasts-of-war": {
@@ -2327,6 +2493,7 @@ Superficial
     bloodPotencyRequirement: 5,
     attack: "physical",
     damage: 1,
+    gameMode: ["vampire"],
   },
 
   "war-bond-famulus": {
@@ -2338,6 +2505,7 @@ Exhaust: The next Animal you play this turn costs 1 less [blood] to attach. If a
     illustrator: "Joyce Maureira",
     types: ["unhosted action", "ongoing"],
     set: "Wolf & Rat",
+    gameMode: ["vampire"],
   },
 
   "war-constant-surveillance": {
@@ -2351,6 +2519,7 @@ Ongoing - Covered cards have no text. At the start of your next turn, burn this 
     illustrator: "Timothy Terrenal",
     types: ["action", "ongoing"],
     set: "Wolf & Rat",
+    gameMode: ["vampire"],
   },
 
   "war-cornered-rat": {
@@ -2369,6 +2538,7 @@ Reaction - Deal 1 [physical] [damage] to the attacker for every 2 [damage] they 
     attack: ["physical","mental"],
     reactions: ["physical", "mental"],
     damage: 0,
+    gameMode: ["vampire"],
   },
 
   "war-cracking-the-case": {
@@ -2382,6 +2552,7 @@ Remove X [prestige] from this card: Target attacker has +X Intel for this attack
     illustrator: "Felipe Gaona",
     types: ["unhosted action", "ongoing"],
     set: "Wolf & Rat",
+    gameMode: ["vampire"],
   },
 
   "war-disturbing-the-hive": {
@@ -2398,6 +2569,7 @@ Remove X [prestige] from this card: Target attacker has +X Intel for this attack
     attack: "ranged",
     damage: 1,
     disciplines: ["obfuscate"],
+    gameMode: ["vampire"],
   },
 
   "war-earth-meld": {
@@ -2412,6 +2584,7 @@ This character has +2 Secrecy. At the start of your next turn, discard this card
     types: ["action"],
     set: "Wolf & Rat",
     disciplines: ["protean"],
+    gameMode: ["vampire"],
   },
 
   "war-feeding-frenzy": {
@@ -2429,6 +2602,7 @@ This character has +2 Secrecy. At the start of your next turn, discard this card
     attack: "physical",
     damage: 1,
     disciplines: ["fortitude"],
+    gameMode: ["vampire"],
   },
 
   "war-feeding-the-hungry": {
@@ -2440,6 +2614,7 @@ Put 1 Vagrant from the burned pile into The Streets.
     illustrator: "Harvey Bunda",
     types: ["action"],
     set: "Wolf & Rat",
+    gameMode: ["vampire"],
   },
 
   "war-feral-claws": {
@@ -2455,6 +2630,7 @@ Put 1 Vagrant from the burned pile into The Streets.
     attack: "physical",
     damage: 0,
     disciplines: ["protean"],
+    gameMode: ["vampire"],
   },
 
   "war-feral-fangs": {
@@ -2472,6 +2648,7 @@ Play this card face up.
     attack: "physical",
     damage: 2,
     disciplines: ["protean"],
+    gameMode: ["vampire"],
   },
 
   "war-feral-whispers": {
@@ -2486,6 +2663,7 @@ Add 3 [blood] from the general supply to this.
     types: ["action", "ongoing"],
     set: "Wolf & Rat",
     disciplines: ["animalism"],
+    gameMode: ["vampire"],
   },
 
   "war-fight-or-flight": {
@@ -2504,6 +2682,7 @@ Reaction - +1 [shield]. Additional +1 [shield] for each [fortitude] this charact
     reactions: ["mental"],
     damage: 1,
     disciplines: ["fortitude"],
+    gameMode: ["vampire"],
   },
 
   "war-hardened-flesh": {
@@ -2520,6 +2699,7 @@ Reaction - +1 [shield]. Additional +1 [shield] for each [fortitude] this charact
     reactions: ["ranged", "physical"],
     shield: 1,
     disciplines: ["fortitude"],
+    gameMode: ["vampire"],
   },
 
   "war-help-me-help-you": {
@@ -2531,6 +2711,7 @@ When a character in your coiteries attaches a Retainer, mend 1 [blood] on any ch
     illustrator: "Felipe Gaona",
     types: ["unhosted action", "ongoing"],
     set: "Wolf & Rat",
+    gameMode: ["vampire"],
   },
 
   "war-hiding-in-plain-sight": {
@@ -2543,6 +2724,7 @@ Discard 1 card: Antagonist [damage] cannot be assigned to your characters in The
     types: ["unhosted action", "ongoing"],
     set: "Wolf & Rat",
     disciplines: ["obfuscate", "protean"],
+    gameMode: ["vampire"],
   },
 
   "war-mongrel": {
@@ -2559,6 +2741,7 @@ Detach: Prevent 2 [physical] [damage] to this character.
     types: ["action", "animal"],
     set: "Wolf & Rat",
     disciplines: ["animalism"],
+    gameMode: ["vampire"],
   },
 
   "war-murder-of-crows": {
@@ -2575,6 +2758,7 @@ Detach: Target character in The Streets loses 1 [blood]. If this defeats the tar
     types: ["action", "animal"],
     set: "Wolf & Rat",
     disciplines: ["animalism"],
+    gameMode: ["vampire"],
   },
 
   "war-protect-the-flock": {
@@ -2586,6 +2770,7 @@ Ongoing - Exhaust: Put 1 [blood] of your color from the general supply on target
     illustrator: "Timothy Terrenal",
     types: ["unhosted action", "ongoing"],
     set: "Wolf & Rat",
+    gameMode: ["vampire"],
   },
 
   "war-second-tradition-the-domain": {
@@ -2597,6 +2782,7 @@ Ongoing - Exhaust: Attach a City Deck Citizen or Vagrant in The Streets to this 
     illustrator: "Mara Miranda-Escota",
     types: ["action", "ongoing"],
     set: "Wolf & Rat",
+    gameMode: ["vampire"],
   },
 
   "war-secret-passage": {
@@ -2609,6 +2795,7 @@ Ongoing - Exhaust: Return 1 character in your coterie to your Haven, maintainin 
     types: ["unhosted action", "ongoing"],
     set: "Wolf & Rat",
     clan: "nosferatu",
+    gameMode: ["vampire"],
   },
 
   "war-seeing-is-believing": {
@@ -2623,6 +2810,7 @@ Ongoing - Exhaust: Return 1 character in your coterie to your Haven, maintainin 
     bloodPotencyRequirement: 4,
     attack: "mental",
     disciplines: ["obfuscate"],
+    gameMode: ["vampire"],
   },
 
   "war-sewer-rat": {
@@ -2639,6 +2827,7 @@ Detach: Steal 1 [blood] from target character in torpor and add it to any charac
     types: ["action", "animal"],
     set: "Wolf & Rat",
     disciplines: ["animalism"],
+    gameMode: ["vampire"],
   },
 
   "war-shape-of-the-beast": {
@@ -2654,6 +2843,7 @@ Pay 1 [blood] from the exhausting character: Gain 1 Action instead.
     set: "Wolf & Rat",
     clan: "gangrel",
     disciplines: ["protean"],
+    gameMode: ["vampire"],
   },
 
   "war-spy-games": {
@@ -2667,6 +2857,7 @@ Steal a Rival token from target foe. At the start of your next turn, return it.
     set: "Wolf & Rat",
     clan: "nosferatu",
     bloodPotencyRequirement: 5,
+    gameMode: ["vampire"],
   },
 
   "war-the-shakedown": {
@@ -2678,6 +2869,7 @@ Name an attack type. Then look at target foe's hand and discard all Attack cards
     illustrator: "Irene Francisco",
     types: ["action"],
     set: "Wolf & Rat",
+    gameMode: ["vampire"],
   },
 
   "war-the-stampede": {
@@ -2693,6 +2885,7 @@ The target has -1 [shield] for each character in this party. [potence] +1 [damag
     attack: "physical",
     damage: 1,
     disciplines: ["potence"],
+    gameMode: ["vampire"],
   },
 
   "war-the-swarm": {
@@ -2709,6 +2902,7 @@ Detach: Prevent 1 **Aggravated** [damage] to this character.
     types: ["action", "animal"],
     set: "Wolf & Rat",
     disciplines: ["animalism"],
+    gameMode: ["vampire"],
   },
 
   "war-veiled-threat": {
@@ -2724,6 +2918,7 @@ Detach: Prevent 1 **Aggravated** [damage] to this character.
     attack: "social",
     damage: 1,
     disciplines: ["obfuscate"],
+    gameMode: ["vampire"],
   },
 
   "war-we-are-legend": {
@@ -2736,6 +2931,7 @@ Gain 1 [prestige]. Then draw 2 cards and discard 1 of them.
     types: ["action"],
     set: "Wolf & Rat",
     clan: "gangrel",
+    gameMode: ["vampire"],
   },
 
   "dar-backpacker": {
@@ -2747,6 +2943,7 @@ Attach your active Haven to a character in your coterie who doesn't have one att
     illustrator: "Irene Francisco",
     types: ["action"],
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-bat-out-of-hell": {
@@ -2763,6 +2960,7 @@ Attach your active Haven to a character in your coterie who doesn't have one att
     illustrator: "Irene Francisco",
     types: ["action", "animal"],
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-change-of-plans": {
@@ -2776,6 +2974,7 @@ Resolve during your turn if an Ongoing Event is in play. For each [prestige] on 
     illustrator: "Irene Francisco",
     types: ["action", "trap"],
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-cryptolect": {
@@ -2788,6 +2987,7 @@ Ongoing - You pay 1 less [prestige] to recruit vampires with 2+ [blood-potency] 
     illustrator: "Felipe Gaona",
     types: ["action", "ongoing"],
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-domino-effect": {
@@ -2799,6 +2999,7 @@ Ongoing, **Relentless - Exhaust:** The next time you resolve a face-down card wi
     illustrator: "Adelijah Ocampo",
     types: ["action", "ongoing"],
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-doomed-to-roam": {
@@ -2812,6 +3013,7 @@ Ongoing - **Discard 1 card:** Remove your active Haven from the game and replace
     illustrator: "Joyce Maureira",
     types: ["unhosted action", "ongoing"],
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-emperors-new-clothes": {
@@ -2827,6 +3029,7 @@ Target player who attached a card this turn burns 1 non-Title card (without effe
     illustrator: "Adelijah Ocampo",
     types: ["action", "trap"],
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-escape-artist": {
@@ -2843,6 +3046,7 @@ Target player who attached a card this turn burns 1 non-Title card (without effe
     attack: ["ranged", "physical"],
     reactions: ["ranged", "physical"],
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-fata-morgana": {
@@ -2859,6 +3063,7 @@ For every 2 [prestige] on this card, you may redirect 1 [damage] from this attac
     illustrator: "Irene Francisco",
     types: ["action", "trap"],
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-fear-tactics": {
@@ -2873,6 +3078,7 @@ Place the stolen [prestige] on cards you control or add them to your personal su
     illustrator: "Joyce Maureira",
     types: ["action"],
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-fifth-tradition-hospitality": {
@@ -2884,6 +3090,7 @@ Each player moves their Leader to The Streets. If you control the _Prince of the
     illustrator: "Mara Miranda-Escota",
     types: ["action"],
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-fleshcrafting": {
@@ -2897,6 +3104,7 @@ Each player moves their Leader to The Streets. If you control the _Prince of the
     illustrator: "Irene Francisco",
     types: ["action"],
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-freelancer": {
@@ -2911,6 +3119,7 @@ The next time a character in your coterie plays an Action card this turn, ready 
     illustrator: "Felipe Gaona",
     types: ["unhosted action", "ongoing"],
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-grey-wolf": {
@@ -2927,6 +3136,7 @@ When this character is attacked, the attacker loses 1 [blood].
     illustrator: "Adelijah Ocampo",
     types: ["action", "animal"],
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-home-improvement": {
@@ -2940,6 +3150,7 @@ Ongoing - Your Leader has abilities based on # of attached _Home Improvements_. 
     illustrator: "Felipe Gaona",
     types: ["action", "ongoing"],
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-mask-of-a-thousand-faces": {
@@ -2954,6 +3165,7 @@ Ongoing - **Relentless - Remove 1 [prestige] from this:** Swap 1 non-Leader char
     illustrator: "Irene Francisco",
     types: ["unhosted action", "ongoing"],
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-perimeter-defense": {
@@ -2969,6 +3181,7 @@ When a character in your Haven is attacked, they have +1 [shield] for each token
     illustrator: "Joyce Maureira",
     types: ["action", "trap"],
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-poachers-choice": {
@@ -2986,6 +3199,7 @@ If this attack defeats a character in The Streets, steal 1 Retainer attached to 
     types: ["attack"],
     attack: "social",
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-secret-compartment": {
@@ -2997,6 +3211,7 @@ Ongoing - When you discard a card from your hand, you may attach it to this card
     illustrator: "Joyce Maureira",
     types: ["unhosted action", "ongoing"],
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-siege-engine": {
@@ -3013,6 +3228,7 @@ Ongoing - When you discard a card from your hand, you may attach it to this card
     types: ["attack"],
     attack: "physical",
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-sleight-of-hand": {
@@ -3031,6 +3247,7 @@ If this party has [presence] and [obfuscate], also steal 1 [prestige] from the d
     types: ["attack"],
     attack: "mental",
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-slumlord": {
@@ -3043,6 +3260,7 @@ Gain 1 [prestige] for each Citizen attached to a card you control.
     illustrator: "Mara Miranda-Escota",
     types: ["action"],
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-smoke-and-mirrors": {
@@ -3061,6 +3279,7 @@ Put a Fear token on target character in the attacking Party.
     attack:["physical", "mental"],
     reactions: ["physical", "mental"],
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-switcharoo": {
@@ -3077,6 +3296,7 @@ If you do, declare a different Attack type, then you may play another Attack car
     types: ["attack"],
     attack: ["physical", "social", "mental"],
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-szlachta": {
@@ -3094,6 +3314,7 @@ When defeated or burned, you may move the Retainer attached to this to a _Vozhd_
     illustrator: "Felipe Gaona",
     types: ["action", "ghoul"],
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-the-hat-trick": {
@@ -3111,6 +3332,7 @@ If this party has [animalism] and [obfuscate], gain 1 Unhosted Action if played 
     types: ["attack"],
     attack: "social",
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-the-more-the-scarier": {
@@ -3123,6 +3345,7 @@ Ongoing - Characters in your coterie have +1 **Attachment**.
     illustrator: "Mara Miranda-Escota",
     types: ["unhosted action", "ongoing"],
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-throwing-knives": {
@@ -3138,6 +3361,7 @@ You may distribute the [damage] to any characters in the defending party (max 2 
     types: ["attack"],
     attack: "ranged",
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-urban-fox": {
@@ -3154,6 +3378,7 @@ Ignore 1 Antagonist during your End Phase.
     illustrator: "Mara Miranda-Escota",
     types: ["action", "animal"],
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-vicissitude": {
@@ -3168,6 +3393,7 @@ Ongoing - **Start of Turn:** You may attach 1 card in your hand face down to a c
     illustrator: "Joyce Maureira",
     types: ["action", "ongoing"],
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-vozhd": {
@@ -3183,6 +3409,7 @@ When a Retainer is attached to this Ghoul, it gains 2 [blood] and 2 [physical] (
     illustrator: "Irene Francisco",
     types: ["action", "ghoul"],
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-wolf-spider": {
@@ -3199,6 +3426,7 @@ Attackers must play their Attack cards face up when attacking this character.
     illustrator: "Adelijah Ocampo",
     types: ["action", "animal"],
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-back-with-a-vengeance": {
@@ -3219,6 +3447,7 @@ Reaction - Deal [physical] [damage] to the attacker (not [mental]).
     attack: ["physical", "mental"],
     reactions: ["physical", "mental"],
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-the-long-con": {
@@ -3233,6 +3462,7 @@ Reaction - Deal [physical] [damage] to the attacker (not [mental]).
     illustrator: "Mara Miranda-Escota",
     types: ["action", "trap"],
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "jam-look-me-in-the-eyes": {
@@ -3256,6 +3486,7 @@ Put a Fear token on the attacker.
     disciplines:["auspex"],
     illustrator: "Felipe Gaona",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-third-eyes-a-charm": {
@@ -3276,6 +3507,7 @@ If this attack does not defeat the defender, deal 3 [mental][damage] to the atta
     //Discipline:[],
     illustrator: "Irene Francisco",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-acuity": {
@@ -3299,6 +3531,7 @@ Put a '-1 [blood potency]' token on the attacker.
     disciplines:["dominate"],
     illustrator: "Felipe Gaona",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-warding-circle": {
@@ -3317,6 +3550,7 @@ Each character in this party has +2 [shield] for each Ritual you control.
     //disciplines:[],
     illustrator: "Marco Primo",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-a-kiss-before-dying": {
@@ -3339,6 +3573,7 @@ Deal 1 **Aggravated** [damage] to the attacker.
     disciplines:["fortitude"],
     illustrator: "Felipe Gaona",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-on-the-lam": {
@@ -3359,6 +3594,7 @@ Deal 1 **Aggravated** [damage] to the attacker.
     disciplines:["obfuscate"],
     illustrator: "Felipe Gaona",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-just-a-taste": {
@@ -3381,6 +3617,7 @@ Target defender in The Streets mends 2 [blood].
     //disciplines:[],
     illustrator: "Marco Primo",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-rules-lawyer": {
@@ -3399,6 +3636,7 @@ Target defender in The Streets mends 2 [blood].
     //disciplines:[],
     illustrator: "János Orbán",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-of-two-minds": {
@@ -3419,6 +3657,7 @@ Target defender in The Streets mends 2 [blood].
     disciplines:["auspex"],
     illustrator: "Felipe Gaona",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-ritualistic-combat": {
@@ -3439,6 +3678,7 @@ Target defender in The Streets mends 2 [blood].
     disciplines:["blood sorcery"],
     illustrator: "Darko Stojanovic",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-divisive": {
@@ -3459,6 +3699,7 @@ Target defender in The Streets mends 2 [blood].
     disciplines:["dominate"],
     illustrator: "Adelijah Ocampo",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-bleeding-edge": {
@@ -3479,6 +3720,7 @@ Target defender in The Streets mends 2 [blood].
     disciplines:["fortitude"],
     illustrator: "Felipe Gaona",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-cursed-blade": {
@@ -3499,6 +3741,7 @@ At the end of this character's turn, this character loses 1 [blood].
     //disciplines:["fortitude"],
     illustrator: "Marco Primo",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-split-second": {
@@ -3517,6 +3760,7 @@ At the end of this character's turn, this character loses 1 [blood].
     disciplines:["celerity"],
     illustrator: "Darko Stojanovic",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-blood-fueled-rage": {
@@ -3535,6 +3779,7 @@ At the end of this character's turn, this character loses 1 [blood].
     //disciplines:["fortitude"],
     illustrator: "Darko Stojanovic",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-dont-be-so-defensive": {
@@ -3553,6 +3798,7 @@ At the end of this character's turn, this character loses 1 [blood].
     //disciplines:["fortitude"],
     illustrator: "Marco Primo",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-the-grudge": {
@@ -3573,6 +3819,7 @@ If you have suffered diablerie, all of this attack's [damage] becomes **Aggravat
     //disciplines:["fortitude"],
     illustrator: "Felipe Gaona",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-accept-your-fate": {
@@ -3593,6 +3840,7 @@ Ongoing - When a character plays a Reaction during your turn, they lose 1 [blood
     disciplines:["blood sorcery"],
     illustrator: "Adelijah Ocampo",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-ishtars-touch": {
@@ -3613,6 +3861,7 @@ Ongoing - **Remove 1 [blood] from this:** Put a '- discipline' token on target c
     disciplines:["blood sorcery"],
     illustrator: "Joyce Maureira",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-one-with-the-blade": {
@@ -3633,6 +3882,7 @@ Ongoing - **Remove 1 [blood] from this:** Your attacker deals +1 [damage] to the
     disciplines:["blood sorcery"],
     illustrator: "Irene Francisco",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-secrets-of-the-blood": {
@@ -3653,6 +3903,7 @@ Ongoing - **Remove 1 [blood] from this:** Your attacker deals +1 [damage] to the
     disciplines:["blood sorcery"],
     illustrator: "Marco Primo",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-call-to-purpose": {
@@ -3671,6 +3922,7 @@ Ongoing - When you play a Ritual using only [blood] from character you do not co
     //disciplines:["blood sorcery"],
     illustrator: "Mara Miranda-Escota",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-study-their-ways": {
@@ -3691,6 +3943,7 @@ Ongoing - If you control only 1 character, they gain this discipline (leave it o
     //disciplines:["blood sorcery"],
     illustrator: "Adelijah Ocampo",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-obeah": {
@@ -3712,6 +3965,7 @@ If you have [fortitude] in your coterie, you may mend 1 [blood] on the target if
     //disciplines:["blood sorcery"],
     illustrator: "Adelijah Ocampo",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-soul-thieving": {
@@ -3732,6 +3986,7 @@ When this character is defeated by the controller of this card, they may steal a
     disciplines:["auspex"],
     illustrator: "Irene Francisco",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-blood-doll": {
@@ -3752,6 +4007,7 @@ At the start of your turn, mend 1 [blood] on this character.
     //disciplines:["blood sorcery"],
     illustrator: "Darko Stojanovic",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-kevlar-vest": {
@@ -3774,6 +4030,7 @@ This character has +1 [shield] vs **Aggravated** [damage].
     //disciplines:["blood sorcery"],
     illustrator: "Irene Francisco",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-search-for-golconda": {
@@ -3794,6 +4051,7 @@ If this is the only character you control, you may **Exhaust this character, Pay
     //disciplines:["blood sorcery"],
     illustrator: "Mara Miranda-Escota",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-thought-police": {
@@ -3812,6 +4070,7 @@ Name an Attack type, then look at target player's hand and discard all Reaction 
     //disciplines:["blood sorcery"],
     illustrator: "Mara Miranda-Escota",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-unburdening-the-bestial-soul": {
@@ -3832,6 +4091,7 @@ This character may not perform diablerie and deals -1 [damage] to Mortals. **Agg
     //disciplines:["blood sorcery"],
     illustrator: "Joyce Maureira",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-righteousness": {
@@ -3850,6 +4110,7 @@ Mend 2 [blood] on target character you control for each Ongoing Tradition in pla
     //disciplines:["blood sorcery"],
     illustrator: "János Orbán",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-final-judgement": {
@@ -3870,6 +4131,7 @@ Deal 1 [social][damage] to target character for each Ongoing Tradition you contr
     //disciplines:["blood sorcery"],
     illustrator: "János Orbán",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-blink": {
@@ -3892,6 +4154,7 @@ Attacker - This character has +3 [shield] while attacking.
     disciplines:["celerity"],
     illustrator: "Darko Stojanovic",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-cats-grace": {
@@ -3912,5 +4175,1157 @@ Attach to a character in your coterie and draw 1 card.
     disciplines:["celerity"],
     illustrator: "Darko Stojanovic",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
+  },
+
+  "hah-persecution": {
+    stack: "library",
+    name: "Persecution",
+    types: ["influence modifier"],
+    //clan:,
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Gain 2 Influence during this action or event. Gain an additional 1 Influence for each foe who exerted Influence against your choice of Yes or No.
+`,
+    //disciplines:[],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["vampire"],
+  },
+
+  "hah-poison-pill": {
+    stack: "library",
+    name: "Poison Pill",
+    types: ["unhosted action"],
+    //clan:,
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Attach to a character in your cell.
+
+When this character is defeated during an attack, deal 2 **Agravated** [damage] to the opposing character **OR** target for loses 1 [agenda]. 
+`,
+    //disciplines:[],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter and vampire"],
+  },
+
+  "hah-pass-the=torch": {
+    stack: "library",
+    name: "Pass the Torch",
+    types: ["unhosted action"],
+    //clan:,
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Put your Leader token on a character in your coterie (even if it's out of play).
+
+If you have a Caitiff or Thin-Blood in your coterie, gain 1 Action.
+`,
+    //disciplines:[],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter and vampire"],
+  },
+
+  "hah-one-mans-trash": {
+    stack: "library",
+    name: "One Man's Trash",
+    types: ["unhosted action"],
+    //clan:,
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+You may put the top 2 cards of your Library into your discard pile.
+
+Then you may shuffle up to 2 Library cards from target player's discard pile into their Library.
+
+If you have a Caitiff or Thin-Blood in your coterie, gain 1 Action.
+`,
+    //disciplines:[],
+    illustrator: "Felipe Gaona",
+    set: "Hunters & Hunted",
+    gameMode: ["vampire"],
+  },
+
+  "hah-hasty-embrace": {
+    stack: "library",
+    name: "Hasty Embrace",
+    types: ["unhosted action"],
+    //clan:,
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Play only if you have attached a Retainer this turn.
+
+Recruit a Caitiff character from your hand at no cost, placing only 2 [blood] from your general supply on them; then attach that Retainer to that Caitiff (does not trigger attach effects); then gain 1 Unhosted Action.
+`,
+    //disciplines:[],
+    illustrator: "Adelijah Ocampo",
+    set: "Hunters & Hunted",
+    gameMode: ["vampire"],
+  },
+
+  "hah-drive-vengeance": {
+    stack: "library",
+    name: "Drive: Vengeance",
+    types: ["unhosted action"],
+    //clan:,
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Attach to a character in your cell (max 1).
+`,
+    //disciplines:[],
+    illustrator: "Darko Stojanovic",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter"],
+  },
+
+  "hah-drive-curiosity": {
+    stack: "library",
+    name: "Drive: Curiosity",
+    types: ["unhosted action"],
+    //clan:,
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Attach to a character in your cell (max 1).
+
+If that character has [library], gain 1 Unhosted Action.
+
+When you exhaust this character to Investigate, add 1 additional [prestige] to the target from your general supply.
+`,
+    disciplines:["library"],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter"],
+  },
+
+  "hah-drive-attonement": {
+    stack: "library",
+    name: "Drive: Atonement",
+    types: ["unhosted action"],
+    //clan:,
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Attach to a character in your cell (max 1).
+
+This character has **Guard** and +1 [shield] vs [physical][damage].
+
+WHen this character Blocks an attack, the original target mends 1 [blood].
+`,
+    //disciplines:[],
+    illustrator: "Darko Stojanovic",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter"],
+  },
+
+  "hah-plots-within-plots": {
+    stack: "library",
+    name: "Plots Within Plots",
+    types: ["action", "scheme", "ongoing"],
+    clan:"ministry",
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Influence Conflict - Should I put this card into play?
+
+Ongoing - Exhaust: Place a Trap or Conspiricy face down at no cost.
+`,
+    //disciplines:[],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["vampire"],
+  },
+
+  "hah-charmer": {
+    stack: "library",
+    name: "Charmer",
+    types: ["action", "scheme", "ongoing"],
+    //clan:,
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Influence Conflict - Should I put this card into play?
+
+Ongoing - At the start of your turn, you may exhaust target character.
+`,
+    //disciplines:[],
+    illustrator: "Felipe Gaona",
+    set: "Hunters & Hunted",
+    gameMode: ["vampire"],
+  },
+
+  "hah-believer": {
+    stack: "library",
+    name: "Believer",
+    types: ["action", "scheme", "ongoing"],
+    //clan:,
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Influence Conflict - Should I put this card into play?
+
+Ongoing - At the start of your turn, draw 1 card.
+`,
+    //disciplines:[],
+    illustrator: "Irene Francisco",
+    set: "Hunters & Hunted",
+    gameMode: ["vampire"],
+  },
+
+  "hah-thorn-from-the-crown": {
+    stack: "library",
+    name: "Thorn from the Crown",
+    types: ["action", "relic", "ongoing", "1 per player"],
+    clan: "faithful",
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Ongoing - **Exhaust, Pay 1** [prestige]: A **True Faith** attacker you control deals +1 [damage] to the target.
+`,
+    //disciplines:[],
+    illustrator: "Irene Francisco",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter"],
+  },
+
+  "hah-bone-of-the-apostle-james": {
+    stack: "library",
+    name: "Bone of the Apostle James",
+    types: ["action", "relic", "ongoing", "1 per player"],
+    clan: "faithful",
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Ongoing - **Exhaust:** Ready target **True Faith** character you control.
+`,
+    //disciplines:[],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter"],
+  },
+
+  "hah-blood-of-saint-dominic": {
+    stack: "library",
+    name: "Blood of Saint Dominic",
+    types: ["action", "relic", "ongoing", "1 per player"],
+    clan: "faithful",
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Ongoing - **Exhaust:** Each **True Faith** character you control mends 1 [blood].
+`,
+    //disciplines:[],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter"],
+  },
+
+  "hah-wrath": {
+    stack: "library",
+    name: "Wrath",
+    types: ["action"],
+    //clan: "faithful",
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Deal 1 [mental] [damage] to target character for each of your burned characters.
+
+[repel-the-unnatural] +1[damage].
+`,
+    disciplines:["repel the unnatural"],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter"],
+  },
+
+  "hah-weigh-down": {
+    stack: "library",
+    name: "Weigh Down",
+    types: ["action"],
+    clan: "inquisitive",
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Attach this card to target character.
+
+This character deals -1[damage] when attacking chracters you control.
+`,
+    ///disciplines:["repel the unnatural"],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter"],
+  },
+  
+  "hah-tracking-device": {
+    stack: "library",
+    name: "Tracking Device",
+    types: ["action"],
+    clan: "inquisitive",
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Attach this card to target character or face-down Monster.
+
+Hunters have +1 Intel against this character.
+
+At the end of your turn, put 1 [prestige] from your general supply on this character.
+`,
+    ///disciplines:["repel the unnatural"],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter"],
+  },
+  
+  "hah-shameless": {
+    stack: "library",
+    name: "Shameless",
+    types: ["action"],
+    //clan: "faithful",
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Gain 1 [prestige] for every 3 different Disciplines in your coterie.
+`,
+    ///disciplines:["repel the unnatural"],
+    illustrator: "Irene Francisco",
+    set: "Hunters & Hunted",
+    gameMode: ["vampire"],
+  },
+
+  "hah-found-a-weakness": {
+    stack: "library",
+    name: "Found a Weakness",
+    types: ["action"],
+    clan: "inquisitive",
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Deal 1 [physical] [damage] to target character for each [prestige] of your color on it. (This damage cannot remove the last [blood] token from a character.)
+
+[sense-the-unnatural] +1[damage]
+`,
+    disciplines:["sense the unnatural"],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter"],
+  },
+  
+  "hah-cobra-form": {
+    stack: "library",
+    name: "Cobra Form",
+    types: ["action"],
+    clan: "ministry",
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+[protean] Attach to the acting character. This character has +1 Secrecy.
+
+Attacker - **Detach:** +1 **Aggravated** [damage] to the target.
+`,
+    disciplines:["protean"],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["vampire"],
+  },
+
+  "hah-anonymous-tip": {
+    stack: "library",
+    name: "Anonymous Tip",
+    types: ["action"],
+    //clan: "faithful",
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+[global] **Pay 2 [prestige]:** For each Antagonist in The Streets, deal 1 **Aggravated** [damage] to target Monster.
+`,
+    disciplines:["global"],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter"],
+  },
+
+  "hah-snake-oil": {
+    stack: "library",
+    name: "Snake Oil",
+    types: ["action", "conspiracy"],
+    //clan: "faithful",
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+**Place this card face down and put 1 [prestige] on it.**
+
+If this card has 2+ [prestige] on it, you may resolve it during your Action Phase.
+
+Each player who contributed readies 1 character in their coterie.
+`,
+    ///disciplines:["global"],
+    illustrator: "Adelijah Ocampo",
+    set: "Hunters & Hunted",
+    gameMode: ["vampire"],
+  },
+
+  "hah-snake-in-the-grass": {
+    stack: "library",
+    name: "Snake in the Grass",
+    types: ["action", "conspiracy"],
+    //clan: "faithful",
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+**Place this card face down and put 1 [prestige] on it.**
+
+If this card has 3+ [prestige] on it, you may resolve it during your Action Phase.
+
+Target each foe who did not contribute and they lose 1 [agenda]. If only 1 target, steal 1 [agenda] from them instead.
+`,
+    ///disciplines:["global"],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["vampire"],
+  },
+
+  "hah-shed-your-skin": {
+    stack: "library",
+    name: "Shed Your Skin",
+    types: ["action", "conspiracy"],
+    //clan: "faithful",
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+**Place this card face down and put 1 [prestige] on it.**
+
+If this card has 2+ [prestige] on it, you may resolve it during your Action Phase.
+
+Target each foe who did not contribute and they each discard 1 Library card at random. If only 1 target, 2 at random instead.
+`,
+    ///disciplines:["global"],
+    illustrator: "Joyce Maureira",
+    set: "Hunters & Hunted",
+    gameMode: ["vampire"],
+  },
+
+  "hah-pay-tribute": {
+    stack: "library",
+    name: "Pay Tribute",
+    types: ["action", "conspiracy"],
+    clan: "ministry",
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+**Place this card face down and put 1 [prestige] on it.**
+
+If this card has 3+ [prestige] on it, you may resolve it during your Action Phase.
+
+Target each foe who did not contribute and steal 1 [prestige] from them. If only 1 target, steal 2 [prestige] instead.
+`,
+    ///disciplines:["global"],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["vampire"],
+  },
+
+  "hah-mans-best-friend": {
+    stack: "library",
+    name: "Man's Best Friend",
+    types: ["action", "animal"],
+    //clan: "faithful",
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+[beast-whisperer] Attach to the acting character.
+
+When this character would be defeated, burn this card instead and place 1 [damage] on this character. They are not defeated.
+`,
+    disciplines:["beast whisperer"],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter"],
+  },
+
+  "hah-give-em-the-bird": {
+    stack: "library",
+    name: "Give 'em the Bird",
+    types: ["action", "animal"],
+    //clan: "faithful",
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Use only in The Streets.
+
+[beast-whisperer] Attach to target character.
+
+At the start of this character's turn, this character loses 1 [blood].
+`,
+    disciplines:["beast whisperer"],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter"],
+  },
+
+  "hah-take-careful-notes": {
+    stack: "library",
+    name: "Take Careful Notes",
+    types: ["unhosted action", "ongoing"],
+    clan: "inquisitive",
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Ongoing - When you attach a card to a character you do not control, put 1 [prestige] from your general supply on that character **OR Burn this card:** That character's controller loses 1[agenda].
+`,
+    //disciplines:[],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter"],
+  },
+
+  "hah-share-the-wealth": {
+    stack: "library",
+    name: "Share the Wealth",
+    types: ["action", "ongoing"],
+    //clan: "inquisitive",
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Ongoing - Characters in a party with your Leader have the benefits of all Retainers attached to your Leader.
+
+At the start of your turn, if you don't have a Caitiff or Thin-Blood in your coterie, burn this.
+`,
+    //disciplines:[],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["vampire"],
+  },
+
+  "hah-not-forgotten": {
+    stack: "library",
+    name: "Not Forgotten",
+    types: ["action", "ongoing"],
+    //clan: "inquisitive",
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+For each diffrerent Discipline in your coterie, shuffle 1 random Library card from your discard pile into your Library.
+
+Ongoing - At the end of your turn, if you have 2 or fewer Library cards in your hand, you may draw 1 card.
+`,
+    //disciplines:[],
+    illustrator: "Marco Primo",
+    set: "Hunters & Hunted",
+    gameMode: ["vampire"],
+  },
+
+  "hah-learning-the-ropes": {
+    stack: "library",
+    name: "Learning the Ropes",
+    types: ["unhosted action", "ongoing"],
+    //clan: "inquisitive",
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Ongoing - When a character you control deals 1+ [damage] to a foe's character, choose 1 Discipline that character has and place a token of that type on your character.
+`,
+    //disciplines:[],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["vampire"],
+  },
+
+  "hah-dark-money": {
+    stack: "library",
+    name: "Dark Money",
+    types: ["unhosted action", "ongoing"],
+    clan: "ministry",
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Ongoing - For every 2 [obfuscate] in your coterie, lower each foe's Influence by 1 during Schemes (min 0).
+`,
+    disciplines:["obfuscate"],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["vampire"],
+  },
+
+  "hah-well-prepared": {
+    stack: "library",
+    name: "Learning the Ropes",
+    types: ["reaction", "special"],
+    //clan: "inquisitive",
+    bloodPotencyRequirement: 1,
+    //damage:,
+    shield: 2,
+    //attack:[],
+    //reactions: [],
+    text: md`
+A defender you control may play this against any type of Monster attack.
+
+[sense-the-unnatural] **Pay 1 [prestige]:** +1 [shield].
+`,
+    disciplines:["sense the unnatural"],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter"],
+  },
+
+  "hah-strength-of-the-fallen": {
+    stack: "library",
+    name: "Strength of the Fallen",
+    types: ["reaction"],
+    //clan: "inquisitive",
+    bloodPotencyRequirement: 3,
+    //damage:,
+    shield: 2,
+    attack: ["physical", "mental"],
+    reactions: ["physical", "mental"],
+    text: md`
+[thwart-the-unnatural] **Pay 1 [prestige]:** +1[shield] for each of your burned characters.
+`,
+    disciplines:["thwart the unnatural"],
+    illustrator: "Darko Stojanovic",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter"],
+  },
+
+  "hah-shifting-organs": {
+    stack: "library",
+    name: "Shifting Organs",
+    types: ["reaction"],
+    //clan: "inquisitive",
+    bloodPotencyRequirement: 3,
+    //damage:,
+    shield: 1,
+    attack: ["ranged", "physical", "mental"],
+    reactions: ["ranged", "physical", "mental"],
+    text: md`
+[obfuscate] +1 [shield].
+[protean] Diablerie cannot be performed against this character this turn.
+`,
+    disciplines:["obfuscate", "protean"],
+    illustrator: "Felipe Gaona",
+    set: "Hunters & Hunted",
+    gameMode: ["vampire"],
+  },
+
+  "hah-ready-and-waiting": {
+    stack: "library",
+    name: "Ready and Waiting",
+    types: ["reaction"],
+    //clan: "inquisitive",
+    bloodPotencyRequirement: 2,
+    //damage:,
+    shield: 3,
+    attack: ["ranged", "physical"],
+    reactions: ["ranged", "physical"],
+    text: md`
+[global] Put 1 [prestige] from your general supply on the attacker.
+`,
+    disciplines:["global"],
+    illustrator: "Marco Primo",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter"],
+  },
+
+  "hah-layers-of-protection": {
+    stack: "library",
+    name: "Layers of Protection",
+    types: ["reaction"],
+    //clan: "inquisitive",
+    bloodPotencyRequirement: 2,
+    //damage:,
+    shield: 0,
+    attack: ["ranged", "physical"],
+    reactions: ["ranged", "physical"],
+    text: md`
+Each character in this party has +1 [shield].
+
+**Discard X cards:** Prevent X [damage] to the target.
+`,
+    ///disciplines:["obfuscate", "protean"],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter and vampire"],
+  },
+
+  "hah-know-their-habits": {
+    stack: "library",
+    name: "Know Their Habits",
+    types: ["reaction"],
+    //clan: "inquisitive",
+    bloodPotencyRequirement: 1,
+    //damage:,
+    shield: 2,
+    attack: ["ranged", "mental"],
+    reactions: ["ranged", "mental"],
+    text: md`
+[sense-the-unnatural] **Pay 2 [prestige]:** Each character in this party has +2 [shield] this attack.
+`,
+    disciplines:["sense the unnatural"],
+    illustrator: "Darko Stojanovic",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter"],
+  },
+
+  "hah-get-into-its-mind": {
+    stack: "library",
+    name: "Gets into its Mind",
+    types: ["reaction"],
+    //clan: "inquisitive",
+    bloodPotencyRequirement: 2,
+    //damage:,
+    shield: 1,
+    attack: ["social", "mental"],
+    reactions: ["social", "mental"],
+    text: md`
+[library] **Pay 2 [prestige]:** The attacker's [damage] becomes **Superficial.** (This damage cannot remove the last [blood] token from a character.)
+`,
+    disciplines:["library"],
+    illustrator: "Darko Stojanovic",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter"],
+  },
+
+  "hah-comeuppance": {
+    stack: "library",
+    name: "Comeuppance",
+    types: ["reaction"],
+    //clan: "inquisitive",
+    bloodPotencyRequirement: 3,
+    //damage:,
+    shield: 1,
+    attack: ["social", "mental"],
+    reactions: ["social", "mental"],
+    text: md`
+The attacker reveals their hand to the defender. The defender then discards 1 [social] or [mental] Attack card from the revealed cards.
+`,
+    ///disciplines:["library"],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter and vampire"],
+  },
+
+  "hah-subterfuge": {
+    stack: "library",
+    name: "Subterfuge",
+    types: ["attack"],
+    //clan: "inquisitive",
+    bloodPotencyRequirement: 3,
+    damage: 0,
+    //shield: 1,
+    attack: ["social"],
+    //reactions: ["social", "mental"],
+    text: md`
++1 [damage] for each Conspiricy and/ or Trap you have resolved this turn.
+`,
+    disciplines:["obfuscate"],
+    illustrator: "Mico Dimagiba",
+    set: "Hunters & Hunted",
+    gameMode: ["vampire"],
+  },
+
+  "hah-speaking-in-tongues": {
+    stack: "library",
+    name: "Speaking in Tongues",
+    types: ["attack"],
+    //clan: "inquisitive",
+    bloodPotencyRequirement: 1,
+    damage: 1,
+    //shield: 1,
+    attack: ["social"],
+    //reactions: ["social", "mental"],
+    text: md`
+[repel-the-unnatural] **Pay 1 [prestige]:** This attack deals +1 [damage] to the target. If the target is a Monster, additional +1 [damage].
+`,
+    disciplines:["repel the unnatural"],
+    illustrator: "Darko Stojanovic",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter"],
+  },
+
+  "hah-social-engineering": {
+    stack: "library",
+    name: "Social Engineering",
+    types: ["attack"],
+    //clan: "inquisitive",
+    bloodPotencyRequirement: 2,
+    damage: 2,
+    //shield: 1,
+    attack: ["social"],
+    //reactions: ["social", "mental"],
+    text: md`
+[global] Put 2 [prestige] from your general supply on the target.
+`,
+    disciplines:["global"],
+    illustrator: "Marco Primo",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter"],
+  },
+
+  "hah-rebuke": {
+    stack: "library",
+    name: "Rebuke",
+    types: ["attack"],
+    //clan: "inquisitive",
+    bloodPotencyRequirement: 3,
+    damage: 1,
+    //shield: 1,
+    attack: ["social"],
+    //reactions: ["social", "mental"],
+    text: md`
+[library] **Pay 1 [prestige]:** +1 [damage] to the target.
+
+[thwart-the-unnatural] **Pay 2 [prestige]:** +1 to Monsters and Antagonists.
+`,
+    disciplines:["library", "thwart the unnatural"],
+    illustrator: "Marco Primo",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter"],
+  },
+
+  "hah-lingering-kiss": {
+    stack: "library",
+    name: "Lingering Kiss",
+    types: ["attack"],
+    //clan: "inquisitive",
+    bloodPotencyRequirement: 2,
+    damage: 1,
+    //shield: 1,
+    attack: ["social"],
+    //reactions: ["social", "mental"],
+    text: md`
+[presence] At the end of this attack, you may attach this card to the target.
+
+At the start of this character's turn, if this character is not at maximum [blood], put a '-1 [blood-potency]' token on them.
+`,
+    disciplines:["presence"],
+    illustrator: "Mico Dimagiba",
+    set: "Hunters & Hunted",
+    gameMode: ["vampire"],
+  },
+
+  "hah-ingratiate": {
+    stack: "library",
+    name: "Ingratiate",
+    types: ["attack"],
+    //clan: "inquisitive",
+    bloodPotencyRequirement: 3,
+    damage: 1,
+    //shield: 1,
+    attack: ["social"],
+    //reactions: ["social", "mental"],
+    text: md`
++1 [damage] for each different Discipline the attacker shares with the defender.
+`,
+    ///disciplines:["obfuscate"],
+    illustrator: "Felipe Gaona",
+    set: "Hunters & Hunted",
+    gameMode: ["vampire"],
+  },
+
+  "hah-shotgun": {
+    stack: "library",
+    name: "Shotgun",
+    types: ["attack"],
+    //clan: "inquisitive",
+    bloodPotencyRequirement: 4,
+    damage: 2,
+    //shield: 1,
+    attack: ["ranged"],
+    //reactions: ["social", "mental"],
+    text: md`
++1 [damage] vs City Deck Mortals.
+
+**Discard 1 card:** Deal 2 [ranged] [damage] to a different member of the defending party.
+`,
+    disciplines:["obfuscate"],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter and vampire"],
+  },
+
+  "hah-triple-threat": {
+    stack: "library",
+    name: "Triple Threat",
+    types: ["attack"],
+    //clan: "inquisitive",
+    bloodPotencyRequirement: 4,
+    damage: 1,
+    //shield: 1,
+    attack: ["physical"],
+    //reactions: ["social", "mental"],
+    text: md`
+[auspex] Draw 1 card.
+[potence] +1 [damage].
+[presence] If the defender played a Reaction during this attack, steal 1 [prestige] from them.
+`,
+    disciplines:["auspex", "potence", "presence"],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["vampire"],
+  },
+
+  "hah-risky-buisness": {
+    stack: "library",
+    name: "Risky Buisness",
+    types: ["attack"],
+    //clan: "inquisitive",
+    bloodPotencyRequirement: 2,
+    damage: 3,
+    //shield: 1,
+    attack: ["physical"],
+    //reactions: ["social", "mental"],
+    text: md`
+If you do not have a Caitiff or Thin-Blood in your coterie, play this card face up.
+
+If a Reaction is played or the attack is Blocked, discard this card (the attack continues).
+`,
+    ///disciplines:["auspex", "potence", "presence"],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["vampire"],
+  },
+
+  "hah-release-the-hounds": {
+    stack: "library",
+    name: "Release the Hounds",
+    types: ["attack"],
+    //clan: "inquisitive",
+    bloodPotencyRequirement: 2,
+    damage: 2,
+    //shield: 1,
+    attack: ["physical"],
+    //reactions: ["social", "mental"],
+    text: md`
+Play this card face up.
+
+[beast-whisperer]/ [animalism] **Pay 1 [prestige]:** +1 [damage]
+`,
+    disciplines:["beast whisperer", "animalism"],
+    illustrator: "Marco Primo",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter and vampire"],
+  },
+
+  "hah-coiled-strike": {
+    stack: "library",
+    name: "Coiled Strike",
+    types: ["attack"],
+    //clan: "inquisitive",
+    bloodPotencyRequirement: 4,
+    damage: 2,
+    //shield: 1,
+    attack: ["physical"],
+    //reactions: ["social", "mental"],
+    text: md`
+[protean] +1 [damage] for every 2 unattached face-down cards you control.
+`,
+    disciplines:["protean"],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["vampire"],
+  },
+
+  "hah-blaze-of-glory": {
+    stack: "library",
+    name: "Blaze of Glory",
+    types: ["attack"],
+    //clan: "inquisitive",
+    bloodPotencyRequirement: 1,
+    damage: 1,
+    //shield: 1,
+    attack: ["physical"],
+    //reactions: ["social", "mental"],
+    text: md`
+[thwart-the-unnatural] +1 [damage].
+
+**Pay 1 [prestige]:** +3 [damage]. After this attack, burn this character. Use only if the target is a Monster.
+`,
+    disciplines:["thwart the unnatural"],
+    illustrator: "Marco Primo",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter"],
+  },
+
+  "hah-wide-array-of-pain": {
+    stack: "library",
+    name: "Wide Array of Pain",
+    types: ["attack"],
+    //clan: "inquisitive",
+    bloodPotencyRequirement: 4,
+    damage: 2,
+    //shield: 1,
+    attack: ["mental"],
+    //reactions: ["social", "mental"],
+    text: md`
+If the attacker has 3+ different Disciplines, the defender has -1 [shield] this attack.
+`,
+    ///disciplines:["protean"],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["vampire"],
+  },
+
+  "hah-get-the-drop": {
+    stack: "library",
+    name: "Get the Drop",
+    types: ["attack"],
+    //clan: "inquisitive",
+    bloodPotencyRequirement: 3,
+    damage: 1,
+    //shield: 1,
+    attack: ["mental"],
+    //reactions: ["social", "mental"],
+    text: md`
+[library] When revealed, you may attach a Library card from your hand face down to the target.
+
+**Pay 2 [prestige]:** +1 [damage] to the target for each Curse attached to the target.
+`,
+    disciplines:["library"],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter"],
+  },
+
+  "hah-confuse": {
+    stack: "library",
+    name: "Confuse",
+    types: ["attack"],
+    //clan: "inquisitive",
+    bloodPotencyRequirement: 2,
+    damage: 1,
+    //shield: 1,
+    attack: ["mental"],
+    //reactions: ["social", "mental"],
+    text: md`
+**Pay 1 [prestige]:** This attack deals +1 [damage] to the target.
+
+[sense-the-unnatural] After this attack, you may attach this card to the target.
+`,
+    disciplines:["sense the unnatural"],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter"],
+  },
+
+  "hah-awe": {
+    stack: "library",
+    name: "Awe",
+    types: ["attack"],
+    //clan: "inquisitive",
+    bloodPotencyRequirement: 1,
+    damage: 1,
+    //shield: 1,
+    attack: ["mental"],
+    //reactions: ["social", "mental"],
+    text: md`
+[presence] Put a 'No Influence' token on the target.
+
+[presence] [presence] +1 [damage]
+`,
+    disciplines:["presence"],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["vampire"],
   },
 };

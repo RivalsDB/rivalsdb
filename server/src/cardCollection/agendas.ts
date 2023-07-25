@@ -1,4 +1,4 @@
-import { CardId, CardSet, Illustrator, md } from "./common.js";
+import { CardId, CardSet, Illustrator, GameMode, md } from "./common.js";
 
 export type Agenda = {
   stack: "agenda";
@@ -6,6 +6,7 @@ export type Agenda = {
   text: string;
   illustrator: Illustrator;
   set: CardSet;
+  gameMode: GameMode[];
 };
 
 export const agendas: Record<CardId, Agenda> = {
@@ -19,7 +20,9 @@ If you reach 13 [agenda], you win!
     illustrator: "Darko Stojanovic",
     set: "Blood & Alchemy",
     stack: "agenda",
+    gameMode: ["vampire"],
   },
+
   "baa-recruitment-drive": {
     name: "Recruitment Drive",
     text: md`
@@ -30,7 +33,9 @@ If you reach 13 [agenda], you win!
     illustrator: "Darko Stojanovic",
     set: "Blood & Alchemy",
     stack: "agenda",
+    gameMode: ["vampire"],
   },
+
   "baa-rites-of-the-blood": {
     name: "Rites of the Blood",
     text: md`
@@ -41,7 +46,9 @@ If you reach 13 [agenda], you win!
     illustrator: "Felipe Gaona",
     set: "Blood & Alchemy",
     stack: "agenda",
+    gameMode: ["vampire"],
   },
+
   "baa-street-brew": {
     name: "Street Brew",
     text: md`
@@ -52,7 +59,9 @@ If you reach 13 [agenda], you win!.
     illustrator: "Felipe Gaona",
     set: "Blood & Alchemy",
     stack: "agenda",
+    gameMode: ["vampire"],
   },
+
   "core-base-of-power": {
     name: "Base of Power",
     text: md`
@@ -63,7 +72,9 @@ If you reach 13 [agenda], you win!
     illustrator: "The Creation Studio",
     set: "Core",
     stack: "agenda",
+    gameMode: ["vampire"],
   },
+
   "core-drain-them-slowly": {
     name: "Drain Them Slowly",
     text: md`
@@ -74,7 +85,9 @@ If you reach 13 [agenda], you win!
     illustrator: "Marco Primo",
     set: "Core",
     stack: "agenda",
+    gameMode: ["vampire"],
   },
+
   "core-hunt-the-hunters": {
     name: "Hunt the Hunters",
     text: md`
@@ -85,7 +98,9 @@ If you reach 13 [agenda], you win!
     illustrator: "The Creation Studio",
     set: "Core",
     stack: "agenda",
+    gameMode: ["vampire"],
   },
+
   "core-manipulate-the-masses": {
     name: "Manipulate the Masses",
     text: md`
@@ -96,7 +111,9 @@ If you reach 13 [agenda], you win!
     illustrator: "The Creation Studio",
     set: "Core",
     stack: "agenda",
+    gameMode: ["vampire"],
   },
+
   "core-playthings": {
     name: "Playthings",
     text: md`
@@ -107,7 +124,9 @@ If you reach 13 [agenda], you win!
     illustrator: "Amy Wilkins",
     set: "Core",
     stack: "agenda",
+    gameMode: ["vampire"],
   },
+
   "core-strength-in-numbers": {
     name: "Strength in Numbers",
     text: md`
@@ -118,7 +137,9 @@ If you reach 13 [agenda], you win!
     illustrator: "Felipe Gaona",
     set: "Core",
     stack: "agenda",
+    gameMode: ["vampire"],
   },
+
   "core-the-end-is-nigh": {
     name: "The End is Nigh",
     text: md`
@@ -129,7 +150,9 @@ If you reach 13 [agenda], you win!
     illustrator: "The Creation Studio",
     set: "Core",
     stack: "agenda",
+    gameMode: ["vampire"],
   },
+
   "core-turf-war": {
     name: "Turf War",
     text: md`
@@ -140,7 +163,9 @@ If you reach 13 agenda, you win!
     illustrator: "The Creation Studio",
     set: "Core",
     stack: "agenda",
+    gameMode: ["vampire"],
   },
+
   "hoe-disheveled-shelves": {
     name: "Disheveled Shelves",
     text: md`
@@ -151,7 +176,9 @@ If you would cause a foe to discard cards, you may have that foe draw that many 
     illustrator: "Felipe Gaona",
     set: "Heart of Europe",
     stack: "agenda",
+    gameMode: ["vampire"],
   },
+
   "hoe-full-of-surprises": {
     name: "Full of Surprises",
     text: md`
@@ -162,7 +189,9 @@ If you reach 13 [agenda], you win!
     illustrator: "Joyce Maureira",
     set: "Heart of Europe",
     stack: "agenda",
+    gameMode: ["vampire"],
   },
+
   "sas-death-is-only-the-beginning": {
     name: "Death is Only the Beginning",
     text: md`
@@ -173,7 +202,9 @@ If you reach 13 [agenda], you win!
     illustrator: "Irene Francisco",
     set: "Shadows & Shrouds",
     stack: "agenda",
+    gameMode: ["vampire"],
   },
+
   "sas-most-impressive": {
     name: "Most Impressive",
     text: md`
@@ -184,7 +215,9 @@ If you reach 13 [agenda], you win!
     illustrator: "Mara Miranda-Escota",
     set: "Shadows & Shrouds",
     stack: "agenda",
+    gameMode: ["vampire"],
   },
+
   "sas-prizefighter": {
     name: "Prizefighter",
     text: md`
@@ -195,7 +228,9 @@ If you reach 13 [agenda], you win!
     illustrator: "Felipe Gaona",
     set: "Shadows & Shrouds",
     stack: "agenda",
+    gameMode: ["vampire"],
   },
+
   "sas-wake-the-dead": {
     name: "Wake the Dead",
     text: md`
@@ -206,7 +241,9 @@ If you reach 13 [agenda], you win!
     illustrator: "Felipe Gaona",
     set: "Shadows & Shrouds",
     stack: "agenda",
+    gameMode: ["vampire"],
   },
+  
   "war-animal-kingdom": {
     name: "Animal Kingdom",
     text: md`
@@ -217,7 +254,9 @@ If you reach 13 [agenda], you win!
     illustrator: "Felipe Gaona",
     set: "Wolf & Rat",
     stack: "agenda",
+    gameMode: ["vampire"],
   },
+
   "war-call-of-the-wild": {
     name: "Call of the Wild",
     text: md`
@@ -228,7 +267,9 @@ If you reach 13 [agenda], you win!
     illustrator: "Harvey Bunda",
     set: "Wolf & Rat",
     stack: "agenda",
+    gameMode: ["vampire"],
   },
+
   "war-hoard-the-herd": {
     name: "Hoard the Herd",
     text: md`
@@ -239,7 +280,9 @@ If you reach 13 [agenda], you win!
     illustrator: "Mara Miranda-Escota",
     set: "Wolf & Rat",
     stack: "agenda",
+    gameMode: ["vampire"],
   },
+
   "war-invisible-army": {
     name: "Invisible Army",
     text: md`
@@ -250,7 +293,9 @@ If you reach 13 [agenda], you win!
     illustrator: "Harvey Bunda",
     set: "Wolf & Rat",
     stack: "agenda",
+    gameMode: ["vampire"],
   },
+
   "dar-army-of-the-dragon": {
     name: "Army of the Dragon",
     text: md`
@@ -263,7 +308,9 @@ If you reach 13 [agenda], you win!
     illustrator: "Felipe Gaona",
     set: "Dragon & Rogue",
     stack: "agenda",
+    gameMode: ["vampire"],
   },
+
   "dar-change-of-scenery": {
     name: "Change of Scenery",
     text: md`
@@ -274,7 +321,9 @@ If you reach 13 [agenda], you win!
     illustrator: "Joyce Maureira",
     set: "Dragon & Rogue",
     stack: "agenda",
+    gameMode: ["vampire"],
   },
+  
   "dar-raising-the-stakes": {
     name: "Raising the Stakes",
     text: md`
@@ -283,7 +332,9 @@ The first time you place 1+ [prestige] on a card you control that already has 2+
     illustrator: "Adelijah Ocampo",
     set: "Dragon & Rogue",
     stack: "agenda",
+    gameMode: ["vampire"],
   },
+
   "dar-the-completionist": {
     name: "The Completionist",
     text: md`
@@ -294,7 +345,9 @@ If you reach 13 [agenda], you win!
     illustrator: "Adelijah Ocampo",
     set: "Dragon & Rogue",
     stack: "agenda",
+    gameMode: ["vampire"],
   },
+  
   "jam-army-of-one": {
     name: "Army of One",
     text: md`
@@ -305,7 +358,9 @@ If you reach 13 [agenda], you win!
     illustrator: "Marco Primo",
     set: "Justice & Mercy",
     stack: "agenda",
+    gameMode: ["vampire"],
   },
+
   "jam-ritual-master": {
     name: "Ritual Master",
     text: md`
@@ -318,7 +373,9 @@ If you reach 13 [agenda], you win!
     illustrator: "Marco Primo",
     set: "Justice & Mercy",
     stack: "agenda",
+    gameMode: ["vampire"],
   },
+
   "jam-traditionalist": {
     name: "Traditionalist",
     text: md`
@@ -331,7 +388,9 @@ If you reach 13 [agenda], you win!
     illustrator: "Joyce Maureira",
     set: "Justice & Mercy",
     stack: "agenda",
+    gameMode: ["vampire"],
   },
+
   "jam-good-samaritan": {
     name: "Good Samaritan",
     text: md`
@@ -342,7 +401,9 @@ If you reach 13 [agenda], you win!
     illustrator: "Adelijah Ocampo",
     set: "Justice & Mercy",
     stack: "agenda",
+    gameMode: ["vampire"],
   },
+
   "xxx-kiss-the-ring": {
     name: "Kiss The Ring",
     text: md`
@@ -353,5 +414,52 @@ If you reach 13 [agenda], you win!
     illustrator: "Joyce Maureira",
     set: "Promo",
     stack: "agenda",
+    gameMode: ["vampire"],
+  },
+
+  "hah-the-snake-den": {
+    name: "The Snake Den",
+    text: md`
+At the start of your turn, if you control 1+ face-down card with 1+ [prestige], gain 1 [agenda]. 
+
+The first time you resolve a Conspiracy during each of your turns, gain 1 [agenda].
+    `,
+    illustrator: "Marco Primo",
+    set: "Hunters & Hunted",
+    stack: "agenda",
+    gameMode: ["vampire"],
+  },
+
+  "hah-birds-of-a-different-feather": {
+    name: "Birds Of A Different Feather",
+    text: md`
+    At the start of your turn, if there are 6+ different Disciplines or Edges in your coterie, gain 1 [agenda].
+    `,
+    illustrator: "Mara Miranda-Escota",
+    set: "Hunters & Hunted",
+    stack: "agenda",
+    gameMode: ["hunter and vampire"],
+  },
+
+  "hah-martyrdom": {
+    name: "Martyrdom",
+    text: md`
+    When a character you control is burned, gain 1 [agenda].
+    `,
+    illustrator: "Mara Miranda-Escota",
+    set: "Hunters & Hunted",
+    stack: "agenda",
+    gameMode: ["hunter"],
+  },
+
+  "hah-observe-and-report": {
+    name: "Observe and Report",
+    text: md`
+    When you attach a card to a card you do not control, gain 1 [agenda].
+    `,
+    illustrator: "Mico Dimagiba",
+    set: "Hunters & Hunted",
+    stack: "agenda",
+    gameMode: ["hunter and vampire"],
   },
 };

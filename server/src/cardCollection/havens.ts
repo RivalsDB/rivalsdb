@@ -1,4 +1,4 @@
-import { CardId, CardSet, Illustrator, md } from "./common.js";
+import { CardId, CardSet, Illustrator, md, GameMode } from "./common.js";
 
 export type Haven = {
   stack: "haven";
@@ -6,6 +6,7 @@ export type Haven = {
   text: string;
   illustrator: Illustrator;
   set: CardSet;
+  gameMode: GameMode[];
 };
 
 export const havens: Record<CardId, Haven> = {
@@ -21,6 +22,7 @@ When your Leader plays a Ritual, gain 1 Unhosted Action.
     `,
     illustrator: "Felipe Gaona",
     set: "Blood & Alchemy",
+    gameMode: ["vampire"],
   },
 
   "baa-the-pit": {
@@ -35,6 +37,7 @@ The first time you recruit a character during each of your turns, gain 1 Unhoste
     `,
     illustrator: "Marco Primo",
     set: "Blood & Alchemy",
+    gameMode: ["vampire"],
   },
 
   "baa-thrift-store": {
@@ -49,6 +52,7 @@ Your Library cards have -1 Blood Potence. When your Leader is defeated, put a '-
     `,
     illustrator: "Marco Primo",
     set: "Blood & Alchemy",
+    gameMode: ["vampire"],
   },
 
   "baa-university-library": {
@@ -63,6 +67,7 @@ Characters in your Haven have +1 Secrecy.
     `,
     illustrator: "Marco Primo",
     set: "Blood & Alchemy",
+    gameMode: ["vampire"],
   },
 
   "core-artist-lofts": {
@@ -77,6 +82,7 @@ At the end of your turn, if your Leader is exhausted, you may draw 1 card, the d
     `,
     illustrator: "Felipe Gaona",
     set: "Core",
+    gameMode: ["vampire"],
   },
 
   "core-dragons-roost": {
@@ -91,6 +97,7 @@ If ready, you may move your Leader to The Streets (if they are not already there
     `,
     illustrator: "Felipe Gaona",
     set: "Core",
+    gameMode: ["vampire"],
   },
 
   "core-house-of-pain": {
@@ -105,6 +112,7 @@ Attacker - Discard 1 card: Your Leader deals +1 Damage to the target.
     `,
     illustrator: "Felipe Gaona",
     set: "Core",
+    gameMode: ["vampire"],
   },
 
   "core-old-post-office": {
@@ -119,6 +127,7 @@ Once during each player's turn, you may place a card fro your hand with 1-3 Bloo
     `,
     illustrator: "Cold Castle Studios",
     set: "Core",
+    gameMode: ["vampire"],
   },
 
   "core-royal-retreat": {
@@ -133,6 +142,7 @@ Characters with a Title in your coterie have +1 Influence. Discard an unattached
     `,
     illustrator: "Cold Castle Studios",
     set: "Core",
+    gameMode: ["vampire"],
   },
 
   "core-the-dockyards": {
@@ -147,6 +157,7 @@ Each time your Leader would take +1 Damage, you may discard 1 card to prevent 1 
     `,
     illustrator: "Felipe Gaona",
     set: "Core",
+    gameMode: ["vampire"],
   },
 
   "core-the-madhouse": {
@@ -161,6 +172,7 @@ Discard 1 card: Add 1 [prestige] from the general supply to a face-down card you
     `,
     illustrator: "Cold Castle Studios",
     set: "Core",
+    gameMode: ["vampire"],
   },
 
   "core-the-penthouse": {
@@ -175,6 +187,7 @@ When a character in your coterie attaches a Retainer, that character mends 1 Blo
     `,
     illustrator: "The Creation Studio",
     set: "Core",
+    gameMode: ["vampire"],
   },
 
   "hoe-guard-tower": {
@@ -189,6 +202,7 @@ Guards in your coterie deal +1 [damage] to Blockers. At the end of your turn, re
     `,
     illustrator: "Marco Primo",
     set: "Heart of Europe",
+    gameMode: ["vampire"],
   },
 
   "hoe-old-rail-station": {
@@ -203,6 +217,7 @@ Characters attacking your coterie deal -1 [damage] for each '-1 [Blood Potency]'
     `,
     illustrator: "Marco Primo",
     set: "Heart of Europe",
+    gameMode: ["vampire"],
   },
 
   "sas-eternal-life-mortuary": {
@@ -217,6 +232,7 @@ Characters in your Haven have +1 Secrecy.
     `,
     illustrator: "Marco Primo",
     set: "Shadows & Shrouds",
+    gameMode: ["vampire"],
   },
 
   "sas-mission-cemetery": {
@@ -231,6 +247,7 @@ Characters in your Haven have +1 Secrecy.
     `,
     illustrator: "Felipe Gaona",
     set: "Shadows & Shrouds",
+    gameMode: ["vampire"],
   },
 
   "sas-the-big-house": {
@@ -249,6 +266,7 @@ Character in your coterie ha [blood-potency].
     `,
     illustrator: "Felipe Gaona",
     set: "Shadows & Shrouds",
+    gameMode: ["vampire"],
   },
 
   "sas-the-tenderloin": {
@@ -263,6 +281,7 @@ Characters in your Haven have +1 Secrecy.
     `,
     illustrator: "Marco Primo",
     set: "Shadows & Shrouds",
+    gameMode: ["vampire"],
   },
 
   "war-city-park": {
@@ -277,6 +296,7 @@ When your Leader exhausts, reveal the top card of your Library. If it's an Anima
     `,
     illustrator: "Harvey Bunda",
     set: "Wolf & Rat",
+    gameMode: ["vampire"],
   },
 
   "war-the-outskirts": {
@@ -291,6 +311,7 @@ Once during each of your turns, you may Discard an Animal: Mend 2 [blood] on any
     `,
     illustrator: "Adelijah Ocampo",
     set: "Wolf & Rat",
+    gameMode: ["vampire"],
   },
 
   "war-the-sewers": {
@@ -305,6 +326,7 @@ Your Leader may attack City Deck Mortals in The Streets without leaving your Hav
     `,
     illustrator: "Felipe Gaona",
     set: "Wolf & Rat",
+    gameMode: ["vampire"],
   },
 
   "war-the-shelter": {
@@ -319,6 +341,7 @@ Character in your coterie with 1+ Vagrants attached have +1 Secrecy in The Stree
     `,
     illustrator: "Felipe Gaona",
     set: "Wolf & Rat",
+    gameMode: ["vampire"],
   },
 
   "xxx-tent-city": {
@@ -333,6 +356,7 @@ While your coterie has characters from 3+ different clans, characters in your co
     `,
     illustrator: "Felipe Gaona",
     set: "Promo",
+    gameMode: ["vampire"],
   },
 
   "dar-campsite": {
@@ -349,6 +373,7 @@ Your Leader has +1 Secrecy.
     `,
     illustrator: "Adelijah Ocampo",
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-converted-bus": {
@@ -363,6 +388,7 @@ When your Leader moves to The Streets, you may move 1 of their [blood] to anothe
     `,
     illustrator: "Adelijah Ocampo",
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-country-estate": {
@@ -379,6 +405,7 @@ When your Leader defeats a Citizen of _Vagrant_, you may play the Ghoul attached
     `,
     illustrator: "Irene Francisco",
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
 
   "dar-social-housing": {
@@ -395,6 +422,7 @@ When your Leader defeats a City Deck Mortal, you may move a Retainer from a char
     `,
     illustrator: "Mara Miranda-Escota",
     set: "Dragon & Rogue",
+    gameMode: ["vampire"],
   },
   "jam-the-hermitage": {
     stack: "haven",
@@ -406,6 +434,7 @@ When you recruit a character, gain 1 [prestige]. If they are Salubri, gain 2 [pr
     `,
     illustrator: "Marco Primo",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-ritual-room": {
@@ -420,6 +449,7 @@ When your Leader deals damage to a character, put that lost [blood] onto Rituals
     `,
     illustrator: "Marco Primo",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-the-castle": {
@@ -432,6 +462,7 @@ Characters in your Haven have +1 Secrecy.
     `,
     illustrator: "Marco Primo",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
 
   "jam-the-high-horse": {
@@ -448,6 +479,7 @@ Reduce the [prestige] cost of Traditions you play by 1.
     `,
     illustrator: "Marco Primo",
     set: "Justice & Mercy",
+    gameMode: ["vampire"],
   },
   
   "xxx-the-underpass": {
@@ -462,7 +494,9 @@ Characters in your Haven have +1 Secrecy.
     `,
     illustrator: "Felipe Gaona",
     set: "Promo",
+    gameMode: ["vampire"],
   },
+
   "xxx-the-presidio": {
     stack: "haven",
     name: "The Presidio",
@@ -475,5 +509,58 @@ Your Leader has +1 [shield] vs **Aggravated** [damage].
     `,
     illustrator: "Marco Primo",
     set: "Promo",
+    gameMode: ["vampire"],
+  },
+
+  "hah-fellowship-hall": {
+    stack: "haven",
+    name: "Fellowship Hall",
+    text: md`
+    Your characters have +1 Secrecy.
+    **Leader Ability**
+    The first time you recruit a character during each of your turns, gain 1 Unhosted Action.
+    `,
+    illustrator: "Marco Primo",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter"],
+  },
+
+  "hah-back-alley-clinic": {
+    stack: "haven",
+    name: "Back Alley Clinic",
+    text: `md
+    Your characters have +1 Secrecy.
+    **Leader Ability**
+    When a character you control is defeated by non-**Aggravted** [damage], if you control no characters in recovery, you may put the defeated character into recovery.
+    `,
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter"],
+  },
+
+  "hah-the-temple-of-set": {
+    stack: "haven",
+    name: "The Temple of Set",
+    text: md`
+    Characters in your Haven have +1 Secrecy.
+    **Leader Ability**
+    When your Leader defeats a character, you may put 1 [prestige] from your general supply on each face-down card you control.
+    `,
+    illustrator: "Marco Primo",
+    set: "Hunters & Hunted",
+    gameMode: ["vampire"],
+  },
+
+  "hah-the-clubhouse": {
+    stack: "haven",
+    name: "The Clubhouse",
+    text: md`
+    Characters in your Haven have +1 Secrecy.
+    **Leader Ability**
+    At the start of your turn, draw 1 card for every 4 different Disciplines or Edges in your coterie, then discard 1 card.
+    `,
+    illustrator: "Marco Primo",
+    set: "Hunters & Hunted",
+    gameMode: ["hunter and vampire"],
   },
 };

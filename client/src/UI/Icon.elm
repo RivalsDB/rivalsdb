@@ -29,6 +29,7 @@ type IconImage
     | City
     | CityConclave
     | CityHoE
+    | CityHaH
     | CityCore
     | Conspiracy
     | Damage
@@ -58,6 +59,8 @@ type IconImage
     | Trap
     | UnhostedAction
     | Ghoul
+    | Monster
+    | Relic
 
 type IconStyle
     = Standard
@@ -161,6 +164,9 @@ imageOpts image =
         CityHoE ->
             ( class "ui-icon_city-hoe", "City - Prague" )
 
+        CityHaH ->
+            ( class "ui-icon_city-hah", "City - Rio" )
+
         Conspiracy ->
             ( class "ui-icon_conspiracy", "Conspiracy" )
 
@@ -240,7 +246,13 @@ imageOpts image =
             ( class "ui-icon_trap", "Trap" )
 
         Ghoul ->
-            ( class "ui-icon_ghoul", "Ghoul" )    
+            ( class "ui-icon_ghoul", "Ghoul" )
+
+        Relic ->
+            ( class "ui-icon_relic", "Relic" )      
 
         UnhostedAction ->
             ( class "ui-icon_unhosted_action", "Unhosted Action" )
+        
+        Monster ->
+            ( class "ui-icon_monster", "Monster" ) 

@@ -4,6 +4,7 @@ import { havens } from "./havens.js";
 import { library } from "./library.js";
 import { factions } from "./faction.js";
 import { city } from "./city.js";
+import { monster } from "./monster.js";
 import {
   AttackType,
   CardSet,
@@ -13,7 +14,7 @@ import {
   LibraryCardType,
 } from "./common.js";
 
-type Card = Agenda | Haven | Faction | Library | City;
+type Card = Agenda | Haven | Faction | Library | City | Monster;
 
 export type Agenda = {
   id: string;
@@ -89,10 +90,26 @@ export type City = {
   flavor?: string;
 };
 
+export type Monster = {
+  stack: "monster";
+  illustrator: string;
+  name: string;
+  bloodPotency: number;
+  physical: number;
+  social: number;
+  mental: number;
+  set: CardSet;
+  text: string;
+  blood?: number;
+  agenda?: number;
+  types: ["monster"];
+}
+
 export const allUnstructured = ([] as Card[]).concat(
   Object.entries(city).map(convert.toUnstructuredCity),
   Object.entries(agendas).map(convert.toUnstructuredAgenda),
   Object.entries(havens).map(convert.toUnstructuredHaven),
   Object.entries(library).map(convert.toUnstructuredLibrary),
-  Object.entries(factions).map(convert.toUnstructuredFaction)
+  Object.entries(factions).map(convert.toUnstructuredFaction),
+  Object.entries(monster).map(convert.toUnstructuredMonster),
 );

@@ -2,6 +2,7 @@ module UI.FilterSelection exposing
     ( AllStacks
     , AttackTypes
     , Cities
+    , Monsters
     , Clans
     , Disciplines
     , Msg
@@ -12,11 +13,13 @@ module UI.FilterSelection exposing
     , attackTypeIsAllowedStrict
     , attackTypeIsAllowedWide
     , cityIsAllowedWide
+    , monsterIsAllowedWide
     , clanIsAllowedStrict
     , clanIsAllowedWide
     , cleanAllStacks
     , cleanAttackTypes
     , cleanCities
+    , cleanMonster
     , cleanClans
     , cleanDisciplines
     , cleanPlayerStacks
@@ -34,6 +37,7 @@ module UI.FilterSelection exposing
     , viewAllStacks
     , viewAttackTypes
     , viewCities
+    , viewMonster
     , viewClans
     , viewDisciplines
     , viewPlayerStacks
@@ -68,12 +72,12 @@ cleanPlayerStacks =
 
 
 type alias AllStacks =
-    { city : Bool, agenda : Bool, haven : Bool, faction : Bool, library : Bool }
+    { city : Bool, agenda : Bool, haven : Bool, faction : Bool, library : Bool , monster: Bool}
 
 
 cleanAllStacks : AllStacks
 cleanAllStacks =
-    { city = False, agenda = False, haven = False, faction = False, library = False }
+    { city = False, agenda = False, haven = False, faction = False, library = False, monster = False }
 
 
 viewPlayerStacks : PlayerStacks -> Html (Msg PlayerStacks)
@@ -90,6 +94,7 @@ viewAllStacks : AllStacks -> Html (Msg AllStacks)
 viewAllStacks flags =
     div [ class "filterpicker" ]
         [ viewFlag (Icon.icon ( Icon.City, Icon.Standard )) (\old -> { old | city = not old.city }) flags.city
+        , viewFlag (Icon.icon ( Icon.Monster, Icon.Standard )) (\old -> { old | city = not old.monster }) flags.monster
         , viewFlag (Icon.icon ( Icon.AgendaCard, Icon.Standard )) (\old -> { old | agenda = not old.agenda }) flags.agenda
         , viewFlag (Icon.icon ( Icon.Haven, Icon.Standard )) (\old -> { old | haven = not old.haven }) flags.haven
         , viewFlag (Icon.icon ( Icon.Faction, Icon.Standard )) (\old -> { old | faction = not old.faction }) flags.faction
@@ -119,6 +124,9 @@ allStackIsAllowedWide flags card =
             ( { city }, C.CityCard _ ) ->
                 city
 
+            ( { monster }, C.MonsterCard _ ) ->
+                monster
+
 
 playerStackIsAllowed : PlayerStacks -> C.Card -> Bool
 playerStackIsAllowed flags card =
@@ -140,6 +148,9 @@ playerStackIsAllowed flags card =
                 library
 
             ( _, C.CityCard _ ) ->
+                False
+            
+            ( _, C.MonsterCard _ ) ->
                 False
 
 
@@ -242,6 +253,7 @@ type alias SecondaryTraits =
     , title : Bool
     , trap : Bool
     , ghoul : Bool
+    , relic : Bool
     }
 
 
@@ -257,6 +269,7 @@ cleanSecondaryTraits =
     , title = False
     , trap = False
     , ghoul = False
+    , relic = False
     }
 
 
@@ -273,6 +286,7 @@ viewSecondaryTraits flags =
         , viewFlag (Icon.icon ( Icon.Title, Icon.Standard )) (\old -> { old | title = not old.title }) flags.title
         , viewFlag (Icon.icon ( Icon.Trap, Icon.Standard )) (\old -> { old | trap = not old.trap }) flags.trap
         , viewFlag (Icon.icon ( Icon.Ghoul, Icon.Standard )) (\old -> { old | ghoul = not old.ghoul }) flags.ghoul
+        , viewFlag (Icon.icon ( Icon.Relic, Icon.Standard )) (\old -> { old | relic = not old.relic }) flags.relic
         ]
 
 
@@ -294,6 +308,7 @@ secondaryTraitsIsAllowedWide flags card =
                     || (traits.title && flags.title)
                     || (traits.trap && flags.trap)
                     || (traits.ghoul && flags.ghoul)
+                    || (traits.relic && flags.relic)
 
             _ ->
                 False
@@ -317,6 +332,7 @@ secondaryTraitsIsAllowedStrict flags card =
                     && (traits.title == flags.title)
                     && (traits.trap == flags.trap)
                     && (traits.ghoul == flags.ghoul)
+                    && (traits.relic == flags.relic)
 
             _ ->
                 False
@@ -402,10 +418,14 @@ attackTypeIsAllowedStrict flags card =
 type alias Clans =
     { banuHaqim : Bool
     , brujah : Bool
+    , caitiff : Bool
+    , faithful : Bool
     , gangrel : Bool
     , hecata : Bool
+    , inquisitive : Bool
     , lasombra : Bool
     , malkavian : Bool
+    , ministry : Bool
     , nosferatu : Bool
     , ravnos : Bool
     , salubri : Bool
@@ -421,10 +441,14 @@ cleanClans : Clans
 cleanClans =
     { banuHaqim = False
     , brujah = False
+    , caitiff = False
+    , faithful = False
     , gangrel = False
     , hecata = False
+    , inquisitive = False
     , lasombra = False
     , malkavian = False
+    , ministry = False
     , nosferatu = False
     , ravnos = False
     , salubri = False
@@ -441,10 +465,14 @@ viewClans flags =
     div [ class "filterpicker" ]
         [ viewFlag (IconV2.clan IconV2.Standard Cl.BanuHaqim) (\old -> { old | banuHaqim = not old.banuHaqim }) flags.banuHaqim
         , viewFlag (IconV2.clan IconV2.Standard Cl.Brujah) (\old -> { old | brujah = not old.brujah }) flags.brujah
+        , viewFlag (IconV2.clan IconV2.Standard Cl.Caitiff) (\old -> { old | caitiff = not old.caitiff }) flags.caitiff
+        , viewFlag (IconV2.clan IconV2.Standard Cl.Faithful) (\old -> { old | faithful = not old.faithful }) flags.faithful
         , viewFlag (IconV2.clan IconV2.Standard Cl.Gangrel) (\old -> { old | gangrel = not old.gangrel }) flags.gangrel
         , viewFlag (IconV2.clan IconV2.Standard Cl.Hecata) (\old -> { old | hecata = not old.hecata }) flags.hecata
+        , viewFlag (IconV2.clan IconV2.Standard Cl.Inquisitive) (\old -> { old | inquisitive = not old.inquisitive }) flags.inquisitive
         , viewFlag (IconV2.clan IconV2.Standard Cl.Lasombra) (\old -> { old | lasombra = not old.lasombra }) flags.lasombra
         , viewFlag (IconV2.clan IconV2.Standard Cl.Malkavian) (\old -> { old | malkavian = not old.malkavian }) flags.malkavian
+        , viewFlag (IconV2.clan IconV2.Standard Cl.Ministry) (\old -> { old | ministry = not old.ministry }) flags.ministry
         , viewFlag (IconV2.clan IconV2.Standard Cl.Nosferatu) (\old -> { old | nosferatu = not old.nosferatu }) flags.nosferatu
         , viewFlag (IconV2.clan IconV2.Standard Cl.Ravnos) (\old -> { old | ravnos = not old.ravnos }) flags.ravnos
         , viewFlag (IconV2.clan IconV2.Standard Cl.Salubri) (\old -> { old | salubri = not old.salubri }) flags.salubri
@@ -462,10 +490,14 @@ clanIsAllowed flags card =
         matchClan clan =
             (clan == Cl.BanuHaqim && flags.banuHaqim)
                 || (clan == Cl.Brujah && flags.brujah)
+                || (clan == Cl.Caitiff && flags.caitiff)
+                || (clan == Cl.Faithful && flags.faithful)
                 || (clan == Cl.Gangrel && flags.gangrel)
                 || (clan == Cl.Hecata && flags.hecata)
+                || (clan == Cl.Inquisitive && flags.inquisitive)
                 || (clan == Cl.Lasombra && flags.lasombra)
                 || (clan == Cl.Malkavian && flags.malkavian)
+                || (clan == Cl.Ministry && flags.ministry)
                 || (clan == Cl.Nosferatu && flags.nosferatu)
                 || (clan == Cl.Ravnos && flags.ravnos)
                 || (clan == Cl.Salubri && flags.salubri)
@@ -509,16 +541,22 @@ clanIsAllowedStrict =
 type alias Disciplines =
     { animalism : Bool
     , auspex : Bool
+    , beastWhisperer : Bool
     , bloodSorcery : Bool
     , celerity : Bool
     , dominate : Bool
     , fortitude : Bool
+    , global : Bool
+    , library : Bool
     , obfuscate : Bool
     , oblivion : Bool
     , potence : Bool
     , presence : Bool
     , protean : Bool
+    , repelTheUnnatural : Bool
+    , senseTheUnnatural : Bool
     , thinBloodAlchemy : Bool
+    , thwartTheUnnatural : Bool
     }
 
 
@@ -526,16 +564,22 @@ cleanDisciplines : Disciplines
 cleanDisciplines =
     { animalism = False
     , auspex = False
+    , beastWhisperer = False
     , bloodSorcery = False
     , celerity = False
     , dominate = False
     , fortitude = False
+    , global = False
+    , library = False
     , obfuscate = False
     , oblivion = False
     , potence = False
     , presence = False
     , protean = False
+    , repelTheUnnatural = False
+    , senseTheUnnatural = False
     , thinBloodAlchemy = False
+    , thwartTheUnnatural = False
     }
 
 
@@ -544,15 +588,21 @@ viewDisciplines flags =
     div [ class "filterpicker" ]
         [ viewFlag (IconV2.discipline IconV2.Standard Dis.Animalism) (\old -> { old | animalism = not old.animalism }) flags.animalism
         , viewFlag (IconV2.discipline IconV2.Standard Dis.Auspex) (\old -> { old | auspex = not old.auspex }) flags.auspex
+        , viewFlag (IconV2.discipline IconV2.Standard Dis.BeastWhisperer) (\old -> { old | beastWhisperer = not old.beastWhisperer }) flags.beastWhisperer
         , viewFlag (IconV2.discipline IconV2.Standard Dis.BloodSorcery) (\old -> { old | bloodSorcery = not old.bloodSorcery }) flags.bloodSorcery
         , viewFlag (IconV2.discipline IconV2.Standard Dis.Celerity) (\old -> { old | celerity = not old.celerity }) flags.celerity
         , viewFlag (IconV2.discipline IconV2.Standard Dis.Dominate) (\old -> { old | dominate = not old.dominate }) flags.dominate
         , viewFlag (IconV2.discipline IconV2.Standard Dis.Fortitude) (\old -> { old | fortitude = not old.fortitude }) flags.fortitude
+        , viewFlag (IconV2.discipline IconV2.Standard Dis.Global) (\old -> { old | global = not old.global }) flags.global
+        , viewFlag (IconV2.discipline IconV2.Standard Dis.Library) (\old -> { old | library = not old.library }) flags.library
         , viewFlag (IconV2.discipline IconV2.Standard Dis.Obfuscate) (\old -> { old | obfuscate = not old.obfuscate }) flags.obfuscate
         , viewFlag (IconV2.discipline IconV2.Standard Dis.Oblivion) (\old -> { old | oblivion = not old.oblivion }) flags.oblivion
         , viewFlag (IconV2.discipline IconV2.Standard Dis.Potence) (\old -> { old | potence = not old.potence }) flags.potence
         , viewFlag (IconV2.discipline IconV2.Standard Dis.Presence) (\old -> { old | presence = not old.presence }) flags.presence
         , viewFlag (IconV2.discipline IconV2.Standard Dis.Protean) (\old -> { old | protean = not old.protean }) flags.protean
+        , viewFlag (IconV2.discipline IconV2.Standard Dis.RepelTheUnnatural) (\old -> { old | repelTheUnnatural = not old.repelTheUnnatural }) flags.repelTheUnnatural
+        , viewFlag (IconV2.discipline IconV2.Standard Dis.SenseTheUnnatural) (\old -> { old | senseTheUnnatural = not old.senseTheUnnatural }) flags.senseTheUnnatural
+        , viewFlag (IconV2.discipline IconV2.Standard Dis.ThwartTheUnnatural) (\old -> { old | thwartTheUnnatural = not old.thwartTheUnnatural }) flags.thwartTheUnnatural
         , viewFlag (IconV2.discipline IconV2.Standard Dis.ThinBloodAlchemy) (\old -> { old | thinBloodAlchemy = not old.thinBloodAlchemy }) flags.thinBloodAlchemy
         ]
 
@@ -565,15 +615,20 @@ disciplineIsAllowedWide flags card =
                 (\dis ->
                     (dis == Dis.Animalism && flags.animalism)
                         || (dis == Dis.Auspex && flags.auspex)
+                        || (dis == Dis.BeastWhisperer && flags.beastWhisperer)
                         || (dis == Dis.BloodSorcery && flags.bloodSorcery)
                         || (dis == Dis.Celerity && flags.celerity)
                         || (dis == Dis.Dominate && flags.dominate)
                         || (dis == Dis.Fortitude && flags.fortitude)
-                        || (dis == Dis.Obfuscate && flags.obfuscate)
+                        || (dis == Dis.Global && flags.global)
+                        || (dis == Dis.Library && flags.library)
                         || (dis == Dis.Oblivion && flags.oblivion)
                         || (dis == Dis.Potence && flags.potence)
                         || (dis == Dis.Presence && flags.presence)
                         || (dis == Dis.Protean && flags.protean)
+                        || (dis == Dis.RepelTheUnnatural && flags.repelTheUnnatural)
+                        || (dis == Dis.SenseTheUnnatural && flags.senseTheUnnatural)
+                        || (dis == Dis.ThwartTheUnnatural && flags.thwartTheUnnatural)
                         || (dis == Dis.ThinBloodAlchemy && flags.thinBloodAlchemy)
                 )
     in
@@ -598,15 +653,20 @@ disciplineIsAllowedStrict flags card =
         matchDiscipline disciplines =
             (List.member Dis.Animalism disciplines == flags.animalism)
                 && (List.member Dis.Auspex disciplines == flags.auspex)
+                && (List.member Dis.BeastWhisperer disciplines == flags.beastWhisperer)
                 && (List.member Dis.BloodSorcery disciplines == flags.bloodSorcery)
                 && (List.member Dis.Celerity disciplines == flags.celerity)
                 && (List.member Dis.Dominate disciplines == flags.dominate)
                 && (List.member Dis.Fortitude disciplines == flags.fortitude)
-                && (List.member Dis.Obfuscate disciplines == flags.obfuscate)
+                && (List.member Dis.Global disciplines == flags.global)
+                && (List.member Dis.Library disciplines == flags.library)
                 && (List.member Dis.Oblivion disciplines == flags.oblivion)
                 && (List.member Dis.Potence disciplines == flags.potence)
                 && (List.member Dis.Presence disciplines == flags.presence)
                 && (List.member Dis.Protean disciplines == flags.protean)
+                && (List.member Dis.RepelTheUnnatural disciplines == flags.repelTheUnnatural)
+                && (List.member Dis.SenseTheUnnatural disciplines == flags.senseTheUnnatural)
+                && (List.member Dis.ThwartTheUnnatural disciplines == flags.thwartTheUnnatural)
                 && (List.member Dis.ThinBloodAlchemy disciplines == flags.thinBloodAlchemy)
     in
     if flags == cleanDisciplines then
@@ -633,6 +693,7 @@ disciplineIsAllowedStrict flags card =
 type alias Cities =
     { core : Bool
     , heartOfEurope : Bool
+    , rio : Bool
     , conclave22 : Bool
     }
 
@@ -641,6 +702,7 @@ cleanCities : Cities
 cleanCities =
     { core = False
     , heartOfEurope = False
+    , rio : False
     , conclave22 = False
     }
 
@@ -674,7 +736,6 @@ cityIsAllowedWide flags card =
 
             _ ->
                 True
-
 
 
 ------------------
