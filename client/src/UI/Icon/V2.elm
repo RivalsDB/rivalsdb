@@ -378,19 +378,18 @@ brujah style =
             []
         ]
 
-{--
 caitiff : Style -> Html msg
 caitiff style =
     root "Caitiff"
-        [ 
+        [
         ]
 
 faithful : Style -> Html msg
 faithful style =
     root "Faithful"
-        [ 
-        ]        
---}
+        [
+        ]
+
 
 gangrel : Style -> Html msg
 gangrel style =
@@ -415,13 +414,11 @@ hecata style =
             ]
         ]
 
-{--
 inquisitive : Style -> Html msg
 inquisitive style =
     root "Inquisitive"
         [ 
         ]
---}
 
 lasombra : Style -> Html msg
 lasombra style =
@@ -461,13 +458,13 @@ malkavian style =
             ]
             []
         ]
-{--
+
 ministry : Style -> Html msg
 ministry style =
     root "Ministry"
         [ 
         ]
---}
+
 
 nosferatu : Style -> Html msg
 nosferatu style =
