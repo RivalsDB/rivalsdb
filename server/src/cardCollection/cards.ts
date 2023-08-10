@@ -68,7 +68,7 @@ export type Library = {
   name: string;
   damage?: number;
   shield?: number;
-  set: CardSet;
+  set: CardSet | CardSet[];
   text: string;
   types: LibraryCardType[];
   flavor?: string;
@@ -92,12 +92,14 @@ export type City = {
 
 export type Monster = {
   stack: "monster";
+  id: string;
   illustrator: string;
+  image: string;
   name: string;
   bloodPotency: number;
-  physical: number;
-  social: number;
-  mental: number;
+  attributePhysical: number;
+  attributeSocial: number;
+  attributeMental: number;
   set: CardSet;
   text: string;
   blood?: number;
