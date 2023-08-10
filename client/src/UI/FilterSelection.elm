@@ -702,7 +702,7 @@ cleanCities : Cities
 cleanCities =
     { core = False
     , heartOfEurope = False
-    , rio : False
+    , rio = False
     , conclave22 = False
     }
 
