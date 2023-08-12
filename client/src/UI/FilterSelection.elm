@@ -49,8 +49,6 @@ import Html exposing (Html, div, input, label)
 import Html.Attributes exposing (class, classList, type_)
 import Html.Events exposing (onCheck)
 import UI.Icon as Icon
-import UI.Icon.V2 as IconV2
-
 
 
 -----------
@@ -455,28 +453,28 @@ cleanClans =
     , ventrue = False
     }
 
-
 viewClans : Clans -> Html (Msg Clans)
 viewClans flags =
     div [ class "filterpicker" ]
-        [ viewFlag (IconV2.clan IconV2.Standard Cl.BanuHaqim) (\old -> { old | banuHaqim = not old.banuHaqim }) flags.banuHaqim
-        , viewFlag (IconV2.clan IconV2.Standard Cl.Brujah) (\old -> { old | brujah = not old.brujah }) flags.brujah
-        , viewFlag (IconV2.clan IconV2.Standard Cl.Caitiff) (\old -> { old | caitiff = not old.caitiff }) flags.caitiff
-        , viewFlag (IconV2.clan IconV2.Standard Cl.Faithful) (\old -> { old | faithful = not old.faithful }) flags.faithful
-        , viewFlag (IconV2.clan IconV2.Standard Cl.Gangrel) (\old -> { old | gangrel = not old.gangrel }) flags.gangrel
-        , viewFlag (IconV2.clan IconV2.Standard Cl.Hecata) (\old -> { old | hecata = not old.hecata }) flags.hecata
-        , viewFlag (IconV2.clan IconV2.Standard Cl.Inquisitive) (\old -> { old | inquisitive = not old.inquisitive }) flags.inquisitive
-        , viewFlag (IconV2.clan IconV2.Standard Cl.Lasombra) (\old -> { old | lasombra = not old.lasombra }) flags.lasombra
-        , viewFlag (IconV2.clan IconV2.Standard Cl.Malkavian) (\old -> { old | malkavian = not old.malkavian }) flags.malkavian
-        , viewFlag (IconV2.clan IconV2.Standard Cl.Ministry) (\old -> { old | ministry = not old.ministry }) flags.ministry
-        , viewFlag (IconV2.clan IconV2.Standard Cl.Nosferatu) (\old -> { old | nosferatu = not old.nosferatu }) flags.nosferatu
-        , viewFlag (IconV2.clan IconV2.Standard Cl.Ravnos) (\old -> { old | ravnos = not old.ravnos }) flags.ravnos
-        , viewFlag (IconV2.clan IconV2.Standard Cl.Salubri) (\old -> { old | salubri = not old.salubri }) flags.salubri
-        , viewFlag (IconV2.clan IconV2.Standard Cl.ThinBlood) (\old -> { old | thinBlood = not old.thinBlood }) flags.thinBlood
-        , viewFlag (IconV2.clan IconV2.Standard Cl.Toreador) (\old -> { old | toreador = not old.toreador }) flags.toreador
-        , viewFlag (IconV2.clan IconV2.Standard Cl.Tremere) (\old -> { old | tremere = not old.tremere }) flags.tremere
-        , viewFlag (IconV2.clan IconV2.Standard Cl.Tzimisce) (\old -> { old | tzimisce = not old.tzimisce }) flags.tzimisce
-        , viewFlag (IconV2.clan IconV2.Standard Cl.Ventrue) (\old -> { old | ventrue = not old.ventrue }) flags.ventrue
+
+        [ viewFlag (Icon.icon (Icon.ClanBanuHaqim, Icon.Standard)) (\old -> { old | banuHaqim = not old.banuHaqim }) flags.banuHaqim
+        , viewFlag (Icon.icon (Icon.ClanBrujah, Icon.Standard)) (\old -> { old | brujah = not old.brujah }) flags.brujah
+        , viewFlag (Icon.icon (Icon.ClanCaitiff, Icon.Standard)) (\old -> { old | caitiff = not old.caitiff }) flags.caitiff
+        , viewFlag (Icon.icon (Icon.ClanFaithful, Icon.Standard)) (\old -> { old | faithful = not old.faithful }) flags.faithful
+        , viewFlag (Icon.icon (Icon.ClanGangrel, Icon.Standard)) (\old -> { old | gangrel = not old.gangrel }) flags.gangrel
+        , viewFlag (Icon.icon (Icon.ClanHecata, Icon.Standard)) (\old -> { old | hecata = not old.hecata }) flags.hecata
+        , viewFlag (Icon.icon (Icon.ClanInquisitive, Icon.Standard)) (\old -> { old | inquisitive = not old.inquisitive }) flags.inquisitive
+        , viewFlag (Icon.icon (Icon.ClanLasombra, Icon.Standard)) (\old -> { old | lasombra = not old.lasombra }) flags.lasombra
+        , viewFlag (Icon.icon (Icon.ClanMalkavian, Icon.Standard)) (\old -> { old | malkavian = not old.malkavian }) flags.malkavian
+        , viewFlag (Icon.icon (Icon.ClanTheMinistry, Icon.Standard)) (\old -> { old | ministry = not old.ministry }) flags.ministry
+        , viewFlag (Icon.icon (Icon.ClanNosferatu, Icon.Standard)) (\old -> { old | nosferatu = not old.nosferatu }) flags.nosferatu
+        , viewFlag (Icon.icon (Icon.ClanRavnos, Icon.Standard)) (\old -> { old | ravnos = not old.ravnos }) flags.ravnos
+        , viewFlag (Icon.icon (Icon.ClanSalubri, Icon.Standard)) (\old -> { old | salubri = not old.salubri }) flags.salubri
+        , viewFlag (Icon.icon (Icon.ClanThinBlood, Icon.Standard)) (\old -> { old | thinBlood = not old.thinBlood }) flags.thinBlood
+        , viewFlag (Icon.icon (Icon.ClanToreador, Icon.Standard)) (\old -> { old | toreador = not old.toreador }) flags.toreador
+        , viewFlag (Icon.icon (Icon.ClanTremere, Icon.Standard)) (\old -> { old | tremere = not old.tremere }) flags.tremere
+        , viewFlag (Icon.icon (Icon.ClanTzimisce, Icon.Standard)) (\old -> { old | tzimisce = not old.tzimisce }) flags.tzimisce
+        , viewFlag (Icon.icon (Icon.ClanVentrue, Icon.Standard)) (\old -> { old | ventrue = not old.ventrue }) flags.ventrue
         ]
 
 
@@ -578,28 +576,27 @@ cleanDisciplines =
     , thwartTheUnnatural = False
     }
 
-
 viewDisciplines : Disciplines -> Html (Msg Disciplines)
 viewDisciplines flags =
     div [ class "filterpicker" ]
-        [ viewFlag (IconV2.discipline IconV2.Standard Dis.Animalism) (\old -> { old | animalism = not old.animalism }) flags.animalism
-        , viewFlag (IconV2.discipline IconV2.Standard Dis.Auspex) (\old -> { old | auspex = not old.auspex }) flags.auspex
-        , viewFlag (IconV2.discipline IconV2.Standard Dis.BeastWhisperer) (\old -> { old | beastWhisperer = not old.beastWhisperer }) flags.beastWhisperer
-        , viewFlag (IconV2.discipline IconV2.Standard Dis.BloodSorcery) (\old -> { old | bloodSorcery = not old.bloodSorcery }) flags.bloodSorcery
-        , viewFlag (IconV2.discipline IconV2.Standard Dis.Celerity) (\old -> { old | celerity = not old.celerity }) flags.celerity
-        , viewFlag (IconV2.discipline IconV2.Standard Dis.Dominate) (\old -> { old | dominate = not old.dominate }) flags.dominate
-        , viewFlag (IconV2.discipline IconV2.Standard Dis.Fortitude) (\old -> { old | fortitude = not old.fortitude }) flags.fortitude
-        , viewFlag (IconV2.discipline IconV2.Standard Dis.Global) (\old -> { old | global = not old.global }) flags.global
-        , viewFlag (IconV2.discipline IconV2.Standard Dis.Library) (\old -> { old | library = not old.library }) flags.library
-        , viewFlag (IconV2.discipline IconV2.Standard Dis.Obfuscate) (\old -> { old | obfuscate = not old.obfuscate }) flags.obfuscate
-        , viewFlag (IconV2.discipline IconV2.Standard Dis.Oblivion) (\old -> { old | oblivion = not old.oblivion }) flags.oblivion
-        , viewFlag (IconV2.discipline IconV2.Standard Dis.Potence) (\old -> { old | potence = not old.potence }) flags.potence
-        , viewFlag (IconV2.discipline IconV2.Standard Dis.Presence) (\old -> { old | presence = not old.presence }) flags.presence
-        , viewFlag (IconV2.discipline IconV2.Standard Dis.Protean) (\old -> { old | protean = not old.protean }) flags.protean
-        , viewFlag (IconV2.discipline IconV2.Standard Dis.RepelTheUnnatural) (\old -> { old | repelTheUnnatural = not old.repelTheUnnatural }) flags.repelTheUnnatural
-        , viewFlag (IconV2.discipline IconV2.Standard Dis.SenseTheUnnatural) (\old -> { old | senseTheUnnatural = not old.senseTheUnnatural }) flags.senseTheUnnatural
-        , viewFlag (IconV2.discipline IconV2.Standard Dis.ThwartTheUnnatural) (\old -> { old | thwartTheUnnatural = not old.thwartTheUnnatural }) flags.thwartTheUnnatural
-        , viewFlag (IconV2.discipline IconV2.Standard Dis.ThinBloodAlchemy) (\old -> { old | thinBloodAlchemy = not old.thinBloodAlchemy }) flags.thinBloodAlchemy
+        [ viewFlag (Icon.icon (Icon.DisciplineAnimalism, Icon.Standard)) (\old -> { old | animalism = not old.animalism }) flags.animalism
+        , viewFlag (Icon.icon (Icon.DisciplineAuspex, Icon.Standard)) (\old -> { old | auspex = not old.auspex }) flags.auspex
+        , viewFlag (Icon.icon (Icon.DisciplineBeastWhisperer, Icon.Standard)) (\old -> { old | beastWhisperer = not old.beastWhisperer }) flags.beastWhisperer
+        , viewFlag (Icon.icon (Icon.DisciplineBloodSorcery, Icon.Standard)) (\old -> { old | bloodSorcery = not old.bloodSorcery }) flags.bloodSorcery
+        , viewFlag (Icon.icon (Icon.DisciplineCelerity, Icon.Standard)) (\old -> { old | celerity = not old.celerity }) flags.celerity
+        , viewFlag (Icon.icon (Icon.DisciplineDominate, Icon.Standard)) (\old -> { old | dominate = not old.dominate }) flags.dominate
+        , viewFlag (Icon.icon (Icon.DisciplineFortitude, Icon.Standard)) (\old -> { old | fortitude = not old.fortitude }) flags.fortitude
+        , viewFlag (Icon.icon (Icon.DisciplineGlobal, Icon.Standard)) (\old -> { old | global = not old.global }) flags.global
+        , viewFlag (Icon.icon (Icon.DisciplineLibrary, Icon.Standard)) (\old -> { old | library = not old.library }) flags.library
+        , viewFlag (Icon.icon (Icon.DisciplineObfuscate, Icon.Standard)) (\old -> { old | obfuscate = not old.obfuscate }) flags.obfuscate
+        , viewFlag (Icon.icon (Icon.DisciplineOblivion, Icon.Standard)) (\old -> { old | oblivion = not old.oblivion }) flags.oblivion
+        , viewFlag (Icon.icon (Icon.DisciplinePotence, Icon.Standard)) (\old -> { old | potence = not old.potence }) flags.potence
+        , viewFlag (Icon.icon (Icon.DisciplinePresence, Icon.Standard)) (\old -> { old | presence = not old.presence }) flags.presence
+        , viewFlag (Icon.icon (Icon.DisciplineProtean, Icon.Standard)) (\old -> { old | protean = not old.protean }) flags.protean
+        , viewFlag (Icon.icon (Icon.DisciplineRepelTheUnnatural, Icon.Standard)) (\old -> { old | repelTheUnnatural = not old.repelTheUnnatural }) flags.repelTheUnnatural
+        , viewFlag (Icon.icon (Icon.DisciplineSenseTheUnnatural, Icon.Standard)) (\old -> { old | senseTheUnnatural = not old.senseTheUnnatural }) flags.senseTheUnnatural
+        , viewFlag (Icon.icon (Icon.DisciplineThwartTheUnnatural, Icon.Standard)) (\old -> { old | thwartTheUnnatural = not old.thwartTheUnnatural }) flags.thwartTheUnnatural
+        , viewFlag (Icon.icon (Icon.DisciplineThinBloodAlchemy, Icon.Standard)) (\old -> { old | thinBloodAlchemy = not old.thinBloodAlchemy }) flags.thinBloodAlchemy
         ]
 
 

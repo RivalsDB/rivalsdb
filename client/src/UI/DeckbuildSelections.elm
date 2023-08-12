@@ -18,7 +18,6 @@ import UI.Card
 import UI.CardName
 import UI.FilterSelection as FS
 import UI.Icon as Icon
-import UI.Icon.V2
 import UI.MultiSelect as MultiSelect
 import UI.QuantityPicker
 import UI.TopTabs
@@ -391,17 +390,17 @@ viewCardListRow deck card =
         , span [ class "cardlist__props" ]
             (case card of
                 Cards.FactionCard props ->
-                    [ span [ class "cardlist__clan" ] [ UI.Icon.V2.clan UI.Icon.V2.Standard props.clan ]
+                    [ span [ class "cardlist__clan" ] [ Icon.clanIcon Icon.Standard props.clan ]
                     , span [] [ UI.Attribute.bloodPotency props.bloodPotency ]
                     , span [ class "cardlist__extra-prop" ] [ UI.Attribute.physical props.physical ]
                     , span [ class "cardlist__extra-prop" ] [ UI.Attribute.social props.social ]
                     , span [ class "cardlist__extra-prop" ] [ UI.Attribute.mental props.mental ]
-                    , viewIconsList (UI.Icon.V2.discipline UI.Icon.V2.Standard) props.disciplines
+                    , viewIconsList (Icon.disciplineIcon Icon.Standard) props.disciplines
                     ]
 
                 Cards.LibraryCard props ->
                     [ span [ class "cardlist__clan" ]
-                        [ props.clan |> Maybe.map (UI.Icon.V2.clan UI.Icon.V2.Standard) |> Maybe.withDefault (text "")
+                        [ props.clan |> Maybe.map (Icon.clanIcon Icon.Standard) |> Maybe.withDefault (text "")
                         ]
                     , span [] [ UI.Attribute.bloodPotencyRequirement props.bloodPotency ]
                     , span [ class "cardlist__extra-prop" ] [ UI.Attribute.damage props.damage ]
