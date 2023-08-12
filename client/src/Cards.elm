@@ -554,7 +554,7 @@ cityDecoder =
         |> decodeImage
         |> required "set" Pack.decoder
         |> required "types" decodeCityTraits
-        |> map (\library -> ( library.id, CityCard library ))
+        |> map (\city -> ( city.id, CityCard city ))
 
 monsterDecoder : Decoder ( Id, Card )
 monsterDecoder =
@@ -564,10 +564,11 @@ monsterDecoder =
         |> decodeText
         |> decodeImage
         |> required "set" Pack.decoder
-        |> required "types" decodeMonsterTraits
-        |> map (\monster -> ( monster.id, MonsterCard library ))
-
-
+        |> decodeBloodPotency
+        |> decodePhysical
+        |> decodeSocial
+        |> decodeMental
+        |> map (\monster -> ( monster.id, MonsterCard monster ))
 
 -- METHODS
 
