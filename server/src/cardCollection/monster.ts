@@ -16,7 +16,7 @@ export type Monster = {
 
 export const monster: Record<CardId, Monster> = {
 
-"hoe-brain-eater": {
+"hah-brain-eater": {
     stack: "monster",
     name: "Brain-Eater",
     text: md`
@@ -31,7 +31,7 @@ At the end of your turn, put a Fear token on the lowest [blood-potency] characte
     agenda: 3,
     },
 
-"hoe-chupacabra": {
+"hah-chupacabra": {
     stack: "monster",
     name: "Chupacabra",
     text: md`
@@ -46,7 +46,7 @@ The very first time you deal attack [damage] to this Monster, it steals 1 [blood
     agenda: 2,
     },
 
-"hoe-ghost": {
+"hah-ghost": {
     stack: "monster",
     name: "Ghost",
     text: md`
@@ -63,7 +63,7 @@ The very first time you deal attack [damage] to this Monster, it steals 1 [blood
     agenda: 2,
     },
 
-"hoe-maricoxi": {
+"hah-maricoxi": {
     stack: "monster",
     name: "Maricoxi",
     text: md`
@@ -80,7 +80,7 @@ Reactions cannot be played against this Monster's Preemptice Strikes.
     agenda: 2,
     },
 
-"hoe-mula-sem-cabeca": {
+"hah-mula-sem-cabeca": {
     stack: "monster",
     name: "Mula-Sem-Cabeça",
     text: md`
@@ -95,7 +95,7 @@ This Monster's Preemptive Strike deals **Aggravated [damage].**
     agenda: 2,
     },
 
-"hoe-sorceress": {
+"hah-sorceress": {
     stack: "monster",
     name: "Sorceress",
     text: md`
@@ -110,7 +110,7 @@ When you deal attack [damage] to this Monster, discard 1 card.
     agenda: 3,
     },
 
-"hoe-the-strange": {
+"hah-the-strange": {
     stack: "monster",
     name: "The Strange",
     text: md`
@@ -125,7 +125,7 @@ Play with your hand of cards revealed to all players.
     agenda: 3,
     },
 
-"hoe-vampire": {
+"hah-vampire": {
     stack: "monster",
     name: "Vampire",
     text: md`
@@ -140,7 +140,7 @@ At the start of your turn, if there are 2+ City Deck Mortals in The Streets, thi
     agenda: 3,
     },
 
-"hoe-warlock": {
+"hah-warlock": {
     stack: "monster",
     name: "Warlock",
     text: md`
@@ -155,7 +155,7 @@ Attackers in a party of 3+ characters deal -1[damage] to this Monster.
     agenda: 3,
     },
 
-"hoe-werewolf": {
+"hah-werewolf": {
     stack: "monster",
     name: "Werewolf",
     text: md`
