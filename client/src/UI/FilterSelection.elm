@@ -2,7 +2,6 @@ module UI.FilterSelection exposing
     ( AllStacks
     , AttackTypes
     , Cities
-    , Monsters
     , Clans
     , Disciplines
     , Msg
@@ -13,13 +12,11 @@ module UI.FilterSelection exposing
     , attackTypeIsAllowedStrict
     , attackTypeIsAllowedWide
     , cityIsAllowedWide
-    , monsterIsAllowedWide
     , clanIsAllowedStrict
     , clanIsAllowedWide
     , cleanAllStacks
     , cleanAttackTypes
     , cleanCities
-    , cleanMonster
     , cleanClans
     , cleanDisciplines
     , cleanPlayerStacks
@@ -37,7 +34,6 @@ module UI.FilterSelection exposing
     , viewAllStacks
     , viewAttackTypes
     , viewCities
-    , viewMonster
     , viewClans
     , viewDisciplines
     , viewPlayerStacks

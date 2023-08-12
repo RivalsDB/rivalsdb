@@ -37,7 +37,6 @@ type alias Model =
     { collection : Collection
     , stackFilters : FS.AllStacks
     , cityFilters : FS.Cities
-    , monsterFilters : FS.MonsterSacks
     , primaryFilters : FS.PrimaryTraits
     , secondaryFilters : FS.SecondaryTraits
     , attackTypeFilters : FS.AttackTypes
@@ -53,7 +52,6 @@ init shared =
     ( { collection = shared.collection
       , stackFilters = FS.cleanAllStacks
       , cityFilters = FS.cleanCities
-      , monsterFilters = cleanMonster
       , primaryFilters = FS.cleanPrimaryTraits
       , secondaryFilters = FS.cleanSecondaryTraits
       , attackTypeFilters = FS.cleanAttackTypes
@@ -82,7 +80,6 @@ type Msg
     = FromShared Shared.Msg
     | FromStacksFilter (FS.Msg FS.AllStacks)
     | FromCityFilter (FS.Msg FS.Cities)
-    | FromMonsterFilter (FS.Msg FS.Cities)
     | FromPrimaryFilter (FS.Msg FS.PrimaryTraits)
     | FromSecondaryFilter (FS.Msg FS.SecondaryTraits)
     | FromAttackTypesFilter (FS.Msg FS.AttackTypes)
@@ -119,9 +116,6 @@ update msg model =
 
         FromCityFilter subMsg ->
             ( { model | cityFilters = FS.update subMsg model.cityFilters }, Effect.none )
-        
-        FromMonsterFilter subMsg ->
-            ( { model | monsterFilters = FS.update subMsg model.monsterFilters }, Effect.none )
 
         FromPrimaryFilter subMsg ->
             ( { model | primaryFilters = FS.update subMsg model.primaryFilters }, Effect.none )
@@ -191,9 +185,6 @@ view shared model =
                       , div [ class "filter-group__flags" ]
                             [ Html.map FromDisciplinesFilter <| Lazy.lazy FS.viewDisciplines model.disciplineFilters
                             ]
-                      , div [ class "filter-group__flags" ]
-                            [ Html.map FromMonsterFilter <| Lazy.lazy FS.viewMonsters model.monsterFilters
-                            ]
                       ]
                     ]
                 )
@@ -242,7 +233,6 @@ matchTextFilter model card =
 matchFilterSelections : Model -> Card -> Bool
 matchFilterSelections model card =
     FS.cityIsAllowedWide model.cityFilters card
-        && FS.monsterIsAllowedWide model.monsterFilters card
         && FS.secondaryTraitsIsAllowedWide model.secondaryFilters card
         && FS.allStackIsAllowedWide model.stackFilters card
         && FS.disciplineIsAllowedWide model.disciplineFilters card
