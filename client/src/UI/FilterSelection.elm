@@ -90,7 +90,7 @@ viewAllStacks : AllStacks -> Html (Msg AllStacks)
 viewAllStacks flags =
     div [ class "filterpicker" ]
         [ viewFlag (Icon.icon ( Icon.City, Icon.Standard )) (\old -> { old | city = not old.city }) flags.city
-        , viewFlag (Icon.icon ( Icon.Monster, Icon.Standard )) (\old -> { old | city = not old.monster }) flags.monster
+        , viewFlag (Icon.icon ( Icon.Monster, Icon.Standard )) (\old -> { old | monster = not old.monster }) flags.monster
         , viewFlag (Icon.icon ( Icon.AgendaCard, Icon.Standard )) (\old -> { old | agenda = not old.agenda }) flags.agenda
         , viewFlag (Icon.icon ( Icon.Haven, Icon.Standard )) (\old -> { old | haven = not old.haven }) flags.haven
         , viewFlag (Icon.icon ( Icon.Faction, Icon.Standard )) (\old -> { old | faction = not old.faction }) flags.faction
@@ -145,7 +145,7 @@ playerStackIsAllowed flags card =
 
             ( _, C.CityCard _ ) ->
                 False
-            
+
             ( _, C.MonsterCard _ ) ->
                 False
 
