@@ -3,14 +3,11 @@ module UI.Icon exposing
     , IconStyle(..)
     , attackType
     , icon
-    , clanIcon
-    , disciplineIcon)
+    )
 
 import Cards
 import Html exposing (Attribute, Html, span, text)
 import Html.Attributes exposing (class, title)
-import Data.Discipline as Dis
-import Data.Clan as Cl
 
 
 
@@ -31,51 +28,14 @@ type IconImage
     | BloodPotency
     | City
     | CityConclave
-    | CityCore
-    | CityHaH
     | CityHoE
-    | ClanBanuHaqim
-    | ClanBrujah
-    | ClanCaitiff
-    | ClanFaithful
-    | ClanGangrel
-    | ClanHecata
-    | ClanInquisitive
-    | ClanLasombra
-    | ClanMalkavian
-    | ClanNosferatu
-    | ClanRavnos
-    | ClanSalubri
-    | ClanTheMinistry
-    | ClanThinBlood
-    | ClanToreador
-    | ClanTremere
-    | ClanTzimisce
-    | ClanVentrue
+    | CityHaH
+    | CityCore
     | Conspiracy
     | Damage
     | Delete
-    | DisciplineAnimalism
-    | DisciplineAuspex
-    | DisciplineBeastWhisperer
-    | DisciplineBloodSorcery
-    | DisciplineCelerity
-    | DisciplineDominate
-    | DisciplineFortitude
-    | DisciplineGlobal
-    | DisciplineLibrary
-    | DisciplineObfuscate
-    | DisciplineOblivion
-    | DisciplinePotence
-    | DisciplinePresence
-    | DisciplineProtean
-    | DisciplineRepelTheUnnatural
-    | DisciplineSenseTheUnnatural
-    | DisciplineThinBloodAlchemy
-    | DisciplineThwartTheUnnatural
     | Edit
     | Faction
-    | Ghoul
     | HandOfCards
     | Haven
     | Influence
@@ -84,12 +44,10 @@ type IconImage
     | Library
     | Mental
     | Menu
-    | Monster
     | Ongoing
     | Physical
     | Ranged
     | Reaction
-    | Relic
     | Ritual
     | Save
     | Scheme
@@ -100,6 +58,9 @@ type IconImage
     | Title
     | Trap
     | UnhostedAction
+    | Ghoul
+    | Monster
+    | Relic
 
 type IconStyle
     = Standard
@@ -147,118 +108,6 @@ icon ( image, style ) =
     in
     span [ class "ui-icon", styleClass style, imageClass, title name ] [ span [] [ text name ] ]
 
-clanIcon : IconStyle -> Cl.Clan -> Html msg
-clanIcon style clan =
-    case clan of
-        Cl.BanuHaqim ->
-            icon (ClanBanuHaqim, style)
-
-        Cl.Brujah ->
-            icon (ClanBrujah, style)
-
-        Cl.Caitiff ->
-            icon (ClanCaitiff, style)
-
-        Cl.Faithful ->
-            icon (ClanFaithful, style)
-
-        Cl.Gangrel ->
-            icon (ClanGangrel, style)
-
-        Cl.Hecata ->
-            icon (ClanHecata, style)
-
-        Cl.Inquisitive ->
-            icon (ClanInquisitive, style)
-
-        Cl.Lasombra ->
-            icon (ClanLasombra, style)
-
-        Cl.Malkavian ->
-            icon (ClanMalkavian, style)
-
-        Cl.Ministry ->
-            icon (ClanTheMinistry, style)
-
-        Cl.Nosferatu ->
-            icon (ClanNosferatu, style)
-
-        Cl.Ravnos ->
-            icon (ClanRavnos, style)
-
-        Cl.Salubri ->
-            icon (ClanSalubri, style)
-
-        Cl.ThinBlood ->
-            icon (ClanThinBlood, style)
-
-        Cl.Toreador ->
-            icon (ClanToreador, style)
-
-        Cl.Tremere ->
-            icon (ClanTremere, style)
-
-        Cl.Tzimisce ->
-            icon (ClanTzimisce, style)
-
-        Cl.Ventrue ->
-            icon (ClanVentrue, style)
-
-disciplineIcon : IconStyle -> Dis.Discipline -> Html msg
-disciplineIcon style discipline =
-    case discipline of
-        Dis.Animalism ->
-            icon (DisciplineAnimalism, style)
-        Dis.Auspex ->
-            icon (DisciplineAuspex, style)
-
-        Dis.BeastWhisperer ->
-            icon (DisciplineBeastWhisperer, style)
-
-        Dis.BloodSorcery ->
-            icon (DisciplineBloodSorcery, style)
-
-        Dis.Celerity ->
-            icon (DisciplineCelerity, style)
-
-        Dis.Dominate ->
-            icon (DisciplineDominate, style)
-
-        Dis.Fortitude ->
-            icon (DisciplineFortitude, style)
-
-        Dis.Global ->
-            icon (DisciplineGlobal, style)
-
-        Dis.Library ->
-            icon (DisciplineLibrary, style)
-
-        Dis.Obfuscate ->
-            icon (DisciplineObfuscate, style)
-
-        Dis.Oblivion ->
-            icon (DisciplineOblivion, style)
-
-        Dis.Potence ->
-            icon (DisciplinePotence, style)
-
-        Dis.Presence ->
-            icon (DisciplinePresence, style)
-
-        Dis.Protean ->
-            icon (DisciplineProtean, style)
-
-        Dis.RepelTheUnnatural ->
-            icon (DisciplineRepelTheUnnatural, style)
-
-        Dis.SenseTheUnnatural ->
-            icon (DisciplineSenseTheUnnatural, style)
-
-        Dis.ThwartTheUnnatural ->
-            icon (DisciplineThwartTheUnnatural, style)
-
-        Dis.ThinBloodAlchemy ->
-            icon (DisciplineThinBloodAlchemy, style)
 
 styleClass : IconStyle -> Attribute msg
 styleClass style =
@@ -318,60 +167,6 @@ imageOpts image =
         CityHaH ->
             ( class "ui-icon_city-hah", "City - Rio" )
 
-        ClanBanuHaqim ->
-            ( class "ui-icon_clan-banu-haqim", "Banu Haqim" )
-
-        ClanBrujah ->
-            ( class "ui-icon_clan-brujah", "Brujah" )
-
-        ClanCaitiff ->
-            ( class "ui-icon_clan-caitiff", "Caitiff" )
-
-        ClanFaithful ->
-            ( class "ui-icon_clan-faithful", "Faithful" )
-
-        ClanGangrel ->
-            ( class "ui-icon_clan-gangrel", "Gangrel" )
-
-        ClanHecata ->
-            ( class "ui-icon_clan-hecata", "Hecata" )
-
-        ClanInquisitive ->
-            ( class "ui-icon_clan-inquisitive", "Inquisitive" )
-
-        ClanLasombra ->
-            ( class "ui-icon_clan-lasombra", "Lasombra" )
-
-        ClanMalkavian ->
-            ( class "ui-icon_clan-malkavian", "Malkavian" )
-
-        ClanNosferatu ->
-            ( class "ui-icon_clan-nosferatu", "Nosferatu" )
-
-        ClanRavnos ->
-            ( class "ui-icon_clan-ravnos", "Ravnos" )
-
-        ClanSalubri ->
-            ( class "ui-icon_clan-salubri", "Salubri" )
-
-        ClanTheMinistry ->
-            ( class "ui-icon_clan-the-ministry", "The Ministry" )
-
-        ClanThinBlood ->
-            ( class "ui-icon_clan-thin-blood", "Thin-blood" )
-
-        ClanToreador ->
-            ( class "ui-icon_clan-toreador", "Toreador" )
-
-        ClanTremere ->
-            ( class "ui-icon_clan-tremere", "Tremere" )
-
-        ClanTzimisce ->
-            ( class "ui-icon_clan-tzimisce", "Tzimisce" )
-
-        ClanVentrue ->
-            ( class "ui-icon_clan-ventrue", "Ventrue" )
-
         Conspiracy ->
             ( class "ui-icon_conspiracy", "Conspiracy" )
 
@@ -380,60 +175,6 @@ imageOpts image =
 
         Delete ->
             ( class "ui-icon_delete", "Delete" )
-
-        DisciplineAnimalism ->
-            ( class "ui-icon_discipline-animalism", "Animalism" )
-
-        DisciplineAuspex ->
-            ( class "ui-icon_discipline-auspex", "Auspex" )
-
-        DisciplineBeastWhisperer ->
-            ( class "ui-icon_discipline-beast-whisperer", "Beast Whisperer" )
-
-        DisciplineBloodSorcery ->
-            ( class "ui-icon_discipline-blood-sorcery", "Blood Sorcery" )
-
-        DisciplineCelerity ->
-            ( class "ui-icon_discipline-celerity", "Celerity" )
-
-        DisciplineDominate ->
-            ( class "ui-icon_discipline-dominate", "Dominate" )
-
-        DisciplineFortitude ->
-            ( class "ui-icon_discipline-fortitude", "Fortitude" )
-
-        DisciplineGlobal ->
-            ( class "ui-icon_discipline-global", "Global" )
-
-        DisciplineLibrary ->
-            ( class "ui-icon_discipline-library", "Library" )
-
-        DisciplineObfuscate ->
-            ( class "ui-icon_discipline-obfuscate", "Obfuscate" )
-
-        DisciplineOblivion ->
-            ( class "ui-icon_discipline-oblivion", "Oblivion" )
-
-        DisciplinePotence ->
-            ( class "ui-icon_discipline-potence", "Potence" )
-
-        DisciplinePresence ->
-            ( class "ui-icon_discipline-presence", "Presence" )
-
-        DisciplineProtean ->
-            ( class "ui-icon_discipline-protean", "Protean" )
-
-        DisciplineRepelTheUnnatural ->
-            ( class "ui-icon_discipline-repel-the-unnatural", "Repel the Unnatural" )
-
-        DisciplineSenseTheUnnatural ->
-            ( class "ui-icon_discipline-sense-the-unnatural", "Sense the Unnatural" )
-
-        DisciplineThinBloodAlchemy ->
-            ( class "ui-icon_discipline-thin-blood-alchemy", "Thin-Blood Alchemy" )
-
-        DisciplineThwartTheUnnatural ->
-            ( class "ui-icon_discipline-thwart-the-unnatural", "Thwart the Unnatural" )
 
         Edit ->
             ( class "ui-icon_edit", "Edit" )
@@ -508,11 +249,10 @@ imageOpts image =
             ( class "ui-icon_ghoul", "Ghoul" )
 
         Relic ->
-            ( class "ui-icon_relic", "Relic" )
+            ( class "ui-icon_relic", "Relic" )      
 
         UnhostedAction ->
             ( class "ui-icon_unhosted_action", "Unhosted Action" )
-
+        
         Monster ->
-            ( class "ui-icon_monster", "Monster" )
-
+            ( class "ui-icon_monster", "Monster" ) 

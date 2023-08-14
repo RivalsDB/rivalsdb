@@ -15,32 +15,18 @@
   span
     visibility: hidden
 
-$discipline_icons: animalism auspex beast-whisperer blood-sorcery celerity dominate fortitude global library obfuscate oblivion potence presence protean repel-the-unnatural sense-the-unnatural thin-blood-alchemy thwart-the-unnatural
-@each $icon in $discipline_icons
-  .ui-icon_discipline-#{$icon}
-    --svg-ui-icon: url("data-url:../../assets/icons/discipline-#{$icon}.svg")
-    -webkit-mask-image: var(--svg-ui-icon)
-    mask-image: var(--svg-ui-icon)
-
-$clan_icons: banu-haqim brujah caitiff faithful gangrel hecata inquisitive lasombra malkavian nosferatu ravnos salubri thin-blood the-ministry toreador tremere tzimisce ventrue
-@each $icon in $clan_icons
-  .ui-icon_clan-#{$icon}
-    --svg-ui-icon: url("data-url:../../assets/icons/clan-#{$icon}.svg")
-    -webkit-mask-image: var(--svg-ui-icon)
-    mask-image: var(--svg-ui-icon)
-
-$bugged_when_inlined: bloodpotency
-@each $icon in $bugged_when_inlined
-  .ui-icon_discipline-#{$icon}
-    -webkit-mask-image: url("../../assets/icons/icon-#{$icon}.svg")
-    mask-image: url("../../assets/icons/icon-#{$icon}.svg")
-
-$other_icons: action agenda alchemy animal attack blood bloodpotencyrequirement city city-conclave city-core city-hoe city-hah conspiracy crown damage delete edit faction ghoul hand_of_cards haven influence influence_modifier leader library mental menu monster ongoing physical ranged reaction relic ritual save scheme shield skull social special title trap unhosted_action
+$other_icons: action agenda alchemy animal attack blood bloodpotencyrequirement city city-conclave city-core city-hoe city-hah conspiracy crown damage delete edit faction ghoul hand_of_cards haven influence influence_modifier leader library mental menu monster ongoing physical ranged reaction relic ritual save scheme shield skull social special title trap unhosted_action 
 @each $icon in $other_icons
   .ui-icon_#{$icon}
     --svg-ui-icon: url("data-url:../../assets/icons/icon-#{$icon}.svg")
     -webkit-mask-image: var(--svg-ui-icon)
     mask-image: var(--svg-ui-icon)
+
+$bugged_when_inlined: bloodpotency
+@each $icon in $bugged_when_inlined
+  .ui-icon_#{$icon}
+    -webkit-mask-image: url("../../assets/icons/icon-#{$icon}.svg")
+    mask-image: url("../../assets/icons/icon-#{$icon}.svg")
 
 .ui-icon--colored
   &.ui-icon_bloodpotency

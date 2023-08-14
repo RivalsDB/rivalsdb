@@ -13,6 +13,7 @@ import UI.Attribute
 import UI.Card
 import UI.CardName
 import UI.Icon as Icon
+import UI.Icon.V2
 import UI.QuantityPicker as QuantityPicker
 import UI.Text
 import UI.Username
@@ -227,7 +228,7 @@ viewFaction toFactionEntry decklist =
                     |> List.map
                         (\( clan, _ ) ->
                             span [ class "deck-faction__clan-item" ]
-                                [ Icon.clanIcon Icon.Negative clan ]
+                                [ UI.Icon.V2.clan UI.Icon.V2.Negative clan ]
                         )
                 )
             ]
@@ -253,7 +254,7 @@ factionEntryRead ( character, isLeader ) =
                     []
                )
             ++ (character.disciplines
-                    |> List.map (span [ class "deck-faction__discipline" ] << List.singleton << Icon.disciplineIcon Icon.Standard)
+                    |> List.map (span [ class "deck-faction__discipline" ] << List.singleton << UI.Icon.V2.discipline UI.Icon.V2.Standard)
                )
         )
 
@@ -279,7 +280,7 @@ factionEntryWrite { setLeader, changeCard } ( character, isLeader ) =
               , viewFactionName character
               ]
             , character.disciplines
-                |> List.map (span [ class "deck-faction__discipline" ] << List.singleton << Icon.disciplineIcon Icon.Standard)
+                |> List.map (span [ class "deck-faction__discipline" ] << List.singleton << UI.Icon.V2.discipline UI.Icon.V2.Standard)
             , [ button
                     [ class "deck-faction__remove"
                     , title "Remove"
@@ -298,7 +299,7 @@ viewFactionBP bp =
 
 viewFactionClan : Clan -> Html msg
 viewFactionClan clan =
-    span [ class "deck-faction__clan" ] [ Icon.clanIcon Icon.Negative clan ]
+    span [ class "deck-faction__clan" ] [ UI.Icon.V2.clan UI.Icon.V2.Negative clan ]
 
 
 viewFactionName : Cards.Faction -> Html msg
@@ -365,7 +366,7 @@ libraryEntryRead ( card, n ) =
 
                     Just clan ->
                         [ span [ class "deck-library__entry-clan" ]
-                            [ Icon.clanIcon Icon.Negative clan ]
+                            [ UI.Icon.V2.clan UI.Icon.V2.Negative clan ]
                         ]
                )
         )
@@ -385,7 +386,7 @@ libraryEntryWrite { changeCard } ( card, n ) =
 
                     Just clan ->
                         [ span [ class "deck-library__entry-clan" ]
-                            [ Icon.clanIcon Icon.Negative clan ]
+                            [ UI.Icon.V2.clan UI.Icon.V2.Negative clan ]
                         ]
                )
         )

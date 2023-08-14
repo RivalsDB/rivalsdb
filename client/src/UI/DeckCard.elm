@@ -8,7 +8,7 @@ import Gen.Route as Route
 import Html exposing (Html, a, div, p, span, text)
 import Html.Attributes exposing (class, href)
 import UI.Card
-import UI.Icon as Icon
+import UI.Icon.V2 as Icon
 import UI.Username
 
 
@@ -47,7 +47,7 @@ view style deck =
                 (Deck.clansInFaction deck.decklist.faction
                     |> List.map
                         (Tuple.first
-                            >> Icon.clanIcon Icon.Negative
+                            >> Icon.clan Icon.Negative
                             >> List.singleton
                             >> span [ class "deckcard__clan" ]
                         )
