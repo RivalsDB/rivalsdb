@@ -2053,7 +2053,7 @@ Gain 1 Prestige for each Title in your coterie.
     stack: "library",
     name: "Scoped .30-06",
     text: md`
-Play this card face up to add +1 Intel to this attack.
+During your Intel Step, you may play this card face up as your Attack card to add +1 Intel to this attack.
     `,
     illustrator: "The Creation Studio",
     types: ["attack"],
@@ -4210,7 +4210,7 @@ Gain 2 Influence during this action or event. Gain an additional 1 Influence for
     text: md`
 Attach to a character in your cell.
 
-When this character is defeated during an attack, deal 2 **Agravated** [damage] to the opposing character **OR** target for loses 1 [agenda]. 
+When this character is defeated during an attack, deal 2 **Agravated** [damage] to the opposing character **OR** target for loses 1 [agenda].
 `,
     //disciplines:[],
     illustrator: "Cold Castle Studios",
@@ -4509,7 +4509,7 @@ This character deals -1[damage] when attacking chracters you control.
     set: "Hunters & Hunted",
     gameMode: ["hunter"],
   },
-  
+
   "hah-tracking-device": {
     stack: "library",
     name: "Tracking Device",
@@ -4532,7 +4532,7 @@ At the end of your turn, put 1 [prestige] from your general supply on this chara
     set: "Hunters & Hunted",
     gameMode: ["hunter"],
   },
-  
+
   "hah-shameless": {
     stack: "library",
     name: "Shameless",
@@ -4572,7 +4572,7 @@ Deal 1 [physical] [damage] to target character for each [prestige] of your color
     set: "Hunters & Hunted",
     gameMode: ["hunter"],
   },
-  
+
   "hah-cobra-form": {
     stack: "library",
     name: "Cobra Form",

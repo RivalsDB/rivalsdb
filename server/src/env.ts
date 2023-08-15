@@ -21,7 +21,7 @@ export const serverPort = parsedPort;
 if (typeof env.RAILWAY_STATIC_URL !== "string") {
   throw Error("Missing environment variable RAILWAY_STATIC_URL");
 }
-export const baseUrl = new URL(`https://${env.RAILWAY_STATIC_URL}`);
+export const baseUrl = new URL(`${env.RAILWAY_STATIC_URL}`);
 
 if (typeof env.RUN_BOT_SERVER !== "string") {
   throw Error("Missing environment variable RUN_BOT_SERVER");
