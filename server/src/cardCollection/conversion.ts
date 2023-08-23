@@ -28,6 +28,7 @@ export const toUnstructuredAgenda = ([id, c]: Pair<Agenda>): UnAgenda => ({
   name: c.name,
   set: c.set,
   text: c.text,
+  cardpool: c.cardpool,
 });
 
 export const toUnstructuredHaven = ([id, c]: Pair<Haven>): UnHaven => ({
@@ -39,6 +40,7 @@ export const toUnstructuredHaven = ([id, c]: Pair<Haven>): UnHaven => ({
   name: c.name,
   set: c.set,
   text: c.text,
+  cardpool: c.cardpool,
 });
 
 export const toUnstructuredFaction = ([id, c]: Pair<Faction>): UnFaction => ({
@@ -58,6 +60,7 @@ export const toUnstructuredFaction = ([id, c]: Pair<Faction>): UnFaction => ({
   disciplines: Object.entries(c.disciplines).flatMap(([discipline, level]) =>
     Array(level).fill(discipline)
   ),
+  cardpool: c.cardpool,
 });
 
 export const toUnstructuredLibrary = ([id, c]: Pair<Library>): UnLibrary => ({
@@ -84,6 +87,7 @@ export const toUnstructuredLibrary = ([id, c]: Pair<Library>): UnLibrary => ({
       : undefined,
   damage: c.damage,
   shield: c.shield,
+  cardpool: c.cardpool,
 });
 
 export const toUnstructuredCity = ([id, c]: Pair<City>): UnCity => ({

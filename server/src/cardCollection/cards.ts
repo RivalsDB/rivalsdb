@@ -12,6 +12,7 @@ import {
   Clan,
   Discipline,
   LibraryCardType,
+  Cardpool,
 } from "./common.js";
 
 type Card = Agenda | Haven | Faction | Library | City | Monster;
@@ -25,6 +26,7 @@ export type Agenda = {
   text: string;
   types: ["agenda"];
   stack: "agenda";
+  cardpool: Cardpool;
 };
 
 export type Haven = {
@@ -36,6 +38,7 @@ export type Haven = {
   text: string;
   types: ["haven"];
   stack: "haven";
+  cardpool: Cardpool;
 };
 
 export type Faction = {
@@ -54,6 +57,7 @@ export type Faction = {
   types: ["character"];
   flavor?: string;
   stack: "faction";
+  cardpool: Cardpool;
 };
 
 export type Library = {
@@ -73,6 +77,7 @@ export type Library = {
   types: LibraryCardType[];
   flavor?: string;
   stack: "library";
+  cardpool: Cardpool;
 };
 
 export type City = {

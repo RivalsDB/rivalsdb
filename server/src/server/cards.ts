@@ -28,6 +28,7 @@ export const cardsRoutes: FastifyPluginAsync = async (fastify) => {
               stack: { type: "string" },
               text: { type: "string" },
               types: { type: "array", items: { type: "string" } },
+              cardpool: { type: "string" }
             },
           },
         },
