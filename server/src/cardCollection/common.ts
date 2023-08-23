@@ -110,8 +110,7 @@ export type Illustrator =
   | "Timothy Terrenal"
   | "Mico Dimagiba";
 
-export type GameMode =
-  | ""
+export type Cardpool =
   | "hunter"
   | "vampire"
   | "hunter and vampire";

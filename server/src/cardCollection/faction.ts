@@ -5,7 +5,7 @@ import {
   md,
   CardId,
   Illustrator,
-  GameMode,
+  Cardpool,
 } from "./common.js";
 
 export type Faction = {
@@ -20,7 +20,7 @@ export type Faction = {
   text: string;
   illustrator: Illustrator;
   set: CardSet;
-  gameMode: GameMode[];
+  cardpool: Cardpool;
 };
 
 export const factions: Record<CardId, Faction> = {
@@ -38,7 +38,7 @@ Attacker - **Discard 2 cards:** This attack deals +4 **Superficial** [Damage] to
     illustrator: "Felipe Gaona",
     set: "Heart of Europe",
     disciplines: { auspex: 1, "blood sorcery": 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hoe-anjali-the-samedi": {
@@ -55,7 +55,7 @@ Torpor - Attach the top card of target player's Library face down to a character
     illustrator: "Joyce Maureira",
     set: "Heart of Europe",
     disciplines: { auspex: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hoe-borek-wagner": {
@@ -72,7 +72,7 @@ At the start of your first turn of the game, reveal 2 different Havens from your
     illustrator: "Felipe Gaona",
     set: "Heart of Europe",
     disciplines: { dominate: 1, fortitude: 1, presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hoe-camila": {
@@ -89,7 +89,7 @@ Attacker - Put a "No Influence" token on the target.
     illustrator: "Joyce Maureira",
     set: "Heart of Europe",
     disciplines: { oblivion: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hoe-dien": {
@@ -106,7 +106,7 @@ Solo Attacker - Play up to 2 Attack cards. Before revealing, if you played 2 car
     illustrator: "Felipe Gaona",
     set: "Heart of Europe",
     disciplines: { animalism: 1, fortitude: 1, protean: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hoe-ekene": {
@@ -123,7 +123,7 @@ Solo Attacker - This character declares their attack type when Attack cards are 
     illustrator: "Joyce Maureira",
     set: "Heart of Europe",
     disciplines: { protean: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hoe-em": {
@@ -140,7 +140,7 @@ At the start of your turn, if you control +2 Havens, gain 1 [prestige]. If you c
     illustrator: "Amy Wilkins",
     set: "Heart of Europe",
     disciplines: { fortitude: 1, presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hoe-emil-hruza": {
@@ -157,7 +157,7 @@ You may ignore City Deck Events. When this character defeats a Mortal or charact
     illustrator: "Felipe Gaona",
     set: "Heart of Europe",
     disciplines: { celerity: 1, dominate: 1, presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hoe-jan-zoubek": {
@@ -174,7 +174,7 @@ The first time a 1 [blood potency] or 2 [blood potency] character in your coteri
     illustrator: "Felipe Gaona",
     set: "Heart of Europe",
     disciplines: { "thin-blood alchemy": 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hoe-kiril": {
@@ -191,7 +191,7 @@ Attacker - This character has +3 Influence this turn.
     illustrator: "Felipe Gaona",
     set: "Heart of Europe",
     disciplines: { celerity: 1, potence: 1, presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hoe-maia": {
@@ -208,7 +208,7 @@ Attacker - This attack deals +1 [damage] to the target for each Event in play.
     illustrator: "Amy Wilkins",
     set: "Heart of Europe",
     disciplines: { auspex: 1, presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hoe-monika": {
@@ -225,7 +225,7 @@ Attacker - This attack deals +1 [damage] to the target for each Event in play.
     illustrator: "Felipe Gaona",
     set: "Heart of Europe",
     disciplines: { "thin-blood alchemy": 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hoe-omnis": {
@@ -242,7 +242,7 @@ When you resolve a Trap with 2+ [prestige] on it, return that card to your hand.
     illustrator: "Amy Wilkins",
     set: "Heart of Europe",
     disciplines: { obfuscate: 1, potence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hoe-perseus": {
@@ -259,7 +259,7 @@ Attacker - If this attack deals 1+ [damage] to the target, the target's controll
     illustrator: "Joshua Esmeralda",
     set: "Heart of Europe",
     disciplines: { auspex: 1, obfuscate: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hoe-rene-koba": {
@@ -276,7 +276,7 @@ When you play a card face down outside of an attack, mend 1 [blood] on a charact
     illustrator: "Harvey Bunda",
     set: "Heart of Europe",
     disciplines: { auspex: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hoe-roman-monstrum": {
@@ -295,7 +295,7 @@ When you play a card face down outside of an attack, mend 1 [blood] on a charact
     illustrator: "Joyce Maureira",
     set: "Heart of Europe",
     disciplines: { auspex: 1, oblivion: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hoe-sarka": {
@@ -314,7 +314,7 @@ Party - When a character in this party Blocks an attack, they steal 1 [blood] fr
     illustrator: "Joyce Maureira",
     set: "Heart of Europe",
     disciplines: { celerity: 2 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hoe-sebastian": {
@@ -331,7 +331,7 @@ Attaching a Title from your hand to this character costs 0 Influence, then ready
     illustrator: "Joyce Maureira",
     set: "Heart of Europe",
     disciplines: { oblivion: 2, presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hoe-thora": {
@@ -348,7 +348,7 @@ Attaching a Title from your hand to this character costs 0 Influence, then ready
     illustrator: "Felipe Gaona",
     set: "Heart of Europe",
     disciplines: { animalism: 1, obfuscate: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hoe-zuzana": {
@@ -368,7 +368,7 @@ When this character Blocks an attack, replace 1 [blood] on the attacker with one
     illustrator: "Felipe Gaona",
     set: "Heart of Europe",
     disciplines: { "blood sorcery": 1, dominate: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "xxx-victor-cane": {
@@ -385,7 +385,7 @@ When this character is defeated, add 1 of that lost [blood] to another character
     illustrator: "Joyce Maureira",
     set: "Promo",
     disciplines: { "blood sorcery": 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "xxx-sid-baqri": {
@@ -402,7 +402,7 @@ When this character is defeated by an attacker, put a '-1 [blood potency]' token
     illustrator: "Felipe Gaona",
     set: "Promo",
     disciplines: { "thin-blood alchemy": 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "xxx-carmina-magnus": {
@@ -419,7 +419,7 @@ When a foe attacks a character in a Haven or with a Haven attached to them, you 
     illustrator: "Darko Stojanovic",
     set: "Promo",
     disciplines: { dominate: 1, presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "xxx-giselle-della-scala": {
@@ -436,7 +436,7 @@ Attacker - When this character defeats a foe's character in The Streets, move al
     illustrator: "Darko Stojanovic",
     set: "Promo",
     disciplines: { dominate: 1, oblivion: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "xxx-luviere-bataille": {
@@ -453,7 +453,7 @@ When you remove a [prestige] of your color from an Event, put it into your perso
     illustrator: "János Orbán",
     set: "Promo",
     disciplines: { presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "xxx-r-t-thassos": {
@@ -470,7 +470,7 @@ The first time you attach an Animal to this character during each of your turns,
     illustrator: "Anastasiia Horbunova",
     set: "Promo",
     disciplines: { animalism: 1, protean: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "xxx-reina-de-la-vega": {
@@ -487,7 +487,7 @@ At the start of your turn, look at the top card of your Library or Faction Deck.
     illustrator: "János Orbán",
     set: "Promo",
     disciplines: { auspex: 1, "blood sorcery": 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "sas-mei-yinying": {
@@ -506,7 +506,7 @@ Party - This attack deals +1 [damage] to the target if there are 3+ Mortals in t
     social: 1,
     mental: 0,
     disciplines: { dominate: 1, oblivion: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "sas-scott": {
@@ -523,7 +523,7 @@ When you create a wraith, choose your wraith token instead of drawing it at rand
     social: 1,
     mental: 0,
     disciplines: { auspex: 1, oblivion: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "sas-adrian-beltza": {
@@ -542,7 +542,7 @@ Attacker - **Pay 1 [agenda]:** This attack deals +2 [damage] to the target if yo
     social: 1,
     mental: 1,
     disciplines: { oblivion: 1, potence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "sas-annika": {
@@ -559,7 +559,7 @@ As you play a Ritual, you may move 1 [blood] from any number of your characters 
     social: 2,
     mental: 0,
     disciplines: { auspex: 1, fortitude: 1, oblivion: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "sas-astrid-malhela": {
@@ -576,7 +576,7 @@ Party - **Pay 1 [agenda]:** This attack has +3 Intel. If the attack defeats the 
     social: 1,
     mental: 1,
     disciplines: { potence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "sas-bianca-giovanni": {
@@ -593,7 +593,7 @@ Torpor - If you control 2+ Rituals, gain 1 [agenda].
     social: 0,
     mental: 1,
     disciplines: { oblivion: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "sas-enzo-cappa": {
@@ -612,7 +612,7 @@ Party - This attack deals +1 [damage] if the attacker has a Wraith attached.
     social: 0,
     mental: 1,
     disciplines: { oblivion: 2 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "sas-gia-de-emparan": {
@@ -629,7 +629,7 @@ Party - When this party defeats a character, move 1 [agenda] from any character 
     social: 1,
     mental: 1,
     disciplines: { dominate: 2, potence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "sas-juan-carlos-diaz": {
@@ -648,7 +648,7 @@ Attacker - This attack deals +1 [damage] to the target if this character played 
     social: 0,
     mental: 2,
     disciplines: { oblivion: 2 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "sas-kristin": {
@@ -665,7 +665,7 @@ Attacker - This attack deals +1 [damage] to the target if this character played 
     social: 1,
     mental: 0,
     disciplines: { fortitude: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "sas-kwame": {
@@ -682,7 +682,7 @@ Torpor - If you control 2+ wraiths, draw 1 card.
     social: 0,
     mental: 1,
     disciplines: { auspex: 1, oblivion: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "sas-markus-kumnyama": {
@@ -701,7 +701,7 @@ As this character performs an Action, place 1 [agenda] from the general supply o
     social: 0,
     mental: 1,
     disciplines: { dominate: 1, oblivion: 1, potence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "sas-nathaniel": {
@@ -718,7 +718,7 @@ Torpor - If you control 1+ Rituals, gain 1 [prestige].
     social: 1,
     mental: 1,
     disciplines: { auspex: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "sas-piero-calderon": {
@@ -737,7 +737,7 @@ Attacker - If this character has a Title, this attack cannot be blocked.
     social: 1,
     mental: 1,
     disciplines: { oblivion: 1, potence: 2 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "sas-rachany-sok": {
@@ -758,7 +758,7 @@ This character may Block [ranged] attacks.
     social: 1,
     mental: 0,
     disciplines: { dominate: 1, oblivion: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "sas-raven-smith": {
@@ -775,7 +775,7 @@ This character may Block [ranged] attacks.
     social: 2,
     mental: 1,
     disciplines: { dominate: 1, oblivion: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "sas-sophia-giovanni": {
@@ -792,7 +792,7 @@ Torpor - For each wraith you control, put 1 [blood] of your color from the gener
     social: 0,
     mental: 2,
     disciplines: { fortitude: 1, oblivion: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "xxx-annabelle": {
@@ -809,7 +809,7 @@ Party - Characters in this party deal +1 Superficial [damage] to the opposing ch
     social: 1,
     mental: 0,
     disciplines: { presence: 1, potence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "xxx-natasha-blank": {
@@ -826,7 +826,7 @@ Attacker - **Pay 1 [prestige]:** This attack deals +1 [damage] to the target. At
     social: 1,
     mental: 1,
     disciplines: { obfuscate: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "sas-zahara": {
@@ -843,7 +843,7 @@ When this character is defeated, you may create a wraith and attach it to a char
     social: 1,
     mental: 0,
     disciplines: { oblivion: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "baa-alejandro-lopez": {
@@ -860,7 +860,7 @@ When this character mends during any player's Action Phase, draw 1 card.
     social: 1,
     mental: 1,
     disciplines: { auspex: 1, "blood sorcery": 2 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "baa-april-smith": {
@@ -877,7 +877,7 @@ Party - Attackers with Thin-blood alchemy in this party gain +1 Blood Potence an
     social: 0,
     mental: 1,
     disciplines: {},
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "baa-aurora-nix": {
@@ -894,7 +894,7 @@ Attacker - If this attack deals 1+ Damage to the target, put a Fear token on the
     social: 0,
     mental: 1,
     disciplines: { auspex: 2 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-bad-penny": {
@@ -911,7 +911,7 @@ Torpor - At the end of your turn, add 1 Blood from the general supply to this ch
     social: 0,
     mental: 2,
     disciplines: { obfuscate: 2 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-bella-forte": {
@@ -928,7 +928,7 @@ Attacker - Discard the top card of your Library: If it is not an Attack card, th
     social: 0,
     mental: 1,
     disciplines: { auspex: 1, celerity: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-beretta": {
@@ -945,7 +945,7 @@ Attacker - Pay 1 Blood: This Ranged attack deals +1 Damage to the target.
     social: 1,
     mental: 2,
     disciplines: { celerity: 1, potence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-bong-cha-park": {
@@ -960,7 +960,7 @@ Attacker - Pay 1 Blood: This Ranged attack deals +1 Damage to the target.
     social: 2,
     mental: 0,
     disciplines: { presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-brother": {
@@ -977,7 +977,7 @@ Party - Exhaust: This attack deals +1 Damage to the target.
     social: 1,
     mental: 1,
     disciplines: { potence: 1, presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-bruno-wagner": {
@@ -994,7 +994,7 @@ Draw 1 card when you play an Ongoing card.
     social: 2,
     mental: 1,
     disciplines: { dominate: 1, presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-bunny-benitez": {
@@ -1011,7 +1011,7 @@ When a Scheme you play succedds, gain 1 prestige. Exhaust: This character has +2
     social: 0,
     mental: 1,
     disciplines: { celerity: 1, presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "baa-caleb-walker": {
@@ -1028,7 +1028,7 @@ Party - Attackers with Thin-blood alchemy in this party gain +1 Blood Potence an
     social: 1,
     mental: 0,
     disciplines: {},
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "baa-candi-liu": {
@@ -1045,7 +1045,7 @@ Attacker - If this attack deals +1 Damage to the target, put a '-1 Blood Potence
     social: 1,
     mental: 0,
     disciplines: { "thin-blood alchemy": 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "baa-claudia-sterling": {
@@ -1062,7 +1062,7 @@ When this character takes [damage] from an attacker, place 1 of that lost Blood 
     social: 2,
     mental: 0,
     disciplines: { "blood sorcery": 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "baa-darius-wolfe": {
@@ -1079,7 +1079,7 @@ Guard This character may block Ranged Attacker. When this character Blocks an at
     social: 1,
     mental: 0,
     disciplines: { auspex: 1, dominate: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-doc": {
@@ -1096,7 +1096,7 @@ Pay 1 Prestige: Mend 1 Blood on each character in this party.
     social: 1,
     mental: 2,
     disciplines: { auspex: 1, obfuscate: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "baa-faith-gray": {
@@ -1113,7 +1113,7 @@ When you play a Ritual, draw 1 card.
     social: 0,
     mental: 1,
     disciplines: { auspex: 1, "blood sorcery": 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-flick": {
@@ -1130,7 +1130,7 @@ Relentless - Pay 1 Blood: This character has +3 Influence during this action or 
     social: 1,
     mental: 1,
     disciplines: { presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "baa-frog": {
@@ -1147,7 +1147,7 @@ When a character in this party attaches an Alchemy, ready them. Detach an Alchem
     social: 2,
     mental: 0,
     disciplines: { "thin-blood alchemy": 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "baa-grigori": {
@@ -1164,7 +1164,7 @@ Exhaust: Replace 1 Blood on target character with one of your color from the gen
     social: 0,
     mental: 2,
     disciplines: { "blood sorcery": 1, dominate: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-guvnah": {
@@ -1181,7 +1181,7 @@ Draw 1 card when you play a card face down outside of an attack.
     social: 1,
     mental: 1,
     disciplines: { auspex: 1, dominate: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "baa-hua-jiang": {
@@ -1198,7 +1198,7 @@ Party - Attackers with Thin-blood alchemy in this party gain +1 Blood Potence an
     social: 0,
     mental: 1,
     disciplines: {},
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-humberto-garcia": {
@@ -1215,7 +1215,7 @@ Guard This character may block ranged attacks.
     social: 0,
     mental: 1,
     disciplines: { dominate: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-hydra": {
@@ -1232,7 +1232,7 @@ Attacker - Pay 1 Blood: Draw 1 card.
     social: 1,
     mental: 0,
     disciplines: { celerity: 1, potence: 1, presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-inmate-745943": {
@@ -1249,7 +1249,7 @@ Attacker - Pay 1 Prestige: This attack deals +2 Damage to the target.
     social: 0,
     mental: 0,
     disciplines: { dominate: 1, obfuscate: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-iris-lokken": {
@@ -1266,7 +1266,7 @@ When this character plays a Scheme, reveal the top card of your Library and gain
     social: 0,
     mental: 2,
     disciplines: { auspex: 1, presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "baa-jacob-frost": {
@@ -1283,7 +1283,7 @@ Attacker - This attack deals +1 Damage to the target for every 2 characters in t
     social: 0,
     mental: 1,
     disciplines: { "thin-blood alchemy": 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-jesus": {
@@ -1300,7 +1300,7 @@ Relentless - When this character is defeated, you may Pay 1 Prestige: Gain 1 Age
     social: 0,
     mental: 1,
     disciplines: { obfuscate: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-john-kartunen": {
@@ -1317,7 +1317,7 @@ Guard This character may block ranged attacks.
     social: 1,
     mental: 1,
     disciplines: { auspex: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-johnny": {
@@ -1334,7 +1334,7 @@ Party - When this party defeats and burns a City Deck Mortal, each character in 
     social: 2,
     mental: 0,
     disciplines: { presence: 2 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "baa-joseph-drake": {
@@ -1351,7 +1351,7 @@ For each Alchemy attached to this character, +1 Resistence during attacks.
     social: 0,
     mental: 0,
     disciplines: { "thin-blood alchemy": 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-june-bryant": {
@@ -1368,7 +1368,7 @@ At the start of your turn if you control the Prince of the City, draw 2 cards.
     social: 1,
     mental: 1,
     disciplines: { presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-karma": {
@@ -1385,7 +1385,7 @@ Guard This character may block ranged attacks.
     social: 0,
     mental: 2,
     disciplines: { auspex: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-lixue-chen": {
@@ -1402,7 +1402,7 @@ Party - While this character has a Retainer, their party's first Social attack d
     social: 2,
     mental: 0,
     disciplines: { auspex: 1, celerity: 1, presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-liza-holt": {
@@ -1419,7 +1419,7 @@ Party- When this party defeats a character, you may attach 1 of the defeated cha
     social: 1,
     mental: 0,
     disciplines: { celerity: 1, presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-lolita": {
@@ -1436,7 +1436,7 @@ Guard This character may block ranged attacks.
     social: 1,
     mental: 0,
     disciplines: { dominate: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "baa-lorenzo-murik": {
@@ -1453,7 +1453,7 @@ Exhaust: Mend 1 Blood on a character in your coterie.
     social: 0,
     mental: 2,
     disciplines: { "blood sorcery": 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-montgomery-white": {
@@ -1470,7 +1470,7 @@ Party -This party has +1 Shield during ranged attacks.
     social: 1,
     mental: 0,
     disciplines: { fortitude: 2 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-muhammad-zadeh": {
@@ -1487,7 +1487,7 @@ This character has +1 Influence for each attached Retainer
     social: 2,
     mental: 1,
     disciplines: { auspex: 1, presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-nancy-witt": {
@@ -1504,7 +1504,7 @@ Guard This character may block ranged attacks.
     social: 2,
     mental: 0,
     disciplines: { presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "baa-phuoc-dihn": {
@@ -1521,7 +1521,7 @@ Pay 1 blood: Put that Blood onto a Ritual you control.
     social: 2,
     mental: 0,
     disciplines: { "blood sorcery": 1, dominate: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-randolph-marz": {
@@ -1538,7 +1538,7 @@ Party - Discard a Title: This attack deals +1 damage to the target. Additional +
     social: 1,
     mental: 1,
     disciplines: { dominate: 1, fortitude: 1, presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-shades": {
@@ -1555,7 +1555,7 @@ Party - For every 5 Agenda a foe has, this party has +1 Intel vs that foe.
     social: 1,
     mental: 0,
     disciplines: { celerity: 1, presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-skunk": {
@@ -1572,7 +1572,7 @@ Guard This character may block ranged attacks.
     social: 0,
     mental: 1,
     disciplines: { potence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "xxx-smoke": {
@@ -1589,7 +1589,7 @@ At the end of your turn, ready 1 character in this party.
     social: 2,
     mental: 0,
     disciplines: { celerity: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "xxx-martine-diaz": {
@@ -1606,7 +1606,7 @@ Exhaust: Draw 1 card, then discard 1 card.
     social: 1,
     mental: 1,
     disciplines: { fortitude: 1, presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "xxx-freddy-usher": {
@@ -1623,7 +1623,7 @@ When this character plays a Reaction, draw 1 card.
     social: 0,
     mental: 1,
     disciplines: { celerity: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "xxx-victor-temple": {
@@ -1640,7 +1640,7 @@ This character has +1 Influence. Pay 1 [blood]: Put a 'No Influence' token on ta
     social: 1,
     mental: 2,
     disciplines: { dominate: 1, presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "baa-sonja-valentine": {
@@ -1657,7 +1657,7 @@ At the start of your turn, replace 1 Blood on target character in The Streets wi
     social: 1,
     mental: 2,
     disciplines: { auspex: 1, "blood sorcery": 1, dominate: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-stevie-osborn": {
@@ -1674,7 +1674,7 @@ Gain 1 prestige when any character in your coterie attaches a title.
     social: 0,
     mental: 1,
     disciplines: { fortitude: 1, presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-street-preacher": {
@@ -1691,7 +1691,7 @@ Relentless - If ready, Pay 1 Prestige: Move to The Streets and Block an attack a
     social: 0,
     mental: 1,
     disciplines: { auspex: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-sweetums": {
@@ -1708,7 +1708,7 @@ Guard This character may block ranged attacks.
     social: 1,
     mental: 0,
     disciplines: { celerity: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-the-cossack": {
@@ -1725,7 +1725,7 @@ Pay 1 Blood: This character's next attack this turn cannot be Blocked.
     social: 0,
     mental: 1,
     disciplines: { celerity: 1, potence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-ty-smith": {
@@ -1742,7 +1742,7 @@ Guard This character may block ranged attacks.
     social: 1,
     mental: 0,
     disciplines: { presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "baa-valerie-nash": {
@@ -1759,7 +1759,7 @@ Party - Attackers with Thin-blood alchemy in this party gain +1 Blood Potence an
     social: 0,
     mental: 0,
     disciplines: {},
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-velvet": {
@@ -1776,7 +1776,7 @@ Gain 1 prestige when you resolve a face-down card outside of an attack.
     social: 1,
     mental: 1,
     disciplines: { auspex: 1, obfuscate: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "baa-wendy": {
@@ -1793,7 +1793,7 @@ Party - Attackers with Thin-blood alchemy in this party gain +1 Blood Potence an
     social: 1,
     mental: 0,
     disciplines: {},
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-yusuf-kaya": {
@@ -1810,7 +1810,7 @@ Exhaust: Mend 1 blood on each Titled character in your coterie and in torpor.
     social: 1,
     mental: 0,
     disciplines: { fortitude: 2 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "core-zhang-wei": {
@@ -1827,7 +1827,7 @@ Party - While this character has a title, when this party defeats a character, t
     social: 0,
     mental: 2,
     disciplines: { dominate: 1, presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "war-bobby-handsome": {
@@ -1846,7 +1846,7 @@ This character may Block [ranged] attacks.
     social: 0,
     mental: 0,
     disciplines: { obfuscate: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "war-chooha": {
@@ -1863,7 +1863,7 @@ Party - Exhaust: The next attack made by a member of this party this turn has +1
     social: 0,
     mental: 1,
     disciplines: { animalism: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "war-clandestine": {
@@ -1880,7 +1880,7 @@ Attacker - This attack deals +1 [social] [damage] to City Deck Mortals.
     social: 2,
     mental: 1,
     disciplines: { obfuscate: 2 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "war-crazy-cat-lady": {
@@ -1897,7 +1897,7 @@ Exhaust: Attach up to 2 Alley Cats from your hand or discard pile to this charac
     social: 1,
     mental: 1,
     disciplines: { animalism: 1, potence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "war-drea-warden": {
@@ -1914,7 +1914,7 @@ Exhaust, Pay 1 [blood]: Attach an Animal from your hand to any character in your
     social: 1,
     mental: 1,
     disciplines: { animalism: 1, protean: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "war-general-flint": {
@@ -1931,7 +1931,7 @@ Attacker - If this character has 1+ Retainers, the target has -1 [shield]. If th
     social: 0,
     mental: 1,
     disciplines: { animalism: 1, potence: 2 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "war-ghost": {
@@ -1948,7 +1948,7 @@ Party - Characters with [protean] in this party have +1 Secrecy in The Streets.
     social: 2,
     mental: 0,
     disciplines: { protean: 2 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "war-harry-o-brien": {
@@ -1965,7 +1965,7 @@ Exhaust: Mend 1 [blood] on target character in this party for each Animal the ta
     social: 0,
     mental: 2,
     disciplines: { fortitude: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "war-kim-phan": {
@@ -1984,7 +1984,7 @@ Pay 1 [prestige]: Discard the card instead.
     social: 0,
     mental: 1,
     disciplines: { obfuscate: 1, potence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "war-leah-swiftfoot": {
@@ -2001,7 +2001,7 @@ Attacker - If alone in a party, attacks made by this character cannot be Blocked
     social: 1,
     mental: 1,
     disciplines: { animalism: 1, protean: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "war-lil-fang": {
@@ -2018,7 +2018,7 @@ Exhaust: Put 1 Animal from your discard pile into your hand.
     social: 0,
     mental: 0,
     disciplines: { animalism: 1, protean: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "war-lori-swiftfoot": {
@@ -2037,7 +2037,7 @@ This character may Block [ranged] attacks.
     social: 1,
     mental: 0,
     disciplines: { fortitude: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "war-pong": {
@@ -2054,7 +2054,7 @@ The first time you detach an Animal from a character in your coterie during each
     social: 0,
     mental: 2,
     disciplines: { animalism: 1, obfuscate: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "war-sheilar-omar": {
@@ -2071,7 +2071,7 @@ Party - When a character in this party would attach a Retainer, you may attach i
     social: 1,
     mental: 1,
     disciplines: { animalism: 1, obfuscate: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "war-shep-mason": {
@@ -2088,7 +2088,7 @@ You may attach the Sheriff Title to this character at no Influence cost.
     social: 1,
     mental: 0,
     disciplines: { potence: 2 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "war-summer-moon": {
@@ -2105,7 +2105,7 @@ At the end of your turn, if this character has 1+ Animal attached, ready them. I
     social: 2,
     mental: 0,
     disciplines: { animalism: 1, fortitude: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "war-tamaska": {
@@ -2122,7 +2122,7 @@ The first time you attach an Animal to this character during your turn, ready th
     social: 1,
     mental: 1,
     disciplines: { animalism: 1, fortitude: 1, protean: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "war-trinity-voss": {
@@ -2139,7 +2139,7 @@ Party - The first attack made by a member of this party each turn against an Ant
     social: 2,
     mental: 0,
     disciplines: { animalism: 1, fortitude: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "dar-angela": {
@@ -2158,7 +2158,7 @@ The first time you attach a card to any card (including Ghouls) each turn, draw 
     social: 0,
     mental: 1,
     disciplines: { animalism: 1, dominate: 1, protean: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "dar-chance": {
@@ -2175,7 +2175,7 @@ The first time you attach a card to any card (including Ghouls) each turn, draw 
     social: 1,
     mental: 1,
     disciplines: { obfuscate: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "dar-haya": {
@@ -2192,7 +2192,7 @@ Party - Attackers in this party deal +1 [damage] to Mortals for each Ravnos char
     social: 1,
     mental: 0,
     disciplines: { presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "dar-jack": {
@@ -2209,7 +2209,7 @@ Party - Attackers in this party deal +1 [damage] to Mortals for each Ravnos char
     social: 0,
     mental: 0,
     disciplines: { animalism: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "dar-kwaku": {
@@ -2226,7 +2226,7 @@ While there are 2+ unattached Citizens and/or _Vagrants_ in The Streets, charact
     social: 2,
     mental: 0,
     disciplines: { obfuscate: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "dar-mahendra-chanda": {
@@ -2245,7 +2245,7 @@ While this character is a Blocker, any [blood] they lose due to [damage] may be 
     social: 0,
     mental: 1,
     disciplines: { animalism: 1, presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "dar-matthias": {
@@ -2266,7 +2266,7 @@ The first time you burn a card attached to this character during each of your tu
     social: 0,
     mental: 1,
     disciplines: { animalism: 1, dominate: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "dar-maya": {
@@ -2283,7 +2283,7 @@ The first time you burn a card attached to this character during each of your tu
     social: 1,
     mental: 1,
     disciplines: { obfuscate: 1, presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "dar-mircea": {
@@ -2300,7 +2300,7 @@ The first time you recruit a character during each of your turns with [blood-pot
     social: 0,
     mental: 1,
     disciplines: { presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "dar-nikolae": {
@@ -2319,7 +2319,7 @@ Attacker - If this attack defeats the target, steal 1 Retainer from any characte
     social: 1,
     mental: 1,
     disciplines: { dominate: 1, protean: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "dar-radu": {
@@ -2338,7 +2338,7 @@ Attacker - If this attack defeats the target, steal 1 Retainer from any characte
     social: 1,
     mental: 0,
     disciplines: { animalism: 1, protean: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "dar-shweta": {
@@ -2355,7 +2355,7 @@ Solo Attacker - If this attack deals 1+ [damage] to a target in their haven, ste
     social: 0,
     mental: 0,
     disciplines: { animalism: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "dar-simona": {
@@ -2374,7 +2374,7 @@ Solo Attacker - If this attack deals 1+ [damage] to a target in their haven, ste
     social: 2,
     mental: 1,
     disciplines: { dominate: 1, protean: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "dar-stefan-cel-tradat": {
@@ -2391,7 +2391,7 @@ When this character exhausts, you may move 1 [blood] or [prestige] from a card y
     social: 0,
     mental: 2,
     disciplines: { animalism: 1, obfuscate: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "dar-the-ghoul-keeper": {
@@ -2408,7 +2408,7 @@ When this character exhausts, you may mend 1 [blood] on target Ghoul you control
     social: 0,
     mental: 1,
     disciplines: { protean: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "dar-valeria": {
@@ -2425,7 +2425,7 @@ If this character is defeated, steal 1 [prestige] from the attacking player for 
     social: 2,
     mental: 0,
     disciplines: { dominate: 1, protean: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "dar-vladislav": {
@@ -2444,7 +2444,7 @@ If this character is defeated, steal 1 [prestige] from the attacking player for 
     social: 1,
     mental: 0,
     disciplines: { animalism: 1, dominate: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "dar-zoya": {
@@ -2461,7 +2461,7 @@ When this character Blocks an attack and is not defeated, you may attach 1 unatt
     social: 0,
     mental: 2,
     disciplines: { animalism: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
   "jam-javier": {
     stack: "faction",
@@ -2477,7 +2477,7 @@ When you play a Ritual, mend 1 [blood] on a character in your coterie.
     social: 0,
     mental: 2,
     disciplines: { "blood sorcery": 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "jam-minnie": {
@@ -2494,7 +2494,7 @@ When your Rival discards to mend during their End Phase (including in torpor), r
     social: 2,
     mental: 0,
     disciplines: { "blood sorcery": 1, obfuscate: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "jam-todd": {
@@ -2513,7 +2513,7 @@ When any character suffers diablerie, you may put 1 [blood] from the general sup
     social: 0,
     mental: 0,
     disciplines: { "blood sorcery": 1, celerity: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "jam-sama-radi": {
@@ -2532,7 +2532,7 @@ Attacker - If the target has an Affliction, this attack cannot be Blocked.
     social: 0,
     mental: 2,
     disciplines: { "blood sorcery": 1, obfuscate: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "jam-pavel-horak": {
@@ -2551,7 +2551,7 @@ Attacker - This attack deals +1 [damage] to the target for each [blood] of your 
     social: 1,
     mental: 1,
     disciplines: { "blood sorcery": 1, celerity: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "jam-alhaml-alqurbaniu": {
@@ -2568,7 +2568,7 @@ When another character in your coterie would be defeated, burn this character in
     social: 1,
     mental: 0,
     disciplines: { obfuscate: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "jam-alraaz-tahir": {
@@ -2587,7 +2587,7 @@ Party - When an attacker in this party does not defeat their target, replace 1 [
     social: 0,
     mental: 1,
     disciplines: { "blood sorcery": 1, celerity: 1, obfuscate: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "jam-naomi": {
@@ -2606,7 +2606,7 @@ Attacker - This attack deals +1 [damage] to target for each different Ongoing Tr
     social: 1,
     mental: 0,
     disciplines: { "blood sorcery": 2 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "jam-szymon-nowak": {
@@ -2623,7 +2623,7 @@ When you play a Tradition, draw 1 card.
     social: 1,
     mental: 0,
     disciplines: { "blood sorcery": 1, celerity: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "jam-chiara": {
@@ -2642,7 +2642,7 @@ When this character plays or places an Action card, draw 1 card.
     social: 1,
     mental: 2,
     disciplines: { auspex: 1, dominate: 1, fortitude: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "jam-mareike": {
@@ -2661,7 +2661,7 @@ When this character plays a Reaction, gain 1 [prestige].
     social: 0,
     mental: 2,
     disciplines: { auspex: 1, fortitude:1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "jam-noelle": {
@@ -2680,7 +2680,7 @@ When this character is recruited, they gain any number of attachments from a cha
     social: 1,
     mental: 0,
     disciplines: { auspex: 1, dominate: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "jam-alzbeta": {
@@ -2701,7 +2701,7 @@ When this character plays a Reaction, the affected character has +1 [shield].
     social: 1,
     mental: 1,
     disciplines: { auspex: 2, fortitude: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "jam-baptiste": {
@@ -2720,7 +2720,7 @@ When this character plays a Reaction, the affected character has +1 [shield].
     social: 2,
     mental: 1,
     disciplines: { fortitude: 2 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "jam-anita": {
@@ -2739,7 +2739,7 @@ When this character exhausts during your turn, you may mend 1 [blood] on target 
     social: 1,
     mental: 0,
     disciplines: { dominate: 1, fortitude: 2 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "jam-illona": {
@@ -2760,7 +2760,7 @@ This character has +1 [shield] this turn.
     social: 1,
     mental: 1,
     disciplines: { auspex: 1, fortitude: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "jam-kashi": {
@@ -2779,7 +2779,7 @@ When this character exhausts, you may remove 1 Affliction from target character.
     social: 0,
     mental: 1,
     disciplines: { dominate: 2 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "jam-amara": {
@@ -2798,7 +2798,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     social: 1,
     mental: 1,
     disciplines: { auspex: 1, fortitude: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "xxx-timothy-winters": {
@@ -2817,7 +2817,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     social: 0,
     mental: 2,
     disciplines: { dominate: 1, oblivion: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hah-lucky": {
@@ -2834,7 +2834,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     illustrator: "Anastasiia Horbunova",
     set: "Hunters & Hunted",
     disciplines: { auspex: 1, potence: 1, presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hah-benício": {
@@ -2851,7 +2851,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     illustrator: "Joyce Maureira",
     set: "Hunters & Hunted",
     disciplines: { celerity: 1, fortitude: 1, oblivion: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hah-hope": {
@@ -2868,7 +2868,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     illustrator: "Adelijah Ocampo",
     set: "Hunters & Hunted",
     disciplines: { animalism: 1, "blood sorcery": 1, presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hah-jorge-guerrero": {
@@ -2885,7 +2885,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     illustrator: "Joyce Maureira",
     set: "Hunters & Hunted",
     disciplines: { dominate: 1, potence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
 "hah-prudence": {
@@ -2902,7 +2902,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     illustrator: "Cold Castle Studios",
     set: "Hunters & Hunted",
     disciplines: { obfuscate: 1, protean: 1},
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hah-judas": {
@@ -2919,7 +2919,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     illustrator: "Cold Castle Studios",
     set: "Hunters & Hunted",
     disciplines: { celerity: 1, protean: 1},
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hah-thaddeus": {
@@ -2936,7 +2936,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     illustrator: "Felipe Gaona",
     set: "Hunters & Hunted",
     disciplines: { "blood sorcery": 1, oblivion: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hah-keondra": {
@@ -2953,7 +2953,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     illustrator: "Anastasiia Horbunova",
     set: "Hunters & Hunted",
     disciplines: { obfuscate: 1, presence: 1, protean: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hah-ceraph": {
@@ -2970,7 +2970,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     illustrator: "Joyce Maureira",
     set: "Hunters & Hunted",
     disciplines: { presence: 1, protean: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hah-matthew": {
@@ -2987,7 +2987,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     illustrator: "Joyce Maureira",
     set: "Hunters & Hunted",
     disciplines: { obfuscate: 1, protean: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hah-gisele": {
@@ -3005,7 +3005,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     illustrator: "Joyce Maureira",
     set: "Hunters & Hunted",
     disciplines: { presence: 2 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hah-jimmy": {
@@ -3022,7 +3022,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     illustrator: "Joyce Maureira",
     set: "Hunters & Hunted",
     disciplines: { obfuscate: 1, presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hah-hakim-owusu": {
@@ -3039,7 +3039,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     illustrator: "Felipe Gaona",
     set: "Hunters & Hunted",
     disciplines: {presence: 1 },
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hah-iara": {
@@ -3056,7 +3056,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     illustrator: "Felipe Gaona",
     set: "Hunters & Hunted",
     disciplines: { obfuscate: 1},
-    gameMode: ["vampire"],
+    cardpool: "vampire",
   },
 
   "hah-evangeline": {
@@ -3074,7 +3074,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     illustrator: "Cold Castle Studios",
     set: "Hunters & Hunted",
     disciplines: { library: 1, "repel the unnatural": 1, "sense the unnatural": 1, "thwart the unnatural": 1 },
-    gameMode: ["hunter"],
+    cardpool: "hunter",
   },
 
   "hah-florencia": {
@@ -3092,7 +3092,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     illustrator: "Adelijah Ocampo",
     set: "Hunters & Hunted",
     disciplines: { library: 1, "repel the unnatural": 1, "thwart the unnatural": 1 },
-    gameMode: ["hunter"],
+    cardpool: "hunter",
   },
 
   "hah-toquinho": {
@@ -3110,7 +3110,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     illustrator: "Adelijah Ocampo",
     set: "Hunters & Hunted",
     disciplines: { "repel the unnatural": 1, "sense the unnatural": 1, "thwart the unnatural": 1 },
-    gameMode: ["hunter"],
+    cardpool: "hunter",
   },
 
   "hah-pregador": {
@@ -3128,7 +3128,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     illustrator: "Mara Miranda-Escota",
     set: "Hunters & Hunted",
     disciplines: { "repel the unnatural": 1, "sense the unnatural": 1},
-    gameMode: ["hunter"],
+    cardpool: "hunter",
   },
 
 "hah-sister-claire": {
@@ -3146,7 +3146,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     illustrator: "Adelijah Ocampo",
     set: "Hunters & Hunted",
     disciplines: { library: 1, "thwart the unnatural": 1 },
-    gameMode: ["hunter"],
+    cardpool: "hunter",
   },
 
   "hah-andres": {
@@ -3164,7 +3164,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     illustrator: "Mico Dimagiba",
     set: "Hunters & Hunted",
     disciplines: { "repel the unnatural": 1 },
-    gameMode: ["hunter"],
+    cardpool: "hunter",
   },
 
   "hah-noriko": {
@@ -3182,7 +3182,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     illustrator: "Mara Miranda-Escota",
     set: "Hunters & Hunted",
     disciplines: { library: 1 },
-    gameMode: ["hunter"],
+    cardpool: "hunter",
   },
 
   "hah-francisco": {
@@ -3200,7 +3200,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     illustrator: "Irene Francisco",
     set: "Hunters & Hunted",
     disciplines: { "beast whisperer":1, global:1, "sense the unnatural": 1 },
-    gameMode: ["hunter"],
+    cardpool: "hunter",
   },
 
   "hah-jamie": {
@@ -3218,7 +3218,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     illustrator: "Cold Castle Studios",
     set: "Hunters & Hunted",
     disciplines: { global:1, library: 1 },
-    gameMode: ["hunter"],
+    cardpool: "hunter",
   },
 
   "hah-juliana": {
@@ -3236,9 +3236,9 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     illustrator: "Cold Castle Studios",
     set: "Hunters & Hunted",
     disciplines: { global:1, "sense the unnatural": 1 },
-    gameMode: ["hunter"],
+    cardpool: "hunter",
   },
-  
+
   "hah-maria-lopez": {
     stack: "faction",
     clan: "inquisitive",
@@ -3254,7 +3254,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     illustrator: "Adelijah Ocampo",
     set: "Hunters & Hunted",
     disciplines: { "beast whisperer": 1, global: 1, library: 1, "sense the unnatural": 1 },
-    gameMode: ["hunter"],
+    cardpool: "hunter",
   },
 
   "hah-rio": {
@@ -3272,7 +3272,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     illustrator: "Irene Francisco",
     set: "Hunters & Hunted",
     disciplines: { "beast whisperer": 1, library: 1 },
-    gameMode: ["hunter"],
+    cardpool: "hunter",
   },
 
   "hah-ryan": {
@@ -3290,7 +3290,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     illustrator: "Mico Dimagiba",
     set: "Hunters & Hunted",
     disciplines: { "beast whisperer": 1, global:1, library: 1, "sense the unnatural": 1 },
-    gameMode: ["hunter"],
+    cardpool: "hunter",
   },
 
   "hah-sara": {
@@ -3308,6 +3308,6 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     illustrator: "Irene Francisco",
     set: "Hunters & Hunted",
     disciplines: { global:1, library: 1, "sense the unnatural": 1 },
-    gameMode: ["hunter"],
+    cardpool: "hunter",
   },
 };
