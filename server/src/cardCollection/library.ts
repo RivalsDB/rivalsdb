@@ -23,7 +23,7 @@ export type Library = {
   text: string;
   disciplines?: Discipline[];
   illustrator: Illustrator;
-  set: CardSet | CardSet[];
+  set: CardSet;
   gameMode?: GameMode[];
 };
 
@@ -2057,7 +2057,7 @@ During your Intel Step, you may play this card face up as your Attack card to ad
     `,
     illustrator: "The Creation Studio",
     types: ["attack"],
-    set: ["Core", "Hunters & Hunted"],
+    set: "Core",
     bloodPotencyRequirement: 3,
     attack: "ranged",
     damage: 2,

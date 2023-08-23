@@ -68,7 +68,7 @@ export type Library = {
   name: string;
   damage?: number;
   shield?: number;
-  set: CardSet | CardSet[];
+  set: CardSet;
   text: string;
   types: LibraryCardType[];
   flavor?: string;
