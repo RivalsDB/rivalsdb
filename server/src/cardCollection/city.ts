@@ -795,11 +795,11 @@ Ongoing - When you move a party of your characters to The Streets during your tu
     copies: 1,
   },
 
-  "hah-carnival": {
+  "hah-carnaval": {
     stack: "city",
     set: "Hunters & Hunted",
     illustrator: "Cold Castle Studios",
-    name: "Carnival",
+    name: "Carnaval",
     types: ["event"],
     text: md`
 Shuffle all Events in the burned pile inot the City Deck, then add 1 card per player to The Streets.
@@ -879,7 +879,7 @@ Ongoing - When a character is defeated, return 1 of their Retainers at random to
     When defeated choose one:
 
     Burn - Mend 3 [blood] or gain 1 [prestige].
-    
+
     Attach - Party - Ignore 1 Antagonist when this party moves to The Streets.
     `,
     copies: 1,
@@ -895,12 +895,12 @@ Ongoing - When a character is defeated, return 1 of their Retainers at random to
     When defeated choose one:
 
     Burn - Mend 3 [blood] or gain 1 [prestige].
-    
+
     Attach - Party - At the end of your turn, you may move this character into any party within your coterie (ignoring Antagonists).
     `,
     copies: 1,
   },
-  
+
   "hah-meeting-at-pao-de-acucar": {
     stack: "city",
     set: "Hunters & Hunted",
@@ -912,7 +912,7 @@ _Place no player token on this when revealed._
 
 Ongoing, **Action:** Scheme Influence Conflict - Should target player (chose now) lose 2 [agenda] and gain 2 [prestige], then burn this card? Only Leaders may exert Influence (no Influence Modifiers or [prestige])
     `,
-    copies: 1,    
+    copies: 1,
   },
 
   "hah-mugger": {
@@ -925,7 +925,7 @@ Ongoing, **Action:** Scheme Influence Conflict - Should target player (chose now
     When defeated choose one:
 
     Burn - Mend 3 [blood] or gain 1 [prestige].
-    
+
     Attach - Gain [potence] and +1 [blood-potency]
     `,
     copies: 1,
@@ -944,6 +944,6 @@ Ongoing - During your Antagonist Step, this Monster attacks the lowest [blood-po
 
 **Round 1 Exception:** Place a new City Deck card, then shuffle this card back into the City Deck.
     `,
-    copies: 1,    
+    copies: 1,
   },
 };
