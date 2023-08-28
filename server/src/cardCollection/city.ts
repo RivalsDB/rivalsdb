@@ -638,21 +638,23 @@ This character has +4 Influence.
     `,
     copies: 1,
   },
-
   "hah-politician": {
     stack: "city",
     set: "Hunters & Hunted",
     illustrator: "Cold Castle Studios",
     name: "Politician",
-    types: ["mortal", "retainer"],
+
     text: md`
-When defeated choose one:
+When defeate, choose one:
 
 Burn - Mend 3 [blood] or gain 1 [prestige].
 
 Attach - +2 Influence.
     `,
+    blood: 3,
     copies: 1,
+    types: ["citizen", "mortal", "retainer"],
+    agenda: 1,
   },
 
   "hah-practitioner-of-the-dark-arts": {
@@ -660,15 +662,17 @@ Attach - +2 Influence.
     set: "Hunters & Hunted",
     illustrator: "Darko Stojanovic",
     name: "Practitioner of the Dark Arts",
-    types: ["mortal", "retainer"],
     text: md`
-When defeated choose one:
+When defeated, choose one:
 
 Burn - Mend 3 [blood] or gain 1 [prestige].
 
 Attach - Draw 1 card. Gain [oblivion].
     `,
+    blood: 3,
     copies: 1,
+    types: ["citizen", "mortal", "retainer"],
+    agenda: 1,
   },
 
   "hah-prince-of-the-city": {
@@ -682,7 +686,7 @@ When you attach this Title, gain 1 [agenda].
 
 This character has +2 Influence.
 
-At the end of each player's turn, if this card is in The Streets, the active player deals 1 **Aggravated [damage] to a character in their coterie (unless they control this card).
+At the end of each player's turn, if this card is in The Streets, the active player deals 1 **Aggravated** [damage] to a character in their coterie (unless they control this card).
     `,
     copies: 1,
   },
@@ -704,15 +708,17 @@ Ongoing - At the end of your turn, lose 1 [prestige] unless you control 1+ Retai
     set: "Hunters & Hunted",
     illustrator: "Joyce Maureira",
     name: "Snake Handler",
-    types: ["mortal", "retainer"],
     text: md`
-When defeated choose one:
+When defeated, choose one:
 
 Burn - Mend 3 [blood] or gain 1 [prestige].
 
 Attach - Gain [protean] and +1 [blood-potency]
     `,
+    blood: 3,
     copies: 1,
+    types: ["citizen", "mortal", "retainer"],
+    agenda: 1,
   },
 
   "hah-uprising": {
@@ -732,15 +738,17 @@ Ongoing - After the first attack of your turn, if the target was a character wit
     set: "Hunters & Hunted",
     illustrator: "Cold Castle Studios",
     name: "Vagrant",
-    types: ["mortal", "retainer"],
     text: md`
-When defeated choose one:
+When defeated, choose one:
 
 Burn - Mend 2 [blood].
 
 Attach - *Exhaust Vagrant:* Prevent 1 [damage] to this character.
     `,
+    blood: 2,
     copies: 5,
+    types: ["mortal", "retainer"],
+    agenda: 0,
   },
 
   "hah-blood-cult-priest": {
@@ -748,15 +756,17 @@ Attach - *Exhaust Vagrant:* Prevent 1 [damage] to this character.
     set: "Hunters & Hunted",
     illustrator: "Felipe Gaona",
     name: "Blood Cult Priest",
-    types: ["mortal", "retainer"],
     text: md`
-When defeated choose one:
+When defeated, choose one:
 
 Burn - Mend 3 [blood] or gain 1 [prestige].
 
 Attach - Draw 1 card. Gain [blood-potency].
     `,
+    blood: 3,
     copies: 1,
+    types: ["citizen", "mortal", "retainer"],
+    agenda: 1,
   },
 
   "hah-bope-rj-caveira": {
@@ -764,11 +774,14 @@ Attach - Draw 1 card. Gain [blood-potency].
     set: "Hunters & Hunted",
     illustrator: "Felipe Gaona",
     name: "BOPE-RJ: Caveira",
-    types: ["mortal", "antagonist", "ongoing"],
+
     text: md`
 Ongoing - During your Antagonist Step, if you control no characters in The Streets, move 1 character in your Haven to The Streets.
     `,
+    blood: 4,
     copies: 1,
+    types: ["mortal", "antagonist", "ongoing"],
+    agenda: 1,
   },
 
   "hah-bope-rj-marksman": {
@@ -776,11 +789,13 @@ Ongoing - During your Antagonist Step, if you control no characters in The Stree
     set: "Hunters & Hunted",
     illustrator: "Felipe Gaona",
     name: "BOPE-RJ: Marksman",
-    types: ["mortal", "antagonist", "ongoing"],
     text: md`
 Ongoing - When you move a party of your characters to The Streets duing you turn, deal 1 **Aggravated** [damage] to a vampire in that party.
     `,
+    blood: 4,
     copies: 2,
+    types: ["mortal", "antagonist", "ongoing"],
+    agenda: 1,
   },
 
   "hah-bope-rj-psyops": {
@@ -788,11 +803,13 @@ Ongoing - When you move a party of your characters to The Streets duing you turn
     set: "Hunters & Hunted",
     illustrator: "Felipe Gaona",
     name: "BOPE-RJ: Psyops",
-    types: ["mortal", "antagonist", "ongoing"],
     text: md`
 Ongoing - When you move a party of your characters to The Streets during your turn, discard 1 card.
     `,
+    blood: 4,
     copies: 1,
+    types: ["mortal", "antagonist", "ongoing"],
+    agenda: 1,
   },
 
   "hah-carnaval": {
@@ -802,7 +819,7 @@ Ongoing - When you move a party of your characters to The Streets during your tu
     name: "Carnaval",
     types: ["event"],
     text: md`
-Shuffle all Events in the burned pile inot the City Deck, then add 1 card per player to The Streets.
+Shuffle all Events in the burned pile into the City Deck, then add 1 card per player to The Streets.
     `,
     copies: 1,
   },
@@ -852,7 +869,7 @@ Ongoing - At the end of your Beginning Phase, flip your active Haven face down, 
     name: "Cristo Redentor",
     types: ["event", "ongoing"],
     text: md`
-Ongoing - To perform an Attack Action, the acting player must pat 1 [prestige].
+Ongoing - To perform an Attack Action, the acting player must pay 1 [prestige].
     `,
     copies: 1,
   },
@@ -874,15 +891,17 @@ Ongoing - When a character is defeated, return 1 of their Retainers at random to
     set: "Hunters & Hunted",
     illustrator: "Cold Castle Studios",
     name: "Lookout",
-    types: ["mortal", "retainer"],
     text: md`
-    When defeated choose one:
+    When defeated, choose one:
 
     Burn - Mend 3 [blood] or gain 1 [prestige].
 
     Attach - Party - Ignore 1 Antagonist when this party moves to The Streets.
     `,
+    blood: 3,
     copies: 1,
+    types: ["citizen", "mortal", "retainer"],
+    agenda: 1,
   },
 
   "hah-maid": {
@@ -890,15 +909,17 @@ Ongoing - When a character is defeated, return 1 of their Retainers at random to
     set: "Hunters & Hunted",
     illustrator: "Cold Castle Studios",
     name: "Maid",
-    types: ["mortal", "retainer"],
     text: md`
-    When defeated choose one:
+    When defeated, choose one:
 
     Burn - Mend 3 [blood] or gain 1 [prestige].
 
     Attach - Party - At the end of your turn, you may move this character into any party within your coterie (ignoring Antagonists).
     `,
+    blood: 3,
     copies: 1,
+    types: ["citizen", "mortal", "retainer"],
+    agenda: 1,
   },
 
   "hah-meeting-at-pao-de-acucar": {
@@ -910,7 +931,7 @@ Ongoing - When a character is defeated, return 1 of their Retainers at random to
     text: md`
 _Place no player token on this when revealed._
 
-Ongoing, **Action:** Scheme Influence Conflict - Should target player (chose now) lose 2 [agenda] and gain 2 [prestige], then burn this card? Only Leaders may exert Influence (no Influence Modifiers or [prestige])
+Ongoing, **Action:** Scheme Influence Conflict - Should target player (chose now) lose 2 [agenda] and gain 2 [prestige], then burn this card? Only Leaders may exert Influence (no Influence Modifiers or [prestige]).
     `,
     copies: 1,
   },
@@ -920,15 +941,17 @@ Ongoing, **Action:** Scheme Influence Conflict - Should target player (chose now
     set: "Hunters & Hunted",
     illustrator: "Felipe Gaona",
     name: "Mugger",
-    types: ["mortal", "retainer"],
     text: md`
-    When defeated choose one:
+    When defeated, choose one:
 
     Burn - Mend 3 [blood] or gain 1 [prestige].
 
-    Attach - Gain [potence] and +1 [blood-potency]
+    Attach - Gain [potence] and +1 [blood-potency].
     `,
+    blood: 3,
     copies: 1,
+    types: ["citizen", "mortal", "retainer"],
+    agenda: 1,
   },
 
   "hah-open-season": {
