@@ -67,7 +67,7 @@ The very first time you deal attack [damage] to this Monster, it steals 1 [blood
     stack: "monster",
     name: "Maricoxi",
     text: md`
-+1 Secrecy while **Wounded.**
++1 Secrecy while **Wounded**.
 
 Reactions cannot be played against this Monster's Preemptice Strikes.
     `,
@@ -84,7 +84,7 @@ Reactions cannot be played against this Monster's Preemptice Strikes.
     stack: "monster",
     name: "Mula-Sem-Cabeça",
     text: md`
-This Monster's Preemptive Strike deals **Aggravated [damage].**
+This Monster's Preemptive Strike deals **Aggravated** [damage].
     `,
     bloodPotency: 6,
     physical: 2,
@@ -144,7 +144,7 @@ At the start of your turn, if there are 2+ City Deck Mortals in The Streets, thi
     stack: "monster",
     name: "Warlock",
     text: md`
-Attackers in a party of 3+ characters deal -1[damage] to this Monster.
+Attackers in a party of 3+ characters deal -1 [damage] to this Monster.
     `,
     bloodPotency: 9,
     physical: 1,
@@ -159,7 +159,7 @@ Attackers in a party of 3+ characters deal -1[damage] to this Monster.
     stack: "monster",
     name: "Werewolf",
     text: md`
-While **Wounded, this Monster Preemptive Strikes each member of the attacking party, one at a time and in the order your Adversary's choosing.
+While **Wounded**, this Monster Preemptive Strikes each member of the attacking party, one at a time and in the order your Adversary's choosing.
     `,
     bloodPotency: 10,
     physical: 3,
