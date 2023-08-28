@@ -4219,7 +4219,7 @@ When this character is defeated during an attack, deal 2 **Agravated** [damage] 
     cardpool: "hunter and vampire",
   },
 
-  "hah-pass-the=torch": {
+  "hah-pass-the-torch": {
     stack: "library",
     name: "Pass the Torch",
     types: ["unhosted action"],
@@ -4326,7 +4326,7 @@ When you exhaust this character to Investigate, add 1 additional [prestige] to t
     cardpool: "hunter",
   },
 
-  "hah-drive-attonement": {
+  "hah-drive-atonement": {
     stack: "library",
     name: "Drive: Atonement",
     types: ["unhosted action"],
@@ -5166,9 +5166,9 @@ At the start of this character's turn, if this character is not at maximum [bloo
     cardpool: "vampire",
   },
 
-  "hah-risky-buisness": {
+  "hah-risky-business": {
     stack: "library",
-    name: "Risky Buisness",
+    name: "Risky Business",
     types: ["attack"],
     //clan: "inquisitive",
     bloodPotencyRequirement: 2,

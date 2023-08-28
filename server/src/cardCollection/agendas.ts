@@ -430,8 +430,8 @@ The first time you resolve a Conspiracy during each of your turns, gain 1 [agend
     cardpool: "vampire",
   },
 
-  "hah-birds-of-a-different-feather": {
-    name: "Birds Of A Different Feather",
+  "hah-birds-of-different-feathers": {
+    name: "Birds of Different Feathers",
     text: md`
     At the start of your turn, if there are 6+ different Disciplines or Edges in your coterie, gain 1 [agenda].
     `,

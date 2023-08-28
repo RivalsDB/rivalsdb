@@ -655,7 +655,7 @@ Attach - +2 Influence.
     copies: 1,
   },
 
-  "hah-practitioner of the dark arts": {
+  "hah-practitioner-of-the-dark-arts": {
     stack: "city",
     set: "Hunters & Hunted",
     illustrator: "Darko Stojanovic",
@@ -671,7 +671,7 @@ Attach - Draw 1 card. Gain [oblivion].
     copies: 1,
   },
 
-  "hah-prince of the city": {
+  "hah-prince-of-the-city": {
     stack: "city",
     set: "Hunters & Hunted",
     illustrator: "Cold Castle Studios",
