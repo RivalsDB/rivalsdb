@@ -2842,7 +2842,9 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     clan: "caitiff",
     name: "Benício",
     text: md`
-    **Discard 1 Library card:** Prevent 1 [damage] to target character in this party.
+    **Discard 1 Library card:**
+
+    Prevent 1 [damage] to target character in this party.
     `,
     bloodPotency: 4,
     physical: 1,
@@ -2876,7 +2878,9 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     clan: "caitiff",
     name: "Jorge Guerrero",
     text: `md
-    Attacker - **Discard 1 Library card:** This attack deals +1 [damage] to the target.
+    Attacker - **Discard 1 Library card:**
+
+    This attack deals +1 [damage] to the target.
     `,
     bloodPotency: 3,
     physical: 2,
@@ -3083,6 +3087,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     name: "Florencia",
     text: md`(
     **Hunter**
+
     Attacker - **Pay 1 [prestige]:** This attack deals +2 [damage] to the target. Use only if their Preemptive Strike defeated a character in your cell.
     `,
     bloodPotency: 3,
@@ -3101,6 +3106,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     name: "Toquinho",
     text: md`
     **Hunter, Guard**
+
     When a character in your cell is defeated, ready each character in your cell.
     `,
     bloodPotency: 3,
@@ -3119,6 +3125,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     name: "Pregador",
     text: md`(
     **Hunter**
+
     If ready, **Relentless, Pay 1 [prestige]:** Move to The Streets to Block a foe's non-[ranged] attack against any target.
     `,
     bloodPotency: 2,
@@ -3137,6 +3144,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     name: "Sister Claire",
     text: md`(
     **Hunter**
+
     Party - **Exhaust:** This attack deals +1 [damage] to the target.
     `,
     bloodPotency: 2,
@@ -3155,6 +3163,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     name: "Andrés",
     text: md`(
     **Hunter**
+
     When this character is defeated, target foe loses 1 [agenda].
     `,
     bloodPotency: 1,
@@ -3173,9 +3182,10 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     name: "Noriko",
     text: md`
     **Hunter**
+
     When this character is defeated, draw 1 card.
     `,
-    bloodPotency: 0,
+    bloodPotency: 1,
     physical: 0,
     social: 0,
     mental: 1,
@@ -3191,7 +3201,8 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     name: "Francisco",
     text: md`
     **Hunter** **Guard**
-    **Pay 1 [prestige]:** This character has +2 [shield] this attack
+
+    **Pay 1 [prestige]:** This character has +2 [shield] this attack.
     `,
     bloodPotency: 3,
     physical: 1,
@@ -3199,7 +3210,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     mental: 0,
     illustrator: "Irene Francisco",
     set: "Hunters & Hunted",
-    disciplines: { "beast whisperer":1, global:1, "sense the unnatural": 1 },
+    disciplines: { "beast whisperer": 1, global: 1, "sense the unnatural": 1 },
     cardpool: "hunter",
   },
 
@@ -3209,6 +3220,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     name: "Jamie",
     text: md`
     **Hunter**
+
     This character may be exhausted to Investigate while in their Hideout.
     `,
     bloodPotency: 2,
@@ -3217,7 +3229,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     mental: 1,
     illustrator: "Cold Castle Studios",
     set: "Hunters & Hunted",
-    disciplines: { global:1, library: 1 },
+    disciplines: { global: 1, library: 1 },
     cardpool: "hunter",
   },
 
@@ -3227,6 +3239,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     name: "Juliana",
     text: md`
     **Hunter**
+
     Party - Characters in this party have +1 [shield] during your Action Phase.
     `,
     bloodPotency: 2,
@@ -3235,7 +3248,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     mental: 0,
     illustrator: "Cold Castle Studios",
     set: "Hunters & Hunted",
-    disciplines: { global:1, "sense the unnatural": 1 },
+    disciplines: { global: 1, "sense the unnatural": 1 },
     cardpool: "hunter",
   },
 
@@ -3245,7 +3258,8 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     name: "Maria Lopez",
     text: md`
     **Hunter**
-    **Exhaust, Pay 1 [prestige]:** Deal 1 [social][damage] to target character for each Curse attached to it.
+
+    **Exhaust, Pay 1 [prestige]:** Deal 1 [social] [damage] to target character for each Curse attached to it.
     `,
     bloodPotency: 4,
     physical: 2,
@@ -3263,6 +3277,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     name: "Rio",
     text: md`
     **Hunter**
+
     Attacker - This attack deals +1 [damage] to the target for every 2 Curses attached to it.
     `,
     bloodPotency: 2,
@@ -3281,6 +3296,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     name: "Ryan",
     text: md`
     **Hunter**
+
     Attacker - At the end of this attack, you may **Pay 1 [prestige]:** Attach your Attack card to the target.
     `,
     bloodPotency: 4,
@@ -3289,7 +3305,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     mental: 1,
     illustrator: "Mico Dimagiba",
     set: "Hunters & Hunted",
-    disciplines: { "beast whisperer": 1, global:1, library: 1, "sense the unnatural": 1 },
+    disciplines: { "beast whisperer": 1, global: 1, library: 1, "sense the unnatural": 1 },
     cardpool: "hunter",
   },
 
@@ -3299,6 +3315,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     name: "Sara",
     text: md`
     **Hunter**
+
     When you exhaust this character to Investigate, add 1 additional [prestige] to the target from your general supply.
     `,
     bloodPotency: 3,
@@ -3307,7 +3324,153 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     mental: 2,
     illustrator: "Irene Francisco",
     set: "Hunters & Hunted",
-    disciplines: { global:1, library: 1, "sense the unnatural": 1 },
+    disciplines: { global: 1, library: 1, "sense the unnatural": 1 },
+    cardpool: "hunter",
+  },
+
+  "hah-gina-firenzo": {
+    stack: "faction",
+    clan: "inquisitive",
+    name: "Gina Firenzo",
+    text: md`
+    **Hunter**
+
+    When this character enters play, put 2 [prestige] from your general supply on target character or face-down monster.
+    `,
+    bloodPotency: 2,
+    physical: 0,
+    social: 1,
+    mental: 0,
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    disciplines: { "beast whisperer": 1, global: 1 },
+    cardpool: "hunter",
+  },
+
+  "hah-renata-gomes": {
+    stack: "faction",
+    clan: "inquisitive",
+    name: "Renata Gomes",
+    text: md`
+    **Hunter**
+
+    Party - When a character in this party attacks a character, put 1 [prestige] from your general supply on the target.
+    `,
+    bloodPotency: 4,
+    physical: 1,
+    social: 0,
+    mental: 1,
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    disciplines: { "beast whisperer": 1, global: 1, library: 1, "sense the unnatural": 1 },
+    cardpool: "hunter",
+  },
+
+  "hah-grace": {
+    stack: "faction",
+    clan: "caitiff",
+    name: "Grace",
+    text: md`
+    **Burn 2 cards in your discard pile:** This character has +2 intel this turn.
+
+    Attacker - **Discard the top 2 cards of your Library:** The target has -1 [shield] this attack.
+    `,
+    bloodPotency: 5,
+    physical: 2,
+    social: 1,
+    mental: 0,
+    illustrator: "Felipe Gaona",
+    set: "Hunters & Hunted",
+    disciplines: { auspex: 1, fortitude: 1, obfuscate: 1 },
+    cardpool: "vampire",
+  },
+
+  "hah-sage": {
+    stack: "faction",
+    clan: "caitiff",
+    name: "Sage",
+    text: md`
+    When this character exhausts, you may shuffle 1 random Library card from your discard pile into your deck.
+    `,
+    bloodPotency: 3,
+    physical: 0,
+    social: 1,
+    mental: 1,
+    illustrator: "Felipe Gaona",
+    set: "Hunters & Hunted",
+    disciplines: { animalism: 1, dominate: 1 },
+    cardpool: "vampire",
+  },
+
+  "hah-ociel-gonzalez": {
+    stack: "faction",
+    clan: "ministry",
+    name: "Ociel Gonzalez",
+    text: md`
+    Double the Influence bonus from any Title attached to this character.
+    `,
+    bloodPotency: 4,
+    physical: 1,
+    social: 1,
+    mental: 0,
+    illustrator: "Joyce Maureira",
+    set: "Hunters & Hunted",
+    disciplines: { presence: 2 },
+    cardpool: "vampire",
+  },
+
+  "hah-raul-fontes": {
+    stack: "faction",
+    clan: "ministry",
+    name: "Raúl Fontes",
+    text: md`
+    Attacker - This attack deals +1 [damage] to the target for each 'No Influence' token in the defending party.
+    `,
+    bloodPotency: 5,
+    physical: 1,
+    social: 1,
+    mental: 1,
+    illustrator: "Joyce Maureira",
+    set: "Hunters & Hunted",
+    disciplines: { presence: 1, protean: 1 },
+    cardpool: "vampire",
+  },
+
+  "hah-deacon-jones": {
+    stack: "faction",
+    clan: "faithful",
+    name: "Deacon Jones",
+    text: md`
+    **Hunter, True Faith**
+
+    Attacker - **Pay 2 [prestige]:** This attack deal +1 [damage] to the target for each Relic you control.
+    `,
+    bloodPotency: 4,
+    physical: 1,
+    social: 1,
+    mental: 0,
+    illustrator: "Mico Dimagiba",
+    set: "Hunters & Hunted",
+    disciplines: { library: 1, "repel the unnatural": 1, "sense the unnatural": 1, "thwart the unnatural": 1 },
+    cardpool: "hunter",
+  },
+
+  "hah-ingrid": {
+    stack: "faction",
+    clan: "faithful",
+    name: "Ingrid",
+    text: md`
+    **Hunter**
+
+    When this character plays a Relic, gain 1 Action.
+    `,
+    bloodPotency: 3,
+    physical: 0,
+    social: 0,
+    mental: 2,
+    illustrator: "Mara Miranda-Escota",
+    set: "Hunters & Hunted",
+    disciplines: { "repel the unnatural": 1, "sense the unnatural": 1, "thwart the unnatural": 1 },
     cardpool: "hunter",
   },
 };
