@@ -617,7 +617,7 @@ If your discard pile contains 5+ Library cards and none have a clan affiliation 
     cardpool: "vampire",
   },
 
-  "hah-the-hidden-template": {
+  "hah-the-hidden-temple": {
     stack: "haven",
     name: "The Hidden Temple",
     text: md`

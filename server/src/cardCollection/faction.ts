@@ -2837,7 +2837,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     cardpool: "vampire",
   },
 
-  "hah-benício": {
+  "hah-benicio": {
     stack: "faction",
     clan: "caitiff",
     name: "Benício",
