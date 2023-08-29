@@ -420,7 +420,7 @@ If you reach 13 [agenda], you win!
   "hah-the-snake-den": {
     name: "The Snake Den",
     text: md`
-At the start of your turn, if you control 1+ face-down card with 1+ [prestige], gain 1 [agenda].
+At the start of your turn, if you control 1+ face-down card with 1+ [prestige] on them, gain 1 [agenda].
 
 The first time you resolve a Conspiracy during each of your turns, gain 1 [agenda].
     `,
@@ -433,7 +433,7 @@ The first time you resolve a Conspiracy during each of your turns, gain 1 [agend
   "hah-birds-of-different-feathers": {
     name: "Birds of Different Feathers",
     text: md`
-    At the start of your turn, if there are 6+ different Disciplines or Edges in your coterie, gain 1 [agenda].
+At the start of your turn, if there are 6+ different Disciplines or Edges in your coterie, gain 1 [agenda].
     `,
     illustrator: "Mara Miranda-Escota",
     set: "Hunters & Hunted",
@@ -444,7 +444,7 @@ The first time you resolve a Conspiracy during each of your turns, gain 1 [agend
   "hah-martyrdom": {
     name: "Martyrdom",
     text: md`
-    When a character you control is burned, gain 1 [agenda].
+When a character you control is burned, gain 1 [agenda].
     `,
     illustrator: "Mara Miranda-Escota",
     set: "Hunters & Hunted",
@@ -455,11 +455,59 @@ The first time you resolve a Conspiracy during each of your turns, gain 1 [agend
   "hah-observe-and-report": {
     name: "Observe and Report",
     text: md`
-    When you attach a card to a card you do not control, gain 1 [agenda].
+When you attach a card to a card you do not control, gain 1 [agenda].
     `,
     illustrator: "Mico Dimagiba",
     set: "Hunters & Hunted",
     stack: "agenda",
     cardpool: "hunter and vampire",
+  },
+
+  "hah-all-figured-out": {
+    name: "All Figured Out",
+    text: md`
+At the start of your turn, if there is 4+ [prestige] of your color on characters and face-down Monsters, gain 1 [agenda].
+
+When you defeat a character, gain 1 [agenda] for every 2 [prestige] on them, to a maximum of 3 [agenda].
+    `,
+    illustrator: "Marco Primo",
+    set: "Hunters & Hunted",
+    stack: "agenda",
+    cardpool: "hunter",
+  },
+
+  "hah-go-for-broke": {
+    name: "All Figured Out",
+    text: md`
+At the start of your turn, if you control 1+ Ongoing Schemes, gain 1 [agenda].
+
+When a Scheme you play succeeds, if you did not play an Influence Modifier during it, gain 1 [agenda].
+    `,
+    illustrator: "Joyce Maureira",
+    set: "Hunters & Hunted",
+    stack: "agenda",
+    cardpool: "vampire",
+  },
+
+  "hah-symbolic-meaning": {
+    name: "Symbolic Meaning",
+    text: md`
+The first time you defeat a Monster during each of your turns, gain 1 [agenda] for each Relic you control, to a maximum of 3 [agenda].
+    `,
+    illustrator: "Adelijah Ocampo",
+    set: "Hunters & Hunted",
+    stack: "agenda",
+    cardpool: "hunter",
+  },
+
+  "hah-the-ash-heap-of-history": {
+    name: "The Ash Heap of History",
+    text: md`
+**Exhaust:** If there are 5+ cards in your discard pile, gain 1 [agenda]. If exactly 11 cards, gain 2 [agenda] instead.
+    `,
+    illustrator: "Marco Primo",
+    set: "Hunters & Hunted",
+    stack: "agenda",
+    cardpool: "vampire",
   },
 };
