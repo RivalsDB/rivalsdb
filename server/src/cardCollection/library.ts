@@ -4190,7 +4190,7 @@ Attach to a character in your coterie and draw 1 card.
     //attack:[],
     //reactions: [],
     text: md`
-Gain 2 Influence during this action or event. Gain an additional 1 Influence for each foe who exerted Influence against your choice of Yes or No.
+Gain 2 Influence during this action or event. Gain an additional 2 Influence for each foe who exerted Influence against your choice of Yes or No.
 `,
     //disciplines:[],
     illustrator: "Cold Castle Studios",
@@ -4296,6 +4296,8 @@ Recruit a Caitiff character from your hand at no cost, placing only 2 [blood] fr
     //reactions: [],
     text: md`
 Attach to a character in your cell (max 1).
+
+Attacker - This character deals +1 [damage] to the target for every  2 of your burned characters.
 `,
     //disciplines:[],
     illustrator: "Darko Stojanovic",
@@ -4339,7 +4341,7 @@ When you exhaust this character to Investigate, add 1 additional [prestige] to t
     text: md`
 Attach to a character in your cell (max 1).
 
-This character has **Guard** and +1 [shield] vs [physical][damage].
+This character has **Guard** and +1 [shield] vs [physical] [damage].
 
 WHen this character Blocks an attack, the original target mends 1 [blood].
 `,
@@ -4362,7 +4364,7 @@ WHen this character Blocks an attack, the original target mends 1 [blood].
     text: md`
 Influence Conflict - Should I put this card into play?
 
-Ongoing - Exhaust: Place a Trap or Conspiricy face down at no cost.
+Ongoing - **Exhaust:** Place a Trap or Conspiracy face down at no cost.
 `,
     //disciplines:[],
     illustrator: "Cold Castle Studios",
@@ -4426,7 +4428,7 @@ Ongoing - At the start of your turn, draw 1 card.
 Ongoing - **Exhaust, Pay 1** [prestige]: A **True Faith** attacker you control deals +1 [damage] to the target.
 `,
     //disciplines:[],
-    illustrator: "Irene Francisco",
+    illustrator: "Cold Castle Studios",
     set: "Hunters & Hunted",
     cardpool: "hunter",
   },
@@ -4503,7 +4505,7 @@ Deal 1 [mental] [damage] to target character for each of your burned characters.
     text: md`
 Attach this card to target character.
 
-This character deals -1[damage] when attacking chracters you control.
+This character deals -1 [damage] when attacking chracters you control.
 `,
     ///disciplines:["repel the unnatural"],
     illustrator: "Cold Castle Studios",
@@ -4566,7 +4568,7 @@ Gain 1 [prestige] for every 3 different Disciplines in your coterie.
     text: md`
 Deal 1 [physical] [damage] to target character for each [prestige] of your color on it. (This damage cannot remove the last [blood] token from a character.)
 
-[sense-the-unnatural] +1[damage]
+[sense-the-unnatural] +1 [damage]
 `,
     disciplines:["sense the unnatural"],
     illustrator: "Cold Castle Studios",
@@ -4761,7 +4763,7 @@ At the start of this character's turn, this character loses 1 [blood].
     //attack:[],
     //reactions: [],
     text: md`
-Ongoing - When you attach a card to a character you do not control, put 1 [prestige] from your general supply on that character **OR Burn this card:** That character's controller loses 1[agenda].
+Ongoing - When you attach a card to a character you do not control, put 1 [prestige] from your general supply on that character **OR Burn this card:** That character's controller loses 1 [agenda].
 `,
     //disciplines:[],
     illustrator: "Cold Castle Studios",
@@ -4849,6 +4851,46 @@ Ongoing - For every 2 [obfuscate] in your coterie, lower each foe's Influence by
     cardpool: "vampire",
   },
 
+  "hah-majesty": {
+    stack: "library",
+    name: "Majesty",
+    types: ["unhosted action", "ongoing"],
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Ongoing - Your Leader has +1 Influence for each [presence] they have.
+
+**Exhaust:** Target player cannot play Influence Modifiers during this scheme.
+`,
+    disciplines:["presence"],
+    illustrator: "Irene Francisco",
+    set: "Hunters & Hunted",
+    cardpool: "vampire",
+  },
+
+  "hah-true-faith": {
+    stack: "library",
+    name: "True Faith",
+    types: ["unhosted action"],
+    clan: "faithful",
+    //bloodPotencyRequirement:,
+    //damage:,
+    //shield:,
+    //attack:[],
+    //reactions: [],
+    text: md`
+Attach to a character in your cell.
+
+This character has **True Faith** and +1 [blood potency].
+`,
+    illustrator: "Marco Primo",
+    set: "Hunters & Hunted",
+    cardpool: "hunter",
+  },
+
   "hah-well-prepared": {
     stack: "library",
     name: "Learning the Ropes",
@@ -4881,7 +4923,7 @@ A defender you control may play this against any type of Monster attack.
     attack: ["physical", "mental"],
     reactions: ["physical", "mental"],
     text: md`
-[thwart-the-unnatural] **Pay 1 [prestige]:** +1[shield] for each of your burned characters.
+[thwart-the-unnatural] **Pay 1 [prestige]:** +1 [shield] for each of your burned characters.
 `,
     disciplines:["thwart the unnatural"],
     illustrator: "Darko Stojanovic",
@@ -4970,7 +5012,7 @@ Each character in this party has +1 [shield].
 
   "hah-get-into-its-mind": {
     stack: "library",
-    name: "Gets into its Mind",
+    name: "Get into its Mind",
     types: ["reaction"],
     //clan: "inquisitive",
     bloodPotencyRequirement: 2,
@@ -4982,7 +5024,7 @@ Each character in this party has +1 [shield].
 [library] **Pay 2 [prestige]:** The attacker's [damage] becomes **Superficial.** (This damage cannot remove the last [blood] token from a character.)
 `,
     disciplines:["library"],
-    illustrator: "Darko Stojanovic",
+    illustrator: "Marco Primo",
     set: "Hunters & Hunted",
     cardpool: "hunter",
   },
@@ -5017,7 +5059,9 @@ The attacker reveals their hand to the defender. The defender then discards 1 [s
     attack: ["social"],
     //reactions: ["social", "mental"],
     text: md`
-+1 [damage] for each Conspiricy and/ or Trap you have resolved this turn.
++1 [damage] for each Conspiracy and/or Trap you have resolved this turn.
+
+[obfuscate] **Targeted.**
 `,
     disciplines:["obfuscate"],
     illustrator: "Mico Dimagiba",
@@ -5076,7 +5120,7 @@ The attacker reveals their hand to the defender. The defender then discards 1 [s
     text: md`
 [library] **Pay 1 [prestige]:** +1 [damage] to the target.
 
-[thwart-the-unnatural] **Pay 2 [prestige]:** +1 to Monsters and Antagonists.
+[thwart-the-unnatural] **Pay 2 [prestige]:** +2 [damage] to Monsters and Antagonists.
 `,
     disciplines:["library", "thwart the unnatural"],
     illustrator: "Marco Primo",
@@ -5100,7 +5144,7 @@ The attacker reveals their hand to the defender. The defender then discards 1 [s
 At the start of this character's turn, if this character is not at maximum [blood], put a '-1 [blood-potency]' token on them.
 `,
     disciplines:["presence"],
-    illustrator: "Mico Dimagiba",
+    illustrator: "Joyce Maureira",
     set: "Hunters & Hunted",
     cardpool: "vampire",
   },
@@ -5200,7 +5244,7 @@ If a Reaction is played or the attack is Blocked, discard this card (the attack 
     text: md`
 Play this card face up.
 
-[beast-whisperer]/ [animalism] **Pay 1 [prestige]:** +1 [damage]
+[beast-whisperer] / [animalism] **Pay 1 [prestige]:** +1 [damage].
 `,
     disciplines:["beast whisperer", "animalism"],
     illustrator: "Marco Primo",
@@ -5222,7 +5266,7 @@ Play this card face up.
 [protean] +1 [damage] for every 2 unattached face-down cards you control.
 `,
     disciplines:["protean"],
-    illustrator: "Cold Castle Studios",
+    illustrator: "Joyce Maureira",
     set: "Hunters & Hunted",
     cardpool: "vampire",
   },
@@ -5243,6 +5287,26 @@ Play this card face up.
 **Pay 1 [prestige]:** +3 [damage]. After this attack, burn this character. Use only if the target is a Monster.
 `,
     disciplines:["thwart the unnatural"],
+    illustrator: "Marco Primo",
+    set: "Hunters & Hunted",
+    cardpool: "hunter",
+  },
+
+  "hah-wooden-stake": {
+    stack: "library",
+    name: "Wooden Stake",
+    types: ["attack"],
+    //clan: "inquisitive",
+    bloodPotencyRequirement: 3,
+    damage: 0,
+    //shield: 1,
+    attack: ["physical"],
+    //reactions: ["social", "mental"],
+    text: md`
+If this attack deals 1+ [damage] to an already **Wounded** non-Monster vampire, move them into torpor, then attach this card to them.
+
+Torpor - This character does not get a free mend during their End Phase. When this character leaves Torpor, burn this card.
+`,
     illustrator: "Marco Primo",
     set: "Hunters & Hunted",
     cardpool: "hunter",
@@ -5283,7 +5347,7 @@ If the attacker has 3+ different Disciplines, the defender has -1 [shield] this 
 **Pay 2 [prestige]:** +1 [damage] to the target for each Curse attached to the target.
 `,
     disciplines:["library"],
-    illustrator: "Cold Castle Studios",
+    illustrator: "Marco Primo",
     set: "Hunters & Hunted",
     cardpool: "hunter",
   },
@@ -5322,11 +5386,32 @@ If the attacker has 3+ different Disciplines, the defender has -1 [shield] this 
     text: md`
 [presence] Put a 'No Influence' token on the target.
 
-[presence] [presence] +1 [damage]
+[presence] [presence] +1 [damage].
 `,
     disciplines:["presence"],
     illustrator: "Cold Castle Studios",
     set: "Hunters & Hunted",
     cardpool: "vampire",
+  },
+
+  "hah-holy-water": {
+    stack: "library",
+    name: "Holy Water",
+    types: ["attack"],
+    //clan: "inquisitive",
+    bloodPotencyRequirement: 2,
+    damage: 1,
+    //shield: 1,
+    attack: ["mental"],
+    //reactions: ["social", "mental"],
+    text: md`
+[repel the unnatural] If the target is a Monster, they do not attack during the End Phase this turn.
+
+**True Faith - Pay 1 [prestige]:** This attack deals +2 [damage] to the target.
+`,
+    disciplines:["repel the unnatural"],
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    cardpool: "hunter",
   },
 };
