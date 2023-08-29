@@ -516,9 +516,11 @@ Your Leader has +1 [shield] vs **Aggravated** [damage].
     stack: "haven",
     name: "Fellowship Hall",
     text: md`
-    Your characters have +1 Secrecy.
-    **Leader Ability**
-    The first time you recruit a character during each of your turns, gain 1 Unhosted Action.
+Your characters have +1 Secrecy.
+
+**Leader Ability**
+
+The first time you recruit a character during each of your turns, gain 1 Unhosted Action.
     `,
     illustrator: "Marco Primo",
     set: "Hunters & Hunted",
@@ -529,9 +531,11 @@ Your Leader has +1 [shield] vs **Aggravated** [damage].
     stack: "haven",
     name: "Back Alley Clinic",
     text: `md
-    Your characters have +1 Secrecy.
-    **Leader Ability**
-    When a character you control is defeated by non-**Aggravted** [damage], if you control no characters in recovery, you may put the defeated character into recovery.
+Your characters have +1 Secrecy.
+
+**Leader Ability**
+
+When a character you control is defeated by non-**Aggravted** [damage], if you control no characters in recovery, you may put the defeated character into recovery.
     `,
     illustrator: "Cold Castle Studios",
     set: "Hunters & Hunted",
@@ -542,9 +546,11 @@ Your Leader has +1 [shield] vs **Aggravated** [damage].
     stack: "haven",
     name: "The Temple of Set",
     text: md`
-    Characters in your Haven have +1 Secrecy.
-    **Leader Ability**
-    When your Leader defeats a character, you may put 1 [prestige] from your general supply on each face-down card you control.
+Characters in your Haven have +1 Secrecy.
+
+**Leader Ability**
+
+When your Leader defeats a character, you may put 1 [prestige] from your general supply on each face-down card you control.
     `,
     illustrator: "Marco Primo",
     set: "Hunters & Hunted",
@@ -555,12 +561,76 @@ Your Leader has +1 [shield] vs **Aggravated** [damage].
     stack: "haven",
     name: "The Clubhouse",
     text: md`
-    Characters in your Haven have +1 Secrecy.
-    **Leader Ability**
-    At the start of your turn, draw 1 card for every 4 different Disciplines or Edges in your coterie, then discard 1 card.
+Characters in your Haven have +1 Secrecy.
+
+**Leader Ability**
+
+At the start of your turn, draw 1 card for every 4 different Disciplines or Edges in your coterie, then discard 1 card.
     `,
     illustrator: "Marco Primo",
     set: "Hunters & Hunted",
     cardpool: "hunter and vampire",
+  },
+
+  "hah-the-bunker": {
+    stack: "haven",
+    name: "The Bunker",
+    text: md`
+Your characters have +1 Secrecy.
+
+**Leader Ability**
+
+**Pay X [prestige]:** Prevent X [damage] to target character you control.
+    `,
+    illustrator: "Cold Castle Studios",
+    set: "Hunters & Hunted",
+    cardpool: "hunter",
+  },
+
+  "hah-the-feretory": {
+    stack: "haven",
+    name: "The Feretory",
+    text: md`
+Your characters have +1 Secrecy.
+
+**Leader Ability**
+
+When your Leader exhausts, reveal the top card of your Library. If it's a Relic, draw it. Otherwise, leave it or discard it.
+    `,
+    illustrator: "Marco Primo",
+    set: "Hunters & Hunted",
+    cardpool: "hunter",
+  },
+
+  "hah-the-orphanage": {
+    stack: "haven",
+    name: "The Orphanage",
+    text: md`
+Characters in your Haven have +1 Secrecy.
+
+**Leader Ability**
+
+If your discard pile contains 5+ Library cards and none have a clan affiliation , **Exhaust The Orphanage:** Gain 1 Unhosted Action.
+    `,
+    illustrator: "Marco Primo",
+    set: "Hunters & Hunted",
+    cardpool: "vampire",
+  },
+
+  "hah-the-hidden-template": {
+    stack: "haven",
+    name: "The Hidden Temple",
+    text: md`
+Characters in your Haven have +1 Secrecy.
+
+**Leader Ability**
+
+Your Leader has +1 Influence.
+
+**Exhaust The Hidden Temple:** Put a 'No Influence' token on target character.
+    `,
+    illustrator: "Marco Primo",
+    set: "Hunters & Hunted",
+    cardpool: "vampire",
   },
 };
