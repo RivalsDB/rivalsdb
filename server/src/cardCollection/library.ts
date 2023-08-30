@@ -4893,7 +4893,7 @@ This character has **True Faith** and +1 [blood potency].
 
   "hah-well-prepared": {
     stack: "library",
-    name: "Learning the Ropes",
+    name: "Well Prepared",
     types: ["reaction", "special"],
     //clan: "inquisitive",
     bloodPotencyRequirement: 1,
