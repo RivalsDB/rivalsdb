@@ -18,10 +18,9 @@ if (isNaN(parsedPort)) {
 }
 export const serverPort = parsedPort;
 
-if (typeof env.RAILWAY_STATIC_URL !== "string") {
-  throw Error("Missing environment variable RAILWAY_STATIC_URL");
-}
-export const baseUrl = new URL(`https://${env.RAILWAY_STATIC_URL}`);
+// in production, Railway provides an environment variable without protocol prefix here, so we need to add HTTPS.
+// for local development, we want to set a fully formed URL for this env-var, i.e. http://localhost:3000
+export const baseUrl = env.RAILWAY_STATIC_URL?.match(/^https?:\/\//) ? new URL(`${env.RAILWAY_STATIC_URL}`) : new URL(`https://${env.RAILWAY_STATIC_URL}`);
 
 if (typeof env.RUN_BOT_SERVER !== "string") {
   throw Error("Missing environment variable RUN_BOT_SERVER");

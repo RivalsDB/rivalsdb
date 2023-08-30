@@ -4,6 +4,7 @@ import { havens } from "./havens.js";
 import { library } from "./library.js";
 import { factions } from "./faction.js";
 import { city } from "./city.js";
+import { monster } from "./monster.js";
 import {
   AttackType,
   CardSet,
@@ -11,9 +12,10 @@ import {
   Clan,
   Discipline,
   LibraryCardType,
+  Cardpool,
 } from "./common.js";
 
-type Card = Agenda | Haven | Faction | Library | City;
+type Card = Agenda | Haven | Faction | Library | City | Monster;
 
 export type Agenda = {
   id: string;
@@ -24,6 +26,7 @@ export type Agenda = {
   text: string;
   types: ["agenda"];
   stack: "agenda";
+  cardpool: Cardpool;
 };
 
 export type Haven = {
@@ -35,6 +38,7 @@ export type Haven = {
   text: string;
   types: ["haven"];
   stack: "haven";
+  cardpool: Cardpool;
 };
 
 export type Faction = {
@@ -53,6 +57,7 @@ export type Faction = {
   types: ["character"];
   flavor?: string;
   stack: "faction";
+  cardpool: Cardpool;
 };
 
 export type Library = {
@@ -72,6 +77,7 @@ export type Library = {
   types: LibraryCardType[];
   flavor?: string;
   stack: "library";
+  cardpool: Cardpool;
 };
 
 export type City = {
@@ -89,10 +95,28 @@ export type City = {
   flavor?: string;
 };
 
+export type Monster = {
+  stack: "monster";
+  id: string;
+  illustrator: string;
+  image: string;
+  name: string;
+  bloodPotency: number;
+  attributePhysical: number;
+  attributeSocial: number;
+  attributeMental: number;
+  set: CardSet;
+  text: string;
+  blood?: number;
+  agenda?: number;
+  types: ["monster"];
+}
+
 export const allUnstructured = ([] as Card[]).concat(
   Object.entries(city).map(convert.toUnstructuredCity),
   Object.entries(agendas).map(convert.toUnstructuredAgenda),
   Object.entries(havens).map(convert.toUnstructuredHaven),
   Object.entries(library).map(convert.toUnstructuredLibrary),
-  Object.entries(factions).map(convert.toUnstructuredFaction)
+  Object.entries(factions).map(convert.toUnstructuredFaction),
+  Object.entries(monster).map(convert.toUnstructuredMonster),
 );

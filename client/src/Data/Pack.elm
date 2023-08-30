@@ -14,6 +14,7 @@ type Pack
     | Conclave22
     | DragonAndRogue
     | JusticeAndMercy
+    | HuntersAndHunted
 
 
 enum : Enum Pack
@@ -28,6 +29,7 @@ enum =
         , ( "Conclave 22", Conclave22 )
         , ( "Dragon & Rogue", DragonAndRogue )
         , ( "Justice & Mercy", JusticeAndMercy )
+        , ( "Hunters & Hunted", HuntersAndHunted)
         ]
 
 

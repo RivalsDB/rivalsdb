@@ -13,6 +13,7 @@ module Cards exposing
     , Id
     , Library
     , Shield
+    , Monster
     , attackTypes
     , bloodPotency
     , cardsDecoder
@@ -33,6 +34,7 @@ module Cards exposing
 import Data.Clan as Clan exposing (Clan)
 import Data.Discipline as Discipline exposing (Discipline)
 import Data.Pack as Pack exposing (Pack)
+import Data.Cardpool as Cardpool exposing (Cardpool)
 import Dict
 import Enum exposing (Enum)
 import Json.Decode as Decode exposing (Decoder, int, list, map, string)
@@ -93,11 +95,11 @@ attackTypeEnum =
 
 
 type alias Agenda =
-    { id : Id, name : Name, text : Text, image : Image, set : Pack }
+    { id : Id, name : Name, text : Text, image : Image, set : Pack, cardpool: Cardpool }
 
 
 type alias Haven =
-    { id : Id, name : Name, text : Text, image : Image, set : Pack }
+    { id : Id, name : Name, text : Text, image : Image, set : Pack, cardpool: Cardpool }
 
 
 type alias City =
@@ -122,6 +124,17 @@ type alias CityTraits =
     , title : Bool
     }
 
+type alias Monster =
+    { id : Id
+    , name : Name
+    , text : Text
+    , image : Image
+    , set : Pack
+    , bloodPotency : BloodPotency
+    , physical : Attribute
+    , social : Attribute
+    , mental : Attribute
+    }
 
 type alias Faction =
     { id : Id
@@ -135,6 +148,7 @@ type alias Faction =
     , social : Attribute
     , mental : Attribute
     , disciplines : List Discipline
+    , cardpool: Cardpool
     }
 
 
@@ -151,6 +165,7 @@ type alias Library =
     , shield : Maybe Shield
     , traits : LibraryTraits
     , attackType : List AttackType
+    , cardpool: Cardpool
     }
 
 
@@ -170,6 +185,7 @@ type alias LibraryTraits =
     , trap : Bool
     , unhostedAction : Bool
     , ghoul : Bool
+    , relic : Bool
     }
 
 
@@ -179,6 +195,7 @@ type Card
     | FactionCard Faction
     | LibraryCard Library
     | CityCard City
+    | MonsterCard Monster
 
 
 type CardStack
@@ -187,6 +204,7 @@ type CardStack
     | FactionStack
     | LibraryStack
     | CityStack
+    | MonsterStack
 
 
 
@@ -213,6 +231,9 @@ id card =
         CityCard c ->
             c.id
 
+        MonsterCard c ->
+            c.id
+
 
 name : Card -> String
 name card =
@@ -230,6 +251,9 @@ name card =
             c.name
 
         CityCard c ->
+            c.name
+
+        MonsterCard c ->
             c.name
 
 
@@ -251,6 +275,9 @@ image card =
         CityCard c ->
             c.image
 
+        MonsterCard c ->
+            c.image
+
 
 set : Card -> Pack
 set card =
@@ -268,6 +295,9 @@ set card =
             c.set
 
         CityCard c ->
+            c.set
+
+        MonsterCard c ->
             c.set
 
 
@@ -332,6 +362,9 @@ bloodPotency card =
         LibraryCard c ->
             Maybe.withDefault 0 c.bloodPotency
 
+        MonsterCard c ->
+            c.bloodPotency
+
         _ ->
             0
 
@@ -354,6 +387,8 @@ stack card =
         CityCard _ ->
             CityStack
 
+        MonsterCard _ ->
+            MonsterStack
 
 stackComparable : Card -> Int
 stackComparable card =
@@ -373,6 +408,9 @@ stackComparable card =
         LibraryCard _ ->
             4
 
+        MonsterCard _ ->
+            5
+
 
 text : Card -> String
 text card =
@@ -390,6 +428,9 @@ text card =
             c.text
 
         CityCard c ->
+            c.text
+
+        MonsterCard c ->
             c.text
 
 
@@ -442,6 +483,9 @@ decoderForCardType st =
         "library" ->
             libraryDecoder
 
+        "monster" ->
+            monsterDecoder
+
         _ ->
             Decode.fail "Unrecognized card stack"
 
@@ -454,6 +498,7 @@ agendaDecoder =
         |> decodeText
         |> decodeImage
         |> required "set" Pack.decoder
+        |> required "cardpool" Cardpool.decoder
         |> map (\agenda -> ( agenda.id, AgendaCard agenda ))
 
 
@@ -465,6 +510,7 @@ havenDecoder =
         |> decodeText
         |> decodeImage
         |> required "set" Pack.decoder
+        |> required "cardpool" Cardpool.decoder
         |> map (\haven -> ( haven.id, HavenCard haven ))
 
 
@@ -482,6 +528,7 @@ factionDecoder =
         |> decodeSocial
         |> decodeMental
         |> required "disciplines" (list Discipline.decoder)
+        |> required "cardpool" Cardpool.decoder
         |> map (\faction -> ( faction.id, FactionCard faction ))
 
 
@@ -500,6 +547,7 @@ libraryDecoder =
         |> decodeShields
         |> required "types" decodeLibraryTraits
         |> decodeAttackType
+        |> required "cardpool" Cardpool.decoder
         |> map (\library -> ( library.id, LibraryCard library ))
 
 
@@ -512,9 +560,21 @@ cityDecoder =
         |> decodeImage
         |> required "set" Pack.decoder
         |> required "types" decodeCityTraits
-        |> map (\library -> ( library.id, CityCard library ))
+        |> map (\city -> ( city.id, CityCard city ))
 
-
+monsterDecoder : Decoder ( Id, Card )
+monsterDecoder =
+    Decode.succeed Monster
+        |> decodeId
+        |> decodeName
+        |> decodeText
+        |> decodeImage
+        |> required "set" Pack.decoder
+        |> decodeBloodPotency
+        |> decodePhysical
+        |> decodeSocial
+        |> decodeMental
+        |> map (\monster -> ( monster.id, MonsterCard monster ))
 
 -- METHODS
 
@@ -527,7 +587,6 @@ findTextInCard needle card =
 
 
 -- FIELD DECODERS
-
 
 decodeCityTraits : Decoder CityTraits
 decodeCityTraits =
@@ -602,6 +661,7 @@ decodeLibraryTraits =
             , trap = False
             , unhostedAction = False
             , ghoul = False
+            , relic = False
             }
     in
     Decode.map
@@ -652,6 +712,9 @@ decodeLibraryTraits =
 
                     "ghoul" ->
                         { ts | ghoul = True }
+
+                    "relic" ->
+                        { ts | relic = True }
 
                     _ ->
                         ts

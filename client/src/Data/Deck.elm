@@ -238,6 +238,9 @@ copiesInDeck deck card =
 
         Cards.CityCard _ ->
             0
+        
+        Cards.MonsterCard _ ->
+            0
 
 
 isLeader : Decklist -> Cards.Faction -> Bool

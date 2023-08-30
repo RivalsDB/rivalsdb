@@ -7,10 +7,14 @@ import Json.Decode exposing (Decoder)
 type Clan
     = BanuHaqim
     | Brujah
+    | Caitiff
     | Gangrel
+    | Faithful
     | Hecata
+    | Inquisitive
     | Lasombra
     | Malkavian
+    | Ministry
     | Nosferatu
     | Ravnos
     | Salubri
@@ -19,6 +23,7 @@ type Clan
     | Tremere
     | Tzimisce
     | Ventrue
+    
 
 
 
@@ -29,10 +34,14 @@ enum =
 
         [ ( "banu haqim", BanuHaqim )
         , ( "brujah", Brujah )
+        , ( "caitiff", Caitiff )
         , ( "gangrel", Gangrel )
+        , ( "faithful", Faithful )
         , ( "hecata", Hecata )
+        , ( "inquisitive", Inquisitive )
         , ( "lasombra", Lasombra )
         , ( "malkavian", Malkavian )
+        , ( "ministry", Ministry )
         , ( "nosferatu", Nosferatu )
         , ( "ravnos", Ravnos )
         , ( "salubri", Salubri )
@@ -78,17 +87,29 @@ name c =
         Brujah ->
             "Brujah"
 
+        Caitiff ->
+            "Caitiff"    
+
         Gangrel ->
             "Gangrel"
 
+        Faithful ->
+            "Faithful"
+
         Hecata ->
             "Hecata"
+
+        Inquisitive ->
+            "Inquisitive"
 
         Lasombra ->
             "Lasombra"
 
         Malkavian ->
             "Malkavian"
+
+        Ministry ->
+            "Ministry"
 
         Nosferatu ->
             "Nosferatu"

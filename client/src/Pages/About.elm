@@ -63,6 +63,8 @@ init _ =
             , ( Icon.Animal, "Animal by Rfourtytwo from thenounproject.com" )
             , ( Icon.Trap, "Wolf Trap by Lorc from game-icons.net" )
             , ( Icon.Ghoul, "Zombie by Hada Arkanda from game-icons.net" )
+            , ( Icon.Monster, "Werewolf by Ian Savage from thenounproject.com" )
+            , ( Icon.Relic, "Grail by Danil Polshen from thenounproject.com" )
             ]
       }
     , Effect.none
