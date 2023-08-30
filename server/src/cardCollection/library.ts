@@ -2050,7 +2050,7 @@ Gain 1 Prestige for each Title in your coterie.
     cardpool: "vampire",
   },
 
-  "hah-scoped-30-06": {
+  "core-scoped-30-06": {
     stack: "library",
     name: "Scoped .30-06",
     text: md`
