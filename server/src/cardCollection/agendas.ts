@@ -477,7 +477,7 @@ When you defeat a character, gain 1 [agenda] for every 2 [prestige] on them, to 
   },
 
   "hah-go-for-broke": {
-    name: "All Figured Out",
+    name: "Go For Broke",
     text: md`
 At the start of your turn, if you control 1+ Ongoing Schemes, gain 1 [agenda].
 
