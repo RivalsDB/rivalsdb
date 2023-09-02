@@ -183,9 +183,16 @@ view shared model =
                             [ Html.map FromClansFilter <| Lazy.lazy FS.viewClans model.clansFilters
                             ]
                       , div [ class "filter-group__flags" ]
+                            [ Html.map FromClansFilter <| Lazy.lazy FS.viewCells model.clansFilters
+                            ]
+                      , div [ class "filter-group__flags" ]
                             [ Html.map FromDisciplinesFilter <| Lazy.lazy FS.viewDisciplines model.disciplineFilters
                             ]
+                      , div [ class "filter-group__flags" ]
+                            [ Html.map FromDisciplinesFilter <| Lazy.lazy FS.viewEdges model.disciplineFilters
+                            ]
                       ]
+
                     ]
                 )
             , div [ class "filter-group" ]
