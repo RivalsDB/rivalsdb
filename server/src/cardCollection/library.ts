@@ -1076,8 +1076,8 @@ If the target is not defeated, your foe must mend them by spending Prestige equa
     types: ["reaction"],
     set: "Blood & Alchemy",
     bloodPotencyRequirement: 1,
-    attack: ["physical", "mental"],
-    reactions: ["physical", "mental"],
+    attack: ["physical", "social"],
+    reactions: ["physical", "social"],
     //damage: 0,
     shield: 0,
     cardpool: "vampire",
@@ -2475,8 +2475,8 @@ Deal [mental] [damage] to the attacker equal to the [damage] they are dealing to
     set: "Wolf & Rat",
     clan: "nosferatu",
     bloodPotencyRequirement: 4,
-    attack: ["physical", "mental"],
-    reactions: ["physical", "mental"],
+    attack: ["physical", "social"],
+    reactions: ["physical", "social"],
     cardpool: "vampire",
   },
 
@@ -5177,13 +5177,13 @@ At the start of this character's turn, if this character is not at maximum [bloo
     damage: 2,
     //shield: 1,
     attack: ["ranged"],
-    //reactions: ["social", "mental"],
+    //reactions: [],
     text: md`
 +1 [damage] vs City Deck Mortals.
 
 **Discard 1 card:** Deal 2 [ranged] [damage] to a different member of the defending party.
 `,
-    disciplines:["obfuscate"],
+    //disciplines:[],
     illustrator: "Cold Castle Studios",
     set: "Hunters & Hunted",
     cardpool: "hunter and vampire",
