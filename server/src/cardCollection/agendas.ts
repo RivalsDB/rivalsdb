@@ -515,7 +515,7 @@ The first time you defeat a Monster during each of your turns, gain 1 [agenda] f
     name: "Balance in All Things",
     text: md`
 At the end of your turn, if you control 2 characters each with exactly 2 attachments, gain 1 [agenda].
-If you control 3 characters with exactly 2 attachments, gain 2 [agenda] instead.
+If you control 3 characters each with exactly 2 attachments, gain 2 [agenda] instead.
 
 If you reach 13 [agenda], you win!
     `,
@@ -541,7 +541,7 @@ If you reach 13 [agenda], you win!
   "xxx-the-killing-moon": {
     name: "The Killing Moon",
     text: md`
-At the start of your turn, if you control +1 Prey, gain 1 [agenda].
+At the start of your turn, if you control 1+ Prey, gain 1 [agenda].
 
 When a character in your coterie performs diablerie, gain 2 [agenda].
 

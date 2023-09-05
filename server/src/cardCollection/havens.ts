@@ -640,7 +640,7 @@ Your Leader has +1 Influence.
     text: md`
 Characters in your Haven have +1 Secrecy.
 
-**Solitary** characters in your coterie have +1 Secresct in The Streets, +1 Intel, and +1 Influence. At the Beginning Phase, ready each character in your coterie.
+**Solitary** characters in your coterie have +1 Secrecy in The Streets, +1 Intel, and +1 Influence. At the end of your Beginning Phase, ready each character in your coterie.
     `,
     illustrator: "Marco Primo",
     set: "Promo",
@@ -653,7 +653,9 @@ Characters in your Haven have +1 Secrecy.
     text: md`
 Characters in your Haven have +1 Secrecy.
 
-**Leader Ability** **Discard 1 card:** Move a non-Title attachment from a card you control to another card you control (does not trigger attach effects).
+**Leader Ability**
+
+**Discard 1 card:** Move a non-Title attachment from a card you control to another card you control (does not trigger attach effects).
     `,
     illustrator: "Felipe Gaona",
     set: "Promo",
@@ -666,7 +668,9 @@ Characters in your Haven have +1 Secrecy.
     text: md`
 Characters in your Haven have +1 Secrecy.
 
-**Leader Ability** When your Leader defeats a character, you may use up to 3 [blood] of your color that was on that character to play a Ritual at no cost. (You may add [blood] from other sources as well.)
+**Leader Ability**
+
+When your Leader defeats a character, you may use up to 3 [blood] of your color that was on that character to play a Ritual at no cost. (You may add [blood] from other sources as well.)
     `,
     illustrator: "Marco Primo",
     set: "Promo",
@@ -690,7 +694,9 @@ You start the game with 25 [prestige]. If this card leaves play, lose 3 [prestig
     text: md`
 Characters in your Haven have +1 Secrecy.
 
-**Leader Ability** When a character in your coterie is attacked, they have +1 [shield] for each character in the attacking party with [blood-potency] higher than theirs.
+**Leader Ability**
+
+When a character in your coterie is attacked, they have +1 [shield] for each character in the attacking party with [blood-potency] higher than theirs.
     `,
     illustrator: "Mara Miranda-Escota",
     set: "Promo",

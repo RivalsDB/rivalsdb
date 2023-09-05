@@ -3479,7 +3479,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     clan: "hecata",
     name: "Fujiko",
     text: md`
-    Your Ongoing cards cannot be targeted by foes.
+Your Ongoing cards cannot be targeted by foes.
     `,
     bloodPotency: 4,
     physical: 2,
@@ -3490,7 +3490,7 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     disciplines: { auspex: 1, fortitude: 1 },
     cardpool: "vampire",
   },
-  
+
   "xxx-the-exterminator": {
     stack: "faction",
     clan: "nosferatu",
@@ -3506,8 +3506,8 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     set: "Promo",
     disciplines: { animalism: 1, potence: 1 },
     cardpool: "vampire",
-  }, 
-  
+  },
+
   "xxx-timothy-schwartz": {
     stack: "faction",
     clan: "lasombra",
@@ -3524,13 +3524,13 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     disciplines: { dominate: 1 },
     cardpool: "vampire",
   },
-  
+
   "xxx-xander-klaus": {
     stack: "faction",
     clan: "gangrel",
     name: "Xander Klaus",
     text: md`
-    **Attacker** - This attack deals +2 [damage] to characters with a Title.
+    Attacker - This attack deals +2 [damage] to characters with a Title.
     `,
     bloodPotency: 4,
     physical: 1,
@@ -3540,5 +3540,5 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     set: "Promo",
     disciplines: { fortitude: 1, protean:1 },
     cardpool: "vampire",
-  },  
+  },
 };
