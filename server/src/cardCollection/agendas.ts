@@ -510,4 +510,46 @@ The first time you defeat a Monster during each of your turns, gain 1 [agenda] f
     stack: "agenda",
     cardpool: "vampire",
   },
+
+  "xxx-balance-in-all-things": {
+    name: "Balance in All Things",
+    text: md`
+At the end of your turn, if you control 2 characters each with exactly 2 attachments, gain 1 [agenda].
+If you control 3 characters each with exactly 2 attachments, gain 2 [agenda] instead.
+
+If you reach 13 [agenda], you win!
+    `,
+    illustrator: "Joyce Maureira",
+    set: "Promo",
+    stack: "agenda",
+    cardpool: "vampire",
+  },
+
+  "xxx-race-to-the-bottom": {
+    name: "Race to the Bottom",
+    text: md`
+When you place a '-1 [blood-potency]' token on 1+ characters in a foe's coterie, gain 1 [agenda].
+
+If you reach 13 [agenda], you win!
+    `,
+    illustrator: "Joyce Maureira",
+    set: "Promo",
+    stack: "agenda",
+    cardpool: "vampire",
+  },
+
+  "xxx-the-killing-moon": {
+    name: "The Killing Moon",
+    text: md`
+At the start of your turn, if you control 1+ Prey, gain 1 [agenda].
+
+When a character in your coterie performs diablerie, gain 2 [agenda].
+
+If you reach 13 [agenda], you win!
+    `,
+    illustrator: "Felipe Gaona",
+    set: "Promo",
+    stack: "agenda",
+    cardpool: "vampire",
+  },
 };

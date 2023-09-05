@@ -633,4 +633,73 @@ Your Leader has +1 Influence.
     set: "Hunters & Hunted",
     cardpool: "vampire",
   },
+
+  "xxx-apartment-111": {
+    stack: "haven",
+    name: "Apartment 111",
+    text: md`
+Characters in your Haven have +1 Secrecy.
+
+**Solitary** characters in your coterie have +1 Secrecy in The Streets, +1 Intel, and +1 Influence. At the end of your Beginning Phase, ready each character in your coterie.
+    `,
+    illustrator: "Marco Primo",
+    set: "Promo",
+    cardpool: "vampire",
+  },
+
+  "xxx-dancing-house": {
+    stack: "haven",
+    name: "Dancing House",
+    text: md`
+Characters in your Haven have +1 Secrecy.
+
+**Leader Ability**
+
+**Discard 1 card:** Move a non-Title attachment from a card you control to another card you control (does not trigger attach effects).
+    `,
+    illustrator: "Felipe Gaona",
+    set: "Promo",
+    cardpool: "vampire",
+  },
+
+  "xxx-old-police-station": {
+    stack: "haven",
+    name: "Old Police Station",
+    text: md`
+Characters in your Haven have +1 Secrecy.
+
+**Leader Ability**
+
+When your Leader defeats a character, you may use up to 3 [blood] of your color that was on that character to play a Ritual at no cost. (You may add [blood] from other sources as well.)
+    `,
+    illustrator: "Marco Primo",
+    set: "Promo",
+    cardpool: "vampire",
+  },
+
+  "xxx-prague-national-bank": {
+    stack: "haven",
+    name: "Prague National Bank",
+    text: md`
+You start the game with 25 [prestige]. If this card leaves play, lose 3 [prestige].
+    `,
+    illustrator: "Marco Primo",
+    set: "Promo",
+    cardpool: "vampire",
+  },
+
+  "xxx-youth-hostel": {
+    stack: "haven",
+    name: "Youth Hostel",
+    text: md`
+Characters in your Haven have +1 Secrecy.
+
+**Leader Ability**
+
+When a character in your coterie is attacked, they have +1 [shield] for each character in the attacking party with [blood-potency] higher than theirs.
+    `,
+    illustrator: "Mara Miranda-Escota",
+    set: "Promo",
+    cardpool: "vampire",
+  },
 };
