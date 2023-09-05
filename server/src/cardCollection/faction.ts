@@ -3473,4 +3473,72 @@ When you mend a **Wounded** character, you may discard a non-Title, non-Wraith c
     disciplines: { "repel the unnatural": 1, "sense the unnatural": 1, "thwart the unnatural": 1 },
     cardpool: "hunter",
   },
+
+  "xxx-fujiko": {
+    stack: "faction",
+    clan: "hecata",
+    name: "Fujiko",
+    text: md`
+    Your Ongoing cards cannot be targeted by foes.
+    `,
+    bloodPotency: 4,
+    physical: 2,
+    social: 0,
+    mental: 0,
+    illustrator: "Felipe Gaona",
+    set: "Promo",
+    disciplines: { auspex: 1, fortitude: 1 },
+    cardpool: "vampire",
+  },
+  
+  "xxx-the-exterminator": {
+    stack: "faction",
+    clan: "nosferatu",
+    name: "The Exterminator",
+    text: md`
+    Attacker - **Pay 1 [blood]:** Burn 1 Animal or Retainer attached to the target.
+    `,
+    bloodPotency: 5,
+    physical: 1,
+    social: 0,
+    mental: 2,
+    illustrator: "Harvey Bunda",
+    set: "Promo",
+    disciplines: { animalism: 1, potence: 1 },
+    cardpool: "vampire",
+  }, 
+  
+  "xxx-timothy-schwartz": {
+    stack: "faction",
+    clan: "lasombra",
+    name: "Timothy Schwartz",
+    text: md`
+    **Pay 1 [agenda]:** Gain 2 [prestige] or 5 Influence.
+    `,
+    bloodPotency: 3,
+    physical: 1,
+    social: 0,
+    mental: 1,
+    illustrator: "Felipe Gaona",
+    set: "Promo",
+    disciplines: { dominate: 1 },
+    cardpool: "vampire",
+  },
+  
+  "xxx-xander-klaus": {
+    stack: "faction",
+    clan: "gangrel",
+    name: "Xander Klaus",
+    text: md`
+    **Attacker** - This attack deals +2 [damage] to characters with a Title.
+    `,
+    bloodPotency: 4,
+    physical: 1,
+    social: 0,
+    mental: 1,
+    illustrator: "Joyce Maureira",
+    set: "Promo",
+    disciplines: { fortitude: 1, protean:1 },
+    cardpool: "vampire",
+  },  
 };
