@@ -44,7 +44,8 @@ export type CardSet =
   | "Conclave 22"
   | "Dragon & Rogue"
   | "Justice & Mercy"
-  | "Hunters & Hunted";
+  | "Hunters & Hunted"
+  | "Prince Pack 1";
 
 export type Clan =
   | "banu haqim"
