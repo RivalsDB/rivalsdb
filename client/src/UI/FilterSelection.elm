@@ -722,6 +722,7 @@ viewCities flags =
         [ viewFlag (Icon.icon ( Icon.CityCore, Icon.Standard )) (\old -> { old | core = not old.core }) flags.core
         , viewFlag (Icon.icon ( Icon.CityHoE, Icon.Standard )) (\old -> { old | heartOfEurope = not old.heartOfEurope }) flags.heartOfEurope
         , viewFlag (Icon.icon ( Icon.CityConclave, Icon.Standard )) (\old -> { old | conclave22 = not old.conclave22 }) flags.conclave22
+        , viewFlag (Icon.icon ( Icon.CityHaH, Icon.Standard )) (\old -> { old | rio = not old.rio }) flags.rio
         ]
 
 
@@ -739,6 +740,9 @@ cityIsAllowedWide flags card =
 
                     Pack.HeartOfEurope ->
                         flags.heartOfEurope
+
+                    Pack.HuntersAndHunted ->
+                        flags.rio
 
                     _ ->
                         flags.core
