@@ -952,7 +952,7 @@ Chose one: +2 Damage OR steal 1 Prestige from your foe.
     stack: "library",
     name: "Absolution",
     text: md`
-If the target has 1+ Blood of your color, negate all Reactions.
+Negate all Reactions played by characters with 1+ [blood] of your color on them.
     `,
     illustrator: "Timothy Terrenal",
     types: ["attack"],
@@ -3546,7 +3546,7 @@ Put a '-1 [blood potency]' token on the attacker.
     attack:["ranged", "mental", "physical"],
     reactions: ["ranged", "mental", "physical"],
     text: md`
-Each character in this party has +2 [shield] for each Ritual you control.
+Each character in this party has +1 [shield] for each Ritual you control.
     `,
     //disciplines:[],
     illustrator: "Marco Primo",
@@ -3632,7 +3632,7 @@ Target defender in The Streets mends 2 [blood].
     attack:["social", "mental"],
     reactions: ["social", "mental"],
     text: md`
-+1 [shield] for each Ongoing Tradition you control.
++1 [shield] for each different Ongoing Tradition you control.
     `,
     //disciplines:[],
     illustrator: "János Orbán",
@@ -3918,7 +3918,7 @@ Ongoing - **Remove 1 [blood] from this:** Your attacker deals +1 [damage] to the
     //attack:[],
     //reactions: [],
     text: md`
-Ongoing - When you play a Ritual using only [blood] from character you do not control, ready 1 character in your coterie **OR** gain 1 Action.
+Ongoing - The first time each turn you play a Ritual using only [blood] characters you do not control, ready 1 character in your coterie **OR** gain 1 Action.
 `,
     //disciplines:["blood sorcery"],
     illustrator: "Mara Miranda-Escota",
