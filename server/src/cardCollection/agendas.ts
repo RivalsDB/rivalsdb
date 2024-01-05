@@ -286,9 +286,11 @@ If you reach 13 [agenda], you win!
   "war-invisible-army": {
     name: "Invisible Army",
     text: md`
-When a character in your coterie attaches a Vagrant as a Retainer, gain 2 [agenda]. When you defeat a character with an attached Vagrant, gain 1 [agenda].
+When you defeat a Vagrant, gain 1 [agenda].
 
-If you reach 13 [agenda], you win!
+When you attach a Vagrant to a character in your coterie, gain 1 [agenda].
+
+When you defeat a character with an attached Vagrant, gain 1 [agenda].
     `,
     illustrator: "Harvey Bunda",
     set: "Wolf & Rat",
@@ -366,9 +368,7 @@ If you reach 13 [agenda], you win!
     text: md`
 At the start of your turn, if there is 3+ [blood] on Ongoing cards you control, draw 1 card and gain 1 [agenda].
 
-When a Ritual you control leaves play, gain 1 [agenda].
-
-If you reach 13 [agenda], you win!
+During each player's turn, the first time you remove the last [blood] from a Ritual you control, gain 1 [agenda].
     `,
     illustrator: "Marco Primo",
     set: "Justice & Mercy",
