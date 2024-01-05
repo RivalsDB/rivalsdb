@@ -3918,7 +3918,7 @@ Ongoing - **Remove 1 [blood] from this:** Your attacker deals +1 [damage] to the
     //attack:[],
     //reactions: [],
     text: md`
-Ongoing - The first time each turn you play a Ritual using only [blood] characters you do not control, ready 1 character in your coterie **OR** gain 1 Action.
+Ongoing - The first time each turn you play a Ritual using only [blood] from characters you do not control, ready 1 character in your coterie **OR** gain 1 Action.
 `,
     //disciplines:["blood sorcery"],
     illustrator: "Mara Miranda-Escota",
