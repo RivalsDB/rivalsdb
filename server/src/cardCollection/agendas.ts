@@ -286,11 +286,11 @@ If you reach 13 [agenda], you win!
   "war-invisible-army": {
     name: "Invisible Army",
     text: md`
-When you defeat a Vagrant, gain 1[Agenda].
+When you defeat a Vagrant, gain 1 [agenda].
 
-When you attach a Vagrant to a character in your coterie, gain 1[Agenda].
+When you attach a Vagrant to a character in your coterie, gain 1 [agenda].
 
-When you defeat a character with an attached Vagrant, gain 1[Agenda].
+When you defeat a character with an attached Vagrant, gain 1 [agenda].
     `,
     illustrator: "Harvey Bunda",
     set: "Wolf & Rat",
