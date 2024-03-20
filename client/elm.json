@@ -21,7 +21,7 @@
             "elm/url": "1.0.0",
             "elm-community/random-extra": "3.2.0",
             "elm-explorations/markdown": "1.0.0",
-            "ryannhg/elm-spa": "6.0.0",
+            "ryan-haskell/elm-spa": "1.0.0",
             "tripokey/elm-fuzzy": "5.2.1"
         },
         "indirect": {
