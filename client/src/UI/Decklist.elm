@@ -154,7 +154,14 @@ viewAgenda agenda =
         ]
         [ p [ class "decklist__core-heading" ]
             [ text "Agenda: "
-            , text <| Maybe.withDefault "Unknown" <| Maybe.map .name agenda
+            , span [ class "card-name" ]
+                [ span [ class "card-name__name" ] [ text <| Maybe.withDefault "Unknown" <| Maybe.map .name agenda ]
+                , span [ class "card-name__image" ]
+                    [ agenda
+                        |> Maybe.map (Cards.AgendaCard >> UI.Card.eager)
+                        |> Maybe.withDefault (text "")
+                    ]
+                ]
             ]
         , div [ class "decklist__core-image" ]
             [ agenda
@@ -172,7 +179,14 @@ viewLeader leader =
         ]
         [ p [ class "decklist__core-heading" ]
             [ text "Leader: "
-            , text <| Maybe.withDefault "Unknown" <| Maybe.map .name leader
+            , span [ class "card-name" ]
+                [ span [ class "card-name__name" ] [ text <| Maybe.withDefault "Unknown" <| Maybe.map .name leader ]
+                , span [ class "card-name__image" ]
+                    [ leader
+                        |> Maybe.map (Cards.FactionCard >> UI.Card.eager)
+                        |> Maybe.withDefault (text "")
+                    ]
+                ]
             ]
         , div [ class "decklist__core-image" ]
             [ leader
@@ -190,7 +204,14 @@ viewHaven haven =
         ]
         [ p [ class "decklist__core-heading" ]
             [ text "Haven: "
-            , text <| Maybe.withDefault "Unknown" <| Maybe.map .name haven
+            , span [ class "card-name" ]
+                [ span [ class "card-name__name" ] [ text <| Maybe.withDefault "Unknown" <| Maybe.map .name haven ]
+                , span [ class "card-name__image" ]
+                    [ haven
+                        |> Maybe.map (Cards.HavenCard >> UI.Card.eager)
+                        |> Maybe.withDefault (text "")
+                    ]
+                ]
             ]
         , div [ class "decklist__core-image" ]
             [ haven
