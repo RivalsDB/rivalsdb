@@ -424,6 +424,7 @@ When your Leader defeats a City Deck Mortal, you may move a Retainer from a char
     set: "Dragon & Rogue",
     cardpool: "vampire",
   },
+
   "jam-the-hermitage": {
     stack: "haven",
     name: "The Hermitage",

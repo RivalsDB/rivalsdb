@@ -2463,6 +2463,7 @@ When this character Blocks an attack and is not defeated, you may attach 1 unatt
     disciplines: { animalism: 1 },
     cardpool: "vampire",
   },
+
   "jam-javier": {
     stack: "faction",
     name: "Javier",
