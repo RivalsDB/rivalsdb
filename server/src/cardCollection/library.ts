@@ -16,6 +16,10 @@ export type Library = {
   types: LibraryCardType[];
   clan?: Clan;
   bloodPotencyRequirement?: number;
+  bloodPotency?: number;
+  physical?: number;
+  social?: number;
+  mental?: number;
   damage?: number;
   shield?: number;
   attack?: AttackType | AttackType[];
@@ -29,20 +33,6 @@ export type Library = {
 
 export const library: Record<CardId, Library> = {
 // Core //
-
-"core-38-special": {
-  stack: "library",
-  name: ".38 Special",
-  text: md`
-  `,
-  illustrator: "The Creation Studio",
-  types: ["attack", "reaction"],
-  set: "Core",
-  bloodPotencyRequirement: 1,
-  attack: "ranged",
-  damage: 2,
-  cardpool: "vampire",
-},
 
 "core-a-biting-comment": {
   stack: "library",
@@ -4044,27 +4034,6 @@ export const library: Record<CardId, Library> = {
   cardpool: "vampire",
 },
 
-"jam-kevlar-vest": {
-  stack: "library",
-  name: "Kevlar Vest",
-  types: ["action"],
-  //clan: "salubri",
-  //bloodPotencyRequirement: ,
-  //damage: ,
-  //shield:,
-  //attack:[],
-  //reactions: [],
-  text: md`
-    Attach to the acting character (max 1).
-    This character has +1 [shield] vs **Aggravated** [damage].
-    **Detach:** Prevent 1 [damage] to this character.
-  `,
-  //disciplines:["blood sorcery"],
-  illustrator: "Irene Francisco",
-  set: "Justice & Mercy",
-  cardpool: "vampire",
-},
-
 "jam-search-for-golconda": {
   stack: "library",
   name: "Search for Golconda",
@@ -5408,6 +5377,643 @@ export const library: Record<CardId, Library> = {
   cardpool: "hunter",
 },
 
+// Martial Law
+
+"ml-anything-for-my-master": {
+  stack: "library",
+  name: "Anything for My Master",
+  types: ["action"],
+  //clan: "inquisitive",
+  //bloodPotencyRequirement: 2,
+  //damage: 1,
+  //shield: 1,
+  //attack: ["mental"],
+  //reactions: ["social", "mental"],
+  text: md`
+    **Burn a Ghoul you control:**
+    Defeat target **Wounded** character.
+`,
+  //disciplines:["repel the unnatural"],
+  illustrator: "Adelijah Ocampo",
+  set: "Martial Law",
+  cardpool: "vampire",
+},
+
+"ml-armored-suv": {
+  stack: "library",
+  name: "Armored SUV",
+  types: ["vehicle", "action"],
+  clan: "martial",
+  //bloodPotencyRequirement: 2,
+  //damage: 1,
+  //shield: 1,
+  //attack: ["mental"],
+  //reactions: ["social", "mental"],
+  text: md`
+    Attach this card to your Hideout.
+    **Relentless - Exhaust, Pay 1 [prestige]:** Attach this card to target character in your cell. At the start of your next turn, attach it to your Hideout.
+    This character has Guard and +1 [shield].
+    [fleet] This character has +1 [shield] while Blocking.
+`,
+  disciplines:["fleet"],
+  illustrator: "Mara Miranda",
+  set: "Martial Law",
+  cardpool: "hunter",
+},
+
+"ml-awaken-the-homuncular-servant": {
+  stack: "library",
+  name: "Awaken the Homuncular Servant",
+  types: ["ritual", "2 actions", "ongoing"],
+  //clan: "inquisitive",
+  //bloodPotencyRequirement: 2,
+  //damage: 1,
+  //shield: 1,
+  //attack: ["mental"],
+  //reactions: ["social", "mental"],
+  text: md`
+  [oblivion] For each burned Mortal, you may put 1 [blood] from your general supply on this card.
+  Ongoing - **Remove 2 [blood] from this:**
+  Put 1 Library card from your discard pile face down into your Haven. Put the spent [blood] on that card, which is now a Ghoul.
+`,
+  disciplines:["oblivion"],
+  illustrator: "Felipe Gaona",
+  set: "Martial Law",
+  cardpool: "vampire",
+},
+
+"ml-blinded": {
+  stack: "library",
+  name: "Blinded",
+  types: ["reaction"],
+  //clan: "inquisitive",
+  bloodPotencyRequirement: 2,
+  //damage: 1,
+  shield: 1,
+  //attack: ["mental"],
+  reactions: ["social", "mental"],
+  text: md`
+    If this character is **Wounded, +1[shield].
+    After this attack, attach this card face down to the attacker.
+`,
+  //disciplines:["repel the unnatural"],
+  illustrator: "Adelijah Ocampo",
+  set: "Martial Law",
+  cardpool: "hunter and vampire",
+},
+
+"ml-chimerstry": {
+  stack: "library",
+  name: "Chimerstry",
+  types: ["reaction"],
+  clan: "ravnos",
+  bloodPotencyRequirement: 4,
+  //damage: 1,
+  //shield: 1,
+  //attack: ["mental"],
+  reactions: ["social", "physical"],
+  text: md`
+    **Pay 2 [prestige], [presence] **Pay 1 [prestige] instead.
+    Play this card face up.
+    [obfuscate] Choose any non-Monster character in The Streets other than the attacker. Redirect this attack to that character. The attack may be Blocked, and the defender may play a Reaction.
+`,
+  disciplines:["presence", "obfuscate"],
+  illustrator: "Irene Francisco",
+  set: "Martial Law",
+  cardpool: "vampire",
+},
+
+"ml-claymore": {
+  stack: "library",
+  name: "Claymore",
+  types: ["trap", "action"],
+  clan: "martial",
+  //bloodPotencyRequirement: 2,
+  //damage: 1,
+  //shield: 1,
+  //attack: ["mental"],
+  //reactions: ["social", "mental"],
+  text: md`
+    **Place this card face down and put 1 [prestige] on it.**
+    Resolve during any Action Phase.
+    Deal 1 [damage] to target attacker for each [prestige] on this.
+    [ordnance] +1 [physical] [damage].
+`,
+  disciplines:["ordnance"],
+  illustrator: "Mico Dimagiba",
+  set: "Martial Law",
+  cardpool: "hunter",
+},
+
+"ml-cover-fire": {
+  stack: "library",
+  name: "Cover Fire",
+  types: ["action", "ongoing"],
+  clan: "martial",
+  //bloodPotencyRequirement: 2,
+  //damage: 1,
+  //shield: 1,
+  //attack: ["mental"],
+  //reactions: ["social", "mental"],
+  text: md`
+  [arsenal] Gain 1 Unhosted Action.
+  Ongoing - **Pay 1 [prestige]:** Prevent 1 [damage] to each character in target party.
+`,
+  disciplines:["arsenal"],
+  illustrator: "Adelijah Ocampo",
+  set: "Martial Law",
+  cardpool: "hunter",
+},
+
+"ml-crusin-for-a-bruisin": {
+  stack: "library",
+  name: "Cruisin For a Bruisin",
+  types: ["attack", "reaction"],
+  clan: "martial",
+  bloodPotencyRequirement: 2,
+  damage: 2,
+  //shield: 1,
+  attack: ["social"],
+  reactions: ["social"],
+  text: md`
+    Reaction - +1 [shield].
+    Reaction - [fleet] This deals [physical][damage] to the attacker instead of [social].
+`,
+  disciplines:["fleet"],
+  illustrator: "Felipe Gaona",
+  set: "Martial Law",
+  cardpool: "hunter",
+},
+
+"ml-death-from-above": {
+  stack: "library",
+  name: "Death From Above",
+  types: ["attack", "reaction"],
+  //clan: "martial",
+  bloodPotencyRequirement: 2,
+  damage: 1,
+  //shield: 1,
+  attack: ["physical"],
+  reactions: ["physical"],
+  text: md`
+    **Pay 1 [prestige]:** +1 [damage].
+    Reacttion - [drone jockey] +1 [damage].
+`,
+  disciplines:["drone jockey"],
+  illustrator: "Adelijah Ocampo",
+  set: "Martial Law",
+  cardpool: "hunter",
+},
+
+"ml-drive-envy": {
+  stack: "library",
+  name: "Drive: Envy",
+  types: ["unhosted action"],
+  clan: "martial",
+  //bloodPotencyRequirement: 2,
+  //damage: 1,
+  //shield: 1,
+  //attack: ["mental"],
+  //reactions: ["social", "mental"],
+  text: md`
+    Attach to a character in your cell (max 1).
+    At the end of your turn, this character steals 1 [blood] from target Monster you have tagged. If this character is at maximum [blood], flip the stolen token and place it on a face-down card you control instead.
+`,
+  //disciplines:["ordnance"],
+  illustrator: "Patsy Lascano",
+  set: "Martial Law",
+  cardpool: "hunter",
+},
+
+"ml-drive-pride": {
+  stack: "library",
+  name: "Drive:Pride",
+  types: ["unhosted action"],
+  clan: "martial",
+  //bloodPotencyRequirement: 2,
+  //damage: 1,
+  //shield: 1,
+  //attack: ["mental"],
+  //reactions: ["social", "mental"],
+  text: md`
+    Attach to a character in your cell (max 1).
+    **Relentless, Pay 1 [prestige]:** Gain 1 [agenda].
+    Use only if this character Blocked an attack this turn.
+`,
+  //disciplines:["ordnance"],
+  illustrator: "Felipe Gaona",
+  set: "Martial Law",
+  cardpool: "hunter",
+},
+
+"ml-eye-in-the-sky": {
+  stack: "library",
+  name: "Eye in the Sky",
+  types: ["action", "ongoing"],
+  //clan: "martial",
+  //bloodPotencyRequirement: 2,
+  //damage: 1,
+  //shield: 1,
+  //attack: ["mental"],
+  //reactions: ["social", "mental"],
+  text: md`
+    Ongoing - **Burn this card:** Burn target Ongoing card that has no tokens on it.
+    **Relentless, Exhaust:** Target Blocker with [drone jockey] you control deals +1 [damage] to an attacker. Use only if they played a Reaction.
+`,
+  disciplines:["drone jockey"],
+  illustrator: "Mico Dimagiba",
+  set: "Martial Law",
+  cardpool: "hunter",
+},
+
+"ml-feint": {
+  stack: "library",
+  name: "Feint",
+  types: ["attack"],
+  //clan: "martial",
+  bloodPotencyRequirement: 4,
+  damage: 1,
+  //shield: 1,
+  attack: ["physical"],
+  //reactions: ["social", "mental"],
+  text: md`
+    If this attack does not defeat the target and you control only 1 vampire, ready the attacker.
+    **Solitary - Pay 1 [prestige]:** Gain 1 Action if played during your turn.
+`,
+  disciplines:["ordnance"],
+  illustrator: "Adelijah Ocampo",
+  set: "Martial Law",
+  cardpool: "vampire",
+},
+
+"ml-flamethrower": {
+  stack: "library",
+  name: "Flamethrower",
+  types: ["attack"],
+  clan: "martial",
+  bloodPotencyRequirement: 4,
+  damage: 2,
+  //shield: 1,
+  attack: ["ranged"],
+  //reactions: ["social", "mental"],
+  text: md`
+    **Play this card face up and pay 2 [prestige].
+    [arsenal] Pay 1[prestige] instead if the target is a Monster.
+    **Aggravated**
+`,
+  disciplines:["arsenal"],
+  illustrator: "Patsy Lascano",
+  set: "Martial Law",
+  cardpool: "hunter",
+},
+
+"ml-ghoul-boy": {
+  stack: "library",
+  name: "Ghoul Boy",
+  types: ["action", "ghoul"],
+  //clan: "martial",
+  //bloodPotencyRequirement: 2,
+  bloodPotency: 0,
+  physical: 1,
+  social: 0,
+  mental: 0,
+  //damage: 1,
+  //shield: 1,
+  //attack: ["mental"],
+  //reactions: ["social", "mental"],
+  text: md`
+    **Put 1[blood] from the acting character on this.**
+    **Exhaust:** Target attacker has +1 Intel. 
+`,
+  //disciplines:["ordnance"],
+  illustrator: "Felipe Gaona",
+  set: "Martial Law",
+  cardpool: "vampire",
+},
+
+"ml-librarian-ghoul": {
+  stack: "library",
+  name: "Librarian Ghoul",
+  types: ["action", "ghoul"],
+  //clan: "martial",
+  //bloodPotencyRequirement: 2,
+  bloodPotency: 0,
+  physical: 0,
+  social: 0,
+  mental: 1,
+  //damage: 1,
+  //shield: 1,
+  //attack: ["mental"],
+  //reactions: ["social", "mental"],
+  text: md`
+    **Put 2[blood] from the acting character on this.**
+    **Exhaust:** Draw 1 card. Then, if you have 5+ cards in hand, discard 1 card. 
+`,
+  //disciplines:["ordnance"],
+  illustrator: "Felipe Gaona",
+  set: "Martial Law",
+  cardpool: "vampire",
+},
+
+"ml-peace-among-rivals": {
+  stack: "library",
+  name: "Peace Among Rivals",
+  types: ["action", "ongoing"],
+  clan: "salubri",
+  //bloodPotencyRequirement: 2,
+  //bloodPotency: 0,
+  //physical: 1,
+  //social: 0,
+  //mental: 0,
+  //damage: 1,
+  //shield: 1,
+  //attack: ["mental"],
+  //reactions: ["social", "mental"],
+  text: md`
+    **Exhaust:** Gain 1 [agenda]. Use only if you control 4+ Ongoing cards with different clan affiliations.
+`,
+  //disciplines:["ordnance"],
+  illustrator: "Mico Dimagiba",
+  set: "Martial Law",
+  cardpool: "vampire",
+},
+
+"ml-political-will": {
+  stack: "library",
+  name: "Political Will",
+  types: ["action", "ongoing", "scheme"],
+  clan: "ministry",
+  //bloodPotencyRequirement: 2,
+  //bloodPotency: 0,
+  //physical: 1,
+  //social: 0,
+  //mental: 0,
+  //damage: 1,
+  //shield: 1,
+  //attack: ["mental"],
+  //reactions: ["social", "mental"],
+  text: md`
+    Influence Conflict - Should I put this card into play?
+    Ongoing - **Exert 2 Influence:** Target character you control has +1 [shield] this turn.
+`,
+  //disciplines:["ordnance"],
+  illustrator: "Adelijah Ocampo",
+  set: "Martial Law",
+  cardpool: "vampire",
+},
+
+"ml-sacrifice": {
+  stack: "library",
+  name: "Sacrifice",
+  types: ["action"],
+  clan: "banu haqim",
+  //bloodPotencyRequirement: 2,
+  //bloodPotency: 0,
+  //physical: 1,
+  //social: 0,
+  //mental: 0,
+  //damage: 1,
+  //shield: 1,
+  //attack: ["mental"],
+  //reactions: ["social", "mental"],
+  text: md`
+    Remove all [blood] from a character you control and add it to cards you control with 1+ [blood] already on them.
+`,
+  //disciplines:["ordnance"],
+  illustrator: "Mico Dimagiba",
+  set: "Martial Law",
+  cardpool: "vampire",
+},
+
+"ml-shine-a-light": {
+  stack: "library",
+  name: "Shine a Light",
+  types: ["action", "scheme"],
+  //clan: "salubri",
+  //bloodPotencyRequirement: 2,
+  //bloodPotency: 0,
+  //physical: 1,
+  //social: 0,
+  //mental: 0,
+  //damage: 1,
+  //shield: 1,
+  //attack: ["mental"],
+  //reactions: ["social", "mental"],
+  text: md`
+    Influence Conflict - Should I remove up to 2 tokens from target Ongoing or unattached face-down card a player controls for every 5 Influence in favor of this Scheme, then burn it if there are no tokens on it?
+`,
+  //disciplines:["ordnance"],
+  illustrator: "Felipe Gaona",
+  set: "Martial Law",
+  cardpool: "vampire",
+},
+
+"ml-silver-bullets": {
+  stack: "library",
+  name: "Silver Bullets",
+  types: ["action", "ongoing"],
+  clan: "martial",
+  //bloodPotencyRequirement: 2,
+  //bloodPotency: 0,
+  //physical: 1,
+  //social: 0,
+  //mental: 0,
+  //damage: 1,
+  //shield: 1,
+  //attack: ["mental"],
+  //reactions: ["social", "mental"],
+  text: md`
+  [ordnance] Gain 1 Unhosted Action.
+  Ongoing - **Relentless, Pay 1 [prestige]:** Target character you control deals +1 **Silver** [damage] with a [ranged] card to the opposing character. Use only if you have not activated a Silver Bullets this attack.
+`,
+  disciplines:["ordnance"],
+  illustrator: "Irene Francisco",
+  set: "Martial Law",
+  cardpool: "hunter",
+},
+
+"ml-smoke-bomb": {
+  stack: "library",
+  name: "Smoke Bombs",
+  types: ["reaction", "special"],
+  //clan: "salubri",
+  bloodPotencyRequirement: 2,
+  //bloodPotency: 0,
+  //physical: 1,
+  //social: 0,
+  //mental: 0,
+  //damage: 1,
+  //shield: 1,
+  //attack: ["mental"],
+  //reactions: [],
+  text: md`
+    Play only if a character in your cell would be defeated.
+    **Pay 2[prestige]:** Place 1 [blood] from your general supply on this character, and they are not defeated. If you have already played a Reaction this turn, pay 0 [prestige] instead.
+`,
+  //disciplines:["ordnance"],
+  illustrator: "Irene Francisco",
+  set: "Martial Law",
+  cardpool: "hunter",
+},
+
+"ml-sniper-rifle": {
+  stack: "library",
+  name: "Sniper Rifle",
+  types: ["attack"],
+  //clan: "salubri",
+  bloodPotencyRequirement: 3,
+  //bloodPotency: 0,
+  //physical: 1,
+  //social: 0,
+  //mental: 0,
+  damage: 3,
+  //shield: 1,
+  attack: ["ranged"],
+  //reactions: ["social", "mental"],
+  text: md`
+    Play this card face up.
+    **Pay 1[prestige]:** This attack cannot be Blocked.
+    [arsenal] The target does not get Preemptive Strike. 
+`,
+  disciplines:["arsenal"],
+  illustrator: "Mico Dimagiba",
+  set: "Martial Law",
+  cardpool: "hunter",
+},
+
+"ml-spying": {
+  stack: "library",
+  name: "Spying",
+  types: ["attack", "reaction"],
+  //clan: "salubri",
+  bloodPotencyRequirement: 2,
+  //bloodPotency: 0,
+  //physical: 1,
+  //social: 0,
+  //mental: 0,
+  damage: 2,
+  //shield: 1,
+  attack: ["mental"],
+  reactions: ["mental"],
+  text: md`
+    Reaction - +1 [shield].
+    Reaction - [drone jockey] This deals [social][damage] to the attacker instead of [mental].
+`,
+  disciplines:["drone jockey"],
+  illustrator: "Felipe Gaona",
+  set: "Martial Law",
+  cardpool: "hunter",
+},
+
+"ml-stand-and-deliver": {
+  stack: "library",
+  name: "Stand and Deliver",
+  types: ["2 actions", "ritual", "ongoing"],
+  //clan: "salubri",
+  //bloodPotencyRequirement: 2,
+  //bloodPotency: 0,
+  //physical: 1,
+  //social: 0,
+  //mental: 0,
+  //damage: 1,
+  //shield: 1,
+  //attack: ["mental"],
+  //reactions: ["social", "mental"],
+  text: md`
+  [blood potency] **Place 1 to 3 [blood] of your color on this card.
+  Ongoing - **Exhaust, Remove 2 [blood] from this:** Ready target character.
+  **Relentless, Exhaust = Remove 2 [blood] from this during a foe's turn:** Ready up to 2 target characters.
+`,
+  disciplines:["blood sorcery"],
+  illustrator: "Felipe Gaona",
+  set: "Martial Law",
+  cardpool: "vampire",
+},
+
+"ml-trash-to-treasure": {
+  stack: "library",
+  name: "Trash to Treasure",
+  types: ["action"],
+  clan: "caitiff",
+  //bloodPotencyRequirement: 2,
+  //bloodPotency: 0,
+  //physical: 1,
+  //social: 0,
+  //mental: 0,
+  //damage: 1,
+  //shield: 1,
+  //attack: ["mental"],
+  //reactions: ["social", "mental"],
+  text: md`
+    Target a character, then reveal the top 3 cards of your Library.
+    Deal 1 [physical][damage] to the target for each different Discipline icon that appears on those cards.
+    Then discard those cards.
+`,
+  //disciplines:["ordnance"],
+  illustrator: "Mico Dimagiba",
+  set: "Martial Law",
+  cardpool: "vampire",
+},
+
+"ml-turnabout": {
+  stack: "library",
+  name: "Turnabout",
+  types: ["reaction"],
+  //clan: "salubri",
+  bloodPotencyRequirement: 1,
+  //bloodPotency: 0,
+  //physical: 1,
+  //social: 0,
+  //mental: 0,
+  //damage: 1,
+  shield: 2,
+  //attack: ["mental"],
+  reactions: ["social", "mental"],
+  text: md`
+    Deal 1 [physical][damage] to the attacker.
+    [ordnance] 2 [physical][damage] instead.
+`,
+  disciplines:["ordnance"],
+  illustrator: "Felipe Gaona",
+  set: "Martial Law",
+  cardpool: "hunter",
+},
+
+"ml-38-special": {
+  stack: "library",
+  name: ".38 Special",
+  text: md`
+  `,
+  illustrator: "The Creation Studio",
+  types: ["attack", "reaction"],
+  set: "Martial Law",
+  bloodPotencyRequirement: 1,
+  attack: "ranged",
+  damage: 2,
+  cardpool: "hunter and vampire",
+},
+
+"ml-kevlar-vest": {
+  stack: "library",
+  name: "Kevlar Vest",
+  types: ["action"],
+  //clan: "salubri",
+  //bloodPotencyRequirement: ,
+  //damage:,
+  //shield:,
+  //attack:[],
+  //reactions: [],
+  text: md`
+    Attach to the acting character (max 1).
+    This character has +1 [shield] vs **Aggravated** [damage].
+    **Detach:** Prevent 1 [damage] to this character.
+  `,
+  //disciplines:["blood sorcery"],
+  illustrator: "Irene Francisco",
+  set: "Justice & Mercy",
+  cardpool: "hunter and vampire",
+},
+
 // Promo //
 
-};
+}

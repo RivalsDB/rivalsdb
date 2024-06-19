@@ -252,6 +252,7 @@ type alias SecondaryTraits =
     , trap : Bool
     , ghoul : Bool
     , relic : Bool
+    , vehicle : Bool
     }
 
 
@@ -268,6 +269,7 @@ cleanSecondaryTraits =
     , trap = False
     , ghoul = False
     , relic = False
+    , vehicle = False
     }
 
 
@@ -285,6 +287,7 @@ viewSecondaryTraits flags =
         , viewFlag (Icon.icon ( Icon.Trap, Icon.Standard )) (\old -> { old | trap = not old.trap }) flags.trap
         , viewFlag (Icon.icon ( Icon.Ghoul, Icon.Standard )) (\old -> { old | ghoul = not old.ghoul }) flags.ghoul
         , viewFlag (Icon.icon ( Icon.Relic, Icon.Standard )) (\old -> { old | relic = not old.relic }) flags.relic
+        , viewFlag (Icon.icon ( Icon.Vehicle, Icon.Standard )) (\old -> { old | vehicle = not old.vehicle }) flags.vehicle
         ]
 
 
@@ -307,6 +310,7 @@ secondaryTraitsIsAllowedWide flags card =
                     || (traits.trap && flags.trap)
                     || (traits.ghoul && flags.ghoul)
                     || (traits.relic && flags.relic)
+                    || (traits.vehicle && flags.vehicle)
 
             _ ->
                 False
@@ -331,6 +335,7 @@ secondaryTraitsIsAllowedStrict flags card =
                     && (traits.trap == flags.trap)
                     && (traits.ghoul == flags.ghoul)
                     && (traits.relic == flags.relic)
+                    && (traits.vehicle == flags.vehicle)
 
             _ ->
                 False
@@ -423,6 +428,7 @@ type alias Clans =
     , inquisitive : Bool
     , lasombra : Bool
     , malkavian : Bool
+    , martial : Bool
     , ministry : Bool
     , nosferatu : Bool
     , ravnos : Bool
@@ -446,6 +452,7 @@ cleanClans =
     , inquisitive = False
     , lasombra = False
     , malkavian = False
+    , martial = False
     , ministry = False
     , nosferatu = False
     , ravnos = False
@@ -484,6 +491,7 @@ viewCells flags =
     div [ class "filterpicker" ]
         [ viewFlag (IconV2.clan IconV2.Standard Cl.Faithful) (\old -> { old | faithful = not old.faithful }) flags.faithful
         , viewFlag (IconV2.clan IconV2.Standard Cl.Inquisitive) (\old -> { old | inquisitive = not old.inquisitive }) flags.inquisitive
+        , viewFlag (IconV2.clan IconV2.Standard Cl.Martial) (\old -> { old | martial = not old.martial }) flags.martial
         ]
 
 
@@ -500,6 +508,7 @@ clanIsAllowed flags card =
                 || (clan == Cl.Inquisitive && flags.inquisitive)
                 || (clan == Cl.Lasombra && flags.lasombra)
                 || (clan == Cl.Malkavian && flags.malkavian)
+                || (clan == Cl.Martial && flags.martial)
                 || (clan == Cl.Ministry && flags.ministry)
                 || (clan == Cl.Nosferatu && flags.nosferatu)
                 || (clan == Cl.Ravnos && flags.ravnos)

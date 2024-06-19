@@ -3618,6 +3618,489 @@ export const factions: Record<CardId, Faction> = {
   cardpool: "vampire",
 },
 
+// Martial Law //
+
+"ml-antonia": {
+  stack: "faction",
+  clan: "caitiff",
+  name: "Antonia",
+  text: md`
+    When this character is defeated, draw 2 cards and then discard 2 cards.
+  `,
+  bloodPotency: 2,
+  physical: 1,
+  social: 0,
+  mental: 0,
+  illustrator: "Joyce Maureira",
+  set: "Martial Law",
+  disciplines: { "blood sorcery": 1, protean: 1 },
+  cardpool: "vampire",
+},
+
+"ml-clara": {
+  stack: "faction",
+  clan: "ministry",
+  name: "Clara",
+  text: md`
+    When this character plays a Scheme, they have +3 Influence. 
+  `,
+  bloodPotency: 3,
+  physical: 0,
+  social: 2,
+  mental: 0,
+  illustrator: "Felipe Gaona",
+  set: "Martial Law",
+  disciplines: { presence: 1 },
+  cardpool: "vampire",
+},
+
+"ml-clarence": {
+  stack: "faction",
+  clan: "martial",
+  name: "Clarence",
+  text: md`
+    *Hunter*
+    When this character is recruited put 1 Reaction card from your discard pile into your hand.
+  `,
+  bloodPotency: 2,
+  physical: 0,
+  social: 1,
+  mental: 0,
+  illustrator: "Mico Dimagiba",
+  set: "Martial Law",
+  disciplines: { "drone jockey": 1, fleet: 1 },
+  cardpool: "hunter",
+},
+
+"ml-davi": {
+  stack: "faction",
+  clan: "ravnos",
+  name: "Davi",
+  text: md`
+    Party - Characters in this party have +1 [shield] during your Action Phase for each Animal attached to this character.
+  `,
+  bloodPotency: 3,
+  physical: 0,
+  social: 0,
+  mental: 2,
+  illustrator: "Patsy Lascano",
+  set: "Martial Law",
+  disciplines: { "animalism": 1 },
+  cardpool: "vampire",
+},
+
+"ml-dulce": {
+  stack: "faction",
+  clan: "martial",
+  name: "Dulce",
+  text: md`
+    *Hunter* 
+    *Relentless, Pay 1 [prestige]*: Ready target character.
+  `,
+  bloodPotency: 3,
+  physical: 2,
+  social: 0,
+  mental: 0,
+  illustrator: "Irene Francisco",
+  set: "Martial Law",
+  disciplines: { arsenal: 1, "drone jockey": 1, fleet: 1 },
+  cardpool: "hunter",
+},
+
+"ml-elias": {
+  stack: "faction",
+  clan: "banu haqim",
+  name: "Elias",
+  text: md`
+    *Solitary*
+    If this is the only vampier you control, when you play a [blood sorcery] Ritual, gain 1 Action and use up to 2 [blood] from your general supply to pay the [blood] cost.
+  `,
+  bloodPotency: 5,
+  physical: 1,
+  social: 1,
+  mental: 1,
+  illustrator: "Mico Dimagiba",
+  set: "Martial Law",
+  disciplines: { "animalism": 1 },
+  cardpool: "vampire",
+},
+
+"ml-estranho": {
+  stack: "faction",
+  clan: "caitiff",
+  name: "Estranho",
+  text: md`
+    *Solitary*, *Reach*
+    If this is the only vampire you control, this character also has [animalism], [fortitude], and [protean].
+  `,
+  bloodPotency: 5,
+  physical: 1,
+  social: 2,
+  mental: 0,
+  illustrator: "Felipe Gaona",
+  set: "Martial Law",
+  disciplines: { "blood sorcery": 1, dominate: 1, oblivion: 1 },
+  cardpool: "vampire",
+},
+
+"ml-evelyn": {
+  stack: "faction",
+  clan: "martial",
+  name: "Evelyn",
+  text: md`
+    *Hunter*
+    *Relentless, Pay 1 [prestige]:*
+    Target character has +1 [shield] this turn and their controller may move them to The Streets.
+  `,
+  bloodPotency: 2,
+  physical: 0,
+  social: 0,
+  mental: 1,
+  illustrator: "Felipe Gaona",
+  set: "Martial Law",
+  disciplines: { fleet: 1, ordnance: 1 },
+  cardpool: "hunter",
+},
+
+"ml-faren": {
+  stack: "faction",
+  clan: "ministry",
+  name: "Evelyn",
+  text: md`
+    While this character has a Title, they have +1 [shield].
+  `,
+  bloodPotency: 4,
+  physical: 1,
+  social: 1,
+  mental: 0,
+  illustrator: "Felipe Gaona",
+  set: "Martial Law",
+  disciplines: { obfuscate: 1, presence: 1 },
+  cardpool: "vampire",
+},
+
+"ml-fabiana": {
+  stack: "faction",
+  clan: "martial",
+  name: "Fabiana",
+  text: md`
+    *Hunter*
+    Party - Reactions played by characters in this party have +1 [shield].
+  `,
+  bloodPotency: 3,
+  physical: 0,
+  social: 1,
+  mental: 1,
+  illustrator: "Felipe Gaona",
+  set: "Martial Law",
+  disciplines: { arsenal: 1, fleet: 1, ordnance: 1 },
+  cardpool: "hunter",
+},
+
+"ml-hakeem": {
+  stack: "faction",
+  clan: "banu haqim",
+  name: "Hakeem",
+  text: md`
+    *Diablerist*
+    Attacher - If this attack would attach a card to a defender, you may attach it to any character in the defending party instead.
+  `,
+  bloodPotency: 3,
+  physical: 2,
+  social: 0,
+  mental: 0,
+  illustrator: "Adelijah Ocampo",
+  set: "Martial Law",
+  disciplines: { celerity: 1 },
+  cardpool: "vampire",
+},
+
+"ml-hikari": {
+  stack: "faction",
+  clan: "salubri",
+  name: "Hikari",
+  text: md`
+    *Solitary*
+    When this character plays a Reaction, you may mend up to 2 [blood] on target character (including in torpor).
+  `,
+  bloodPotency: 5,
+  physical: 1,
+  social: 1,
+  mental: 1,
+  illustrator: "Joyce Maureira",
+  set: "Martial Law",
+  disciplines: { auspex: 1, fortitude: 1 },
+  cardpool: "vampire",
+},
+
+"ml-jenni": {
+  stack: "faction",
+  clan: "ravnos",
+  name: "Jenni",
+  text: md`
+    Characters in your coteria have +1 [shield] for each Haven attached to them.
+  `,
+  bloodPotency: 2,
+  physical: 0,
+  social: 1,
+  mental: 0,
+  illustrator: "Joyce Maureira",
+  set: "Martial Law",
+  disciplines: { presence: 1 },
+  cardpool: "vampire",
+},
+
+"ml-jordana": {
+  stack: "faction",
+  clan: "martial",
+  name: "Jordana",
+  text: md`
+    *Hunter*
+    This character's [ranged] cards deal +1 [damage] to the opposing character.
+  `,
+  bloodPotency: 4,
+  physical: 0,
+  social: 0,
+  mental: 2,
+  illustrator: "Adelijah Ocampo",
+  set: "Martial Law",
+  disciplines: { arsenal: 1, "drone jockey": 1, fleet: 1, ordnance: 1 },
+  cardpool: "hunter",
+},
+
+"ml-magnum": {
+  stack: "faction",
+  clan: "martial",
+  name: "Magnum",
+  text: md`
+    *Hunter*
+    Party - Attackers in this party have +1 Stealth.
+  `,
+  bloodPotency: 2,
+  physical: 1,
+  social: 0,
+  mental: 0,
+  illustrator: "Felipe Gaona",
+  set: "Martial Law",
+  disciplines: { arsenal: 1, ordnance: 1 },
+  cardpool: "hunter",
+},
+
+"ml-marcia": {
+  stack: "faction",
+  clan: "banu haqim",
+  name: "Marcia",
+  text: md`
+    While not defending, this character has +1 [shield] for each different Ongoing Tradition you control.
+  `,
+  bloodPotency: 4,
+  physical: 0,
+  social: 1,
+  mental: 1,
+  illustrator: "Irene Francisco",
+  set: "Martial Law",
+  disciplines: { "blood sorcery": 1, obfuscate: 1 },
+  cardpool: "vampire",
+},
+
+"ml-marcos": {
+  stack: "faction",
+  clan: "martial",
+  name: "Marcos",
+  text: md`
+    *Hunter*
+    This character may play any Reaction against any attack type, regardless of any restrictions other than [blood potency].
+  `,
+  bloodPotency: 4,
+  physical: 1,
+  social: 1,
+  mental: 0,
+  illustrator: "Mico Dimagiba",
+  set: "Martial Law",
+  disciplines: { arsenal: 1, "drone jockey": 1, fleet: 1, ordnance: 1 },
+  cardpool: "hunter",
+},
+
+"ml-ming-yue": {
+  stack: "faction",
+  clan: "ministry",
+  name: "Evelyn",
+  text: md`
+    While this character has a Title, they have +1 [shield].
+  `,
+  bloodPotency: 4,
+  physical: 1,
+  social: 1,
+  mental: 0,
+  illustrator: "Irene Francisco",
+  set: "Martial Law",
+  disciplines: { obfuscate: 1, presence: 1 },
+  cardpool: "vampire",
+},
+
+"ml-mr-medinger": {
+  stack: "faction",
+  clan: "tzimisce",
+  name: "Mr. Medinger",
+  text: md`
+    When this character is recruited, put 1 Library card from your discard pile face down into your Haven.
+    Put 2 [blood] from your general supply on that card, which is now a Ghoul.
+  `,
+  bloodPotency: 4,
+  physical: 1,
+  social: 0,
+  mental: 1,
+  illustrator: "Joyce Maureira",
+  set: "Martial Law",
+  disciplines: { animalism: 1, protean: 1 },
+  cardpool: "vampire",
+},
+
+"ml-petty": {
+  stack: "faction",
+  clan: "tzimisce",
+  name: "Mr. Petty",
+  text: md`
+    *Solitary*, *Possessive*
+    If this is the only vampire you control, this character has +1 [shield] for each Ghoul you control.
+  `,
+  bloodPotency: 6,
+  physical: 1,
+  social: 1,
+  mental: 1,
+  illustrator: "Joyce Maureira",
+  set: "Martial Law",
+  disciplines: { animalism: 1, dominate: 1, protean: 1 },
+  cardpool: "vampire",
+},
+
+"ml-rana": {
+  stack: "faction",
+  clan: "ministry",
+  name: "Rana",
+  text: md`
+    *Solitary*
+    This character has +2 Influence.
+    If this is the only vampire you control, you may attach multiple Titles to them, and the Prince of the City Title doesn't remove other Titles from them. 
+  `,
+  bloodPotency: 7,
+  physical: 2,
+  social: 1,
+  mental: 1,
+  illustrator: "Irene Francisco",
+  set: "Martial Law",
+  disciplines: { potence: 1, presence: 1, protean: 1 },
+  cardpool: "vampire",
+},
+
+"ml-salvador": {
+  stack: "faction",
+  clan: "martial",
+  name: "Salvador",
+  text: md`
+    *Guard*
+    Once during each player's turn, you may spend [prestige] of your color on characters to activate an ability, even if it doesn't interact with those characters.
+  `,
+  bloodPotency: 4,
+  physical: 0,
+  social: 2,
+  mental: 0,
+  illustrator: "Mara Miranda",
+  set: "Martial Law",
+  disciplines: { arsenal: 1, "drone jockey": 1, fleet: 1, ordnance: 1 },
+  cardpool: "hunter",
+},
+
+"ml-sozinho": {
+  stack: "faction",
+  clan: "salubri",
+  name: "Sozinho",
+  text: md`
+    *Solitary*
+    If this is the only vampire you control, you may play cards of any clan affiliation.
+  `,
+  bloodPotency: 6,
+  physical: 2,
+  social: 0,
+  mental: 0,
+  illustrator: "Mico Dimagiba",
+  set: "Martial Law",
+  disciplines: { auspex: 1, fortitude: 1 },
+  cardpool: "vampire",
+},
+
+"ml-trigger": {
+  stack: "faction",
+  clan: "martial",
+  name: "Trigger",
+  text: md`
+    *Hunter*
+    When this character plays a Reaction, the attacher loses 1 [blood].
+  `,
+  bloodPotency: 3,
+  physical: 1,
+  social: 1,
+  mental: 0,
+  illustrator: "Joyce Maureira",
+  set: "Martial Law",
+  disciplines: { arsenal: 1, "drone jockey": 1, ordnance: 1 },
+  cardpool: "hunter",
+},
+
+"ml-trinidad": {
+  stack: "faction",
+  clan: "salubri",
+  name: "Trinidad",
+  text: md`
+    *Solitary*
+    Party - When a character in this party is defeated, gain 1 [prestige].
+    If this is the only charcter you control, gain 2 [prestige] instead.
+  `,
+  bloodPotency: 4,
+  physical: 0,
+  social: 1,
+  mental: 1,
+  illustrator: "Joyce Maureira",
+  set: "Martial Law",
+  disciplines: { auspex: 1, dominate: 1 },
+  cardpool: "vampire",
+},
+
+"ml-valentina": {
+  stack: "faction",
+  clan: "tzimisce",
+  name: "Trigger",
+  text: md`
+    When you discard to mend this character during your End Phase, attach that card face down to this character.
+    *Detach 2 face-down cards from this character:* [damage] to this character during this attack bvecomes *Superficial*.
+  `,
+  bloodPotency: 5,
+  physical: 0,
+  social: 1,
+  mental: 2,
+  illustrator: "Irene Francisco",
+  set: "Martial Law",
+  disciplines: { animalism: 1, protean: 1 },
+  cardpool: "vampire",
+},
+
+"ml-zoe": {
+  stack: "faction",
+  clan: "caitiff",
+  name: "Zoe",
+  text: md`
+    When you discard a Library card from your hand, you may burn it, pit it on the bottom of your Library, or discard it as usual.
+  `,
+  bloodPotency: 3,
+  physical: 0,
+  social: 0,
+  mental: 2,
+  illustrator: "Joyce Maureira",
+  set: "Martial Law",
+  disciplines: { celerity: 1, presence: 1 },
+  cardpool: "vampire",
+},
+
 // Promo //
 
 "xxx-victor-cane": {

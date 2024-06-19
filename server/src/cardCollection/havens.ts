@@ -537,6 +537,47 @@ export const havens: Record<CardId, Haven> = {
   cardpool: "vampire",
 },
 
+// Martial Law //
+
+"ml-ghoulish-favela": {
+  stack: "haven",
+  name: "Ghoulish Favela",
+  text: md`
+    Characters in your Haven have +1 Secrecy. Ghouls with no face-up attachments you control have +1 [shield]
+    **Leader Ability**
+    When your Leader exhausts, reveal the top card of your Library. If it's a Ghoul or has the word "Ghoul" in its game text, draw it. Otherwise, leave it or discard it.
+  `,
+  illustrator: "Adelijah Ocampo",
+  set: "Martial Law",
+  cardpool: "vampire",
+},
+
+"ml-hunters-blind": {
+  stack: "haven",
+  name: "Hunter's Blind",
+  text: md`
+    Your characters have +1 Secrecy.
+    **Leader Ability**
+    once during each player's turn, you may ready a character you control in The Streets to Block a foe's attack (including [ranged]) against a target in The Streets.
+  `,
+  illustrator: "Mara Miranda",
+  set: "Martial Law",
+  cardpool: "hunter",
+},
+
+"ml-the-ready-room": {
+  stack: "haven",
+  name: "The Ready Room",
+  text: md`
+    Your characters have +1 Secrecy.
+    **Leader Ability**
+    You pay 1 less [prestige] to activate **Relentless** abilities.
+  `,
+  illustrator: "Mara Miranda",
+  set: "Martial Law",
+  cardpool: "hunter",
+},
+
 // Promo //
 
 "xxx-apartment-111": {

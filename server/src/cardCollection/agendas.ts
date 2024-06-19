@@ -302,7 +302,7 @@ export const agendas: Record<CardId, Agenda> = {
   name: "Army of the Dragon",
   text: md`
     Each time you play a Ghoul, gain 1 [agenda].
-    If you attach 2+ Retainers to that Ghould when played, gain 2 [agenda] instead.
+    If you attach 2+ Retainers to that Ghoul when played, gain 2 [agenda] instead.
     If you reach 13 [agenda], you win!
   `,
   illustrator: "Felipe Gaona",
@@ -490,6 +490,45 @@ export const agendas: Record<CardId, Agenda> = {
   set: "Hunters & Hunted",
   stack: "agenda",
   cardpool: "vampire",
+},
+
+
+// Martial Law //
+
+"ml-ghoul-master": {
+  name: "Ghoul Master",
+  text: md`
+    At the start of your turn, if you control 1+ Ghouls, gain 1 [agenda]. 
+    During each player's turn, the first time a Ghoul you control attacks, Blocks, or uses an activated ability, gain 1 [agenda].
+  `,
+  illustrator: "Marco Primo",
+  set: "Martial Law",
+  stack: "agenda",
+  cardpool: "vampire",
+},
+
+"ml-kill-tally": {
+  name: "Kill Tally",
+  text: md`
+    When you defeat a character you do not control, gain 1 [agenda]. 
+    When you deal damage to an attacker you do not control, gain 1 [agenda].
+  `,
+  illustrator: "Adelijah Ocampo",
+  set: "Martial Law",
+  stack: "agenda",
+  cardpool: "hunter and vampire"
+},
+
+"ml-unrelenting-pressure": {
+  name: "Unrelenting Pressure",
+  text: md`
+    The first time you recruit a character with a *Relentless* ability during each of your turns, gain 1 [agenda].
+    The first time you play a Library card with *Relentless* during each of your turns, gain 1 [agenda].
+  `,
+  illustrator: "Marco Primo",
+  set: "Hunters & Hunted",
+  stack: "agenda",
+  cardpool: "hunter",
 },
 
 // Promo //

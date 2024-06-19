@@ -61,6 +61,7 @@ type IconImage
     | Ghoul
     | Monster
     | Relic
+    | Vehicle
 
 type IconStyle
     = Standard
@@ -249,7 +250,10 @@ imageOpts image =
             ( class "ui-icon_ghoul", "Ghoul" )
 
         Relic ->
-            ( class "ui-icon_relic", "Relic" )      
+            ( class "ui-icon_relic", "Relic" )
+
+        Vehicle ->
+            ( class "ui-icon_relic", "Vehicle" )        
 
         UnhostedAction ->
             ( class "ui-icon_unhosted_action", "Unhosted Action" )
