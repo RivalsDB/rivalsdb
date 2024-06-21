@@ -16,6 +16,7 @@ type Pack
     | JusticeAndMercy
     | HuntersAndHunted
     | PrincePack1
+    | MartialLaw
 
 
 enum : Enum Pack
@@ -32,6 +33,7 @@ enum =
         , ( "Justice & Mercy", JusticeAndMercy )
         , ( "Hunters & Hunted", HuntersAndHunted )
         , ( "Prince Pack 1", PrincePack1 )
+        , ( "Martial Law", MartialLaw )
         ]
 
 
