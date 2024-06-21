@@ -63,6 +63,7 @@ type IconImage
     | Relic
     | Vehicle
 
+
 type IconStyle
     = Standard
     | Negative
@@ -253,10 +254,10 @@ imageOpts image =
             ( class "ui-icon_relic", "Relic" )
 
         Vehicle ->
-            ( class "ui-icon_relic", "Vehicle" )        
+            ( class "ui-icon_vehicle", "Vehicle" )
 
         UnhostedAction ->
             ( class "ui-icon_unhosted_action", "Unhosted Action" )
-        
+
         Monster ->
-            ( class "ui-icon_monster", "Monster" ) 
+            ( class "ui-icon_monster", "Monster" )
