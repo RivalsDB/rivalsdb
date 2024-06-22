@@ -33,6 +33,7 @@ enum : Enum Discipline
 enum =
     Enum.create
         [ ( "animalism", Animalism )
+        , ( "arsenal", Arsenal )
         , ( "auspex", Auspex )
         , ( "beast whisperer", BeastWhisperer )
         , ( "blood sorcery", BloodSorcery )
