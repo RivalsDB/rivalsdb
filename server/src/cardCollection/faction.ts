@@ -3659,8 +3659,8 @@ export const factions: Record<CardId, Faction> = {
   clan: "martial",
   name: "Clarence",
   text: md`
-    *Hunter*
-    When this character is recruited put 1 Reaction card from your discard pile into your hand.
+    **Hunter**
+    When this character is recruited, put 1 Reaction card from your discard pile into your hand.
   `,
   bloodPotency: 2,
   physical: 0,
