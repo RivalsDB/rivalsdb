@@ -5560,7 +5560,7 @@ export const library: Record<CardId, Library> = {
   cardpool: "hunter",
 },
 
-"ml-crusin-for-a-bruisin": {
+"ml-cruisin-for-a-bruisin": {
   stack: "library",
   name: "Cruisin For a Bruisin",
   types: ["attack", "reaction"],
