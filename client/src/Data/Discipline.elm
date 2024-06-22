@@ -6,16 +6,20 @@ import Json.Decode exposing (Decoder)
 
 type Discipline
     = Animalism
+    | Arsenal
     | Auspex
     | BloodSorcery
     | BeastWhisperer
     | Celerity
     | Dominate
+    | DroneJockey
+    | Fleet
     | Fortitude
     | Global
     | Library
     | Obfuscate
     | Oblivion
+    | Ordnance
     | Potence
     | Presence
     | Protean
@@ -34,11 +38,14 @@ enum =
         , ( "blood sorcery", BloodSorcery )
         , ( "celerity", Celerity )
         , ( "dominate", Dominate )
+        , ( "drone jockey", DroneJockey )
+        , ( "fleet", Fleet )
         , ( "fortitude", Fortitude )
         , ( "global", Global )
         , ( "library", Library )
         , ( "obfuscate", Obfuscate )
         , ( "oblivion", Oblivion )
+        , ( "ordnance", Ordnance )
         , ( "potence", Potence )
         , ( "presence", Presence )
         , ( "protean", Protean )
