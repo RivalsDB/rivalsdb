@@ -543,7 +543,7 @@ export const havens: Record<CardId, Haven> = {
   stack: "haven",
   name: "Ghoulish Favela",
   text: md`
-    Characters in your Haven have +1 Secrecy. Ghouls with no face-up attachments you control have +1 [shield]
+    Characters in your Haven have +1 Secrecy. Ghouls with no face-up attachments you control have +1 [shield].
     **Leader Ability**
     When your Leader exhausts, reveal the top card of your Library. If it's a Ghoul or has the word "Ghoul" in its game text, draw it. Otherwise, leave it or discard it.
   `,
