@@ -525,7 +525,7 @@ export const agendas: Record<CardId, Agenda> = {
     The first time you recruit a character with a **Relentless** ability during each of your turns, gain 1 [agenda].
     The first time you play a Library card with **Relentless** during each of your turns, gain 1 [agenda].
   `,
-  illustrator: "Marco Primo",
+  illustrator: "Mico Dimagiba",
   set: "Martial Law",
   stack: "agenda",
   cardpool: "hunter",
