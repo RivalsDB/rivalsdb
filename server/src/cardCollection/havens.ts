@@ -558,7 +558,7 @@ export const havens: Record<CardId, Haven> = {
   text: md`
     Your characters have +1 Secrecy.
     **Leader Ability**
-    once during each player's turn, you may ready a character you control in The Streets to Block a foe's attack (including [ranged]) against a target in The Streets.
+    Once during each player's turn, you may ready a character you control in The Streets to Block a foe's attack (including [ranged]) against a target in The Streets.
   `,
   illustrator: "Mara Miranda",
   set: "Martial Law",
