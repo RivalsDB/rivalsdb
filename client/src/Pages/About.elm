@@ -66,6 +66,10 @@ init _ =
             , ( Icon.Monster, "Werewolf by Ian Savage from thenounproject.com" )
             , ( Icon.Relic, "Grail by Danil Polshen from thenounproject.com" )
             , ( Icon.Vehicle, "Car by Maxie from thenounproject.com" )
+            , ( Icon.Ordnance, "Time Dynamite by Delapouite from game-icons.net" )
+            , ( Icon.DroneJockey, "Delivery Drone by Delapouite from game-icons.net" )
+            , ( Icon.Arsenal, "Colt M1911 by Skoll from game-icons.net" )
+            , ( Icon.Fleet, "Car by Fasobrun Jamil from game-icons.net" )
             ]
       }
     , Effect.none

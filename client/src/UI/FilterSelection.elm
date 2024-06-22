@@ -70,7 +70,7 @@ cleanPlayerStacks =
 
 
 type alias AllStacks =
-    { city : Bool, agenda : Bool, haven : Bool, faction : Bool, library : Bool , monster: Bool}
+    { city : Bool, agenda : Bool, haven : Bool, faction : Bool, library : Bool, monster : Bool }
 
 
 cleanAllStacks : AllStacks
@@ -486,6 +486,7 @@ viewClans flags =
         , viewFlag (IconV2.clan IconV2.Standard Cl.Ventrue) (\old -> { old | ventrue = not old.ventrue }) flags.ventrue
         ]
 
+
 viewCells : Clans -> Html (Msg Clans)
 viewCells flags =
     div [ class "filterpicker" ]
@@ -552,16 +553,20 @@ clanIsAllowedStrict =
 
 type alias Disciplines =
     { animalism : Bool
+    , arsenal : Bool
     , auspex : Bool
     , beastWhisperer : Bool
     , bloodSorcery : Bool
     , celerity : Bool
     , dominate : Bool
+    , droneJockey : Bool
+    , fleet : Bool
     , fortitude : Bool
     , global : Bool
     , library : Bool
     , obfuscate : Bool
     , oblivion : Bool
+    , ordnance : Bool
     , potence : Bool
     , presence : Bool
     , protean : Bool
@@ -575,16 +580,20 @@ type alias Disciplines =
 cleanDisciplines : Disciplines
 cleanDisciplines =
     { animalism = False
+    , arsenal = False
     , auspex = False
     , beastWhisperer = False
     , bloodSorcery = False
     , celerity = False
     , dominate = False
+    , droneJockey = False
+    , fleet = False
     , fortitude = False
     , global = False
     , library = False
     , obfuscate = False
     , oblivion = False
+    , ordnance = False
     , potence = False
     , presence = False
     , protean = False
@@ -612,16 +621,22 @@ viewDisciplines flags =
         , viewFlag (IconV2.discipline IconV2.Standard Dis.ThinBloodAlchemy) (\old -> { old | thinBloodAlchemy = not old.thinBloodAlchemy }) flags.thinBloodAlchemy
         ]
 
+
 viewEdges : Disciplines -> Html (Msg Disciplines)
 viewEdges flags =
     div [ class "filterpicker" ]
-        [ viewFlag (IconV2.discipline IconV2.Standard Dis.BeastWhisperer) (\old -> { old | beastWhisperer = not old.beastWhisperer }) flags.beastWhisperer
+        [ viewFlag (IconV2.discipline IconV2.Standard Dis.Arsenal) (\old -> { old | arsenal = not old.arsenal }) flags.arsenal
+        , viewFlag (IconV2.discipline IconV2.Standard Dis.BeastWhisperer) (\old -> { old | beastWhisperer = not old.beastWhisperer }) flags.beastWhisperer
+        , viewFlag (IconV2.discipline IconV2.Standard Dis.DroneJockey) (\old -> { old | droneJockey = not old.droneJockey }) flags.droneJockey
+        , viewFlag (IconV2.discipline IconV2.Standard Dis.Fleet) (\old -> { old | fleet = not old.fleet }) flags.fleet
         , viewFlag (IconV2.discipline IconV2.Standard Dis.Global) (\old -> { old | global = not old.global }) flags.global
         , viewFlag (IconV2.discipline IconV2.Standard Dis.Library) (\old -> { old | library = not old.library }) flags.library
+        , viewFlag (IconV2.discipline IconV2.Standard Dis.Ordnance) (\old -> { old | ordnance = not old.ordnance }) flags.ordnance
         , viewFlag (IconV2.discipline IconV2.Standard Dis.RepelTheUnnatural) (\old -> { old | repelTheUnnatural = not old.repelTheUnnatural }) flags.repelTheUnnatural
         , viewFlag (IconV2.discipline IconV2.Standard Dis.SenseTheUnnatural) (\old -> { old | senseTheUnnatural = not old.senseTheUnnatural }) flags.senseTheUnnatural
         , viewFlag (IconV2.discipline IconV2.Standard Dis.ThwartTheUnnatural) (\old -> { old | thwartTheUnnatural = not old.thwartTheUnnatural }) flags.thwartTheUnnatural
         ]
+
 
 disciplineIsAllowedWide : Disciplines -> C.Card -> Bool
 disciplineIsAllowedWide flags card =
@@ -630,16 +645,20 @@ disciplineIsAllowedWide flags card =
             List.any
                 (\dis ->
                     (dis == Dis.Animalism && flags.animalism)
+                        || (dis == Dis.Arsenal && flags.arsenal)
                         || (dis == Dis.Auspex && flags.auspex)
                         || (dis == Dis.BeastWhisperer && flags.beastWhisperer)
                         || (dis == Dis.BloodSorcery && flags.bloodSorcery)
                         || (dis == Dis.Celerity && flags.celerity)
                         || (dis == Dis.Dominate && flags.dominate)
+                        || (dis == Dis.DroneJockey && flags.droneJockey)
+                        || (dis == Dis.Fleet && flags.fleet)
                         || (dis == Dis.Fortitude && flags.fortitude)
                         || (dis == Dis.Global && flags.global)
                         || (dis == Dis.Library && flags.library)
                         || (dis == Dis.Obfuscate && flags.obfuscate)
                         || (dis == Dis.Oblivion && flags.oblivion)
+                        || (dis == Dis.Ordnance && flags.ordnance)
                         || (dis == Dis.Potence && flags.potence)
                         || (dis == Dis.Presence && flags.presence)
                         || (dis == Dis.Protean && flags.protean)
@@ -669,16 +688,20 @@ disciplineIsAllowedStrict flags card =
     let
         matchDiscipline disciplines =
             (List.member Dis.Animalism disciplines == flags.animalism)
+                && (List.member Dis.Arsenal disciplines == flags.arsenal)
                 && (List.member Dis.Auspex disciplines == flags.auspex)
                 && (List.member Dis.BeastWhisperer disciplines == flags.beastWhisperer)
                 && (List.member Dis.BloodSorcery disciplines == flags.bloodSorcery)
                 && (List.member Dis.Celerity disciplines == flags.celerity)
                 && (List.member Dis.Dominate disciplines == flags.dominate)
+                && (List.member Dis.DroneJockey disciplines == flags.droneJockey)
+                && (List.member Dis.Fleet disciplines == flags.fleet)
                 && (List.member Dis.Fortitude disciplines == flags.fortitude)
                 && (List.member Dis.Global disciplines == flags.global)
                 && (List.member Dis.Library disciplines == flags.library)
                 && (List.member Dis.Obfuscate disciplines == flags.obfuscate)
                 && (List.member Dis.Oblivion disciplines == flags.oblivion)
+                && (List.member Dis.Ordnance disciplines == flags.ordnance)
                 && (List.member Dis.Potence disciplines == flags.potence)
                 && (List.member Dis.Presence disciplines == flags.presence)
                 && (List.member Dis.Protean disciplines == flags.protean)
@@ -758,6 +781,7 @@ cityIsAllowedWide flags card =
 
             _ ->
                 True
+
 
 
 ------------------
