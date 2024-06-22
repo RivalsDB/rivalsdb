@@ -76,7 +76,7 @@ export const agendas: Record<CardId, Agenda> = {
 "core-strength-in-numbers": {
   name: "Strength in Numbers",
   text: md`
-    At the start of your turn, if you control 3 characters in The Streets, gain 1 [agenda]. 
+    At the start of your turn, if you control 3 characters in The Streets, gain 1 [agenda].
     If you control 4+ characters each with 2+ Blood in The Streets, gain 2 [agenda] instead.
     If you reach 13 [agenda], you win!
   `,
@@ -101,7 +101,7 @@ export const agendas: Record<CardId, Agenda> = {
 "core-turf-war": {
   name: "Turf War",
   text: md`
-    When you defeat a non-Rival character, gain 1 [agenda]. 
+    When you defeat a non-Rival character, gain 1 [agenda].
     When you defeat a character with 5+ Blood, gain 1 [agenda].
     If you reach 13 agenda, you win!
   `,
@@ -168,7 +168,7 @@ export const agendas: Record<CardId, Agenda> = {
 "war-animal-kingdom": {
   name: "Animal Kingdom",
   text: md`
-    At the start of your turn, gain 1 [agenda] if you control 1+ Animals. 
+    At the start of your turn, gain 1 [agenda] if you control 1+ Animals.
     If you control 3+ different Animals, gain 2 [agenda] instead.
     If you reach 13 [agenda], you win!
   `,
@@ -181,7 +181,7 @@ export const agendas: Record<CardId, Agenda> = {
 "war-call-of-the-wild": {
   name: "Call of the Wild",
   text: md`
-    When you attach an Animal to a character in your coterie in The Streets who has no Animals attached, gain 1 [agenda]. 
+    When you attach an Animal to a character in your coterie in The Streets who has no Animals attached, gain 1 [agenda].
     If you control 3+ different Animals, gain 2 [agenda] instead.
     If you reach 13 [agenda], you win!
   `,
@@ -194,7 +194,7 @@ export const agendas: Record<CardId, Agenda> = {
 "war-hoard-the-herd": {
   name: "Hoard the Herd",
   text: md`
-    At the end of your turn, if there are no unattached City Deck Citizens or Vagrants in The Streets, gain 1 [agenda]. 
+    At the end of your turn, if there are no unattached City Deck Citizens or Vagrants in The Streets, gain 1 [agenda].
     If there are no unattached City Deck Mortals, gain 2 [agenda] instead.
     If you reach 13 [agenda], you win!
   `,
@@ -222,7 +222,7 @@ export const agendas: Record<CardId, Agenda> = {
 "sas-death-is-only-the-beginning": {
   name: "Death is Only the Beginning",
   text: md`
-    **Exhaust:** If you have 1+ characters in torpor, gain 1 [agenda]. 
+    **Exhaust:** If you have 1+ characters in torpor, gain 1 [agenda].
     If you have 3+, gain 2 [agenda] instead.
     If you reach 13 [agenda], you win!
   `,
@@ -247,7 +247,7 @@ export const agendas: Record<CardId, Agenda> = {
 "sas-prizefighter": {
   name: "Prizefighter",
   text: md`
-    As you attack a character, put 1 [agenda] on your attacker. 
+    As you attack a character, put 1 [agenda] on your attacker.
     At the end of your turn, put 1 [agenda] from a character in your coterie on your Agenda card.
     If you reach 13 [agenda], you win!
   `,
@@ -260,7 +260,7 @@ export const agendas: Record<CardId, Agenda> = {
 "sas-wake-the-dead": {
   name: "Wake the Dead",
   text: md`
-    **Exhaust:** If you control 1+ wraiths, gain 1 [agenda]. 
+    **Exhaust:** If you control 1+ wraiths, gain 1 [agenda].
     If you control 3+ [wraiths], gain 2 [agenda] instead.
     If you reach 13 [agenda], you win!
   `,
@@ -326,7 +326,7 @@ export const agendas: Record<CardId, Agenda> = {
 "dar-raising-the-stakes": {
   name: "Raising the Stakes",
   text: md`
-    The first time you place 1+ [prestige] on a card you control that already has 2+ tokens on it during each of your turns, gain 1 [agenda]. 
+    The first time you place 1+ [prestige] on a card you control that already has 2+ tokens on it during each of your turns, gain 1 [agenda].
     The first time you resolve a face-down card with 4+ tokens on it during each player's turn, gain 2 [agenda].
   `,
   illustrator: "Adelijah Ocampo",
@@ -483,7 +483,7 @@ export const agendas: Record<CardId, Agenda> = {
 "hah-the-ash-heap-of-history": {
   name: "The Ash Heap of History",
   text: md`
-    **Exhaust:** If there are 5+ cards in your discard pile, gain 1 [agenda]. 
+    **Exhaust:** If there are 5+ cards in your discard pile, gain 1 [agenda].
     If exactly 11 cards, gain 2 [agenda] instead.
   `,
   illustrator: "Marco Primo",
@@ -498,7 +498,7 @@ export const agendas: Record<CardId, Agenda> = {
 "ml-ghoul-master": {
   name: "Ghoul Master",
   text: md`
-    At the start of your turn, if you control 1+ Ghouls, gain 1 [agenda]. 
+    At the start of your turn, if you control 1+ Ghouls, gain 1 [agenda].
     During each player's turn, the first time a Ghoul you control attacks, Blocks, or uses an activated ability, gain 1 [agenda].
   `,
   illustrator: "Marco Primo",
@@ -510,7 +510,7 @@ export const agendas: Record<CardId, Agenda> = {
 "ml-kill-tally": {
   name: "Kill Tally",
   text: md`
-    When you defeat a character you do not control, gain 1 [agenda]. 
+    When you defeat a character you do not control, gain 1 [agenda].
     When you deal damage to an attacker you do not control, gain 1 [agenda].
   `,
   illustrator: "Adelijah Ocampo",
@@ -526,7 +526,7 @@ export const agendas: Record<CardId, Agenda> = {
     The first time you play a Library card with *Relentless* during each of your turns, gain 1 [agenda].
   `,
   illustrator: "Marco Primo",
-  set: "Hunters & Hunted",
+  set: "Martial Law",
   stack: "agenda",
   cardpool: "hunter",
 },
