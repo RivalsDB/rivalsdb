@@ -522,8 +522,8 @@ export const agendas: Record<CardId, Agenda> = {
 "ml-unrelenting-pressure": {
   name: "Unrelenting Pressure",
   text: md`
-    The first time you recruit a character with a *Relentless* ability during each of your turns, gain 1 [agenda].
-    The first time you play a Library card with *Relentless* during each of your turns, gain 1 [agenda].
+    The first time you recruit a character with a **Relentless** ability during each of your turns, gain 1 [agenda].
+    The first time you play a Library card with **Relentless** during each of your turns, gain 1 [agenda].
   `,
   illustrator: "Marco Primo",
   set: "Martial Law",
