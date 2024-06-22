@@ -34,6 +34,20 @@ export type Library = {
 export const library: Record<CardId, Library> = {
 // Core //
 
+"core-38-special": {
+  stack: "library",
+  name: ".38 Special",
+  text: md`
+  `,
+  illustrator: "The Creation Studio",
+  types: ["attack", "reaction"],
+  set: "Core",
+  bloodPotencyRequirement: 1,
+  attack: "ranged",
+  damage: 2,
+  cardpool: "hunter and vampire",
+},
+
 "core-a-biting-comment": {
   stack: "library",
   name: "A Biting Comment",
@@ -54,8 +68,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "All Tied Up",
   text: md`
-    Play this card face down and place 1 prestige on it. 
-    If this card has 2+ prestige on it, you may resolve it during your turn. 
+    Play this card face down and place 1 prestige on it.
+    If this card has 2+ prestige on it, you may resolve it during your turn.
     Target foe who did not contribute exhaust all of their characters.
   `,
   illustrator: "Marco Primo",
@@ -99,7 +113,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Balance of Power",
   text: md`
-    Choose at least hald of the players (including yourseld). 
+    Choose at least hald of the players (including yourseld).
     Influence Conflict - Should each chosen player steal 1 Prestige from an unchosen player?
   `,
   illustrator: "Felipe Gaona",
@@ -155,8 +169,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Burning Down the House",
   text: md`
-    Play this card face down and place 1 prestige on it. 
-    If this card has 3+ prestige on it, you may resolve it during your turn. 
+    Play this card face down and place 1 prestige on it.
+    If this card has 3+ prestige on it, you may resolve it during your turn.
     Burn target Ongoing card controlled by a foe who did not contribute.
   `,
   illustrator: "The Creation Studio",
@@ -187,7 +201,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Coup de Grâce",
   text: md`
-    Use only in The Streets. 
+    Use only in The Streets.
     Potence pay 2 blood: Defeat target **Wounded** character not in their Haven.
   `,
   illustrator: "The Creation Studio",
@@ -218,8 +232,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Destroy the Plans",
   text: md`
-    Play this card face down and place 1 prestige on it. 
-    If this card has 3+ prestige on it, you may resolve it during your turn. 
+    Play this card face down and place 1 prestige on it.
+    If this card has 3+ prestige on it, you may resolve it during your turn.
     Target foe who did not contribute discards 3 cards.
   `,
   illustrator: "The Creation Studio",
@@ -264,7 +278,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Drive-By",
   text: md`
-    Deal 2 Damage to an additional member of the opposing party for each character with Celerity in this party. 
+    Deal 2 Damage to an additional member of the opposing party for each character with Celerity in this party.
     (Can't target the same character twice).
   `,
   illustrator: "The Creation Studio",
@@ -283,7 +297,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Dumpster Dive",
   text: md`
-    Put a card from your discard pile into your hand. 
+    Put a card from your discard pile into your hand.
     If your coterie has 2+ Auspex, draw 1 card.
   `,
   illustrator: "Drew Tucker",
@@ -298,8 +312,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Emergency Bloodbag",
   text: md`
-    Add 3 blood from the general supply to this card. 
-    Ongoing - At the start of your turn, you may place a token from this card onto a **Wounded** character in your coterie or in torpor. 
+    Add 3 blood from the general supply to this card.
+    Ongoing - At the start of your turn, you may place a token from this card onto a **Wounded** character in your coterie or in torpor.
     When empty, burn this card.
   `,
   illustrator: "Drew Tucker",
@@ -338,7 +352,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Faulty Logic",
   text: md`
-    Your foe contributes 1 Prestige to a face-down card of your choosing. 
+    Your foe contributes 1 Prestige to a face-down card of your choosing.
     If you resolve that card this turn, you may target that foe.
   `,
   illustrator: "The Creation Studio",
@@ -356,8 +370,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "First Tradition: The Masquerade",
   text: md`
-    Pay 2 prestige. 
-    Ongoing - Your vampires outside your Haven have +1 Secrecy. 
+    Pay 2 prestige.
+    Ongoing - Your vampires outside your Haven have +1 Secrecy.
     If you defeat 2 Mortals during a single turn, burn this card.
   `,
   illustrator: "Felipe Gaona",
@@ -445,7 +459,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Hedge Your Bets",
   text: md`
-    Gain 2 Influence during this action or event. 
+    Gain 2 Influence during this action or event.
     If this is a Scheme and it fails, gain 1 agenda.
   `,
   illustrator: "The Creation Studio",
@@ -458,8 +472,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Herald",
   text: md`
-    Exert 2 Influence: Attach to the acting character. 
-    You pay 1 less Prestige to recruit characters. 
+    Exert 2 Influence: Attach to the acting character.
+    You pay 1 less Prestige to recruit characters.
     (Add the last blood from the general supply).
   `,
   illustrator: "The Creation Studio",
@@ -507,7 +521,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Incite Rebellion",
   text: md`
-    Pay 1 blood: Burn 1 Retainer in the opposing party. 
+    Pay 1 blood: Burn 1 Retainer in the opposing party.
     Gain no rewards for this.
   `,
   illustrator: "Marco Primo",
@@ -524,7 +538,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Influencer",
   text: md`
-    Pay 1 prestige. 
+    Pay 1 prestige.
     Ongoing - Each character with Presence in your coterie has +1 Influence.
   `,
   illustrator: "Felipe Gaona",
@@ -556,7 +570,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Irresistible Voice",
   text: md`
-    Presence pay 2 blood: Steal 1 Retainer from the target. 
+    Presence pay 2 blood: Steal 1 Retainer from the target.
     If this party has Dominate, Pay 1 blood instead.
   `,
   illustrator: "The Creation Studio",
@@ -574,7 +588,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Keeper of Elysium",
   text: md`
-    Exert 4 Influence: Attach to the acting character. 
+    Exert 4 Influence: Attach to the acting character.
     Characters in your Haven have +1 Secrecy.
   `,
   illustrator: "The Creation Studio",
@@ -604,7 +618,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Know Your Place",
   text: md`
-    +1 Damage if the attacker has a Title. 
+    +1 Damage if the attacker has a Title.
     Id the attacker is Prince of the City, +2 Damage instead.
   `,
   illustrator: "The Creation Studio",
@@ -651,8 +665,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Long-Term Investment",
   text: md`
-    Pay 1 to 3 Prestige: Add double that amount of Prestige from the general supply to this card. 
-    Ongoing - At the start of your turn, gain 1 Prestige from this card. 
+    Pay 1 to 3 Prestige: Add double that amount of Prestige from the general supply to this card.
+    Ongoing - At the start of your turn, gain 1 Prestige from this card.
     When empty, burn this card.
   `,
   illustrator: "The Creation Studio",
@@ -666,9 +680,9 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Lost Glory",
   text: md`
-    Play this card face down and place 1 prestige on it. 
-    If this card has 4+ prestige on it, you may resolve it during your turn. 
-    Target foe who did not contribute loses 1 agenda. 
+    Play this card face down and place 1 prestige on it.
+    If this card has 4+ prestige on it, you may resolve it during your turn.
+    Target foe who did not contribute loses 1 agenda.
     If they have 9+ agenda, they lose 2 agenda instead.
   `,
   illustrator: "The Creation Studio",
@@ -681,7 +695,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Marked Man",
   text: md`
-    Put 1 Agenda from the general supply onto any character. 
+    Put 1 Agenda from the general supply onto any character.
     If a player defeats them, they gain that agenda.
   `,
   illustrator: "Marco Primo",
@@ -752,8 +766,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Primogen",
   text: md`
-    Exert 3 Influence: Attach to the acting character. 
-    This character has +1 Influence. 
+    Exert 3 Influence: Attach to the acting character.
+    This character has +1 Influence.
     This character deals +1 Damage to characters with a Title.
   `,
   illustrator: "The Creation Studio",
@@ -829,7 +843,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Search Engine",
   text: md`
-    Ongoing - Exhaust: If you have Auspex in your coterie, look at the top card of your Library or Faction Deck. 
+    Ongoing - Exhaust: If you have Auspex in your coterie, look at the top card of your Library or Faction Deck.
     Leave it or move it to the bottom of the deck.
   `,
   illustrator: "The Creation Studio",
@@ -860,8 +874,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Seneschal",
   text: md`
-    Exert 5 Influence: Attach to the acting character. 
-    Action: Target foe loses 1 Prestige. 
+    Exert 5 Influence: Attach to the acting character.
+    Action: Target foe loses 1 Prestige.
     If no one controls the Prince of the City, they lose 2 instead.
   `,
   illustrator: "The Creation Studio",
@@ -875,8 +889,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Sheriff",
   text: md`
-    Exert 4 Influence: Attach to the acting character. 
-    Exhaust this character: Burn target Ongoing card. 
+    Exert 4 Influence: Attach to the acting character.
+    Exhaust this character: Burn target Ongoing card.
     Use this ability only in The Streets.
   `,
   illustrator: "The Creation Studio",
@@ -907,8 +921,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Smoke 'Em Out",
   text: md`
-    Use only in The Streets. 
-    Move all characters from target Haven to The Streets. 
+    Use only in The Streets.
+    Move all characters from target Haven to The Streets.
     Deal 1 **Aggravated** Damage to each exhausted character moved this way.
   `,
   illustrator: "The Creation Studio",
@@ -972,7 +986,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "The Last Word",
   text: md`
-    Gain 5 Influence during this action or event. 
+    Gain 5 Influence during this action or event.
     If this is a Scheme and your side wins, gain 1 prestige.
   `,
   illustrator: "The Creation Studio",
@@ -1066,7 +1080,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Whispering Campaign",
   text: md`
-    Play this card face down and place 1 prestige on it. If this card has 4+ prestige on it, you may resolve it during your turn. 
+    Play this card face down and place 1 prestige on it. If this card has 4+ prestige on it, you may resolve it during your turn.
     Steal 2 prestige from target foe who did not contribute.
   `,
   illustrator: "Felipe Gaona",
@@ -1097,8 +1111,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "All the Angles",
   text: md`
-    Superficial. 
-    +1 Damage for each different Discipline the attacker has. 
+    Superficial.
+    +1 Damage for each different Discipline the attacker has.
     (This attack cannot reduce the target's Blood below 1.)
   `,
   illustrator: "Mara Miranda-Escota",
@@ -1115,8 +1129,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Athanor Corporis",
   text: md`
-    Attach to the acting character. 
-    If they are a Thin-blood, gain 1 Action. 
+    Attach to the acting character.
+    If they are a Thin-blood, gain 1 Action.
     This character gains +1 Physical Damage and Thin-blood Alchemy.
   `,
   illustrator: "Irene Francisco",
@@ -1130,9 +1144,9 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Baal's Caress",
   text: md`
-    Play this card face up. 
+    Play this card face up.
     B
-    lood Sorcery Pay 1 blood: +1 **Aggravated** Damage. 
+    lood Sorcery Pay 1 blood: +1 **Aggravated** Damage.
     You may activate this ability one for each Blood Sorcery this character has.
   `,
   illustrator: "Harvey Bunda",
@@ -1150,8 +1164,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Back to Formula",
   text: md`
-    Thin-blood Alchemy Revel the top 4 cards of your Library. 
-    Draw each revealed Alchemy and discard the rest. 
+    Thin-blood Alchemy Revel the top 4 cards of your Library.
+    Draw each revealed Alchemy and discard the rest.
     If you draw none, put 1 Alchemy from your discard pile into your hand.
   `,
   illustrator: "Adelijah Ocampo",
@@ -1182,8 +1196,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Blood Makes Noise",
   text: md`
-    Blood Sorcery Place 1 to 3 Blood of your color on this card. 
-    Ongoing, Relentless - **Remove 1 Blood from this:** Gain 1 Prestige or 4 Influence. 
+    Blood Sorcery Place 1 to 3 Blood of your color on this card.
+    Ongoing, Relentless - **Remove 1 Blood from this:** Gain 1 Prestige or 4 Influence.
     When empty, burn this.
   `,
   illustrator: "Timothy Terrenal",
@@ -1197,8 +1211,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Blood of Potency",
   text: md`
-    Attach to the acting character. 
-    This character has +2 Blood Potence. 
+    Attach to the acting character.
+    This character has +2 Blood Potence.
     When this attaches, this character mends 1 Blood for each Blood Sorcery they have.
   `,
   illustrator: "Adelijah Ocampo",
@@ -1229,8 +1243,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Calcinatio",
   text: md`
-    Attach to the acting character. 
-    If they are a Thin-blood, gain 1 Action. 
+    Attach to the acting character.
+    If they are a Thin-blood, gain 1 Action.
     This character gains +1 Social Damage and Thin-blood Alchemy.
   `,
   illustrator: "Irene Francisco",
@@ -1244,7 +1258,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Crossbow",
   text: md`
-    Discard 1 card: Attach Crossbow to the target if they have 2 or fewer attachment. 
+    Discard 1 card: Attach Crossbow to the target if they have 2 or fewer attachment.
     This target cannot mend during their End phase.
   `,
   illustrator: "Harvey Bunda",
@@ -1278,8 +1292,8 @@ export const library: Record<CardId, Library> = {
   name: "Defense of the Sacred Haven",
   text: md`
     [blood sorcery] **Place 1 to 3 Blood of your color on this card.
-    ** Ongoing - Characters in your Haven have +1 Secrecy. 
-    At the start of your turn, remove 1 Blood from this. 
+    ** Ongoing - Characters in your Haven have +1 Secrecy.
+    At the start of your turn, remove 1 Blood from this.
     When empty, burn this.
   `,
   illustrator: "Irene Francisco",
@@ -1293,7 +1307,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Enervate",
   text: md`
-    Use only in the Streets. 
+    Use only in the Streets.
     Steal 1 Prestige from target foe and put it on the acting character as Blood (this is a mend effect).
   `,
   illustrator: "Harvey Bunda",
@@ -1332,7 +1346,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Far Reach",
   text: md`
-    Move target character into The Streets as a separate party. 
+    Move target character into The Streets as a separate party.
     Detach an Alchemy from the acting character: The acting character starts an attack against the target, who cannot play a Reaction.
   `,
   illustrator: "Timothy Terrenal",
@@ -1361,8 +1375,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Fixatio",
   text: md`
-    Attach to the acting character. 
-    If they are a Thin-blood, gain 1 Action. 
+    Attach to the acting character.
+    If they are a Thin-blood, gain 1 Action.
     This character gains +1 Mental Damage and Thin-blood Alchemy.
   `,
   illustrator: "Adelijah Ocampo",
@@ -1376,8 +1390,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Haze",
   text: md`
-    Requires Alchemy in the party to play. 
-    Play this card face up. 
+    Requires Alchemy in the party to play.
+    Play this card face up.
     Negate a Ranged Attack or non-Attack effect targeting a character in this party.
   `,
   illustrator: "Irene Francisco",
@@ -1393,7 +1407,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Heightened Senses",
   text: md`
-    You may play this to aid any character in The Streets from any coterie. 
+    You may play this to aid any character in The Streets from any coterie.
     Target defending character in The Streets has +1 [shield] for each [auspex] your Leader has.
   `,
   illustrator: "Mara Miranda-Escota",
@@ -1412,7 +1426,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Intimidation",
   text: md`
-    +2 Damage to City Deck Mortals. 
+    +2 Damage to City Deck Mortals.
     If the attacker's Blood Potence is higher than the target's, exhaust the target and put a Fear token on them.
   `,
   illustrator: "Mara Miranda-Escota",
@@ -1446,8 +1460,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Out of Time",
   text: md`
-    Play this card face down and place 1 Prestige on it. 
-    If this card has 3+ Prestige on it, you may resolve it during your turn. 
+    Play this card face down and place 1 Prestige on it.
+    If this card has 3+ Prestige on it, you may resolve it during your turn.
     Target foe who did not contribute loses 1 Action during their next turn.
   `,
   illustrator: "Adelijah Ocampo",
@@ -1476,7 +1490,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Premonition",
   text: md`
-    Attach to a character in your coterie and gain 1 Action. 
+    Attach to a character in your coterie and gain 1 Action.
     Auspex party - Characters attacking members of this party play their Attack cards face up.
   `,
   illustrator: "Adelijah Ocampo",
@@ -1520,7 +1534,7 @@ export const library: Record<CardId, Library> = {
   name: "Seek Knowledge",
   text: md`
     [blood sorcery] **Place 1 to 3 Blood of your color on this card.
-    ** Ongoing - **Remove 1 Blood from this:** Draw 2 cards, then discard 1 card. 
+    ** Ongoing - **Remove 1 Blood from this:** Draw 2 cards, then discard 1 card.
     When empty, burn this.
   `,
   illustrator: "Timothy Terrenal",
@@ -1536,8 +1550,8 @@ export const library: Record<CardId, Library> = {
   name: "Sleep of the Damned",
   text: md`
     [blood sorcery] **Place 1 to 3 Blood of your color on this card.
-    ** Ongoing - Foe's charcters in torpor have +2 Blood Potence. 
-    At the start of your turn, if 1+ foes have a charcter in torpor, remove 1 Blood from this. 
+    ** Ongoing - Foe's charcters in torpor have +2 Blood Potence.
+    At the start of your turn, if 1+ foes have a charcter in torpor, remove 1 Blood from this.
     When empty, burn this.
   `,
   illustrator: "Irene Francisco",
@@ -1551,8 +1565,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Sunrise Surprise",
   text: md`
-    Cannot be played during the 1st or 2nd Action of your turn. 
-    Play only in The Streets. 
+    Cannot be played during the 1st or 2nd Action of your turn.
+    Play only in The Streets.
     Deal 2 **Aggravated** Damage to the acting character and target character in The Streets.
   `,
   illustrator: "Dawn Nique",
@@ -1566,7 +1580,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Theft of Vitae",
   text: md`
-    Blood Sorcery Burn target unattached City Deck Mortal in The Streets (this is not defeating them). 
+    Blood Sorcery Burn target unattached City Deck Mortal in The Streets (this is not defeating them).
     If they have a Burn benefit, the acting character claims that reward.
   `,
   illustrator: "Harvey Bunda",
@@ -1580,7 +1594,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Third Tradition: The Progeny",
   text: md`
-    Pay 1 Prestige. Ongoing. 
+    Pay 1 Prestige. Ongoing.
     At the start of your turn, each player with 4+ vampires in their coterie chooses to either lose 1 Prestige or discard 1 card.
   `,
   illustrator: "Mara Miranda-Escota",
@@ -1594,7 +1608,7 @@ export const library: Record<CardId, Library> = {
   name: "Truth of Blood",
   text: md`
     [blood sorcery] **Place 1 to 3 Blood of your color on this card.
-    ** Ongoing - Pay 1 Prestige, **Remove 1 Blood from this:** Target foe loses 1 Agenda. 
+    ** Ongoing - Pay 1 Prestige, **Remove 1 Blood from this:** Target foe loses 1 Agenda.
     When empty, burn this.
   `,
   illustrator: "Timothy Terrenal",
@@ -1610,9 +1624,9 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Alley Cat",
   text: md`
-    [animalism] Pay 1 [blood]: Attach to the acting character. 
+    [animalism] Pay 1 [blood]: Attach to the acting character.
     This character has +1 Secrecy in The Streets.
-    Detach: Burn target Animal or Retainer attached to a character in The Streets. 
+    Detach: Burn target Animal or Retainer attached to a character in The Streets.
     Then burn this card.
   `,
   illustrator: "Adelijah Ocampo",
@@ -1640,7 +1654,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Apex Predator",
   text: md`
-    Put a Fear token on the target. 
+    Put a Fear token on the target.
     If the attacker is your Leader, exhaust the target and ready your Leader.
   `,
   illustrator: "Mara Miranda-Escota",
@@ -1674,7 +1688,7 @@ export const library: Record<CardId, Library> = {
   name: "Beasts of War",
   text: md`
     Superficial
-    +1 [damage] for each Animal in this party. 
+    +1 [damage] for each Animal in this party.
     (This attack cannot reduce the target's [blood] below 1.)
   `,
   illustrator: "Irene Francisco",
@@ -1690,7 +1704,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Bond Famulus",
   text: md`
-    Exhaust: The next Animal you play this turn costs 1 less [blood] to attach. 
+    Exhaust: The next Animal you play this turn costs 1 less [blood] to attach.
     If a character spends an Action to play it, ready them.
   `,
   illustrator: "Joyce Maureira",
@@ -1704,7 +1718,7 @@ export const library: Record<CardId, Library> = {
   name: "Constant Surveillance",
   text: md`
     Pay 1 [prestige]: Cover target foe's Agenda or Haven with this card, or pay 1 additional [prestige] to cover both.
-    Ongoing - Covered cards have no text. 
+    Ongoing - Covered cards have no text.
     At the start of your next turn, burn this card.
   `,
   illustrator: "Timothy Terrenal",
@@ -1736,7 +1750,7 @@ export const library: Record<CardId, Library> = {
   name: "Cracking the Case",
   text: md`
     Add 4 [prestige] from the general supply to this card.
-    Remove X [prestige] from this card: Target attacker has +X Intel for this attack. 
+    Remove X [prestige] from this card: Target attacker has +X Intel for this attack.
     When empty, burn this.
   `,
   illustrator: "Felipe Gaona",
@@ -1749,7 +1763,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Disturbing the Hive",
   text: md`
-    +1 [damage] for each The Swarm in this party and in your discard pile. 
+    +1 [damage] for each The Swarm in this party and in your discard pile.
     If the attacker has [obfuscate], negate all Reaction.
   `,
   illustrator: "Adelijah Ocampo",
@@ -1768,7 +1782,7 @@ export const library: Record<CardId, Library> = {
   name: "Earth Meld",
   text: md`
     [protean] Attach to the acting character and they mend 2 [blood].
-    This character has +2 Secrecy. 
+    This character has +2 Secrecy.
     At the start of your next turn, discard this card.
   `,
   illustrator: "Adelijah Ocampo",
@@ -1845,7 +1859,7 @@ export const library: Record<CardId, Library> = {
   name: "Feral Whispers",
   text: md`
     Add 3 [blood] from the general supply to this.
-    [animalism] At the start of your turn, you may Remove 1 [blood] from this: Put 1 Animal from your discard pile into your hand. 
+    [animalism] At the start of your turn, you may Remove 1 [blood] from this: Put 1 Animal from your discard pile into your hand.
     When empty, burn this.
   `,
   illustrator: "Irene Francisco",
@@ -1860,7 +1874,7 @@ export const library: Record<CardId, Library> = {
   name: "Fight or Flight",
   text: md`
     Attacker - If this attack is Blocked, negate the target's Reaction (if any).
-    Reaction - +1 [shield]. Additional +1 [shield] for each [fortitude] this character has. 
+    Reaction - +1 [shield]. Additional +1 [shield] for each [fortitude] this character has.
     This deals no [damage] to the attacker.
   `,
   illustrator: "Timothy Terrenal",
@@ -1937,7 +1951,7 @@ export const library: Record<CardId, Library> = {
   text: md`
     [animalism] Pay 1 [blood]: Attach to the acting character.
     Party - Attackers in this party have +1 Intel vs characters in The Streets.
-    Detach: Target character in The Streets loses 1 [blood]. 
+    Detach: Target character in The Streets loses 1 [blood].
     If this defeats the target, burn this card.
   `,
   illustrator: "Adelijah Ocampo",
@@ -1951,7 +1965,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Protect the Flock",
   text: md`
-    Ongoing - Exhaust: Put 1 [blood] of your color from the general supply on target Mortal. 
+    Ongoing - Exhaust: Put 1 [blood] of your color from the general supply on target Mortal.
     (Each [blood] added to a Mortal increases the [damage] needed to defeat them.)
   `,
   illustrator: "Timothy Terrenal",
@@ -1964,8 +1978,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Second Tradition: The Domain",
   text: md`
-    Ongoing - Exhaust: Attach a City Deck Citizen or Vagrant in The Streets to this card (max 2). 
-    They are still in The Streets and may be attacked. 
+    Ongoing - Exhaust: Attach a City Deck Citizen or Vagrant in The Streets to this card (max 2).
+    They are still in The Streets and may be attacked.
     Foes must pay you 1 [prestige] to attack Mortals attached to this.
   `,
   illustrator: "Mara Miranda-Escota",
@@ -2036,7 +2050,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Spy Games",
   text: md`
-    Steal a Rival token from target foe. 
+    Steal a Rival token from target foe.
     At the start of your next turn, return it.
   `,
   illustrator: "Mara Miranda-Escota",
@@ -2051,8 +2065,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "The Shakedown",
   text: md`
-    Name an attack type. 
-    Then look at target foe's hand and discard all Attack cards with that type. 
+    Name an attack type.
+    Then look at target foe's hand and discard all Attack cards with that type.
     If the acting character has the _Sheriff_ Title, gain 1 [prestige] for each card discarded this way.
   `,
   illustrator: "Irene Francisco",
@@ -2065,7 +2079,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "The Stampede",
   text: md`
-    The target has -1 [shield] for each character in this party. 
+    The target has -1 [shield] for each character in this party.
     [potence] +1 [damage]
   `,
   illustrator: "Adelijah Ocampo",
@@ -2097,7 +2111,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Veiled Threat",
   text: md`
-    +1 [damage] for each [obfuscate] this character has. 
+    +1 [damage] for each [obfuscate] this character has.
     Attach Veiled Threat face down to the target if they have 2 or fewer attachments.
   `,
   illustrator: "Drew Tucker",
@@ -2114,7 +2128,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "We Are Legend",
   text: md`
-    Gain 1 [prestige]. 
+    Gain 1 [prestige].
     Then draw 2 cards and discard 1 of them.
   `,
   illustrator: "Irene Francisco",
@@ -2131,7 +2145,7 @@ export const library: Record<CardId, Library> = {
   name: "Bind the Spirit",
   text: md`
     [oblivion] For each burned Mortal, you may put 1 [blood] from the general supply on this card.
-    Ongoing - **Relentless, Remove 1 [blood] from this:** Attach a wraith in your coterie to any character. 
+    Ongoing - **Relentless, Remove 1 [blood] from this:** Attach a wraith in your coterie to any character.
     When empty, burn this.
   `,
   illustrator: "János Orbán",
@@ -2162,7 +2176,7 @@ export const library: Record<CardId, Library> = {
   name: "Mental Block",
   text: md`
     Ongoing - Your foes may not play cards with the same name as a card attached to this.
-    [auspex] **Exhaust:** Detach any card attached to this. 
+    [auspex] **Exhaust:** Detach any card attached to this.
     Attach the top card of target foe's Library to this card.
   `,
   illustrator: "Harvey Bunda",
@@ -2177,7 +2191,7 @@ export const library: Record<CardId, Library> = {
   name: "Arms of Ahriman",
   text: md`
     **Superficial**
-    Deal 1 [physical] [damage] to target character in The Streets for each [potence] in this party. 
+    Deal 1 [physical] [damage] to target character in The Streets for each [potence] in this party.
     (This attack cannot reduce the target's [blood] below 1 unless Superficial is removed.)
     **[oblivion Pay 1 [agenda]:** This [damage] is not Superficial.
   `,
@@ -2193,8 +2207,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Clairvoyance",
   text: md`
-    [auspex] Look at target foe's hand. 
-    Choose 1 Library card there and place it on top of their Library. 
+    [auspex] Look at target foe's hand.
+    Choose 1 Library card there and place it on top of their Library.
     Then gain 1 Unhosted Action.
   `,
   illustrator: "Mara Miranda-Escota",
@@ -2279,8 +2293,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Grave Robbing",
   text: md`
-    Draw 1 card and choose 1 player. 
-    For each character that player has in torpor, either draw 1 card or gain 1 [prestige]. 
+    Draw 1 card and choose 1 player.
+    For each character that player has in torpor, either draw 1 card or gain 1 [prestige].
     _(Choose for each.)_
   `,
   illustrator: "Marco Primo",
@@ -2295,7 +2309,7 @@ export const library: Record<CardId, Library> = {
   name: "Graveyard Smash",
   text: md`
     **Superficial**
-    +1 [damage] for each burned Mortal. 
+    +1 [damage] for each burned Mortal.
     (This attack cannot reduce the target's [blood] below 1.)
   `,
   illustrator: "Marco Primo",
@@ -2406,8 +2420,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Necromancy",
   text: md`
-    Discard cards from the City Deck until you discard a Mortal, then burn that Mortal. 
-    If you burned a Mortal this turn, the active character may play a Ritual at no Action cost. 
+    Discard cards from the City Deck until you discard a Mortal, then burn that Mortal.
+    If you burned a Mortal this turn, the active character may play a Ritual at no Action cost.
     If they do, they lose 2 [blood].
   `,
   illustrator: "Irene Francisco",
@@ -2497,8 +2511,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Spectral Possession",
   text: md`
-    **Exhaust 1 wraith attached to the acting character:** Ready target character in The Streets. 
-    They become a separate party. 
+    **Exhaust 1 wraith attached to the acting character:** Ready target character in The Streets.
+    They become a separate party.
     Take 1 additional Action with that character.
   `,
   illustrator: "Harvey Bunda",
@@ -2512,8 +2526,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Spirit's Touch",
   text: md`
-    [auspex] Reveal the top card of target player's Library. 
-    Gain [prestige] equal to its [blood-potency-requirement]. 
+    [auspex] Reveal the top card of target player's Library.
+    Gain [prestige] equal to its [blood-potency-requirement].
     If you gain no [prestige] this way, discard the revealed card and ready the acting character.
   `,
   illustrator: "Mara Miranda-Escota",
@@ -2528,7 +2542,7 @@ export const library: Record<CardId, Library> = {
   name: "Summon Spirit",
   text: md`
     [oblivion] For each burned Mortal, you may put 1 [blood] from the general supply on this card.
-    Ongoing - **Remove 2 [blood] from this:** Create a wraith and attach it to a character in your coterie. 
+    Ongoing - **Remove 2 [blood] from this:** Create a wraith and attach it to a character in your coterie.
     When empty, burn this.
   `,
   illustrator: "Joyce Maureira",
@@ -2560,7 +2574,7 @@ export const library: Record<CardId, Library> = {
   name: "The Gift of False Life",
   text: md`
     [oblivion] For each burned Mortal, you may put 1 [blood] from the general supply on this card.
-    Ongoing - **Remove 1 [blood] from this:** Place that [blood] on any character in torpor, then move that character to their owner's Haven and ready them. 
+    Ongoing - **Remove 1 [blood] from this:** Place that [blood] on any character in torpor, then move that character to their owner's Haven and ready them.
     When empty, burn this.
   `,
   illustrator: "János Orbán",
@@ -2620,7 +2634,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "What's Yours is Mine",
   text: md`
-    Influence Conflict - Should I steal 1 [agenda] from target foe with the most [agenda]? 
+    Influence Conflict - Should I steal 1 [agenda] from target foe with the most [agenda]?
     _(If there is a tie for most, choose only 1 of those foes.)_
   `,
   illustrator: "János Orbán",
@@ -2649,7 +2663,7 @@ export const library: Record<CardId, Library> = {
   name: "Bad Optics",
   types: ["influence modifier"],
   text: md`
-    Gain 2 Influence during this action or event. 
+    Gain 2 Influence during this action or event.
     If this is a Scheme and your side loses, put a Fear token on a target character with a 'No Influence' token and exhaust them.
   `,
   illustrator: "Joshua Esmeralda",
@@ -2664,7 +2678,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "conspiracy"],
   text: md`
     **Play this card face down and place 1 [prestige] on it.**
-    If this card has 2+ [prestige] on it, you may resolve it during your turn. 
+    If this card has 2+ [prestige] on it, you may resolve it during your turn.
     Target foe who did not contribute draws 3 cards.
   `,
   illustrator: "Marco Primo",
@@ -2826,7 +2840,7 @@ export const library: Record<CardId, Library> = {
   types: ["action"],
   text: md`
     **Pay 1 [prestige].**
-    Attach 1 Haven from your collection to your Leader. 
+    Attach 1 Haven from your collection to your Leader.
     They have the Leader Abilities of that Haven.
   `,
   illustrator: "Marco Primo",
@@ -2853,7 +2867,7 @@ export const library: Record<CardId, Library> = {
   types: ["attack"],
   attack: "mental",
   text: md`
-    Play this card face up. 
+    Play this card face up.
     This attack cannot be Blocked.
     [auspex] **Reveal the top card of any player's Library:** +X [damage] equal to the [bloodPotencyRequirement] of that card.
   `,
@@ -2917,7 +2931,7 @@ export const library: Record<CardId, Library> = {
   attack: "physical",
   text: md`
     **Superficial**
-    +[damage] equal to the [bloodPotencyRequirement] of a Title attached to the attacker (Prince counts as 7). 
+    +[damage] equal to the [bloodPotencyRequirement] of a Title attached to the attacker (Prince counts as 7).
     (This attack cannot reduce the target's [blood] below 1.)
   `,
   illustrator: "Adelijah Ocampo",
@@ -2974,7 +2988,7 @@ export const library: Record<CardId, Library> = {
   name: "Wild Ranting",
   types: ["influence modifier"],
   text: md`
-    Gain 3 Influence during this action or event. 
+    Gain 3 Influence during this action or event.
     If this is a Scheme and your side loses, target player draws 1 card.
   `,
   illustrator: "Marco Primo",
@@ -3032,7 +3046,7 @@ export const library: Record<CardId, Library> = {
   name: "Change of Plans",
   text: md`
     **Play this card face down and place 1 [prestige] on it.**
-    Resolve during your turn if an Ongoing Event is in play. 
+    Resolve during your turn if an Ongoing Event is in play.
     For each [prestige] on this, you may discard 1 unattached City Deck card from The Streets, then put the top card of the City Deck into The Streets.
   `,
   illustrator: "Irene Francisco",
@@ -3046,7 +3060,7 @@ export const library: Record<CardId, Library> = {
   name: "Cryptolect",
   clan: "ravnos",
   text: md`
-    Ongoing - You pay 1 less [prestige] to recruit vampires with 2+ [blood-potency] (add the last [blood]) from the general supply). 
+    Ongoing - You pay 1 less [prestige] to recruit vampires with 2+ [blood-potency] (add the last [blood]) from the general supply).
     When you recruit a Ravnos vampire, draw 1 card.
   `,
   illustrator: "Felipe Gaona",
@@ -3072,7 +3086,7 @@ export const library: Record<CardId, Library> = {
   name: "Doomed to Roam",
   text: md`
     Attach a haven from your collection to a non-Leader character in your coterie.
-    Ongoing - **Discard 1 card:** Remove your active Haven from the game and replace it with another Haven you control. 
+    Ongoing - **Discard 1 card:** Remove your active Haven from the game and replace it with another Haven you control.
     Then you may return any of your characters in The Streets to your Haven.
   `,
   illustrator: "Joyce Maureira",
@@ -3145,8 +3159,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Fifth Tradition: Hospitality",
   text: md`
-    Each player moves their Leader to The Streets. 
-    If you control the _Prince of the City_, each foe gives you 1 [prestige]. 
+    Each player moves their Leader to The Streets.
+    If you control the _Prince of the City_, each foe gives you 1 [prestige].
     If the _Prince of the City_ is in the City Deck, locate it and put it into The Streets, then shuffle the City Deck.
   `,
   illustrator: "Mara Miranda-Escota",
@@ -3203,7 +3217,7 @@ export const library: Record<CardId, Library> = {
   name: "Home Improvement",
   text: md`
     Attach this card to your Haven.
-    Ongoing - Your Leader has abilities based on # of attached _Home Improvements_. 1: At the start of your turn, mend 1 [blood] on your Leader. 
+    Ongoing - Your Leader has abilities based on # of attached _Home Improvements_. 1: At the start of your turn, mend 1 [blood] on your Leader.
     2: Also, at the start of your turn, draw 1 card. 3: Also, +2 [shield].
   `,
   illustrator: "Felipe Gaona",
@@ -3233,7 +3247,7 @@ export const library: Record<CardId, Library> = {
   text: md`
     **Play this card face down and place 1 [prestige] on it.**
     Resolve at any time.
-    When a character in your Haven is attacked, they have +1 [shield] for each token on this. 
+    When a character in your Haven is attacked, they have +1 [shield] for each token on this.
     The attacker also loses 1 [blood] for each card attached to your Haven.
   `,
   illustrator: "Joyce Maureira",
@@ -3263,7 +3277,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Secret Compartment",
   text: md`
-    Ongoing - When you discard a card from your hand, you may attach it to this card face down (max. 3). 
+    Ongoing - When you discard a card from your hand, you may attach it to this card face down (max. 3).
     When you would draw 1 card, you may put 1 card attached to this into your hand instead.
   `,
   illustrator: "Joyce Maureira",
@@ -3278,7 +3292,7 @@ export const library: Record<CardId, Library> = {
   bloodPotencyRequirement: 0,
   damage: 1,
   text: md`
-    +1 [damage] for each Ghoul you control. 
+    +1 [damage] for each Ghoul you control.
     For each Ghoul with 3+ attachments, +2 [damage] instead.
     **Burn 1 Retainer attached to the attacker:** Burn target Ongoing card the defending player controls.
   `,
@@ -3327,7 +3341,7 @@ export const library: Record<CardId, Library> = {
   shield: 1,
   text: md`
     Put a Fear token on target character in the attacking Party.
-    [obfuscate] The attacker's [damage] becomes **Superficial**. 
+    [obfuscate] The attacker's [damage] becomes **Superficial**.
     (This attack cannot reduce the target's [blood] below 1.)
   `,
   disciplines: ["obfuscate"],
@@ -3438,7 +3452,7 @@ export const library: Record<CardId, Library> = {
   clan: "tzimisce",
   text: md`
     Ongoing - **Start of Turn:** You may attach 1 card in your hand face down to a character in your coterie.
-    **Exhaust:** Target attacker deals +1 [damage] if they have 1+ face-down attachments. 
+    **Exhaust:** Target attacker deals +1 [damage] if they have 1+ face-down attachments.
     If 3+, +2 [damage] instead.
   `,
   illustrator: "Joyce Maureira",
@@ -3501,8 +3515,8 @@ export const library: Record<CardId, Library> = {
   name: "The Long Con",
   text: md`
     **Play this card face down and place 1 [prestige] on it.**
-    [presence] Resolve any time a fow puts a token on a card during their Action Phase. 
-    For each [prestige] on this card, steal 1 [prestige] or [blood] from a card you have not stolen from this turn. 
+    [presence] Resolve any time a fow puts a token on a card during their Action Phase.
+    For each [prestige] on this card, steal 1 [prestige] or [blood] from a card you have not stolen from this turn.
     Place each token on a card you control.
   `,
   disciplines: ["presence"],
@@ -3984,7 +3998,7 @@ export const library: Record<CardId, Library> = {
   //attack:[],
   //reactions: [],
   text: md`
-    Ongoing, **Relentless - Exhaust:** Target a character. 
+    Ongoing, **Relentless - Exhaust:** Target a character.
     If you have [auspex] in your coterie, you may remove 1 Affliction from the target.
     If you have [fortitude] in your coterie, you may mend 1 [blood] on the target if they are **Wounded**.
   `,
@@ -4032,6 +4046,27 @@ export const library: Record<CardId, Library> = {
   illustrator: "Darko Stojanovic",
   set: "Justice & Mercy",
   cardpool: "vampire",
+},
+
+"jam-kevlar-vest": {
+  stack: "library",
+  name: "Kevlar Vest",
+  types: ["action"],
+  //clan: "salubri",
+  //bloodPotencyRequirement: ,
+  //damage:,
+  //shield:,
+  //attack:[],
+  //reactions: [],
+  text: md`
+    Attach to the acting character (max 1).
+    This character has +1 [shield] vs **Aggravated** [damage].
+    **Detach:** Prevent 1 [damage] to this character.
+  `,
+  //disciplines:["blood sorcery"],
+  illustrator: "Irene Francisco",
+  set: "Justice & Mercy",
+  cardpool: "hunter and vampire",
 },
 
 "jam-search-for-golconda": {
@@ -4085,7 +4120,7 @@ export const library: Record<CardId, Library> = {
   //reactions: [],
   text: md`
     Attach to target character.
-    This character may not perform diablerie and deals -1 [damage] to Mortals. 
+    This character may not perform diablerie and deals -1 [damage] to Mortals.
     **Aggravated** [damage] this character would deal becomes non-**Aggravated**.
   `,
   //disciplines:["blood sorcery"],
@@ -4187,7 +4222,7 @@ export const library: Record<CardId, Library> = {
   //attack:[],
   //reactions: [],
   text: md`
-    Gain 2 Influence during this action or event. 
+    Gain 2 Influence during this action or event.
     Gain an additional 2 Influence for each foe who exerted Influence against your choice of Yes or No.
   `,
   //disciplines:[],
@@ -4547,7 +4582,7 @@ export const library: Record<CardId, Library> = {
   //attack:[],
   //reactions: [],
   text: md`
-    Deal 1 [physical] [damage] to target character for each [prestige] of your color on it. 
+    Deal 1 [physical] [damage] to target character for each [prestige] of your color on it.
     (This damage cannot remove the last [blood] token from a character.)
     [sense-the-unnatural] +1 [damage]
 `,
@@ -4568,7 +4603,7 @@ export const library: Record<CardId, Library> = {
   //attack:[],
   //reactions: [],
   text: md`
-    [protean] Attach to the acting character. 
+    [protean] Attach to the acting character.
     This character has +1 Secrecy.
     Attacker - **Detach:** +1 **Aggravated** [damage] to the target.
 `,
@@ -4631,7 +4666,7 @@ export const library: Record<CardId, Library> = {
   text: md`
     **Place this card face down and put 1 [prestige] on it.**
     If this card has 3+ [prestige] on it, you may resolve it during your Action Phase.
-    Target each foe who did not contribute and they lose 1 [agenda]. 
+    Target each foe who did not contribute and they lose 1 [agenda].
     If only 1 target, steal 1 [agenda] from them instead.
 `,
   ///disciplines:["global"],
@@ -4653,7 +4688,7 @@ export const library: Record<CardId, Library> = {
   text: md`
     **Place this card face down and put 1 [prestige] on it.**
     If this card has 2+ [prestige] on it, you may resolve it during your Action Phase.
-    Target each foe who did not contribute and they each discard 1 Library card at random. 
+    Target each foe who did not contribute and they each discard 1 Library card at random.
     If only 1 target, 2 at random instead.
 `,
   ///disciplines:["global"],
@@ -4675,7 +4710,7 @@ export const library: Record<CardId, Library> = {
   text: md`
     **Place this card face down and put 1 [prestige] on it.**
     If this card has 3+ [prestige] on it, you may resolve it during your Action Phase.
-    Target each foe who did not contribute and steal 1 [prestige] from them. 
+    Target each foe who did not contribute and steal 1 [prestige] from them.
     If only 1 target, steal 2 [prestige] instead.
 `,
   ///disciplines:["global"],
@@ -4696,7 +4731,7 @@ export const library: Record<CardId, Library> = {
   //reactions: [],
   text: md`
     [beast-whisperer] Attach to the acting character.
-    When this character would be defeated, burn this card instead and place 1 [damage] on this character. 
+    When this character would be defeated, burn this card instead and place 1 [damage] on this character.
     They are not defeated.
 `,
   disciplines:["beast whisperer"],
@@ -4989,7 +5024,7 @@ export const library: Record<CardId, Library> = {
   attack: ["social", "mental"],
   reactions: ["social", "mental"],
   text: md`
-    [library] **Pay 2 [prestige]:** The attacker's [damage] becomes **Superficial.** 
+    [library] **Pay 2 [prestige]:** The attacker's [damage] becomes **Superficial.**
     (This damage cannot remove the last [blood] token from a character.)
 `,
   disciplines:["library"],
@@ -5009,7 +5044,7 @@ export const library: Record<CardId, Library> = {
   attack: ["social", "mental"],
   reactions: ["social", "mental"],
   text: md`
-    The attacker reveals their hand to the defender. 
+    The attacker reveals their hand to the defender.
     The defender then discards 1 [social] or [mental] Attack card from the revealed cards.
 `,
   ///disciplines:["library"],
@@ -5049,7 +5084,7 @@ export const library: Record<CardId, Library> = {
   attack: ["social"],
   //reactions: ["social", "mental"],
   text: md`
-    [repel-the-unnatural] **Pay 1 [prestige]:** This attack deals +1 [damage] to the target. 
+    [repel-the-unnatural] **Pay 1 [prestige]:** This attack deals +1 [damage] to the target.
     If the target is a Monster, additional +1 [damage].
 `,
   disciplines:["repel the unnatural"],
@@ -5248,8 +5283,8 @@ export const library: Record<CardId, Library> = {
   //reactions: ["social", "mental"],
   text: md`
     [thwart-the-unnatural] +1 [damage].
-    **Pay 1 [prestige]:** +3 [damage]. 
-    After this attack, burn this character. 
+    **Pay 1 [prestige]:** +3 [damage].
+    After this attack, burn this character.
     Use only if the target is a Monster.
 `,
   disciplines:["thwart the unnatural"],
@@ -5270,7 +5305,7 @@ export const library: Record<CardId, Library> = {
   //reactions: ["social", "mental"],
   text: md`
     If this attack deals 1+ [damage] to an already **Wounded** non-Monster vampire, move them into torpor, then attach this card to them.
-    Torpor - This character does not get a free mend during their End Phase. 
+    Torpor - This character does not get a free mend during their End Phase.
     When this character leaves Torpor, burn this card.
 `,
   illustrator: "Marco Primo",
@@ -5683,7 +5718,7 @@ export const library: Record<CardId, Library> = {
   //reactions: ["social", "mental"],
   text: md`
     **Put 1[blood] from the acting character on this.**
-    **Exhaust:** Target attacker has +1 Intel. 
+    **Exhaust:** Target attacker has +1 Intel.
 `,
   //disciplines:["ordnance"],
   illustrator: "Felipe Gaona",
@@ -5707,7 +5742,7 @@ export const library: Record<CardId, Library> = {
   //reactions: ["social", "mental"],
   text: md`
     **Put 2[blood] from the acting character on this.**
-    **Exhaust:** Draw 1 card. Then, if you have 5+ cards in hand, discard 1 card. 
+    **Exhaust:** Draw 1 card. Then, if you have 5+ cards in hand, discard 1 card.
 `,
   //disciplines:["ordnance"],
   illustrator: "Felipe Gaona",
@@ -5873,7 +5908,7 @@ export const library: Record<CardId, Library> = {
   text: md`
     Play this card face up.
     **Pay 1[prestige]:** This attack cannot be Blocked.
-    [arsenal] The target does not get Preemptive Strike. 
+    [arsenal] The target does not get Preemptive Strike.
 `,
   disciplines:["arsenal"],
   illustrator: "Mico Dimagiba",
@@ -5977,41 +6012,6 @@ export const library: Record<CardId, Library> = {
   illustrator: "Felipe Gaona",
   set: "Martial Law",
   cardpool: "hunter",
-},
-
-"ml-38-special": {
-  stack: "library",
-  name: ".38 Special",
-  text: md`
-  `,
-  illustrator: "The Creation Studio",
-  types: ["attack", "reaction"],
-  set: "Martial Law",
-  bloodPotencyRequirement: 1,
-  attack: "ranged",
-  damage: 2,
-  cardpool: "hunter and vampire",
-},
-
-"ml-kevlar-vest": {
-  stack: "library",
-  name: "Kevlar Vest",
-  types: ["action"],
-  //clan: "salubri",
-  //bloodPotencyRequirement: ,
-  //damage:,
-  //shield:,
-  //attack:[],
-  //reactions: [],
-  text: md`
-    Attach to the acting character (max 1).
-    This character has +1 [shield] vs **Aggravated** [damage].
-    **Detach:** Prevent 1 [damage] to this character.
-  `,
-  //disciplines:["blood sorcery"],
-  illustrator: "Irene Francisco",
-  set: "Justice & Mercy",
-  cardpool: "hunter and vampire",
 },
 
 // Promo //
