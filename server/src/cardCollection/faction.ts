@@ -3980,7 +3980,7 @@ export const factions: Record<CardId, Faction> = {
   clan: "ministry",
   name: "Rana",
   text: md`
-    *Solitary*
+    **Solitary**
     This character has +2 Influence.
     If this is the only vampire you control, you may attach multiple Titles to them, and the Prince of the City Title doesn't remove other Titles from them.
   `,
