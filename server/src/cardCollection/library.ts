@@ -5416,9 +5416,9 @@ export const library: Record<CardId, Library> = {
 
 "ml-anything-for-my-master": {
   stack: "library",
-  name: "Anything for My Master",
+  name: "Anything For My Master",
   types: ["action"],
-  //clan: "inquisitive",
+  clan: "tzimisce",
   //bloodPotencyRequirement: 2,
   //damage: 1,
   //shield: 1,
