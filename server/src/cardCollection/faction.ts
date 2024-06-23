@@ -3855,7 +3855,7 @@ export const factions: Record<CardId, Faction> = {
   clan: "martial",
   name: "Jordana",
   text: md`
-    *Hunter*
+    **Hunter**
     This character's [ranged] cards deal +1 [damage] to the opposing character.
   `,
   bloodPotency: 4,
