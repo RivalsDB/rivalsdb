@@ -5565,7 +5565,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Cruisin For a Bruisin",
   types: ["attack", "reaction"],
-  clan: "martial",
+  //clan: "martial",
   bloodPotencyRequirement: 2,
   damage: 2,
   //shield: 1,
