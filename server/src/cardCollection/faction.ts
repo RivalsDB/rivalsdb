@@ -3908,7 +3908,7 @@ export const factions: Record<CardId, Faction> = {
   clan: "martial",
   name: "Marcos",
   text: md`
-    *Hunter*
+    **Hunter**
     This character may play any Reaction against any attack type, regardless of any restrictions other than [blood potency].
   `,
   bloodPotency: 4,
