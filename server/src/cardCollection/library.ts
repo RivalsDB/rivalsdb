@@ -4061,7 +4061,7 @@ export const library: Record<CardId, Library> = {
   text: md`
     Attach to the acting character (max 1).
     This character has +1 [shield] vs **Aggravated** [damage].
-    **Detach:** Prevent 1 [damage] to this character.
+    **Detach:** Prevent 2 [damage] to this character.
   `,
   //disciplines:["blood sorcery"],
   illustrator: "Irene Francisco",
