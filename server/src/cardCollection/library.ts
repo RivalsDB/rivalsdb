@@ -5694,7 +5694,7 @@ export const library: Record<CardId, Library> = {
   //reactions: ["social", "mental"],
   text: md`
     **Play this card face up and pay 2 [prestige].
-    [arsenal] Pay 1[prestige] instead if the target is a Monster.
+    [arsenal] Pay 1[ prestige] instead if the target is a Monster.
     **Aggravated**
 `,
   disciplines:["arsenal"],
