@@ -5545,7 +5545,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Cover Fire",
   types: ["action", "ongoing"],
-  clan: "martial",
+  // clan: "martial",
   //bloodPotencyRequirement: 2,
   //damage: 1,
   //shield: 1,
