@@ -3820,7 +3820,7 @@ export const factions: Record<CardId, Faction> = {
   clan: "salubri",
   name: "Hikari",
   text: md`
-    *Solitary*
+    **Solitary**
     When this character plays a Reaction, you may mend up to 2 [blood] on target character (including in torpor).
   `,
   bloodPotency: 5,
