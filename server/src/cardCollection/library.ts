@@ -5593,7 +5593,7 @@ export const library: Record<CardId, Library> = {
   reactions: ["physical"],
   text: md`
     **Pay 1 [prestige]:** +1 [damage].
-    Reacttion - [drone jockey] +1 [damage].
+    Reaction - [drone jockey] +1 [damage].
 `,
   disciplines:["drone jockey"],
   illustrator: "Adelijah Ocampo",
