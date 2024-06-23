@@ -5459,7 +5459,7 @@ export const library: Record<CardId, Library> = {
 "ml-awaken-the-homuncular-servant": {
   stack: "library",
   name: "Awaken the Homuncular Servant",
-  types: ["ritual", "2 actions", "ongoing"],
+  types: ["ritual", "2 actions", "ongoing", "action"],
   //clan: "inquisitive",
   //bloodPotencyRequirement: 2,
   //damage: 1,
