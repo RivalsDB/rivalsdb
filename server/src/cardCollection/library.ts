@@ -5623,9 +5623,9 @@ export const library: Record<CardId, Library> = {
 
 "ml-drive-pride": {
   stack: "library",
-  name: "Drive:Pride",
+  name: "Drive: Pride",
   types: ["unhosted action"],
-  clan: "martial",
+  //clan: "martial",
   //bloodPotencyRequirement: 2,
   //damage: 1,
   //shield: 1,
