@@ -3784,7 +3784,7 @@ export const factions: Record<CardId, Faction> = {
   clan: "martial",
   name: "Fabiana",
   text: md`
-    *Hunter*
+    **Hunter**
     Party - Reactions played by characters in this party have +1 [shield].
   `,
   bloodPotency: 3,
