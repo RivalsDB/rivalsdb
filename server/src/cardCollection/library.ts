@@ -5944,7 +5944,7 @@ export const library: Record<CardId, Library> = {
 "ml-stand-and-deliver": {
   stack: "library",
   name: "Stand and Deliver",
-  types: ["2 actions", "ritual", "ongoing"],
+  types: ["2 actions", "ritual", "ongoing", "action"],
   //clan: "salubri",
   //bloodPotencyRequirement: 2,
   //bloodPotency: 0,
@@ -5956,9 +5956,9 @@ export const library: Record<CardId, Library> = {
   //attack: ["mental"],
   //reactions: ["social", "mental"],
   text: md`
-  [blood potency] **Place 1 to 3 [blood] of your color on this card.
+  [blood potency] **Place 1 to 3 [blood] of your color on this card.**
   Ongoing - **Exhaust, Remove 2 [blood] from this:** Ready target character.
-  **Relentless, Exhaust = Remove 2 [blood] from this during a foe's turn:** Ready up to 2 target characters.
+  **Relentless, Exhaust - Remove 2 [blood] from this during a foe's turn:** Ready up to 2 target characters.
 `,
   disciplines:["blood sorcery"],
   illustrator: "Felipe Gaona",
