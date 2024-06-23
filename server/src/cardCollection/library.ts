@@ -5718,7 +5718,7 @@ export const library: Record<CardId, Library> = {
   //attack: ["mental"],
   //reactions: ["social", "mental"],
   text: md`
-    **Put 1[blood] from the acting character on this.**
+    **Put 1 [blood] from the acting character on this.**
     **Exhaust:** Target attacker has +1 Intel.
 `,
   //disciplines:["ordnance"],
