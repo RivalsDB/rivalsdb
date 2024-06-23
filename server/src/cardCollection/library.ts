@@ -5532,7 +5532,7 @@ export const library: Record<CardId, Library> = {
   text: md`
     **Place this card face down and put 1 [prestige] on it.**
     Resolve during any Action Phase.
-    Deal 1 [damage] to target attacker for each [prestige] on this.
+    Deal 1 [physical] [damage] to target attacker for each [prestige] on this.
     [ordnance] +1 [physical] [damage].
 `,
   disciplines:["ordnance"],
