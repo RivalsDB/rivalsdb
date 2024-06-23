@@ -3873,7 +3873,7 @@ export const factions: Record<CardId, Faction> = {
   clan: "martial",
   name: "Magnum",
   text: md`
-    *Hunter*
+    **Hunter**
     Party - Attackers in this party have +1 Stealth.
   `,
   bloodPotency: 2,
