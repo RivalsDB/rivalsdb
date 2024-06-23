@@ -5742,7 +5742,7 @@ export const library: Record<CardId, Library> = {
   //attack: ["mental"],
   //reactions: ["social", "mental"],
   text: md`
-    **Put 2[blood] from the acting character on this.**
+    **Put 2 [blood] from the acting character on this.**
     **Exhaust:** Draw 1 card. Then, if you have 5+ cards in hand, discard 1 card.
 `,
   //disciplines:["ordnance"],
