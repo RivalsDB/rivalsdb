@@ -8,12 +8,13 @@ type Clan
     = BanuHaqim
     | Brujah
     | Caitiff
-    | Gangrel
     | Faithful
+    | Gangrel
     | Hecata
     | Inquisitive
     | Lasombra
     | Malkavian
+    | Martial
     | Ministry
     | Nosferatu
     | Ravnos
@@ -35,12 +36,13 @@ enum =
         [ ( "banu haqim", BanuHaqim )
         , ( "brujah", Brujah )
         , ( "caitiff", Caitiff )
-        , ( "gangrel", Gangrel )
         , ( "faithful", Faithful )
+        , ( "gangrel", Gangrel )
         , ( "hecata", Hecata )
         , ( "inquisitive", Inquisitive )
         , ( "lasombra", Lasombra )
         , ( "malkavian", Malkavian )
+        , ( "martial", Martial )        
         , ( "ministry", Ministry )
         , ( "nosferatu", Nosferatu )
         , ( "ravnos", Ravnos )
@@ -90,11 +92,11 @@ name c =
         Caitiff ->
             "Caitiff"    
 
-        Gangrel ->
-            "Gangrel"
-
         Faithful ->
             "Faithful"
+
+        Gangrel ->
+            "Gangrel"
 
         Hecata ->
             "Hecata"
@@ -107,6 +109,9 @@ name c =
 
         Malkavian ->
             "Malkavian"
+
+        Martial ->
+            "Martial"
 
         Ministry ->
             "Ministry"

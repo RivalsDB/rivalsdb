@@ -186,6 +186,7 @@ type alias LibraryTraits =
     , unhostedAction : Bool
     , ghoul : Bool
     , relic : Bool
+    , vehicle : Bool
     }
 
 
@@ -662,6 +663,7 @@ decodeLibraryTraits =
             , unhostedAction = False
             , ghoul = False
             , relic = False
+            , vehicle = False
             }
     in
     Decode.map
@@ -715,6 +717,9 @@ decodeLibraryTraits =
 
                     "relic" ->
                         { ts | relic = True }
+
+                    "vehicle" ->
+                        { ts | vehicle = True }
 
                     _ ->
                         ts

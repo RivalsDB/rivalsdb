@@ -22,6 +22,7 @@ type IconImage
     | AgendaCard
     | Alchemy
     | Animal
+    | Arsenal
     | Attack
     | Blood
     | BloodPotencReq
@@ -34,8 +35,10 @@ type IconImage
     | Conspiracy
     | Damage
     | Delete
+    | DroneJockey
     | Edit
     | Faction
+    | Fleet
     | HandOfCards
     | Haven
     | Influence
@@ -45,6 +48,7 @@ type IconImage
     | Mental
     | Menu
     | Ongoing
+    | Ordnance
     | Physical
     | Ranged
     | Reaction
@@ -61,6 +65,8 @@ type IconImage
     | Ghoul
     | Monster
     | Relic
+    | Vehicle
+
 
 type IconStyle
     = Standard
@@ -140,6 +146,9 @@ imageOpts image =
         Animal ->
             ( class "ui-icon_animal", "Animal" )
 
+        Arsenal ->
+            ( class "ui-icon_arsenal", "Arsenal" )
+
         Attack ->
             ( class "ui-icon_attack", "Attack" )
 
@@ -176,11 +185,17 @@ imageOpts image =
         Delete ->
             ( class "ui-icon_delete", "Delete" )
 
+        DroneJockey ->
+            ( class "ui-icon_dronejockey", "Drone Jockey" )
+
         Edit ->
             ( class "ui-icon_edit", "Edit" )
 
         Faction ->
             ( class "ui-icon_faction", "Faction" )
+
+        Fleet ->
+            ( class "ui-icon_fleet", "Fleet" )
 
         HandOfCards ->
             ( class "ui-icon_hand_of_cards", "Draw Simulation" )
@@ -208,6 +223,9 @@ imageOpts image =
 
         Ongoing ->
             ( class "ui-icon_ongoing", "Ongoing" )
+
+        Ordnance ->
+            ( class "ui-icon_ordnance", "Ordnance" )
 
         Physical ->
             ( class "ui-icon_physical", "Physical" )
@@ -249,10 +267,13 @@ imageOpts image =
             ( class "ui-icon_ghoul", "Ghoul" )
 
         Relic ->
-            ( class "ui-icon_relic", "Relic" )      
+            ( class "ui-icon_relic", "Relic" )
+
+        Vehicle ->
+            ( class "ui-icon_vehicle", "Vehicle" )
 
         UnhostedAction ->
             ( class "ui-icon_unhosted_action", "Unhosted Action" )
-        
+
         Monster ->
-            ( class "ui-icon_monster", "Monster" ) 
+            ( class "ui-icon_monster", "Monster" )

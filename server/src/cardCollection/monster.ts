@@ -16,6 +16,8 @@ export type Monster = {
 
 export const monster: Record<CardId, Monster> = {
 
+// Hunter and Hunted //
+
 "hah-brain-eater": {
     stack: "monster",
     name: "Brain-Eater",

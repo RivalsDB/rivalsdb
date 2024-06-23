@@ -30,7 +30,8 @@ export type LibraryCardType =
   | "title"
   | "trap"
   | "unhosted action"
-  | "unique";
+  | "unique"
+  | "vehicle";
 
 export type AttackType = "mental" | "physical" | "ranged" | "social";
 
@@ -45,7 +46,8 @@ export type CardSet =
   | "Dragon & Rogue"
   | "Justice & Mercy"
   | "Hunters & Hunted"
-  | "Prince Pack 1";
+  | "Prince Pack 1"
+  | "Martial Law";
 
 export type Clan =
   | "banu haqim"
@@ -57,6 +59,7 @@ export type Clan =
   | "inquisitive"
   | "lasombra"
   | "malkavian"
+  | "martial"
   | "ministry"
   | "nosferatu"
   | "ravnos"
@@ -65,7 +68,8 @@ export type Clan =
   | "toreador"
   | "tremere"
   | "tzimisce"
-  | "ventrue";
+  | "ventrue"
+  | "martial";
 
 export type Discipline =
   | "animalism"
@@ -86,6 +90,10 @@ export type Discipline =
   | "repel the unnatural"
   | "thwart the unnatural"
   | "global"
+  | "drone jockey"
+  | "arsenal"
+  | "fleet"
+  | "ordnance";
 
 export type Illustrator =
   | ""
@@ -109,7 +117,9 @@ export type Illustrator =
   | "The Creation Studio"
   | "Timothy Terrenal and Harvey Bunda"
   | "Timothy Terrenal"
-  | "Mico Dimagiba";
+  | "Mico Dimagiba"
+  | "Patsy Lascano"
+  | "Mara Miranda";
 
 export type Cardpool =
   | "hunter"
