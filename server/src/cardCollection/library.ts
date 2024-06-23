@@ -5509,7 +5509,7 @@ export const library: Record<CardId, Library> = {
   //attack: ["mental"],
   reactions: ["social", "physical"],
   text: md`
-    **Pay 2 [prestige], [presence] **Pay 1 [prestige] instead.
+    **Pay 2 [prestige],** **[presence] Pay 1 [prestige] instead.**
     Play this card face up.
     [obfuscate] Choose any non-Monster character in The Streets other than the attacker. Redirect this attack to that character. The attack may be Blocked, and the defender may play a Reaction.
 `,
