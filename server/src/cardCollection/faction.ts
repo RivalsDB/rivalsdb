@@ -3712,8 +3712,8 @@ export const factions: Record<CardId, Faction> = {
   clan: "banu haqim",
   name: "Elias",
   text: md`
-    *Solitary*
-    If this is the only vampier you control, when you play a [blood sorcery] Ritual, gain 1 Action and use up to 2 [blood] from your general supply to pay the [blood] cost.
+    **Solitary**
+    If this is the only vampire you control, when you play a [blood sorcery] Ritual, gain 1 Action and use up to 2 [blood] from your general supply to pay the [blood] cost.
   `,
   bloodPotency: 5,
   physical: 1,
@@ -3721,7 +3721,7 @@ export const factions: Record<CardId, Faction> = {
   mental: 1,
   illustrator: "Mico Dimagiba",
   set: "Martial Law",
-  disciplines: { "animalism": 1 },
+  disciplines: { celerity: 1, "blood sorcery": 1 },
   cardpool: "vampire",
 },
 
