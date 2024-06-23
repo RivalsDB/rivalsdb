@@ -4090,7 +4090,7 @@ export const factions: Record<CardId, Faction> = {
   clan: "caitiff",
   name: "Zoe",
   text: md`
-    When you discard a Library card from your hand, you may burn it, pit it on the bottom of your Library, or discard it as usual.
+    When you discard a Library card from your hand, you may burn it, put it on the bottom of your Library, or discard it as usual.
   `,
   bloodPotency: 3,
   physical: 0,
