@@ -3838,7 +3838,7 @@ export const factions: Record<CardId, Faction> = {
   clan: "ravnos",
   name: "Jenni",
   text: md`
-    Characters in your coteria have +1 [shield] for each Haven attached to them.
+    Characters in your coterie have +1 [shield] for each Haven attached to them.
   `,
   bloodPotency: 2,
   physical: 0,
