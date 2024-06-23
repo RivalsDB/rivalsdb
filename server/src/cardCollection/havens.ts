@@ -32,7 +32,7 @@ export const havens: Record<CardId, Haven> = {
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
-    If ready, you may move your Leader to The Streets (if they are not already there) to Block a foe's attack (including [ranged]). 
+    If ready, you may move your Leader to The Streets (if they are not already there) to Block a foe's attack (including [ranged]).
     If the attack targeted a character, gain 1 [prestige].
   `,
   illustrator: "Felipe Gaona",
@@ -59,7 +59,7 @@ export const havens: Record<CardId, Haven> = {
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
-    Once during each player's turn, you may place a card fro your hand with 1-3 Blood Potence as an Influence Modifier. 
+    Once during each player's turn, you may place a card fro your hand with 1-3 Blood Potence as an Influence Modifier.
     When revealed, gain Influence equal to the card's Blood Potence value.
   `,
   illustrator: "Cold Castle Studios",
@@ -73,7 +73,7 @@ export const havens: Record<CardId, Haven> = {
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
-    Characters with a Title in your coterie have +1 Influence. 
+    Characters with a Title in your coterie have +1 Influence.
     Discard an unattached City Deck Mortal in The Streets: Add a new card to The Streets.
   `,
   illustrator: "Cold Castle Studios",
@@ -154,7 +154,7 @@ export const havens: Record<CardId, Haven> = {
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
-    Your Library cards have -1 Blood Potence. 
+    Your Library cards have -1 Blood Potence.
     When your Leader is defeated, put a '-1 Blood Potence' token on target character.
   `,
   illustrator: "Marco Primo",
@@ -183,8 +183,8 @@ export const havens: Record<CardId, Haven> = {
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
-    When your Leader exhausts, reveal the top card of your Library. 
-    If it's an Animal, draw it. 
+    When your Leader exhausts, reveal the top card of your Library.
+    If it's an Animal, draw it.
     Otherwise, leave it or discard it.
   `,
   illustrator: "Harvey Bunda",
@@ -280,7 +280,7 @@ export const havens: Record<CardId, Haven> = {
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
-    **Remove 1 [agenda] from X different sources you control:** You pay X less [prestige] to recruit your next character this turn. 
+    **Remove 1 [agenda] from X different sources you control:** You pay X less [prestige] to recruit your next character this turn.
     (Add the remaining [blood] from the general supply.)
   `,
   illustrator: "Marco Primo",
@@ -296,7 +296,7 @@ export const havens: Record<CardId, Haven> = {
   text: md`
     Guards in your coterie have +1 [Shield] while Blocking.
     **Leader Ability**
-    Guards in your coterie deal +1 [damage] to Blockers. 
+    Guards in your coterie deal +1 [damage] to Blockers.
     At the end of your turn, ready 1 character in your coterie.
   `,
   illustrator: "Marco Primo",
@@ -381,7 +381,7 @@ export const havens: Record<CardId, Haven> = {
   name: "The Hermitage",
   text: md`
     Characters in your Haven have +1 Secrecy.
-    When you recruit a character, gain 1 [prestige]. 
+    When you recruit a character, gain 1 [prestige].
     If they are Salubri, gain 2 [prestige] instead and draw 1 Faction card.
   `,
   illustrator: "Marco Primo",
@@ -407,7 +407,7 @@ export const havens: Record<CardId, Haven> = {
   name: "The Castle",
   text: md`
     Characters in your Haven have +1 Secrecy.
-    **Discard 1 card:** Mend 1 [blood] on target character (including in torpor); mend 2 [blood] instead if they are in torpor. 
+    **Discard 1 card:** Mend 1 [blood] on target character (including in torpor); mend 2 [blood] instead if they are in torpor.
     If the target is the only character in their coterie, draw 1 card.
   `,
   illustrator: "Marco Primo",
@@ -450,7 +450,7 @@ export const havens: Record<CardId, Haven> = {
   text: `md
     Your characters have +1 Secrecy.
     **Leader Ability**
-    When a character you control is defeated by non-**Aggravted** [damage], if you control no characters in recovery, you may put the defeated character into recovery.
+    When a character you control is defeated by non-**Aggravated** [damage], if you control no characters in recovery, you may put the defeated character into recovery.
   `,
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
@@ -502,7 +502,7 @@ export const havens: Record<CardId, Haven> = {
   text: md`
     Your characters have +1 Secrecy.
     **Leader Ability**
-    When your Leader exhausts, reveal the top card of your Library. 
+    When your Leader exhausts, reveal the top card of your Library.
     If it's a Relic, draw it. Otherwise, leave it or discard it.
   `,
   illustrator: "Marco Primo",
@@ -537,6 +537,47 @@ export const havens: Record<CardId, Haven> = {
   cardpool: "vampire",
 },
 
+// Martial Law //
+
+"ml-ghoulish-favela": {
+  stack: "haven",
+  name: "Ghoulish Favela",
+  text: md`
+    Characters in your Haven have +1 Secrecy. Ghouls with no face-up attachments you control have +1 [shield].
+    **Leader Ability**
+    When your Leader exhausts, reveal the top card of your Library. If it's a Ghoul or has the word "Ghoul" in its game text, draw it. Otherwise, leave it or discard it.
+  `,
+  illustrator: "Adelijah Ocampo",
+  set: "Martial Law",
+  cardpool: "vampire",
+},
+
+"ml-hunters-blind": {
+  stack: "haven",
+  name: "Hunter's Blind",
+  text: md`
+    Your characters have +1 Secrecy.
+    **Leader Ability**
+    Once during each player's turn, you may ready a character you control in The Streets to Block a foe's attack (including [ranged]) against a target in The Streets.
+  `,
+  illustrator: "Mara Miranda",
+  set: "Martial Law",
+  cardpool: "hunter",
+},
+
+"ml-the-ready-room": {
+  stack: "haven",
+  name: "The Ready Room",
+  text: md`
+    Your characters have +1 Secrecy.
+    **Leader Ability**
+    You pay 1 less [prestige] to activate **Relentless** abilities.
+  `,
+  illustrator: "Mara Miranda",
+  set: "Martial Law",
+  cardpool: "hunter",
+},
+
 // Promo //
 
 "xxx-apartment-111": {
@@ -544,7 +585,7 @@ export const havens: Record<CardId, Haven> = {
   name: "Apartment 111",
   text: md`
     Characters in your Haven have +1 Secrecy.
-    **Solitary** characters in your coterie have +1 Secrecy in The Streets, +1 Intel, and +1 Influence. 
+    **Solitary** characters in your coterie have +1 Secrecy in The Streets, +1 Intel, and +1 Influence.
     At the end of your Beginning Phase, ready each character in your coterie.
   `,
   illustrator: "Marco Primo",
@@ -571,7 +612,7 @@ export const havens: Record<CardId, Haven> = {
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
-    When your Leader defeats a character, you may use up to 3 [blood] of your color that was on that character to play a Ritual at no cost. 
+    When your Leader defeats a character, you may use up to 3 [blood] of your color that was on that character to play a Ritual at no cost.
     (You may add [blood] from other sources as well.)
   `,
   illustrator: "Marco Primo",
@@ -583,7 +624,7 @@ export const havens: Record<CardId, Haven> = {
   stack: "haven",
   name: "Prague National Bank",
   text: md`
-    You start the game with 25 [prestige]. 
+    You start the game with 25 [prestige].
     If this card leaves play, lose 3 [prestige].
   `,
   illustrator: "Marco Primo",

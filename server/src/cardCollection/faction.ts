@@ -133,7 +133,7 @@ export const factions: Record<CardId, Faction> = {
   stack: "faction",
   name: "Bunny Benitez",
   text: md`
-    When a Scheme you play succedds, gain 1 prestige. 
+    When a Scheme you play succedds, gain 1 prestige.
     Exhaust: This character has +2 influence during this action or event
   `,
   illustrator: "Drew Tucker",
@@ -458,7 +458,7 @@ export const factions: Record<CardId, Faction> = {
   stack: "faction",
   name: "Randolph Marz",
   text: md`
-    Party - Discard a Title: This attack deals +1 damage to the target. 
+    Party - Discard a Title: This attack deals +1 damage to the target.
     Additional +1 damage if this character is Prince of the City.
   `,
   illustrator: "Amy Wilkins",
@@ -666,7 +666,7 @@ export const factions: Record<CardId, Faction> = {
   stack: "faction",
   name: "April Smith",
   text: md`
-    Party - Attackers with Thin-blood alchemy in this party gain +1 Blood Potence and Fortitude this attack. 
+    Party - Attackers with Thin-blood alchemy in this party gain +1 Blood Potence and Fortitude this attack.
     Pay 1 Prestige: Each 1 Blood Potence character in your coterie has +1 Resistence this turn.
   `,
   illustrator: "Felipe Gaona",
@@ -701,7 +701,7 @@ export const factions: Record<CardId, Faction> = {
   stack: "faction",
   name: "Caleb Walker",
   text: md`
-    Party - Attackers with Thin-blood alchemy in this party gain +1 Blood Potence and Blood Sorcery this attack. 
+    Party - Attackers with Thin-blood alchemy in this party gain +1 Blood Potence and Blood Sorcery this attack.
     Pay 1 Prestige: Each 1 Blood Potence character in your coterie has +1 Resistence this turn.
   `,
   illustrator: "Joyce Maureira",
@@ -753,7 +753,7 @@ export const factions: Record<CardId, Faction> = {
   stack: "faction",
   name: "Darius Wolfe",
   text: md`
-    Guard This character may block Ranged Attacker. 
+    Guard This character may block Ranged Attacker.
     When this character Blocks an attacks, draw 1 card.
   `,
   illustrator: "Joyce Maureira",
@@ -805,7 +805,7 @@ export const factions: Record<CardId, Faction> = {
   stack: "faction",
   name: "Frog",
   text: md`
-    When a character in this party attaches an Alchemy, ready them. 
+    When a character in this party attaches an Alchemy, ready them.
     Detach an Alchemy from this character: Prevent 1 Damage.
   `,
   illustrator: "Joyce Maureira",
@@ -840,7 +840,7 @@ export const factions: Record<CardId, Faction> = {
   stack: "faction",
   name: "Hua Jiang",
   text: md`
-    Party - Attackers with Thin-blood alchemy in this party gain +1 Blood Potence and Celerity this attack. 
+    Party - Attackers with Thin-blood alchemy in this party gain +1 Blood Potence and Celerity this attack.
     Pay 1 Prestige: Each 1 Blood Potence character in your coterie has +1 Resistence this turn.
   `,
   illustrator: "Joyce Maureira",
@@ -926,7 +926,7 @@ export const factions: Record<CardId, Faction> = {
   stack: "faction",
   name: "Valerie Nash",
   text: md`
-    Party - Attackers with Thin-blood alchemy in this party gain +1 Blood Potence and Auspex this attack. 
+    Party - Attackers with Thin-blood alchemy in this party gain +1 Blood Potence and Auspex this attack.
     Pay 1 Prestige: Each 1 Blood Potence character in your coterie has +1 Resistence this turn.
   `,
   illustrator: "Felipe Gaona",
@@ -944,7 +944,7 @@ export const factions: Record<CardId, Faction> = {
   stack: "faction",
   name: "Wendy",
   text: md`
-    Party - Attackers with Thin-blood alchemy in this party gain +1 Blood Potence and Obfuscate this attack. 
+    Party - Attackers with Thin-blood alchemy in this party gain +1 Blood Potence and Obfuscate this attack.
     Pay 1 Prestige: Each 1 Blood Potence character in your coterie has +1 Resistence this turn.
   `,
   illustrator: "Joyce Maureira",
@@ -1033,7 +1033,7 @@ export const factions: Record<CardId, Faction> = {
   stack: "faction",
   name: "Drea Warden",
   text: md`
-    Exhaust, Pay 1 [blood]: Attach an Animal from your hand to any character in your coterie. 
+    Exhaust, Pay 1 [blood]: Attach an Animal from your hand to any character in your coterie.
     Ignore normal attach requirements.
   `,
   illustrator: "Joyce Maureira",
@@ -1051,7 +1051,7 @@ export const factions: Record<CardId, Faction> = {
   stack: "faction",
   name: "General Flint",
   text: md`
-    Attacker - If this character has 1+ Retainers, the target has -1 [shield]. 
+    Attacker - If this character has 1+ Retainers, the target has -1 [shield].
     If this character has 2+ Retainers, this attack also deals +1 [damage].
   `,
   illustrator: "Ana Horbunova",
@@ -1103,7 +1103,7 @@ export const factions: Record<CardId, Faction> = {
   stack: "faction",
   name: "Kim Phan",
   text: md`
-    Exhaust: Remove 1 token from target Ongoing or unattached face-down card controlled by any player. 
+    Exhaust: Remove 1 token from target Ongoing or unattached face-down card controlled by any player.
     Use this ability only in The Streets.
     Pay 1 [prestige]: Discard the card instead.
   `,
@@ -1122,7 +1122,7 @@ export const factions: Record<CardId, Faction> = {
   stack: "faction",
   name: "Leah Swiftfoot",
   text: md`
-    Attacker - If alone in a party, attacks made by this character cannot be Blocked. 
+    Attacker - If alone in a party, attacks made by this character cannot be Blocked.
     At the end of this attack, you may move this character to your Haven.
   `,
   illustrator: "Joyce Maureira",
@@ -1226,7 +1226,7 @@ export const factions: Record<CardId, Faction> = {
   stack: "faction",
   name: "Summer Moon",
   text: md`
-    At the end of your turn, if this character has 1+ Animal attached, ready them. 
+    At the end of your turn, if this character has 1+ Animal attached, ready them.
     If 2+ Animals are attached, they also mend 1 [blood].
   `,
   illustrator: "Joyce Maureira",
@@ -1298,7 +1298,7 @@ export const factions: Record<CardId, Faction> = {
   stack: "faction",
   name: "Scott",
   text: md`
-    When you create a wraith, choose your wraith token instead of drawing it at random. 
+    When you create a wraith, choose your wraith token instead of drawing it at random.
     Shuffle the stack after choosing.
   `,
   illustrator: "Joyce Maureira",
@@ -1351,7 +1351,7 @@ export const factions: Record<CardId, Faction> = {
   stack: "faction",
   name: "Astrid Malhela",
   text: md`
-    Party - **Pay 1 [agenda]:** This attack has +3 Intel. 
+    Party - **Pay 1 [agenda]:** This attack has +3 Intel.
     If the attack defeats the target, gain 1 [prestige].
   `,
   illustrator: "Felipe Gaona",
@@ -1600,7 +1600,7 @@ export const factions: Record<CardId, Faction> = {
   clan: "tremere",
   name: "Aleister",
   text: md`
-    Attacker - **Discard 2 cards:** This attack deals +4 **Superficial** [Damage] to the target. 
+    Attacker - **Discard 2 cards:** This attack deals +4 **Superficial** [Damage] to the target.
     (This attack cannot reduce the target's [blood] below 1.)
   `,
   bloodPotency: 5,
@@ -1618,7 +1618,7 @@ export const factions: Record<CardId, Faction> = {
   clan: "hecata",
   name: "Anjali the Samedi",
   text: md`
-    Torpor - Attach the top card of target player's Library face down to a character in their coterie with 2 or fewer attachments. 
+    Torpor - Attach the top card of target player's Library face down to a character in their coterie with 2 or fewer attachments.
     If this is its first attachment, draw 1 card.
   `,
   bloodPotency: 3,
@@ -1636,7 +1636,7 @@ export const factions: Record<CardId, Faction> = {
   clan: "ventrue",
   name: "Borek Wagner",
   text: md`
-    At the start of your first turn of the game, reveal 2 different Havens from your collection. 
+    At the start of your first turn of the game, reveal 2 different Havens from your collection.
     Your Rival chooses 1 and you attach that Haven to this character, who gains the Leader Ability of that Haven.
   `,
   bloodPotency: 6,
@@ -1705,7 +1705,7 @@ export const factions: Record<CardId, Faction> = {
   clan: "ventrue",
   name: "Em",
   text: md`
-    At the start of your turn, if you control +2 Havens, gain 1 [prestige]. 
+    At the start of your turn, if you control +2 Havens, gain 1 [prestige].
     If you control +3 Havens, also gain 1 [agenda].
   `,
   bloodPotency: 4,
@@ -1723,7 +1723,7 @@ export const factions: Record<CardId, Faction> = {
   clan: "toreador",
   name: "Emil Hruza",
   text: md`
-    You may ignore City Deck Events. When this character defeats a Mortal or character, you may shuffle 1 Event from the City Deck burned pile into the City Deck. 
+    You may ignore City Deck Events. When this character defeats a Mortal or character, you may shuffle 1 Event from the City Deck burned pile into the City Deck.
     When that Event leaves play, remove it from the game.
   `,
   bloodPotency: 7,
@@ -2354,7 +2354,7 @@ export const factions: Record<CardId, Faction> = {
   stack: "faction",
   name: "Alhaml Alqurbaniu",
   text: md`
-    When another character in your coterie would be defeated, burn this character instead. 
+    When another character in your coterie would be defeated, burn this character instead.
     Then put 1 [blood] onto your other character from the general supply and they are not defeated.
   `,
   illustrator: "Joyce Maureira",
@@ -2499,7 +2499,7 @@ export const factions: Record<CardId, Faction> = {
   name: "Baptiste",
   text: md`
     **Solitary**
-    **Exhaust**: Mend 2 [blood] on target character (including in torpor). 
+    **Exhaust**: Mend 2 [blood] on target character (including in torpor).
     If you don't control the target, draw 1 card.
   `,
   illustrator: "Joyce Maureira",
@@ -3247,7 +3247,7 @@ export const factions: Record<CardId, Faction> = {
   clan: "malkavian",
   name: "Ainsley Kalb",
   text: md`
-    The first time this character exhausts during each of your turns, any player may pay 1 [agenda]. 
+    The first time this character exhausts during each of your turns, any player may pay 1 [agenda].
     If they do, ready this character.
     **Action:** Each player discards 2 random Library cards, then may draw 2 cards.
   `,
@@ -3460,7 +3460,7 @@ export const factions: Record<CardId, Faction> = {
   clan: "ventrue",
   name: "Ken Michael-Otto",
   text: md`
-    **Pay 1 [blood]:** Reveal an Influence Modifier in your hand, then put it face-down into your Haven. 
+    **Pay 1 [blood]:** Reveal an Influence Modifier in your hand, then put it face-down into your Haven.
     Put 1 [blood] from your general supply on that card, which is now a Ghoul.
   `,
   bloodPotency: 7,
@@ -3514,7 +3514,7 @@ export const factions: Record<CardId, Faction> = {
   name: "Marcel Kraatz",
   text: md`
     If this character has +1 [agenda] on them, they have +3 Influence.
-    **Pay 1 [prestige]:** Place 1 [agenda] on target character. 
+    **Pay 1 [prestige]:** Place 1 [agenda] on target character.
     If they are controlled by your rival, lose 1 [prestige].
   `,
   bloodPotency: 6,
@@ -3532,8 +3532,8 @@ export const factions: Record<CardId, Faction> = {
   clan: "toreador",
   name: "Murchaidh",
   text: md`
-    Attacker - Reveal the top card of the defender's Library. 
-    If it's not an Attack card, +1 [damage]. 
+    Attacker - Reveal the top card of the defender's Library.
+    If it's not an Attack card, +1 [damage].
     If it is an Attack card, negate the target's Reaction (if any).
   `,
   bloodPotency: 7,
@@ -3588,7 +3588,7 @@ export const factions: Record<CardId, Faction> = {
   clan: "brujah",
   name: "Savage",
   text: md`
-    Attacker - If this attack causes the target to become **Wounded**, exhaust the target and put a Fear token on them. 
+    Attacker - If this attack causes the target to become **Wounded**, exhaust the target and put a Fear token on them.
     This attack deals +1 [damage] to the target if the defending party has 3+ characters.
   `,
   bloodPotency: 7,
@@ -3615,6 +3615,490 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Darko Stojanovic",
   set: "Prince Pack 1",
   disciplines: { "blood sorcery": 1, fortitude: 1, oblivion: 1 },
+  cardpool: "vampire",
+},
+
+// Martial Law //
+
+"ml-antonia": {
+  stack: "faction",
+  clan: "caitiff",
+  name: "Antonia",
+  text: md`
+    When this character is defeated, draw 2 cards and then discard 2 cards.
+  `,
+  bloodPotency: 2,
+  physical: 1,
+  social: 0,
+  mental: 0,
+  illustrator: "Joyce Maureira",
+  set: "Martial Law",
+  disciplines: { "blood sorcery": 1, protean: 1 },
+  cardpool: "vampire",
+},
+
+"ml-clara": {
+  stack: "faction",
+  clan: "ministry",
+  name: "Clara",
+  text: md`
+    When this character plays a Scheme, they have +3 Influence.
+  `,
+  bloodPotency: 3,
+  physical: 0,
+  social: 2,
+  mental: 0,
+  illustrator: "Felipe Gaona",
+  set: "Martial Law",
+  disciplines: { presence: 1 },
+  cardpool: "vampire",
+},
+
+"ml-clarence": {
+  stack: "faction",
+  clan: "martial",
+  name: "Clarence",
+  text: md`
+    **Hunter**
+    When this character is recruited, put 1 Reaction card from your discard pile into your hand.
+  `,
+  bloodPotency: 2,
+  physical: 0,
+  social: 1,
+  mental: 0,
+  illustrator: "Mico Dimagiba",
+  set: "Martial Law",
+  disciplines: { "drone jockey": 1, fleet: 1 },
+  cardpool: "hunter",
+},
+
+"ml-davi": {
+  stack: "faction",
+  clan: "ravnos",
+  name: "Davi",
+  text: md`
+    Party - Characters in this party have +1 [shield] during your Action Phase for each Animal attached to this character.
+  `,
+  bloodPotency: 3,
+  physical: 0,
+  social: 0,
+  mental: 2,
+  illustrator: "Patsy Lascano",
+  set: "Martial Law",
+  disciplines: { "animalism": 1 },
+  cardpool: "vampire",
+},
+
+"ml-dulce": {
+  stack: "faction",
+  clan: "martial",
+  name: "Dulce",
+  text: md`
+    **Hunter**
+    **Relentless, Pay 1 [prestige]**: Ready target character.
+  `,
+  bloodPotency: 3,
+  physical: 2,
+  social: 0,
+  mental: 0,
+  illustrator: "Irene Francisco",
+  set: "Martial Law",
+  disciplines: { arsenal: 1, "drone jockey": 1, fleet: 1 },
+  cardpool: "hunter",
+},
+
+"ml-elias": {
+  stack: "faction",
+  clan: "banu haqim",
+  name: "Elias",
+  text: md`
+    **Solitary**
+    If this is the only vampire you control, when you play a [blood sorcery] Ritual, gain 1 Action and use up to 2 [blood] from your general supply to pay the [blood] cost.
+  `,
+  bloodPotency: 5,
+  physical: 1,
+  social: 1,
+  mental: 1,
+  illustrator: "Mico Dimagiba",
+  set: "Martial Law",
+  disciplines: { celerity: 1, "blood sorcery": 1 },
+  cardpool: "vampire",
+},
+
+"ml-estranho": {
+  stack: "faction",
+  clan: "caitiff",
+  name: "Estranho",
+  text: md`
+    **Solitary, Reach**
+    If this is the only vampire you control, this character also has [animalism], [fortitude], and [protean].
+  `,
+  bloodPotency: 5,
+  physical: 1,
+  social: 2,
+  mental: 0,
+  illustrator: "Felipe Gaona",
+  set: "Martial Law",
+  disciplines: { "blood sorcery": 1, dominate: 1, oblivion: 1 },
+  cardpool: "vampire",
+},
+
+"ml-evelyn": {
+  stack: "faction",
+  clan: "martial",
+  name: "Evelyn",
+  text: md`
+    **Hunter**
+    **Relentless, Pay 1 [prestige]:**
+    Target character has +1 [shield] this turn and their controller may move them to The Streets.
+  `,
+  bloodPotency: 2,
+  physical: 0,
+  social: 0,
+  mental: 1,
+  illustrator: "Felipe Gaona",
+  set: "Martial Law",
+  disciplines: { fleet: 1, ordnance: 1 },
+  cardpool: "hunter",
+},
+
+"ml-faren": {
+  stack: "faction",
+  clan: "ministry",
+  name: "Faren",
+  text: md`
+    While this character has a Title, they have +1 [shield].
+  `,
+  bloodPotency: 4,
+  physical: 1,
+  social: 1,
+  mental: 0,
+  illustrator: "Felipe Gaona",
+  set: "Martial Law",
+  disciplines: { obfuscate: 1, presence: 1 },
+  cardpool: "vampire",
+},
+
+"ml-fabiana": {
+  stack: "faction",
+  clan: "martial",
+  name: "Fabiana",
+  text: md`
+    **Hunter**
+    Party - Reactions played by characters in this party have +1 [shield].
+  `,
+  bloodPotency: 3,
+  physical: 0,
+  social: 1,
+  mental: 1,
+  illustrator: "Felipe Gaona",
+  set: "Martial Law",
+  disciplines: { arsenal: 1, fleet: 1, ordnance: 1 },
+  cardpool: "hunter",
+},
+
+"ml-hakeem": {
+  stack: "faction",
+  clan: "banu haqim",
+  name: "Hakeem",
+  text: md`
+    **Diablerist**
+    Attacker - If this attack would attach a card to a defender, you may attach it to any character in the defending party instead.
+  `,
+  bloodPotency: 3,
+  physical: 2,
+  social: 0,
+  mental: 0,
+  illustrator: "Adelijah Ocampo",
+  set: "Martial Law",
+  disciplines: { celerity: 1 },
+  cardpool: "vampire",
+},
+
+"ml-hikari": {
+  stack: "faction",
+  clan: "salubri",
+  name: "Hikari",
+  text: md`
+    **Solitary**
+    When this character plays a Reaction, you may mend up to 2 [blood] on target character (including in torpor).
+  `,
+  bloodPotency: 5,
+  physical: 1,
+  social: 1,
+  mental: 1,
+  illustrator: "Joyce Maureira",
+  set: "Martial Law",
+  disciplines: { auspex: 1, fortitude: 1 },
+  cardpool: "vampire",
+},
+
+"ml-jenni": {
+  stack: "faction",
+  clan: "ravnos",
+  name: "Jenni",
+  text: md`
+    Characters in your coterie have +1 [shield] for each Haven attached to them.
+  `,
+  bloodPotency: 2,
+  physical: 0,
+  social: 1,
+  mental: 0,
+  illustrator: "Joyce Maureira",
+  set: "Martial Law",
+  disciplines: { presence: 1 },
+  cardpool: "vampire",
+},
+
+"ml-jordana": {
+  stack: "faction",
+  clan: "martial",
+  name: "Jordana",
+  text: md`
+    **Hunter**
+    This character's [ranged] cards deal +1 [damage] to the opposing character.
+  `,
+  bloodPotency: 4,
+  physical: 0,
+  social: 0,
+  mental: 2,
+  illustrator: "Adelijah Ocampo",
+  set: "Martial Law",
+  disciplines: { arsenal: 1, "drone jockey": 1, fleet: 1, ordnance: 1 },
+  cardpool: "hunter",
+},
+
+"ml-magnum": {
+  stack: "faction",
+  clan: "martial",
+  name: "Magnum",
+  text: md`
+    **Hunter**
+    Party - Attackers in this party have +1 Stealth.
+  `,
+  bloodPotency: 2,
+  physical: 1,
+  social: 0,
+  mental: 0,
+  illustrator: "Felipe Gaona",
+  set: "Martial Law",
+  disciplines: { arsenal: 1, ordnance: 1 },
+  cardpool: "hunter",
+},
+
+"ml-marcia": {
+  stack: "faction",
+  clan: "banu haqim",
+  name: "Marcia",
+  text: md`
+    While not defending, this character has +1 [shield] for each different Ongoing Tradition you control.
+  `,
+  bloodPotency: 4,
+  physical: 0,
+  social: 1,
+  mental: 1,
+  illustrator: "Irene Francisco",
+  set: "Martial Law",
+  disciplines: { "blood sorcery": 1, obfuscate: 1 },
+  cardpool: "vampire",
+},
+
+"ml-marcos": {
+  stack: "faction",
+  clan: "martial",
+  name: "Marcos",
+  text: md`
+    **Hunter**
+    This character may play any Reaction against any attack type, regardless of any restrictions other than [blood potency].
+  `,
+  bloodPotency: 4,
+  physical: 1,
+  social: 1,
+  mental: 0,
+  illustrator: "Mico Dimagiba",
+  set: "Martial Law",
+  disciplines: { arsenal: 1, "drone jockey": 1, fleet: 1, ordnance: 1 },
+  cardpool: "hunter",
+},
+
+"ml-ming-yue": {
+  stack: "faction",
+  clan: "ravnos",
+  name: "Ming-Yue",
+  text: md`
+    **Solitary**
+    If this is the only vampire you control, when this character exhausts, you may put 1 [blood] or [prestige] from your general supply onto a card you control.
+  `,
+  bloodPotency: 4,
+  physical: 2,
+  social: 0,
+  mental: 0,
+  illustrator: "Irene Francisco",
+  set: "Martial Law",
+  disciplines: { obfuscate: 1, presence: 1 },
+  cardpool: "vampire",
+},
+
+"ml-mr-medinger": {
+  stack: "faction",
+  clan: "tzimisce",
+  name: "Mr. Medinger",
+  text: md`
+    When this character is recruited, put 1 Library card from your discard pile face down into your Haven.
+    Put 2 [blood] from your general supply on that card, which is now a Ghoul.
+  `,
+  bloodPotency: 4,
+  physical: 1,
+  social: 0,
+  mental: 1,
+  illustrator: "Joyce Maureira",
+  set: "Martial Law",
+  disciplines: { animalism: 1, protean: 1 },
+  cardpool: "vampire",
+},
+
+"ml-mr-petty": {
+  stack: "faction",
+  clan: "tzimisce",
+  name: "Mr. Petty",
+  text: md`
+    **Solitary, Possessive**
+    If this is the only vampire you control, this character has +1 [shield] for each Ghoul you control.
+  `,
+  bloodPotency: 6,
+  physical: 1,
+  social: 1,
+  mental: 1,
+  illustrator: "Joyce Maureira",
+  set: "Martial Law",
+  disciplines: { animalism: 1, dominate: 1, protean: 1 },
+  cardpool: "vampire",
+},
+
+"ml-rana": {
+  stack: "faction",
+  clan: "ministry",
+  name: "Rana",
+  text: md`
+    **Solitary**
+    This character has +2 Influence.
+    If this is the only vampire you control, you may attach multiple Titles to them, and the Prince of the City Title doesn't remove other Titles from them.
+  `,
+  bloodPotency: 7,
+  physical: 2,
+  social: 1,
+  mental: 1,
+  illustrator: "Irene Francisco",
+  set: "Martial Law",
+  disciplines: { potence: 1, presence: 1, protean: 1 },
+  cardpool: "vampire",
+},
+
+"ml-salvador": {
+  stack: "faction",
+  clan: "martial",
+  name: "Salvador",
+  text: md`
+    **Guard**
+    Once during each player's turn, you may spend [prestige] of your color on characters to activate an ability, even if it doesn't interact with those characters.
+  `,
+  bloodPotency: 4,
+  physical: 0,
+  social: 2,
+  mental: 0,
+  illustrator: "Mara Miranda",
+  set: "Martial Law",
+  disciplines: { arsenal: 1, "drone jockey": 1, fleet: 1, ordnance: 1 },
+  cardpool: "hunter",
+},
+
+"ml-sozinho": {
+  stack: "faction",
+  clan: "salubri",
+  name: "Sozinho",
+  text: md`
+    **Solitary**
+    If this is the only vampire you control, you may play cards of any clan affiliation.
+  `,
+  bloodPotency: 6,
+  physical: 2,
+  social: 0,
+  mental: 1,
+  illustrator: "Mico Dimagiba",
+  set: "Martial Law",
+  disciplines: { auspex: 1, fortitude: 2 },
+  cardpool: "vampire",
+},
+
+"ml-trigger": {
+  stack: "faction",
+  clan: "martial",
+  name: "Trigger",
+  text: md`
+    **Hunter**
+    When this character plays a Reaction, the attacker loses 1 [blood].
+  `,
+  bloodPotency: 3,
+  physical: 1,
+  social: 1,
+  mental: 0,
+  illustrator: "Joyce Maureira",
+  set: "Martial Law",
+  disciplines: { arsenal: 1, "drone jockey": 1, ordnance: 1 },
+  cardpool: "hunter",
+},
+
+"ml-trinidad": {
+  stack: "faction",
+  clan: "salubri",
+  name: "Trinidad",
+  text: md`
+    **Solitary**
+    Party - When a character in this party is defeated, gain 1 [prestige].
+    If this is the only character you control, gain 2 [prestige] instead.
+  `,
+  bloodPotency: 4,
+  physical: 0,
+  social: 1,
+  mental: 1,
+  illustrator: "Joyce Maureira",
+  set: "Martial Law",
+  disciplines: { auspex: 1, dominate: 1 },
+  cardpool: "vampire",
+},
+
+"ml-valentina": {
+  stack: "faction",
+  clan: "tzimisce",
+  name: "Valentina",
+  text: md`
+    When you discard to mend this character during your End Phase, attach that card face down to this character.
+    **Detach 2 face-down cards from this character:** [damage] to this character during this attack bvecomes **Superficial**.
+  `,
+  bloodPotency: 5,
+  physical: 0,
+  social: 1,
+  mental: 2,
+  illustrator: "Irene Francisco",
+  set: "Martial Law",
+  disciplines: { animalism: 1, protean: 1 },
+  cardpool: "vampire",
+},
+
+"ml-zoe": {
+  stack: "faction",
+  clan: "caitiff",
+  name: "Zoe",
+  text: md`
+    When you discard a Library card from your hand, you may burn it, put it on the bottom of your Library, or discard it as usual.
+  `,
+  bloodPotency: 3,
+  physical: 0,
+  social: 0,
+  mental: 2,
+  illustrator: "Joyce Maureira",
+  set: "Martial Law",
+  disciplines: { celerity: 1, presence: 1 },
   cardpool: "vampire",
 },
 
@@ -3727,7 +4211,7 @@ export const factions: Record<CardId, Faction> = {
   clan: "tremere",
   name: "Reina de la Vega",
   text: md`
-    At the start of your turn, look at the top card of your Library or Faction Deck. 
+    At the start of your turn, look at the top card of your Library or Faction Deck.
     Leave it or move it to the bottom of the deck.
   `,
   bloodPotency: 4,
@@ -3761,7 +4245,7 @@ export const factions: Record<CardId, Faction> = {
   stack: "faction",
   name: "Natasha Blank",
   text: md`
-    Attacker - **Pay 1 [prestige]:** This attack deals +1 [damage] to the target. 
+    Attacker - **Pay 1 [prestige]:** This attack deals +1 [damage] to the target.
     At the end of this attack, you may move this character to your haven.
   `,
   illustrator: "Marco Primo",
@@ -3830,7 +4314,7 @@ export const factions: Record<CardId, Faction> = {
   stack: "faction",
   name: "Victor Temple",
   text: md`
-    This character has +1 Influence. 
+    This character has +1 Influence.
     Pay 1 [blood]: Put a 'No Influence' token on target character.
   `,
   illustrator: "Joyce Maureira",
