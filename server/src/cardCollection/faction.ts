@@ -3694,8 +3694,8 @@ export const factions: Record<CardId, Faction> = {
   clan: "martial",
   name: "Dulce",
   text: md`
-    *Hunter*
-    *Relentless, Pay 1 [prestige]*: Ready target character.
+    **Hunter**
+    **Relentless, Pay 1 [prestige]**: Ready target character.
   `,
   bloodPotency: 3,
   physical: 2,
