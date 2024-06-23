@@ -3962,7 +3962,7 @@ export const factions: Record<CardId, Faction> = {
   clan: "tzimisce",
   name: "Mr. Petty",
   text: md`
-    *Solitary*, *Possessive*
+    **Solitary, Possessive**
     If this is the only vampire you control, this character has +1 [shield] for each Ghoul you control.
   `,
   bloodPotency: 6,
