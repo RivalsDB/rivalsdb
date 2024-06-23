@@ -3748,8 +3748,8 @@ export const factions: Record<CardId, Faction> = {
   clan: "martial",
   name: "Evelyn",
   text: md`
-    *Hunter*
-    *Relentless, Pay 1 [prestige]:*
+    **Hunter**
+    **Relentless, Pay 1 [prestige]:**
     Target character has +1 [shield] this turn and their controller may move them to The Streets.
   `,
   bloodPotency: 2,
