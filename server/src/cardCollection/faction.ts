@@ -3999,7 +3999,7 @@ export const factions: Record<CardId, Faction> = {
   clan: "martial",
   name: "Salvador",
   text: md`
-    *Guard*
+    **Guard**
     Once during each player's turn, you may spend [prestige] of your color on characters to activate an ability, even if it doesn't interact with those characters.
   `,
   bloodPotency: 4,
