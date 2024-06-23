@@ -5908,7 +5908,7 @@ export const library: Record<CardId, Library> = {
   //reactions: ["social", "mental"],
   text: md`
     Play this card face up.
-    **Pay 1[prestige]:** This attack cannot be Blocked.
+    **Pay 1 [prestige]:** This attack cannot be Blocked.
     [arsenal] The target does not get Preemptive Strike.
 `,
   disciplines:["arsenal"],
