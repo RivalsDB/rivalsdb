@@ -3765,7 +3765,7 @@ export const factions: Record<CardId, Faction> = {
 "ml-faren": {
   stack: "faction",
   clan: "ministry",
-  name: "Evelyn",
+  name: "Faren",
   text: md`
     While this character has a Title, they have +1 [shield].
   `,
