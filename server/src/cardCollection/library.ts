@@ -5488,11 +5488,12 @@ export const library: Record<CardId, Library> = {
   //attack: ["mental"],
   reactions: ["social", "mental"],
   text: md`
-    If this character is **Wounded, +1[shield].
+    If this character is **Wounded**, +1 [shield].
+    If there is only 1 character in your coterie, +1 [shield].
     After this attack, attach this card face down to the attacker.
 `,
   //disciplines:["repel the unnatural"],
-  illustrator: "Adelijah Ocampo",
+  illustrator: "Irene Francisco",
   set: "Martial Law",
   cardpool: "hunter and vampire",
 },
