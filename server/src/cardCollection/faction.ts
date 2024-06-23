@@ -4053,9 +4053,9 @@ export const factions: Record<CardId, Faction> = {
   clan: "salubri",
   name: "Trinidad",
   text: md`
-    *Solitary*
+    **Solitary**
     Party - When a character in this party is defeated, gain 1 [prestige].
-    If this is the only charcter you control, gain 2 [prestige] instead.
+    If this is the only character you control, gain 2 [prestige] instead.
   `,
   bloodPotency: 4,
   physical: 0,
