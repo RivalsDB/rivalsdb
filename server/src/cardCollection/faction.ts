@@ -3730,7 +3730,7 @@ export const factions: Record<CardId, Faction> = {
   clan: "caitiff",
   name: "Estranho",
   text: md`
-    *Solitary*, *Reach*
+    **Solitary, Reach**
     If this is the only vampire you control, this character also has [animalism], [fortitude], and [protean].
   `,
   bloodPotency: 5,
