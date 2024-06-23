@@ -4070,10 +4070,10 @@ export const factions: Record<CardId, Faction> = {
 "ml-valentina": {
   stack: "faction",
   clan: "tzimisce",
-  name: "Trigger",
+  name: "Valentina",
   text: md`
     When you discard to mend this character during your End Phase, attach that card face down to this character.
-    *Detach 2 face-down cards from this character:* [damage] to this character during this attack bvecomes *Superficial*.
+    **Detach 2 face-down cards from this character:** [damage] to this character during this attack bvecomes **Superficial**.
   `,
   bloodPotency: 5,
   physical: 0,
