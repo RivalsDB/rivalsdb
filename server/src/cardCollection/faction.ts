@@ -3802,8 +3802,8 @@ export const factions: Record<CardId, Faction> = {
   clan: "banu haqim",
   name: "Hakeem",
   text: md`
-    *Diablerist*
-    Attacher - If this attack would attach a card to a defender, you may attach it to any character in the defending party instead.
+    **Diablerist**
+    Attacker - If this attack would attach a card to a defender, you may attach it to any character in the defending party instead.
   `,
   bloodPotency: 3,
   physical: 2,
