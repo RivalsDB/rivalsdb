@@ -5884,7 +5884,7 @@ export const library: Record<CardId, Library> = {
   //reactions: [],
   text: md`
     Play only if a character in your cell would be defeated.
-    **Pay 2[prestige]:** Place 1 [blood] from your general supply on this character, and they are not defeated. If you have already played a Reaction this turn, pay 0 [prestige] instead.
+    **Pay 2 [prestige]:** Place 1 [blood] from your general supply on this character, and they are not defeated. If you have already played a Reaction this turn, pay 0 [prestige] instead.
 `,
   //disciplines:["ordnance"],
   illustrator: "Irene Francisco",
