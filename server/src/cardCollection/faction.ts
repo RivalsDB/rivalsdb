@@ -4017,16 +4017,16 @@ export const factions: Record<CardId, Faction> = {
   clan: "salubri",
   name: "Sozinho",
   text: md`
-    *Solitary*
+    **Solitary**
     If this is the only vampire you control, you may play cards of any clan affiliation.
   `,
   bloodPotency: 6,
   physical: 2,
   social: 0,
-  mental: 0,
+  mental: 1,
   illustrator: "Mico Dimagiba",
   set: "Martial Law",
-  disciplines: { auspex: 1, fortitude: 1 },
+  disciplines: { auspex: 1, fortitude: 2 },
   cardpool: "vampire",
 },
 
