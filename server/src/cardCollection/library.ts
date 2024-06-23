@@ -5656,7 +5656,7 @@ export const library: Record<CardId, Library> = {
     Ongoing - **Burn this card:** Burn target Ongoing card that has no tokens on it.
     **Relentless, Exhaust:** Target Blocker with [drone jockey] you control deals +1 [damage] to an attacker. Use only if they played a Reaction.
 `,
-  disciplines:["drone jockey"],
+  // disciplines:["drone jockey"],
   illustrator: "Mico Dimagiba",
   set: "Martial Law",
   cardpool: "hunter",
