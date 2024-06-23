@@ -4035,8 +4035,8 @@ export const factions: Record<CardId, Faction> = {
   clan: "martial",
   name: "Trigger",
   text: md`
-    *Hunter*
-    When this character plays a Reaction, the attacher loses 1 [blood].
+    **Hunter**
+    When this character plays a Reaction, the attacker loses 1 [blood].
   `,
   bloodPotency: 3,
   physical: 1,
