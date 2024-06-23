@@ -3923,14 +3923,15 @@ export const factions: Record<CardId, Faction> = {
 
 "ml-ming-yue": {
   stack: "faction",
-  clan: "ministry",
-  name: "Evelyn",
+  clan: "ravnos",
+  name: "Ming-Yue",
   text: md`
-    While this character has a Title, they have +1 [shield].
+    **Solitary**
+    If this is the only vampire you control, when this character exhausts, you may put 1 [blood] or [prestige] from your general supply onto a card you control.
   `,
   bloodPotency: 4,
-  physical: 1,
-  social: 1,
+  physical: 2,
+  social: 0,
   mental: 0,
   illustrator: "Irene Francisco",
   set: "Martial Law",
