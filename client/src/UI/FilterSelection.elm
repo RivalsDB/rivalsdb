@@ -47,7 +47,7 @@ import Cards as C
 import Data.Clan as Cl
 import Data.Discipline as Dis
 import Data.Pack as Pack
-import Html exposing (Html, div, input, label)
+import Html exposing (Html, div, fieldset, input, label, legend, text)
 import Html.Attributes exposing (class, classList, type_)
 import Html.Events exposing (onCheck)
 import UI.Icon as Icon
@@ -80,8 +80,9 @@ cleanAllStacks =
 
 viewPlayerStacks : PlayerStacks -> Html (Msg PlayerStacks)
 viewPlayerStacks flags =
-    div [ class "filterpicker" ]
-        [ viewFlag (Icon.icon ( Icon.AgendaCard, Icon.Standard )) (\old -> { old | agenda = not old.agenda }) flags.agenda
+    fieldset [ class "filterpicker" ]
+        [ legend [] [ text "Card types" ]
+        , viewFlag (Icon.icon ( Icon.AgendaCard, Icon.Standard )) (\old -> { old | agenda = not old.agenda }) flags.agenda
         , viewFlag (Icon.icon ( Icon.Haven, Icon.Standard )) (\old -> { old | haven = not old.haven }) flags.haven
         , viewFlag (Icon.icon ( Icon.Faction, Icon.Standard )) (\old -> { old | faction = not old.faction }) flags.faction
         , viewFlag (Icon.icon ( Icon.Library, Icon.Standard )) (\old -> { old | library = not old.library }) flags.library
@@ -90,8 +91,9 @@ viewPlayerStacks flags =
 
 viewAllStacks : AllStacks -> Html (Msg AllStacks)
 viewAllStacks flags =
-    div [ class "filterpicker" ]
-        [ viewFlag (Icon.icon ( Icon.City, Icon.Standard )) (\old -> { old | city = not old.city }) flags.city
+    fieldset [ class "filterpicker" ]
+        [ legend [] [ text "Card types" ]
+        , viewFlag (Icon.icon ( Icon.City, Icon.Standard )) (\old -> { old | city = not old.city }) flags.city
         , viewFlag (Icon.icon ( Icon.Monster, Icon.Standard )) (\old -> { old | monster = not old.monster }) flags.monster
         , viewFlag (Icon.icon ( Icon.AgendaCard, Icon.Standard )) (\old -> { old | agenda = not old.agenda }) flags.agenda
         , viewFlag (Icon.icon ( Icon.Haven, Icon.Standard )) (\old -> { old | haven = not old.haven }) flags.haven
@@ -189,8 +191,9 @@ cleanPrimaryTraits =
 
 viewPrimaryTraits : PrimaryTraits -> Html (Msg PrimaryTraits)
 viewPrimaryTraits flags =
-    div [ class "filterpicker" ]
-        [ viewFlag (Icon.icon ( Icon.Action, Icon.Standard )) (\old -> { old | action = not old.action }) flags.action
+    fieldset [ class "filterpicker" ]
+        [ legend [] [ text "Primary traits" ]
+        , viewFlag (Icon.icon ( Icon.Action, Icon.Standard )) (\old -> { old | action = not old.action }) flags.action
         , viewFlag (Icon.icon ( Icon.UnhostedAction, Icon.Standard )) (\old -> { old | unhostedAction = not old.unhostedAction }) flags.unhostedAction
         , viewFlag (Icon.icon ( Icon.Attack, Icon.Standard )) (\old -> { old | attack = not old.attack }) flags.attack
         , viewFlag (Icon.icon ( Icon.Reaction, Icon.Standard )) (\old -> { old | reaction = not old.reaction }) flags.reaction
@@ -275,8 +278,9 @@ cleanSecondaryTraits =
 
 viewSecondaryTraits : SecondaryTraits -> Html (Msg SecondaryTraits)
 viewSecondaryTraits flags =
-    div [ class "filterpicker" ]
-        [ viewFlag (Icon.icon ( Icon.Alchemy, Icon.Standard )) (\old -> { old | alchemy = not old.alchemy }) flags.alchemy
+    fieldset [ class "filterpicker" ]
+        [ legend [] [ text "Secondary traits" ]
+        , viewFlag (Icon.icon ( Icon.Alchemy, Icon.Standard )) (\old -> { old | alchemy = not old.alchemy }) flags.alchemy
         , viewFlag (Icon.icon ( Icon.Animal, Icon.Standard )) (\old -> { old | animal = not old.animal }) flags.animal
         , viewFlag (Icon.icon ( Icon.Conspiracy, Icon.Standard )) (\old -> { old | conspiracy = not old.conspiracy }) flags.conspiracy
         , viewFlag (Icon.icon ( Icon.Ongoing, Icon.Standard )) (\old -> { old | ongoing = not old.ongoing }) flags.ongoing
@@ -366,8 +370,9 @@ cleanAttackTypes =
 
 viewAttackTypes : AttackTypes -> Html (Msg AttackTypes)
 viewAttackTypes flags =
-    div [ class "filterpicker" ]
-        [ viewFlag (Icon.icon ( Icon.Physical, Icon.Standard )) (\old -> { old | physical = not old.physical }) flags.physical
+    fieldset [ class "filterpicker" ]
+        [ legend [] [ text "Attack types" ]
+        , viewFlag (Icon.icon ( Icon.Physical, Icon.Standard )) (\old -> { old | physical = not old.physical }) flags.physical
         , viewFlag (Icon.icon ( Icon.Social, Icon.Standard )) (\old -> { old | social = not old.social }) flags.social
         , viewFlag (Icon.icon ( Icon.Mental, Icon.Standard )) (\old -> { old | mental = not old.mental }) flags.mental
         , viewFlag (Icon.icon ( Icon.Ranged, Icon.Standard )) (\old -> { old | ranged = not old.ranged }) flags.ranged
@@ -467,8 +472,9 @@ cleanClans =
 
 viewClans : Clans -> Html (Msg Clans)
 viewClans flags =
-    div [ class "filterpicker" ]
-        [ viewFlag (IconV2.clan IconV2.Standard Cl.BanuHaqim) (\old -> { old | banuHaqim = not old.banuHaqim }) flags.banuHaqim
+    fieldset [ class "filterpicker" ]
+        [ legend [] [ text "Clans" ]
+        , viewFlag (IconV2.clan IconV2.Standard Cl.BanuHaqim) (\old -> { old | banuHaqim = not old.banuHaqim }) flags.banuHaqim
         , viewFlag (IconV2.clan IconV2.Standard Cl.Brujah) (\old -> { old | brujah = not old.brujah }) flags.brujah
         , viewFlag (IconV2.clan IconV2.Standard Cl.Caitiff) (\old -> { old | caitiff = not old.caitiff }) flags.caitiff
         , viewFlag (IconV2.clan IconV2.Standard Cl.Gangrel) (\old -> { old | gangrel = not old.gangrel }) flags.gangrel
@@ -489,8 +495,9 @@ viewClans flags =
 
 viewCells : Clans -> Html (Msg Clans)
 viewCells flags =
-    div [ class "filterpicker" ]
-        [ viewFlag (IconV2.clan IconV2.Standard Cl.Faithful) (\old -> { old | faithful = not old.faithful }) flags.faithful
+    fieldset [ class "filterpicker" ]
+        [ legend [] [ text "Cells" ]
+        , viewFlag (IconV2.clan IconV2.Standard Cl.Faithful) (\old -> { old | faithful = not old.faithful }) flags.faithful
         , viewFlag (IconV2.clan IconV2.Standard Cl.Inquisitive) (\old -> { old | inquisitive = not old.inquisitive }) flags.inquisitive
         , viewFlag (IconV2.clan IconV2.Standard Cl.Martial) (\old -> { old | martial = not old.martial }) flags.martial
         ]
@@ -606,8 +613,9 @@ cleanDisciplines =
 
 viewDisciplines : Disciplines -> Html (Msg Disciplines)
 viewDisciplines flags =
-    div [ class "filterpicker" ]
-        [ viewFlag (IconV2.discipline IconV2.Standard Dis.Animalism) (\old -> { old | animalism = not old.animalism }) flags.animalism
+    fieldset [ class "filterpicker" ]
+        [ legend [] [ text "Disciplines" ]
+        , viewFlag (IconV2.discipline IconV2.Standard Dis.Animalism) (\old -> { old | animalism = not old.animalism }) flags.animalism
         , viewFlag (IconV2.discipline IconV2.Standard Dis.Auspex) (\old -> { old | auspex = not old.auspex }) flags.auspex
         , viewFlag (IconV2.discipline IconV2.Standard Dis.BloodSorcery) (\old -> { old | bloodSorcery = not old.bloodSorcery }) flags.bloodSorcery
         , viewFlag (IconV2.discipline IconV2.Standard Dis.Celerity) (\old -> { old | celerity = not old.celerity }) flags.celerity
@@ -624,8 +632,9 @@ viewDisciplines flags =
 
 viewEdges : Disciplines -> Html (Msg Disciplines)
 viewEdges flags =
-    div [ class "filterpicker" ]
-        [ viewFlag (IconV2.discipline IconV2.Standard Dis.Arsenal) (\old -> { old | arsenal = not old.arsenal }) flags.arsenal
+    fieldset [ class "filterpicker" ]
+        [ legend [] [ text "Edges" ]
+        , viewFlag (IconV2.discipline IconV2.Standard Dis.Arsenal) (\old -> { old | arsenal = not old.arsenal }) flags.arsenal
         , viewFlag (IconV2.discipline IconV2.Standard Dis.BeastWhisperer) (\old -> { old | beastWhisperer = not old.beastWhisperer }) flags.beastWhisperer
         , viewFlag (IconV2.discipline IconV2.Standard Dis.DroneJockey) (\old -> { old | droneJockey = not old.droneJockey }) flags.droneJockey
         , viewFlag (IconV2.discipline IconV2.Standard Dis.Fleet) (\old -> { old | fleet = not old.fleet }) flags.fleet
@@ -750,8 +759,9 @@ cleanCities =
 
 viewCities : Cities -> Html (Msg Cities)
 viewCities flags =
-    div [ class "filterpicker" ]
-        [ viewFlag (Icon.icon ( Icon.CityCore, Icon.Standard )) (\old -> { old | core = not old.core }) flags.core
+    fieldset [ class "filterpicker" ]
+        [ legend [] [ text "Cities" ]
+        , viewFlag (Icon.icon ( Icon.CityCore, Icon.Standard )) (\old -> { old | core = not old.core }) flags.core
         , viewFlag (Icon.icon ( Icon.CityHoE, Icon.Standard )) (\old -> { old | heartOfEurope = not old.heartOfEurope }) flags.heartOfEurope
         , viewFlag (Icon.icon ( Icon.CityConclave, Icon.Standard )) (\old -> { old | conclave22 = not old.conclave22 }) flags.conclave22
         , viewFlag (Icon.icon ( Icon.CityHaH, Icon.Standard )) (\old -> { old | rio = not old.rio }) flags.rio
