@@ -5676,7 +5676,7 @@ export const library: Record<CardId, Library> = {
     If this attack does not defeat the target and you control only 1 vampire, ready the attacker.
     **Solitary - Pay 1 [prestige]:** Gain 1 Action if played during your turn.
 `,
-  disciplines:["ordnance"],
+  //disciplines:["ordnance"],
   illustrator: "Adelijah Ocampo",
   set: "Martial Law",
   cardpool: "vampire",
