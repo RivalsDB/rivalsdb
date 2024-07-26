@@ -1913,7 +1913,7 @@ export const factions: Record<CardId, Faction> = {
   clan: "nosferatu",
   name: "Thora",
   text: md`
-    Attaching a Title from your hand to this character costs 0 Influence, then ready this character.
+    The first time you play a card face down and place [prestige] on it as part of that Action during each of your turns, gain 1 Action.
   `,
   bloodPotency: 5,
   physical: 2,
