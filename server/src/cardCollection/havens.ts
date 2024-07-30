@@ -321,7 +321,7 @@ export const havens: Record<CardId, Haven> = {
 
 "dar-campsite": {
   stack: "haven",
-  name: "Camp Site",
+  name: "Campsite",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
