@@ -3,16 +3,12 @@ module UI.Layout.Footer exposing (view)
 import Gen.Route as Route
 import Html exposing (Html, a, div, footer, p, small, text)
 import Html.Attributes exposing (class, href, target)
-import UI.PatreonButton
 
 
 view : Html msg
 view =
     footer [ class "page-footer", class "footer" ]
-        [ div [ class "footer__patreon" ]
-            [ UI.PatreonButton.patreonButton
-            ]
-        , div [] 
+        [ div []
             [ div [ class "footer__links" ]
                 [ a [ href <| Route.toHref Route.About ] [ text "About" ] ]
             , small [ class "footer__legal" ]
