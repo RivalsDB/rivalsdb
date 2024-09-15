@@ -18,21 +18,19 @@ type Clan
     | Ministry
     | Nosferatu
     | Ravnos
+    | RedTalons
     | Salubri
+    | SilverFangs
     | ThinBlood
     | Toreador
     | Tremere
     | Tzimisce
     | Ventrue
-    
-
-
 
 
 enum : Enum Clan
 enum =
     Enum.create
-
         [ ( "banu haqim", BanuHaqim )
         , ( "brujah", Brujah )
         , ( "caitiff", Caitiff )
@@ -42,11 +40,13 @@ enum =
         , ( "inquisitive", Inquisitive )
         , ( "lasombra", Lasombra )
         , ( "malkavian", Malkavian )
-        , ( "martial", Martial )        
+        , ( "martial", Martial )
         , ( "ministry", Ministry )
         , ( "nosferatu", Nosferatu )
         , ( "ravnos", Ravnos )
+        , ( "red talons", RedTalons )
         , ( "salubri", Salubri )
+        , ( "silver fangs", SilverFangs )
         , ( "thin-blood", ThinBlood )
         , ( "toreador", Toreador )
         , ( "tremere", Tremere )
@@ -90,7 +90,7 @@ name c =
             "Brujah"
 
         Caitiff ->
-            "Caitiff"    
+            "Caitiff"
 
         Faithful ->
             "Faithful"
@@ -122,8 +122,14 @@ name c =
         Ravnos ->
             "Ravnos"
 
+        RedTalons ->
+            "Red Talons"
+
         Salubri ->
             "Salubri"
+
+        SilverFangs ->
+            "Silver Fangs"
 
         ThinBlood ->
             "Thin-blood"
