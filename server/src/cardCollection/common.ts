@@ -19,11 +19,13 @@ export type LibraryCardType =
   | "attack"
   | "conspiracy"
   | "event"
+  | "gift"
   | "ghoul"
   | "influence modifier"
   | "ongoing"
   | "reaction"
   | "relic"
+  | "rite"
   | "ritual"
   | "scheme"
   | "special"
@@ -47,7 +49,8 @@ export type CardSet =
   | "Justice & Mercy"
   | "Hunters & Hunted"
   | "Prince Pack 1"
-  | "Martial Law";
+  | "Martial Law"
+  | "Fang & Talon";
 
 export type Clan =
   | "banu haqim"
@@ -69,7 +72,9 @@ export type Clan =
   | "tremere"
   | "tzimisce"
   | "ventrue"
-  | "martial";
+  | "martial"
+  | "red talons"
+  | "silver fangs";
 
 export type Discipline =
   | "animalism"
@@ -93,7 +98,12 @@ export type Discipline =
   | "drone jockey"
   | "arsenal"
   | "fleet"
-  | "ordnance";
+  | "ordnance"
+  | "ahroun"
+  | "galliard"
+  | "philodox"
+  | "ragabash"
+  | "theurge";
 
 export type Illustrator =
   | ""
@@ -105,6 +115,7 @@ export type Illustrator =
   | "Darko Stojanovic"
   | "Dawn Nique"
   | "Drew Tucker"
+  | "Elif Aydin"
   | "Felipe Gaona"
   | "Harvey Bunda"
   | "Irene Francisco"
@@ -113,18 +124,21 @@ export type Illustrator =
   | "Joyce Maureira"
   | "Krasen Maximov"
   | "Mara Miranda-Escota"
+  | "Mara Miranda"
   | "Marco Primo"
+  | "Mico Dimagiba"
+  | "Nevzat Aydin"
+  | "Patsy Lascano"
   | "The Creation Studio"
   | "Timothy Terrenal and Harvey Bunda"
-  | "Timothy Terrenal"
-  | "Mico Dimagiba"
-  | "Patsy Lascano"
-  | "Mara Miranda";
+  | "Timothy Terrenal";
 
 export type Cardpool =
   | "hunter"
   | "vampire"
-  | "hunter and vampire";
+  | "hunter and vampire"
+  | "hunter and werewolf"
+  | "werewolf";
 
 export const md = (strings: TemplateStringsArray): string =>
   strings
