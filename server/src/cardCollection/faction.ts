@@ -4252,6 +4252,25 @@ export const factions: Record<CardId, Faction> = {
   cardpool: "werewolf",
 },
 
+"fat-severin-smith": {
+  stack: "faction",
+  clan: "red talons",
+  name: "Severin Smith",
+  text: md`
+    **Werewolf**
+    When this character defeats a character, you may burn target Ongoing card the defending player controls.
+    Attacker - This character has +1 Stealth.
+  `,
+  bloodPotency: 5,
+  physical: 2,
+  social: 0,
+  mental: 1,
+  illustrator: "Mara Miranda-Escota",
+  set: "Fang & Talon",
+  disciplines: { ahroun: 1 },
+  cardpool: "werewolf",
+},
+
 "fat-dae-chan-sung": {
   stack: "faction",
   clan: "silverfangs",
@@ -4376,6 +4395,44 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Mico Dimagiba",
   set: "Fang & Talon",
   disciplines: { ahroun: 1 },
+  cardpool: "werewolf",
+},
+
+"fat-jarody-drummer": {
+  stack: "faction",
+  clan: "silverfangs",
+  name: "Jarody Drummer",
+  text: md`
+    **Werewolf**
+    Party - Attackers in this party gain 1 Rage when they exhaust to attack.
+  `,
+  bloodPotency: 4,
+  physical: 0,
+  social: 2,
+  mental: 0,
+  illustrator: "Adelijah Ocampo",
+  set: "Fang & Talon",
+  disciplines: { galliard: 1 },
+  cardpool: "werewolf",
+},
+
+"fat-yara": {
+  stack: "faction",
+  clan: "silverfangs",
+  name: "Yara",
+  text: md`
+    **Werewolf**
+    At the start of your turn, you may put 1 Rage from the general supply on each Rite you control with 2 or fewer Rage OR reveal the top card of your Library.
+    If you reveal a Rite, draw it.
+    Otherwise, leave it or discard it.
+  `,
+  bloodPotency: 6,
+  physical: 1,
+  social: 0,
+  mental: 2,
+  illustrator: "Joyce Maureira",
+  set: "Fang & Talon",
+  disciplines: { theurge: 1 },
   cardpool: "werewolf",
 },
 

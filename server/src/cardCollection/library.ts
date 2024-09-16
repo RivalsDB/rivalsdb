@@ -6015,6 +6015,850 @@ export const library: Record<CardId, Library> = {
   cardpool: "hunter",
 },
 
+// Fang and Talon
+
+"fat-anger-management": {
+  stack: "library",
+  name: "Anger Management",
+  types: ["unhosted action"],
+  clan: "red talons",
+  //bloodPotencyRequirement: ,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: ,
+  //shield: ,
+  //attack: [],
+  //reactions: [],
+  text: md`
+    Move any number of Rage tokens from any number of characters in your pack to any other characters in your pack.
+    If you remove the last Rage from 1+ characters this way, draw 1 card.
+`,
+  //disciplines:[],
+  illustrator: "Felipe Gaona",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-apeskin": {
+  stack: "library",
+  name: "Apeskin",
+  types: ["action"],
+  //clan: "red talons",
+  //bloodPotencyRequirement: ,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: ,
+  //shield: ,
+  //attack: [],
+  //reactions: [],
+  text: md`
+    **Attach to the acting character.**
+
+    +1 [shield]
+    **Aggravated** attacks against this character are **Superficial**.
+`,
+  //disciplines:[],
+  illustrator: "Felipe Gaona",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-blood-of-the-pack": {
+  stack: "library",
+  name: "Blood of the Pack",
+  types: ["unhosted action", "gift"],
+  clan: "silverfangs",
+  //bloodPotencyRequirement: ,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: ,
+  //shield: ,
+  //attack: [],
+  //reactions: [],
+  text: md`
+  [silverfangs] **Attach to a character in your pack.**
+
+  **Exhaust this card:** Move 1 Rage or 1 [blood] from 1+ characters in this party to target character you control.
+`,
+  //disciplines:[],
+  illustrator: "Elif Aydin",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-eyes-of-the-owl": {
+  stack: "library",
+  name: "Eyes of the Owl",
+  types: ["unhosted action", "gift"],
+  //clan: "red talons",
+  //bloodPotencyRequirement: ,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: ,
+  //shield: ,
+  //attack: [],
+  //reactions: [],
+  text: md`
+    **Attach to a character in your pack.**
+    **Exhaust this character:** The next attack this turn has +2 Intel and the defender's characters have -1 [shield].
+`,
+  //disciplines:[],
+  illustrator: "Nevzat Aydin",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-fangs-of-judgement": {
+  stack: "library",
+  name: "Fangs of Judgment",
+  types: ["action", "gift"],
+  //clan: "red talons",
+  //bloodPotencyRequirement: ,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: ,
+  //shield: ,
+  //attack: [],
+  //reactions: [],
+  text: md`
+    [philodox] **Attach to the acting character.**
+
+    Party - **Detach this card:** This attack deals +2 [physical] [damage] for each character in this party.
+`,
+  disciplines:["philodox"],
+  illustrator: "Felipe Gaona",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-full-moon-rising": {
+  stack: "library",
+  name: "Full Moon Rising",
+  types: ["unhosted action"],
+  //clan: "red talons",
+  //bloodPotencyRequirement: ,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: ,
+  //shield: ,
+  //attack: [],
+  //reactions: [],
+  text: md`
+    Each character in your pack gains 2 Rage.
+`,
+  //disciplines:["philodox"],
+  illustrator: "Felipe Gaona",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-harmony-flute": {
+  stack: "library",
+  name: "Harmony Flute",
+  types: ["action", "ongoing"],
+  //clan: "red talons",
+  //bloodPotencyRequirement: ,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: ,
+  //shield: ,
+  //attack: [],
+  //reactions: [],
+  text: md`
+    Ongoing, Relentless - **Exhaust a ready character in your pack:** Remove 1 Rage from each character with 2+ Rage in target party.
+    If the character you exhausted has [galliard], you may also burn this card to steal 1 [prestige] from target player.
+`,
+  disciplines:["galliard"],
+  illustrator: "Marco Primo",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-hidden-killer": {
+  stack: "library",
+  name: "Hidden Killer",
+  types: ["unhosted action", "gift"],
+  clan: "red talons",
+  //bloodPotencyRequirement: ,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: ,
+  //shield: ,
+  //attack: [],
+  //reactions: [],
+  text: md`
+  **[red-talons] Attach to a character in your pack.**
+  This character has **Reach and **Prowl (may attack City Deck Mortals in The Streets from their Caern).
+  Attacker - This attack deals +1 [damage] when using **Prowl**.
+`,
+  //disciplines:["galliard"],
+  illustrator: "Marco Primo",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-hunting-party": {
+  stack: "library",
+  name: "Hunting Party",
+  types: ["attack"],
+  //clan: "red talons",
+  bloodPotencyRequirement: 4,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  damage:0 ,
+  //shield: ,
+  attack: ["physical"],
+  //reactions: [],
+  text: md`
+    +1 [damage] for each character in the attacking party.
+`,
+  //disciplines:["galliard"],
+  illustrator: "Nevzat Aydin",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-lead-by-example": {
+  stack: "library",
+  name: "Lead by Example",
+  types: ["attack"],
+  clan: "silverfangs",
+  //bloodPotencyRequirement: 4,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 0,
+  //shield: ,
+  //attack: ["physical"],
+  //reactions: [],
+  text: md`
+    If your Leader is exhausted, ready them and gain 1 action, then other characters in your pack gain 1 Rage each.
+    OR Gain 2 Influence during this action or event.
+`,
+  //disciplines:["galliard"],
+  illustrator: "Elif Aydin",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-leap-away": {
+  stack: "library",
+  name: "Leap Away",
+  types: ["reaction"],
+  //clan: "silverfangs",
+  bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 0,
+  shield: 2,
+  attack: ["physical", "mental"],
+  reactions: ["physical", "mental"],
+  text: md`
+    If this character is in The Streets in a party of 2+ characters, you may seperate them from this party. If you do, +1 [shield].
+    **Pay 2 Rage:** +1 [shield]
+`,
+  //disciplines:["galliard"],
+  illustrator: "Nevzat Aydin",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-net-gun": {
+  stack: "library",
+  name: "Net Gun",
+  types: ["attack"],
+  //clan: "silverfangs",
+  bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  damage: 2,
+  //shield: ,
+  attack: ["ranged"],
+  //reactions: [],
+  text: md`
+    +1 [damage] against City Deck Mortals or characters with attachments.
+    If this deals damage to the defending character, they must detach 1 attached non-Title card of attacker's choice.
+`,
+  //disciplines:["galliard"],
+  illustrator: "Felipe Gaona",
+  set: "Fang & Talon",
+  cardpool: "hunter and werewolf",
+},
+
+"fat-pack-protection": {
+  stack: "library",
+  name: "Pack Protection",
+  types: ["reaction"],
+  //clan: "silverfangs",
+  bloodPotencyRequirement: 4,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 2,
+  shield: 0,
+  attack: ["physical", "social"],
+  reactions: ["physical", "social"],
+  text: md`
+    This character has +1 [shield] for each member of this party.
+    **Pay 2 Rage:** Deal 1 [physical] [damage] to the attacker for each member of this party. If this party is in The Streets, the [damage] is **Aggravated**.
+`,
+  //disciplines:["galliard"],
+  illustrator: "Elif Aydin",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-personal-bodyguard": {
+  stack: "library",
+  name: "Personal Bodyguard",
+  types: ["reaction"],
+  //clan: "silverfangs",
+  bloodPotencyRequirement: 4,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 2,
+  shield: 0,
+  attack: ["physical", "social", "mental", "ranged"],
+  reactions: ["physical", "social", "mental", "ranged"],
+  text: md`
+    Redirect this attack to any character in this party. The new target has +2 [shield].
+    If the new target is defeated, the original defender may gain 2 Rage.
+`,
+  //disciplines:["galliard"],
+  illustrator: "Felipe Gaona",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-poke-the-wolf": {
+  stack: "library",
+  name: "Poke the Wolf",
+  types: ["unhosted action"],
+  //clan: "silverfangs",
+  //bloodPotencyRequirement: 4,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 2,
+  //shield: 0,
+  //attack: [],
+  //reactions: ["physical", "social"],
+  text: md`
+    Put a Frenzy token on target werewolf with a Form OR a Fear token on target non-werewolf character.
+    If you put the Frenzy token on a character in your pack, ready them.
+`,
+  //disciplines:["galliard"],
+  illustrator: "Elif Aydin",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-pounce": {
+  stack: "library",
+  name: "Pack Protection",
+  types: ["attack"],
+  //clan: "silverfangs",
+  bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  damage: 1,
+  //shield: 0,
+  attack: ["physical"],
+  //reactions: ["physical", "social"],
+  text: md`
+    +1 [damage] for each Stealth this character has.
+`,
+  //disciplines:["galliard"],
+  illustrator: "Nevzat Aydin",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-pull-rank": {
+  stack: "library",
+  name: "Pull Rank",
+  types: ["attack"],
+  //clan: "silverfangs",
+  bloodPotencyRequirement: 4,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  damage: 2,
+  //shield: 0,
+  attack: ["social", "mental"],
+  //reactions: ["physical", "social"],
+  text: md`
+    When placed, announce one of the attack types.
+    **Exert up to 2 Influence:** +1 [damage] for each Influence exerted this way.
+    When your Leader is in the attacking party, you may **Pay 1 Rage:** Put a Fear token on the defender.
+`,
+  //disciplines:["galliard"],
+  illustrator: "Nevzat Aydin",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-pulse-of-the-prey": {
+  stack: "library",
+  name: "Pulse of the Prey",
+  types: ["action", "gift"],
+  //clan: "silverfangs",
+  //bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 1,
+  //shield: 0,
+  //attack: ["physical"],
+  //reactions: ["physical", "social"],
+  text: md`
+    +1 [damage] for each Stealth this character has.
+`,
+  disciplines:["ragabash"],
+  illustrator: "Nevzat Aydin",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-raging-strike": {
+  stack: "library",
+  name: "Raging Strike",
+  types: ["unhosted action", "gift"],
+  //clan: "silverfangs",
+  //bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 1,
+  //shield: 0,
+  //attack: ["physical"],
+  //reactions: ["physical", "social"],
+  text: md`
+    **Attach to a character in your pack.**
+    Attacker - **Pay 2 Rage:** This attack deals +2 [damage] to the target. Use only in The Streets.
+`,
+  //disciplines:["ragabash"],
+  illustrator: "Marco Primo",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-rapid-shift": {
+  stack: "library",
+  name: "Rapid Shift",
+  types: ["action", "gift"],
+  //clan: "silverfangs",
+  //bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 1,
+  //shield: 0,
+  //attack: ["physical"],
+  //reactions: ["physical", "social"],
+  text: md`
+    **Attach to the acting character.**
+    Form - **Exhaust this card:** Detach a Form from this character, then attack a different Form to this character at no Rage cost (may be used during an attack).
+`,
+  //disciplines:["ragabash"],
+  illustrator: "Nevzat Aydin",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-razor-claws": {
+  stack: "library",
+  name: "Razor Claws",
+  types: ["action", "gift"],
+  //clan: "silverfangs",
+  //bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 1,
+  //shield: 0,
+  //attack: ["physical"],
+  //reactions: ["physical", "social"],
+  text: md`
+  [ahroun]**Attach to the acting character.**
+  Attacker - +1[physical][damage].
+`,
+  disciplines:["ahroun"],
+  illustrator: "Marco Primo",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-rite-of-abjuration": {
+  stack: "library",
+  name: "Rite of Abjuration",
+  types: ["action", "ongoing", "rite"],
+  //clan: "silverfangs",
+  //bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 1,
+  //shield: 0,
+  //attack: ["physical"],
+  //reactions: ["physical", "social"],
+  text: md`
+    **Put 1 to 3 Rage on this card.**
+    Ongoing - **Remove up to 3 Rage from this:** For each Rage you remove, remove 1 token from target Ongoing or face-down card. If you remove 3 Rage, you may burn target Ongoing card instead.
+`,
+  //disciplines:["ragabash"],
+  illustrator: "Felipe Gaona",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-rite-of-celebration": {
+  stack: "library",
+  name: "Rite of Celebration",
+  types: ["action", "rite", "ongoing"],
+  //clan: "silverfangs",
+  //bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 1,
+  //shield: 0,
+  //attack: ["physical"],
+  //reactions: ["physical", "social"],
+  text: md`
+    **Put 1 to 3 Rage on this card.**
+    ONgoing, **Relentless - Remove 2 Rage from this:** Gain 1 [prestige].
+`,
+  //disciplines:["ragabash"],
+  illustrator: "Marco Primo",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-rite-of-rage": {
+  stack: "library",
+  name: "Rite of Rage",
+  types: ["action", "rite", "ongoing"],
+  //clan: "silverfangs",
+  //bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 1,
+  //shield: 0,
+  //attack: ["physical"],
+  //reactions: ["physical", "social"],
+  text: md`
+    **Put 1 to 3 Rage on this card.**
+    Ongoing - **Remove 1 Rage from this:** Target werewolf in your pack gains 2 Rage OR target foe's werewolf gains 3 Rage. If this sends them into a Frenzy, burn this card.
+`,
+  //disciplines:["ragabash"],
+  illustrator: "Nevzat Aydin",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-rite-of-shame": {
+  stack: "library",
+  name: "Rite of Shame",
+  types: ["action", "rite", "ongoing"],
+  //clan: "silverfangs",
+  //bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 1,
+  //shield: 0,
+  //attack: ["physical"],
+  //reactions: ["physical", "social"],
+  text: md`
+    **Put 1 to 3 Rage on this card.**
+    Ongoing - **Remove 1 Rage from this:** Target fow loses 1 [prestige].
+    **Remove 3 Rage from this:** Target foe with 9+ [agenda] loses 1 [agenda].
+`,
+  //disciplines:["ragabash"],
+  illustrator: "Nevzat Aydin",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-shield-of-the-wyld": {
+  stack: "library",
+  name: "Shield of the Wyld",
+  types: ["action", "gift"],
+  clan: "red talons",
+  //bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 1,
+  //shield: 0,
+  //attack: ["physical"],
+  //reactions: ["physical", "social"],
+  text: md`
+    [red-talons] **Attach to the acting character.**
+    +2 [shield] against [physical] and [ranged] attacks.
+`,
+  //disciplines:["ragabash"],
+  illustrator: "Marco Primo",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-show-of-dominance": {
+  stack: "library",
+  name: "Show of Dominance",
+  types: ["attack"],
+  //clan: "red talons",
+  bloodPotencyRequirement: 5,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  damage: 2,
+  //shield: 0,
+  attack: ["social"],
+  //reactions: ["physical", "social"],
+  text: md`
+    [ahroun] If this attack deals 1+ [damage] to the defender, exhaust them and put Fear token on them.
+`,
+  disciplines:["ahroun"],
+  illustrator: "Marco Primo",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-silver-dagger": {
+  stack: "library",
+  name: "Silver Dagger",
+  types: ["attack"],
+  //clan: "red talons",
+  bloodPotencyRequirement: 4,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  damage: 2,
+  //shield: 0,
+  attack: ["physical"],
+  //reactions: ["physical", "social"],
+  text: md`
+    This attack deals +1 **Silver** to werewolves.
+    (Silver damage dealt to a werewolf is **Aggravated.**)
+`,
+  //disciplines:["ahroun"],
+  illustrator: "Elif Aydin",
+  set: "Fang & Talon",
+  cardpool: "hunter and werewolf",
+},
+
+"fat-sink-your-teeth": {
+  stack: "library",
+  name: "Sink Your Teeth",
+  types: ["attack"],
+  //clan: "red talons",
+  bloodPotencyRequirement: 4,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  damage: 1,
+  //shield: 0,
+  attack: ["physical"],
+  //reactions: ["physical", "social"],
+  text: md`
+    **Pay 1 Rage:** +1 [damage].
+    Form -+ [damage].
+`,
+  //disciplines:["ahroun"],
+  illustrator: "Elif Aydin",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-snap-back": {
+  stack: "library",
+  name: "Snap Back",
+  types: ["reaction"],
+  //clan: "red talons",
+  bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 2,
+  shield: 2,
+  attack: ["social"],
+  //reactions: ["physical", "social"],
+  text: md`
+    [ahroun] Deal 2 [physical] [damage] to the attacker.
+    **Pay 1 Rage:** Steal 1 [prestige] from the attacker.
+`,
+  disciplines:["ahroun"],
+  illustrator: "Felipe Gaona",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-social-justice": {
+  stack: "library",
+  name: "Social Justice",
+  types: ["attack"],
+  //clan: "red talons",
+  bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  damage: 2,
+  //shield: 0,
+  attack: ["social"],
+  //reactions: ["physical", "social"],
+  text: md`
+    If this attack deals 2+ [damage] to the defender, destroy target Ongoing card controlled by the defending player.
+    [ragabash] Reduce the [damage] required to trigger this effect by 1.
+`,
+  disciplines:["ragabash"],
+  illustrator: "Marco Primo",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-song-of-rage": {
+  stack: "library",
+  name: "Song of Rage",
+  types: ["action", "gift"],
+  //clan: "red talons",
+  //bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 2,
+  //shield: 0,
+  //attack: ["social"],
+  //reactions: ["physical", "social"],
+  text: md`
+    [galliard] **Attach to the acting character.**
+    **Exhaust this character:** Werewolves in this party each gain 2 Rage.
+`,
+  disciplines:["galliard"],
+  illustrator: "Marco Primo",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-the-culling": {
+  stack: "library",
+  name: "The Culling",
+  types: ["attack"],
+  clan: "red talons",
+  bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  damage: 2,
+  //shield: 0,
+  attack: ["physical"],
+  //reactions: ["physical", "social"],
+  text: md`
+    This attack deals +1 [physical] [damage] for each character in this party with a Form attached.
+`,
+  //disciplines:["galliard"],
+  illustrator: "Marco Primo",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-the-howling": {
+  stack: "library",
+  name: "The Howling",
+  types: ["attack"],
+  //clan: "red talons",
+  bloodPotencyRequirement: 4,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  damage: 1,
+  //shield: 0,
+  attack: ["mental"],
+  //reactions: ["physical", "social"],
+  text: md`
+    +2 [damage] against City Deck Mortals.
+    [theurge] +2 [damage] against non-werewolf characters.
+`,
+  disciplines:["theurge"],
+  illustrator: "Felipe Gaona",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-unity-of-the-pack": {
+  stack: "library",
+  name: "Unity of the Pack",
+  types: ["action", "gift"],
+  clan: "silverfangs",
+  //bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 2,
+  //shield: 0,
+  //attack: ["social"],
+  //reactions: ["physical", "social"],
+  text: md`
+    [silverfangs] **Attach to the acting character.**
+    This character has +1[shield] when in a party of 2+ characters.
+    **Exhaust this card:** Target character in this party has +1 [mental] during this action for each other member with 1+ [mental].
+`,
+  //disciplines:["galliard"],
+  illustrator: "Elif Aydin",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
 // Promo //
 
 }
