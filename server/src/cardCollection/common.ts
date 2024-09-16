@@ -74,7 +74,7 @@ export type Clan =
   | "ventrue"
   | "martial"
   | "red talons"
-  | "silver fangs";
+  | "silverfangs";
 
 export type Discipline =
   | "animalism"

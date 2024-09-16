@@ -4122,6 +4122,263 @@ export const factions: Record<CardId, Faction> = {
   cardpool: "werewolf",
 },
 
+"fat-big-joe": {
+  stack: "faction",
+  clan: "red talons",
+  name: "Big Joe",
+  text: md`
+    **Werewolf**
+    Party - Attackers in this party deal +1 [damage] to characters and City Deck Citizens in The Streets.
+  `,
+  bloodPotency: 4,
+  physical: 1,
+  social: 0,
+  mental: 1,
+  illustrator: "Mico Dimagiba",
+  set: "Fang & Talon",
+  disciplines: { ahroun: 1 },
+  cardpool: "werewolf",
+},
+
+"fat-chef": {
+  stack: "faction",
+  clan: "red talons",
+  name: "Chef",
+  text: md`
+    **Werewolf**
+    When this character defeats a City Deck Mortal, draw 1 card OR this character mends 2 [blood].
+    Attacker - **Pay 1 Rage:** This attack deals +1 [damage] to City Deck Citizens.
+  `,
+  bloodPotency: 5,
+  physical: 1,
+  social: 1,
+  mental: 1,
+  illustrator: "Mico Dimagiba",
+  set: "Fang & Talon",
+  disciplines: { ragabash: 1 },
+  cardpool: "werewolf",
+},
+
+"fat-franco-aldo": {
+  stack: "faction",
+  clan: "red talons",
+  name: "Franco Aldo",
+  text: md`
+    **Werewolf**
+    When this character defeats a City Deck Mortal, gain 1 [prestige].
+    When you detach a City Deck Citizen from this character, shuffle it into the City Deck.
+  `,
+  bloodPotency: 6,
+  physical: 2,
+  social: 0,
+  mental: 1,
+  illustrator: "Felipe Gaona",
+  set: "Fang & Talon",
+  disciplines: { ahroun: 1 },
+  cardpool: "werewolf",
+},
+
+"fat-mesa": {
+  stack: "faction",
+  clan: "red talons",
+  name: "Mesa",
+  text: md`
+    **Werewolf**
+    **Discard 1 card:** Add 1 Rage from your personal supply to any number of characters in this party. If you added Rage to 3+ characters, you may attack a Form to a non-Crinos character in this party at no Rage cost.
+  `,
+  bloodPotency: 5,
+  physical: 0,
+  social: 2,
+  mental: 1,
+  illustrator: "Mico Dimagiba",
+  set: "Fang & Talon",
+  disciplines: { philodox: 1 },
+  cardpool: "werewolf",
+},
+
+"fat-monday": {
+  stack: "faction",
+  clan: "red talons",
+  name: "Monday",
+  text: md`
+    **Werewolf**
+    **Prowl** (May attack City Deck Mortals in The Streets from their Caern.)
+    Attacker - This character has +1 Stealth for each face-up card attached to this character.
+  `,
+  bloodPotency: 4,
+  physical: 1,
+  social: 1,
+  mental: 0,
+  illustrator: "Adelijah Ocampo",
+  set: "Fang & Talon",
+  disciplines: { ragabash: 1 },
+  cardpool: "werewolf",
+},
+
+"fat-sandrine-duvali": {
+  stack: "faction",
+  clan: "red talons",
+  name: "Chef",
+  text: md`
+    **Werewolf**
+    The first time this character attaches a card during each of your turns, ready them and they gain 1 Rage.
+    Attacker - **Pay 1 Rage:** This attack deals +1 [damage] to the target.
+  `,
+  bloodPotency: 7,
+  physical: 2,
+  social: 1,
+  mental: 1,
+  illustrator: "Adelijah Ocampo",
+  set: "Fang & Talon",
+  disciplines: { ragabash: 1 },
+  cardpool: "werewolf",
+},
+
+"fat-the-runt": {
+  stack: "faction",
+  clan: "red talons",
+  name: "The Runt",
+  text: md`
+    **Werewolf, Guard**
+    When this character exhausts to perform an action, you may choose another character in this party to attach a Form at no cost and gain 1 Rage.
+  `,
+  bloodPotency: 3,
+  physical: 0,
+  social: 0,
+  mental: 2,
+  illustrator: "Mico Dimagiba",
+  set: "Fang & Talon",
+  disciplines: { theurge: 1 },
+  cardpool: "werewolf",
+},
+
+"fat-dae-chan-sung": {
+  stack: "faction",
+  clan: "silverfangs",
+  name: "Dae Chan-sung",
+  text: md`
+    **Werewolf**
+    **Relentless - Exhaust:** +2 Influence OR target character in your pack gains 2 Rage.
+  `,
+  bloodPotency: 3,
+  physical: 1,
+  social: 0,
+  mental: 1,
+  illustrator: "Mara Miranda",
+  set: "Fang & Talon",
+  disciplines: { theurge: 1 },
+  cardpool: "werewolf",
+},
+
+"fat-gabriel-silva": {
+  stack: "faction",
+  clan: "silverfangs",
+  name: "Gabriel Silva",
+  text: md`
+    **Werewolf**
+    When this character attaches a Gift, ready them and draw 1 card.
+  `,
+  bloodPotency: 5,
+  physical: 1,
+  social: 1,
+  mental: 1,
+  illustrator: "Mara Miranda",
+  set: "Fang & Talon",
+  disciplines: { philodox: 1 },
+  cardpool: "werewolf",
+},
+
+"fat-kuragin": {
+  stack: "faction",
+  clan: "silverfangs",
+  name: "Kuragin",
+  text: md`
+    **Werewolf**
+    When this character exhausts to perform an action, you may put 1 Rage from your personal supply on up to 3 cards you control.
+  `,
+  bloodPotency: 5,
+  physical: 0,
+  social: 1,
+  mental: 2,
+  illustrator: "Joyce Maureira",
+  set: "Fang & Talon",
+  disciplines: { theurge: 1 },
+  cardpool: "werewolf",
+},
+
+"fat-lucas-batista": {
+  stack: "faction",
+  clan: "silverfangs",
+  name: "Lucas Batista",
+  text: md`
+    **Werewolf**
+    The first time this character moves to The Streets during each of your turns, draw 1 card OR each of the other characters in this party gains 1 Rage. Form -+ Influence.
+  `,
+  bloodPotency: 7,
+  physical: 1,
+  social: 2,
+  mental: 1,
+  illustrator: "Adelijah Ocampo",
+  set: "Fang & Talon",
+  disciplines: { philodox: 1 },
+  cardpool: "werewolf",
+},
+
+"fat-maria-guzman": {
+  stack: "faction",
+  clan: "silverfangs",
+  name: "Maria Guzman",
+  text: md`
+    **Werewolf, Guard**
+    When this character Blocks an attack, put 1 Rage from your personal supply on a card you control.
+  `,
+  bloodPotency: 3,
+  physical: 1,
+  social: 1,
+  mental: 0,
+  illustrator: "Felipe Gaona",
+  set: "Fang & Talon",
+  disciplines: { galliard: 1 },
+  cardpool: "werewolf",
+},
+
+"fat-septimus-pol": {
+  stack: "faction",
+  clan: "silverfangs",
+  name: "Septimus Pol",
+  text: md`
+    **Werewolf**
+    When this character defeats a character controlled by a foe with less [prestige] than you, steal 1 [prestige] from that foe. If they have more [prestige] than you, steal 2 [prestige] instead.
+  `,
+  bloodPotency: 5,
+  physical: 2,
+  social: 0,
+  mental: 1,
+  illustrator: "Joyce Maureira",
+  set: "Fang & Talon",
+  disciplines: { ahroun: 1 },
+  cardpool: "werewolf",
+},
+
+"fat-siouxsie": {
+  stack: "faction",
+  clan: "silverfangs",
+  name: "Siouxsie",
+  text: md`
+    **Werewolf**
+    +1 Stealth.
+    Part - If an attack by a member of this party is Blocked, place a Fear token on the Blocker.
+  `,
+  bloodPotency: 4,
+  physical: 2,
+  social: 0,
+  mental: 1,
+  illustrator: "Mico Dimagiba",
+  set: "Fang & Talon",
+  disciplines: { ahroun: 1 },
+  cardpool: "werewolf",
+},
+
 // Promo //
 
 "xxx-victor-cane": {
