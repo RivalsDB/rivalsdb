@@ -47,7 +47,8 @@ export type CardSet =
   | "Justice & Mercy"
   | "Hunters & Hunted"
   | "Prince Pack 1"
-  | "Martial Law";
+  | "Martial Law"
+  | "Fang & Talon";
 
 export type Clan =
   | "banu haqim"
@@ -69,7 +70,9 @@ export type Clan =
   | "tremere"
   | "tzimisce"
   | "ventrue"
-  | "martial";
+  | "martial"
+  | "red-talons"
+  | "silverfangs";
 
 export type Discipline =
   | "animalism"
@@ -93,7 +96,12 @@ export type Discipline =
   | "drone jockey"
   | "arsenal"
   | "fleet"
-  | "ordnance";
+  | "ordnance"
+  | "ahroun"
+  | "galliard"
+  | "philodox"
+  | "ragabash"
+  | "theurge";
 
 export type Illustrator =
   | ""
@@ -119,12 +127,18 @@ export type Illustrator =
   | "Timothy Terrenal"
   | "Mico Dimagiba"
   | "Patsy Lascano"
-  | "Mara Miranda";
+  | "Mara Miranda"
+  | "Nevzat Aydin";
 
 export type Cardpool =
   | "hunter"
   | "vampire"
-  | "hunter and vampire";
+  | "hunter and vampire"
+  | "werewolf"
+  | "werewolf and hunter"
+  | "werewolf and vampire"
+  | "werewolf and hunter and vampire"
+  
 
 export const md = (strings: TemplateStringsArray): string =>
   strings

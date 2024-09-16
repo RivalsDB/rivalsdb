@@ -531,6 +531,63 @@ export const agendas: Record<CardId, Agenda> = {
   cardpool: "hunter",
 },
 
+// Martial Law //
+
+"fat-expand-the-pack": {
+  name: "Expand the Pack",
+  text: md`
+    When you recruit a werewolf, gain [agenda]. If you control 3 or fewer werewolves after resolving a recruit action, gain 1 additional [agenda].
+  `,
+  illustrator: "Marco Primo",
+  set: "Fang & Talon",
+  stack: "agenda",
+  cardpool: "werewolf",
+},
+
+"fat-inhuman-rites": {
+  name: "Inhuman Rites",
+  text: md`
+    Each time you place a Rite with 2+ Rage on it, gain 1 [agenda]. If you put 3+ Rage on that Rite when you place it, gain 2 [Agenda] instead.
+  `,
+  illustrator: "Marco Primo",
+  set: "Fang & Talon",
+  stack: "agenda",
+  cardpool: "werewolf",
+},
+
+"fat-leader-of-the-pack": {
+  name: "Leader of the Pack",
+  text: md`
+    Each time your Leader targets another Leader to attack, gain 1 [agenda]. When you defeat a Leader, gain 1 [agenda]. At the end of your turn, if your Leader is the only Leader in The Streets, gain 1 [agenda].
+  `,
+  illustrator: "Marco Primo",
+  set: "Fang & Talon",
+  stack: "agenda",
+  cardpool: "werewolf",
+},
+
+"fat-no-quarter-given": {
+  name: "No Quarter Given",
+  text: md`
+    The first time you defeat an unattached City Deck Mortal during each of your turns, gain 1 [agenda]. Each time you defeat the only unattache City Deck Mortal in The Streets, gain 1 [prestige].
+  `,
+  illustrator: "Marco Primo",
+  set: "Fang & Talon",
+  stack: "agenda",
+  cardpool: "werewolf",
+},
+
+"fat-shapes-of-death": {
+  name: "Shapes of Death",
+  text: md`
+    At the start of your turn, if you have 1+ character(s) in a Form, gain 1 [agenda]. If you have 3+ characters in 3 different Forms, gain 2 [agenda] instead.
+  `,
+  illustrator: "Marco Primo",
+  set: "Fang & Talon",
+  stack: "agenda",
+  cardpool: "werewolf",
+},
+
 // Promo //
 
 "xxx-kiss-the-ring": {

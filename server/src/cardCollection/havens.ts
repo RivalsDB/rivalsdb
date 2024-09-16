@@ -578,6 +578,73 @@ export const havens: Record<CardId, Haven> = {
   cardpool: "hunter",
 },
 
+// Fang and Talon //
+
+"fat-caern-garden-palace": {
+  stack: "haven",
+  name: "Caern: Garden Palace",
+  text: md`
+    Characters in your Caern have +1 Secrecy.
+    **Leader Ability**
+    Once during each of your Action Phases, you may move 1 Rage from a card you control to another card you control.
+  `,
+  illustrator: "Marco Primo",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-caern-desert-compound": {
+  stack: "haven",
+  name: "Caern: Desert Compound",
+  text: md`
+    Characters in your Caern have +1 [shield] against non-**Aggravated** [damage].
+    **Leader Ability**
+    At the start of your turn, you may attach a non-Crinos Form to a character in your pack at no Rage cost. If you do, that character mends 1 [blood].
+  `,
+  illustrator: "Marco Primo",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-caern-national-park": {
+  stack: "haven",
+  name: "Caern: National Park",
+  text: md`
+    Characters in your Caern have +1 Secrecy.
+    **Leader Ability**
+    When your Leader exhausts, you may attach a Gift to a character in your pack at no Action cost.
+  `,
+  illustrator: "Marco Primo",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-caern-the-observatory": {
+  stack: "haven",
+  name: "Caern: The Observatory",
+  text: md`
+    Characters in your Caern have +1 Secrecy.
+    **Leader Ability**
+    At the start of your turn, you may exert up to 4 Influence to gain 1 [prestige] per 2 Influence exerted OR your Leader may gain 1 Rage per 1 Influence exerted.
+  `,
+  illustrator: "Marco Primo",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
+"fat-caern-the-stadium": {
+  stack: "haven",
+  name: "Caern: The Stadium",
+  text: md`
+    Characters in your Caern have +1 [shield] against non-**Aggravated** [damage].
+    **Leader Ability**
+    At the end of your turn, if your Leader is in the Streets and your Rival's Leader is not, gain 1 [prestige] OR draw 1 card.
+  `,
+  illustrator: "Marco Primo",
+  set: "Fang & Talon",
+  cardpool: "werewolf",
+},
+
 // Promo //
 
 "xxx-apartment-111": {
