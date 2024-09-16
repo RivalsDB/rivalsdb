@@ -33,14 +33,16 @@ module UI.FilterSelection exposing
     , update
     , viewAllStacks
     , viewAttackTypes
-    , viewCells
+    , viewAuspices
     , viewCities
     , viewClans
+    , viewCreeds
     , viewDisciplines
     , viewEdges
     , viewPlayerStacks
     , viewPrimaryTraits
     , viewSecondaryTraits
+    , viewTribes
     )
 
 import Cards as C
@@ -256,6 +258,8 @@ type alias SecondaryTraits =
     , ghoul : Bool
     , relic : Bool
     , vehicle : Bool
+    , gift : Bool
+    , rite : Bool
     }
 
 
@@ -273,6 +277,8 @@ cleanSecondaryTraits =
     , ghoul = False
     , relic = False
     , vehicle = False
+    , gift = False
+    , rite = False
     }
 
 
@@ -292,6 +298,8 @@ viewSecondaryTraits flags =
         , viewFlag (Icon.icon ( Icon.Ghoul, Icon.Standard )) (\old -> { old | ghoul = not old.ghoul }) flags.ghoul
         , viewFlag (Icon.icon ( Icon.Relic, Icon.Standard )) (\old -> { old | relic = not old.relic }) flags.relic
         , viewFlag (Icon.icon ( Icon.Vehicle, Icon.Standard )) (\old -> { old | vehicle = not old.vehicle }) flags.vehicle
+        , viewFlag (Icon.icon ( Icon.Gift, Icon.Standard )) (\old -> { old | gift = not old.gift }) flags.gift
+        , viewFlag (Icon.icon ( Icon.Rite, Icon.Standard )) (\old -> { old | rite = not old.rite }) flags.rite
         ]
 
 
@@ -315,6 +323,8 @@ secondaryTraitsIsAllowedWide flags card =
                     || (traits.ghoul && flags.ghoul)
                     || (traits.relic && flags.relic)
                     || (traits.vehicle && flags.vehicle)
+                    || (traits.gift && flags.gift)
+                    || (traits.rite && flags.rite)
 
             _ ->
                 False
@@ -340,6 +350,8 @@ secondaryTraitsIsAllowedStrict flags card =
                     && (traits.ghoul == flags.ghoul)
                     && (traits.relic == flags.relic)
                     && (traits.vehicle == flags.vehicle)
+                    && (traits.gift == flags.gift)
+                    && (traits.rite == flags.rite)
 
             _ ->
                 False
@@ -437,7 +449,9 @@ type alias Clans =
     , ministry : Bool
     , nosferatu : Bool
     , ravnos : Bool
+    , redTalons : Bool
     , salubri : Bool
+    , silverFangs : Bool
     , thinBlood : Bool
     , toreador : Bool
     , tremere : Bool
@@ -461,7 +475,9 @@ cleanClans =
     , ministry = False
     , nosferatu = False
     , ravnos = False
+    , redTalons = False
     , salubri = False
+    , silverFangs = False
     , thinBlood = False
     , toreador = False
     , tremere = False
@@ -493,13 +509,22 @@ viewClans flags =
         ]
 
 
-viewCells : Clans -> Html (Msg Clans)
-viewCells flags =
+viewCreeds : Clans -> Html (Msg Clans)
+viewCreeds flags =
     fieldset [ class "filterpicker" ]
-        [ legend [] [ text "Cells" ]
+        [ legend [] [ text "Creeds" ]
         , viewFlag (IconV2.clan IconV2.Standard Cl.Faithful) (\old -> { old | faithful = not old.faithful }) flags.faithful
         , viewFlag (IconV2.clan IconV2.Standard Cl.Inquisitive) (\old -> { old | inquisitive = not old.inquisitive }) flags.inquisitive
         , viewFlag (IconV2.clan IconV2.Standard Cl.Martial) (\old -> { old | martial = not old.martial }) flags.martial
+        ]
+
+
+viewTribes : Clans -> Html (Msg Clans)
+viewTribes flags =
+    fieldset [ class "filterpicker" ]
+        [ legend [] [ text "Tribes" ]
+        , viewFlag (IconV2.clan IconV2.Standard Cl.RedTalons) (\old -> { old | redTalons = not old.redTalons }) flags.redTalons
+        , viewFlag (IconV2.clan IconV2.Standard Cl.SilverFangs) (\old -> { old | silverFangs = not old.silverFangs }) flags.silverFangs
         ]
 
 
@@ -559,7 +584,8 @@ clanIsAllowedStrict =
 
 
 type alias Disciplines =
-    { animalism : Bool
+    { ahroun : Bool
+    , animalism : Bool
     , arsenal : Bool
     , auspex : Bool
     , beastWhisperer : Bool
@@ -569,16 +595,20 @@ type alias Disciplines =
     , droneJockey : Bool
     , fleet : Bool
     , fortitude : Bool
+    , galliard : Bool
     , global : Bool
     , library : Bool
     , obfuscate : Bool
     , oblivion : Bool
     , ordnance : Bool
+    , philodox : Bool
     , potence : Bool
     , presence : Bool
     , protean : Bool
+    , ragabash : Bool
     , repelTheUnnatural : Bool
     , senseTheUnnatural : Bool
+    , theurge : Bool
     , thinBloodAlchemy : Bool
     , thwartTheUnnatural : Bool
     }
@@ -586,7 +616,8 @@ type alias Disciplines =
 
 cleanDisciplines : Disciplines
 cleanDisciplines =
-    { animalism = False
+    { ahroun = False
+    , animalism = False
     , arsenal = False
     , auspex = False
     , beastWhisperer = False
@@ -596,16 +627,20 @@ cleanDisciplines =
     , droneJockey = False
     , fleet = False
     , fortitude = False
+    , galliard = False
     , global = False
     , library = False
     , obfuscate = False
     , oblivion = False
     , ordnance = False
+    , philodox = False
     , potence = False
     , presence = False
     , protean = False
+    , ragabash = False
     , repelTheUnnatural = False
     , senseTheUnnatural = False
+    , theurge = False
     , thinBloodAlchemy = False
     , thwartTheUnnatural = False
     }
@@ -644,6 +679,18 @@ viewEdges flags =
         , viewFlag (IconV2.discipline IconV2.Standard Dis.RepelTheUnnatural) (\old -> { old | repelTheUnnatural = not old.repelTheUnnatural }) flags.repelTheUnnatural
         , viewFlag (IconV2.discipline IconV2.Standard Dis.SenseTheUnnatural) (\old -> { old | senseTheUnnatural = not old.senseTheUnnatural }) flags.senseTheUnnatural
         , viewFlag (IconV2.discipline IconV2.Standard Dis.ThwartTheUnnatural) (\old -> { old | thwartTheUnnatural = not old.thwartTheUnnatural }) flags.thwartTheUnnatural
+        ]
+
+
+viewAuspices : Disciplines -> Html (Msg Disciplines)
+viewAuspices flags =
+    fieldset [ class "filterpicker" ]
+        [ legend [] [ text "Auspices" ]
+        , viewFlag (IconV2.discipline IconV2.Standard Dis.Ahroun) (\old -> { old | ahroun = not old.ahroun }) flags.ahroun
+        , viewFlag (IconV2.discipline IconV2.Standard Dis.Galliard) (\old -> { old | galliard = not old.galliard }) flags.galliard
+        , viewFlag (IconV2.discipline IconV2.Standard Dis.Philodox) (\old -> { old | philodox = not old.philodox }) flags.philodox
+        , viewFlag (IconV2.discipline IconV2.Standard Dis.Ragabash) (\old -> { old | ragabash = not old.ragabash }) flags.ragabash
+        , viewFlag (IconV2.discipline IconV2.Standard Dis.Theurge) (\old -> { old | theurge = not old.theurge }) flags.theurge
         ]
 
 

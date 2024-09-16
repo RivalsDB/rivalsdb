@@ -12,8 +12,8 @@ module Cards exposing
     , Haven
     , Id
     , Library
-    , Shield
     , Monster
+    , Shield
     , attackTypes
     , bloodPotency
     , cardsDecoder
@@ -31,10 +31,10 @@ module Cards exposing
     , text
     )
 
+import Data.Cardpool as Cardpool exposing (Cardpool)
 import Data.Clan as Clan exposing (Clan)
 import Data.Discipline as Discipline exposing (Discipline)
 import Data.Pack as Pack exposing (Pack)
-import Data.Cardpool as Cardpool exposing (Cardpool)
 import Dict
 import Enum exposing (Enum)
 import Json.Decode as Decode exposing (Decoder, int, list, map, string)
@@ -95,11 +95,11 @@ attackTypeEnum =
 
 
 type alias Agenda =
-    { id : Id, name : Name, text : Text, image : Image, set : Pack, cardpool: Cardpool }
+    { id : Id, name : Name, text : Text, image : Image, set : Pack, cardpool : Cardpool }
 
 
 type alias Haven =
-    { id : Id, name : Name, text : Text, image : Image, set : Pack, cardpool: Cardpool }
+    { id : Id, name : Name, text : Text, image : Image, set : Pack, cardpool : Cardpool }
 
 
 type alias City =
@@ -124,6 +124,7 @@ type alias CityTraits =
     , title : Bool
     }
 
+
 type alias Monster =
     { id : Id
     , name : Name
@@ -135,6 +136,7 @@ type alias Monster =
     , social : Attribute
     , mental : Attribute
     }
+
 
 type alias Faction =
     { id : Id
@@ -148,7 +150,7 @@ type alias Faction =
     , social : Attribute
     , mental : Attribute
     , disciplines : List Discipline
-    , cardpool: Cardpool
+    , cardpool : Cardpool
     }
 
 
@@ -165,7 +167,7 @@ type alias Library =
     , shield : Maybe Shield
     , traits : LibraryTraits
     , attackType : List AttackType
-    , cardpool: Cardpool
+    , cardpool : Cardpool
     }
 
 
@@ -175,17 +177,19 @@ type alias LibraryTraits =
     , animal : Bool
     , attack : Bool
     , conspiracy : Bool
+    , ghoul : Bool
+    , gift : Bool
     , influenceModifier : Bool
     , ongoing : Bool
     , reaction : Bool
+    , relic : Bool
+    , rite : Bool
     , ritual : Bool
     , scheme : Bool
     , special : Bool
     , title : Bool
     , trap : Bool
     , unhostedAction : Bool
-    , ghoul : Bool
-    , relic : Bool
     , vehicle : Bool
     }
 
@@ -391,6 +395,7 @@ stack card =
         MonsterCard _ ->
             MonsterStack
 
+
 stackComparable : Card -> Int
 stackComparable card =
     case card of
@@ -563,6 +568,7 @@ cityDecoder =
         |> required "types" decodeCityTraits
         |> map (\city -> ( city.id, CityCard city ))
 
+
 monsterDecoder : Decoder ( Id, Card )
 monsterDecoder =
     Decode.succeed Monster
@@ -577,6 +583,8 @@ monsterDecoder =
         |> decodeMental
         |> map (\monster -> ( monster.id, MonsterCard monster ))
 
+
+
 -- METHODS
 
 
@@ -588,6 +596,7 @@ findTextInCard needle card =
 
 
 -- FIELD DECODERS
+
 
 decodeCityTraits : Decoder CityTraits
 decodeCityTraits =
@@ -652,17 +661,19 @@ decodeLibraryTraits =
             , animal = False
             , attack = False
             , conspiracy = False
+            , ghoul = False
+            , gift = False
             , influenceModifier = False
             , ongoing = False
             , reaction = False
+            , relic = False
+            , rite = False
             , ritual = False
             , scheme = False
             , special = False
             , title = False
             , trap = False
             , unhostedAction = False
-            , ghoul = False
-            , relic = False
             , vehicle = False
             }
     in
@@ -685,6 +696,12 @@ decodeLibraryTraits =
                     "conspiracy" ->
                         { ts | conspiracy = True }
 
+                    "ghoul" ->
+                        { ts | ghoul = True }
+
+                    "gift" ->
+                        { ts | gift = True }
+
                     "influence modifier" ->
                         { ts | influenceModifier = True }
 
@@ -693,6 +710,12 @@ decodeLibraryTraits =
 
                     "reaction" ->
                         { ts | reaction = True }
+
+                    "relic" ->
+                        { ts | relic = True }
+
+                    "rite" ->
+                        { ts | rite = True }
 
                     "ritual" ->
                         { ts | ritual = True }
@@ -711,12 +734,6 @@ decodeLibraryTraits =
 
                     "unhosted action" ->
                         { ts | unhostedAction = True }
-
-                    "ghoul" ->
-                        { ts | ghoul = True }
-
-                    "relic" ->
-                        { ts | relic = True }
 
                     "vehicle" ->
                         { ts | vehicle = True }

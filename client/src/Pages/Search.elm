@@ -63,6 +63,7 @@ init shared =
     , Effect.none
     )
 
+
 fuzzySort : String -> List String -> List String
 fuzzySort query items =
     let
@@ -183,7 +184,10 @@ view shared model =
                             [ Html.map FromClansFilter <| Lazy.lazy FS.viewClans model.clansFilters
                             ]
                       , div [ class "filter-group__flags" ]
-                            [ Html.map FromClansFilter <| Lazy.lazy FS.viewCells model.clansFilters
+                            [ Html.map FromClansFilter <| Lazy.lazy FS.viewCreeds model.clansFilters
+                            ]
+                      , div [ class "filter-group__flags" ]
+                            [ Html.map FromClansFilter <| Lazy.lazy FS.viewTribes model.clansFilters
                             ]
                       , div [ class "filter-group__flags" ]
                             [ Html.map FromDisciplinesFilter <| Lazy.lazy FS.viewDisciplines model.disciplineFilters
@@ -191,8 +195,10 @@ view shared model =
                       , div [ class "filter-group__flags" ]
                             [ Html.map FromDisciplinesFilter <| Lazy.lazy FS.viewEdges model.disciplineFilters
                             ]
+                      , div [ class "filter-group__flags" ]
+                            [ Html.map FromDisciplinesFilter <| Lazy.lazy FS.viewAuspices model.disciplineFilters
+                            ]
                       ]
-
                     ]
                 )
             , div [ class "filter-group" ]
