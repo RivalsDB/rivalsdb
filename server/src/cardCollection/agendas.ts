@@ -531,7 +531,7 @@ export const agendas: Record<CardId, Agenda> = {
   cardpool: "hunter",
 },
 
-// Martial Law //
+// Fang and Talon //
 
 "fat-expand-the-pack": {
   name: "Expand the Pack",
@@ -547,7 +547,7 @@ export const agendas: Record<CardId, Agenda> = {
 "fat-inhuman-rites": {
   name: "Inhuman Rites",
   text: md`
-    Each time you place a Rite with 2+ Rage on it, gain 1 [agenda]. If you put 3+ Rage on that Rite when you place it, gain 2 [Agenda] instead.
+    Each time you place a Rite with 2+ Rage on it, gain 1 [agenda]. If you put 3+ Rage on that Rite when you place it, gain 2 [agenda] instead.
   `,
   illustrator: "Marco Primo",
   set: "Fang & Talon",
@@ -569,7 +569,7 @@ export const agendas: Record<CardId, Agenda> = {
 "fat-no-quarter-given": {
   name: "No Quarter Given",
   text: md`
-    The first time you defeat an unattached City Deck Mortal during each of your turns, gain 1 [agenda]. Each time you defeat the only unattache City Deck Mortal in The Streets, gain 1 [prestige].
+    The first time you defeat an unattached City Deck Mortal during each of your turns, gain 1 [agenda]. Each time you defeat the only unattached City Deck Mortal in The Streets, gain 1 [prestige].
   `,
   illustrator: "Marco Primo",
   set: "Fang & Talon",

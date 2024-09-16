@@ -6204,7 +6204,7 @@ export const library: Record<CardId, Library> = {
   //reactions: [],
   text: md`
   **[red-talons] Attach to a character in your pack.**
-  This character has **Reach and **Prowl (may attack City Deck Mortals in The Streets from their Caern).
+  This character has **Reach and **Prowl** (may attack City Deck Mortals in The Streets from their Caern).
   Attacker - This attack deals +1 [damage] when using **Prowl**.
 `,
   //disciplines:["galliard"],
@@ -6223,7 +6223,7 @@ export const library: Record<CardId, Library> = {
   //physical: ,
   //social: ,
   //mental: ,
-  damage:0 ,
+  damage: 0,
   //shield: ,
   attack: ["physical"],
   //reactions: [],
@@ -6514,7 +6514,7 @@ export const library: Record<CardId, Library> = {
   //attack: ["physical"],
   //reactions: ["physical", "social"],
   text: md`
-  [ahroun]**Attach to the acting character.**
+  [ahroun] **Attach to the acting character.**
   Attacker - +1[physical][damage].
 `,
   disciplines:["ahroun"],
@@ -6563,7 +6563,7 @@ export const library: Record<CardId, Library> = {
   //reactions: ["physical", "social"],
   text: md`
     **Put 1 to 3 Rage on this card.**
-    ONgoing, **Relentless - Remove 2 Rage from this:** Gain 1 [prestige].
+    Ongoing, **Relentless - Remove 2 Rage from this:** Gain 1 [prestige].
 `,
   //disciplines:["ragabash"],
   illustrator: "Marco Primo",
@@ -6611,7 +6611,7 @@ export const library: Record<CardId, Library> = {
   //reactions: ["physical", "social"],
   text: md`
     **Put 1 to 3 Rage on this card.**
-    Ongoing - **Remove 1 Rage from this:** Target fow loses 1 [prestige].
+    Ongoing - **Remove 1 Rage from this:** Target foe loses 1 [prestige].
     **Remove 3 Rage from this:** Target foe with 9+ [agenda] loses 1 [agenda].
 `,
   //disciplines:["ragabash"],

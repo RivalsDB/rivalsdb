@@ -20,7 +20,7 @@ export const form: Record<CardId, Form> = {
     Attach this card and they have +2 [blood-potency] and mend 2 [blood].
     At the start of your Action Phase, if this character has less than 3 Rage, detach this Form.
     This character has +2 [physical], -1[social], -1[mental].
-    Attacker-**Pay 2 Rage:** Ready this character and put a Fear token on the defender.
+    Attacker - **Pay 2 Rage:** Ready this character and put a Fear token on the defender.
   `,
   illustrator: "Nevzat Aydin",
   set: "Fang & Talon",

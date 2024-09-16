@@ -4184,7 +4184,7 @@ export const factions: Record<CardId, Faction> = {
   name: "Mesa",
   text: md`
     **Werewolf**
-    **Discard 1 card:** Add 1 Rage from your personal supply to any number of characters in this party. If you added Rage to 3+ characters, you may attack a Form to a non-Crinos character in this party at no Rage cost.
+    **Discard 1 card:** Add 1 Rage from your personal supply to any number of characters in this party. If you added Rage to 3+ characters, you may attach a Form to a non-Crinos character in this party at no Rage cost.
   `,
   bloodPotency: 5,
   physical: 0,
@@ -4218,7 +4218,7 @@ export const factions: Record<CardId, Faction> = {
 "fat-sandrine-duvali": {
   stack: "faction",
   clan: "red talons",
-  name: "Chef",
+  name: "Sandrine Duvali",
   text: md`
     **Werewolf**
     The first time this character attaches a card during each of your turns, ready them and they gain 1 Rage.
