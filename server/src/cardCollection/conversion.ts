@@ -5,6 +5,7 @@ import type { Library } from "./library.js";
 import type { Faction } from "./faction.js";
 import type { City } from "./city.js";
 import type { Monster } from "./monster.js";
+import type { Form } from "./form.js";
 import type {
   Agenda as UnAgenda,
   Haven as UnHaven,
@@ -12,6 +13,7 @@ import type {
   Library as UnLibrary,
   City as UnCity,
   Monster as UnMonster,
+  Form as UnForm,
 } from "./cards.js";
 
 const imageSrc = (id: string) =>
@@ -120,4 +122,15 @@ export const toUnstructuredMonster = ([id, c]: Pair<Monster>): UnMonster => ({
   attributeSocial: c.social,
   bloodPotency: c.bloodPotency,
   agenda: c.agenda,
+});
+
+export const toUnstructuredForm = ([id, c]: Pair<Form>): UnForm => ({
+  stack: "form",
+  types: ["form"],
+  id,
+  illustrator: c.illustrator,
+  image: imageSrc(id),
+  name: c.name,
+  set: c.set,
+  text: c.text,
 });

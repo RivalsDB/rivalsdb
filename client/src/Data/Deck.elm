@@ -242,6 +242,9 @@ copiesInDeck deck card =
         Cards.MonsterCard _ ->
             0
 
+        Cards.FormCard _ ->
+            0
+
 
 isLeader : Decklist -> Cards.Faction -> Bool
 isLeader deck character =

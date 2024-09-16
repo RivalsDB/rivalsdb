@@ -19,6 +19,7 @@ export type LibraryCardType =
   | "attack"
   | "conspiracy"
   | "event"
+  | "form"
   | "gift"
   | "ghoul"
   | "influence modifier"

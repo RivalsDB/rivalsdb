@@ -9,6 +9,7 @@ module Cards exposing
     , City
     , Damage
     , Faction
+    , Form
     , Haven
     , Id
     , Library
@@ -137,6 +138,13 @@ type alias Monster =
     , mental : Attribute
     }
 
+type alias Form =
+    { id : Id
+    , name : Name
+    , text : Text
+    , image : Image
+    , set : Pack
+    }
 
 type alias Faction =
     { id : Id
@@ -201,6 +209,7 @@ type Card
     | LibraryCard Library
     | CityCard City
     | MonsterCard Monster
+    | FormCard Form
 
 
 type CardStack
@@ -210,6 +219,7 @@ type CardStack
     | LibraryStack
     | CityStack
     | MonsterStack
+    | FormStack
 
 
 
@@ -239,6 +249,9 @@ id card =
         MonsterCard c ->
             c.id
 
+        FormCard c ->
+            c.id
+
 
 name : Card -> String
 name card =
@@ -260,6 +273,9 @@ name card =
 
         MonsterCard c ->
             c.name
+
+        FormCard c ->
+            c.id
 
 
 image : Card -> String
@@ -283,6 +299,9 @@ image card =
         MonsterCard c ->
             c.image
 
+        FormCard c ->
+            c.id
+
 
 set : Card -> Pack
 set card =
@@ -304,6 +323,9 @@ set card =
 
         MonsterCard c ->
             c.set
+
+        FormCard c ->
+            c.id
 
 
 attackTypes : Card -> List AttackType
@@ -395,6 +417,9 @@ stack card =
         MonsterCard _ ->
             MonsterStack
 
+        FormCard c ->
+            c.id
+
 
 stackComparable : Card -> Int
 stackComparable card =
@@ -417,6 +442,9 @@ stackComparable card =
         MonsterCard _ ->
             5
 
+        FormCard _ ->
+            6
+
 
 text : Card -> String
 text card =
@@ -437,6 +465,9 @@ text card =
             c.text
 
         MonsterCard c ->
+            c.text
+
+        FormCard c ->
             c.text
 
 
@@ -491,6 +522,9 @@ decoderForCardType st =
 
         "monster" ->
             monsterDecoder
+
+        "form" ->
+            formDecoder
 
         _ ->
             Decode.fail "Unrecognized card stack"
@@ -583,7 +617,15 @@ monsterDecoder =
         |> decodeMental
         |> map (\monster -> ( monster.id, MonsterCard monster ))
 
-
+formDecoder : Decoder ( Id, Card )
+formDecoder =
+    Decode.succeed Form
+        |> decodeId
+        |> decodeName
+        |> decodeText
+        |> decodeImage
+        |> required "set" Pack.decoder
+        |> map (\form -> ( form.id, FormCard form ))
 
 -- METHODS
 

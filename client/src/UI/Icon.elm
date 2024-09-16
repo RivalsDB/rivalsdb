@@ -39,6 +39,7 @@ type IconImage
     | Edit
     | Faction
     | Fleet
+    | Form
     | Ghoul
     | Gift
     | HandOfCards
@@ -198,6 +199,9 @@ imageOpts image =
 
         Fleet ->
             ( class "ui-icon_fleet", "Fleet" )
+
+        Form ->
+            ( class "ui-icon_form", "Form" )
 
         Ghoul ->
             ( class "ui-icon_ghoul", "Ghoul" )

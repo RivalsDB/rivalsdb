@@ -72,12 +72,12 @@ cleanPlayerStacks =
 
 
 type alias AllStacks =
-    { city : Bool, agenda : Bool, haven : Bool, faction : Bool, library : Bool, monster : Bool }
+    { city : Bool, agenda : Bool, haven : Bool, faction : Bool, library : Bool, monster : Bool, form : Bool }
 
 
 cleanAllStacks : AllStacks
 cleanAllStacks =
-    { city = False, agenda = False, haven = False, faction = False, library = False, monster = False }
+    { city = False, agenda = False, haven = False, faction = False, library = False, monster = False, form = False }
 
 
 viewPlayerStacks : PlayerStacks -> Html (Msg PlayerStacks)
@@ -97,6 +97,7 @@ viewAllStacks flags =
         [ legend [] [ text "Card types" ]
         , viewFlag (Icon.icon ( Icon.City, Icon.Standard )) (\old -> { old | city = not old.city }) flags.city
         , viewFlag (Icon.icon ( Icon.Monster, Icon.Standard )) (\old -> { old | monster = not old.monster }) flags.monster
+        , viewFlag (Icon.icon ( Icon.Form, Icon.Standard )) (\old -> { old | form = not old.form }) flags.form
         , viewFlag (Icon.icon ( Icon.AgendaCard, Icon.Standard )) (\old -> { old | agenda = not old.agenda }) flags.agenda
         , viewFlag (Icon.icon ( Icon.Haven, Icon.Standard )) (\old -> { old | haven = not old.haven }) flags.haven
         , viewFlag (Icon.icon ( Icon.Faction, Icon.Standard )) (\old -> { old | faction = not old.faction }) flags.faction
@@ -129,6 +130,9 @@ allStackIsAllowedWide flags card =
             ( { monster }, C.MonsterCard _ ) ->
                 monster
 
+            ( { form }, C.FormCard _ ) ->
+                form
+
 
 playerStackIsAllowed : PlayerStacks -> C.Card -> Bool
 playerStackIsAllowed flags card =
@@ -153,6 +157,9 @@ playerStackIsAllowed flags card =
                 False
 
             ( _, C.MonsterCard _ ) ->
+                False
+            
+            ( _, C.FormCard _ ) ->
                 False
 
 

@@ -15,12 +15,13 @@ type alias GroupedByStacks =
     , libraryStack : List Cards.Library
     , cityStack : List Cards.City
     , monsterStack : List Cards.Monster
+    , formStack : List Cards.Form
     }
 
 
 playerCards : Collection -> Collection
 playerCards =
-    Dict.filter (\_ card -> (Cards.stack card /= Cards.CityStack) && (Cards.stack card /= Cards.MonsterStack))
+    Dict.filter (\_ card -> (Cards.stack card /= Cards.CityStack) && (Cards.stack card /= Cards.MonsterStack) && (Cards.stack card /= Cards.FormStack))
 
 
 groupByStack : Collection -> GroupedByStacks
@@ -46,6 +47,9 @@ groupByStack =
 
                     Cards.MonsterCard c ->
                         { grouped | monsterStack = c :: grouped.monsterStack }
+
+                    Cards.FormCard c ->
+                        { grouped | monsterStack = c :: grouped.formStack }
             )
             { agendaStack = []
             , factionStack = []
@@ -53,4 +57,5 @@ groupByStack =
             , libraryStack = []
             , cityStack = []
             , monsterStack = []
+            , formStack = []
             }
