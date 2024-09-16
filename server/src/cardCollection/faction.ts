@@ -4106,7 +4106,7 @@ export const factions: Record<CardId, Faction> = {
 
 "fat-bianca-aldana": {
   stack: "faction",
-  clan: "red-talons",
+  clan: "red talons",
   name: "Bianca Aldana",
   text: md`
     **Werewolf**
