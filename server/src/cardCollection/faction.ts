@@ -4102,6 +4102,26 @@ export const factions: Record<CardId, Faction> = {
   cardpool: "vampire",
 },
 
+// Fang and Talon //
+
+"fat-bianca-aldana": {
+  stack: "faction",
+  clan: "red-talons",
+  name: "Bianca Aldana",
+  text: md`
+    **Werewolf**
+    **Exhaust:** Target character in this party may activate 1 Form ability at no cost this turn. If this character is the target, ready them.
+  `,
+  bloodPotency: 3,
+  physical: 0,
+  social: 1,
+  mental: 1,
+  illustrator: "Mara Miranda-Escota",
+  set: "Fang & Talon",
+  disciplines: { galliard: 1 },
+  cardpool: "werewolf",
+},
+
 // Promo //
 
 "xxx-victor-cane": {
