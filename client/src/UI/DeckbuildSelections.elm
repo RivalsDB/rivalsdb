@@ -274,7 +274,8 @@ viewMainFilters data =
     [ Html.map (Internal << FromStacksFilter) <| Lazy.lazy FS.viewPlayerStacks data.stackFilters
     , Html.map (Internal << FromPrimaryFilter) <| Lazy.lazy FS.viewPrimaryTraits data.primaryFilters
     , Html.map (Internal << FromClansFilter) <| Lazy.lazy FS.viewClans data.clansFilters
-    , Html.map (Internal << FromClansFilter) <| Lazy.lazy FS.viewCells data.clansFilters
+    , Html.map (Internal << FromClansFilter) <| Lazy.lazy FS.viewCreeds data.clansFilters
+    , Html.map (Internal << FromClansFilter) <| Lazy.lazy FS.viewTribes data.clansFilters
     ]
 
 
@@ -284,6 +285,7 @@ viewSecondaryFilters data =
     , Html.map (Internal << FromAttackTypesFilter) <| Lazy.lazy FS.viewAttackTypes data.attackTypeFilters
     , Html.map (Internal << FromDisciplinesFilter) <| Lazy.lazy FS.viewDisciplines data.disciplineFilters
     , Html.map (Internal << FromDisciplinesFilter) <| Lazy.lazy FS.viewEdges data.disciplineFilters
+    , Html.map (Internal << FromDisciplinesFilter) <| Lazy.lazy FS.viewAuspices data.disciplineFilters
     , div [ class "deckbuild-filters__multi" ]
         [ label [ class "deckbuild-filters__multi-label", for "bp-multi" ]
             [ text "Blood Potency"

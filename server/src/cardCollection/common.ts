@@ -19,11 +19,13 @@ export type LibraryCardType =
   | "attack"
   | "conspiracy"
   | "event"
+  | "gift"
   | "ghoul"
   | "influence modifier"
   | "ongoing"
   | "reaction"
   | "relic"
+  | "rite"
   | "ritual"
   | "scheme"
   | "special"
@@ -71,8 +73,8 @@ export type Clan =
   | "tzimisce"
   | "ventrue"
   | "martial"
-  | "red-talons"
-  | "silverfangs";
+  | "red talons"
+  | "silver fangs";
 
 export type Discipline =
   | "animalism"
@@ -113,6 +115,7 @@ export type Illustrator =
   | "Darko Stojanovic"
   | "Dawn Nique"
   | "Drew Tucker"
+  | "Elif Aydin"
   | "Felipe Gaona"
   | "Harvey Bunda"
   | "Irene Francisco"
@@ -121,24 +124,21 @@ export type Illustrator =
   | "Joyce Maureira"
   | "Krasen Maximov"
   | "Mara Miranda-Escota"
+  | "Mara Miranda"
   | "Marco Primo"
+  | "Mico Dimagiba"
+  | "Nevzat Aydin"
+  | "Patsy Lascano"
   | "The Creation Studio"
   | "Timothy Terrenal and Harvey Bunda"
-  | "Timothy Terrenal"
-  | "Mico Dimagiba"
-  | "Patsy Lascano"
-  | "Mara Miranda"
-  | "Nevzat Aydin";
+  | "Timothy Terrenal";
 
 export type Cardpool =
   | "hunter"
   | "vampire"
   | "hunter and vampire"
-  | "werewolf"
-  | "werewolf and hunter"
-  | "werewolf and vampire"
-  | "werewolf and hunter and vampire"
-  
+  | "hunter and werewolf"
+  | "werewolf";
 
 export const md = (strings: TemplateStringsArray): string =>
   strings
