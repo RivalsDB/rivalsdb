@@ -138,6 +138,7 @@ type alias Monster =
     , mental : Attribute
     }
 
+
 type alias Form =
     { id : Id
     , name : Name
@@ -145,6 +146,7 @@ type alias Form =
     , image : Image
     , set : Pack
     }
+
 
 type alias Faction =
     { id : Id
@@ -325,7 +327,7 @@ set card =
             c.set
 
         FormCard c ->
-            c.id
+            c.set
 
 
 attackTypes : Card -> List AttackType
@@ -417,8 +419,8 @@ stack card =
         MonsterCard _ ->
             MonsterStack
 
-        FormCard c ->
-            c.id
+        FormCard _ ->
+            FormStack
 
 
 stackComparable : Card -> Int
@@ -617,6 +619,7 @@ monsterDecoder =
         |> decodeMental
         |> map (\monster -> ( monster.id, MonsterCard monster ))
 
+
 formDecoder : Decoder ( Id, Card )
 formDecoder =
     Decode.succeed Form
@@ -626,6 +629,8 @@ formDecoder =
         |> decodeImage
         |> required "set" Pack.decoder
         |> map (\form -> ( form.id, FormCard form ))
+
+
 
 -- METHODS
 

@@ -492,6 +492,9 @@ isBloodPotencyAllowed bpSelection card =
         ( _, Cards.CityCard _ ) ->
             False
 
+        ( _, Cards.FormCard _ ) ->
+            False
+
         ( _, Cards.MonsterCard _ ) ->
             True
 

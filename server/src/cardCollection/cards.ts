@@ -5,6 +5,7 @@ import { library } from "./library.js";
 import { factions } from "./faction.js";
 import { city } from "./city.js";
 import { monster } from "./monster.js";
+import { form } from "./form.js";
 import {
   AttackType,
   CardSet,
@@ -15,7 +16,7 @@ import {
   Cardpool,
 } from "./common.js";
 
-type Card = Agenda | Haven | Faction | Library | City | Monster;
+type Card = Agenda | Haven | Faction | Library | City | Monster | Form;
 
 export type Agenda = {
   id: string;
@@ -112,6 +113,17 @@ export type Monster = {
   types: ["monster"];
 }
 
+export type Form = {
+  stack: "form";
+  id: string;
+  illustrator: string;
+  image: string;
+  name: string;
+  set: CardSet;
+  text: string;
+  types: ["form"];
+}
+
 export const allUnstructured = ([] as Card[]).concat(
   Object.entries(city).map(convert.toUnstructuredCity),
   Object.entries(agendas).map(convert.toUnstructuredAgenda),
@@ -119,4 +131,6 @@ export const allUnstructured = ([] as Card[]).concat(
   Object.entries(library).map(convert.toUnstructuredLibrary),
   Object.entries(factions).map(convert.toUnstructuredFaction),
   Object.entries(monster).map(convert.toUnstructuredMonster),
+  Object.entries(form).map(convert.toUnstructuredForm),
 );
+

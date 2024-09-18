@@ -49,7 +49,7 @@ groupByStack =
                         { grouped | monsterStack = c :: grouped.monsterStack }
 
                     Cards.FormCard c ->
-                        { grouped | monsterStack = c :: grouped.formStack }
+                        { grouped | formStack = c :: grouped.formStack }
             )
             { agendaStack = []
             , factionStack = []
