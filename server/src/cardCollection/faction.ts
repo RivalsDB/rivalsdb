@@ -4215,10 +4215,10 @@ export const factions: Record<CardId, Faction> = {
   cardpool: "werewolf",
 },
 
-"fat-sandrine-duvali": {
+"fat-sandrine-duval": {
   stack: "faction",
   clan: "red talons",
-  name: "Sandrine Duvali",
+  name: "Sandrine Duval",
   text: md`
     **Werewolf**
     The first time this character attaches a card during each of your turns, ready them and they gain 1 Rage.
