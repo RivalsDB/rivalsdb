@@ -6239,7 +6239,7 @@ export const library: Record<CardId, Library> = {
 "fat-lead-by-example": {
   stack: "library",
   name: "Lead by Example",
-  types: ["attack"],
+  types: ["influence modifier", "unhosted action"],
   clan: "silverfangs",
   //bloodPotencyRequirement: 4,
   //bloodPotency: ,
