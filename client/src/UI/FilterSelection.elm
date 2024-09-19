@@ -158,7 +158,7 @@ playerStackIsAllowed flags card =
 
             ( _, C.MonsterCard _ ) ->
                 False
-            
+
             ( _, C.FormCard _ ) ->
                 False
 
@@ -552,7 +552,9 @@ clanIsAllowed flags card =
                 || (clan == Cl.Ministry && flags.ministry)
                 || (clan == Cl.Nosferatu && flags.nosferatu)
                 || (clan == Cl.Ravnos && flags.ravnos)
+                || (clan == Cl.RedTalons && flags.redTalons)
                 || (clan == Cl.Salubri && flags.salubri)
+                || (clan == Cl.SilverFangs && flags.silverFangs)
                 || (clan == Cl.ThinBlood && flags.thinBlood)
                 || (clan == Cl.Toreador && flags.toreador)
                 || (clan == Cl.Tremere && flags.tremere)
@@ -707,7 +709,8 @@ disciplineIsAllowedWide flags card =
         matchDiscipline =
             List.any
                 (\dis ->
-                    (dis == Dis.Animalism && flags.animalism)
+                    (dis == Dis.Ahroun && flags.ahroun)
+                        || (dis == Dis.Animalism && flags.animalism)
                         || (dis == Dis.Arsenal && flags.arsenal)
                         || (dis == Dis.Auspex && flags.auspex)
                         || (dis == Dis.BeastWhisperer && flags.beastWhisperer)
@@ -717,16 +720,20 @@ disciplineIsAllowedWide flags card =
                         || (dis == Dis.DroneJockey && flags.droneJockey)
                         || (dis == Dis.Fleet && flags.fleet)
                         || (dis == Dis.Fortitude && flags.fortitude)
+                        || (dis == Dis.Galliard && flags.galliard)
                         || (dis == Dis.Global && flags.global)
                         || (dis == Dis.Library && flags.library)
                         || (dis == Dis.Obfuscate && flags.obfuscate)
                         || (dis == Dis.Oblivion && flags.oblivion)
                         || (dis == Dis.Ordnance && flags.ordnance)
+                        || (dis == Dis.Philodox && flags.philodox)
                         || (dis == Dis.Potence && flags.potence)
                         || (dis == Dis.Presence && flags.presence)
                         || (dis == Dis.Protean && flags.protean)
+                        || (dis == Dis.Ragabash && flags.ragabash)
                         || (dis == Dis.RepelTheUnnatural && flags.repelTheUnnatural)
                         || (dis == Dis.SenseTheUnnatural && flags.senseTheUnnatural)
+                        || (dis == Dis.Theurge && flags.theurge)
                         || (dis == Dis.ThwartTheUnnatural && flags.thwartTheUnnatural)
                         || (dis == Dis.ThinBloodAlchemy && flags.thinBloodAlchemy)
                 )
@@ -750,7 +757,8 @@ disciplineIsAllowedStrict : Disciplines -> C.Card -> Bool
 disciplineIsAllowedStrict flags card =
     let
         matchDiscipline disciplines =
-            (List.member Dis.Animalism disciplines == flags.animalism)
+            (List.member Dis.Ahroun disciplines == flags.ahroun)
+                && (List.member Dis.Animalism disciplines == flags.animalism)
                 && (List.member Dis.Arsenal disciplines == flags.arsenal)
                 && (List.member Dis.Auspex disciplines == flags.auspex)
                 && (List.member Dis.BeastWhisperer disciplines == flags.beastWhisperer)
@@ -760,16 +768,20 @@ disciplineIsAllowedStrict flags card =
                 && (List.member Dis.DroneJockey disciplines == flags.droneJockey)
                 && (List.member Dis.Fleet disciplines == flags.fleet)
                 && (List.member Dis.Fortitude disciplines == flags.fortitude)
+                && (List.member Dis.Galliard disciplines == flags.galliard)
                 && (List.member Dis.Global disciplines == flags.global)
                 && (List.member Dis.Library disciplines == flags.library)
                 && (List.member Dis.Obfuscate disciplines == flags.obfuscate)
                 && (List.member Dis.Oblivion disciplines == flags.oblivion)
                 && (List.member Dis.Ordnance disciplines == flags.ordnance)
+                && (List.member Dis.Philodox disciplines == flags.philodox)
                 && (List.member Dis.Potence disciplines == flags.potence)
                 && (List.member Dis.Presence disciplines == flags.presence)
                 && (List.member Dis.Protean disciplines == flags.protean)
+                && (List.member Dis.Ragabash disciplines == flags.ragabash)
                 && (List.member Dis.RepelTheUnnatural disciplines == flags.repelTheUnnatural)
                 && (List.member Dis.SenseTheUnnatural disciplines == flags.senseTheUnnatural)
+                && (List.member Dis.Theurge disciplines == flags.theurge)
                 && (List.member Dis.ThwartTheUnnatural disciplines == flags.thwartTheUnnatural)
                 && (List.member Dis.ThinBloodAlchemy disciplines == flags.thinBloodAlchemy)
     in
