@@ -46,7 +46,7 @@ enum =
         , ( "ravnos", Ravnos )
         , ( "red talons", RedTalons )
         , ( "salubri", Salubri )
-        , ( "silver fangs", SilverFangs )
+        , ( "silverfangs", SilverFangs )
         , ( "thin-blood", ThinBlood )
         , ( "toreador", Toreador )
         , ( "tremere", Tremere )
