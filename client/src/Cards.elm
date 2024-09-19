@@ -277,7 +277,7 @@ name card =
             c.name
 
         FormCard c ->
-            c.id
+            c.name
 
 
 image : Card -> String
@@ -302,7 +302,7 @@ image card =
             c.image
 
         FormCard c ->
-            c.id
+            c.image
 
 
 set : Card -> Pack
