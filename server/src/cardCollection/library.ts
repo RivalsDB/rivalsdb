@@ -6116,7 +6116,7 @@ export const library: Record<CardId, Library> = {
   cardpool: "werewolf",
 },
 
-"fat-fangs-of-judgement": {
+"fat-fangs-of-judgment": {
   stack: "library",
   name: "Fangs of Judgment",
   types: ["action", "gift"],
