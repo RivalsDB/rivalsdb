@@ -1,4 +1,4 @@
-import { CardSet, CardId, Illustrator, md } from "./common.js";
+import { CardSet, CardId, Cardpool, Illustrator, md } from "./common.js";
 
 export type Form = {
   stack: "form";
@@ -6,6 +6,7 @@ export type Form = {
   name: string;
   set: CardSet;
   text: string;
+  cardpool: Cardpool;
 };
 
 export const form: Record<CardId, Form> = {
@@ -24,6 +25,7 @@ export const form: Record<CardId, Form> = {
   `,
   illustrator: "Nevzat Aydin",
   set: "Fang & Talon",
+  cardpool: "werewolf"
 },
 
 "fat-glabro": {
@@ -37,6 +39,7 @@ export const form: Record<CardId, Form> = {
   `,
   illustrator: "Nevzat Aydin",
   set: "Fang & Talon",
+  cardpool: "werewolf"
 },
 
 "fat-hispo": {
@@ -51,6 +54,7 @@ export const form: Record<CardId, Form> = {
   `,
   illustrator: "Nevzat Aydin",
   set: "Fang & Talon",
+  cardpool: "werewolf"
 },
 
 "fat-lupus": {
@@ -63,6 +67,7 @@ export const form: Record<CardId, Form> = {
   `,
   illustrator: "Nevzat Aydin",
   set: "Fang & Talon",
+  cardpool: "werewolf"
 },
 
 };

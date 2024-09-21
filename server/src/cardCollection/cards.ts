@@ -122,6 +122,7 @@ export type Form = {
   set: CardSet;
   text: string;
   types: ["form"];
+  cardpool: Cardpool;
 }
 
 export const allUnstructured = ([] as Card[]).concat(

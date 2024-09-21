@@ -133,4 +133,5 @@ export const toUnstructuredForm = ([id, c]: Pair<Form>): UnForm => ({
   name: c.name,
   set: c.set,
   text: c.text,
+  cardpool: c.cardpool
 });

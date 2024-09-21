@@ -145,6 +145,7 @@ type alias Form =
     , text : Text
     , image : Image
     , set : Pack
+    , cardpool : Cardpool
     }
 
 
@@ -628,6 +629,7 @@ formDecoder =
         |> decodeText
         |> decodeImage
         |> required "set" Pack.decoder
+        |> required "cardpool" Cardpool.decoder
         |> map (\form -> ( form.id, FormCard form ))
 
 
