@@ -6,7 +6,7 @@ export type Haven = {
   text: string;
   illustrator: Illustrator;
   set: CardSet;
-  cardpool: Cardpool;
+  cardpools: Cardpool[];
 };
 
 export const havens: Record<CardId, Haven> = {
@@ -23,7 +23,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Felipe Gaona",
   set: "Core",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-dragons-roost": {
@@ -37,7 +37,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Felipe Gaona",
   set: "Core",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-house-of-pain": {
@@ -50,7 +50,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Felipe Gaona",
   set: "Core",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-old-post-office": {
@@ -64,7 +64,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Cold Castle Studios",
   set: "Core",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-royal-retreat": {
@@ -78,7 +78,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Cold Castle Studios",
   set: "Core",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-the-dockyards": {
@@ -91,7 +91,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Felipe Gaona",
   set: "Core",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-the-madhouse": {
@@ -104,7 +104,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Cold Castle Studios",
   set: "Core",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-the-penthouse": {
@@ -117,7 +117,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "The Creation Studio",
   set: "Core",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 // Blood and Alchemy //
@@ -132,7 +132,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Felipe Gaona",
   set: "Blood & Alchemy",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "baa-the-pit": {
@@ -145,7 +145,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Marco Primo",
   set: "Blood & Alchemy",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "baa-thrift-store": {
@@ -159,7 +159,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Marco Primo",
   set: "Blood & Alchemy",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "baa-university-library": {
@@ -172,7 +172,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Marco Primo",
   set: "Blood & Alchemy",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 // Wolf and Rat //
@@ -189,7 +189,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Harvey Bunda",
   set: "Wolf & Rat",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "war-the-outskirts": {
@@ -202,7 +202,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Adelijah Ocampo",
   set: "Wolf & Rat",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "war-the-sewers": {
@@ -215,7 +215,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Felipe Gaona",
   set: "Wolf & Rat",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "war-the-shelter": {
@@ -228,7 +228,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Felipe Gaona",
   set: "Wolf & Rat",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 // Shadows and Shrouds //
@@ -243,7 +243,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Marco Primo",
   set: "Shadows & Shrouds",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "sas-mission-cemetery": {
@@ -256,7 +256,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Felipe Gaona",
   set: "Shadows & Shrouds",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "sas-the-big-house": {
@@ -271,7 +271,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Felipe Gaona",
   set: "Shadows & Shrouds",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "sas-the-tenderloin": {
@@ -285,7 +285,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Marco Primo",
   set: "Shadows & Shrouds",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 // Heart of Europe //
@@ -301,7 +301,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Marco Primo",
   set: "Heart of Europe",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hoe-old-rail-station": {
@@ -314,7 +314,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Marco Primo",
   set: "Heart of Europe",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 // Dragon and Rogue //
@@ -330,7 +330,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Adelijah Ocampo",
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "dar-converted-bus": {
@@ -343,7 +343,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Adelijah Ocampo",
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "dar-country-estate": {
@@ -357,7 +357,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Irene Francisco",
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "dar-social-housing": {
@@ -371,7 +371,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Mara Miranda-Escota",
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 // Justice and Mercy //
@@ -386,7 +386,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Marco Primo",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "jam-ritual-room": {
@@ -399,7 +399,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Marco Primo",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "jam-the-castle": {
@@ -412,7 +412,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Marco Primo",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "jam-the-high-horse": {
@@ -426,7 +426,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Marco Primo",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 // Hunter and Hunted //
@@ -441,7 +441,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Marco Primo",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "hah-back-alley-clinic": {
@@ -454,7 +454,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "hah-the-temple-of-set": {
@@ -467,7 +467,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Marco Primo",
   set: "Hunters & Hunted",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hah-the-clubhouse": {
@@ -480,7 +480,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Marco Primo",
   set: "Hunters & Hunted",
-  cardpool: "hunter and vampire",
+  cardpools: ["hunter", "vampire"],
 },
 
 "hah-the-bunker": {
@@ -493,7 +493,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "hah-the-feretory": {
@@ -507,7 +507,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Marco Primo",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "hah-the-orphanage": {
@@ -520,7 +520,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Marco Primo",
   set: "Hunters & Hunted",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hah-the-hidden-temple": {
@@ -534,7 +534,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Marco Primo",
   set: "Hunters & Hunted",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 // Martial Law //
@@ -549,7 +549,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Adelijah Ocampo",
   set: "Martial Law",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "ml-hunters-blind": {
@@ -562,7 +562,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Mara Miranda",
   set: "Martial Law",
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "ml-the-ready-room": {
@@ -575,7 +575,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Mara Miranda",
   set: "Martial Law",
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 // Fang and Talon //
@@ -590,7 +590,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Marco Primo",
   set: "Fang & Talon",
-  cardpool: "werewolf",
+  cardpools: ["werewolf"],
 },
 
 "fat-caern-desert-compound": {
@@ -603,7 +603,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Marco Primo",
   set: "Fang & Talon",
-  cardpool: "werewolf",
+  cardpools: ["werewolf"],
 },
 
 "fat-caern-national-park": {
@@ -616,7 +616,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Marco Primo",
   set: "Fang & Talon",
-  cardpool: "werewolf",
+  cardpools: ["werewolf"],
 },
 
 "fat-caern-the-observatory": {
@@ -629,7 +629,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Marco Primo",
   set: "Fang & Talon",
-  cardpool: "werewolf",
+  cardpools: ["werewolf"],
 },
 
 "fat-caern-the-stadium": {
@@ -642,7 +642,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Marco Primo",
   set: "Fang & Talon",
-  cardpool: "werewolf",
+  cardpools: ["werewolf"],
 },
 
 // Promo //
@@ -657,7 +657,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Marco Primo",
   set: "Promo",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "xxx-dancing-house": {
@@ -670,7 +670,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Felipe Gaona",
   set: "Promo",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "xxx-old-police-station": {
@@ -684,7 +684,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Marco Primo",
   set: "Promo",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "xxx-prague-national-bank": {
@@ -696,7 +696,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Marco Primo",
   set: "Promo",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "xxx-tent-city": {
@@ -709,7 +709,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Felipe Gaona",
   set: "Promo",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "xxx-youth-hostel": {
@@ -722,7 +722,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Mara Miranda-Escota",
   set: "Promo",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "xxx-the-underpass": {
@@ -735,7 +735,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Felipe Gaona",
   set: "Promo",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "xxx-the-presidio": {
@@ -748,7 +748,7 @@ export const havens: Record<CardId, Haven> = {
   `,
   illustrator: "Marco Primo",
   set: "Promo",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 };

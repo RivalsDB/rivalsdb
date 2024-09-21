@@ -6,7 +6,7 @@ export type Form = {
   name: string;
   set: CardSet;
   text: string;
-  cardpool: Cardpool;
+  cardpools: Cardpool[];
 };
 
 export const form: Record<CardId, Form> = {
@@ -25,7 +25,7 @@ export const form: Record<CardId, Form> = {
   `,
   illustrator: "Nevzat Aydin",
   set: "Fang & Talon",
-  cardpool: "werewolf"
+  cardpools: ["werewolf"]
 },
 
 "fat-glabro": {
@@ -39,7 +39,7 @@ export const form: Record<CardId, Form> = {
   `,
   illustrator: "Nevzat Aydin",
   set: "Fang & Talon",
-  cardpool: "werewolf"
+  cardpools: ["werewolf"]
 },
 
 "fat-hispo": {
@@ -54,7 +54,7 @@ export const form: Record<CardId, Form> = {
   `,
   illustrator: "Nevzat Aydin",
   set: "Fang & Talon",
-  cardpool: "werewolf"
+  cardpools: ["werewolf"]
 },
 
 "fat-lupus": {
@@ -67,7 +67,7 @@ export const form: Record<CardId, Form> = {
   `,
   illustrator: "Nevzat Aydin",
   set: "Fang & Talon",
-  cardpool: "werewolf"
+  cardpools: ["werewolf"]
 },
 
 };

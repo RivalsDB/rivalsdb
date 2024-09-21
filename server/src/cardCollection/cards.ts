@@ -27,7 +27,7 @@ export type Agenda = {
   text: string;
   types: ["agenda"];
   stack: "agenda";
-  cardpool: Cardpool;
+  cardpools: Cardpool[];
 };
 
 export type Haven = {
@@ -39,7 +39,7 @@ export type Haven = {
   text: string;
   types: ["haven"];
   stack: "haven";
-  cardpool: Cardpool;
+  cardpools: Cardpool[];
 };
 
 export type Faction = {
@@ -58,7 +58,7 @@ export type Faction = {
   types: ["character"];
   flavor?: string;
   stack: "faction";
-  cardpool: Cardpool;
+  cardpools: Cardpool[];
 };
 
 export type Library = {
@@ -78,7 +78,7 @@ export type Library = {
   types: LibraryCardType[];
   flavor?: string;
   stack: "library";
-  cardpool: Cardpool;
+  cardpools: Cardpool[];
 };
 
 export type City = {
@@ -122,7 +122,7 @@ export type Form = {
   set: CardSet;
   text: string;
   types: ["form"];
-  cardpool: Cardpool;
+  cardpools: Cardpool[];
 }
 
 export const allUnstructured = ([] as Card[]).concat(

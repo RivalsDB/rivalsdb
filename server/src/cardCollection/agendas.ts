@@ -6,7 +6,7 @@ export type Agenda = {
   text: string;
   illustrator: Illustrator;
   set: CardSet;
-  cardpool: Cardpool;
+  cardpools: Cardpool[];
 };
 
 export const agendas: Record<CardId, Agenda> = {
@@ -22,7 +22,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "The Creation Studio",
   set: "Core",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-drain-them-slowly": {
@@ -34,7 +34,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Marco Primo",
   set: "Core",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-hunt-the-hunters": {
@@ -46,7 +46,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "The Creation Studio",
   set: "Core",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-manipulate-the-masses": {
@@ -58,7 +58,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "The Creation Studio",
   set: "Core",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-playthings": {
@@ -70,7 +70,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Amy Wilkins",
   set: "Core",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-strength-in-numbers": {
@@ -83,7 +83,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Felipe Gaona",
   set: "Core",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-the-end-is-nigh": {
@@ -95,7 +95,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "The Creation Studio",
   set: "Core",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-turf-war": {
@@ -108,7 +108,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "The Creation Studio",
   set: "Core",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 // Blood and Alchemy //
@@ -122,7 +122,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Darko Stojanovic",
   set: "Blood & Alchemy",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "baa-recruitment-drive": {
@@ -134,7 +134,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Darko Stojanovic",
   set: "Blood & Alchemy",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "baa-rites-of-the-blood": {
@@ -147,7 +147,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Felipe Gaona",
   set: "Blood & Alchemy",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "baa-street-brew": {
@@ -160,7 +160,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Felipe Gaona",
   set: "Blood & Alchemy",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 // Wolf and Rat //
@@ -175,7 +175,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Felipe Gaona",
   set: "Wolf & Rat",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "war-call-of-the-wild": {
@@ -188,7 +188,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Harvey Bunda",
   set: "Wolf & Rat",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "war-hoard-the-herd": {
@@ -201,7 +201,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Mara Miranda-Escota",
   set: "Wolf & Rat",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "war-invisible-army": {
@@ -214,7 +214,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Harvey Bunda",
   set: "Wolf & Rat",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 // Shadows and Shrouds //
@@ -229,7 +229,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Irene Francisco",
   set: "Shadows & Shrouds",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "sas-most-impressive": {
@@ -241,7 +241,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Mara Miranda-Escota",
   set: "Shadows & Shrouds",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "sas-prizefighter": {
@@ -254,7 +254,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Felipe Gaona",
   set: "Shadows & Shrouds",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "sas-wake-the-dead": {
@@ -267,7 +267,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Felipe Gaona",
   set: "Shadows & Shrouds",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 // Heart of Europe //
@@ -281,7 +281,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Felipe Gaona",
   set: "Heart of Europe",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hoe-full-of-surprises": {
@@ -293,7 +293,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Joyce Maureira",
   set: "Heart of Europe",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 // Dragon and Rogue //
@@ -308,7 +308,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Felipe Gaona",
   set: "Dragon & Rogue",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "dar-change-of-scenery": {
@@ -320,7 +320,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Joyce Maureira",
   set: "Dragon & Rogue",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "dar-raising-the-stakes": {
@@ -332,7 +332,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Adelijah Ocampo",
   set: "Dragon & Rogue",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "dar-the-completionist": {
@@ -344,7 +344,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Adelijah Ocampo",
   set: "Dragon & Rogue",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 // Justice and Mercy //
@@ -358,7 +358,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Marco Primo",
   set: "Justice & Mercy",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "jam-ritual-master": {
@@ -370,7 +370,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Marco Primo",
   set: "Justice & Mercy",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "jam-traditionalist": {
@@ -383,7 +383,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Joyce Maureira",
   set: "Justice & Mercy",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "jam-good-samaritan": {
@@ -395,7 +395,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Adelijah Ocampo",
   set: "Justice & Mercy",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 // Hunter and Hunted //
@@ -409,7 +409,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Marco Primo",
   set: "Hunters & Hunted",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hah-birds-of-different-feathers": {
@@ -420,7 +420,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Mara Miranda-Escota",
   set: "Hunters & Hunted",
   stack: "agenda",
-  cardpool: "hunter and vampire",
+  cardpools: ["hunter", "vampire"],
 },
 
 "hah-martyrdom": {
@@ -431,7 +431,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Mara Miranda-Escota",
   set: "Hunters & Hunted",
   stack: "agenda",
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "hah-observe-and-report": {
@@ -442,7 +442,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Mico Dimagiba",
   set: "Hunters & Hunted",
   stack: "agenda",
-  cardpool: "hunter and vampire",
+  cardpools: ["hunter", "vampire"],
 },
 
 "hah-all-figured-out": {
@@ -454,7 +454,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Marco Primo",
   set: "Hunters & Hunted",
   stack: "agenda",
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "hah-go-for-broke": {
@@ -466,7 +466,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Joyce Maureira",
   set: "Hunters & Hunted",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hah-symbolic-meaning": {
@@ -477,7 +477,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Adelijah Ocampo",
   set: "Hunters & Hunted",
   stack: "agenda",
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "hah-the-ash-heap-of-history": {
@@ -489,7 +489,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Marco Primo",
   set: "Hunters & Hunted",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 
@@ -504,7 +504,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Marco Primo",
   set: "Martial Law",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "ml-kill-tally": {
@@ -516,7 +516,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Adelijah Ocampo",
   set: "Martial Law",
   stack: "agenda",
-  cardpool: "hunter and vampire"
+  cardpools: ["hunter", "vampire"],
 },
 
 "ml-unrelenting-pressure": {
@@ -528,7 +528,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Mico Dimagiba",
   set: "Martial Law",
   stack: "agenda",
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 // Fang and Talon //
@@ -541,7 +541,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Marco Primo",
   set: "Fang & Talon",
   stack: "agenda",
-  cardpool: "werewolf",
+  cardpools: ["werewolf"],
 },
 
 "fat-inhuman-rites": {
@@ -552,7 +552,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Marco Primo",
   set: "Fang & Talon",
   stack: "agenda",
-  cardpool: "werewolf",
+  cardpools: ["werewolf"],
 },
 
 "fat-leader-of-the-pack": {
@@ -563,7 +563,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Marco Primo",
   set: "Fang & Talon",
   stack: "agenda",
-  cardpool: "werewolf",
+  cardpools: ["werewolf"],
 },
 
 "fat-no-quarter-given": {
@@ -574,7 +574,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Marco Primo",
   set: "Fang & Talon",
   stack: "agenda",
-  cardpool: "werewolf",
+  cardpools: ["werewolf"],
 },
 
 "fat-shapes-of-death": {
@@ -585,7 +585,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Marco Primo",
   set: "Fang & Talon",
   stack: "agenda",
-  cardpool: "werewolf",
+  cardpools: ["werewolf"],
 },
 
 // Promo //
@@ -599,7 +599,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Joyce Maureira",
   set: "Promo",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "xxx-balance-in-all-things": {
@@ -612,7 +612,7 @@ export const agendas: Record<CardId, Agenda> = {
     illustrator: "Joyce Maureira",
     set: "Promo",
     stack: "agenda",
-    cardpool: "vampire",
+    cardpools: ["vampire"],
 },
 
 "xxx-race-to-the-bottom": {
@@ -624,7 +624,7 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Joyce Maureira",
   set: "Promo",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "xxx-the-killing-moon": {
@@ -637,6 +637,6 @@ export const agendas: Record<CardId, Agenda> = {
   illustrator: "Felipe Gaona",
   set: "Promo",
   stack: "agenda",
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 };

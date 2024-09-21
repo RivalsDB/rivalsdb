@@ -20,7 +20,7 @@ export type Faction = {
   text: string;
   illustrator: Illustrator;
   set: CardSet;
-  cardpool: Cardpool;
+  cardpools: Cardpool[];
 };
 
 export const factions: Record<CardId, Faction> = {
@@ -41,7 +41,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 2,
   disciplines: { obfuscate: 2 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-bella-forte": {
@@ -58,7 +58,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 1,
   disciplines: { auspex: 1, celerity: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-beretta": {
@@ -75,7 +75,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 2,
   disciplines: { celerity: 1, potence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-bong-cha-park": {
@@ -92,7 +92,7 @@ export const factions: Record<CardId, Faction> = {
   social: 2,
   mental: 0,
   disciplines: { presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-brother": {
@@ -109,7 +109,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 1,
   disciplines: { potence: 1, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-bruno-wagner": {
@@ -126,7 +126,7 @@ export const factions: Record<CardId, Faction> = {
   social: 2,
   mental: 1,
   disciplines: { dominate: 1, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-bunny-benitez": {
@@ -144,7 +144,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 1,
   disciplines: { celerity: 1, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-doc": {
@@ -161,7 +161,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 2,
   disciplines: { auspex: 1, obfuscate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-flick": {
@@ -178,7 +178,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 1,
   disciplines: { presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-guvnah": {
@@ -195,7 +195,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 1,
   disciplines: { auspex: 1, dominate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-humberto-garcia": {
@@ -212,7 +212,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 1,
   disciplines: { dominate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-hydra": {
@@ -229,7 +229,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 0,
   disciplines: { celerity: 1, potence: 1, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-inmate-745943": {
@@ -246,7 +246,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 0,
   disciplines: { dominate: 1, obfuscate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-iris-lokken": {
@@ -263,7 +263,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 2,
   disciplines: { auspex: 1, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-jesus": {
@@ -280,7 +280,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 1,
   disciplines: { obfuscate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-john-kartunen": {
@@ -297,7 +297,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 1,
   disciplines: { auspex: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-johnny": {
@@ -314,7 +314,7 @@ export const factions: Record<CardId, Faction> = {
   social: 2,
   mental: 0,
   disciplines: { presence: 2 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-june-bryant": {
@@ -331,7 +331,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 1,
   disciplines: { presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-karma": {
@@ -348,7 +348,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 2,
   disciplines: { auspex: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-lixue-chen": {
@@ -365,7 +365,7 @@ export const factions: Record<CardId, Faction> = {
   social: 2,
   mental: 0,
   disciplines: { auspex: 1, celerity: 1, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-liza-holt": {
@@ -382,7 +382,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 0,
   disciplines: { celerity: 1, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-lolita": {
@@ -399,7 +399,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 0,
   disciplines: { dominate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 
@@ -417,7 +417,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 0,
   disciplines: { fortitude: 2 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-muhammad-zadeh": {
@@ -434,7 +434,7 @@ export const factions: Record<CardId, Faction> = {
   social: 2,
   mental: 1,
   disciplines: { auspex: 1, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-nancy-witt": {
@@ -451,7 +451,7 @@ export const factions: Record<CardId, Faction> = {
   social: 2,
   mental: 0,
   disciplines: { presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-randolph-marz": {
@@ -469,7 +469,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 1,
   disciplines: { dominate: 1, fortitude: 1, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-shades": {
@@ -486,7 +486,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 0,
   disciplines: { celerity: 1, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-skunk": {
@@ -503,7 +503,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 1,
   disciplines: { potence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-stevie-osborn": {
@@ -520,7 +520,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 1,
   disciplines: { fortitude: 1, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-street-preacher": {
@@ -537,7 +537,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 1,
   disciplines: { auspex: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-sweetums": {
@@ -554,7 +554,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 0,
   disciplines: { celerity: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-the-cossack": {
@@ -571,7 +571,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 1,
   disciplines: { celerity: 1, potence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-ty-smith": {
@@ -588,7 +588,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 0,
   disciplines: { presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-velvet": {
@@ -605,7 +605,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 1,
   disciplines: { auspex: 1, obfuscate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 
@@ -623,7 +623,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 0,
   disciplines: { fortitude: 2 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "core-zhang-wei": {
@@ -640,7 +640,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 2,
   disciplines: { dominate: 1, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 // Blood and Alchemy //
@@ -659,7 +659,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 1,
   disciplines: { auspex: 1, "blood sorcery": 2 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "baa-april-smith": {
@@ -677,7 +677,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 1,
   disciplines: {},
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "baa-aurora-nix": {
@@ -694,7 +694,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 1,
   disciplines: { auspex: 2 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "baa-caleb-walker": {
@@ -712,7 +712,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 0,
   disciplines: {},
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "baa-candi-liu": {
@@ -729,7 +729,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 0,
   disciplines: { "thin-blood alchemy": 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "baa-claudia-sterling": {
@@ -746,7 +746,7 @@ export const factions: Record<CardId, Faction> = {
   social: 2,
   mental: 0,
   disciplines: { "blood sorcery": 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "baa-darius-wolfe": {
@@ -764,7 +764,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 0,
   disciplines: { auspex: 1, dominate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "baa-faith-gray": {
@@ -781,7 +781,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 1,
   disciplines: { auspex: 1, "blood sorcery": 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "baa-sonja-valentine": {
@@ -798,7 +798,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 2,
   disciplines: { auspex: 1, "blood sorcery": 1, dominate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "baa-frog": {
@@ -816,7 +816,7 @@ export const factions: Record<CardId, Faction> = {
   social: 2,
   mental: 0,
   disciplines: { "thin-blood alchemy": 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "baa-grigori": {
@@ -833,7 +833,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 2,
   disciplines: { "blood sorcery": 1, dominate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "baa-hua-jiang": {
@@ -851,7 +851,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 1,
   disciplines: {},
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "baa-jacob-frost": {
@@ -868,7 +868,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 1,
   disciplines: { "thin-blood alchemy": 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "baa-joseph-drake": {
@@ -885,7 +885,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 0,
   disciplines: { "thin-blood alchemy": 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "baa-lorenzo-murik": {
@@ -902,7 +902,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 2,
   disciplines: { "blood sorcery": 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "baa-phuoc-dihn": {
@@ -919,7 +919,7 @@ export const factions: Record<CardId, Faction> = {
   social: 2,
   mental: 0,
   disciplines: { "blood sorcery": 1, dominate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "baa-valerie-nash": {
@@ -937,7 +937,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 0,
   disciplines: {},
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "baa-wendy": {
@@ -955,7 +955,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 0,
   disciplines: {},
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 // Wolf and Rat //
@@ -975,7 +975,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 0,
   disciplines: { obfuscate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "war-chooha": {
@@ -992,7 +992,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 1,
   disciplines: { animalism: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "war-clandestine": {
@@ -1009,7 +1009,7 @@ export const factions: Record<CardId, Faction> = {
   social: 2,
   mental: 1,
   disciplines: { obfuscate: 2 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "war-crazy-cat-lady": {
@@ -1026,7 +1026,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 1,
   disciplines: { animalism: 1, potence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "war-drea-warden": {
@@ -1044,7 +1044,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 1,
   disciplines: { animalism: 1, protean: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "war-general-flint": {
@@ -1062,7 +1062,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 1,
   disciplines: { animalism: 1, potence: 2 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "war-ghost": {
@@ -1079,7 +1079,7 @@ export const factions: Record<CardId, Faction> = {
   social: 2,
   mental: 0,
   disciplines: { protean: 2 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "war-harry-o-brien": {
@@ -1096,7 +1096,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 2,
   disciplines: { fortitude: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "war-kim-phan": {
@@ -1115,7 +1115,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 1,
   disciplines: { obfuscate: 1, potence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "war-leah-swiftfoot": {
@@ -1133,7 +1133,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 1,
   disciplines: { animalism: 1, protean: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "war-lil-fang": {
@@ -1150,7 +1150,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 0,
   disciplines: { animalism: 1, protean: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "war-lori-swiftfoot": {
@@ -1168,7 +1168,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 0,
   disciplines: { fortitude: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "war-pong": {
@@ -1185,7 +1185,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 2,
   disciplines: { animalism: 1, obfuscate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "war-sheilar-omar": {
@@ -1202,7 +1202,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 1,
   disciplines: { animalism: 1, obfuscate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "war-shep-mason": {
@@ -1219,7 +1219,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 0,
   disciplines: { potence: 2 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "war-summer-moon": {
@@ -1237,7 +1237,7 @@ export const factions: Record<CardId, Faction> = {
   social: 2,
   mental: 0,
   disciplines: { animalism: 1, fortitude: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "war-tamaska": {
@@ -1254,7 +1254,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 1,
   disciplines: { animalism: 1, fortitude: 1, protean: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "war-trinity-voss": {
@@ -1271,7 +1271,7 @@ export const factions: Record<CardId, Faction> = {
   social: 2,
   mental: 0,
   disciplines: { animalism: 1, fortitude: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 // Shadows and Shrouds //
@@ -1291,7 +1291,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 0,
   disciplines: { dominate: 1, oblivion: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "sas-scott": {
@@ -1309,7 +1309,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 0,
   disciplines: { auspex: 1, oblivion: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "sas-adrian-beltza": {
@@ -1327,7 +1327,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 1,
   disciplines: { oblivion: 1, potence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "sas-annika": {
@@ -1344,7 +1344,7 @@ export const factions: Record<CardId, Faction> = {
   social: 2,
   mental: 0,
   disciplines: { auspex: 1, fortitude: 1, oblivion: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "sas-astrid-malhela": {
@@ -1362,7 +1362,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 1,
   disciplines: { potence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "sas-bianca-giovanni": {
@@ -1379,7 +1379,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 1,
   disciplines: { oblivion: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "sas-enzo-cappa": {
@@ -1397,7 +1397,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 1,
   disciplines: { oblivion: 2 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "sas-gia-de-emparan": {
@@ -1414,7 +1414,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 1,
   disciplines: { dominate: 2, potence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "sas-juan-carlos-diaz": {
@@ -1432,7 +1432,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 2,
   disciplines: { oblivion: 2 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "sas-kristin": {
@@ -1449,7 +1449,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 0,
   disciplines: { fortitude: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "sas-kwame": {
@@ -1466,7 +1466,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 1,
   disciplines: { auspex: 1, oblivion: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "sas-markus-kumnyama": {
@@ -1484,7 +1484,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 1,
   disciplines: { dominate: 1, oblivion: 1, potence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "sas-nathaniel": {
@@ -1501,7 +1501,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 1,
   disciplines: { auspex: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "sas-piero-calderon": {
@@ -1519,7 +1519,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 1,
   disciplines: { oblivion: 1, potence: 2 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "sas-rachany-sok": {
@@ -1538,7 +1538,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 0,
   disciplines: { dominate: 1, oblivion: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "sas-raven-smith": {
@@ -1555,7 +1555,7 @@ export const factions: Record<CardId, Faction> = {
   social: 2,
   mental: 1,
   disciplines: { dominate: 1, oblivion: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "sas-sophia-giovanni": {
@@ -1572,7 +1572,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 2,
   disciplines: { fortitude: 1, oblivion: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "sas-zahara": {
@@ -1589,7 +1589,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 0,
   disciplines: { oblivion: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 
@@ -1610,7 +1610,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Heart of Europe",
   disciplines: { auspex: 1, "blood sorcery": 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hoe-anjali-the-samedi": {
@@ -1628,7 +1628,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Heart of Europe",
   disciplines: { auspex: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hoe-borek-wagner": {
@@ -1646,7 +1646,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Heart of Europe",
   disciplines: { dominate: 1, fortitude: 1, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hoe-camila": {
@@ -1663,7 +1663,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Heart of Europe",
   disciplines: { oblivion: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hoe-dien": {
@@ -1680,7 +1680,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Heart of Europe",
   disciplines: { animalism: 1, fortitude: 1, protean: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hoe-ekene": {
@@ -1697,7 +1697,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Heart of Europe",
   disciplines: { protean: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hoe-em": {
@@ -1715,7 +1715,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Amy Wilkins",
   set: "Heart of Europe",
   disciplines: { fortitude: 1, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hoe-emil-hruza": {
@@ -1733,7 +1733,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Heart of Europe",
   disciplines: { celerity: 1, dominate: 1, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hoe-jan-zoubek": {
@@ -1750,7 +1750,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Heart of Europe",
   disciplines: { "thin-blood alchemy": 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hoe-kiril": {
@@ -1767,7 +1767,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Heart of Europe",
   disciplines: { celerity: 1, potence: 1, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hoe-maia": {
@@ -1784,7 +1784,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Amy Wilkins",
   set: "Heart of Europe",
   disciplines: { auspex: 1, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hoe-monika": {
@@ -1801,7 +1801,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Heart of Europe",
   disciplines: { "thin-blood alchemy": 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hoe-omnis": {
@@ -1818,7 +1818,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Amy Wilkins",
   set: "Heart of Europe",
   disciplines: { obfuscate: 1, potence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hoe-perseus": {
@@ -1835,7 +1835,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joshua Esmeralda",
   set: "Heart of Europe",
   disciplines: { auspex: 1, obfuscate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hoe-rene-koba": {
@@ -1852,7 +1852,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Harvey Bunda",
   set: "Heart of Europe",
   disciplines: { auspex: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hoe-roman-monstrum": {
@@ -1870,7 +1870,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Heart of Europe",
   disciplines: { auspex: 1, oblivion: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hoe-sarka": {
@@ -1888,7 +1888,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Heart of Europe",
   disciplines: { celerity: 2 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hoe-sebastian": {
@@ -1905,7 +1905,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Heart of Europe",
   disciplines: { oblivion: 2, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hoe-thora": {
@@ -1922,7 +1922,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Heart of Europe",
   disciplines: { animalism: 1, obfuscate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hoe-zuzana": {
@@ -1941,7 +1941,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Heart of Europe",
   disciplines: { "blood sorcery": 1, dominate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 // Dragon and Rogue //
@@ -1961,7 +1961,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 1,
   disciplines: { animalism: 1, dominate: 1, protean: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "dar-chance": {
@@ -1978,7 +1978,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 1,
   disciplines: { obfuscate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "dar-haya": {
@@ -1995,7 +1995,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 0,
   disciplines: { presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "dar-jack": {
@@ -2012,7 +2012,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 0,
   disciplines: { animalism: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "dar-kwaku": {
@@ -2029,7 +2029,7 @@ export const factions: Record<CardId, Faction> = {
   social: 2,
   mental: 0,
   disciplines: { obfuscate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "dar-mahendra-chanda": {
@@ -2047,7 +2047,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 1,
   disciplines: { animalism: 1, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "dar-matthias": {
@@ -2066,7 +2066,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 1,
   disciplines: { animalism: 1, dominate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "dar-maya": {
@@ -2083,7 +2083,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 1,
   disciplines: { obfuscate: 1, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "dar-mircea": {
@@ -2100,7 +2100,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 1,
   disciplines: { presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "dar-nikolae": {
@@ -2118,7 +2118,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 1,
   disciplines: { dominate: 1, protean: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "dar-radu": {
@@ -2136,7 +2136,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 0,
   disciplines: { animalism: 1, protean: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "dar-shweta": {
@@ -2153,7 +2153,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 0,
   disciplines: { animalism: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "dar-simona": {
@@ -2171,7 +2171,7 @@ export const factions: Record<CardId, Faction> = {
   social: 2,
   mental: 1,
   disciplines: { dominate: 1, protean: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "dar-stefan-cel-tradat": {
@@ -2188,7 +2188,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 2,
   disciplines: { animalism: 1, obfuscate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "dar-the-ghoul-keeper": {
@@ -2205,7 +2205,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 1,
   disciplines: { protean: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "dar-valeria": {
@@ -2222,7 +2222,7 @@ export const factions: Record<CardId, Faction> = {
   social: 2,
   mental: 0,
   disciplines: { dominate: 1, protean: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "dar-vladislav": {
@@ -2240,7 +2240,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 0,
   disciplines: { animalism: 1, dominate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "dar-zoya": {
@@ -2257,7 +2257,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 2,
   disciplines: { animalism: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 // Justice and Mercy //
@@ -2276,7 +2276,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 2,
   disciplines: { "blood sorcery": 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "jam-minnie": {
@@ -2293,7 +2293,7 @@ export const factions: Record<CardId, Faction> = {
   social: 2,
   mental: 0,
   disciplines: { "blood sorcery": 1, obfuscate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "jam-todd": {
@@ -2311,7 +2311,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 0,
   disciplines: { "blood sorcery": 1, celerity: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "jam-sama-radi": {
@@ -2329,7 +2329,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 2,
   disciplines: { "blood sorcery": 1, obfuscate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "jam-pavel-horak": {
@@ -2347,7 +2347,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 1,
   disciplines: { "blood sorcery": 1, celerity: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "jam-alhaml-alqurbaniu": {
@@ -2365,7 +2365,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 0,
   disciplines: { obfuscate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "jam-alraaz-tahir": {
@@ -2383,7 +2383,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 1,
   disciplines: { "blood sorcery": 1, celerity: 1, obfuscate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "jam-naomi": {
@@ -2401,7 +2401,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 0,
   disciplines: { "blood sorcery": 2 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "jam-szymon-nowak": {
@@ -2418,7 +2418,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 0,
   disciplines: { "blood sorcery": 1, celerity: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "jam-chiara": {
@@ -2436,7 +2436,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 2,
   disciplines: { auspex: 1, dominate: 1, fortitude: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "jam-mareike": {
@@ -2454,7 +2454,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 2,
   disciplines: { auspex: 1, fortitude:1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "jam-noelle": {
@@ -2472,7 +2472,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 0,
   disciplines: { auspex: 1, dominate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "jam-alzbeta": {
@@ -2491,7 +2491,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 1,
   disciplines: { auspex: 2, fortitude: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "jam-baptiste": {
@@ -2510,7 +2510,7 @@ export const factions: Record<CardId, Faction> = {
   social: 2,
   mental: 1,
   disciplines: { fortitude: 2 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "jam-anita": {
@@ -2528,7 +2528,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 0,
   disciplines: { dominate: 1, fortitude: 2 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "jam-illona": {
@@ -2547,7 +2547,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 1,
   disciplines: { auspex: 1, fortitude: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "jam-kashi": {
@@ -2565,7 +2565,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 1,
   disciplines: { dominate: 2 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "jam-amara": {
@@ -2583,7 +2583,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 1,
   disciplines: { auspex: 1, fortitude: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 // Hunter and Hunted //
@@ -2602,7 +2602,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Anastasiia Horbunova",
   set: "Hunters & Hunted",
   disciplines: { auspex: 1, potence: 1, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hah-benicio": {
@@ -2620,7 +2620,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Hunters & Hunted",
   disciplines: { celerity: 1, fortitude: 1, oblivion: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hah-hope": {
@@ -2637,7 +2637,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Adelijah Ocampo",
   set: "Hunters & Hunted",
   disciplines: { animalism: 1, "blood sorcery": 1, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hah-jorge-guerrero": {
@@ -2655,7 +2655,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Hunters & Hunted",
   disciplines: { dominate: 1, potence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hah-prudence": {
@@ -2672,7 +2672,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
   disciplines: { obfuscate: 1, protean: 1},
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hah-judas": {
@@ -2689,7 +2689,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
   disciplines: { celerity: 1, protean: 1},
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hah-thaddeus": {
@@ -2706,7 +2706,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Hunters & Hunted",
   disciplines: { "blood sorcery": 1, oblivion: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hah-keondra": {
@@ -2723,7 +2723,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Anastasiia Horbunova",
   set: "Hunters & Hunted",
   disciplines: { obfuscate: 1, presence: 1, protean: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hah-ceraph": {
@@ -2740,7 +2740,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Hunters & Hunted",
   disciplines: { presence: 1, protean: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hah-matthew": {
@@ -2757,7 +2757,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Hunters & Hunted",
   disciplines: { obfuscate: 1, protean: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hah-gisele": {
@@ -2775,7 +2775,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Hunters & Hunted",
   disciplines: { presence: 2 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hah-jimmy": {
@@ -2792,7 +2792,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Hunters & Hunted",
   disciplines: { obfuscate: 1, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hah-hakim-owusu": {
@@ -2809,7 +2809,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Hunters & Hunted",
   disciplines: {presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hah-iara": {
@@ -2826,7 +2826,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Hunters & Hunted",
   disciplines: { obfuscate: 1},
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hah-evangeline": {
@@ -2844,7 +2844,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
   disciplines: { library: 1, "repel the unnatural": 1, "sense the unnatural": 1, "thwart the unnatural": 1 },
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "hah-florencia": {
@@ -2862,7 +2862,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Adelijah Ocampo",
   set: "Hunters & Hunted",
   disciplines: { library: 1, "repel the unnatural": 1, "thwart the unnatural": 1 },
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "hah-toquinho": {
@@ -2880,7 +2880,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Adelijah Ocampo",
   set: "Hunters & Hunted",
   disciplines: { "repel the unnatural": 1, "sense the unnatural": 1, "thwart the unnatural": 1 },
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "hah-pregador": {
@@ -2898,7 +2898,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Mara Miranda-Escota",
   set: "Hunters & Hunted",
   disciplines: { "repel the unnatural": 1, "sense the unnatural": 1},
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "hah-sister-claire": {
@@ -2916,7 +2916,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Adelijah Ocampo",
   set: "Hunters & Hunted",
   disciplines: { library: 1, "thwart the unnatural": 1 },
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "hah-andres": {
@@ -2934,7 +2934,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Mico Dimagiba",
   set: "Hunters & Hunted",
   disciplines: { "repel the unnatural": 1 },
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "hah-noriko": {
@@ -2952,7 +2952,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Mara Miranda-Escota",
   set: "Hunters & Hunted",
   disciplines: { library: 1 },
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "hah-francisco": {
@@ -2970,7 +2970,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Irene Francisco",
   set: "Hunters & Hunted",
   disciplines: { "beast whisperer": 1, global: 1, "sense the unnatural": 1 },
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "hah-jamie": {
@@ -2988,7 +2988,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
   disciplines: { global: 1, library: 1 },
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "hah-juliana": {
@@ -3006,7 +3006,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
   disciplines: { global: 1, "sense the unnatural": 1 },
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "hah-maria-lopez": {
@@ -3024,7 +3024,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Adelijah Ocampo",
   set: "Hunters & Hunted",
   disciplines: { "beast whisperer": 1, global: 1, library: 1, "sense the unnatural": 1 },
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "hah-rio": {
@@ -3042,7 +3042,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Irene Francisco",
   set: "Hunters & Hunted",
   disciplines: { "beast whisperer": 1, library: 1 },
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "hah-ryan": {
@@ -3060,7 +3060,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Mico Dimagiba",
   set: "Hunters & Hunted",
   disciplines: { "beast whisperer": 1, global: 1, library: 1, "sense the unnatural": 1 },
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "hah-sara": {
@@ -3078,7 +3078,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Irene Francisco",
   set: "Hunters & Hunted",
   disciplines: { global: 1, library: 1, "sense the unnatural": 1 },
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "hah-gina-firenzo": {
@@ -3096,7 +3096,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
   disciplines: { "beast whisperer": 1, global: 1 },
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "hah-renata-gomes": {
@@ -3114,7 +3114,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
   disciplines: { "beast whisperer": 1, global: 1, library: 1, "sense the unnatural": 1 },
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "hah-grace": {
@@ -3132,7 +3132,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Hunters & Hunted",
   disciplines: { auspex: 1, fortitude: 1, obfuscate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hah-sage": {
@@ -3149,7 +3149,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Hunters & Hunted",
   disciplines: { animalism: 1, dominate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hah-ociel-gonzalez": {
@@ -3166,7 +3166,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Hunters & Hunted",
   disciplines: { presence: 2 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hah-raul-fontes": {
@@ -3183,7 +3183,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Hunters & Hunted",
   disciplines: { presence: 1, protean: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "hah-deacon-jones": {
@@ -3201,7 +3201,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Mico Dimagiba",
   set: "Hunters & Hunted",
   disciplines: { library: 1, "repel the unnatural": 1, "sense the unnatural": 1, "thwart the unnatural": 1 },
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "hah-ingrid": {
@@ -3219,7 +3219,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Mara Miranda-Escota",
   set: "Hunters & Hunted",
   disciplines: { "repel the unnatural": 1, "sense the unnatural": 1, "thwart the unnatural": 1 },
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 // Prince Pack 1 //
@@ -3239,7 +3239,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Prince Pack 1",
   disciplines: { auspex: 1, "thin-blood alchemy": 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "pp1-ainsley-kalb": {
@@ -3258,7 +3258,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Prince Pack 1",
   disciplines: { animalism: 1, auspex: 1, dominate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "pp1-alyssa-nicole": {
@@ -3276,7 +3276,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Prince Pack 1",
   disciplines: { animalism: 1, auspex: 1, fortitude: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "pp1-andy-simonelli": {
@@ -3294,7 +3294,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Prince Pack 1",
   disciplines: { "thin-blood alchemy": 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "pp1-branden-james": {
@@ -3312,7 +3312,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Prince Pack 1",
   disciplines: { dominate: 1, oblivion: 1, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "pp1-chris-bargeron": {
@@ -3330,7 +3330,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Prince Pack 1",
   disciplines: { presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "pp1-daniel-trujillo": {
@@ -3347,7 +3347,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Prince Pack 1",
   disciplines: { dominate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "pp1-david-garcia": {
@@ -3364,7 +3364,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Prince Pack 1",
   disciplines: { dominate: 1, obfuscate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "pp1-doug-st-john": {
@@ -3382,7 +3382,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Prince Pack 1",
   disciplines: { obfuscate: 2 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "pp1-drakh": {
@@ -3400,7 +3400,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Prince Pack 1",
   disciplines: { auspex: 1, "blood sorcery": 1, celerity: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "pp1-emile-rene": {
@@ -3417,7 +3417,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Prince Pack 1",
   disciplines: { auspex: 1, "blood sorcery": 1, obfuscate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "pp1-james-chung": {
@@ -3434,7 +3434,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Prince Pack 1",
   disciplines: { celerity: 1, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "pp1-john-urbanek": {
@@ -3452,7 +3452,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Prince Pack 1",
   disciplines: { auspex: 1, oblivion: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "pp1-ken-michael-otto": {
@@ -3470,7 +3470,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Prince Pack 1",
   disciplines: { obfuscate: 1, presence: 2 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "pp1-krisken-monroe": {
@@ -3488,7 +3488,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Prince Pack 1",
   disciplines: { animalism: 1, fortitude: 1, obfuscate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "pp1-leon-alqatil": {
@@ -3505,7 +3505,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Darko Stojanovic",
   set: "Prince Pack 1",
   disciplines: { presence: 1, protean: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "pp1-marcel-kraatz": {
@@ -3524,7 +3524,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Prince Pack 1",
   disciplines: { dominate: 2, oblivion: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "pp1-murchaidh": {
@@ -3543,7 +3543,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Prince Pack 1",
   disciplines: { auspex: 1, presence: 2 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "pp1-odellas-caine": {
@@ -3561,7 +3561,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Prince Pack 1",
   disciplines: { "blood sorcery": 1, celerity: 1, obfuscate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "pp1-robert-bruce": {
@@ -3580,7 +3580,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Darko Stojanovic",
   set: "Prince Pack 1",
   disciplines: { auspex: 1, dominate: 1, fortitude: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "pp1-savage": {
@@ -3598,7 +3598,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Darko Stojanovic",
   set: "Prince Pack 1",
   disciplines: { celerity: 1, potence: 1, protean: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "pp1-sirilla-rosselini": {
@@ -3615,7 +3615,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Darko Stojanovic",
   set: "Prince Pack 1",
   disciplines: { "blood sorcery": 1, fortitude: 1, oblivion: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 // Martial Law //
@@ -3634,7 +3634,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Martial Law",
   disciplines: { "blood sorcery": 1, protean: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "ml-clara": {
@@ -3651,7 +3651,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Martial Law",
   disciplines: { presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "ml-clarence": {
@@ -3669,7 +3669,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Mico Dimagiba",
   set: "Martial Law",
   disciplines: { "drone jockey": 1, fleet: 1 },
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "ml-davi": {
@@ -3686,7 +3686,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Patsy Lascano",
   set: "Martial Law",
   disciplines: { "animalism": 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "ml-dulce": {
@@ -3704,7 +3704,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Irene Francisco",
   set: "Martial Law",
   disciplines: { arsenal: 1, "drone jockey": 1, fleet: 1 },
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "ml-elias": {
@@ -3722,7 +3722,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Mico Dimagiba",
   set: "Martial Law",
   disciplines: { celerity: 1, "blood sorcery": 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "ml-estranho": {
@@ -3740,7 +3740,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Martial Law",
   disciplines: { "blood sorcery": 1, dominate: 1, oblivion: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "ml-evelyn": {
@@ -3759,7 +3759,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Martial Law",
   disciplines: { fleet: 1, ordnance: 1 },
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "ml-faren": {
@@ -3776,7 +3776,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Martial Law",
   disciplines: { obfuscate: 1, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "ml-fabiana": {
@@ -3794,7 +3794,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Martial Law",
   disciplines: { arsenal: 1, fleet: 1, ordnance: 1 },
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "ml-hakeem": {
@@ -3812,7 +3812,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Adelijah Ocampo",
   set: "Martial Law",
   disciplines: { celerity: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "ml-hikari": {
@@ -3830,7 +3830,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Martial Law",
   disciplines: { auspex: 1, fortitude: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "ml-jenni": {
@@ -3847,7 +3847,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Martial Law",
   disciplines: { presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "ml-jordana": {
@@ -3865,7 +3865,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Adelijah Ocampo",
   set: "Martial Law",
   disciplines: { arsenal: 1, "drone jockey": 1, fleet: 1, ordnance: 1 },
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "ml-magnum": {
@@ -3883,7 +3883,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Martial Law",
   disciplines: { arsenal: 1, ordnance: 1 },
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "ml-marcia": {
@@ -3900,7 +3900,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Irene Francisco",
   set: "Martial Law",
   disciplines: { "blood sorcery": 1, obfuscate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "ml-marcos": {
@@ -3918,7 +3918,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Mico Dimagiba",
   set: "Martial Law",
   disciplines: { arsenal: 1, "drone jockey": 1, fleet: 1, ordnance: 1 },
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "ml-ming-yue": {
@@ -3936,7 +3936,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Irene Francisco",
   set: "Martial Law",
   disciplines: { obfuscate: 1, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "ml-mr-medinger": {
@@ -3954,7 +3954,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Martial Law",
   disciplines: { animalism: 1, protean: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "ml-mr-petty": {
@@ -3972,7 +3972,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Martial Law",
   disciplines: { animalism: 1, dominate: 1, protean: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "ml-rana": {
@@ -3991,7 +3991,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Irene Francisco",
   set: "Martial Law",
   disciplines: { potence: 1, presence: 1, protean: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "ml-salvador": {
@@ -4009,7 +4009,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Mara Miranda",
   set: "Martial Law",
   disciplines: { arsenal: 1, "drone jockey": 1, fleet: 1, ordnance: 1 },
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "ml-sozinho": {
@@ -4027,7 +4027,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Mico Dimagiba",
   set: "Martial Law",
   disciplines: { auspex: 1, fortitude: 2 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "ml-trigger": {
@@ -4045,7 +4045,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Martial Law",
   disciplines: { arsenal: 1, "drone jockey": 1, ordnance: 1 },
-  cardpool: "hunter",
+  cardpools: ["hunter"],
 },
 
 "ml-trinidad": {
@@ -4064,7 +4064,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Martial Law",
   disciplines: { auspex: 1, dominate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "ml-valentina": {
@@ -4082,7 +4082,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Irene Francisco",
   set: "Martial Law",
   disciplines: { animalism: 1, protean: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "ml-zoe": {
@@ -4099,7 +4099,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Martial Law",
   disciplines: { celerity: 1, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 // Fang and Talon //
@@ -4119,7 +4119,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Mara Miranda-Escota",
   set: "Fang & Talon",
   disciplines: { galliard: 1 },
-  cardpool: "werewolf",
+  cardpools: ["werewolf"],
 },
 
 "fat-big-joe": {
@@ -4137,7 +4137,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Mico Dimagiba",
   set: "Fang & Talon",
   disciplines: { ahroun: 1 },
-  cardpool: "werewolf",
+  cardpools: ["werewolf"],
 },
 
 "fat-chef": {
@@ -4156,7 +4156,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Mico Dimagiba",
   set: "Fang & Talon",
   disciplines: { ragabash: 1 },
-  cardpool: "werewolf",
+  cardpools: ["werewolf"],
 },
 
 "fat-franco-aldo": {
@@ -4175,7 +4175,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Fang & Talon",
   disciplines: { ahroun: 1 },
-  cardpool: "werewolf",
+  cardpools: ["werewolf"],
 },
 
 "fat-mesa": {
@@ -4193,7 +4193,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Mico Dimagiba",
   set: "Fang & Talon",
   disciplines: { philodox: 1 },
-  cardpool: "werewolf",
+  cardpools: ["werewolf"],
 },
 
 "fat-monday": {
@@ -4212,7 +4212,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Adelijah Ocampo",
   set: "Fang & Talon",
   disciplines: { ragabash: 1 },
-  cardpool: "werewolf",
+  cardpools: ["werewolf"],
 },
 
 "fat-sandrine-duval": {
@@ -4231,7 +4231,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Adelijah Ocampo",
   set: "Fang & Talon",
   disciplines: { ragabash: 1 },
-  cardpool: "werewolf",
+  cardpools: ["werewolf"],
 },
 
 "fat-the-runt": {
@@ -4249,7 +4249,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Mico Dimagiba",
   set: "Fang & Talon",
   disciplines: { theurge: 1 },
-  cardpool: "werewolf",
+  cardpools: ["werewolf"],
 },
 
 "fat-severin-smith": {
@@ -4268,7 +4268,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Mara Miranda-Escota",
   set: "Fang & Talon",
   disciplines: { ahroun: 1 },
-  cardpool: "werewolf",
+  cardpools: ["werewolf"],
 },
 
 "fat-dae-chan-sung": {
@@ -4286,7 +4286,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Mara Miranda",
   set: "Fang & Talon",
   disciplines: { theurge: 1 },
-  cardpool: "werewolf",
+  cardpools: ["werewolf"],
 },
 
 "fat-gabriel-silva": {
@@ -4304,7 +4304,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Mara Miranda",
   set: "Fang & Talon",
   disciplines: { philodox: 1 },
-  cardpool: "werewolf",
+  cardpools: ["werewolf"],
 },
 
 "fat-kuragin": {
@@ -4322,7 +4322,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Fang & Talon",
   disciplines: { theurge: 1 },
-  cardpool: "werewolf",
+  cardpools: ["werewolf"],
 },
 
 "fat-lucas-batista": {
@@ -4340,7 +4340,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Adelijah Ocampo",
   set: "Fang & Talon",
   disciplines: { philodox: 1 },
-  cardpool: "werewolf",
+  cardpools: ["werewolf"],
 },
 
 "fat-maria-guzman": {
@@ -4358,7 +4358,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Fang & Talon",
   disciplines: { galliard: 1 },
-  cardpool: "werewolf",
+  cardpools: ["werewolf"],
 },
 
 "fat-septimus-pol": {
@@ -4376,7 +4376,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Fang & Talon",
   disciplines: { ahroun: 1 },
-  cardpool: "werewolf",
+  cardpools: ["werewolf"],
 },
 
 "fat-siouxsie": {
@@ -4395,7 +4395,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Mico Dimagiba",
   set: "Fang & Talon",
   disciplines: { ahroun: 1 },
-  cardpool: "werewolf",
+  cardpools: ["werewolf"],
 },
 
 "fat-jarody-drummer": {
@@ -4413,7 +4413,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Adelijah Ocampo",
   set: "Fang & Talon",
   disciplines: { galliard: 1 },
-  cardpool: "werewolf",
+  cardpools: ["werewolf"],
 },
 
 "fat-yara": {
@@ -4433,7 +4433,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Fang & Talon",
   disciplines: { theurge: 1 },
-  cardpool: "werewolf",
+  cardpools: ["werewolf"],
 },
 
 // Promo //
@@ -4452,7 +4452,7 @@ export const factions: Record<CardId, Faction> = {
     illustrator: "Joyce Maureira",
     set: "Promo",
     disciplines: { "blood sorcery": 1 },
-    cardpool: "vampire",
+    cardpools: ["vampire"],
 },
 
 "xxx-sid-baqri": {
@@ -4469,7 +4469,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Promo",
   disciplines: { "thin-blood alchemy": 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "xxx-carmina-magnus": {
@@ -4486,7 +4486,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Darko Stojanovic",
   set: "Promo",
   disciplines: { dominate: 1, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "xxx-giselle-della-scala": {
@@ -4503,7 +4503,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Darko Stojanovic",
   set: "Promo",
   disciplines: { dominate: 1, oblivion: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "xxx-luviere-bataille": {
@@ -4520,7 +4520,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "János Orbán",
   set: "Promo",
   disciplines: { presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "xxx-r-t-thassos": {
@@ -4537,7 +4537,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Anastasiia Horbunova",
   set: "Promo",
   disciplines: { animalism: 1, protean: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "xxx-reina-de-la-vega": {
@@ -4555,7 +4555,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "János Orbán",
   set: "Promo",
   disciplines: { auspex: 1, "blood sorcery": 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "xxx-annabelle": {
@@ -4572,7 +4572,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 0,
   disciplines: { presence: 1, potence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "xxx-natasha-blank": {
@@ -4590,7 +4590,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 1,
   disciplines: { obfuscate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "xxx-smoke": {
@@ -4607,7 +4607,7 @@ export const factions: Record<CardId, Faction> = {
   social: 2,
   mental: 0,
   disciplines: { celerity: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "xxx-martine-diaz": {
@@ -4624,7 +4624,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 1,
   disciplines: { fortitude: 1, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "xxx-freddy-usher": {
@@ -4641,7 +4641,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 1,
   disciplines: { celerity: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "xxx-victor-temple": {
@@ -4659,7 +4659,7 @@ export const factions: Record<CardId, Faction> = {
   social: 1,
   mental: 2,
   disciplines: { dominate: 1, presence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "xxx-timothy-winters": {
@@ -4677,7 +4677,7 @@ export const factions: Record<CardId, Faction> = {
   social: 0,
   mental: 2,
   disciplines: { dominate: 1, oblivion: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "xxx-fujiko": {
@@ -4694,7 +4694,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Promo",
   disciplines: { auspex: 1, fortitude: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "xxx-the-exterminator": {
@@ -4711,7 +4711,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Harvey Bunda",
   set: "Promo",
   disciplines: { animalism: 1, potence: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "xxx-timothy-schwartz": {
@@ -4728,7 +4728,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Felipe Gaona",
   set: "Promo",
   disciplines: { dominate: 1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 "xxx-xander-klaus": {
@@ -4745,7 +4745,7 @@ export const factions: Record<CardId, Faction> = {
   illustrator: "Joyce Maureira",
   set: "Promo",
   disciplines: { fortitude: 1, protean:1 },
-  cardpool: "vampire",
+  cardpools: ["vampire"],
 },
 
 };
