@@ -6036,7 +6036,7 @@ export const library: Record<CardId, Library> = {
     If you remove the last Rage from 1+ characters this way, draw 1 card.
 `,
   //disciplines:[],
-  illustrator: "Felipe Gaona",
+  illustrator: "Nevzat Aydin",
   set: "Fang & Talon",
   cardpool: "werewolf",
 },
@@ -6204,7 +6204,7 @@ export const library: Record<CardId, Library> = {
   //reactions: [],
   text: md`
   **[red-talons] Attach to a character in your pack.**
-  This character has **Reach and **Prowl** (may attack City Deck Mortals in The Streets from their Caern).
+  This character has **Reach** and **Prowl** _(may attack City Deck Mortals in The Streets from their Caern)_.
   Attacker - This attack deals +1 [damage] when using **Prowl**.
 `,
   //disciplines:["galliard"],
@@ -6276,7 +6276,7 @@ export const library: Record<CardId, Library> = {
   reactions: ["physical", "mental"],
   text: md`
     If this character is in The Streets in a party of 2+ characters, you may seperate them from this party. If you do, +1 [shield].
-    **Pay 2 Rage:** +1 [shield]
+    **Pay 2 Rage:** +1 [shield].
 `,
   //disciplines:["galliard"],
   illustrator: "Nevzat Aydin",
@@ -6443,7 +6443,8 @@ export const library: Record<CardId, Library> = {
   //attack: ["physical"],
   //reactions: ["physical", "social"],
   text: md`
-    +1 [damage] for each Stealth this character has.
+    [ragabash] **Attach tyo the acting character.**
+    **Exhaust this card: Target character in this party has +1 Stealth and +1 Intel this turn.
 `,
   disciplines:["ragabash"],
   illustrator: "Nevzat Aydin",
@@ -6515,7 +6516,7 @@ export const library: Record<CardId, Library> = {
   //reactions: ["physical", "social"],
   text: md`
   [ahroun] **Attach to the acting character.**
-  Attacker - +1[physical][damage].
+  Attacker - +1 [physical] [damage].
 `,
   disciplines:["ahroun"],
   illustrator: "Marco Primo",
@@ -6659,7 +6660,7 @@ export const library: Record<CardId, Library> = {
   attack: ["social"],
   //reactions: ["physical", "social"],
   text: md`
-    [ahroun] If this attack deals 1+ [damage] to the defender, exhaust them and put Fear token on them.
+    [ahroun] If this attack deals 1+ [damage] to the defender, exhaust them and put a Fear token on them.
 `,
   disciplines:["ahroun"],
   illustrator: "Marco Primo",
@@ -6682,7 +6683,7 @@ export const library: Record<CardId, Library> = {
   attack: ["physical"],
   //reactions: ["physical", "social"],
   text: md`
-    This attack deals +1 **Silver** to werewolves.
+    This attack deals +1 **Silver** [damage] to werewolves.
     (Silver damage dealt to a werewolf is **Aggravated.**)
 `,
   //disciplines:["ahroun"],
@@ -6707,7 +6708,7 @@ export const library: Record<CardId, Library> = {
   //reactions: ["physical", "social"],
   text: md`
     **Pay 1 Rage:** +1 [damage].
-    Form -+ [damage].
+    Form - +1 [damage].
 `,
   //disciplines:["ahroun"],
   illustrator: "Elif Aydin",
@@ -6728,7 +6729,7 @@ export const library: Record<CardId, Library> = {
   //damage: 2,
   shield: 2,
   attack: ["social"],
-  //reactions: ["physical", "social"],
+  reactions: ["social"],
   text: md`
     [ahroun] Deal 2 [physical] [damage] to the attacker.
     **Pay 1 Rage:** Steal 1 [prestige] from the attacker.
@@ -6850,7 +6851,7 @@ export const library: Record<CardId, Library> = {
   //reactions: ["physical", "social"],
   text: md`
     [silverfangs] **Attach to the acting character.**
-    This character has +1[shield] when in a party of 2+ characters.
+    This character has +1 [shield] when in a party of 2+ characters.
     **Exhaust this card:** Target character in this party has +1 [mental] during this action for each other member with 1+ [mental].
 `,
   //disciplines:["galliard"],

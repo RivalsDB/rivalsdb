@@ -4202,7 +4202,7 @@ export const factions: Record<CardId, Faction> = {
   name: "Monday",
   text: md`
     **Werewolf**
-    **Prowl** (May attack City Deck Mortals in The Streets from their Caern.)
+    **Prowl** _(May attack City Deck Mortals in The Streets from their Caern.)_
     Attacker - This character has +1 Stealth for each face-up card attached to this character.
   `,
   bloodPotency: 4,
@@ -4331,7 +4331,7 @@ export const factions: Record<CardId, Faction> = {
   name: "Lucas Batista",
   text: md`
     **Werewolf**
-    The first time this character moves to The Streets during each of your turns, draw 1 card OR each of the other characters in this party gains 1 Rage. Form -+ Influence.
+    The first time this character moves to The Streets during each of your turns, draw 1 card OR each of the other characters in this party gains 1 Rage. Form - +1 Influence.
   `,
   bloodPotency: 7,
   physical: 1,
@@ -4386,12 +4386,12 @@ export const factions: Record<CardId, Faction> = {
   text: md`
     **Werewolf**
     +1 Stealth.
-    Part - If an attack by a member of this party is Blocked, place a Fear token on the Blocker.
+    Party - If an attack by a member of this party is Blocked, place a Fear token on the Blocker.
   `,
   bloodPotency: 4,
   physical: 2,
   social: 0,
-  mental: 1,
+  mental: 0,
   illustrator: "Mico Dimagiba",
   set: "Fang & Talon",
   disciplines: { ahroun: 1 },
