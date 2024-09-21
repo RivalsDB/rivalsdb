@@ -96,11 +96,11 @@ attackTypeEnum =
 
 
 type alias Agenda =
-    { id : Id, name : Name, text : Text, image : Image, set : Pack, cardpool : Cardpool }
+    { id : Id, name : Name, text : Text, image : Image, set : Pack, cardpools : List Cardpool }
 
 
 type alias Haven =
-    { id : Id, name : Name, text : Text, image : Image, set : Pack, cardpool : Cardpool }
+    { id : Id, name : Name, text : Text, image : Image, set : Pack, cardpools : List Cardpool }
 
 
 type alias City =
@@ -145,7 +145,7 @@ type alias Form =
     , text : Text
     , image : Image
     , set : Pack
-    , cardpool : Cardpool
+    , cardpools : List Cardpool
     }
 
 
@@ -161,7 +161,7 @@ type alias Faction =
     , social : Attribute
     , mental : Attribute
     , disciplines : List Discipline
-    , cardpool : Cardpool
+    , cardpools : List Cardpool
     }
 
 
@@ -178,7 +178,7 @@ type alias Library =
     , shield : Maybe Shield
     , traits : LibraryTraits
     , attackType : List AttackType
-    , cardpool : Cardpool
+    , cardpools : List Cardpool
     }
 
 
@@ -541,7 +541,7 @@ agendaDecoder =
         |> decodeText
         |> decodeImage
         |> required "set" Pack.decoder
-        |> required "cardpool" Cardpool.decoder
+        |> required "cardpools" (list Cardpool.decoder)
         |> map (\agenda -> ( agenda.id, AgendaCard agenda ))
 
 
@@ -553,7 +553,7 @@ havenDecoder =
         |> decodeText
         |> decodeImage
         |> required "set" Pack.decoder
-        |> required "cardpool" Cardpool.decoder
+        |> required "cardpools" (list Cardpool.decoder)
         |> map (\haven -> ( haven.id, HavenCard haven ))
 
 
@@ -571,7 +571,7 @@ factionDecoder =
         |> decodeSocial
         |> decodeMental
         |> required "disciplines" (list Discipline.decoder)
-        |> required "cardpool" Cardpool.decoder
+        |> required "cardpools" (list Cardpool.decoder)
         |> map (\faction -> ( faction.id, FactionCard faction ))
 
 
@@ -590,7 +590,7 @@ libraryDecoder =
         |> decodeShields
         |> required "types" decodeLibraryTraits
         |> decodeAttackType
-        |> required "cardpool" Cardpool.decoder
+        |> required "cardpools" (list Cardpool.decoder)
         |> map (\library -> ( library.id, LibraryCard library ))
 
 
@@ -629,7 +629,7 @@ formDecoder =
         |> decodeText
         |> decodeImage
         |> required "set" Pack.decoder
-        |> required "cardpool" Cardpool.decoder
+        |> required "cardpools" (list Cardpool.decoder)
         |> map (\form -> ( form.id, FormCard form ))
 
 
@@ -645,7 +645,6 @@ findTextInCard needle card =
 
 
 -- FIELD DECODERS
-
 
 decodeCityTraits : Decoder CityTraits
 decodeCityTraits =

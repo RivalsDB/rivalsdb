@@ -7,8 +7,6 @@ import Json.Decode exposing (Decoder)
 type Cardpool
     = Vampire
     | Hunter
-    | HunterAndVampire
-    | HunterAndWerewolf
     | Werewolf
 
 
@@ -17,8 +15,6 @@ enum =
     Enum.create
         [ ( "vampire", Vampire )
         , ( "hunter", Hunter )
-        , ( "hunter and vampire", HunterAndVampire )
-        , ( "hunter and werewolf", HunterAndWerewolf )
         , ( "werewolf", Werewolf )
         ]
 
@@ -57,12 +53,6 @@ name c =
         Hunter ->
             "Hunter"
 
-        HunterAndVampire ->
-            "Hunter and Vampire"
-
-        HunterAndWerewolf ->
-            "Hunter and Werewolf"
-
         Werewolf ->
             "Werewolf"
 
@@ -75,12 +65,6 @@ code c =
 
         Hunter ->
             "H"
-
-        HunterAndVampire ->
-            "H/V"
-
-        HunterAndWerewolf ->
-            "H/W"
 
         Werewolf ->
             "W"
