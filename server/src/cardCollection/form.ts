@@ -25,7 +25,7 @@ export const form: Record<CardId, Form> = {
   `,
   illustrator: "Nevzat Aydin",
   set: "Fang & Talon",
-  cardpools: ["werewolf"]
+  cardpools: ["Werewolf"]
 },
 
 "fat-glabro": {
@@ -39,7 +39,7 @@ export const form: Record<CardId, Form> = {
   `,
   illustrator: "Nevzat Aydin",
   set: "Fang & Talon",
-  cardpools: ["werewolf"]
+  cardpools: ["Werewolf"]
 },
 
 "fat-hispo": {
@@ -54,7 +54,7 @@ export const form: Record<CardId, Form> = {
   `,
   illustrator: "Nevzat Aydin",
   set: "Fang & Talon",
-  cardpools: ["werewolf"]
+  cardpools: ["Werewolf"]
 },
 
 "fat-lupus": {
@@ -67,7 +67,7 @@ export const form: Record<CardId, Form> = {
   `,
   illustrator: "Nevzat Aydin",
   set: "Fang & Talon",
-  cardpools: ["werewolf"]
+  cardpools: ["Werewolf"]
 },
 
 };

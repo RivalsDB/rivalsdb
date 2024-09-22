@@ -135,11 +135,9 @@ export type Illustrator =
   | "Timothy Terrenal";
 
 export type Cardpool =
-  | "hunter"
-  | "vampire"
-  | "hunter and vampire"
-  | "hunter and werewolf"
-  | "werewolf";
+  | "Hunter"
+  | "Vampire"
+  | "Werewolf";
 
 export const md = (strings: TemplateStringsArray): string =>
   strings

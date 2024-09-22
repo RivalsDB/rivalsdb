@@ -13,9 +13,9 @@ type Cardpool
 enum : Enum Cardpool
 enum =
     Enum.create
-        [ ( "vampire", Vampire )
-        , ( "hunter", Hunter )
-        , ( "werewolf", Werewolf )
+        [ ( "Vampire", Vampire )
+        , ( "Hunter", Hunter )
+        , ( "Werewolf", Werewolf )
         ]
 
 
