@@ -6407,7 +6407,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Pull Rank",
   types: ["attack"],
-  //clan: "silverfangs",
+  clan: "silverfangs",
   bloodPotencyRequirement: 4,
   //bloodPotency: ,
   //physical: ,
@@ -6492,7 +6492,7 @@ export const library: Record<CardId, Library> = {
   //reactions: ["physical", "social"],
   text: md`
     **Attach to the acting character.**
-    Form - **Exhaust this card:** Detach a Form from this character, then attack a different Form to this character at no Rage cost (may be used during an attack).
+    Form - **Exhaust this card:** Detach a Form from this character, then attach a different Form to this character at no Rage cost (may be used during an attack).
 `,
   //disciplines:["ragabash"],
   illustrator: "Nevzat Aydin",

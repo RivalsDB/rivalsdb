@@ -48,7 +48,7 @@ export const form: Record<CardId, Form> = {
   text: md`
     A werewolf may **Pay 1 Rage:**
     Attach this card and they mend 1 [blood].
-    This character has +1[physical] and -1 [social].
+    This character has +1 [physical] and -1 [social].
     **Pay 1 Rage:** This character mends 1 [blood].
     Attacker - **Pay 1 Rage:** +1 **Aggravated** [damage]. Use only if you did not play an Attack card.
   `,
