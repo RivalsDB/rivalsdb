@@ -536,7 +536,7 @@ export const agendas: Record<CardId, Agenda> = {
 "fat-expand-the-pack": {
   name: "Expand the Pack",
   text: md`
-    When you recruit a werewolf, gain [agenda]. If you control 3 or fewer werewolves after resolving a recruit action, gain 1 additional [agenda].
+    When you recruit a werewolf, gain 1 [agenda]. If you control 3 or fewer werewolves after resolving a recruit action, gain 1 additional [agenda].
   `,
   illustrator: "Marco Primo",
   set: "Fang & Talon",
