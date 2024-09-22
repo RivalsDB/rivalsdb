@@ -11,6 +11,7 @@ module UI.FilterSelection exposing
     , allStackIsAllowedWide
     , attackTypeIsAllowedStrict
     , attackTypeIsAllowedWide
+    , cardpoolIsAllowed
     , cityIsAllowedWide
     , clanIsAllowedStrict
     , clanIsAllowedWide
@@ -46,6 +47,7 @@ module UI.FilterSelection exposing
     )
 
 import Cards as C
+import Data.Cardpool as Cardpool exposing (Cardpool)
 import Data.Clan as Cl
 import Data.Discipline as Dis
 import Data.Pack as Pack
@@ -54,6 +56,7 @@ import Html.Attributes exposing (class, classList, type_)
 import Html.Events exposing (onCheck)
 import UI.Icon as Icon
 import UI.Icon.V2 as IconV2
+import UI.MultiSelect as MultiSelect
 
 
 
@@ -751,6 +754,44 @@ disciplineIsAllowedWide flags card =
 
             _ ->
                 False
+
+
+cardpoolIsAllowed : MultiSelect.Model Cardpool -> C.Card -> Bool
+cardpoolIsAllowed cardpoolSelection card =
+    let
+        selectedCardpools =
+            MultiSelect.selected cardpoolSelection
+    in
+    case selectedCardpools of
+        [] ->
+            True
+
+        _ ->
+            case card of
+                C.AgendaCard { cardpools } ->
+                    matchCardpool selectedCardpools cardpools
+
+                C.FactionCard { cardpools } ->
+                    matchCardpool selectedCardpools cardpools
+
+                C.FormCard { cardpools } ->
+                    matchCardpool selectedCardpools cardpools
+
+                C.HavenCard { cardpools } ->
+                    matchCardpool selectedCardpools cardpools
+
+                C.LibraryCard { cardpools } ->
+                    matchCardpool selectedCardpools cardpools
+
+                _ ->
+                    False
+
+
+matchCardpool : List Cardpool -> List Cardpool -> Bool
+matchCardpool selectedCards cardCardpools =
+    (List.member Cardpool.Vampire selectedCards && List.member Cardpool.Vampire cardCardpools)
+        || (List.member Cardpool.Hunter selectedCards && List.member Cardpool.Hunter cardCardpools)
+        || (List.member Cardpool.Werewolf selectedCards && List.member Cardpool.Werewolf cardCardpools)
 
 
 disciplineIsAllowedStrict : Disciplines -> C.Card -> Bool

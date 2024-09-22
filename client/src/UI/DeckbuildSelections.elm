@@ -2,6 +2,7 @@ module UI.DeckbuildSelections exposing (ExternalMsg(..), Model, Msg(..), init, u
 
 import Browser exposing (UrlRequest(..))
 import Cards exposing (Card)
+import Data.Cardpool as Cardpool exposing (Cardpool)
 import Data.Collection exposing (Collection)
 import Data.Deck exposing (Decklist)
 import Data.Pack as Pack exposing (Pack)
@@ -34,6 +35,7 @@ type alias Model =
     , clansFilters : FS.Clans
     , disciplineFilters : FS.Disciplines
     , packFilters : MultiSelect.Model Pack
+    , cardpoolFilters : MultiSelect.Model Cardpool
     , bloodPotencyFilters : MultiSelect.Model Int
     , primaryFilters : FS.PrimaryTraits
     , secondaryFilters : FS.SecondaryTraits
@@ -55,6 +57,7 @@ init =
     , clansFilters = FS.cleanClans
     , disciplineFilters = FS.cleanDisciplines
     , packFilters = MultiSelect.init Pack.list
+    , cardpoolFilters = MultiSelect.init Cardpool.list
     , bloodPotencyFilters = MultiSelect.init <| List.map (\n -> ( String.fromInt n, n )) [ 0, 1, 2, 3, 4, 5, 6, 7 ]
     , textFilter = Nothing
     , showAllFilters = False
@@ -87,6 +90,7 @@ type InternalMsg
     | FromSecondaryFilter (FS.Msg FS.SecondaryTraits)
     | FromStacksFilter (FS.Msg FS.PlayerStacks)
     | FromPackFilter (MultiSelect.Msg Pack)
+    | FromCardpoolFilter (MultiSelect.Msg Cardpool)
     | FromBloodPotencyFilter (MultiSelect.Msg Int)
     | ToggleShowAllFilters
     | ToggleStrictFilters
@@ -122,6 +126,9 @@ update msg model =
         Internal (FromPackFilter subMsg) ->
             ( { model | packFilters = MultiSelect.update subMsg model.packFilters }, Effect.none )
 
+        Internal (FromCardpoolFilter subMsg) ->
+            ( { model | cardpoolFilters = MultiSelect.update subMsg model.cardpoolFilters }, Effect.none )
+
         Internal (FromBloodPotencyFilter subMsg) ->
             ( { model | bloodPotencyFilters = MultiSelect.update subMsg model.bloodPotencyFilters }, Effect.none )
 
@@ -134,6 +141,7 @@ update msg model =
                 , clansFilters = FS.cleanClans
                 , disciplineFilters = FS.cleanDisciplines
                 , packFilters = MultiSelect.init Pack.list
+                , cardpoolFilters = MultiSelect.init Cardpool.list
                 , textFilter = Nothing
               }
             , Effect.fromCmd <| Port.Event.track Port.Event.BuilderClearFilters
@@ -304,6 +312,15 @@ viewSecondaryFilters data =
             [ Html.map (Internal << FromPackFilter) <| MultiSelect.autoSorted "Card Pack" data.packFilters
             ]
         ]
+    , div [ class "deckbuild-filters__multi" ]
+        [ label [ class "deckbuild-filters__multi-label", for "cardpool-multi" ]
+            [ text "Card pack"
+            ]
+        , span
+            [ class "deckbuild-filters__multi-select", id "cardpool-multi" ]
+            [ Html.map (Internal << FromCardpoolFilter) <| MultiSelect.autoSorted "Cardpool" data.cardpoolFilters
+            ]
+        ]
     , div []
         [ label []
             [ text "Card text: "
@@ -471,6 +488,7 @@ filterFlags data card =
     )
         && isPackAllowed data.packFilters card
         && isBloodPotencyAllowed data.bloodPotencyFilters card
+        && FS.cardpoolIsAllowed data.cardpoolFilters card
 
 
 isPackAllowed : MultiSelect.Model Pack -> Card -> Bool

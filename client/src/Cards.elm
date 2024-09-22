@@ -646,6 +646,7 @@ findTextInCard needle card =
 
 -- FIELD DECODERS
 
+
 decodeCityTraits : Decoder CityTraits
 decodeCityTraits =
     let

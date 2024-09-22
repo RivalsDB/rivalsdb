@@ -1,4 +1,4 @@
-module Data.Cardpool exposing (Cardpool(..), all, code, comparable, decoder, fromString, name, toString)
+module Data.Cardpool exposing (Cardpool(..), all, code, comparable, decoder, fromString, list, name, toString)
 
 import Enum exposing (Enum)
 import Json.Decode exposing (Decoder)
@@ -68,3 +68,8 @@ code c =
 
         Werewolf ->
             "W"
+
+
+list : List ( String, Cardpool )
+list =
+    enum.list

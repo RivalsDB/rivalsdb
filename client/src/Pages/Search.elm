@@ -1,6 +1,7 @@
 module Pages.Search exposing (Model, Msg, page)
 
 import Cards exposing (Card)
+import Data.Cardpool as Cardpool exposing (Cardpool)
 import Data.Collection exposing (Collection)
 import Data.Pack as Pack exposing (Pack)
 import Dict
@@ -43,6 +44,7 @@ type alias Model =
     , clansFilters : FS.Clans
     , disciplineFilters : FS.Disciplines
     , packFilters : MultiSelect.Model Pack
+    , cardpoolFilters : MultiSelect.Model Cardpool
     , textFilter : Maybe String
     }
 
@@ -58,6 +60,7 @@ init shared =
       , clansFilters = FS.cleanClans
       , disciplineFilters = FS.cleanDisciplines
       , packFilters = MultiSelect.init Pack.list
+      , cardpoolFilters = MultiSelect.init Cardpool.list
       , textFilter = Nothing
       }
     , Effect.none
@@ -87,6 +90,7 @@ type Msg
     | FromClansFilter (FS.Msg FS.Clans)
     | FromDisciplinesFilter (FS.Msg FS.Disciplines)
     | FromPackFilter (MultiSelect.Msg Pack)
+    | FromCardpoolFilter (MultiSelect.Msg Cardpool)
     | TextFilterChanged String
 
 
@@ -135,6 +139,9 @@ update msg model =
 
         FromPackFilter subMsg ->
             ( { model | packFilters = MultiSelect.update subMsg model.packFilters }, Effect.none )
+
+        FromCardpoolFilter subMsg ->
+            ( { model | cardpoolFilters = MultiSelect.update subMsg model.cardpoolFilters }, Effect.none )
 
 
 
@@ -210,6 +217,14 @@ view shared model =
                     ]
                 ]
             , div [ class "filter-group" ]
+                [ label []
+                    [ text "Cardpool: "
+                    , span [ class "search__cardpool" ]
+                        [ Html.map FromCardpoolFilter <| MultiSelect.autoSorted "Cardpool" model.cardpoolFilters
+                        ]
+                    ]
+                ]
+            , div [ class "filter-group" ]
                 [ div [ class "search-text" ]
                     [ label []
                         [ text "Card text: "
@@ -252,6 +267,7 @@ matchFilterSelections model card =
         && FS.primaryTraitsIsAllowedWide model.primaryFilters card
         && FS.clanIsAllowedWide model.clansFilters card
         && FS.attackTypeIsAllowedWide model.attackTypeFilters card
+        && FS.cardpoolIsAllowed model.cardpoolFilters card
         && isPackAllowed model.packFilters card
 
 
