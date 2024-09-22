@@ -1,4 +1,4 @@
-module Data.Cardpool exposing (Cardpool(..), all, comparable, code, decoder, fromString, name, toString)
+module Data.Cardpool exposing (Cardpool(..), all, code, comparable, decoder, fromString, list, name, toString)
 
 import Enum exposing (Enum)
 import Json.Decode exposing (Decoder)
@@ -7,15 +7,15 @@ import Json.Decode exposing (Decoder)
 type Cardpool
     = Vampire
     | Hunter
-    | HunterAndVampire
+    | Werewolf
+
 
 enum : Enum Cardpool
 enum =
     Enum.create
-
-        [ ( "vampire", Vampire )
-        , ( "hunter", Hunter )
-        , ( "hunter and vampire", HunterAndVampire )
+        [ ( "Vampire", Vampire )
+        , ( "Hunter", Hunter )
+        , ( "Werewolf", Werewolf )
         ]
 
 
@@ -53,10 +53,11 @@ name c =
         Hunter ->
             "Hunter"
 
-        HunterAndVampire ->
-            "Hunter and Vampire"
+        Werewolf ->
+            "Werewolf"
 
-code: Cardpool -> String
+
+code : Cardpool -> String
 code c =
     case c of
         Vampire ->
@@ -65,5 +66,10 @@ code c =
         Hunter ->
             "H"
 
-        HunterAndVampire ->
-            "H/V"
+        Werewolf ->
+            "W"
+
+
+list : List ( String, Cardpool )
+list =
+    enum.list

@@ -9,11 +9,12 @@ module Cards exposing
     , City
     , Damage
     , Faction
+    , Form
     , Haven
     , Id
     , Library
-    , Shield
     , Monster
+    , Shield
     , attackTypes
     , bloodPotency
     , cardsDecoder
@@ -31,10 +32,10 @@ module Cards exposing
     , text
     )
 
+import Data.Cardpool as Cardpool exposing (Cardpool)
 import Data.Clan as Clan exposing (Clan)
 import Data.Discipline as Discipline exposing (Discipline)
 import Data.Pack as Pack exposing (Pack)
-import Data.Cardpool as Cardpool exposing (Cardpool)
 import Dict
 import Enum exposing (Enum)
 import Json.Decode as Decode exposing (Decoder, int, list, map, string)
@@ -95,11 +96,11 @@ attackTypeEnum =
 
 
 type alias Agenda =
-    { id : Id, name : Name, text : Text, image : Image, set : Pack, cardpool: Cardpool }
+    { id : Id, name : Name, text : Text, image : Image, set : Pack, cardpools : List Cardpool }
 
 
 type alias Haven =
-    { id : Id, name : Name, text : Text, image : Image, set : Pack, cardpool: Cardpool }
+    { id : Id, name : Name, text : Text, image : Image, set : Pack, cardpools : List Cardpool }
 
 
 type alias City =
@@ -124,6 +125,7 @@ type alias CityTraits =
     , title : Bool
     }
 
+
 type alias Monster =
     { id : Id
     , name : Name
@@ -135,6 +137,17 @@ type alias Monster =
     , social : Attribute
     , mental : Attribute
     }
+
+
+type alias Form =
+    { id : Id
+    , name : Name
+    , text : Text
+    , image : Image
+    , set : Pack
+    , cardpools : List Cardpool
+    }
+
 
 type alias Faction =
     { id : Id
@@ -148,7 +161,7 @@ type alias Faction =
     , social : Attribute
     , mental : Attribute
     , disciplines : List Discipline
-    , cardpool: Cardpool
+    , cardpools : List Cardpool
     }
 
 
@@ -165,7 +178,7 @@ type alias Library =
     , shield : Maybe Shield
     , traits : LibraryTraits
     , attackType : List AttackType
-    , cardpool: Cardpool
+    , cardpools : List Cardpool
     }
 
 
@@ -175,17 +188,19 @@ type alias LibraryTraits =
     , animal : Bool
     , attack : Bool
     , conspiracy : Bool
+    , ghoul : Bool
+    , gift : Bool
     , influenceModifier : Bool
     , ongoing : Bool
     , reaction : Bool
+    , relic : Bool
+    , rite : Bool
     , ritual : Bool
     , scheme : Bool
     , special : Bool
     , title : Bool
     , trap : Bool
     , unhostedAction : Bool
-    , ghoul : Bool
-    , relic : Bool
     , vehicle : Bool
     }
 
@@ -197,6 +212,7 @@ type Card
     | LibraryCard Library
     | CityCard City
     | MonsterCard Monster
+    | FormCard Form
 
 
 type CardStack
@@ -206,6 +222,7 @@ type CardStack
     | LibraryStack
     | CityStack
     | MonsterStack
+    | FormStack
 
 
 
@@ -235,6 +252,9 @@ id card =
         MonsterCard c ->
             c.id
 
+        FormCard c ->
+            c.id
+
 
 name : Card -> String
 name card =
@@ -255,6 +275,9 @@ name card =
             c.name
 
         MonsterCard c ->
+            c.name
+
+        FormCard c ->
             c.name
 
 
@@ -279,6 +302,9 @@ image card =
         MonsterCard c ->
             c.image
 
+        FormCard c ->
+            c.image
+
 
 set : Card -> Pack
 set card =
@@ -299,6 +325,9 @@ set card =
             c.set
 
         MonsterCard c ->
+            c.set
+
+        FormCard c ->
             c.set
 
 
@@ -391,6 +420,10 @@ stack card =
         MonsterCard _ ->
             MonsterStack
 
+        FormCard _ ->
+            FormStack
+
+
 stackComparable : Card -> Int
 stackComparable card =
     case card of
@@ -412,6 +445,9 @@ stackComparable card =
         MonsterCard _ ->
             5
 
+        FormCard _ ->
+            6
+
 
 text : Card -> String
 text card =
@@ -432,6 +468,9 @@ text card =
             c.text
 
         MonsterCard c ->
+            c.text
+
+        FormCard c ->
             c.text
 
 
@@ -487,6 +526,9 @@ decoderForCardType st =
         "monster" ->
             monsterDecoder
 
+        "form" ->
+            formDecoder
+
         _ ->
             Decode.fail "Unrecognized card stack"
 
@@ -499,7 +541,7 @@ agendaDecoder =
         |> decodeText
         |> decodeImage
         |> required "set" Pack.decoder
-        |> required "cardpool" Cardpool.decoder
+        |> required "cardpools" (list Cardpool.decoder)
         |> map (\agenda -> ( agenda.id, AgendaCard agenda ))
 
 
@@ -511,7 +553,7 @@ havenDecoder =
         |> decodeText
         |> decodeImage
         |> required "set" Pack.decoder
-        |> required "cardpool" Cardpool.decoder
+        |> required "cardpools" (list Cardpool.decoder)
         |> map (\haven -> ( haven.id, HavenCard haven ))
 
 
@@ -529,7 +571,7 @@ factionDecoder =
         |> decodeSocial
         |> decodeMental
         |> required "disciplines" (list Discipline.decoder)
-        |> required "cardpool" Cardpool.decoder
+        |> required "cardpools" (list Cardpool.decoder)
         |> map (\faction -> ( faction.id, FactionCard faction ))
 
 
@@ -548,7 +590,7 @@ libraryDecoder =
         |> decodeShields
         |> required "types" decodeLibraryTraits
         |> decodeAttackType
-        |> required "cardpool" Cardpool.decoder
+        |> required "cardpools" (list Cardpool.decoder)
         |> map (\library -> ( library.id, LibraryCard library ))
 
 
@@ -562,6 +604,7 @@ cityDecoder =
         |> required "set" Pack.decoder
         |> required "types" decodeCityTraits
         |> map (\city -> ( city.id, CityCard city ))
+
 
 monsterDecoder : Decoder ( Id, Card )
 monsterDecoder =
@@ -577,6 +620,20 @@ monsterDecoder =
         |> decodeMental
         |> map (\monster -> ( monster.id, MonsterCard monster ))
 
+
+formDecoder : Decoder ( Id, Card )
+formDecoder =
+    Decode.succeed Form
+        |> decodeId
+        |> decodeName
+        |> decodeText
+        |> decodeImage
+        |> required "set" Pack.decoder
+        |> required "cardpools" (list Cardpool.decoder)
+        |> map (\form -> ( form.id, FormCard form ))
+
+
+
 -- METHODS
 
 
@@ -588,6 +645,7 @@ findTextInCard needle card =
 
 
 -- FIELD DECODERS
+
 
 decodeCityTraits : Decoder CityTraits
 decodeCityTraits =
@@ -652,17 +710,19 @@ decodeLibraryTraits =
             , animal = False
             , attack = False
             , conspiracy = False
+            , ghoul = False
+            , gift = False
             , influenceModifier = False
             , ongoing = False
             , reaction = False
+            , relic = False
+            , rite = False
             , ritual = False
             , scheme = False
             , special = False
             , title = False
             , trap = False
             , unhostedAction = False
-            , ghoul = False
-            , relic = False
             , vehicle = False
             }
     in
@@ -685,6 +745,12 @@ decodeLibraryTraits =
                     "conspiracy" ->
                         { ts | conspiracy = True }
 
+                    "ghoul" ->
+                        { ts | ghoul = True }
+
+                    "gift" ->
+                        { ts | gift = True }
+
                     "influence modifier" ->
                         { ts | influenceModifier = True }
 
@@ -693,6 +759,12 @@ decodeLibraryTraits =
 
                     "reaction" ->
                         { ts | reaction = True }
+
+                    "relic" ->
+                        { ts | relic = True }
+
+                    "rite" ->
+                        { ts | rite = True }
 
                     "ritual" ->
                         { ts | ritual = True }
@@ -711,12 +783,6 @@ decodeLibraryTraits =
 
                     "unhosted action" ->
                         { ts | unhostedAction = True }
-
-                    "ghoul" ->
-                        { ts | ghoul = True }
-
-                    "relic" ->
-                        { ts | relic = True }
 
                     "vehicle" ->
                         { ts | vehicle = True }

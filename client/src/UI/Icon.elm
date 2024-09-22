@@ -29,9 +29,9 @@ type IconImage
     | BloodPotency
     | City
     | CityConclave
-    | CityHoE
-    | CityHaH
     | CityCore
+    | CityHaH
+    | CityHoE
     | Conspiracy
     | Damage
     | Delete
@@ -39,6 +39,9 @@ type IconImage
     | Edit
     | Faction
     | Fleet
+    | Form
+    | Ghoul
+    | Gift
     | HandOfCards
     | Haven
     | Influence
@@ -47,11 +50,14 @@ type IconImage
     | Library
     | Mental
     | Menu
+    | Monster
     | Ongoing
     | Ordnance
     | Physical
     | Ranged
     | Reaction
+    | Relic
+    | Rite
     | Ritual
     | Save
     | Scheme
@@ -62,9 +68,6 @@ type IconImage
     | Title
     | Trap
     | UnhostedAction
-    | Ghoul
-    | Monster
-    | Relic
     | Vehicle
 
 
@@ -197,6 +200,15 @@ imageOpts image =
         Fleet ->
             ( class "ui-icon_fleet", "Fleet" )
 
+        Form ->
+            ( class "ui-icon_form", "Form" )
+
+        Ghoul ->
+            ( class "ui-icon_ghoul", "Ghoul" )
+
+        Gift ->
+            ( class "ui-icon_gift", "Gift" )
+
         HandOfCards ->
             ( class "ui-icon_hand_of_cards", "Draw Simulation" )
 
@@ -221,6 +233,9 @@ imageOpts image =
         Menu ->
             ( class "ui-icon_menu", "Menu" )
 
+        Monster ->
+            ( class "ui-icon_monster", "Monster" )
+
         Ongoing ->
             ( class "ui-icon_ongoing", "Ongoing" )
 
@@ -235,6 +250,12 @@ imageOpts image =
 
         Reaction ->
             ( class "ui-icon_reaction", "Reaction" )
+
+        Relic ->
+            ( class "ui-icon_relic", "Relic" )
+
+        Rite ->
+            ( class "ui-icon_rite", "Rite" )
 
         Ritual ->
             ( class "ui-icon_ritual", "Ritual" )
@@ -263,17 +284,8 @@ imageOpts image =
         Trap ->
             ( class "ui-icon_trap", "Trap" )
 
-        Ghoul ->
-            ( class "ui-icon_ghoul", "Ghoul" )
-
-        Relic ->
-            ( class "ui-icon_relic", "Relic" )
-
-        Vehicle ->
-            ( class "ui-icon_vehicle", "Vehicle" )
-
         UnhostedAction ->
             ( class "ui-icon_unhosted_action", "Unhosted Action" )
 
-        Monster ->
-            ( class "ui-icon_monster", "Monster" )
+        Vehicle ->
+            ( class "ui-icon_vehicle", "Vehicle" )

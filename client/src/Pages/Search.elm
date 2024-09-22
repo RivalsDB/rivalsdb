@@ -1,6 +1,7 @@
 module Pages.Search exposing (Model, Msg, page)
 
 import Cards exposing (Card)
+import Data.Cardpool as Cardpool exposing (Cardpool)
 import Data.Collection exposing (Collection)
 import Data.Pack as Pack exposing (Pack)
 import Dict
@@ -43,6 +44,7 @@ type alias Model =
     , clansFilters : FS.Clans
     , disciplineFilters : FS.Disciplines
     , packFilters : MultiSelect.Model Pack
+    , cardpoolFilters : MultiSelect.Model Cardpool
     , textFilter : Maybe String
     }
 
@@ -58,10 +60,12 @@ init shared =
       , clansFilters = FS.cleanClans
       , disciplineFilters = FS.cleanDisciplines
       , packFilters = MultiSelect.init Pack.list
+      , cardpoolFilters = MultiSelect.init Cardpool.list
       , textFilter = Nothing
       }
     , Effect.none
     )
+
 
 fuzzySort : String -> List String -> List String
 fuzzySort query items =
@@ -86,6 +90,7 @@ type Msg
     | FromClansFilter (FS.Msg FS.Clans)
     | FromDisciplinesFilter (FS.Msg FS.Disciplines)
     | FromPackFilter (MultiSelect.Msg Pack)
+    | FromCardpoolFilter (MultiSelect.Msg Cardpool)
     | TextFilterChanged String
 
 
@@ -135,6 +140,9 @@ update msg model =
         FromPackFilter subMsg ->
             ( { model | packFilters = MultiSelect.update subMsg model.packFilters }, Effect.none )
 
+        FromCardpoolFilter subMsg ->
+            ( { model | cardpoolFilters = MultiSelect.update subMsg model.cardpoolFilters }, Effect.none )
+
 
 
 -- VIEW
@@ -183,7 +191,10 @@ view shared model =
                             [ Html.map FromClansFilter <| Lazy.lazy FS.viewClans model.clansFilters
                             ]
                       , div [ class "filter-group__flags" ]
-                            [ Html.map FromClansFilter <| Lazy.lazy FS.viewCells model.clansFilters
+                            [ Html.map FromClansFilter <| Lazy.lazy FS.viewCreeds model.clansFilters
+                            ]
+                      , div [ class "filter-group__flags" ]
+                            [ Html.map FromClansFilter <| Lazy.lazy FS.viewTribes model.clansFilters
                             ]
                       , div [ class "filter-group__flags" ]
                             [ Html.map FromDisciplinesFilter <| Lazy.lazy FS.viewDisciplines model.disciplineFilters
@@ -191,8 +202,10 @@ view shared model =
                       , div [ class "filter-group__flags" ]
                             [ Html.map FromDisciplinesFilter <| Lazy.lazy FS.viewEdges model.disciplineFilters
                             ]
+                      , div [ class "filter-group__flags" ]
+                            [ Html.map FromDisciplinesFilter <| Lazy.lazy FS.viewAuspices model.disciplineFilters
+                            ]
                       ]
-
                     ]
                 )
             , div [ class "filter-group" ]
@@ -200,6 +213,14 @@ view shared model =
                     [ text "Card pack: "
                     , span [ class "search__pack" ]
                         [ Html.map FromPackFilter <| MultiSelect.autoSorted "Card Pack" model.packFilters
+                        ]
+                    ]
+                ]
+            , div [ class "filter-group" ]
+                [ label []
+                    [ text "Cardpool: "
+                    , span [ class "search__cardpool" ]
+                        [ Html.map FromCardpoolFilter <| MultiSelect.autoSorted "Cardpool" model.cardpoolFilters
                         ]
                     ]
                 ]
@@ -246,6 +267,7 @@ matchFilterSelections model card =
         && FS.primaryTraitsIsAllowedWide model.primaryFilters card
         && FS.clanIsAllowedWide model.clansFilters card
         && FS.attackTypeIsAllowedWide model.attackTypeFilters card
+        && FS.cardpoolIsAllowed model.cardpoolFilters card
         && isPackAllowed model.packFilters card
 
 

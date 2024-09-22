@@ -17,6 +17,7 @@ type Pack
     | HuntersAndHunted
     | PrincePack1
     | MartialLaw
+    | FangAndTalon
 
 
 enum : Enum Pack
@@ -34,6 +35,7 @@ enum =
         , ( "Hunters & Hunted", HuntersAndHunted )
         , ( "Prince Pack 1", PrincePack1 )
         , ( "Martial Law", MartialLaw )
+        , ( "Fang & Talon", FangAndTalon )
         ]
 
 

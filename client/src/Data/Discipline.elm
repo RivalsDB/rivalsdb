@@ -5,7 +5,8 @@ import Json.Decode exposing (Decoder)
 
 
 type Discipline
-    = Animalism
+    = Ahroun
+    | Animalism
     | Arsenal
     | Auspex
     | BloodSorcery
@@ -15,16 +16,20 @@ type Discipline
     | DroneJockey
     | Fleet
     | Fortitude
+    | Galliard
     | Global
     | Library
     | Obfuscate
     | Oblivion
     | Ordnance
+    | Philodox
     | Potence
     | Presence
     | Protean
+    | Ragabash
     | RepelTheUnnatural
     | SenseTheUnnatural
+    | Theurge
     | ThinBloodAlchemy
     | ThwartTheUnnatural
 
@@ -32,7 +37,8 @@ type Discipline
 enum : Enum Discipline
 enum =
     Enum.create
-        [ ( "animalism", Animalism )
+        [ ( "ahroun", Ahroun )
+        , ( "animalism", Animalism )
         , ( "arsenal", Arsenal )
         , ( "auspex", Auspex )
         , ( "beast whisperer", BeastWhisperer )
@@ -42,18 +48,22 @@ enum =
         , ( "drone jockey", DroneJockey )
         , ( "fleet", Fleet )
         , ( "fortitude", Fortitude )
+        , ( "galliard", Galliard )
         , ( "global", Global )
         , ( "library", Library )
         , ( "obfuscate", Obfuscate )
         , ( "oblivion", Oblivion )
         , ( "ordnance", Ordnance )
+        , ( "philodox", Philodox )
         , ( "potence", Potence )
         , ( "presence", Presence )
         , ( "protean", Protean )
+        , ( "ragabash", Ragabash )
         , ( "repel the unnatural", RepelTheUnnatural )
         , ( "sense the unnatural", SenseTheUnnatural )
         , ( "thin-blood alchemy", ThinBloodAlchemy )
         , ( "thwart the unnatural", ThwartTheUnnatural )
+        , ( "theurge", Theurge )
         ]
 
 

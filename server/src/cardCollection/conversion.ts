@@ -5,6 +5,7 @@ import type { Library } from "./library.js";
 import type { Faction } from "./faction.js";
 import type { City } from "./city.js";
 import type { Monster } from "./monster.js";
+import type { Form } from "./form.js";
 import type {
   Agenda as UnAgenda,
   Haven as UnHaven,
@@ -12,6 +13,7 @@ import type {
   Library as UnLibrary,
   City as UnCity,
   Monster as UnMonster,
+  Form as UnForm,
 } from "./cards.js";
 
 const imageSrc = (id: string) =>
@@ -28,7 +30,7 @@ export const toUnstructuredAgenda = ([id, c]: Pair<Agenda>): UnAgenda => ({
   name: c.name,
   set: c.set,
   text: c.text,
-  cardpool: c.cardpool,
+  cardpools: c.cardpools,
 });
 
 export const toUnstructuredHaven = ([id, c]: Pair<Haven>): UnHaven => ({
@@ -40,7 +42,7 @@ export const toUnstructuredHaven = ([id, c]: Pair<Haven>): UnHaven => ({
   name: c.name,
   set: c.set,
   text: c.text,
-  cardpool: c.cardpool,
+  cardpools: c.cardpools,
 });
 
 export const toUnstructuredFaction = ([id, c]: Pair<Faction>): UnFaction => ({
@@ -60,7 +62,7 @@ export const toUnstructuredFaction = ([id, c]: Pair<Faction>): UnFaction => ({
   disciplines: Object.entries(c.disciplines).flatMap(([discipline, level]) =>
     Array(level).fill(discipline)
   ),
-  cardpool: c.cardpool,
+  cardpools: c.cardpools,
 });
 
 export const toUnstructuredLibrary = ([id, c]: Pair<Library>): UnLibrary => ({
@@ -87,7 +89,7 @@ export const toUnstructuredLibrary = ([id, c]: Pair<Library>): UnLibrary => ({
       : undefined,
   damage: c.damage,
   shield: c.shield,
-  cardpool: c.cardpool,
+  cardpools: c.cardpools,
 });
 
 export const toUnstructuredCity = ([id, c]: Pair<City>): UnCity => ({
@@ -120,4 +122,16 @@ export const toUnstructuredMonster = ([id, c]: Pair<Monster>): UnMonster => ({
   attributeSocial: c.social,
   bloodPotency: c.bloodPotency,
   agenda: c.agenda,
+});
+
+export const toUnstructuredForm = ([id, c]: Pair<Form>): UnForm => ({
+  stack: "form",
+  types: ["form"],
+  id,
+  illustrator: c.illustrator,
+  image: imageSrc(id),
+  name: c.name,
+  set: c.set,
+  text: c.text,
+  cardpools: c.cardpools
 });

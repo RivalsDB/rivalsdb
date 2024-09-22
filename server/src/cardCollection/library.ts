@@ -28,7 +28,7 @@ export type Library = {
   disciplines?: Discipline[];
   illustrator: Illustrator;
   set: CardSet;
-  cardpool: Cardpool;
+  cardpools: Cardpool[];
 };
 
 export const library: Record<CardId, Library> = {
@@ -45,7 +45,7 @@ export const library: Record<CardId, Library> = {
   bloodPotencyRequirement: 1,
   attack: "ranged",
   damage: 2,
-  cardpool: "hunter and vampire",
+  cardpools: ["Hunter", "Vampire"],
 },
 
 "core-a-biting-comment": {
@@ -61,7 +61,7 @@ export const library: Record<CardId, Library> = {
   attack: "social",
   damage: 0,
   shield: 0,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-all-tied-up": {
@@ -76,7 +76,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "conspiracy"],
   set: "Core",
   clan: "malkavian",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-assert-authority": {
@@ -89,7 +89,7 @@ export const library: Record<CardId, Library> = {
   types: ["unhosted action", "ongoing"],
   set: "Core",
   clan: "ventrue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-backhanded-compliment": {
@@ -106,7 +106,7 @@ export const library: Record<CardId, Library> = {
   attack: "social",
   damage: 1,
   shield: 0,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-balance-of-power": {
@@ -120,7 +120,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "scheme"],
   set: "Core",
   clan: "toreador",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-baseball-bat": {
@@ -136,7 +136,7 @@ export const library: Record<CardId, Library> = {
   attack: "physical",
   damage: 1,
   shield: 0,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-beauty-is-a-beast": {
@@ -149,7 +149,7 @@ export const library: Record<CardId, Library> = {
   types: ["unhosted action", "ongoing"],
   set: "Core",
   clan: "toreador",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-blood-for-blood": {
@@ -162,7 +162,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "ongoing"],
   set: "Core",
   clan: "brujah",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-burning-down-the-house": {
@@ -176,7 +176,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "The Creation Studio",
   types: ["action", "conspiracy"],
   set: "Core",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-cloak-of-shadows": {
@@ -194,7 +194,7 @@ export const library: Record<CardId, Library> = {
   //damage: 0,
   shield: 0,
   disciplines: ["obfuscate"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-coup-de-grace": {
@@ -208,7 +208,7 @@ export const library: Record<CardId, Library> = {
   types: ["action"],
   set: "Core",
   disciplines: ["potence"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-demand-obedience": {
@@ -225,7 +225,7 @@ export const library: Record<CardId, Library> = {
   damage: 1,
   shield: 0,
   disciplines: ["dominate"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-destroy-the-plans": {
@@ -239,7 +239,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "The Creation Studio",
   types: ["action", "conspiracy"],
   set: "Core",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-dignity-of-the-office": {
@@ -258,7 +258,7 @@ export const library: Record<CardId, Library> = {
   //attack: "physical",
   damage: 0,
   shield: 0,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-distraction": {
@@ -271,7 +271,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "ongoing"],
   set: "Core",
   clan: "malkavian",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-drive-by": {
@@ -290,7 +290,7 @@ export const library: Record<CardId, Library> = {
   damage: 2,
   shield: 0,
   disciplines: ["celerity"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-dumpster-dive": {
@@ -305,7 +305,7 @@ export const library: Record<CardId, Library> = {
   set: "Core",
   clan: "malkavian",
   disciplines: ["auspex"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-emergency-bloodbag": {
@@ -319,7 +319,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Drew Tucker",
   types: ["unhosted action", "ongoing"],
   set: "Core",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-everything-is-connected": {
@@ -332,7 +332,7 @@ export const library: Record<CardId, Library> = {
   types: ["action"],
   set: "Core",
   disciplines: ["auspex"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-fame-and-fortune": {
@@ -345,7 +345,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "scheme"],
   set: "Core",
   clan: "toreador",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-faulty-logic": {
@@ -363,7 +363,7 @@ export const library: Record<CardId, Library> = {
   attack: "social",
   damage: 1,
   shield: 0,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-first-tradition-the-masquerade": {
@@ -377,7 +377,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Felipe Gaona",
   types: ["unhosted action", "ongoing"],
   set: "Core",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-fleetness": {
@@ -394,7 +394,7 @@ export const library: Record<CardId, Library> = {
   reactions: ["ranged", "physical"],
   shield: 0,
   disciplines: ["celerity"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-fragmented-mind": {
@@ -411,7 +411,7 @@ export const library: Record<CardId, Library> = {
   damage: 0,
   shield: 0,
   disciplines: ["dominate"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-free-money": {
@@ -423,7 +423,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Krasen Maximov",
   types: ["action", "scheme"],
   set: "Core",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-gang-up": {
@@ -439,7 +439,7 @@ export const library: Record<CardId, Library> = {
   attack: "physical",
   damage: 0,
   shield: 0,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-greed": {
@@ -452,7 +452,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "scheme"],
   set: "Core",
   clan: "ventrue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-hedge-your-bets": {
@@ -465,7 +465,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "The Creation Studio",
   types: ["influence modifier"],
   set: "Core",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-herald": {
@@ -480,7 +480,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "title"],
   set: "Core",
   bloodPotencyRequirement: 2,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-holdout-dagger": {
@@ -497,7 +497,7 @@ export const library: Record<CardId, Library> = {
   damage: 0,
   shield: 0,
   disciplines: ["obfuscate"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-humiliate": {
@@ -514,7 +514,7 @@ export const library: Record<CardId, Library> = {
   damage: 1,
   shield: 0,
   disciplines: ["presence"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-incite-rebellion": {
@@ -531,7 +531,7 @@ export const library: Record<CardId, Library> = {
   attack: "social",
   damage: 1,
   shield: 0,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-influencer": {
@@ -545,7 +545,7 @@ export const library: Record<CardId, Library> = {
   types: ["unhosted action", "ongoing"],
   set: "Core",
   disciplines: ["presence"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-insanity-defense": {
@@ -563,7 +563,7 @@ export const library: Record<CardId, Library> = {
   reactions:["physical", "mental", "social"],
   //damage: 0,
   shield: 2,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-irresistible-voice": {
@@ -581,7 +581,7 @@ export const library: Record<CardId, Library> = {
   damage: 2,
   shield: 0,
   disciplines: ["dominate", "presence"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-keeper-of-elysium": {
@@ -595,7 +595,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "title"],
   set: "Core",
   bloodPotencyRequirement: 4,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-kneecapped": {
@@ -611,7 +611,7 @@ export const library: Record<CardId, Library> = {
   attack: "physical",
   damage: 1,
   shield: 0,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-know-your-place": {
@@ -628,7 +628,7 @@ export const library: Record<CardId, Library> = {
   attack: "social",
   damage: 1,
   shield: 0,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-late-night-snack": {
@@ -641,7 +641,7 @@ export const library: Record<CardId, Library> = {
   types: ["action"],
   set: "Core",
   disciplines: ["fortitude"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-lightning-strike": {
@@ -658,7 +658,7 @@ export const library: Record<CardId, Library> = {
   damage: 2,
   shield: 0,
   disciplines: ["celerity"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-long-term-investment": {
@@ -673,7 +673,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "ongoing"],
   set: "Core",
   clan: "ventrue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-lost-glory": {
@@ -688,7 +688,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "The Creation Studio",
   types: ["action", "conspiracy"],
   set: "Core",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-marked-man": {
@@ -702,7 +702,7 @@ export const library: Record<CardId, Library> = {
   types: ["unhosted action"],
   set: "Core",
   clan: "ventrue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-mercy": {
@@ -714,7 +714,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "The Creation Studio",
   types: ["action", "scheme"],
   set: "Core",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-molotov-cocktail": {
@@ -730,7 +730,7 @@ export const library: Record<CardId, Library> = {
   attack: "ranged",
   damage: 1,
   shield: 0,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-power-play": {
@@ -746,7 +746,7 @@ export const library: Record<CardId, Library> = {
   attack: "mental",
   damage: 1,
   shield: 0,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-pr-firm": {
@@ -759,7 +759,7 @@ export const library: Record<CardId, Library> = {
   types: ["unhosted action", "ongoing"],
   set: "Core",
   clan: "toreador",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-primogen": {
@@ -774,7 +774,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "title"],
   set: "Core",
   bloodPotencyRequirement: 3,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-rain-on-your-parade": {
@@ -790,7 +790,7 @@ export const library: Record<CardId, Library> = {
   attack: "social",
   damage: 1,
   shield: 0,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-royal-review": {
@@ -803,7 +803,7 @@ export const library: Record<CardId, Library> = {
   types: ["action"],
   set: "Core",
   clan: "ventrue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-scoped-30-06": {
@@ -819,7 +819,7 @@ export const library: Record<CardId, Library> = {
   attack: "ranged",
   damage: 2,
   shield: 0,
-  cardpool: "hunter and vampire",
+  cardpools: ["Hunter", "Vampire"],
 },
 
 "core-scry-the-soul": {
@@ -836,7 +836,7 @@ export const library: Record<CardId, Library> = {
   damage: 1,
   shield: 0,
   disciplines: ["auspex"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-search-engine": {
@@ -850,7 +850,7 @@ export const library: Record<CardId, Library> = {
   types: ["unhosted action", "ongoing"],
   set: "Core",
   disciplines: ["auspex"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-seduction": {
@@ -867,7 +867,7 @@ export const library: Record<CardId, Library> = {
   damage: 0,
   shield: 0,
   disciplines: ["presence"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-seneschal": {
@@ -882,7 +882,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "title"],
   set: "Core",
   bloodPotencyRequirement: 5,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-sheriff": {
@@ -897,7 +897,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "title"],
   set: "Core",
   bloodPotencyRequirement: 4,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-slap-in-the-face": {
@@ -914,7 +914,7 @@ export const library: Record<CardId, Library> = {
   reactions:["social", "mental"],
   damage: 1,
   shield: 0,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-smoke-em-out": {
@@ -929,7 +929,7 @@ export const library: Record<CardId, Library> = {
   types: ["action"],
   set: "Core",
   clan: "brujah",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-steal-the-spotlight": {
@@ -946,7 +946,7 @@ export const library: Record<CardId, Library> = {
   attack: "physical",
   damage: 0,
   shield: 2,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-sucker-punch": {
@@ -962,7 +962,7 @@ export const library: Record<CardId, Library> = {
   bloodPotencyRequirement: 2,
   attack: "physical",
   damage: 1,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-terrorize": {
@@ -979,7 +979,7 @@ export const library: Record<CardId, Library> = {
   attack: "mental",
   damage: 2,
   shield: 0,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-the-last-word": {
@@ -992,7 +992,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "The Creation Studio",
   types: ["influence modifier"],
   set: "Core",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-the-mighty-fall": {
@@ -1008,7 +1008,7 @@ export const library: Record<CardId, Library> = {
   attack: "mental",
   damage: 1,
   shield: 0,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-the-spoils": {
@@ -1021,7 +1021,7 @@ export const library: Record<CardId, Library> = {
   types: ["unhosted action", "ongoing"],
   set: "Core",
   clan: "brujah",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-throat-rip": {
@@ -1038,7 +1038,7 @@ export const library: Record<CardId, Library> = {
   damage: 1,
   shield: 0,
   disciplines: ["potence"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-unhinged": {
@@ -1055,7 +1055,7 @@ export const library: Record<CardId, Library> = {
   attack: "mental",
   damage: 1,
   shield: 0,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-unswayable-mind": {
@@ -1073,7 +1073,7 @@ export const library: Record<CardId, Library> = {
   //damage: 0,
   shield: 1,
   disciplines: ["fortitude"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "core-whispering-campaign": {
@@ -1086,7 +1086,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Felipe Gaona",
   types: ["action", "conspiracy"],
   set: "Core",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 // Blood and Alchemy //
@@ -1104,7 +1104,7 @@ export const library: Record<CardId, Library> = {
   attack: "mental",
   damage: 2,
   shield: 0,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-all-the-angles": {
@@ -1122,7 +1122,7 @@ export const library: Record<CardId, Library> = {
   attack: "mental",
   damage: 0,
   shield: 0,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-athanor-corporis": {
@@ -1137,7 +1137,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "alchemy"],
   set: "Blood & Alchemy",
   clan: "thin-blood",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-baals-caress": {
@@ -1157,7 +1157,7 @@ export const library: Record<CardId, Library> = {
   damage: 0,
   shield: 0,
   disciplines: ["blood sorcery"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-back-to-formula": {
@@ -1172,7 +1172,7 @@ export const library: Record<CardId, Library> = {
   types: ["action"],
   set: "Blood & Alchemy",
   disciplines: ["thin-blood alchemy"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-backup": {
@@ -1189,7 +1189,7 @@ export const library: Record<CardId, Library> = {
   reactions: ["physical", "social"],
   //damage: 0,
   shield: 0,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-blood-makes-noise": {
@@ -1204,7 +1204,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "ritual", "ongoing"],
   set: "Blood & Alchemy",
   disciplines: ["blood sorcery"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-blood-of-potency": {
@@ -1219,7 +1219,7 @@ export const library: Record<CardId, Library> = {
   types: ["action"],
   set: "Blood & Alchemy",
   disciplines: ["blood sorcery"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-break-down": {
@@ -1236,7 +1236,7 @@ export const library: Record<CardId, Library> = {
   damage: 1,
   shield: 0,
   disciplines: ["thin-blood alchemy"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-calcinatio": {
@@ -1251,7 +1251,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "alchemy"],
   set: "Blood & Alchemy",
   clan: "thin-blood",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-crossbow": {
@@ -1268,7 +1268,7 @@ export const library: Record<CardId, Library> = {
   attack: "ranged",
   damage: 1,
   shield: 0,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-dangerous-mixture": {
@@ -1284,7 +1284,7 @@ export const library: Record<CardId, Library> = {
   attack: "physical",
   damage: 1,
   shield: 0,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-defense-of-the-sacred-haven": {
@@ -1300,7 +1300,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "ritual", "ongoing"],
   set: "Blood & Alchemy",
   disciplines: ["blood sorcery"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-enervate": {
@@ -1314,7 +1314,7 @@ export const library: Record<CardId, Library> = {
   types: ["action"],
   set: "Blood & Alchemy",
   clan: "tremere",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-envelop": {
@@ -1326,7 +1326,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Irene Francisco",
   types: ["action"],
   set: "Blood & Alchemy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-extinguish-vitae": {
@@ -1339,7 +1339,7 @@ export const library: Record<CardId, Library> = {
   types: ["action"],
   set: "Blood & Alchemy",
   disciplines: ["blood sorcery"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-far-reach": {
@@ -1352,7 +1352,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Timothy Terrenal",
   types: ["action"],
   set: "Blood & Alchemy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-first-ones-free": {
@@ -1368,7 +1368,7 @@ export const library: Record<CardId, Library> = {
   attack: "social",
   damage: 1,
   shield: 0,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-fixatio": {
@@ -1383,7 +1383,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "alchemy"],
   set: "Blood & Alchemy",
   clan: "thin-blood",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-haze": {
@@ -1400,7 +1400,7 @@ export const library: Record<CardId, Library> = {
   bloodPotencyRequirement: 1,
   damage: 0,
   shield: 0,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-heightened-senses": {
@@ -1419,7 +1419,7 @@ export const library: Record<CardId, Library> = {
   //damage: 0,
   shield: 0,
   disciplines: ["auspex"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-intimidation": {
@@ -1436,7 +1436,7 @@ export const library: Record<CardId, Library> = {
   attack: "social",
   damage: 1,
   shield: 0,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-mesmerize": {
@@ -1453,7 +1453,7 @@ export const library: Record<CardId, Library> = {
   damage: 1,
   shield: 0,
   disciplines: ["dominate"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-out-of-time": {
@@ -1467,7 +1467,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Adelijah Ocampo",
   types: ["action", "conspiracy"],
   set: "Blood & Alchemy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-peer-pressure": {
@@ -1483,7 +1483,7 @@ export const library: Record<CardId, Library> = {
   attack: "social",
   damage: 0,
   shield: 0,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-premonition": {
@@ -1497,7 +1497,7 @@ export const library: Record<CardId, Library> = {
   types: ["unhosted action"],
   set: "Blood & Alchemy",
   disciplines: ["auspex"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-rain-of-blood": {
@@ -1509,7 +1509,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Adelijah Ocampo",
   types: ["unhosted action", "scheme"],
   set: "Blood & Alchemy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-scorpions-touch": {
@@ -1526,7 +1526,7 @@ export const library: Record<CardId, Library> = {
   damage: 1,
   shield: 0,
   disciplines: ["blood sorcery"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-seek-knowledge": {
@@ -1542,7 +1542,7 @@ export const library: Record<CardId, Library> = {
   set: "Blood & Alchemy",
   clan: "tremere",
   disciplines: ["blood sorcery"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-sleep-of-the-damned": {
@@ -1558,7 +1558,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "ritual", "ongoing"],
   set: "Blood & Alchemy",
   disciplines: ["blood sorcery"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-sunrise-surprise": {
@@ -1573,7 +1573,7 @@ export const library: Record<CardId, Library> = {
   types: ["action"],
   set: "Blood & Alchemy",
   clan: "thin-blood",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-theft-of-vitae": {
@@ -1587,7 +1587,7 @@ export const library: Record<CardId, Library> = {
   types: ["action"],
   set: "Blood & Alchemy",
   disciplines: ["blood sorcery"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-third-tradition-the-progeny": {
@@ -1600,7 +1600,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Mara Miranda-Escota",
   types: ["unhosted action", "ongoing"],
   set: "Blood & Alchemy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "baa-truth-of-blood": {
@@ -1615,7 +1615,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "ritual", "ongoing"],
   set: "Blood & Alchemy",
   disciplines: ["blood sorcery"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 // Wolf and Rat //
@@ -1633,7 +1633,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "animal"],
   set: "Wolf & Rat",
   disciplines: ["animalism"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-animal-dominion": {
@@ -1647,7 +1647,7 @@ export const library: Record<CardId, Library> = {
   set: "Wolf & Rat",
   bloodPotencyRequirement: 5,
   disciplines: ["animalism"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-apex-predator": {
@@ -1664,7 +1664,7 @@ export const library: Record<CardId, Library> = {
   bloodPotencyRequirement: 4,
   attack: "social",
   damage: 2,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-bad-reflection": {
@@ -1680,7 +1680,7 @@ export const library: Record<CardId, Library> = {
   bloodPotencyRequirement: 4,
   attack: ["physical", "social"],
   reactions: ["physical", "social"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-beasts-of-war": {
@@ -1697,7 +1697,7 @@ export const library: Record<CardId, Library> = {
   bloodPotencyRequirement: 5,
   attack: "physical",
   damage: 1,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-bond-famulus": {
@@ -1710,7 +1710,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Joyce Maureira",
   types: ["unhosted action", "ongoing"],
   set: "Wolf & Rat",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-constant-surveillance": {
@@ -1724,7 +1724,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Timothy Terrenal",
   types: ["action", "ongoing"],
   set: "Wolf & Rat",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-cornered-rat": {
@@ -1742,7 +1742,7 @@ export const library: Record<CardId, Library> = {
   attack: ["physical","mental"],
   reactions: ["physical", "mental"],
   damage: 0,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-cracking-the-case": {
@@ -1756,7 +1756,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Felipe Gaona",
   types: ["unhosted action", "ongoing"],
   set: "Wolf & Rat",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-disturbing-the-hive": {
@@ -1774,7 +1774,7 @@ export const library: Record<CardId, Library> = {
   attack: "ranged",
   damage: 1,
   disciplines: ["obfuscate"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-earth-meld": {
@@ -1789,7 +1789,7 @@ export const library: Record<CardId, Library> = {
   types: ["action"],
   set: "Wolf & Rat",
   disciplines: ["protean"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-feeding-frenzy": {
@@ -1806,7 +1806,7 @@ export const library: Record<CardId, Library> = {
   attack: "physical",
   damage: 1,
   disciplines: ["fortitude"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-feeding-the-hungry": {
@@ -1818,7 +1818,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Harvey Bunda",
   types: ["action"],
   set: "Wolf & Rat",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-feral-claws": {
@@ -1834,7 +1834,7 @@ export const library: Record<CardId, Library> = {
   attack: "physical",
   damage: 0,
   disciplines: ["protean"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-feral-fangs": {
@@ -1851,7 +1851,7 @@ export const library: Record<CardId, Library> = {
   attack: "physical",
   damage: 2,
   disciplines: ["protean"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-feral-whispers": {
@@ -1866,7 +1866,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "ongoing"],
   set: "Wolf & Rat",
   disciplines: ["animalism"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-fight-or-flight": {
@@ -1885,7 +1885,7 @@ export const library: Record<CardId, Library> = {
   reactions: ["mental"],
   damage: 1,
   disciplines: ["fortitude"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-hardened-flesh": {
@@ -1902,7 +1902,7 @@ export const library: Record<CardId, Library> = {
   reactions: ["ranged", "physical"],
   shield: 1,
   disciplines: ["fortitude"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-help-me-help-you": {
@@ -1914,7 +1914,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Felipe Gaona",
   types: ["unhosted action", "ongoing"],
   set: "Wolf & Rat",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-hiding-in-plain-sight": {
@@ -1927,7 +1927,7 @@ export const library: Record<CardId, Library> = {
   types: ["unhosted action", "ongoing"],
   set: "Wolf & Rat",
   disciplines: ["obfuscate", "protean"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-mongrel": {
@@ -1942,7 +1942,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "animal"],
   set: "Wolf & Rat",
   disciplines: ["animalism"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-murder-of-crows": {
@@ -1958,7 +1958,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "animal"],
   set: "Wolf & Rat",
   disciplines: ["animalism"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-protect-the-flock": {
@@ -1971,7 +1971,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Timothy Terrenal",
   types: ["unhosted action", "ongoing"],
   set: "Wolf & Rat",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-second-tradition-the-domain": {
@@ -1985,7 +1985,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Mara Miranda-Escota",
   types: ["action", "ongoing"],
   set: "Wolf & Rat",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-secret-passage": {
@@ -1998,7 +1998,7 @@ export const library: Record<CardId, Library> = {
   types: ["unhosted action", "ongoing"],
   set: "Wolf & Rat",
   clan: "nosferatu",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-seeing-is-believing": {
@@ -2013,7 +2013,7 @@ export const library: Record<CardId, Library> = {
   bloodPotencyRequirement: 4,
   attack: "mental",
   disciplines: ["obfuscate"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-sewer-rat": {
@@ -2028,7 +2028,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "animal"],
   set: "Wolf & Rat",
   disciplines: ["animalism"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-shape-of-the-beast": {
@@ -2043,7 +2043,7 @@ export const library: Record<CardId, Library> = {
   set: "Wolf & Rat",
   clan: "gangrel",
   disciplines: ["protean"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-spy-games": {
@@ -2058,7 +2058,7 @@ export const library: Record<CardId, Library> = {
   set: "Wolf & Rat",
   clan: "nosferatu",
   bloodPotencyRequirement: 5,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-the-shakedown": {
@@ -2072,7 +2072,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Irene Francisco",
   types: ["action"],
   set: "Wolf & Rat",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-the-stampede": {
@@ -2089,7 +2089,7 @@ export const library: Record<CardId, Library> = {
   attack: "physical",
   damage: 1,
   disciplines: ["potence"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-the-swarm": {
@@ -2104,7 +2104,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "animal"],
   set: "Wolf & Rat",
   disciplines: ["animalism"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-veiled-threat": {
@@ -2121,7 +2121,7 @@ export const library: Record<CardId, Library> = {
   attack: "social",
   damage: 1,
   disciplines: ["obfuscate"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "war-we-are-legend": {
@@ -2135,7 +2135,7 @@ export const library: Record<CardId, Library> = {
   types: ["action"],
   set: "Wolf & Rat",
   clan: "gangrel",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 // Shadows and Shrouds //
@@ -2152,7 +2152,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "ritual", "ongoing"],
   set: "Shadows & Shrouds",
   disciplines: ["oblivion"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-court-of-blood": {
@@ -2168,7 +2168,7 @@ export const library: Record<CardId, Library> = {
   set: "Shadows & Shrouds",
   clan: "lasombra",
   bloodPotencyRequirement: 3,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-mental-block": {
@@ -2183,7 +2183,7 @@ export const library: Record<CardId, Library> = {
   types: ["unhosted action", "ongoing"],
   set: "Shadows & Shrouds",
   disciplines: ["auspex"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-arms-of-ahriman": {
@@ -2200,7 +2200,7 @@ export const library: Record<CardId, Library> = {
   set: "Shadows & Shrouds",
   bloodPotencyRequirement: 2,
   disciplines: ["potence", "oblivion"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-clairvoyance": {
@@ -2215,7 +2215,7 @@ export const library: Record<CardId, Library> = {
   types: ["action"],
   set: "Shadows & Shrouds",
   disciplines: ["auspex"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-cloud-memory": {
@@ -2231,7 +2231,7 @@ export const library: Record<CardId, Library> = {
   attack: "mental",
   damage: 1,
   disciplines: ["dominate"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-diminish": {
@@ -2245,7 +2245,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "ritual", "ongoing"],
   set: "Shadows & Shrouds",
   disciplines: ["oblivion"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-early-grave": {
@@ -2257,7 +2257,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Marco Primo",
   types: ["action"],
   set: "Shadows & Shrouds",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-fight-makes-right": {
@@ -2269,7 +2269,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Adelijah Ocampo",
   types: ["unhosted action", "ongoing"],
   set: "Shadows & Shrouds",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-flesh-of-marble": {
@@ -2286,7 +2286,7 @@ export const library: Record<CardId, Library> = {
   bloodPotencyRequirement: 2,
   shield: 1,
   disciplines: ["fortitude"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-grave-robbing": {
@@ -2301,7 +2301,7 @@ export const library: Record<CardId, Library> = {
   types: ["action"],
   set: "Shadows & Shrouds",
   clan: "hecata",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-graveyard-smash": {
@@ -2318,7 +2318,7 @@ export const library: Record<CardId, Library> = {
   bloodPotencyRequirement: 3,
   attack: "physical",
   damage: 0,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-high-stakes": {
@@ -2333,7 +2333,7 @@ export const library: Record<CardId, Library> = {
   bloodPotencyRequirement: 4,
   attack: "social",
   damage: 1,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-its-your-funeral": {
@@ -2348,7 +2348,7 @@ export const library: Record<CardId, Library> = {
   bloodPotencyRequirement: 4,
   attack: "social",
   damage: 1,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-interrogation": {
@@ -2363,7 +2363,7 @@ export const library: Record<CardId, Library> = {
   bloodPotencyRequirement: 3,
   attack: "social",
   damage: 2,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-legate": {
@@ -2379,7 +2379,7 @@ export const library: Record<CardId, Library> = {
   set: "Shadows & Shrouds",
   clan: "lasombra",
   bloodPotencyRequirement: 4,
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-living-shadow": {
@@ -2397,7 +2397,7 @@ export const library: Record<CardId, Library> = {
   attack: "mental",
   damage: 0,
   disciplines: ["oblivion"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-money-shot": {
@@ -2413,7 +2413,7 @@ export const library: Record<CardId, Library> = {
   attack: "physical",
   damage: 1,
   disciplines: ["potence"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-necromancy": {
@@ -2428,7 +2428,7 @@ export const library: Record<CardId, Library> = {
   types: ["action"],
   set: "Shadows & Shrouds",
   clan: "hecata",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-prowess-from-pain": {
@@ -2444,7 +2444,7 @@ export const library: Record<CardId, Library> = {
   attack: "physical",
   damage: 1,
   disciplines: ["fortitude"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-shadow-boxing": {
@@ -2461,7 +2461,7 @@ export const library: Record<CardId, Library> = {
   attack: "physical",
   damage: 0,
   disciplines: ["oblivion"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-shadow-cloak": {
@@ -2476,7 +2476,7 @@ export const library: Record<CardId, Library> = {
   types: ["action"],
   set: "Shadows & Shrouds",
   disciplines: ["oblivion"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-sixth-tradition-destruction": {
@@ -2488,7 +2488,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Mara Miranda-Escota",
   types: ["action", "scheme"],
   set: "Shadows & Shrouds",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-soul-crushing": {
@@ -2504,7 +2504,7 @@ export const library: Record<CardId, Library> = {
   attack: "social",
   damage: 0,
   disciplines: ["oblivion"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-spectral-possession": {
@@ -2519,7 +2519,7 @@ export const library: Record<CardId, Library> = {
   types: ["action"],
   set: "Shadows & Shrouds",
   clan: "hecata",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-spirits-touch": {
@@ -2534,7 +2534,7 @@ export const library: Record<CardId, Library> = {
   types: ["action"],
   set: "Shadows & Shrouds",
   disciplines: ["auspex"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-summon-spirit": {
@@ -2549,7 +2549,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "ritual", "ongoing"],
   set: "Shadows & Shrouds",
   disciplines: ["oblivion"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-tenebrous-avatar": {
@@ -2566,7 +2566,7 @@ export const library: Record<CardId, Library> = {
   reactions: ["ranged", "physical", "social", "mental"],
   shield: 1,
   disciplines: ["oblivion"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-the-gift-of-false-life": {
@@ -2581,7 +2581,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "ritual", "ongoing"],
   set: "Shadows & Shrouds",
   disciplines: ["oblivion"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-the-scent-of-death": {
@@ -2595,7 +2595,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "ritual", "ongoing"],
   set: "Shadows & Shrouds",
   disciplines: ["oblivion"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-throwing-shade": {
@@ -2611,7 +2611,7 @@ export const library: Record<CardId, Library> = {
   attack: "ranged",
   damage: 2,
   disciplines: ["oblivion"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-utter-darkness": {
@@ -2627,7 +2627,7 @@ export const library: Record<CardId, Library> = {
   attack: "mental",
   damage: 1,
   disciplines: ["oblivion"],
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-whats-yours-is-mine": {
@@ -2641,7 +2641,7 @@ export const library: Record<CardId, Library> = {
   types: ["action", "scheme"],
   set: "Shadows & Shrouds",
   clan: "lasombra",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "sas-winning": {
@@ -2653,7 +2653,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Marco Primo",
   types: ["action"],
   set: "Shadows & Shrouds",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 // Heart of Europe //
@@ -2668,7 +2668,7 @@ export const library: Record<CardId, Library> = {
   `,
   illustrator: "Joshua Esmeralda",
   set: "Heart of Europe",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hoe-bank-error-in-your-favor": {
@@ -2683,7 +2683,7 @@ export const library: Record<CardId, Library> = {
   `,
   illustrator: "Marco Primo",
   set: "Heart of Europe",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hoe-blood-poisoning": {
@@ -2698,7 +2698,7 @@ export const library: Record<CardId, Library> = {
   disciplines: ["obfuscate"],
   illustrator: "Adelijah Ocampo",
   set: "Heart of Europe",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hoe-blood-transfusion": {
@@ -2711,7 +2711,7 @@ export const library: Record<CardId, Library> = {
   `,
   illustrator: "Harvey Bunda",
   set: "Heart of Europe",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hoe-bread-and-circuses": {
@@ -2724,7 +2724,7 @@ export const library: Record<CardId, Library> = {
   `,
   illustrator: "Marco Primo",
   set: "Heart of Europe",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hoe-cover-charge": {
@@ -2739,7 +2739,7 @@ export const library: Record<CardId, Library> = {
   disciplines: ["presence"],
   illustrator: "Joshua Esmeralda",
   set: "Heart of Europe",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hoe-entrancement": {
@@ -2755,7 +2755,7 @@ export const library: Record<CardId, Library> = {
   disciplines: ["presence"],
   illustrator: "Harvey Bunda",
   set: "Heart of Europe",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hoe-fortify-the-inner-facade": {
@@ -2774,7 +2774,7 @@ export const library: Record<CardId, Library> = {
   disciplines: ["fortitude"],
   illustrator: "Joyce Maureira",
   set: "Heart of Europe",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hoe-fourth-tradition-the-accounting": {
@@ -2787,7 +2787,7 @@ export const library: Record<CardId, Library> = {
   `,
   illustrator: "Mara Miranda-Escota",
   set: "Heart of Europe",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hoe-hidden-stash": {
@@ -2801,7 +2801,7 @@ export const library: Record<CardId, Library> = {
   `,
   illustrator: "Harvey Bunda",
   set: "Heart of Europe",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hoe-lone-wolf": {
@@ -2815,7 +2815,7 @@ export const library: Record<CardId, Library> = {
   `,
   illustrator: "Irene Francisco",
   set: "Heart of Europe",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hoe-off-limits": {
@@ -2830,7 +2830,7 @@ export const library: Record<CardId, Library> = {
   `,
   illustrator: "Joshua Esmeralda",
   set: "Heart of Europe",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hoe-property-developer": {
@@ -2845,7 +2845,7 @@ export const library: Record<CardId, Library> = {
   `,
   illustrator: "Marco Primo",
   set: "Heart of Europe",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hoe-prosperity": {
@@ -2857,7 +2857,7 @@ export const library: Record<CardId, Library> = {
   `,
   illustrator: "Marco Primo",
   set: "Heart of Europe",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hoe-psychic-assault": {
@@ -2874,7 +2874,7 @@ export const library: Record<CardId, Library> = {
   disciplines: ["auspex"],
   illustrator: "Harvey Bunda",
   set: "Heart of Europe",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hoe-rapid-reflexes": {
@@ -2892,7 +2892,7 @@ export const library: Record<CardId, Library> = {
   disciplines: ["celerity"],
   illustrator: "Joshua Esmeralda",
   set: "Heart of Europe",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hoe-royal-bling": {
@@ -2905,7 +2905,7 @@ export const library: Record<CardId, Library> = {
   `,
   illustrator: "Irene Francisco",
   set: "Heart of Europe",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hoe-spiders": {
@@ -2920,7 +2920,7 @@ export const library: Record<CardId, Library> = {
   disciplines: ["animalism"],
   illustrator: "Irene Francisco",
   set: "Heart of Europe",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hoe-title-fight": {
@@ -2936,7 +2936,7 @@ export const library: Record<CardId, Library> = {
   `,
   illustrator: "Adelijah Ocampo",
   set: "Heart of Europe",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hoe-voter-suppression": {
@@ -2950,7 +2950,7 @@ export const library: Record<CardId, Library> = {
   `,
   illustrator: "Adelijah Ocampo",
   set: "Heart of Europe",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hoe-wake-with-evenings-freshness": {
@@ -2965,7 +2965,7 @@ export const library: Record<CardId, Library> = {
   disciplines: ["blood sorcery"],
   //reactions: ["physical", "social", "mental"],
   set: "Heart of Europe",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hoe-whip-of-the-primogen": {
@@ -2980,7 +2980,7 @@ export const library: Record<CardId, Library> = {
   disciplines: ["presence"],
   illustrator: "Adelijah Ocampo",
   set: "Heart of Europe",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hoe-wild-ranting": {
@@ -2993,7 +2993,7 @@ export const library: Record<CardId, Library> = {
   `,
   illustrator: "Marco Primo",
   set: "Heart of Europe",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hoe-withering-spirit": {
@@ -3009,7 +3009,7 @@ export const library: Record<CardId, Library> = {
   disciplines: ["oblivion"],
   illustrator: "Irene Francisco",
   set: "Heart of Europe",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 // Dragon and Rogue //
@@ -3023,7 +3023,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Irene Francisco",
   types: ["action"],
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-bat-out-of-hell": {
@@ -3038,7 +3038,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Irene Francisco",
   types: ["action", "animal"],
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-change-of-plans": {
@@ -3052,7 +3052,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Irene Francisco",
   types: ["action", "trap"],
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-cryptolect": {
@@ -3066,7 +3066,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Felipe Gaona",
   types: ["action", "ongoing"],
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-domino-effect": {
@@ -3078,7 +3078,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Adelijah Ocampo",
   types: ["action", "ongoing"],
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-doomed-to-roam": {
@@ -3092,7 +3092,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Joyce Maureira",
   types: ["unhosted action", "ongoing"],
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-emperors-new-clothes": {
@@ -3106,7 +3106,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Adelijah Ocampo",
   types: ["action", "trap"],
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-escape-artist": {
@@ -3123,7 +3123,7 @@ export const library: Record<CardId, Library> = {
   attack: ["ranged", "physical"],
   reactions: ["ranged", "physical"],
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-fata-morgana": {
@@ -3138,7 +3138,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Irene Francisco",
   types: ["action", "trap"],
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-fear-tactics": {
@@ -3152,7 +3152,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Joyce Maureira",
   types: ["action"],
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-fifth-tradition-hospitality": {
@@ -3166,7 +3166,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Mara Miranda-Escota",
   types: ["action"],
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-fleshcrafting": {
@@ -3180,7 +3180,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Irene Francisco",
   types: ["action"],
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-freelancer": {
@@ -3194,7 +3194,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Felipe Gaona",
   types: ["unhosted action", "ongoing"],
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-grey-wolf": {
@@ -3209,7 +3209,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Adelijah Ocampo",
   types: ["action", "animal"],
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-home-improvement": {
@@ -3223,7 +3223,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Felipe Gaona",
   types: ["action", "ongoing"],
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-mask-of-a-thousand-faces": {
@@ -3238,7 +3238,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Irene Francisco",
   types: ["unhosted action", "ongoing"],
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-perimeter-defense": {
@@ -3253,7 +3253,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Joyce Maureira",
   types: ["action", "trap"],
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-poachers-choice": {
@@ -3270,7 +3270,7 @@ export const library: Record<CardId, Library> = {
   types: ["attack"],
   attack: "social",
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-secret-compartment": {
@@ -3283,7 +3283,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Joyce Maureira",
   types: ["unhosted action", "ongoing"],
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-siege-engine": {
@@ -3300,7 +3300,7 @@ export const library: Record<CardId, Library> = {
   types: ["attack"],
   attack: "physical",
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-sleight-of-hand": {
@@ -3318,7 +3318,7 @@ export const library: Record<CardId, Library> = {
   types: ["attack"],
   attack: "mental",
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-slumlord": {
@@ -3331,7 +3331,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Mara Miranda-Escota",
   types: ["action"],
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-smoke-and-mirrors": {
@@ -3350,7 +3350,7 @@ export const library: Record<CardId, Library> = {
   attack:["physical", "mental"],
   reactions: ["physical", "mental"],
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-switcharoo": {
@@ -3366,7 +3366,7 @@ export const library: Record<CardId, Library> = {
   types: ["attack"],
   attack: ["physical", "social", "mental"],
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-szlachta": {
@@ -3382,7 +3382,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Felipe Gaona",
   types: ["action", "ghoul"],
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-the-hat-trick": {
@@ -3399,7 +3399,7 @@ export const library: Record<CardId, Library> = {
   types: ["attack"],
   attack: "social",
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-the-more-the-scarier": {
@@ -3412,7 +3412,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Mara Miranda-Escota",
   types: ["unhosted action", "ongoing"],
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-throwing-knives": {
@@ -3428,7 +3428,7 @@ export const library: Record<CardId, Library> = {
   types: ["attack"],
   attack: "ranged",
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-urban-fox": {
@@ -3443,7 +3443,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Mara Miranda-Escota",
   types: ["action", "animal"],
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-vicissitude": {
@@ -3458,7 +3458,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Joyce Maureira",
   types: ["action", "ongoing"],
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-vozhd": {
@@ -3473,7 +3473,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Irene Francisco",
   types: ["action", "ghoul"],
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-wolf-spider": {
@@ -3488,7 +3488,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Adelijah Ocampo",
   types: ["action", "animal"],
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-back-with-a-vengeance": {
@@ -3507,7 +3507,7 @@ export const library: Record<CardId, Library> = {
   attack: ["physical", "mental"],
   reactions: ["physical", "mental"],
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "dar-the-long-con": {
@@ -3523,7 +3523,7 @@ export const library: Record<CardId, Library> = {
   illustrator: "Mara Miranda-Escota",
   types: ["action", "trap"],
   set: "Dragon & Rogue",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 // Justice and Mercy //
@@ -3546,7 +3546,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["auspex"],
   illustrator: "Felipe Gaona",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-third-eyes-a-charm": {
@@ -3566,7 +3566,7 @@ export const library: Record<CardId, Library> = {
   //Discipline:[],
   illustrator: "Irene Francisco",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-acuity": {
@@ -3587,7 +3587,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["dominate"],
   illustrator: "Felipe Gaona",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-warding-circle": {
@@ -3606,7 +3606,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:[],
   illustrator: "Marco Primo",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-a-kiss-before-dying": {
@@ -3627,7 +3627,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["fortitude"],
   illustrator: "Felipe Gaona",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-on-the-lam": {
@@ -3647,7 +3647,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["obfuscate"],
   illustrator: "Felipe Gaona",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-just-a-taste": {
@@ -3668,7 +3668,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:[],
   illustrator: "Marco Primo",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-rules-lawyer": {
@@ -3687,7 +3687,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:[],
   illustrator: "János Orbán",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-of-two-minds": {
@@ -3707,7 +3707,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["auspex"],
   illustrator: "Felipe Gaona",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-ritualistic-combat": {
@@ -3727,7 +3727,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["blood sorcery"],
   illustrator: "Darko Stojanovic",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-divisive": {
@@ -3747,7 +3747,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["dominate"],
   illustrator: "Adelijah Ocampo",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-bleeding-edge": {
@@ -3767,7 +3767,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["fortitude"],
   illustrator: "Felipe Gaona",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-cursed-blade": {
@@ -3787,7 +3787,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:["fortitude"],
   illustrator: "Marco Primo",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-split-second": {
@@ -3806,7 +3806,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["celerity"],
   illustrator: "Darko Stojanovic",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-blood-fueled-rage": {
@@ -3825,7 +3825,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:["fortitude"],
   illustrator: "Darko Stojanovic",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-dont-be-so-defensive": {
@@ -3844,7 +3844,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:["fortitude"],
   illustrator: "Marco Primo",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-the-grudge": {
@@ -3864,7 +3864,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:["fortitude"],
   illustrator: "Felipe Gaona",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-accept-your-fate": {
@@ -3884,7 +3884,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["blood sorcery"],
   illustrator: "Adelijah Ocampo",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-ishtars-touch": {
@@ -3904,7 +3904,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["blood sorcery"],
   illustrator: "Joyce Maureira",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-one-with-the-blade": {
@@ -3924,7 +3924,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["blood sorcery"],
   illustrator: "Irene Francisco",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-secrets-of-the-blood": {
@@ -3944,7 +3944,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["blood sorcery"],
   illustrator: "Marco Primo",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-call-to-purpose": {
@@ -3963,7 +3963,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:["blood sorcery"],
   illustrator: "Mara Miranda-Escota",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-study-their-ways": {
@@ -3983,7 +3983,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:["blood sorcery"],
   illustrator: "Adelijah Ocampo",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-obeah": {
@@ -4005,7 +4005,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:["blood sorcery"],
   illustrator: "Adelijah Ocampo",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-soul-thieving": {
@@ -4025,7 +4025,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["auspex"],
   illustrator: "Irene Francisco",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-blood-doll": {
@@ -4045,7 +4045,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:["blood sorcery"],
   illustrator: "Darko Stojanovic",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-kevlar-vest": {
@@ -4066,7 +4066,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:["blood sorcery"],
   illustrator: "Irene Francisco",
   set: "Justice & Mercy",
-  cardpool: "hunter and vampire",
+  cardpools: ["Hunter", "Vampire"],
 },
 
 "jam-search-for-golconda": {
@@ -4086,7 +4086,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:["blood sorcery"],
   illustrator: "Mara Miranda-Escota",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-thought-police": {
@@ -4105,7 +4105,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:["blood sorcery"],
   illustrator: "Mara Miranda-Escota",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-unburdening-the-bestial-soul": {
@@ -4126,7 +4126,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:["blood sorcery"],
   illustrator: "Joyce Maureira",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-righteousness": {
@@ -4145,7 +4145,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:["blood sorcery"],
   illustrator: "János Orbán",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-final-judgement": {
@@ -4165,7 +4165,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:["blood sorcery"],
   illustrator: "János Orbán",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-blink": {
@@ -4186,7 +4186,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["celerity"],
   illustrator: "Darko Stojanovic",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "jam-cats-grace": {
@@ -4206,7 +4206,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["celerity"],
   illustrator: "Darko Stojanovic",
   set: "Justice & Mercy",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 // Hunter and Hunted //
@@ -4228,7 +4228,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:[],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hah-poison-pill": {
@@ -4248,7 +4248,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:[],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "hunter and vampire",
+  cardpools: ["Hunter", "Vampire"],
 },
 
 "hah-pass-the-torch": {
@@ -4268,7 +4268,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:[],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "hunter and vampire",
+  cardpools: ["Hunter", "Vampire"],
 },
 
 "hah-one-mans-trash": {
@@ -4289,7 +4289,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:[],
   illustrator: "Felipe Gaona",
   set: "Hunters & Hunted",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hah-hasty-embrace": {
@@ -4309,7 +4309,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:[],
   illustrator: "Adelijah Ocampo",
   set: "Hunters & Hunted",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hah-drive-vengeance": {
@@ -4329,7 +4329,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:[],
   illustrator: "Darko Stojanovic",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "hah-drive-curiosity": {
@@ -4350,7 +4350,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["library"],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "hah-drive-atonement": {
@@ -4371,7 +4371,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:[],
   illustrator: "Darko Stojanovic",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "hah-plots-within-plots": {
@@ -4391,7 +4391,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:[],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hah-charmer": {
@@ -4411,7 +4411,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:[],
   illustrator: "Felipe Gaona",
   set: "Hunters & Hunted",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hah-believer": {
@@ -4431,7 +4431,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:[],
   illustrator: "Irene Francisco",
   set: "Hunters & Hunted",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hah-thorn-from-the-crown": {
@@ -4450,7 +4450,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:[],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "hah-bone-of-the-apostle-james": {
@@ -4469,7 +4469,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:[],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "hah-blood-of-saint-dominic": {
@@ -4488,7 +4488,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:[],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "hah-wrath": {
@@ -4508,7 +4508,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["repel the unnatural"],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "hah-weigh-down": {
@@ -4528,7 +4528,7 @@ export const library: Record<CardId, Library> = {
   ///disciplines:["repel the unnatural"],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "hah-tracking-device": {
@@ -4549,7 +4549,7 @@ export const library: Record<CardId, Library> = {
   ///disciplines:["repel the unnatural"],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "hah-shameless": {
@@ -4568,7 +4568,7 @@ export const library: Record<CardId, Library> = {
   ///disciplines:["repel the unnatural"],
   illustrator: "Irene Francisco",
   set: "Hunters & Hunted",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hah-found-a-weakness": {
@@ -4589,7 +4589,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["sense the unnatural"],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "hah-cobra-form": {
@@ -4610,7 +4610,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["protean"],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hah-anonymous-tip": {
@@ -4629,7 +4629,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["global"],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "hah-snake-oil": {
@@ -4650,7 +4650,7 @@ export const library: Record<CardId, Library> = {
   ///disciplines:["global"],
   illustrator: "Adelijah Ocampo",
   set: "Hunters & Hunted",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hah-snake-in-the-grass": {
@@ -4672,7 +4672,7 @@ export const library: Record<CardId, Library> = {
   ///disciplines:["global"],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hah-shed-your-skin": {
@@ -4694,7 +4694,7 @@ export const library: Record<CardId, Library> = {
   ///disciplines:["global"],
   illustrator: "Joyce Maureira",
   set: "Hunters & Hunted",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hah-pay-tribute": {
@@ -4716,7 +4716,7 @@ export const library: Record<CardId, Library> = {
   ///disciplines:["global"],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hah-mans-best-friend": {
@@ -4737,7 +4737,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["beast whisperer"],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "hah-give-em-the-bird": {
@@ -4758,7 +4758,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["beast whisperer"],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "hah-take-careful-notes": {
@@ -4777,7 +4777,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:[],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "hah-share-the-wealth": {
@@ -4797,7 +4797,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:[],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hah-not-forgotten": {
@@ -4817,7 +4817,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:[],
   illustrator: "Marco Primo",
   set: "Hunters & Hunted",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hah-learning-the-ropes": {
@@ -4836,7 +4836,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:[],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hah-dark-money": {
@@ -4855,7 +4855,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["obfuscate"],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hah-majesty": {
@@ -4874,7 +4874,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["presence"],
   illustrator: "Irene Francisco",
   set: "Hunters & Hunted",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hah-true-faith": {
@@ -4893,7 +4893,7 @@ export const library: Record<CardId, Library> = {
 `,
   illustrator: "Marco Primo",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "hah-well-prepared": {
@@ -4913,7 +4913,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["sense the unnatural"],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "hah-strength-of-the-fallen": {
@@ -4932,7 +4932,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["thwart the unnatural"],
   illustrator: "Darko Stojanovic",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "hah-shifting-organs": {
@@ -4952,7 +4952,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["obfuscate", "protean"],
   illustrator: "Felipe Gaona",
   set: "Hunters & Hunted",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hah-ready-and-waiting": {
@@ -4971,7 +4971,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["global"],
   illustrator: "Marco Primo",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "hah-layers-of-protection": {
@@ -4991,7 +4991,7 @@ export const library: Record<CardId, Library> = {
   ///disciplines:["obfuscate", "protean"],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "hunter and vampire",
+  cardpools: ["Hunter", "Vampire"],
 },
 
 "hah-know-their-habits": {
@@ -5010,7 +5010,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["sense the unnatural"],
   illustrator: "Darko Stojanovic",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "hah-get-into-its-mind": {
@@ -5030,7 +5030,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["library"],
   illustrator: "Marco Primo",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "hah-comeuppance": {
@@ -5050,7 +5050,7 @@ export const library: Record<CardId, Library> = {
   ///disciplines:["library"],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "hunter and vampire",
+  cardpools: ["Hunter", "Vampire"],
 },
 
 "hah-subterfuge": {
@@ -5070,7 +5070,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["obfuscate"],
   illustrator: "Mico Dimagiba",
   set: "Hunters & Hunted",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hah-speaking-in-tongues": {
@@ -5090,7 +5090,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["repel the unnatural"],
   illustrator: "Darko Stojanovic",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "hah-social-engineering": {
@@ -5109,7 +5109,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["global"],
   illustrator: "Marco Primo",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "hah-rebuke": {
@@ -5129,7 +5129,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["library", "thwart the unnatural"],
   illustrator: "Marco Primo",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "hah-lingering-kiss": {
@@ -5149,7 +5149,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["presence"],
   illustrator: "Joyce Maureira",
   set: "Hunters & Hunted",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hah-ingratiate": {
@@ -5168,7 +5168,7 @@ export const library: Record<CardId, Library> = {
   ///disciplines:["obfuscate"],
   illustrator: "Felipe Gaona",
   set: "Hunters & Hunted",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hah-shotgun": {
@@ -5188,7 +5188,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:[],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "hunter and vampire",
+  cardpools: ["Hunter", "Vampire"],
 },
 
 "hah-triple-threat": {
@@ -5209,7 +5209,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["auspex", "potence", "presence"],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hah-risky-business": {
@@ -5229,7 +5229,7 @@ export const library: Record<CardId, Library> = {
   ///disciplines:["auspex", "potence", "presence"],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hah-release-the-hounds": {
@@ -5249,7 +5249,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["beast whisperer", "animalism"],
   illustrator: "Marco Primo",
   set: "Hunters & Hunted",
-  cardpool: "hunter and vampire",
+  cardpools: ["Hunter", "Vampire"],
 },
 
 "hah-coiled-strike": {
@@ -5268,7 +5268,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["protean"],
   illustrator: "Joyce Maureira",
   set: "Hunters & Hunted",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hah-blaze-of-glory": {
@@ -5290,7 +5290,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["thwart the unnatural"],
   illustrator: "Marco Primo",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "hah-wooden-stake": {
@@ -5310,7 +5310,7 @@ export const library: Record<CardId, Library> = {
 `,
   illustrator: "Marco Primo",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "hah-wide-array-of-pain": {
@@ -5329,7 +5329,7 @@ export const library: Record<CardId, Library> = {
   ///disciplines:["protean"],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hah-get-the-drop": {
@@ -5349,7 +5349,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["library"],
   illustrator: "Marco Primo",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "hah-confuse": {
@@ -5369,7 +5369,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["sense the unnatural"],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "hah-awe": {
@@ -5389,7 +5389,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["presence"],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "hah-holy-water": {
@@ -5409,7 +5409,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["repel the unnatural"],
   illustrator: "Cold Castle Studios",
   set: "Hunters & Hunted",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 // Martial Law
@@ -5431,7 +5431,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:["repel the unnatural"],
   illustrator: "Adelijah Ocampo",
   set: "Martial Law",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "ml-armored-suv": {
@@ -5453,7 +5453,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["fleet"],
   illustrator: "Mara Miranda",
   set: "Martial Law",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "ml-awaken-the-homuncular-servant": {
@@ -5474,7 +5474,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["oblivion"],
   illustrator: "Felipe Gaona",
   set: "Martial Law",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "ml-blinded": {
@@ -5495,7 +5495,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:["repel the unnatural"],
   illustrator: "Irene Francisco",
   set: "Martial Law",
-  cardpool: "hunter and vampire",
+  cardpools: ["Hunter", "Vampire"],
 },
 
 "ml-chimerstry": {
@@ -5516,7 +5516,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["presence", "obfuscate"],
   illustrator: "Irene Francisco",
   set: "Martial Law",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "ml-claymore": {
@@ -5538,7 +5538,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["ordnance"],
   illustrator: "Mico Dimagiba",
   set: "Martial Law",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "ml-cover-fire": {
@@ -5558,7 +5558,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["arsenal"],
   illustrator: "Adelijah Ocampo",
   set: "Martial Law",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "ml-cruisin-for-a-bruisin": {
@@ -5578,7 +5578,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["fleet"],
   illustrator: "Felipe Gaona",
   set: "Martial Law",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "ml-death-from-above": {
@@ -5598,7 +5598,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["drone jockey"],
   illustrator: "Adelijah Ocampo",
   set: "Martial Law",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "ml-drive-envy": {
@@ -5618,7 +5618,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:["ordnance"],
   illustrator: "Patsy Lascano",
   set: "Martial Law",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "ml-drive-pride": {
@@ -5639,7 +5639,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:["ordnance"],
   illustrator: "Felipe Gaona",
   set: "Martial Law",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "ml-eye-in-the-sky": {
@@ -5659,7 +5659,7 @@ export const library: Record<CardId, Library> = {
   // disciplines:["drone jockey"],
   illustrator: "Mico Dimagiba",
   set: "Martial Law",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "ml-feint": {
@@ -5679,7 +5679,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:["ordnance"],
   illustrator: "Adelijah Ocampo",
   set: "Martial Law",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "ml-flamethrower": {
@@ -5700,7 +5700,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["arsenal"],
   illustrator: "Patsy Lascano",
   set: "Martial Law",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "ml-ghoul-boy": {
@@ -5724,7 +5724,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:["ordnance"],
   illustrator: "Felipe Gaona",
   set: "Martial Law",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "ml-librarian-ghoul": {
@@ -5748,7 +5748,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:["ordnance"],
   illustrator: "Felipe Gaona",
   set: "Martial Law",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "ml-peace-among-rivals": {
@@ -5771,7 +5771,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:["ordnance"],
   illustrator: "Mico Dimagiba",
   set: "Martial Law",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "ml-political-will": {
@@ -5795,7 +5795,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:["ordnance"],
   illustrator: "Adelijah Ocampo",
   set: "Martial Law",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "ml-sacrifice": {
@@ -5818,7 +5818,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:["ordnance"],
   illustrator: "Mico Dimagiba",
   set: "Martial Law",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "ml-shine-a-light": {
@@ -5841,7 +5841,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:["ordnance"],
   illustrator: "Felipe Gaona",
   set: "Martial Law",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "ml-silver-bullets": {
@@ -5865,7 +5865,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["ordnance"],
   illustrator: "Irene Francisco",
   set: "Martial Law",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "ml-smoke-bomb": {
@@ -5889,7 +5889,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:["ordnance"],
   illustrator: "Irene Francisco",
   set: "Martial Law",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "ml-sniper-rifle": {
@@ -5914,7 +5914,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["arsenal"],
   illustrator: "Mico Dimagiba",
   set: "Martial Law",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "ml-spying": {
@@ -5938,7 +5938,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["drone jockey"],
   illustrator: "Felipe Gaona",
   set: "Martial Law",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
 },
 
 "ml-stand-and-deliver": {
@@ -5963,7 +5963,7 @@ export const library: Record<CardId, Library> = {
   disciplines:["blood sorcery"],
   illustrator: "Felipe Gaona",
   set: "Martial Law",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "ml-trash-to-treasure": {
@@ -5988,7 +5988,7 @@ export const library: Record<CardId, Library> = {
   //disciplines:["ordnance"],
   illustrator: "Mico Dimagiba",
   set: "Martial Law",
-  cardpool: "vampire",
+  cardpools: ["Vampire"],
 },
 
 "ml-turnabout": {
@@ -6012,7 +6012,852 @@ export const library: Record<CardId, Library> = {
   disciplines:["ordnance"],
   illustrator: "Felipe Gaona",
   set: "Martial Law",
-  cardpool: "hunter",
+  cardpools: ["Hunter"],
+},
+
+// Fang and Talon
+
+"fat-anger-management": {
+  stack: "library",
+  name: "Anger Management",
+  types: ["unhosted action"],
+  clan: "red talons",
+  //bloodPotencyRequirement: ,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: ,
+  //shield: ,
+  //attack: [],
+  //reactions: [],
+  text: md`
+    Move any number of Rage tokens from any number of characters in your pack to any other characters in your pack.
+    If you remove the last Rage from 1+ characters this way, draw 1 card.
+`,
+  //disciplines:[],
+  illustrator: "Nevzat Aydin",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-apeskin": {
+  stack: "library",
+  name: "Apeskin",
+  types: ["action"],
+  //clan: "red talons",
+  //bloodPotencyRequirement: ,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: ,
+  //shield: ,
+  //attack: [],
+  //reactions: [],
+  text: md`
+    **Attach to the acting character.**
+
+    +1 [shield]
+    **Aggravated** attacks against this character are **Superficial**.
+`,
+  //disciplines:[],
+  illustrator: "Felipe Gaona",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-blood-of-the-pack": {
+  stack: "library",
+  name: "Blood of the Pack",
+  types: ["unhosted action", "gift"],
+  clan: "silverfangs",
+  //bloodPotencyRequirement: ,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: ,
+  //shield: ,
+  //attack: [],
+  //reactions: [],
+  text: md`
+  [silverfangs] **Attach to a character in your pack.**
+
+  **Exhaust this card:** Move 1 Rage or 1 [blood] from 1+ characters in this party to target character you control.
+`,
+  //disciplines:[],
+  illustrator: "Elif Aydin",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-eyes-of-the-owl": {
+  stack: "library",
+  name: "Eyes of the Owl",
+  types: ["unhosted action", "gift"],
+  //clan: "red talons",
+  //bloodPotencyRequirement: ,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: ,
+  //shield: ,
+  //attack: [],
+  //reactions: [],
+  text: md`
+    **Attach to a character in your pack.**
+    **Exhaust this character:** The next attack this turn has +2 Intel and the defender's characters have -1 [shield].
+`,
+  //disciplines:[],
+  illustrator: "Nevzat Aydin",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-fangs-of-judgment": {
+  stack: "library",
+  name: "Fangs of Judgment",
+  types: ["action", "gift"],
+  //clan: "red talons",
+  //bloodPotencyRequirement: ,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: ,
+  //shield: ,
+  //attack: [],
+  //reactions: [],
+  text: md`
+    [philodox] **Attach to the acting character.**
+
+    Party - **Detach this card:** This attack deals +2 [physical] [damage] for each character in this party.
+`,
+  disciplines:["philodox"],
+  illustrator: "Felipe Gaona",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-full-moon-rising": {
+  stack: "library",
+  name: "Full Moon Rising",
+  types: ["unhosted action"],
+  //clan: "red talons",
+  //bloodPotencyRequirement: ,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: ,
+  //shield: ,
+  //attack: [],
+  //reactions: [],
+  text: md`
+    Each character in your pack gains 2 Rage.
+`,
+  //disciplines:["philodox"],
+  illustrator: "Felipe Gaona",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-harmony-flute": {
+  stack: "library",
+  name: "Harmony Flute",
+  types: ["action", "ongoing"],
+  //clan: "red talons",
+  //bloodPotencyRequirement: ,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: ,
+  //shield: ,
+  //attack: [],
+  //reactions: [],
+  text: md`
+    Ongoing, Relentless - **Exhaust a ready character in your pack:** Remove 1 Rage from each character with 2+ Rage in target party.
+    If the character you exhausted has [galliard], you may also burn this card to steal 1 [prestige] from target player.
+`,
+  disciplines:["galliard"],
+  illustrator: "Marco Primo",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-hidden-killer": {
+  stack: "library",
+  name: "Hidden Killer",
+  types: ["unhosted action", "gift"],
+  clan: "red talons",
+  //bloodPotencyRequirement: ,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: ,
+  //shield: ,
+  //attack: [],
+  //reactions: [],
+  text: md`
+  **[red-talons] Attach to a character in your pack.**
+  This character has **Reach** and **Prowl** _(may attack City Deck Mortals in The Streets from their Caern)_.
+  Attacker - This attack deals +1 [damage] when using **Prowl**.
+`,
+  //disciplines:["galliard"],
+  illustrator: "Marco Primo",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-hunting-party": {
+  stack: "library",
+  name: "Hunting Party",
+  types: ["attack"],
+  //clan: "red talons",
+  bloodPotencyRequirement: 4,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  damage: 0,
+  //shield: ,
+  attack: ["physical"],
+  //reactions: [],
+  text: md`
+    +1 [damage] for each character in the attacking party.
+`,
+  //disciplines:["galliard"],
+  illustrator: "Nevzat Aydin",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-lead-by-example": {
+  stack: "library",
+  name: "Lead by Example",
+  types: ["influence modifier", "unhosted action"],
+  clan: "silverfangs",
+  //bloodPotencyRequirement: 4,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 0,
+  //shield: ,
+  //attack: ["physical"],
+  //reactions: [],
+  text: md`
+    If your Leader is exhausted, ready them and gain 1 action, then other characters in your pack gain 1 Rage each.
+    OR Gain 2 Influence during this action or event.
+`,
+  //disciplines:["galliard"],
+  illustrator: "Elif Aydin",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-leap-away": {
+  stack: "library",
+  name: "Leap Away",
+  types: ["reaction"],
+  //clan: "silverfangs",
+  bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 0,
+  shield: 2,
+  attack: ["physical", "mental"],
+  reactions: ["physical", "mental"],
+  text: md`
+    If this character is in The Streets in a party of 2+ characters, you may seperate them from this party. If you do, +1 [shield].
+    **Pay 2 Rage:** +1 [shield].
+`,
+  //disciplines:["galliard"],
+  illustrator: "Nevzat Aydin",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-net-gun": {
+  stack: "library",
+  name: "Net Gun",
+  types: ["attack"],
+  //clan: "silverfangs",
+  bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  damage: 2,
+  //shield: ,
+  attack: ["ranged"],
+  //reactions: [],
+  text: md`
+    +1 [damage] against City Deck Mortals or characters with attachments.
+    If this deals damage to the defending character, they must detach 1 attached non-Title card of attacker's choice.
+`,
+  //disciplines:["galliard"],
+  illustrator: "Felipe Gaona",
+  set: "Fang & Talon",
+  cardpools: ["Hunter", "Werewolf"],
+},
+
+"fat-pack-protection": {
+  stack: "library",
+  name: "Pack Protection",
+  types: ["reaction"],
+  //clan: "silverfangs",
+  bloodPotencyRequirement: 4,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 2,
+  shield: 0,
+  attack: ["physical", "social"],
+  reactions: ["physical", "social"],
+  text: md`
+    This character has +1 [shield] for each member of this party.
+    **Pay 2 Rage:** Deal 1 [physical] [damage] to the attacker for each member of this party. If this party is in The Streets, the [damage] is **Aggravated**.
+`,
+  //disciplines:["galliard"],
+  illustrator: "Elif Aydin",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-personal-bodyguard": {
+  stack: "library",
+  name: "Personal Bodyguard",
+  types: ["reaction"],
+  //clan: "silverfangs",
+  bloodPotencyRequirement: 4,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 2,
+  shield: 0,
+  attack: ["physical", "social", "mental", "ranged"],
+  reactions: ["physical", "social", "mental", "ranged"],
+  text: md`
+    Redirect this attack to any character in this party. The new target has +2 [shield].
+    If the new target is defeated, the original defender may gain 2 Rage.
+`,
+  //disciplines:["galliard"],
+  illustrator: "Felipe Gaona",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-poke-the-wolf": {
+  stack: "library",
+  name: "Poke the Wolf",
+  types: ["unhosted action"],
+  //clan: "silverfangs",
+  //bloodPotencyRequirement: 4,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 2,
+  //shield: 0,
+  //attack: [],
+  //reactions: ["physical", "social"],
+  text: md`
+    Put a Frenzy token on target werewolf with a Form OR a Fear token on target non-werewolf character.
+    If you put the Frenzy token on a character in your pack, ready them.
+`,
+  //disciplines:["galliard"],
+  illustrator: "Elif Aydin",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-pounce": {
+  stack: "library",
+  name: "Pack Protection",
+  types: ["attack"],
+  //clan: "silverfangs",
+  bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  damage: 1,
+  //shield: 0,
+  attack: ["physical"],
+  //reactions: ["physical", "social"],
+  text: md`
+    +1 [damage] for each Stealth this character has.
+`,
+  //disciplines:["galliard"],
+  illustrator: "Nevzat Aydin",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-pull-rank": {
+  stack: "library",
+  name: "Pull Rank",
+  types: ["attack"],
+  clan: "silverfangs",
+  bloodPotencyRequirement: 4,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  damage: 2,
+  //shield: 0,
+  attack: ["social", "mental"],
+  //reactions: ["physical", "social"],
+  text: md`
+    When placed, announce one of the attack types.
+    **Exert up to 2 Influence:** +1 [damage] for each Influence exerted this way.
+    When your Leader is in the attacking party, you may **Pay 1 Rage:** Put a Fear token on the defender.
+`,
+  //disciplines:["galliard"],
+  illustrator: "Nevzat Aydin",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-pulse-of-the-prey": {
+  stack: "library",
+  name: "Pulse of the Prey",
+  types: ["action", "gift"],
+  //clan: "silverfangs",
+  //bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 1,
+  //shield: 0,
+  //attack: ["physical"],
+  //reactions: ["physical", "social"],
+  text: md`
+    [ragabash] **Attach tyo the acting character.**
+    **Exhaust this card: Target character in this party has +1 Stealth and +1 Intel this turn.
+`,
+  disciplines:["ragabash"],
+  illustrator: "Nevzat Aydin",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-raging-strike": {
+  stack: "library",
+  name: "Raging Strike",
+  types: ["unhosted action", "gift"],
+  //clan: "silverfangs",
+  //bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 1,
+  //shield: 0,
+  //attack: ["physical"],
+  //reactions: ["physical", "social"],
+  text: md`
+    **Attach to a character in your pack.**
+    Attacker - **Pay 2 Rage:** This attack deals +2 [damage] to the target. Use only in The Streets.
+`,
+  //disciplines:["ragabash"],
+  illustrator: "Marco Primo",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-rapid-shift": {
+  stack: "library",
+  name: "Rapid Shift",
+  types: ["action", "gift"],
+  //clan: "silverfangs",
+  //bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 1,
+  //shield: 0,
+  //attack: ["physical"],
+  //reactions: ["physical", "social"],
+  text: md`
+    **Attach to the acting character.**
+    Form - **Exhaust this card:** Detach a Form from this character, then attach a different Form to this character at no Rage cost (may be used during an attack).
+`,
+  //disciplines:["ragabash"],
+  illustrator: "Nevzat Aydin",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-razor-claws": {
+  stack: "library",
+  name: "Razor Claws",
+  types: ["action", "gift"],
+  //clan: "silverfangs",
+  //bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 1,
+  //shield: 0,
+  //attack: ["physical"],
+  //reactions: ["physical", "social"],
+  text: md`
+  [ahroun] **Attach to the acting character.**
+  Attacker - +1 [physical] [damage].
+`,
+  disciplines:["ahroun"],
+  illustrator: "Marco Primo",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-rite-of-abjuration": {
+  stack: "library",
+  name: "Rite of Abjuration",
+  types: ["action", "ongoing", "rite"],
+  //clan: "silverfangs",
+  //bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 1,
+  //shield: 0,
+  //attack: ["physical"],
+  //reactions: ["physical", "social"],
+  text: md`
+    **Put 1 to 3 Rage on this card.**
+    Ongoing - **Remove up to 3 Rage from this:** For each Rage you remove, remove 1 token from target Ongoing or face-down card. If you remove 3 Rage, you may burn target Ongoing card instead.
+`,
+  //disciplines:["ragabash"],
+  illustrator: "Felipe Gaona",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-rite-of-celebration": {
+  stack: "library",
+  name: "Rite of Celebration",
+  types: ["action", "rite", "ongoing"],
+  //clan: "silverfangs",
+  //bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 1,
+  //shield: 0,
+  //attack: ["physical"],
+  //reactions: ["physical", "social"],
+  text: md`
+    **Put 1 to 3 Rage on this card.**
+    Ongoing, **Relentless - Remove 2 Rage from this:** Gain 1 [prestige].
+`,
+  //disciplines:["ragabash"],
+  illustrator: "Marco Primo",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-rite-of-rage": {
+  stack: "library",
+  name: "Rite of Rage",
+  types: ["action", "rite", "ongoing"],
+  //clan: "silverfangs",
+  //bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 1,
+  //shield: 0,
+  //attack: ["physical"],
+  //reactions: ["physical", "social"],
+  text: md`
+    **Put 1 to 3 Rage on this card.**
+    Ongoing - **Remove 1 Rage from this:** Target werewolf in your pack gains 2 Rage OR target foe's werewolf gains 3 Rage. If this sends them into a Frenzy, burn this card.
+`,
+  //disciplines:["ragabash"],
+  illustrator: "Nevzat Aydin",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-rite-of-shame": {
+  stack: "library",
+  name: "Rite of Shame",
+  types: ["action", "rite", "ongoing"],
+  //clan: "silverfangs",
+  //bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 1,
+  //shield: 0,
+  //attack: ["physical"],
+  //reactions: ["physical", "social"],
+  text: md`
+    **Put 1 to 3 Rage on this card.**
+    Ongoing - **Remove 1 Rage from this:** Target foe loses 1 [prestige].
+    **Remove 3 Rage from this:** Target foe with 9+ [agenda] loses 1 [agenda].
+`,
+  //disciplines:["ragabash"],
+  illustrator: "Nevzat Aydin",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-shield-of-the-wyld": {
+  stack: "library",
+  name: "Shield of the Wyld",
+  types: ["action", "gift"],
+  clan: "red talons",
+  //bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 1,
+  //shield: 0,
+  //attack: ["physical"],
+  //reactions: ["physical", "social"],
+  text: md`
+    [red-talons] **Attach to the acting character.**
+    +2 [shield] against [physical] and [ranged] attacks.
+`,
+  //disciplines:["ragabash"],
+  illustrator: "Marco Primo",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-show-of-dominance": {
+  stack: "library",
+  name: "Show of Dominance",
+  types: ["attack"],
+  //clan: "red talons",
+  bloodPotencyRequirement: 5,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  damage: 2,
+  //shield: 0,
+  attack: ["social"],
+  //reactions: ["physical", "social"],
+  text: md`
+    [ahroun] If this attack deals 1+ [damage] to the defender, exhaust them and put a Fear token on them.
+`,
+  disciplines:["ahroun"],
+  illustrator: "Marco Primo",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-silver-dagger": {
+  stack: "library",
+  name: "Silver Dagger",
+  types: ["attack"],
+  //clan: "red talons",
+  bloodPotencyRequirement: 4,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  damage: 2,
+  //shield: 0,
+  attack: ["physical"],
+  //reactions: ["physical", "social"],
+  text: md`
+    This attack deals +1 **Silver** [damage] to werewolves.
+    (Silver damage dealt to a werewolf is **Aggravated.**)
+`,
+  //disciplines:["ahroun"],
+  illustrator: "Elif Aydin",
+  set: "Fang & Talon",
+  cardpools: ["Hunter", "Werewolf"],
+},
+
+"fat-sink-your-teeth": {
+  stack: "library",
+  name: "Sink Your Teeth",
+  types: ["attack"],
+  //clan: "red talons",
+  bloodPotencyRequirement: 4,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  damage: 1,
+  //shield: 0,
+  attack: ["physical"],
+  //reactions: ["physical", "social"],
+  text: md`
+    **Pay 1 Rage:** +1 [damage].
+    Form - +1 [damage].
+`,
+  //disciplines:["ahroun"],
+  illustrator: "Elif Aydin",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-snap-back": {
+  stack: "library",
+  name: "Snap Back",
+  types: ["reaction"],
+  //clan: "red talons",
+  bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 2,
+  shield: 2,
+  attack: ["social"],
+  reactions: ["social"],
+  text: md`
+    [ahroun] Deal 2 [physical] [damage] to the attacker.
+    **Pay 1 Rage:** Steal 1 [prestige] from the attacker.
+`,
+  disciplines:["ahroun"],
+  illustrator: "Felipe Gaona",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-social-justice": {
+  stack: "library",
+  name: "Social Justice",
+  types: ["attack"],
+  //clan: "red talons",
+  bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  damage: 2,
+  //shield: 0,
+  attack: ["social"],
+  //reactions: ["physical", "social"],
+  text: md`
+    If this attack deals 2+ [damage] to the defender, destroy target Ongoing card controlled by the defending player.
+    [ragabash] Reduce the [damage] required to trigger this effect by 1.
+`,
+  disciplines:["ragabash"],
+  illustrator: "Marco Primo",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-song-of-rage": {
+  stack: "library",
+  name: "Song of Rage",
+  types: ["action", "gift"],
+  //clan: "red talons",
+  //bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 2,
+  //shield: 0,
+  //attack: ["social"],
+  //reactions: ["physical", "social"],
+  text: md`
+    [galliard] **Attach to the acting character.**
+    **Exhaust this character:** Werewolves in this party each gain 2 Rage.
+`,
+  disciplines:["galliard"],
+  illustrator: "Marco Primo",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-the-culling": {
+  stack: "library",
+  name: "The Culling",
+  types: ["attack"],
+  clan: "red talons",
+  bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  damage: 2,
+  //shield: 0,
+  attack: ["physical"],
+  //reactions: ["physical", "social"],
+  text: md`
+    This attack deals +1 [physical] [damage] for each character in this party with a Form attached.
+`,
+  //disciplines:["galliard"],
+  illustrator: "Marco Primo",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-the-howling": {
+  stack: "library",
+  name: "The Howling",
+  types: ["attack"],
+  //clan: "red talons",
+  bloodPotencyRequirement: 4,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  damage: 1,
+  //shield: 0,
+  attack: ["mental"],
+  //reactions: ["physical", "social"],
+  text: md`
+    +2 [damage] against City Deck Mortals.
+    [theurge] +2 [damage] against non-werewolf characters.
+`,
+  disciplines:["theurge"],
+  illustrator: "Felipe Gaona",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
+"fat-unity-of-the-pack": {
+  stack: "library",
+  name: "Unity of the Pack",
+  types: ["action", "gift"],
+  clan: "silverfangs",
+  //bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 2,
+  //shield: 0,
+  //attack: ["social"],
+  //reactions: ["physical", "social"],
+  text: md`
+    [silverfangs] **Attach to the acting character.**
+    This character has +1 [shield] when in a party of 2+ characters.
+    **Exhaust this card:** Target character in this party has +1 [mental] during this action for each other member with 1+ [mental].
+`,
+  //disciplines:["galliard"],
+  illustrator: "Elif Aydin",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
 },
 
 // Promo //

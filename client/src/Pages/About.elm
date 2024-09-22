@@ -70,6 +70,9 @@ init _ =
             , ( Icon.DroneJockey, "Delivery Drone by Delapouite from game-icons.net" )
             , ( Icon.Arsenal, "Colt M1911 by Skoll from game-icons.net" )
             , ( Icon.Fleet, "Car by Fasobrun Jamil from thenounproject.com" )
+            , ( Icon.Gift, "Talent by iconbysonny from thenounproject.com" )
+            , ( Icon.Rite, "Bonfire by Mol Media from thenounproject.com" )
+            , ( Icon.Form, "Shapeshift by Tim Rostilov from thenounproject.com" )
             ]
       }
     , Effect.none
