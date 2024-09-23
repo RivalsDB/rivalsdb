@@ -6092,6 +6092,32 @@ export const library: Record<CardId, Library> = {
   cardpools: ["Werewolf"],
 },
 
+"fat-deer-in-the-headlights": {
+  stack: "library",
+  name: "Deer in the Headlights",
+  types: ["attack"],
+  //clan: "red talons",
+  bloodPotencyRequirement: 4,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  damage: 1,
+  //shield: ,
+  attack: ["mental"],
+  //reactions: [],
+  text: md`
+    When you play this card face down, this attack deals +1 [damage] to the defender.
+    OR
+    **You may play this card face up and pay 1 Rage:**
+    Defender cannot play a Reaction.
+`,
+  //disciplines:[],
+  illustrator: "Nevzat Aydin",
+  set: "Fang & Talon",
+  cardpools: ["Werewolf"],
+},
+
 "fat-eyes-of-the-owl": {
   stack: "library",
   name: "Eyes of the Owl",
@@ -6382,7 +6408,7 @@ export const library: Record<CardId, Library> = {
 
 "fat-pounce": {
   stack: "library",
-  name: "Pack Protection",
+  name: "Pounce",
   types: ["attack"],
   //clan: "silverfangs",
   bloodPotencyRequirement: 3,
