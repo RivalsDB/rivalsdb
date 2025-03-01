@@ -6886,6 +6886,56 @@ export const library: Record<CardId, Library> = {
   cardpools: ["Werewolf"],
 },
 
+// Prince Pack 2 //
+
+"pp2-ecstatic-agony": {
+  stack: "library",
+  name: "Ecstatic Agony",
+  types: ["action"],
+  //clan: "silverfangs",
+  //bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 2,
+  //shield: 0,
+  //attack: ["social"],
+  //reactions: ["physical", "social"],
+  text: md`
+    Attach to the acting character.
+    When [blood] is removed from this character, place 1 of it onto any face-down card you control, flipped to its [prestige] side.
+`,
+  //disciplines:["galliard"],
+  illustrator: "Elif Aydin",
+  set: "Prince Pack 2",
+  cardpools: ["Vampire"],
+},
+
+"pp2-fetch": {
+  stack: "library",
+  name: "Fetch",
+  types: ["action"],
+  //clan: "silverfangs",
+  //bloodPotencyRequirement: 3,
+  //bloodPotency: ,
+  //physical: ,
+  //social: ,
+  //mental: ,
+  //damage: 2,
+  //shield: 0,
+  //attack: ["social"],
+  //reactions: ["physical", "social"],
+  text: md`
+    Burn target non-Title, non-Wraith card attached to target character in The Streets. **Pay 2** [prestige]: If the targeted card can be legally attached to the acting character, do so.
+    [animalism] Pay 1 [prestige] instead.
+`,
+  //disciplines:["galliard"],
+  illustrator: "Elif Aydin",
+  set: "Prince Pack 2",
+  cardpools: ["Vampire"],
+},
+
 // Promo //
 
 }

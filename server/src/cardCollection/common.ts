@@ -51,7 +51,10 @@ export type CardSet =
   | "Hunters & Hunted"
   | "Prince Pack 1"
   | "Martial Law"
-  | "Fang & Talon";
+  | "Fang & Talon"
+  | "Prince Pack 2"
+  ;
+
 
 export type Clan =
   | "banu haqim"
