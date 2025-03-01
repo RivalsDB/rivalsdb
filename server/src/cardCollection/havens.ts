@@ -647,7 +647,7 @@ export const havens: Record<CardId, Haven> = {
 
 // Prince Pack 2 //
 
-"pp2-haven-the-dojo": {
+"pp2-the-dojo": {
   stack: "haven",
   name: "Haven - The Dojo",
   text: md`
@@ -667,7 +667,7 @@ export const havens: Record<CardId, Haven> = {
   text: md`
     Characters in your coterie have +1 Intel.
     **Leader Ability**
-    Characters in your coterie hace +1 Stealth. During your turn, when player blocks an attack you make, draw 1 card.
+    Characters in your coterie have +1 Stealth. During your turn, when a player blocks an attack you make, draw 1 card.
   `,
   illustrator: "Anastasiia Horbunova",
   set: "Prince Pack 2",

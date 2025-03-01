@@ -4375,7 +4375,7 @@ export const factions: Record<CardId, Faction> = {
   mental: 1,
   illustrator: "Joyce Maureira",
   set: "Fang & Talon",
-  disciplines: { ahroun:  1 },
+  disciplines: { ahroun: 1 },
   cardpools: ["Werewolf"],
 },
 
@@ -4394,7 +4394,7 @@ export const factions: Record<CardId, Faction> = {
   mental: 0,
   illustrator: "Mico Dimagiba",
   set: "Fang & Talon",
-  disciplines: { ahroun:1 },
+  disciplines: { ahroun: 1 },
   cardpools: ["Werewolf"],
 },
 

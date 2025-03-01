@@ -6930,7 +6930,7 @@ export const library: Record<CardId, Library> = {
     Burn target non-Title, non-Wraith card attached to target character in The Streets. **Pay 2** [prestige]: If the targeted card can be legally attached to the acting character, do so.
     [animalism] Pay 1 [prestige] instead.
 `,
-  //disciplines:["galliard"],
+  disciplines:["animalism"],
   illustrator: "Elif Aydin",
   set: "Prince Pack 2",
   cardpools: ["Vampire"],

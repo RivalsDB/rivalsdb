@@ -234,7 +234,7 @@ export const agendas: Record<CardId, Agenda> = {
 "sas-most-impressive": {
   name: "Most Impressive",
   text: md`
-    At the start of your turn, if your [blood potency] in The Streets is higher than each individual foes' [blood potency] in The Streets, gain 1 [agenda]. 
+    At the start of your turn, if your [blood-potency] in The Streets is higher than each individual foes' [blood potency] in The Streets, gain 1 [agenda]. 
     During each of your turns, the first time you increase the [blood potency] of a character you control in The Streets, gain 2 [agenda].
   `,
   illustrator: "Mara Miranda-Escota",
