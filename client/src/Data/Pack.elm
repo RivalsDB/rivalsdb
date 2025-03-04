@@ -18,7 +18,7 @@ type Pack
     | PrincePack1
     | MartialLaw
     | FangAndTalon
-
+    | PrincePack2
 
 enum : Enum Pack
 enum =
