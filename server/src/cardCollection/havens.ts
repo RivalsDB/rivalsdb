@@ -15,7 +15,7 @@ export const havens: Record<CardId, Haven> = {
 
 "core-artist-lofts": {
   stack: "haven",
-  name: "Artist Lofts",
+  name: "Haven - Artist Lofts",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -28,7 +28,7 @@ export const havens: Record<CardId, Haven> = {
 
 "core-dragons-roost": {
   stack: "haven",
-  name: "Dragon's Roost",
+  name: "Haven - Dragon's Roost",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -42,7 +42,7 @@ export const havens: Record<CardId, Haven> = {
 
 "core-house-of-pain": {
   stack: "haven",
-  name: "House of Pain",
+  name: "Haven - House of Pain",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -55,7 +55,7 @@ export const havens: Record<CardId, Haven> = {
 
 "core-old-post-office": {
   stack: "haven",
-  name: "Old Post Office",
+  name: "Haven - Old Post Office",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -69,7 +69,7 @@ export const havens: Record<CardId, Haven> = {
 
 "core-royal-retreat": {
   stack: "haven",
-  name: "Royal Retreat",
+  name: "Haven - Royal Retreat",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -83,7 +83,7 @@ export const havens: Record<CardId, Haven> = {
 
 "core-the-dockyards": {
   stack: "haven",
-  name: "The Dockyards",
+  name: "Haven - The Dockyards",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -96,7 +96,7 @@ export const havens: Record<CardId, Haven> = {
 
 "core-the-madhouse": {
   stack: "haven",
-  name: "The Madhouse",
+  name: "Haven - The Madhouse",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -109,7 +109,7 @@ export const havens: Record<CardId, Haven> = {
 
 "core-the-penthouse": {
   stack: "haven",
-  name: "The Penthouse",
+  name: "Haven - The Penthouse",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -124,7 +124,7 @@ export const havens: Record<CardId, Haven> = {
 
 "baa-the-chantry": {
   stack: "haven",
-  name: "The Chantry",
+  name: "Haven - The Chantry",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -137,7 +137,7 @@ export const havens: Record<CardId, Haven> = {
 
 "baa-the-pit": {
   stack: "haven",
-  name: "The Pit",
+  name: "Haven - The Pit",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -150,7 +150,7 @@ export const havens: Record<CardId, Haven> = {
 
 "baa-thrift-store": {
   stack: "haven",
-  name: "Thrift Store",
+  name: "Haven - Thrift Store",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -164,7 +164,7 @@ export const havens: Record<CardId, Haven> = {
 
 "baa-university-library": {
   stack: "haven",
-  name: "University Library",
+  name: "Haven - University Library",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -179,7 +179,7 @@ export const havens: Record<CardId, Haven> = {
 
 "war-city-park": {
   stack: "haven",
-  name: "City Park",
+  name: "Haven - City Park",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -194,7 +194,7 @@ export const havens: Record<CardId, Haven> = {
 
 "war-the-outskirts": {
   stack: "haven",
-  name: "The Outskirts",
+  name: "Haven - The Outskirts",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -207,7 +207,7 @@ export const havens: Record<CardId, Haven> = {
 
 "war-the-sewers": {
   stack: "haven",
-  name: "The Sewers",
+  name: "Haven - The Sewers",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -220,7 +220,7 @@ export const havens: Record<CardId, Haven> = {
 
 "war-the-shelter": {
   stack: "haven",
-  name: "The Shelter",
+  name: "Haven - The Shelter",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -235,7 +235,7 @@ export const havens: Record<CardId, Haven> = {
 
 "sas-eternal-life-mortuary": {
   stack: "haven",
-  name: "Eternal Life Mortuary",
+  name: "Haven - Eternal Life Mortuary",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -248,7 +248,7 @@ export const havens: Record<CardId, Haven> = {
 
 "sas-mission-cemetery": {
   stack: "haven",
-  name: "Mission Cemetery",
+  name: "Haven - Mission Cemetery",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -261,7 +261,7 @@ export const havens: Record<CardId, Haven> = {
 
 "sas-the-big-house": {
   stack: "haven",
-  name: "The Big House",
+  name: "Haven - The Big House",
   text: md`
     _Start of Game - Put 1 [prestige] from each foe's general supply on this._
     Characters in your Haven ha Secrecy.
@@ -276,7 +276,7 @@ export const havens: Record<CardId, Haven> = {
 
 "sas-the-tenderloin": {
   stack: "haven",
-  name: "The Tenderloin",
+  name: "Haven - The Tenderloin",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -292,7 +292,7 @@ export const havens: Record<CardId, Haven> = {
 
 "hoe-guard-tower": {
   stack: "haven",
-  name: "The Guard Tower",
+  name: "Haven - The Guard Tower",
   text: md`
     Guards in your coterie have +1 [Shield] while Blocking.
     **Leader Ability**
@@ -306,7 +306,7 @@ export const havens: Record<CardId, Haven> = {
 
 "hoe-old-rail-station": {
   stack: "haven",
-  name: "Old Rail Station",
+  name: "Haven - Old Rail Station",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -321,7 +321,7 @@ export const havens: Record<CardId, Haven> = {
 
 "dar-campsite": {
   stack: "haven",
-  name: "Campsite",
+  name: "Haven - Campsite",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -335,7 +335,7 @@ export const havens: Record<CardId, Haven> = {
 
 "dar-converted-bus": {
   stack: "haven",
-  name: "Converted Bus",
+  name: "Haven - Converted Bus",
   text: md`
     Your characters in The Streets have +1 Secrecy.
     **Leader Ability**
@@ -348,7 +348,7 @@ export const havens: Record<CardId, Haven> = {
 
 "dar-country-estate": {
   stack: "haven",
-  name: "Country Estate",
+  name: "Haven - Country Estate",
   text: md`
     \***\*Start of Game:** Attach a Ghoul from your Library to this.\*\*
     Characters in your Haven have +1 Secrecy and Ghouls you control in The Streets have +1 [shield].
@@ -362,7 +362,7 @@ export const havens: Record<CardId, Haven> = {
 
 "dar-social-housing": {
   stack: "haven",
-  name: "Social Housing",
+  name: "Haven - Social Housing",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -378,7 +378,7 @@ export const havens: Record<CardId, Haven> = {
 
 "jam-the-hermitage": {
   stack: "haven",
-  name: "The Hermitage",
+  name: "Haven - The Hermitage",
   text: md`
     Characters in your Haven have +1 Secrecy.
     When you recruit a character, gain 1 [prestige].
@@ -391,7 +391,7 @@ export const havens: Record<CardId, Haven> = {
 
 "jam-ritual-room": {
   stack: "haven",
-  name: "Ritual Room",
+  name: "Haven - Ritual Room",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -404,7 +404,7 @@ export const havens: Record<CardId, Haven> = {
 
 "jam-the-castle": {
   stack: "haven",
-  name: "The Castle",
+  name: "Haven - The Castle",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Discard 1 card:** Mend 1 [blood] on target character (including in torpor); mend 2 [blood] instead if they are in torpor.
@@ -417,7 +417,7 @@ export const havens: Record<CardId, Haven> = {
 
 "jam-the-high-horse": {
   stack: "haven",
-  name: "The High Horse",
+  name: "Haven - The High Horse",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -433,7 +433,7 @@ export const havens: Record<CardId, Haven> = {
 
 "hah-fellowship-hall": {
   stack: "haven",
-  name: "Fellowship Hall",
+  name: "Hideout - Fellowship Hall",
   text: md`
     Your characters have +1 Secrecy.
     **Leader Ability**
@@ -446,7 +446,7 @@ export const havens: Record<CardId, Haven> = {
 
 "hah-back-alley-clinic": {
   stack: "haven",
-  name: "Back Alley Clinic",
+  name: "Hideout - Back Alley Clinic",
   text: `md
     Your characters have +1 Secrecy.
     **Leader Ability**
@@ -459,7 +459,7 @@ export const havens: Record<CardId, Haven> = {
 
 "hah-the-temple-of-set": {
   stack: "haven",
-  name: "The Temple of Set",
+  name: "Haven - The Temple of Set",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -472,7 +472,7 @@ export const havens: Record<CardId, Haven> = {
 
 "hah-the-clubhouse": {
   stack: "haven",
-  name: "The Clubhouse",
+  name: "Haven - The Clubhouse",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -485,7 +485,7 @@ export const havens: Record<CardId, Haven> = {
 
 "hah-the-bunker": {
   stack: "haven",
-  name: "The Bunker",
+  name: "Hideout - The Bunker",
   text: md`
     Your characters have +1 Secrecy.
     **Leader Ability**
@@ -498,7 +498,7 @@ export const havens: Record<CardId, Haven> = {
 
 "hah-the-feretory": {
   stack: "haven",
-  name: "The Feretory",
+  name: "Hideout - The Feretory",
   text: md`
     Your characters have +1 Secrecy.
     **Leader Ability**
@@ -512,7 +512,7 @@ export const havens: Record<CardId, Haven> = {
 
 "hah-the-orphanage": {
   stack: "haven",
-  name: "The Orphanage",
+  name: "Haven - The Orphanage",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -525,7 +525,7 @@ export const havens: Record<CardId, Haven> = {
 
 "hah-the-hidden-temple": {
   stack: "haven",
-  name: "The Hidden Temple",
+  name: "Haven - The Hidden Temple",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -541,7 +541,7 @@ export const havens: Record<CardId, Haven> = {
 
 "ml-ghoulish-favela": {
   stack: "haven",
-  name: "Ghoulish Favela",
+  name: "Haven - Ghoulish Favela",
   text: md`
     Characters in your Haven have +1 Secrecy. Ghouls with no face-up attachments you control have +1 [shield].
     **Leader Ability**
@@ -554,7 +554,7 @@ export const havens: Record<CardId, Haven> = {
 
 "ml-hunters-blind": {
   stack: "haven",
-  name: "Hunter's Blind",
+  name: "Hideout - Hunter's Blind",
   text: md`
     Your characters have +1 Secrecy.
     **Leader Ability**
@@ -567,7 +567,7 @@ export const havens: Record<CardId, Haven> = {
 
 "ml-the-ready-room": {
   stack: "haven",
-  name: "The Ready Room",
+  name: "Hideout - The Ready Room",
   text: md`
     Your characters have +1 Secrecy.
     **Leader Ability**
@@ -645,11 +645,40 @@ export const havens: Record<CardId, Haven> = {
   cardpools: ["Werewolf"],
 },
 
+// Prince Pack 2 //
+
+"pp2-the-dojo": {
+  stack: "haven",
+  name: "Haven - The Dojo",
+  text: md`
+    Characters in your Haven have +1 Secrecy.
+    **Leader Ability**
+    At the end of the Blocking Step of each attack a character in your coterie makes targeting a character during your turn, draw 1 card. 
+    Then, each player who controls 1+ characters in The Streets draws 1 card and discards 1 card.
+  `,
+  illustrator: "Elif Aydin",
+  set: "Prince Pack 2",
+  cardpools: ["Vampire", "Hunter"],
+},
+
+"pp2-atomic-empire": {
+  stack: "haven",
+  name: "Haven - Atomic Empire",
+  text: md`
+    Characters in your coterie have +1 Intel.
+    **Leader Ability**
+    Characters in your coterie have +1 Stealth. During your turn, when a player blocks an attack you make, draw 1 card.
+  `,
+  illustrator: "Anastasiia Horbunova",
+  set: "Prince Pack 2",
+  cardpools: ["Vampire", "Hunter"],
+},
+
 // Promo //
 
 "xxx-apartment-111": {
   stack: "haven",
-  name: "Apartment 111",
+  name: "Haven - Apartment 111",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Solitary** characters in your coterie have +1 Secrecy in The Streets, +1 Intel, and +1 Influence.
@@ -662,7 +691,7 @@ export const havens: Record<CardId, Haven> = {
 
 "xxx-dancing-house": {
   stack: "haven",
-  name: "Dancing House",
+  name: "Haven - Dancing House",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -675,7 +704,7 @@ export const havens: Record<CardId, Haven> = {
 
 "xxx-old-police-station": {
   stack: "haven",
-  name: "Old Police Station",
+  name: "Haven - Old Police Station",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -689,7 +718,7 @@ export const havens: Record<CardId, Haven> = {
 
 "xxx-prague-national-bank": {
   stack: "haven",
-  name: "Prague National Bank",
+  name: "Haven - Prague National Bank",
   text: md`
     You start the game with 25 [prestige].
     If this card leaves play, lose 3 [prestige].
@@ -701,7 +730,7 @@ export const havens: Record<CardId, Haven> = {
 
 "xxx-tent-city": {
   stack: "haven",
-  name: "Tent City",
+  name: "Haven - Tent City",
   text: md`
   Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -714,7 +743,7 @@ export const havens: Record<CardId, Haven> = {
 
 "xxx-youth-hostel": {
   stack: "haven",
-  name: "Youth Hostel",
+  name: "Haven - Youth Hostel",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -727,7 +756,7 @@ export const havens: Record<CardId, Haven> = {
 
 "xxx-the-underpass": {
   stack: "haven",
-  name: "The Underpass",
+  name: "Haven - The Underpass",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
@@ -740,7 +769,7 @@ export const havens: Record<CardId, Haven> = {
 
 "xxx-the-presidio": {
   stack: "haven",
-  name: "The Presidio",
+  name: "Haven - The Presidio",
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**

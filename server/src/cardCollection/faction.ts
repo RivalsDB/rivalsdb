@@ -4436,6 +4436,239 @@ export const factions: Record<CardId, Faction> = {
   cardpools: ["Werewolf"],
 },
 
+// Prince Pack 2 //
+
+"pp2-edward-kim": {
+  stack: "faction",
+  clan: "banu haqim",
+  name: "Edward Kim",
+  text: md`
+    **Solitary**
+    If this is the only vampire you control, you pay 1 less Action to play Rituals.
+    When this character plays a Ritual, you may add 1 [blood] from your general supply to it for each Tradition you control.
+  `,
+  bloodPotency: 6,
+  physical: 0,
+  social: 2,
+  mental: 1,
+  illustrator: "Elif Aydin",
+  set: "Prince Pack 2",
+  disciplines: { "blood sorcery": 1, celerity: 1, obfuscate: 1 },
+  cardpools: ["Vampire"],
+},
+
+"pp2-benoit-sigal": {
+  stack: "faction",
+  clan: "gangrel",
+  name: "Benoit Sigal",
+  text: md`
+    Party - Characters in this party with 1+ Animals attached have +1 [shield].
+    Attacker - This character has +1 Stealth for each attached Animal.
+  `,
+  bloodPotency: 5,
+  physical: 2,
+  social: 1,
+  mental: 0,
+  illustrator: "Elif Aydin",
+  set: "Prince Pack 2",
+  disciplines: { animalism: 1, fortitude: 1 },
+  cardpools: ["Vampire"],
+},
+
+"pp2-lunr": {
+  stack: "faction",
+  clan: "lasombra",
+  name: "LunR",
+  text: md`
+    Party - As a character in this party attacks, place 1 [agenda] on each character in this party.
+    **Relentless, Pay X [agenda] from this character:** Deal X **Superficial Aggravated** [damage] to target attacker.
+  `,
+  bloodPotency: 6,
+  physical: 1,
+  social: 2,
+  mental: 0,
+  illustrator: "Anastasiia Horbunova",
+  set: "Prince Pack 2",
+  disciplines: { dominate: 1, oblivion: 1, potence: 1 },
+  cardpools: ["Vampire"],
+},
+
+"pp2-david-riffle": {
+  stack: "faction",
+  clan: "ministry",
+  name: "David Riffle",
+  text: md`
+    **Pay X Influence:** Put a Fear token on target character with [x blood potency] or less and that has a 'No Influence' token on them.
+    **Exhaust:** This character has +1 Influence this turn for every 2 [agenda] on your Agenda card.
+  `,
+  bloodPotency: 5,
+  physical: 1,
+  social: 0,
+  mental: 2,
+  illustrator: "Elif Aydin",
+  set: "Prince Pack 2",
+  disciplines: { obfuscate: 2 },
+  cardpools: ["Vampire"],
+},
+
+"pp2-yacine-kout": {
+  stack: "faction",
+  clan: "nosferatu",
+  name: "Yacine Kout",
+  text: md`
+    When any player discards a card from their hand, they do so at random. If it's a Library card that can be legally attached to this character, you may attach it to this character at no cost.
+  `,
+  bloodPotency: 5,
+  physical: 2,
+  social: 1,
+  mental: 0,
+  illustrator: "Anastasiia Horbunova",
+  set: "Prince Pack 2",
+  disciplines: { obfuscate: 1, potence: 1 },
+  cardpools: ["Vampire"],
+},
+
+"pp2-leah-brimstone": {
+  stack: "faction",
+  clan: "tremere",
+  name: "Leah Brimstone",
+  text: md`
+    **Diablerist**
+    Attacker - **Pay 1** [blood]: Steal 1 [blood] from the defending character and place it onto any card with [blood] on it (including in torpor).
+  `,
+  bloodPotency: 6,
+  physical: 0,
+  social: 1,
+  mental: 2,
+  illustrator: "Joyce Maureira",
+  set: "Prince Pack 2",
+  disciplines: { "blood sorcery": 1, dominate: 2 },
+  cardpools: ["Vampire"],
+},
+
+"pp2-nagol": {
+  stack: "faction",
+  clan: "tzimisce",
+  name: "Nagol",
+  text: md`
+    **Solitary**
+    When this character has 1+ attachments, they have +1 [shield] and +1 [fortitude].
+    **Detach an attachment from this character:** Deal 1 [physical][damage] to target character for each [fortitude] this character has, and +1 [damage] if this is the only vampire you control.
+  `,
+  bloodPotency: 7,
+  physical: 2,
+  social: 0,
+  mental: 2,
+  illustrator: "Anastasiia Horbunova",
+  set: "Prince Pack 2",
+  disciplines: { dominate: 1, fortitude: 1, protean: 1 },
+  cardpools: ["Vampire"],
+},
+
+"pp2-mister-f": {
+  stack: "faction",
+  clan: "tzimisce",
+  name: "Mister F",
+  text: md`
+    At the end of your turn, you may attach a card in your hand to this character face-down.
+    **Detach 2 face-down cards you control from this character:** Steal 1 [prestige] from target foe.
+  `,
+  bloodPotency: 6,
+  physical: 1,
+  social: 0,
+  mental: 2,
+  illustrator: "Joyce Maureira",
+  set: "Prince Pack 2",
+  disciplines: { animalism: 1, dominate: 1, protean: 1 },
+  cardpools: ["Vampire"],
+},
+
+"pp2-brother-jason": {
+  stack: "faction",
+  clan: "tzimisce",
+  name: "Brother Jason",
+  text: md`
+    **Relentless, Remove 1 [blood] from a character in your coterie:** You may remove 1 [blood] from a character you control. If that character is defeated this turn, you may ready target character.
+  `,
+  bloodPotency: 5,
+  physical: 0,
+  social: 2,
+  mental: 1,
+  illustrator: "Elif Aydin",
+  set: "Prince Pack 2",
+  disciplines: { dominate: 1, protean: 1 },
+  cardpools: ["Vampire"],
+},
+
+"pp2-anna-marie": {
+  stack: "faction",
+  clan: "ventrue",
+  name: "Anna Marie",
+  text: md`
+    When this character attaches a Title, draw 1 card and attach a Haven from your collection to target Leader.
+  `,
+  bloodPotency: 4,
+  physical: 0,
+  social: 2,
+  mental: 0,
+  illustrator: "Anastasiia Horbunova",
+  set: "Prince Pack 2",
+  disciplines: { fortitude: 1, presence: 1 },
+  cardpools: ["Vampire"],
+},
+
+"pp2-fletcher": {
+  stack: "faction",
+  clan: "hecata",
+  name: "Fletcher",
+  text: md`
+    Torpor - Steal 1 [agenda] from target player with 9+ [agenda]. 
+  `,
+  bloodPotency: 4,
+  physical: 1,
+  social: 0,
+  mental: 1,
+  illustrator: "Joyce Maureira",
+  set: "Prince Pack 2",
+  disciplines: { auspex: 1, oblivion: 1},
+  cardpools: ["Vampire"],
+},
+
+"pp2-b-thorn": {
+  stack: "faction",
+  clan: "toreador",
+  name: "B. Thorn",
+  text: md`
+    +1 Influence for each Event in The Streets.
+    The first time a Scheme you play succeeds each turn, look at the set aside City Deck Events and choose one. Put that Event into play.
+  `,
+  bloodPotency: 5,
+  physical: 1,
+  social: 2,
+  mental: 0,
+  illustrator: "Joyce Maureira",
+  set: "Prince Pack 2",
+  disciplines: { auspex: 1, presence: 1},
+  cardpools: ["Vampire"],
+},
+
+"pp2-coyote": {
+  stack: "faction",
+  clan: "ravnos",
+  name: "Coyote",
+  text: md`
+    The first time 1+ tokens are placed onto a character during each player's Action Phase, you may put 1 identical non-Leader token from your general supply onto another target character.
+  `,
+  bloodPotency: 5,
+  physical: 1,
+  social: 1,
+  mental: 1,
+  illustrator: "Elif Aydin",
+  set: "Prince Pack 2",
+  disciplines: { obfuscate: 1, presence: 1},
+  cardpools: ["Vampire"],
+},
+
 // Promo //
 
 "xxx-victor-cane": {

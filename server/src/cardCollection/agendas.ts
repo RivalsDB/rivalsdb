@@ -28,8 +28,7 @@ export const agendas: Record<CardId, Agenda> = {
 "core-drain-them-slowly": {
   name: "Drain Them Slowly",
   text: md`
-    When a character you attack takes 1+ non-**Aggravated** damage but is not defeated, gain 1 [agenda].
-    If you reach 13 [agenda], you win!
+    When an attack you make deals 1+ non-**Aggravated** [damage] to 1+ characters but does not defeat them, gain 2 [agenda].
   `,
   illustrator: "Marco Primo",
   set: "Core",
@@ -235,8 +234,8 @@ export const agendas: Record<CardId, Agenda> = {
 "sas-most-impressive": {
   name: "Most Impressive",
   text: md`
-    At the start of your turn, if your [blood-potency] in The Streets is higher than each individual foes' [blood-potency] in The Streets, gain 1 [agenda].
-    If you reach 13 [agenda], you win!
+    At the start of your turn, if your [blood-potency] in The Streets is higher than each individual foes' [blood potency] in The Streets, gain 1 [agenda]. 
+    During each of your turns, the first time you increase the [blood potency] of a character you control in The Streets, gain 2 [agenda].
   `,
   illustrator: "Mara Miranda-Escota",
   set: "Shadows & Shrouds",
@@ -588,6 +587,33 @@ export const agendas: Record<CardId, Agenda> = {
   cardpools: ["Werewolf"],
 },
 
+// Prince Pack 2
+
+"pp2-discipline-of-the-sensei": {
+  name: "Discipline of the Sensei",
+  text: md`
+    If 1 Reaction card entered foes' discard piles this turn, **Exhaust this card:** Gain 2 [agenda].
+    If 2+ Reaction cards entered foes' discard piles this turn, gain 3 [agenda] instead.
+
+  `,
+  illustrator: "Anastasiia Horbunova",
+  set: "Prince Pack 2",
+  stack: "agenda",
+  cardpools: ["Vampire", "Hunter"],
+},
+
+"pp2-power-behind-the-throne": {
+  name: "Power Behind the Throne",
+  text: md`
+    **Exert 35 Influence:** You win the game!
+  `,
+  illustrator: "Anastasiia Horbunova",
+  set: "Prince Pack 2",
+  stack: "agenda",
+  cardpools: ["Vampire"],
+},
+
+
 // Promo //
 
 "xxx-kiss-the-ring": {
@@ -619,7 +645,7 @@ export const agendas: Record<CardId, Agenda> = {
   name: "Race to the Bottom",
   text: md`
     When you place a '-1 [blood-potency]' token on 1+ characters in a foe's coterie, gain 1 [agenda].
-  If you reach 13 [agenda], you win!
+    If you reach 13 [agenda], you win!
   `,
   illustrator: "Joyce Maureira",
   set: "Promo",

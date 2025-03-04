@@ -18,7 +18,7 @@ type Pack
     | PrincePack1
     | MartialLaw
     | FangAndTalon
-
+    | PrincePack2
 
 enum : Enum Pack
 enum =
@@ -36,6 +36,7 @@ enum =
         , ( "Prince Pack 1", PrincePack1 )
         , ( "Martial Law", MartialLaw )
         , ( "Fang & Talon", FangAndTalon )
+        , ( "Prince Pack 2", PrincePack2 )
         ]
 
 
