@@ -753,7 +753,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "PR Firm",
   text: md`
-    Ongoing - When a Scheme you play suceeds, you may Pay 1 prestige: Gain 1 agenda.
+    Ongoing - **Pay 1 [prestige]**: Gain 1 [agenda]. Use only if a Scheme you played has succeeded this turn. 
   `,
   illustrator: "Darko Stojanovic",
   types: ["unhosted action", "ongoing"],
