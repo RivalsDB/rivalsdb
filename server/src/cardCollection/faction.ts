@@ -458,8 +458,7 @@ export const factions: Record<CardId, Faction> = {
   stack: "faction",
   name: "Randolph Marz",
   text: md`
-    Party - Discard a Title: This attack deals +1 damage to the target.
-    Additional +1 damage if this character is Prince of the City.
+    Party - Titled attackers in this party deal +1 [damage] to the target. If they are Prince of the City, +2 [damage] instead.
   `,
   illustrator: "Amy Wilkins",
   set: "Core",

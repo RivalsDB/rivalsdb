@@ -351,9 +351,9 @@ export const havens: Record<CardId, Haven> = {
   name: "Haven - Country Estate",
   text: md`
     \***\*Start of Game:** Attach a Ghoul from your Library to this.\*\*
-    Characters in your Haven have +1 Secrecy and Ghouls you control in The Streets have +1 [shield].
+    Characters in your Haven have +1 Secrecy.
     **Leader Ability**
-    When your Leader defeats a Citizen of _Vagrant_, you may play the Ghoul attached to this at no Action cost **OR** if you control a Ghoul, play a card at no Action cost.
+    The first time your Leader defeats a Citizen of _Vagrant_ during each of your turns, you may play the Ghoul attached to this at no Action cost **OR** if you control a Ghoul, play a card at no Action cost.
   `,
   illustrator: "Irene Francisco",
   set: "Dragon & Rogue",
