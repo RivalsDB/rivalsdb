@@ -735,7 +735,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Power Play",
   text: md`
-    +1 Damage for each Title you control.
+    +1 [damage] for each Title you control.
   `,
   illustrator: "The Creation Studio",
   types: ["attack"],
