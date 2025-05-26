@@ -350,7 +350,7 @@ export const havens: Record<CardId, Haven> = {
   stack: "haven",
   name: "Haven - Country Estate",
   text: md`
-    \***\*Start of Game:** Attach a Ghoul from your Library to this.\*\*
+    ***Start of Game:*** _Attach a Ghoul from your Library to this._
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
     The first time your Leader defeats a Citizen or _Vagrant_ during each of your turns, you may play the Ghoul attached to this at no Action cost **OR** if you control a Ghoul, play a card at no Action cost.
@@ -653,7 +653,7 @@ export const havens: Record<CardId, Haven> = {
   text: md`
     Characters in your Haven have +1 Secrecy.
     **Leader Ability**
-    At the end of the Blocking Step of each attack a character in your coterie makes targeting a character during your turn, draw 1 card. 
+    At the end of the Blocking Step of each attack a character in your coterie makes targeting a character during your turn, draw 1 card.
     Then, each player who controls 1+ characters in The Streets draws 1 card and discards 1 card.
   `,
   illustrator: "Elif Aydin",
