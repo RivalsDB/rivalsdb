@@ -664,9 +664,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Long-Term Investment",
   text: md`
-    Pay 1 to 3 Prestige: Add double that amount of Prestige from the general supply to this card.
-    Ongoing - At the start of your turn, gain up to 2 Prestige from this card.
-    When empty, burn this card.
+    **Pay 1 to 3 [prestige]:** Add double that amount of [prestige] from your general supply to this card.
+    Ongoing - At the start of your turn, gain up to 2 [prestige] from this card.
   `,
   illustrator: "The Creation Studio",
   types: ["action", "ongoing"],
