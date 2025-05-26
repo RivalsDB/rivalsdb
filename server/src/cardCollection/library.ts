@@ -265,7 +265,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Distraction",
   text: md`
-    Ongoing - Discard this card: Redirect up to 2 Second Inquisition damage you would take during your End Phase to target foe.
+    Ongoing - **Relentless, Exhaust:** Redirect 1 Antagonist damage any player would take to another player.
   `,
   illustrator: "Marco Primo",
   types: ["action", "ongoing"],
@@ -504,7 +504,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Humiliate",
   text: md`
-    If this party has 2+ Presence, +1 Damage
+    If this party has 2+ [presence], +2 [damage]. If this party has 3+ [presence], put a -1 [blood potency] on the target as well.
   `,
   illustrator: "Drew Tucker",
   types: ["attack", "reaction"],
@@ -618,15 +618,14 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Know Your Place",
   text: md`
-    +1 Damage if the attacker has a Title.
-    Id the attacker is Prince of the City, +2 Damage instead.
+    +1 [damage] if the attacker has a Title. If you control the Prince of the City, +2 [damage] instead.
   `,
   illustrator: "The Creation Studio",
   types: ["attack"],
   set: "Core",
   bloodPotencyRequirement: 3,
   attack: "social",
-  damage: 1,
+  damage: 2,
   shield: 0,
   cardpools: ["Vampire"],
 },
@@ -665,9 +664,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Long-Term Investment",
   text: md`
-    Pay 1 to 3 Prestige: Add double that amount of Prestige from the general supply to this card.
-    Ongoing - At the start of your turn, gain 1 Prestige from this card.
-    When empty, burn this card.
+    **Pay 1 to 3 [prestige]:** Add double that amount of [prestige] from your general supply to this card.
+    Ongoing - At the start of your turn, gain up to 2 [prestige] from this card.
   `,
   illustrator: "The Creation Studio",
   types: ["action", "ongoing"],
@@ -695,8 +693,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Marked Man",
   text: md`
-    Put 1 Agenda from the general supply onto any character.
-    If a player defeats them, they gain that agenda.
+    Put up to 2 [agenda] from the general supply onto target character, then gain 1 Unhosted Action.
+    _(If a foe of that character defeats them, they gain that Agenda.)_
   `,
   illustrator: "Marco Primo",
   types: ["unhosted action"],
@@ -737,14 +735,14 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Power Play",
   text: md`
-    +1 Damage for each character with a Title in this party.
+    +1 [damage] for each Title you control.
   `,
   illustrator: "The Creation Studio",
   types: ["attack"],
   set: "Core",
   bloodPotencyRequirement: 5,
   attack: "mental",
-  damage: 1,
+  damage: 2,
   shield: 0,
   cardpools: ["Vampire"],
 },
@@ -753,7 +751,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "PR Firm",
   text: md`
-    Ongoing - **Pay 1 [prestige]**: Gain 1 [agenda]. Use only if a Scheme you played has succeeded this turn. 
+    Ongoing - **Pay 1 [prestige]**: Gain 1 [agenda]. Use only if a Scheme you played has succeeded this turn.
   `,
   illustrator: "Darko Stojanovic",
   types: ["unhosted action", "ongoing"],
