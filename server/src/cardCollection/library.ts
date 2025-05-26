@@ -265,7 +265,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Distraction",
   text: md`
-    Ongoing - **Relentless, Exhaust**: Redirect 1 Antagonist damage any player would take to another player.
+    Ongoing - **Relentless, Exhaust:** Redirect 1 Antagonist damage any player would take to another player.
   `,
   illustrator: "Marco Primo",
   types: ["action", "ongoing"],
