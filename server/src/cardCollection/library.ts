@@ -693,8 +693,8 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Marked Man",
   text: md`
-    Put up to 2 Agenda from the general supply onto target character, then gain 1 Unhosted Action.
-    (_If a foe of that character defeats them, they gain that Agenda._)
+    Put up to 2 [agenda] from the general supply onto target character, then gain 1 Unhosted Action.
+    _(If a foe of that character defeats them, they gain that Agenda.)_
   `,
   illustrator: "Marco Primo",
   types: ["unhosted action"],
