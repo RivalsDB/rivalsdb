@@ -618,8 +618,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "Know Your Place",
   text: md`
-    +1 Damage if the attacker has a Title.
-    If the attacker is Prince of the City, +2 Damage instead.
+    +1 [damage] if the attacker has a Title. If you control the Prince of the City, +2 [damage] instead.
   `,
   illustrator: "The Creation Studio",
   types: ["attack"],
@@ -753,7 +752,7 @@ export const library: Record<CardId, Library> = {
   stack: "library",
   name: "PR Firm",
   text: md`
-    Ongoing - **Pay 1 [prestige]**: Gain 1 [agenda]. Use only if a Scheme you played has succeeded this turn. 
+    Ongoing - **Pay 1 [prestige]**: Gain 1 [agenda]. Use only if a Scheme you played has succeeded this turn.
   `,
   illustrator: "Darko Stojanovic",
   types: ["unhosted action", "ongoing"],
